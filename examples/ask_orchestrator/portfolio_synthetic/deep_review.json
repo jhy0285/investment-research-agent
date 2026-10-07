@@ -1,0 +1,181 @@
+{
+  "as_of": "2026-09-10T12:00:00+00:00",
+  "author": "검토한 원문 수치의 명시적 전사",
+  "calculations": [
+    {
+      "id": "CALC_EY",
+      "input_ids": [
+        "F_PE"
+      ],
+      "label": "합성 이익수익률",
+      "limitations": [
+        "합성 입력, 미래 수익 아님"
+      ],
+      "method": "earnings_yield_v1"
+    },
+    {
+      "id": "CALC_GAP",
+      "input_ids": [
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "label": "합성 이익수익률과 국채의 차이",
+      "limitations": [
+        "합성 입력, ERP 아님"
+      ],
+      "method": "descriptive_yield_gap_v1"
+    }
+  ],
+  "comparison_limits": [
+    "이익수익률과 국채 금리의 차이는 확정 기대수익이나 ERP가 아니다."
+  ],
+  "facts": [
+    {
+      "basis": "forward_12m_pe",
+      "currency": "USD",
+      "entity": "SYNTHETIC",
+      "id": "F_PE",
+      "label": "합성 F_PE",
+      "observed_at": "2026-09-10",
+      "quote_context": "Forward P/E 20.0",
+      "quote_token": "20.0",
+      "source_definition": {
+        "adjustment": "authored fixture",
+        "currency": "USD",
+        "measure": "authored synthetic valuation and yield",
+        "period": "synthetic snapshot",
+        "scope": "synthetic index and Treasury",
+        "unit": "ratio and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3",
+      "unit": "ratio",
+      "value": "20.0",
+      "window": "synthetic snapshot"
+    },
+    {
+      "basis": "nominal_cmt_investment_yield",
+      "currency": "USD",
+      "entity": "SYNTHETIC",
+      "id": "F_TREASURY",
+      "label": "합성 F_TREASURY",
+      "observed_at": "2026-09-10",
+      "quote_context": "Treasury 3.0 percent",
+      "quote_token": "3.0",
+      "source_definition": {
+        "adjustment": "authored fixture",
+        "currency": "USD",
+        "measure": "authored synthetic valuation and yield",
+        "period": "synthetic snapshot",
+        "scope": "synthetic index and Treasury",
+        "unit": "ratio and percent"
+      },
+      "source_evidence_id": "E_DD_TR_H15_CURVE",
+      "unit": "percent",
+      "value": "3.0",
+      "window": "synthetic snapshot"
+    }
+  ],
+  "horizon": "미확인 투자기간에서 개인 판단을 확정하지 않는다.",
+  "id": "ASK_US_EARNINGS_TREASURY",
+  "judgment": "insufficient evidence",
+  "next_research": "현재 질문에 필요한 누락 원자료를 보완한다.",
+  "parent": null,
+  "profile": {
+    "base_currency": {
+      "status": "self_reported",
+      "value": "KRW"
+    },
+    "cash": {
+      "status": "self_reported",
+      "value": "2000000"
+    },
+    "debt": {
+      "status": "self_reported",
+      "value": "1000000"
+    },
+    "holdings": {
+      "status": "self_reported",
+      "value": "complete"
+    },
+    "horizon": {
+      "status": "self_reported",
+      "value": 60
+    },
+    "monthly_investable": {
+      "status": "self_reported",
+      "value": "500000"
+    }
+  },
+  "question": "미국 주식의 이익 기대와 국채 기회비용을 구분한다.",
+  "review_status": "draft",
+  "sampling_limits": [
+    "선택한 지수 원자료의 검토 범위이며 전체 기업의 미래 이익을 검증한 것은 아니다."
+  ],
+  "schema_version": "deep-dive-review-v1",
+  "sections": {
+    "actual_results": [],
+    "ai_chain": [],
+    "base_case": [],
+    "bear_case": [],
+    "bull_case": [],
+    "community": [],
+    "concentration": [],
+    "conclusions": [
+      {
+        "evidence_ids": [
+          "F_PE",
+          "F_TREASURY"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      },
+      {
+        "evidence_ids": [
+          "F_PE",
+          "F_TREASURY"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      },
+      {
+        "evidence_ids": [
+          "F_PE",
+          "F_TREASURY"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      }
+    ],
+    "current_judgment": [],
+    "denominator": [
+      {
+        "evidence_ids": [
+          "F_PE",
+          "F_TREASURY"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      }
+    ],
+    "easy": [],
+    "korean_context": [],
+    "narrative_gaps": [],
+    "priced_expectations": [],
+    "reassessment": [],
+    "revisions": [],
+    "treasury": [
+      {
+        "evidence_ids": [
+          "F_PE",
+          "F_TREASURY"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      }
+    ]
+  },
+  "tables": [],
+  "unknowns": [
+    "새로운 가격 매력 판단에는 실제 실적·수정·반대 근거의 의미 검토가 필요하다."
+  ]
+}

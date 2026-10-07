@@ -1,0 +1,11 @@
+{
+  "plan_id": "ASK_SELECTED_SOURCES",
+  "schema_version": "1",
+  "snapshots": {
+    "COM_HN_BTC_BEAR_PERFORMANCE": "e8498854d4fdd6332a856a83acdb28ebdd49f1839ff2a6fd80cc047e779fffef",
+    "COM_HN_BTC_CUSTODY_RISK": "d044f37dba0e96eb84f1be62b4e225e858ebf00159a5394c056a23146645148e",
+    "CR_COINSHARES_CURRENT_FLOWS": "d1318ddc453c5838df77ffae24468d7a8ccc3fbad74b0d5705fa4898e4c94265",
+    "CR_IBIT_ISSUER": "c1b6f09c2532de3ec838dbcff739a4d750e46f03a9c0274f4670bfaec515ef1a"
+  },
+  "sources_digest": "7b4d757997d723b6006fb70c9c0e274a25ce5ccf8aa6e7ad2d4873c0c783ac0e"
+}

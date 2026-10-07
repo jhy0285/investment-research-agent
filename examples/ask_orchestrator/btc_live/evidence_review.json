@@ -1,0 +1,96 @@
+{
+  "access_notes": [],
+  "as_of": "2026-10-04T14:14:50.187894+00:00",
+  "author": "검토한 규칙 기반 연구 작성기",
+  "comparison_limits": [
+    "수익률 정의가 다른 수치를 순위나 미래 수익으로 합치지 않는다."
+  ],
+  "horizon": "사용자 투자기간은 확인한 입력 범위에서만 사용한다.",
+  "id": "ASK_EVIDENCE_REVIEW",
+  "next_research": {
+    "asset_id": "BTC",
+    "question": "부족한 현재 원자료와 반대 근거를 보완한다.",
+    "title": "필요한 원자료 검토"
+  },
+  "profile": {
+    "base_currency": {
+      "status": "known",
+      "value": "KRW"
+    }
+  },
+  "question": "질문에 필요한 근거와 비교 조건을 확인한다.",
+  "review_status": "draft",
+  "rows": [
+    {
+      "asset_id": "BTC",
+      "candidate": null,
+      "exposure": "사용·보유 수요와 희소성 가설을 검증한다. 기업 이익이나 PER로 평가하지 않는다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "Bitcoin",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CR_IBIT_SPREAD",
+          "E_CR_IBIT_OBJECTIVE",
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_CR_IBIT_SPREAD",
+          "E_CR_IBIT_OBJECTIVE",
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_CR_IBIT_SPREAD",
+          "E_CR_IBIT_OBJECTIVE",
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "BTC 단독 ETF 일별 순유입과 실제 보유량",
+        "가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+        "가격의 매력을 판단할 검증된 가치 대용 지표"
+      ]
+    }
+  ],
+  "sampling_limits": [
+    "검토한 공개 URL의 제한된 표본이다. 전체 시장이나 커뮤니티를 대표하지 않는다."
+  ],
+  "schema_version": "opportunity-review-v1",
+  "sections": {
+    "community": [],
+    "drivers": [],
+    "easy": [],
+    "gaps": [],
+    "korean_context": [],
+    "market_narratives": [],
+    "overview": [],
+    "unknowns": []
+  }
+}

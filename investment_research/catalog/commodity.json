@@ -1,0 +1,5 @@
+{
+  "schema_version": "commodity-coverage-v1",
+  "method_version": "commodity_deep_evidence_v1",
+  "assets": ["NATGAS", "GOLD", "BROAD_COMMODITIES"]
+}

@@ -1,0 +1,11 @@
+{
+  "as_of": "2026-10-04T15:24:37.436914+00:00",
+  "plan_id": "ASK_SELECTED_MACRO",
+  "plan_sha256": "8523b2f8409ebebff39be20bbda13895b350bfbac9cba86a576cfa31d7d9a5d6",
+  "schema_version": "macro-pins-v1",
+  "snapshots": {
+    "FED_H10_KRW": [
+      "49f550955a543f5193070ea0b0b62c9ab4d256f3380c79fcc0a5164da9c11f9f"
+    ]
+  }
+}

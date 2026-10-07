@@ -1,0 +1,2733 @@
+{
+  "as_of": "2026-10-04",
+  "asset_ids": [
+    "CASH",
+    "SHORT_BOND",
+    "LONG_BOND",
+    "US_EQUITY",
+    "KR_EQUITY",
+    "GOLD",
+    "ENERGY",
+    "NATGAS",
+    "BTC",
+    "ETH",
+    "KR_REALESTATE"
+  ],
+  "claims": [
+    {
+      "asset_ids": [
+        "KR_EQUITY"
+      ],
+      "context_ids": [
+        "E_KR_EXPORT_SEMI"
+      ],
+      "counter_ids": [],
+      "id": "CLAIM_MEMORY_CYCLE",
+      "limitations": [
+        "관련 구절이 있다는 사실이 서사의 전체 경제적 주장이나 인과를 입증하지 않는다."
+      ],
+      "narrative_evidence_id": "E_COM_HN_MEMORY_CYCLE_RISK",
+      "recheck": "동일 정의의 공식 원자료와 반대 논리를 추가 검토한다.",
+      "review": {
+        "rationale": "경제적 의미 검토 전 주장이다. 원문과 반대 근거를 대조한다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [
+        "E_KR_SAMSUNG_MEMORY"
+      ],
+      "text": "메모리 성장과 공급 사이클의 반대 논리를 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_CR_FLOW_SLOWDOWN"
+      ],
+      "counter_ids": [],
+      "id": "CLAIM_BTC_RELATIVE_RETURN",
+      "limitations": [
+        "관련 구절이 있다는 사실이 서사의 전체 경제적 주장이나 인과를 입증하지 않는다."
+      ],
+      "narrative_evidence_id": "E_COM_HN_BTC_BEAR_PERFORMANCE",
+      "recheck": "동일 정의의 공식 원자료와 반대 논리를 추가 검토한다.",
+      "review": {
+        "rationale": "경제적 의미 검토 전 주장이다. 원문과 반대 근거를 대조한다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "BTC의 과거 상대성과와 향후 약세 댓글은 기간·배당·통화를 맞춘 자료가 없어 미확인이다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_CR_IBIT_REGISTRATION"
+      ],
+      "counter_ids": [],
+      "id": "CLAIM_CUSTODY",
+      "limitations": [
+        "관련 구절이 있다는 사실이 서사의 전체 경제적 주장이나 인과를 입증하지 않는다."
+      ],
+      "narrative_evidence_id": "E_COM_HN_BTC_CUSTODY_RISK",
+      "recheck": "동일 정의의 공식 원자료와 반대 논리를 추가 검토한다.",
+      "review": {
+        "rationale": "경제적 의미 검토 전 주장이다. 원문과 반대 근거를 대조한다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "거래소 가격 괴리와 보관·인출 위험을 검증할 필요가 있다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "CASH"
+      ],
+      "context_ids": [
+        "E_CASH_DATES",
+        "E_CASH_BILLS",
+        "E_CASH_BASIS",
+        "EV_RA_REAL_YIELD_DATES",
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_CASH",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "기회비용과 구매력 감소가 현금 유지의 장점을 넘는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "유동성과 이자가 필요 자금을 보존하는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [
+        "E_CASH_DATES",
+        "E_CASH_BILLS",
+        "E_CASH_BASIS",
+        "EV_RA_REAL_YIELD_DATES",
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_SHORT_BOND",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "만기와 자금 필요 시점·환율 노출이 맞지 않는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "확인한 yield와 자금 사용 시점이 투자 목적에 맞는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "LONG_BOND"
+      ],
+      "context_ids": [
+        "E_DD_TR_DATES",
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_LONG_BOND",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "금리 상승 또는 조기 자금수요가 가격 손실을 키우는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "장기 이자와 기간이 자금 목적을 충족하는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_VALUATION",
+        "E_DD_IDX_SPY_HOLDINGS",
+        "E_DD_IDX_SPY_PE_METHOD",
+        "E_DD_TR_DATES",
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_US_EQUITY",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "KR_EQUITY"
+      ],
+      "context_ids": [
+        "E_COM_HN_MEMORY_CYCLE_RISK",
+        "E_KR_EXPORT_SEMI",
+        "E_KR_EXPORT_NON_SEMI",
+        "E_KR_EXPORT_AUTO",
+        "E_KR_SAMSUNG_Q2",
+        "E_KR_SAMSUNG_MEMORY",
+        "E_KR_SAMSUNG_MX"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_KR_EQUITY",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "공급과 사이클 변동이 성장 기대를 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "산업 수요가 실제 기업의 이익·현금 회수로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "GOLD"
+      ],
+      "context_ids": [
+        "EV_RA_REAL_YIELD_DATES",
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_GOLD",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "금리 대안과 현재 가격이 보유 이유를 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "직접 수요와 통화 환경이 금 보유 이유를 강화하는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "ENERGY"
+      ],
+      "context_ids": [
+        "EV_RA_OIL_DATES",
+        "EV_RA_OIL_STOCKS",
+        "EV_RA_OIL_RELEASE",
+        "EV_RA_OIL_SUPPLY",
+        "EV_RA_BRENT_AUG",
+        "EV_RA_OIL_FORECAST"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_ENERGY",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "공급 복구 또는 수요 약화가 부족 서사를 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "공급 차질이 실제 재고와 가격 조건을 바꾸는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "NATGAS"
+      ],
+      "context_ids": [
+        "EV_RA_GAS_STOCKS",
+        "EV_RA_GAS_STOCK_METHOD",
+        "EV_RA_GAS_RELEASE",
+        "EV_RA_GAS_STORAGE_FORECAST",
+        "EV_RA_GAS_PRODUCTION_FORECAST",
+        "EV_RA_GAS_FLOW_TABLE"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_NATGAS",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "생산 증가와 예상 재고가 부족 서사를 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "LNG 수요와 겨울 소비가 공급 증가를 넘어 재고를 줄이는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_COM_HN_BTC_BEAR_PERFORMANCE",
+        "E_COM_HN_BTC_CUSTODY_RISK",
+        "E_CR_IBIT_SPREAD",
+        "E_CR_IBIT_OBJECTIVE",
+        "E_CR_IBIT_REGISTRATION",
+        "E_CR_FLOW_SLOWDOWN",
+        "E_CR_FLOW_CAUTIOUS"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_BTC",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "ETH"
+      ],
+      "context_ids": [
+        "E_COM_HN_BTC_CUSTODY_RISK",
+        "E_CR_ETHA_SPREAD",
+        "E_CR_ETHA_OBJECTIVE",
+        "E_CR_ETHA_CORPORATE_ACTION",
+        "E_CR_ETH_ISSUANCE",
+        "E_CR_ETH_BURN",
+        "E_CR_FLOW_SLOWDOWN",
+        "E_CR_FLOW_CAUTIOUS"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_ETH",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "사용 증가가 토큰 보유자의 경제적 가치 증가와 분리될 수 있는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "네트워크 사용과 투자 수요가 실제 수수료·보유 경제성으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "KR_REALESTATE"
+      ],
+      "context_ids": [
+        "E_KR_HOUSING_SUPPLY_LAG",
+        "E_KR_HOUSING_NAMED_LOCATIONS",
+        "E_KR_HOUSING_LENDING_CONSTRAINT",
+        "E_KR_REB_CURRENT_RELEASE"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_KR_REALESTATE",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "금융비용·매도 지연·지역 공급이 주거/투자 목적을 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "실거래·전세·공급·금융비용이 실제 물건의 경제성을 지지하는가?",
+      "verification": "unverified"
+    }
+  ],
+  "evidence": [
+    {
+      "definition": {
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "currency": "USD",
+        "measure": "H15_date_columns_and_effective_federal_funds_rate",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+        "unit": "date_columns_and_EFFR_percent"
+      },
+      "excerpt_id": "DATES",
+      "extraction": null,
+      "id": "E_CASH_DATES",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ],
+      "source_id": "MAC_H15_CASH_BILLS",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "currency": "USD",
+        "measure": "H15_secondary_Treasury_bills_discount_basis",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+        "unit": "annualized_percent_discount_basis"
+      },
+      "excerpt_id": "BILLS",
+      "extraction": null,
+      "id": "E_CASH_BILLS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ],
+      "source_id": "MAC_H15_CASH_BILLS",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "currency": "USD",
+        "measure": "H15_secondary_Treasury_bills_discount_basis",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+        "unit": "annualized_percent_discount_basis"
+      },
+      "excerpt_id": "BASIS",
+      "extraction": null,
+      "id": "E_CASH_BASIS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ],
+      "source_id": "MAC_H15_CASH_BILLS",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "observed_public_utterance",
+        "period": "public_comment_2026-10-02T07:37:14+00:00",
+        "scope": "one_public_Hacker_News_comment_49930845",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_COMMENT",
+      "extraction": null,
+      "id": "E_COM_HN_MEMORY_CYCLE_RISK",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ],
+      "source_id": "COM_HN_MEMORY_CYCLE_RISK",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "observed_public_utterance",
+        "period": "public_comment_2026-09-17T13:37:17+00:00",
+        "scope": "one_public_Hacker_News_comment_49740578",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_COMMENT",
+      "extraction": null,
+      "id": "E_COM_HN_BTC_BEAR_PERFORMANCE",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "JSON text의 S&amp;P는 원문의 HTML entity 표기다. 보존 구절은 raw JSON 선택 필드와 그대로 일치하며 한국어 요약에서는 S&P로 설명한다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ],
+      "source_id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "observed_public_utterance",
+        "period": "public_comment_2026-09-21T09:25:21+00:00",
+        "scope": "one_public_Hacker_News_comment_49785002",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_COMMENT",
+      "extraction": null,
+      "id": "E_COM_HN_BTC_CUSTODY_RISK",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ],
+      "source_id": "COM_HN_BTC_CUSTODY_RISK",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+        "currency": "USD",
+        "measure": "IBIT 30-day median bid/ask spread",
+        "period": "30-day window ending 2026-10-02 as labeled by issuer",
+        "scope": "IBIT shares on US secondary market, not Bitcoin spot market",
+        "unit": "percent_of_share_price"
+      },
+      "excerpt_id": "CR_IBIT_SPREAD",
+      "extraction": null,
+      "id": "E_CR_IBIT_SPREAD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Product secondary-market liquidity metric, not underlying token liquidity, a capital inflow, expected return, or user-access eligibility.",
+        "First publication timestamp unknown; the dated observation is 2026-10-02.",
+        "No numeric parser for this measure was added; quotation fact only, extraction null."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "IBIT investment objective",
+        "period": "source edition as of 2026-10-02",
+        "scope": "issuer description of IBIT, not a verified expected Bitcoin return",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_IBIT_OBJECTIVE",
+      "extraction": null,
+      "id": "E_CR_IBIT_OBJECTIVE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "IBIT legal registration status",
+        "period": "source edition as of 2026-10-02",
+        "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_IBIT_REGISTRATION",
+      "extraction": null,
+      "id": "E_CR_IBIT_REGISTRATION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+        "currency": "USD",
+        "measure": "ETHA 30-day median bid/ask spread",
+        "period": "30-day window ending 2026-10-02 as labeled by issuer",
+        "scope": "ETHA shares on US secondary market, not Ethereum spot market",
+        "unit": "percent_of_share_price"
+      },
+      "excerpt_id": "CR_ETHA_SPREAD",
+      "extraction": null,
+      "id": "E_CR_ETHA_SPREAD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Product secondary-market liquidity metric, not underlying token liquidity, a capital inflow, expected return, or user-access eligibility.",
+        "First publication timestamp unknown; the dated observation is 2026-10-02.",
+        "No numeric parser for this measure was added; quotation fact only, extraction null."
+      ],
+      "source_id": "CR_ETHA_ISSUER",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "ETHA investment objective",
+        "period": "source edition as of 2026-10-02",
+        "scope": "issuer description of ETHA exposure, not staking returns or verified expected Ether return",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_ETHA_OBJECTIVE",
+      "extraction": null,
+      "id": "E_CR_ETHA_OBJECTIVE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "source_id": "CR_ETHA_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "announced ETHA reverse split",
+        "period": "announcement 2026-08-04; planned post-close action 2026-10-05; planned split-adjusted trading 2026-10-06",
+        "scope": "ETHA share corporate action; completion unknown as of research cutoff",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_ETHA_CORPORATE_ACTION",
+      "extraction": null,
+      "id": "E_CR_ETHA_CORPORATE_ACTION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "2026-10-05 planned action and 2026-10-06 split-adjusted trading are future relative to research cutoff; announcement is not execution.",
+        "No inference about Ethereum network value or investor return from a reverse share split."
+      ],
+      "source_id": "CR_ETHA_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "Ethereum staking issuance mechanism",
+        "period": "page last update 2026-06-06; current edition retrieved during research",
+        "scope": "Ethereum protocol mechanism; no current quantity, net issuance or staking return established",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_ETH_ISSUANCE",
+      "extraction": null,
+      "id": "E_CR_ETH_ISSUANCE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Structural protocol description only; no current network transaction count, fees, ETH issuance/burn, net supply growth or staking yield measured.",
+        "The same page gives numerical examples under older staked-ETH assumptions; those examples are deliberately excluded from current facts.",
+        "Page edition date is known, first publication date is unknown."
+      ],
+      "source_id": "CR_ETH_ISSUANCE_MECHANISM",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "Ethereum base fee burn mechanism",
+        "period": "page last update 2026-06-06; current edition retrieved during research",
+        "scope": "Ethereum protocol mechanism; no current network usage or burn-rate measurement",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_ETH_BURN",
+      "extraction": null,
+      "id": "E_CR_ETH_BURN",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Structural protocol description only; no current network transaction count, fees, ETH issuance/burn, net supply growth or staking yield measured.",
+        "The same page gives numerical examples under older staked-ETH assumptions; those examples are deliberately excluded from current facts.",
+        "Page edition date is known, first publication date is unknown."
+      ],
+      "source_id": "CR_ETH_ISSUANCE_MECHANISM",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "provider reported aggregate; no conversion, inferred asset split or annualization",
+        "currency": "USD",
+        "measure": "research provider reported digital-asset investment-product flows",
+        "period": "week-to-date as described in 2026-10-02 article versus preceding week; exact coverage timestamps unknown",
+        "scope": "CoinShares described fund flows; asset and geography breakdown not given in selected text; not BTC-only/ETH-only or US spot ETF-only",
+        "unit": "USD_million_and_USD_billion_as_quoted"
+      },
+      "excerpt_id": "CR_FLOW_SLOWDOWN",
+      "extraction": null,
+      "id": "E_CR_FLOW_SLOWDOWN",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Not US spot ETF flows exclusively; exact date range, component products, BTC/ETH allocation, fees and source flow-table reconciliation unknown.",
+        "Research author has digital-asset-product business interests; monetary-policy and macro claims elsewhere in the article were not adopted as verified facts.",
+        "Week-to-date and full preceding week do not have equal lengths; do not compute a percentage decline or annualize."
+      ],
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "research-provider characterization of cautious/selective fund flows",
+        "period": "2026-10-02 article",
+        "scope": "CoinShares author interpretation, not independently verified market sentiment or predictive probability",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_FLOW_CAUTIOUS",
+      "extraction": null,
+      "id": "E_CR_FLOW_CAUTIOUS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Not US spot ETF flows exclusively; exact date range, component products, BTC/ETH allocation, fees and source flow-table reconciliation unknown.",
+        "Research author has digital-asset-product business interests; monetary-policy and macro claims elsewhere in the article were not adopted as verified facts.",
+        "Week-to-date and full preceding week do not have equal lengths; do not compute a percentage decline or annualize."
+      ],
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "unadjusted_nominal_export_value",
+        "currency": "USD",
+        "measure": "reported_semiconductor_export_value",
+        "period": "2026-09",
+        "scope": "Korean semiconductor exports; rounded official oral briefing",
+        "unit": "100_million_USD"
+      },
+      "excerpt_id": "Q_KR_EXPORT_SEMI",
+      "extraction": null,
+      "id": "E_KR_EXPORT_SEMI",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "공식 속기록에 발표된 반도체 수출액이다. 반올림된 구술 수치이며 기업별 매출·이익·주식가치가 아니다. 수출기업의 해외생산 및 내수매출 범위와 다르다."
+      ],
+      "source_id": "KR_EXPORT_SEP2026_BRIEFING",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "unadjusted_nominal_export_value_yoy",
+        "currency": "USD",
+        "measure": "reported_non_semiconductor_export_growth",
+        "period": "2026-09_vs_2025-09",
+        "scope": "Korean goods exports excluding named sectors; rounded oral YoY values",
+        "unit": "percent"
+      },
+      "excerpt_id": "Q_KR_EXPORT_NON_SEMI",
+      "extraction": null,
+      "id": "E_KR_EXPORT_NON_SEMI",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "제외 업종별 정의가 다르다. 전체 한국 주식의 이익 증가율로 일반화하지 않는다. 수출액과 물량·이익률은 구분해야 한다."
+      ],
+      "source_id": "KR_EXPORT_SEP2026_BRIEFING",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "unadjusted_nominal_export_value_and_speaker_explanation",
+        "currency": "USD",
+        "measure": "reported_automobile_export_value_and_explanation",
+        "period": "2026-09_vs_2025-09",
+        "scope": "Korean automobile exports; briefing as spoken",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_KR_EXPORT_AUTO",
+      "extraction": null,
+      "id": "E_KR_EXPORT_AUTO",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "자동차 수출액 감소의 발표 사실과 조업일수 영향에 대한 실장의 설명이다. 모든 감소가 달력 때문이라는 인과 주장을 독립 검증하지 않았다."
+      ],
+      "source_id": "KR_EXPORT_SEP2026_BRIEFING",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "company_reported_consolidated_quarterly",
+        "currency": "KRW",
+        "measure": "company_reported_consolidated_revenue_and_operating_profit",
+        "period": "2026Q2_ended_2026-06-30",
+        "scope": "Samsung Electronics consolidated reported results",
+        "unit": "trillion_KRW"
+      },
+      "excerpt_id": "Q_KR_SAMSUNG_Q2",
+      "extraction": null,
+      "id": "E_KR_SAMSUNG_Q2",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "기업의 공식 분기 발표다. 감사·현금흐름·재무상태·현재 주가·발행주식수·일회성 요인까지 별도 검증하지 않았다. 실적 호조만으로 현재 저평가라고 판단할 수 없다."
+      ],
+      "source_id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "company_reported_memory_business_drivers",
+        "period": "2026Q2",
+        "scope": "Samsung memory business; management explanation of reported results",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_KR_SAMSUNG_MEMORY",
+      "extraction": null,
+      "id": "E_KR_SAMSUNG_MEMORY",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "회사가 제시한 지난 분기 실적 원인이다. 미래 AI투자 지속·메모리가격·공급부족을 확인된 사실로 승격하지 않는다."
+      ],
+      "source_id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "company_reported_MX_earnings_cost_pressure",
+        "period": "2026Q2",
+        "scope": "Samsung MX and Networks business; management explanation",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_KR_SAMSUNG_MX",
+      "extraction": null,
+      "id": "E_KR_SAMSUNG_MX",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "회사가 소비기기 사업에 부품비 부담을 보고했다는 사실이다. 반도체 호황이 모든 기업·사업부의 마진 개선을 뜻하지 않는 반대 단서다."
+      ],
+      "source_id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "minister_reported_housing_supply_lag_assessment",
+        "period": "briefing_2026-08-13",
+        "scope": "Ministerial explanation; policy background, not current nationwide or Seoul price measurement",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_KR_HOUSING_LAG",
+      "extraction": null,
+      "id": "E_KR_HOUSING_SUPPLY_LAG",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "8월 정부의 수급 설명이다. 10월 현재 지역별 실거래·매매·전세 상승률을 입증하지 않는다. 정책 배경의 90일 검토창은 가격 자료의 최신성 기준이 아니다."
+      ],
+      "source_id": "KR_HOUSING_SUPPLY_20260813",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "policy_plan_not_realized_supply",
+        "currency": "KRW",
+        "measure": "announced_public_housing_location_and_start_plan",
+        "period": "announced_2026-08-13_future_start_3_to_4_years",
+        "scope": "Named Seoul Gangseo, Namyangju downtown, Gyeonggi Gwangju sites; plans, not completions",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_KR_HOUSING_LOCATIONS",
+      "extraction": null,
+      "id": "E_KR_HOUSING_NAMED_LOCATIONS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "공급 계획과 지역명을 확인했다. 착공·입주 확정 실적이 아니며 전국의 모든 지역에 동일한 수급 상태를 적용하지 않는다. 시행 진척은 추가 확인이 필요하다."
+      ],
+      "source_id": "KR_HOUSING_SUPPLY_20260813",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "announced_housing_credit_management_principle",
+        "period": "briefing_2026-08-13",
+        "scope": "FSC stated LTV/DSR policy principle; individual eligibility and later amendments unknown",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_KR_HOUSING_LOAN_CONSTRAINT",
+      "extraction": null,
+      "id": "E_KR_HOUSING_LENDING_CONSTRAINT",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "정부가 발표한 관리 원칙이다. 현재 개인의 적용 LTV/DSR, 은행 실행금리, 우대대출 자격·한도·최신 개정내용은 미확인이다."
+      ],
+      "source_id": "KR_HOUSING_SUPPLY_20260813",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "publication_title_and_date",
+        "period": "observation_2026-09-28_release_2026-10-01",
+        "scope": "REB weekly apartment statistics publication metadata; no numeric regional values",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_KR_REB_RELEASE",
+      "extraction": null,
+      "id": "E_KR_REB_CURRENT_RELEASE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "공식 최신 주간판의 관측·공표일만 확인했다. HTML에는 전국·수도권·서울 매매/전세 수치가 없고 현재 parser는 첨부 PDF를 지원하지 않는다. 가격 방향·전세가율·특정 지역 매력의 근거로 사용하지 않는다."
+      ],
+      "source_id": "KR_REB_WEEK_20260928_METADATA",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+        "currency": null,
+        "measure": "US_Lower48_weekly_working_gas_storage",
+        "period": "2026-08-21_to_2026-09-25",
+        "scope": "US_Lower48_underground_working_gas_includes_reclassifications",
+        "unit": "billion_cubic_feet"
+      },
+      "excerpt_id": "RA_GAS_STOCKS",
+      "extraction": null,
+      "id": "EV_RA_GAS_STOCKS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Six weekly estimates; latest is 2026-09-25. No five-year average or year-ago inventory comparison retained; working gas changes can include reclassification. Not a scarcity or price forecast."
+      ],
+      "source_id": "RA_EIA_GAS_WEEKLY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "working_gas_stock_change_definition",
+        "period": "current_table_method",
+        "scope": "US_weekly_working_gas_storage_estimation",
+        "unit": "text"
+      },
+      "excerpt_id": "RA_GAS_STOCK_METHOD",
+      "extraction": null,
+      "id": "EV_RA_GAS_STOCK_METHOD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Method explanation, not a measured net injection calculation or independently quantified sampling error."
+      ],
+      "source_id": "RA_EIA_GAS_WEEKLY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "weekly_gas_release_date",
+        "period": "2026-10-01",
+        "scope": "EIA_current_dnav_weekly_gas_table",
+        "unit": "calendar_date"
+      },
+      "excerpt_id": "RA_GAS_RELEASE",
+      "extraction": null,
+      "id": "EV_RA_GAS_RELEASE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Date only; exact intraday publication time unknown. Use actual retrieval completion as the conservative known-at floor."
+      ],
+      "source_id": "RA_EIA_GAS_WEEKLY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "weekly_stock_observation_dates",
+        "period": "2026-08-21_to_2026-09-25",
+        "scope": "US_weekly_petroleum_stocks_table_columns",
+        "unit": "calendar_date"
+      },
+      "excerpt_id": "RA_OIL_DATES",
+      "extraction": null,
+      "id": "EV_RA_OIL_DATES",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Column alignment metadata, not a standalone stock observation."
+      ],
+      "source_id": "RA_EIA_OIL_WEEKLY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+        "currency": null,
+        "measure": "US_commercial_crude_oil_inventory",
+        "period": "2026-08-21_to_2026-09-25",
+        "scope": "US_commercial_crude_excludes_SPR_and_lease_stock",
+        "unit": "thousand_barrels"
+      },
+      "excerpt_id": "RA_OIL_STOCKS",
+      "extraction": null,
+      "id": "EV_RA_OIL_STOCKS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Commercial inventory excludes strategic reserve and lease stock. No same-week five-year average retained; weekly U.S. inventory is not global balance."
+      ],
+      "source_id": "RA_EIA_OIL_WEEKLY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "weekly_petroleum_release_date",
+        "period": "2026-09-30",
+        "scope": "EIA_current_dnav_weekly_petroleum_table",
+        "unit": "calendar_date"
+      },
+      "excerpt_id": "RA_OIL_RELEASE",
+      "extraction": null,
+      "id": "EV_RA_OIL_RELEASE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Date only; exact intraday publication time unknown. Latest estimated weekly row can be revised."
+      ],
+      "source_id": "RA_EIA_OIL_WEEKLY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "agency_estimate_not_raw_metered_observation",
+        "currency": null,
+        "measure": "EIA_estimated_crude_production_shut_ins",
+        "period": "2026-07_and_2026-08",
+        "scope": "global_crude_supply_disruptions_EIA_September_2026_assessment",
+        "unit": "million_barrels_per_day"
+      },
+      "excerpt_id": "RA_OIL_SUPPLY",
+      "extraction": null,
+      "id": "EV_RA_OIL_SUPPLY",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "EIA assessed shut-ins, not separately verified metered production. Same September STEO as forecast; correlated evidence, not independent source confirmation."
+      ],
+      "source_id": "RA_EIA_STEO_OIL",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "spot_monthly_average_not_futures_or_total_return",
+        "currency": "USD",
+        "measure": "Brent_spot_monthly_average_price",
+        "period": "2026-08",
+        "scope": "Brent_crude_oil_monthly_average_EIA_September_2026",
+        "unit": "USD_per_barrel"
+      },
+      "excerpt_id": "RA_BRENT_AUG",
+      "extraction": null,
+      "id": "EV_RA_BRENT_AUG",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "August monthly-average spot price, not October 2 executable price, futures curve, ETF total return or fair-value assessment."
+      ],
+      "source_id": "RA_EIA_STEO_OIL",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "conditional_agency_forecast_not_observed_future_price",
+        "currency": "USD",
+        "measure": "EIA_conditional_Brent_price_forecast",
+        "period": "2027-Q2_forecast_as_published_2026-09-09",
+        "scope": "depends_on_Middle_East_exports_and_shut_in_production_restarting",
+        "unit": "USD_per_barrel"
+      },
+      "excerpt_id": "RA_OIL_FORECAST",
+      "extraction": null,
+      "id": "EV_RA_OIL_FORECAST",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Conditional EIA projection for future period, not future fact or system prediction; restoration assumptions can fail. Same source as supply estimate, not independent."
+      ],
+      "source_id": "RA_EIA_STEO_OIL",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "forecast_not_current_inventory_not_seasonally_adjusted",
+        "currency": null,
+        "measure": "EIA_US_working_gas_inventory_and_historical_comparison_forecast",
+        "period": "2026-10-31_forecast_as_published_2026-09-09",
+        "scope": "US_working_gas_storage_comparison_2021_2025_mean_and_October_2025",
+        "unit": "billion_cubic_feet_and_percent"
+      },
+      "excerpt_id": "RA_GAS_STORAGE_FORECAST",
+      "extraction": null,
+      "id": "EV_RA_GAS_STORAGE_FORECAST",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "2026-10-31 is a forecast period beyond cutoff. It is not latest observed inventory or proof that current inventory is 5% above average. Regional balances vary."
+      ],
+      "source_id": "RA_EIA_STEO_GAS",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "forecast_change_not_observed_growth",
+        "currency": null,
+        "measure": "EIA_market_natural_gas_production_growth_forecast",
+        "period": "2026_and_2027_forecast_as_published_2026-09-09",
+        "scope": "US_marketed_natural_gas_not_same_as_dry_gas_series",
+        "unit": "billion_cubic_feet_per_day"
+      },
+      "excerpt_id": "RA_GAS_PRODUCTION_FORECAST",
+      "extraction": null,
+      "id": "EV_RA_GAS_PRODUCTION_FORECAST",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Future annual marketed production-growth estimate, not current observed dry production. No assumed deterministic price relationship."
+      ],
+      "source_id": "RA_EIA_STEO_GAS",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "annual_average_historical_and_forecast_must_be_separated",
+        "currency": null,
+        "measure": "EIA_dry_gas_production_consumption_and_LNG_exports",
+        "period": "2024_2025_historical_and_2026_2027_projected_as_published_2026-09-09",
+        "scope": "US_dry_gas_production_domestic_consumption_LNG_exports",
+        "unit": "billion_cubic_feet_per_day"
+      },
+      "excerpt_id": "RA_GAS_FLOW_TABLE",
+      "extraction": null,
+      "id": "EV_RA_GAS_FLOW_TABLE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Columns are 2024/2025 historical and 2026/2027 projected. Forecast supply, consumption and exports must not be represented as current measured daily flows."
+      ],
+      "source_id": "RA_EIA_STEO_GAS",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "H15_publication_and_observation_dates",
+        "period": "2026-09-25_to_2026-10-01",
+        "scope": "H15_release_2026-10-02_daily_table",
+        "unit": "calendar_date"
+      },
+      "excerpt_id": "RA_REAL_YIELD_DATES",
+      "extraction": null,
+      "id": "EV_RA_REAL_YIELD_DATES",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Release date Oct 2 with observations through Oct 1; exact initial publication vintage/revision history unknown."
+      ],
+      "source_id": "RA_FED_REAL_YIELD",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "Treasury_inflation_indexed_constant_maturity_market_bid_yield",
+        "currency": "USD",
+        "measure": "US_TIPS_10Y_constant_maturity_yield",
+        "period": "2026-09-25_to_2026-10-01",
+        "scope": "US_Treasury_TIPS_interpolated_curve_not_policy_rate_not_gold_expected_return",
+        "unit": "percent_per_annum"
+      },
+      "excerpt_id": "RA_REAL_YIELDS",
+      "extraction": null,
+      "id": "EV_RA_REAL_YIELDS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "10Y TIPS Oct 1 is 2.88% per annum from final date column; positive real yield is opportunity-cost context only. No gold price, central-bank gold demand, dollar index or empirical gold-return relationship measured."
+      ],
+      "source_id": "RA_FED_REAL_YIELD",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": "USD",
+        "measure": "TIPS_constant_maturity_yield_definition",
+        "period": "current_H15_method",
+        "scope": "U.S._Treasury_inflation_protected_constant_maturity_series",
+        "unit": "text"
+      },
+      "excerpt_id": "RA_REAL_YIELD_DEFINITION",
+      "extraction": null,
+      "id": "EV_RA_REAL_YIELD_DEFINITION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Curve-based real yield is not guaranteed realized return; purchase price, holding horizon, inflation adjustment, costs, tax and KRW FX exposure differ."
+      ],
+      "source_id": "RA_FED_REAL_YIELD",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "Quarter-specific consensus EPS estimate revision; provider averages, not realized EPS growth",
+        "currency": "USD",
+        "measure": "Quarterly EPS estimate revision",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent"
+      },
+      "excerpt_id": "REVISIONS",
+      "extraction": null,
+      "id": "E_DD_IDX_FACTSET_Q3_REVISIONS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "excerpt_id": "GUIDANCE",
+      "extraction": null,
+      "id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "excerpt_id": "GROWTH_PRICE",
+      "extraction": null,
+      "id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+        "currency": "USD",
+        "measure": "Index trailing P/E and FY1 harmonic P/E",
+        "period": "2026-10-01",
+        "scope": "S&P 500 characteristics shown by State Street on SPY page",
+        "unit": "ratio and percent"
+      },
+      "excerpt_id": "VALUATION",
+      "extraction": null,
+      "id": "E_DD_IDX_SPY_VALUATION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_SPY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "excerpt_id": "HOLDINGS",
+      "extraction": null,
+      "id": "E_DD_IDX_SPY_HOLDINGS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_SPY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "Forecasted ONE-YEAR earnings per share; negative/positive outliers included; not rolling forward12mo aggregate index calculation",
+        "currency": "USD",
+        "measure": "FY1 weighted harmonic P/E method",
+        "period": "2026-10-01",
+        "scope": "SPY underlying holdings methodology explained on product page",
+        "unit": "ratio definition"
+      },
+      "excerpt_id": "PE_METHOD",
+      "extraction": null,
+      "id": "E_DD_IDX_SPY_PE_METHOD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_SPY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "H15_date_column_order",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "H15 current release latest observation identity",
+        "unit": "dates"
+      },
+      "excerpt_id": "DATES",
+      "extraction": null,
+      "id": "E_DD_TR_DATES",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ],
+      "source_id": "DD_TR_H15_CURVE",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "excerpt_id": "CURVE",
+      "extraction": null,
+      "id": "E_DD_TR_CURVE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ],
+      "source_id": "DD_TR_H15_CURVE",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_constant_maturity_interpolation",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "Interpolation of closing bid yield curve; Treasury nominal securities, not a tradable single-security quote",
+        "unit": "source_method_definition"
+      },
+      "excerpt_id": "METHOD",
+      "extraction": null,
+      "id": "E_DD_TR_METHOD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ],
+      "source_id": "DD_TR_H15_CURVE",
+      "view": "macro"
+    }
+  ],
+  "id": "ASK_SELECTED_SOURCES",
+  "question": "오늘 투자할 만한 곳 찾아줘",
+  "schema_version": "1",
+  "sources": [
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49740578",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "observed_public_utterance",
+            "period": "public_comment_2026-09-17T13:37:17+00:00",
+            "scope": "one_public_Hacker_News_comment_49740578",
+            "unit": "text"
+          },
+          "id": "Q_COMMENT",
+          "locator": "/text",
+          "quote": "It has underperformed both the S&amp;P 500 and gold over the last 5 years. I expect bitcoin inflation to continue. (AKA the bitcoin price to continue to go down)."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "max_age_days": 30,
+      "observed_at": "2026-09-17",
+      "origin_source_id": null,
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-17T13:37:17+00:00",
+      "publisher": "Hacker News official public API; individual public comment",
+      "retention": "excerpt",
+      "title": "One HN comment: Bitcoin mining sales and an unverified five-year comparison",
+      "topics": [
+        "btc_mining_demand_performance_hypothesis"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49740578.json",
+      "valid_as_of": "2026-09-17"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49785002",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "observed_public_utterance",
+            "period": "public_comment_2026-09-21T09:25:21+00:00",
+            "scope": "one_public_Hacker_News_comment_49785002",
+            "unit": "text"
+          },
+          "id": "Q_COMMENT",
+          "locator": "/text",
+          "quote": "because the promise of a bitcoin from an exchange is not the same thing as an actual bitcoin."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "COM_HN_BTC_CUSTODY_RISK",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "max_age_days": 30,
+      "observed_at": "2026-09-21",
+      "origin_source_id": null,
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-21T09:25:21+00:00",
+      "publisher": "Hacker News official public API; individual public comment",
+      "retention": "excerpt",
+      "title": "One HN comment: exchange Bitcoin claims and withdrawal risk",
+      "topics": [
+        "btc_exchange_custody_vs_underlying"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+      "valid_as_of": "2026-09-21"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "KR_EQUITY"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49930845",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "observed_public_utterance",
+            "period": "public_comment_2026-10-02T07:37:14+00:00",
+            "scope": "one_public_Hacker_News_comment_49930845",
+            "unit": "text"
+          },
+          "id": "Q_COMMENT",
+          "locator": "/text",
+          "quote": "Historically the RAM industry has done the opposite (ramped up production aggressively due to high prices) only for that production to all come online during a glut. This process can be fatal for a company as your expensive fixed investment hits a demand cycle that can turn overnight."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "COM_HN_MEMORY_CYCLE_RISK",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "max_age_days": 30,
+      "observed_at": "2026-10-02",
+      "origin_source_id": null,
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-10-02T07:37:14+00:00",
+      "publisher": "Hacker News official public API; individual public comment",
+      "retention": "excerpt",
+      "title": "One HN comment: memory capital investment and demand-cycle risk",
+      "topics": [
+        "memory_supply_capex_cycle_risk"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49930845.json",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "canonical_url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "provider reported aggregate; no conversion, inferred asset split or annualization",
+            "currency": "USD",
+            "measure": "research provider reported digital-asset investment-product flows",
+            "period": "week-to-date as described in 2026-10-02 article versus preceding week; exact coverage timestamps unknown",
+            "scope": "CoinShares described fund flows; asset and geography breakdown not given in selected text; not BTC-only/ETH-only or US spot ETF-only",
+            "unit": "USD_million_and_USD_billion_as_quoted"
+          },
+          "id": "CR_FLOW_SLOWDOWN",
+          "locator": "Fund flows paragraph",
+          "quote": "We have seen only around US$150M of inflows so far this week, a dramatic slowdown from approximately US$3.5B last week."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "research-provider characterization of cautious/selective fund flows",
+            "period": "2026-10-02 article",
+            "scope": "CoinShares author interpretation, not independently verified market sentiment or predictive probability",
+            "unit": "statement"
+          },
+          "id": "CR_FLOW_CAUTIOUS",
+          "locator": "Fund flows paragraph: author characterization",
+          "quote": "Fund flows, however, show that investors remain cautious."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_COINSHARES_CURRENT_FLOWS",
+      "jurisdiction": "global",
+      "max_age_days": 7,
+      "observed_at": null,
+      "origin_source_id": null,
+      "policy_note": "Public article reached from current research index and robots permits the selected URL. The article states Copyright CoinShares, all rights reserved; no general redistribution license established. Retain two minimal attributed quotations needed for personal research critique, not entire article, figures, subscriber content or author profile. Copyright CoinShares; source and title retained. Quoted figures remain provider reports; exact window/asset coverage and original flow table are unverified.",
+      "policy_url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "published_at": "2026-10-02",
+      "publisher": "CoinShares / James Butterfill",
+      "retention": "excerpt",
+      "title": "Market update - October 2nd, 2026",
+      "topics": [
+        "crypto",
+        "fund-flows",
+        "macro-narrative"
+      ],
+      "type": "research",
+      "url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "ETH"
+      ],
+      "canonical_url": "https://www.ishares.com/us/products/337614/ishares-ethereum-trust-etf",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+            "currency": "USD",
+            "measure": "ETHA 30-day median bid/ask spread",
+            "period": "30-day window ending 2026-10-02 as labeled by issuer",
+            "scope": "ETHA shares on US secondary market, not Ethereum spot market",
+            "unit": "percent_of_share_price"
+          },
+          "id": "CR_ETHA_SPREAD",
+          "locator": "Key Facts: 30 Day Median Bid/Ask Spread",
+          "quote": "30 Day Median Bid/Ask Spread 0.05% as of Oct 02, 2026"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "ETHA investment objective",
+            "period": "source edition as of 2026-10-02",
+            "scope": "issuer description of ETHA exposure, not staking returns or verified expected Ether return",
+            "unit": "statement"
+          },
+          "id": "CR_ETHA_OBJECTIVE",
+          "locator": "Product objective",
+          "quote": "The iShares Ethereum Trust ETF seeks to reflect generally the performance of the price of ether, the native token of the Ethereum network."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "announced ETHA reverse split",
+            "period": "announcement 2026-08-04; planned post-close action 2026-10-05; planned split-adjusted trading 2026-10-06",
+            "scope": "ETHA share corporate action; completion unknown as of research cutoff",
+            "unit": "statement"
+          },
+          "id": "CR_ETHA_CORPORATE_ACTION",
+          "locator": "Important Notice Regarding a Corporate Action",
+          "quote": "On August 4, 2026, iShares filed to issue a reverse stock split for the iShares Ethereum Trust ETF (Nasdaq: ETHA). The reverse split will be effectuated after the close of trading on October 5, 2026. Shares of ETHA will begin trading on a split-adjusted basis on October 6, 2026."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_ETHA_ISSUER",
+      "jurisdiction": "US",
+      "max_age_days": 7,
+      "observed_at": "2026-10-02",
+      "origin_source_id": null,
+      "policy_note": "Public product page; robots permits the chosen URL. BlackRock terms allow personal non-commercial downloads with proprietary notices and restrict public/commercial reuse without written permission. Retain only minimal attributed research quotations in this personal research example, not full content. This does not establish general public redistribution rights. Copyright BlackRock, Inc. All rights reserved.",
+      "policy_url": "https://www.blackrock.com/corporate/compliance/terms-and-conditions",
+      "published_at": null,
+      "publisher": "BlackRock / iShares",
+      "retention": "excerpt",
+      "title": "iShares Ethereum Trust ETF issuer product page, dated fields 2026-10-02",
+      "topics": [
+        "crypto",
+        "product-liquidity",
+        "product-structure"
+      ],
+      "type": "primary",
+      "url": "https://www.ishares.com/us/products/337614/ishares-ethereum-trust-etf",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "ETH"
+      ],
+      "canonical_url": "https://ethereum.org/roadmap/merge/issuance/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "Ethereum staking issuance mechanism",
+            "period": "page last update 2026-06-06; current edition retrieved during research",
+            "scope": "Ethereum protocol mechanism; no current quantity, net issuance or staking return established",
+            "unit": "statement"
+          },
+          "id": "CR_ETH_ISSUANCE",
+          "locator": "ETH issuance tldr",
+          "quote": "The exact staking issuance fluctuates based on the total amount of ETH staked"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "Ethereum base fee burn mechanism",
+            "period": "page last update 2026-06-06; current edition retrieved during research",
+            "scope": "Ethereum protocol mechanism; no current network usage or burn-rate measurement",
+            "unit": "statement"
+          },
+          "id": "CR_ETH_BURN",
+          "locator": "The burn",
+          "quote": "For a transaction to execute on Ethereum, a minimum fee (known as a \"base fee\") must be paid, which fluctuates continuously (block-to-block) depending on network activity. The fee is paid in ETH and is required for the transaction to be considered valid. This fee gets burned during the transaction process, removing it from circulation."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_ETH_ISSUANCE_MECHANISM",
+      "jurisdiction": "global",
+      "max_age_days": 180,
+      "observed_at": null,
+      "origin_source_id": null,
+      "policy_note": "Public page and robots Allow /. Ethereum.org Terms of Use license non-code content under CC BY 4.0 unless otherwise marked. Attribute Ethereum.org contributors, title and URL; selected unmodified excerpts only. Page last update June 6, 2026 is an edition date, not first publication or current network observation. Copyright Ethereum Foundation / contributors; CC BY 4.0.",
+      "policy_url": "https://ethereum.org/en/terms-of-use/",
+      "published_at": null,
+      "publisher": "Ethereum.org contributors / Ethereum Foundation",
+      "retention": "excerpt",
+      "title": "How The Merge impacted ETH supply",
+      "topics": [
+        "crypto",
+        "network-usage",
+        "issuance",
+        "fee-burn"
+      ],
+      "type": "primary",
+      "url": "https://ethereum.org/roadmap/merge/issuance/",
+      "valid_as_of": "2026-06-06"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+            "currency": "USD",
+            "measure": "IBIT 30-day median bid/ask spread",
+            "period": "30-day window ending 2026-10-02 as labeled by issuer",
+            "scope": "IBIT shares on US secondary market, not Bitcoin spot market",
+            "unit": "percent_of_share_price"
+          },
+          "id": "CR_IBIT_SPREAD",
+          "locator": "Key Facts: 30 Day Median Bid/Ask Spread",
+          "quote": "30 Day Median Bid/Ask Spread 0.02% as of Oct 02, 2026"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "IBIT investment objective",
+            "period": "source edition as of 2026-10-02",
+            "scope": "issuer description of IBIT, not a verified expected Bitcoin return",
+            "unit": "statement"
+          },
+          "id": "CR_IBIT_OBJECTIVE",
+          "locator": "Product objective",
+          "quote": "The iShares Bitcoin Trust ETF seeks to reflect the performance of the price of bitcoin."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "IBIT legal registration status",
+            "period": "source edition as of 2026-10-02",
+            "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules",
+            "unit": "statement"
+          },
+          "id": "CR_IBIT_REGISTRATION",
+          "locator": "Product regulatory disclaimer",
+          "quote": "The iShares Bitcoin Trust ETF is not an investment company registered under the Investment Company Act of 1940, and therefore is not subject to the same regulatory requirements as mutual funds or ETFs registered under the Investment Company Act of 1940."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_IBIT_ISSUER",
+      "jurisdiction": "US",
+      "max_age_days": 7,
+      "observed_at": "2026-10-02",
+      "origin_source_id": null,
+      "policy_note": "Public product page; robots permits the chosen URL. BlackRock terms allow personal non-commercial downloads with proprietary notices and restrict public/commercial reuse without written permission. Retain only minimal attributed research quotations in this personal research example, not full content. This does not establish general public redistribution rights. Copyright BlackRock, Inc. All rights reserved.",
+      "policy_url": "https://www.blackrock.com/corporate/compliance/terms-and-conditions",
+      "published_at": null,
+      "publisher": "BlackRock / iShares",
+      "retention": "excerpt",
+      "title": "iShares Bitcoin Trust ETF issuer product page, dated fields 2026-10-02",
+      "topics": [
+        "crypto",
+        "product-liquidity",
+        "product-structure"
+      ],
+      "type": "primary",
+      "url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://insight.factset.com/sp-500-earnings-season-preview-q3-2026",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "Quarter-specific consensus EPS estimate revision; provider averages, not realized EPS growth",
+            "currency": "USD",
+            "measure": "Quarterly EPS estimate revision",
+            "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+            "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+            "unit": "percent"
+          },
+          "id": "REVISIONS",
+          "locator": "Analyst estimate revisions paragraph",
+          "quote": "On a per-share basis, estimated earnings for the third quarter increased by 1.4% from June 30 to September 30. In a typical quarter, analysts usually lower earnings estimates during the quarter. Over the past five years (20 quarters), earnings expectations have fallen by 2.2% on average during the quarter. Over the past ten years, (40 quarters), earnings expectations have fallen by 2.5% on average during the quarter."
+        },
+        {
+          "definition": {
+            "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+            "currency": "USD",
+            "measure": "Company EPS guidance population",
+            "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+            "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+            "unit": "counts and percent"
+          },
+          "id": "GUIDANCE",
+          "locator": "Positive and negative guidance population paragraph",
+          "quote": "At this point in time, 116 companies in the index have issued EPS guidance for Q3 2026. Of these companies, 44 have issued negative EPS guidance and 72 have issued positive EPS guidance. The number of companies issuing positive EPS guidance is well above the 5-year average of 42 and well above the 10-year average of 40. The percentage of S&P 500 companies issuing positive EPS guidance for Q3 2026 is 62% (72 out of 116), which is also well above the 5-year average of 40% and well above the 10-year average of 41%. Due to the upward revisions to earnings estimates by analysts and the positive EPS guidance issued by companies, the estimated (year-over-year) earnings growth rate for Q3 2026 is higher today relative to the start of the third quarter. As of today, the S&P 500 is expected to report (year-over-year) earnings growth of 29.5%, compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30."
+        },
+        {
+          "definition": {
+            "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+            "currency": "USD",
+            "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+            "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+            "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+            "unit": "percent and ratio"
+          },
+          "id": "GROWTH_PRICE",
+          "locator": "Expected earnings/revenue and forward valuation paragraphs",
+          "quote": "As of today, the S&P 500 is expected to report (year-over-year) revenue growth of 12.3%, compared to the expectations for revenue growth of 10.9% on June 30. If 12.3% is the actual revenue growth rate for the quarter, it will mark the third consecutive quarter of double-digit revenue growth for the index. All eleven sectors are projected to report year-over-year growth in revenues, led by the Information Technology, Energy, and Communication Services sectors. For Q4 2026, analysts are calling for earnings growth of 27.6%. For CY 2026, analysts are predicting (year-over-year) earnings growth of 32.4%. The forward 12-month P/E ratio is 19.0 (based on Wednesday’s closing price and forward EPS), which is below the 5-year average (19.8) and below the 10-year average (19.1). This P/E ratio is also below the forward P/E ratio of 20.4 recorded at the end of the second quarter (June 30)."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_IDX_FACTSET_Q3",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "observed_at": "2026-10-02",
+      "origin_source_id": null,
+      "policy_note": "Public FactSet analytical article with copyright and disclaimer; robots allow selected public article. Retain only three short attributed excerpts per article and hashes for personal noncommercial research, no figures or full article, no licence or investment recommendation claimed. FactSet estimate methodology and mixed GAAP/non-GAAP basis are provider statements. Provider articles share underlying estimates and are not independent corroboration. Historical articles are historical earnings-season observations, not current earnings estimates.",
+      "policy_url": "https://www.factset.com/legal",
+      "published_at": "2026-10-02",
+      "publisher": "FactSet",
+      "retention": "excerpt",
+      "title": "FactSet Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "type": "data_provider",
+      "url": "https://insight.factset.com/sp-500-earnings-season-preview-q3-2026",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+            "currency": "USD",
+            "measure": "Index trailing P/E and FY1 harmonic P/E",
+            "period": "2026-10-01",
+            "scope": "S&P 500 characteristics shown by State Street on SPY page",
+            "unit": "ratio and percent"
+          },
+          "id": "VALUATION",
+          "locator": "Index characteristics row",
+          "quote": "Index Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth 22.46% Number of Holdings 503 Price/Cash Flow 18.25 Price/Earnings 24.62 Price/Earnings Ratio FY1 20.43"
+        },
+        {
+          "definition": {
+            "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+            "currency": "USD",
+            "measure": "Index top-security market-cap weights",
+            "period": "2026-10-01",
+            "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+            "unit": "percent"
+          },
+          "id": "HOLDINGS",
+          "locator": "Index top10 security weights",
+          "quote": "Download All Holdings: Daily Index Top Holdings as of Oct 01 2026 Name Weight NVIDIA Corporation 8.46% Apple Inc. 7.30% Microsoft Corporation 5.77% Amazon.com Inc. 3.69% Alphabet Inc. Class A 3.01% Broadcom Inc. 2.48% Meta Platforms Inc Class A 2.42% Alphabet Inc. Class C 2.41% Micron Technology Inc. 1.88% Advanced Micro Devices Inc. 1.52%"
+        },
+        {
+          "definition": {
+            "adjustment": "Forecasted ONE-YEAR earnings per share; negative/positive outliers included; not rolling forward12mo aggregate index calculation",
+            "currency": "USD",
+            "measure": "FY1 weighted harmonic P/E method",
+            "period": "2026-10-01",
+            "scope": "SPY underlying holdings methodology explained on product page",
+            "unit": "ratio definition"
+          },
+          "id": "PE_METHOD",
+          "locator": "FY1 PE methodology",
+          "quote": "Price/Earnings Ratio FY1 ﻿Price/Earnings Ratio FY1 The weighted harmonic average of current share price divided by the forecasted one year earnings per share for each security in the fund. Negative and positive outliers are included in the calculation. 20.43"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_IDX_SPY",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "observed_at": "2026-10-01",
+      "origin_source_id": null,
+      "policy_note": "Public product page with copyright and jurisdiction restrictions; robots allow this page. Only three small attributed analytical excerpts and hashes retained for personal research, not logos, full holdings or PDFs. No Korean product access or redistribution rights inferred. FactSet-based estimates overlap other FactSet evidence.",
+      "policy_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "published_at": null,
+      "publisher": "State Street Investment Management",
+      "retention": "excerpt",
+      "title": "State Street SPY: separately defined index valuation and concentration",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "type": "institution",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "valid_as_of": "2026-10-01"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "LONG_BOND",
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "currency": "USD",
+            "measure": "H15_date_column_order",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "scope": "H15 current release latest observation identity",
+            "unit": "dates"
+          },
+          "id": "DATES",
+          "locator": "H15 DATES visible table/text",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1 "
+        },
+        {
+          "definition": {
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "currency": "USD",
+            "measure": "Treasury_nominal_constant_maturity_curve",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+            "unit": "annual_percent"
+          },
+          "id": "CURVE",
+          "locator": "H15 CURVE visible table/text",
+          "quote": "Treasury constant maturities Nominal 9 1-month 4.04 4.04 4.04 4.02 4.06 3-month 4.24 4.28 4.25 4.20 4.17 6-month 4.33 4.41 4.36 4.33 4.27 1-year 4.50 4.59 4.58 4.54 4.44 2-year 4.81 4.92 4.89 4.88 4.78 3-year 4.94 5.01 4.98 5.00 4.91 5-year 4.98 5.06 5.06 5.09 5.01 7-year 5.06 5.15 5.16 5.19 5.12 10-year 5.17 5.24 5.26 5.29 5.24 20-year 5.54 5.60 5.64 5.68 5.64 30-year 5.49 5.56 5.59 5.64 5.61 "
+        },
+        {
+          "definition": {
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "currency": "USD",
+            "measure": "Treasury_constant_maturity_interpolation",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "scope": "Interpolation of closing bid yield curve; Treasury nominal securities, not a tradable single-security quote",
+            "unit": "source_method_definition"
+          },
+          "id": "METHOD",
+          "locator": "H15 METHOD visible table/text",
+          "quote": "Yields on Treasury nominal securities at “constant maturity” are interpolated by the U.S. Treasury from the daily yield curve for non-inflation-indexed Treasury securities. This curve, which relates the yield on a security to its time to maturity, is based on the closing market bid yields on actively traded Treasury securities in the over-the-counter market. These market yields are calculated from composites of quotations obtained by the Federal Reserve Bank of New York. The constant maturity yield values are read from the yield curve at fixed maturities, currently 1, 3, and 6 months and 1, 2, 3, 5, 7, 10, 20, and 30 years. This method provides a yield for a 10-year maturity, for example, even if no outstanding security has exactly 10 years remaining to maturity. "
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_TR_H15_CURVE",
+      "jurisdiction": "US",
+      "max_age_days": 10,
+      "observed_at": "2026-10-01",
+      "origin_source_id": null,
+      "policy_note": "Public-domain Federal Reserve information with attribution. Same underlying Treasury observations as macro FED_H15_TREASURY CSV; HTML is a definition/date cross-check, not independent empirical confirmation. Excerpts only; seals, logos and separate third-party content excluded.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "published_at": "2026-10-02",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "retention": "excerpt",
+      "title": "H15 released 2026-10-02: same-date nominal Treasury constant-maturity curve",
+      "topics": [
+        "Treasury",
+        "interest_rates",
+        "opportunity_cost",
+        "valuation"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "valid_as_of": "2026-10-01"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "KR_EQUITY"
+      ],
+      "canonical_url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156783969",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "unadjusted_nominal_export_value",
+            "currency": "USD",
+            "measure": "reported_semiconductor_export_value",
+            "period": "2026-09",
+            "scope": "Korean semiconductor exports; rounded official oral briefing",
+            "unit": "100_million_USD"
+          },
+          "id": "Q_KR_EXPORT_SEMI",
+          "locator": "Official ministerial briefing; semiconductor exports, September 2026",
+          "quote": "먼저, 반도체 수출은 사상 처음으로 600억 달러를 돌파하며 603억 달러를 기록하였습니다. 지난 8월의 467억 달러를 훨씬 초과한 수치입니다."
+        },
+        {
+          "definition": {
+            "adjustment": "unadjusted_nominal_export_value_yoy",
+            "currency": "USD",
+            "measure": "reported_non_semiconductor_export_growth",
+            "period": "2026-09_vs_2025-09",
+            "scope": "Korean goods exports excluding named sectors; rounded oral YoY values",
+            "unit": "percent"
+          },
+          "id": "Q_KR_EXPORT_NON_SEMI",
+          "locator": "Official ministerial briefing; non-semiconductor export composition",
+          "quote": "반도체와 컴퓨터를 제외한 수출은 12% 증가하였습니다. 반도체만 제외했을 때는 23% 증가하였습니다."
+        },
+        {
+          "definition": {
+            "adjustment": "unadjusted_nominal_export_value_and_speaker_explanation",
+            "currency": "USD",
+            "measure": "reported_automobile_export_value_and_explanation",
+            "period": "2026-09_vs_2025-09",
+            "scope": "Korean automobile exports; briefing as spoken",
+            "unit": "text"
+          },
+          "id": "Q_KR_EXPORT_AUTO",
+          "locator": "Official ministerial briefing; automobile exports and attributed working-day effect",
+          "quote": "자동차 수출은 추석 연휴로 인해 조업일수가 2.5% 감소하여 5% 감소한 61억 달러를 기록하였습니다."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "KR_EXPORT_SEP2026_BRIEFING",
+      "jurisdiction": "Republic of Korea",
+      "max_age_days": 45,
+      "observed_at": "2026-09-30",
+      "origin_source_id": null,
+      "policy_note": "Reviewed korea.kr copyright policy and the article-specific KOGL Type 1 text notice. Preserve only three short unmodified text excerpts with authoring institution and canonical article URL; link this copyright policy with every citation. Do not retain photos, images, video, attachments, comments, or unrelated page text. Policy portal text is a publication channel for the named government speaker; not an independent corroborating source. Exact publication time and revision history are unknown.",
+      "policy_url": "https://www.korea.kr/guide/copyRight.do",
+      "published_at": "2026-10-01",
+      "publisher": "산업통상부 / 대한민국 정책브리핑 공식 속기록",
+      "retention": "excerpt",
+      "title": "2026년 9월 수출입동향 공식 브리핑",
+      "topics": [
+        "exports",
+        "semiconductors",
+        "industry_composition"
+      ],
+      "type": "primary",
+      "url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156783969",
+      "valid_as_of": "2026-09-30"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "KR_REALESTATE"
+      ],
+      "canonical_url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156774369",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "minister_reported_housing_supply_lag_assessment",
+            "period": "briefing_2026-08-13",
+            "scope": "Ministerial explanation; policy background, not current nationwide or Seoul price measurement",
+            "unit": "text"
+          },
+          "id": "Q_KR_HOUSING_LAG",
+          "locator": "Housing minister opening: explanation of supply lag",
+          "quote": "주택 공급에는 장시간이 소요되어 수요와 시차가 존재하고, 특히 주택 공급의 대부분을 차지하는 민간 부문과 일반주택의 공급 회복이 더딘 점은 이러한 수급 불균형을 가중시키고 있습니다."
+        },
+        {
+          "definition": {
+            "adjustment": "policy_plan_not_realized_supply",
+            "currency": "KRW",
+            "measure": "announced_public_housing_location_and_start_plan",
+            "period": "announced_2026-08-13_future_start_3_to_4_years",
+            "scope": "Named Seoul Gangseo, Namyangju downtown, Gyeonggi Gwangju sites; plans, not completions",
+            "unit": "text"
+          },
+          "id": "Q_KR_HOUSING_LOCATIONS",
+          "locator": "Housing minister statement: named new public sites and planned groundbreaking",
+          "quote": "이번에 입지를 공개한 서울 강서, 남양주 도심, 경기 광주 3개 지구 2만 7,000호는 최대한 신속하게 추진하며 3~4년 내 착공하겠습니다."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "announced_housing_credit_management_principle",
+            "period": "briefing_2026-08-13",
+            "scope": "FSC stated LTV/DSR policy principle; individual eligibility and later amendments unknown",
+            "unit": "text"
+          },
+          "id": "Q_KR_HOUSING_LOAN_CONSTRAINT",
+          "locator": "FSC chair statement: household lending constraints",
+          "quote": "LTV·DSR 등 핵심 규제는 일관되게 유지하고, 투기적 대출에 대한 점검과 회수도 지속하겠습니다."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "KR_HOUSING_SUPPLY_20260813",
+      "jurisdiction": "Republic of Korea; named Seoul/metropolitan locations",
+      "max_age_days": 90,
+      "observed_at": "2026-08-13",
+      "origin_source_id": null,
+      "policy_note": "Reviewed korea.kr copyright policy and the article-specific KOGL Type 1 text notice. Preserve only three short unmodified text excerpts with authoring institution and canonical article URL; link this copyright policy with every citation. Do not retain photos, images, video, attachments, comments, or unrelated page text. Policy portal text is a publication channel for the named government speaker; not an independent corroborating source. Exact publication time and revision history are unknown.",
+      "policy_url": "https://www.korea.kr/guide/copyRight.do",
+      "published_at": "2026-08-13",
+      "publisher": "국토교통부·금융위원회 / 대한민국 정책브리핑 공식 속기록",
+      "retention": "excerpt",
+      "title": "전월세 및 매매시장 안정을 위한 주택 신속공급 방안 공식 브리핑",
+      "topics": [
+        "housing_supply",
+        "metropolitan_regions",
+        "LTV",
+        "DSR"
+      ],
+      "type": "primary",
+      "url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156774369",
+      "valid_as_of": "2026-08-13"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "KR_REALESTATE"
+      ],
+      "canonical_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "publication_title_and_date",
+            "period": "observation_2026-09-28_release_2026-10-01",
+            "scope": "REB weekly apartment statistics publication metadata; no numeric regional values",
+            "unit": "text"
+          },
+          "id": "Q_KR_REB_RELEASE",
+          "locator": "Visible statistical publication title and registration date; attached PDF not parsed",
+          "quote": "주간아파트가격동향(20260928기준) 등록일 2026.10.01."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "KR_REB_WEEK_20260928_METADATA",
+      "jurisdiction": "Republic of Korea; statistical publication metadata only",
+      "max_age_days": 14,
+      "observed_at": "2026-09-28",
+      "origin_source_id": null,
+      "policy_note": "Reviewed REB copyright policy: REB works wholly owned by the institution may be freely used under public copyright rules. This retains only the REB statistical publication title/date visible on its public HTML page with institution/URL attribution; no PDF, images, contact data or third-party material. HTML exposes no regional price or jeonse values. Public robots allow this /reb/na/ path but prohibit /upload/ and /r-one/statistics/ paths, which are not requested.",
+      "policy_url": "https://www.reb.or.kr/reb/cm/cntnts/cntntsView.do?mi=9977&cntntsId=1293",
+      "published_at": "2026-10-01",
+      "publisher": "한국부동산원",
+      "retention": "excerpt",
+      "title": "주간아파트가격동향(20260928기준) 공표 메타데이터",
+      "topics": [
+        "housing_statistical_release",
+        "missing_current_regional_data"
+      ],
+      "type": "primary",
+      "url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224",
+      "valid_as_of": "2026-09-28"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "KR_EQUITY"
+      ],
+      "canonical_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "company_reported_consolidated_quarterly",
+            "currency": "KRW",
+            "measure": "company_reported_consolidated_revenue_and_operating_profit",
+            "period": "2026Q2_ended_2026-06-30",
+            "scope": "Samsung Electronics consolidated reported results",
+            "unit": "trillion_KRW"
+          },
+          "id": "Q_KR_SAMSUNG_Q2",
+          "locator": "Earnings release opening consolidated financial-results paragraph",
+          "quote": "The Company posted KRW 171.5 trillion in consolidated revenue, another all-time quarterly high, representing a quarter-on-quarter (QoQ) increase of 28%. Operating profit also reached another all-time high, increasing to KRW 89.5 trillion."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "company_reported_memory_business_drivers",
+            "period": "2026Q2",
+            "scope": "Samsung memory business; management explanation of reported results",
+            "unit": "text"
+          },
+          "id": "Q_KR_SAMSUNG_MEMORY",
+          "locator": "DS business review; memory management explanation",
+          "quote": "The Memory Business achieved another record-breaking quarter by proactively addressing AI demand despite limited capacity with a primary focus on server products. The continued industry-wide upward trend of prices also contributed to the record earnings."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "company_reported_MX_earnings_cost_pressure",
+            "period": "2026Q2",
+            "scope": "Samsung MX and Networks business; management explanation",
+            "unit": "text"
+          },
+          "id": "Q_KR_SAMSUNG_MX",
+          "locator": "MX and Networks business review; component-cost pressure",
+          "quote": "While revenue grew year-on-year (YoY) on solid sales of the Galaxy S26 series and strong Galaxy A series momentum, earnings declined due to elevated component cost pressures across the industry."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "jurisdiction": "Republic of Korea; consolidated global business",
+      "max_age_days": 120,
+      "observed_at": "2026-06-30",
+      "origin_source_id": null,
+      "policy_note": "Samsung Newsroom Terms: access, copy, download, print solely for personal, informational and non-commercial use; preserve copyright notices. Only short unmodified earnings text is retained for this personal research workspace, with source attribution and Copyright© SAMSUNG All Rights Reserved. No full body, photographs, media, logos, comments or contacts. This permission does not authorize public/commercial redistribution of the excerpts or a mirrored service. Quarter-end observations are earnings publication data, not current market prices; publication time and revisions unknown.",
+      "policy_url": "https://news.samsung.com/global/terms",
+      "published_at": "2026-07-30",
+      "publisher": "Samsung Electronics",
+      "retention": "excerpt",
+      "title": "Samsung Electronics Announces Second Quarter 2026 Results",
+      "topics": [
+        "earnings",
+        "AI_memory",
+        "consumer_device_costs"
+      ],
+      "type": "institution",
+      "url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+      "valid_as_of": "2026-06-30"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "CASH",
+        "SHORT_BOND"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "currency": "USD",
+            "measure": "H15_date_columns_and_effective_federal_funds_rate",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+            "unit": "date_columns_and_EFFR_percent"
+          },
+          "id": "DATES",
+          "locator": "H15 selected rates DATES",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1 Federal funds (effective) 1 2 3 3.88 3.88 3.88 3.88 3.88"
+        },
+        {
+          "definition": {
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "currency": "USD",
+            "measure": "H15_secondary_Treasury_bills_discount_basis",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+            "unit": "annualized_percent_discount_basis"
+          },
+          "id": "BILLS",
+          "locator": "H15 selected rates BILLS",
+          "quote": "U.S. government securities Treasury bills (secondary market) 3 4 4-week 3.90 3.89 3.88 3.85 3.89 3-month 4.08 4.10 4.07 4.03 4.00 6-month 4.21 4.27 4.22 4.19 4.13 1-year 4.28 4.34 4.37 4.33 4.24"
+        },
+        {
+          "definition": {
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "currency": "USD",
+            "measure": "H15_secondary_Treasury_bills_discount_basis",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+            "unit": "annualized_percent_discount_basis"
+          },
+          "id": "BASIS",
+          "locator": "H15 selected rates BASIS",
+          "quote": "3. Annualized using a 360-day year or bank interest. 4. On a discount basis."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "MAC_H15_CASH_BILLS",
+      "jurisdiction": "US",
+      "max_age_days": 10,
+      "observed_at": "2026-10-01",
+      "origin_source_id": "RA_FED_REAL_YIELD",
+      "policy_note": "Federal Reserve Board public-domain data with attribution. H15 is shared underlying Treasury dataset with retained macro CSV and RA_FED_REAL_YIELD; these are not independent confirmations. Preserve date order and discount-basis footnotes.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "published_at": "2026-10-02",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "retention": "excerpt",
+      "title": "2026-10-02 H.15 effective funds and secondary Treasury bills",
+      "topics": [
+        "macro",
+        "cash",
+        "short_bonds"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "valid_as_of": "2026-10-01"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "NATGAS"
+      ],
+      "canonical_url": "https://www.eia.gov/dnav/ng/ng_stor_wkly_s1_w.htm",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+            "currency": null,
+            "measure": "US_Lower48_weekly_working_gas_storage",
+            "period": "2026-08-21_to_2026-09-25",
+            "scope": "US_Lower48_underground_working_gas_includes_reclassifications",
+            "unit": "billion_cubic_feet"
+          },
+          "id": "RA_GAS_STOCKS",
+          "locator": "Weekly table date headers and Total Lower 48 States row",
+          "quote": "Region 08/21/26 08/28/26 09/04/26 09/11/26 09/18/26 09/25/26 View History Total Lower 48 States 3,184 3,214 3,254 3,298 3,351 3,415 2010-2026"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "working_gas_stock_change_definition",
+            "period": "current_table_method",
+            "scope": "US_weekly_working_gas_storage_estimation",
+            "unit": "text"
+          },
+          "id": "RA_GAS_STOCK_METHOD",
+          "locator": "Notes: changes in reported stock levels",
+          "quote": "Changes in reported stock levels reflect all events affecting working gas in storage, including injections, withdrawals, and reclassifications between base and working gas, including information on estimated measures of sampling variability for the most current published estimates of weekly stocks and their net changes."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "weekly_gas_release_date",
+            "period": "2026-10-01",
+            "scope": "EIA_current_dnav_weekly_gas_table",
+            "unit": "calendar_date"
+          },
+          "id": "RA_GAS_RELEASE",
+          "locator": "Table footer release calendar",
+          "quote": "Release Date: 10/1/2026 Next Release Date: 10/8/2026"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "RA_EIA_GAS_WEEKLY",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "max_age_days": 45,
+      "observed_at": "2026-09-25",
+      "origin_source_id": null,
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "published_at": "2026-10-01",
+      "publisher": "U.S. Energy Information Administration",
+      "retention": "excerpt",
+      "title": "Weekly Working Gas in Underground Storage (Billion Cubic Feet)",
+      "topics": [
+        "weekly_working_gas_inventory",
+        "storage_definition"
+      ],
+      "type": "primary",
+      "url": "https://www.eia.gov/dnav/ng/ng_stor_wkly_s1_w.htm",
+      "valid_as_of": "2026-10-01"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "ENERGY"
+      ],
+      "canonical_url": "https://www.eia.gov/dnav/pet/pet_stoc_wstk_dcu_nus_w.htm",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "weekly_stock_observation_dates",
+            "period": "2026-08-21_to_2026-09-25",
+            "scope": "US_weekly_petroleum_stocks_table_columns",
+            "unit": "calendar_date"
+          },
+          "id": "RA_OIL_DATES",
+          "locator": "Weekly table date headers",
+          "quote": "08/21/26 08/28/26 09/04/26 09/11/26 09/18/26 09/25/26"
+        },
+        {
+          "definition": {
+            "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+            "currency": null,
+            "measure": "US_commercial_crude_oil_inventory",
+            "period": "2026-08-21_to_2026-09-25",
+            "scope": "US_commercial_crude_excludes_SPR_and_lease_stock",
+            "unit": "thousand_barrels"
+          },
+          "id": "RA_OIL_STOCKS",
+          "locator": "Commercial Crude Oil (Excl. Lease Stock) row aligned to RA_OIL_DATES",
+          "quote": "Commercial Crude Oil (Excl. Lease Stock) 428,910 424,460 424,069 423,429 426,398 427,320 1982-2026"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "weekly_petroleum_release_date",
+            "period": "2026-09-30",
+            "scope": "EIA_current_dnav_weekly_petroleum_table",
+            "unit": "calendar_date"
+          },
+          "id": "RA_OIL_RELEASE",
+          "locator": "Table footer release calendar",
+          "quote": "Release Date: 9/30/2026 Next Release Date: 10/7/2026"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "RA_EIA_OIL_WEEKLY",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "max_age_days": 45,
+      "observed_at": "2026-09-25",
+      "origin_source_id": null,
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "published_at": "2026-09-30",
+      "publisher": "U.S. Energy Information Administration",
+      "retention": "excerpt",
+      "title": "U.S. Weekly Petroleum Stocks (Thousand Barrels)",
+      "topics": [
+        "commercial_crude_inventory"
+      ],
+      "type": "primary",
+      "url": "https://www.eia.gov/dnav/pet/pet_stoc_wstk_dcu_nus_w.htm",
+      "valid_as_of": "2026-09-30"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "NATGAS"
+      ],
+      "canonical_url": "https://www.eia.gov/outlooks/steo/report/natgas.php",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "forecast_not_current_inventory_not_seasonally_adjusted",
+            "currency": null,
+            "measure": "EIA_US_working_gas_inventory_and_historical_comparison_forecast",
+            "period": "2026-10-31_forecast_as_published_2026-09-09",
+            "scope": "US_working_gas_storage_comparison_2021_2025_mean_and_October_2025",
+            "unit": "billion_cubic_feet_and_percent"
+          },
+          "id": "RA_GAS_STORAGE_FORECAST",
+          "locator": "Natural gas storage: October 31 inventory forecast",
+          "quote": "We forecast U.S. working natural gas inventories will total 3,969 billion cubic feet (Bcf) on October 31, 2026, 5% above the previous five-year average (2021–2025) and 1% above October 2025 levels."
+        },
+        {
+          "definition": {
+            "adjustment": "forecast_change_not_observed_growth",
+            "currency": null,
+            "measure": "EIA_market_natural_gas_production_growth_forecast",
+            "period": "2026_and_2027_forecast_as_published_2026-09-09",
+            "scope": "US_marketed_natural_gas_not_same_as_dry_gas_series",
+            "unit": "billion_cubic_feet_per_day"
+          },
+          "id": "RA_GAS_PRODUCTION_FORECAST",
+          "locator": "Natural gas production: national marketed output forecast",
+          "quote": "U.S. marketed natural gas production continues to grow in our forecast, providing additional supply to meet demand and support storage additions. Production increases by 4.5 billion cubic feet per day (Bcf/d) in 2026 and 4.6 Bcf/d in 2027."
+        },
+        {
+          "definition": {
+            "adjustment": "annual_average_historical_and_forecast_must_be_separated",
+            "currency": null,
+            "measure": "EIA_dry_gas_production_consumption_and_LNG_exports",
+            "period": "2024_2025_historical_and_2026_2027_projected_as_published_2026-09-09",
+            "scope": "US_dry_gas_production_domestic_consumption_LNG_exports",
+            "unit": "billion_cubic_feet_per_day"
+          },
+          "id": "RA_GAS_FLOW_TABLE",
+          "locator": "Natural Gas summary table; columns 2024, 2025, 2026 projected, 2027 projected",
+          "quote": "U.S. dry natural gas production (billion cubic feet per day) 103.07 107.64 111.70 115.90 U.S. natural gas consumption (billion cubic feet per day) 90.33 91.88 92.21 94.28 U.S. LNG exports (billion cubic feet per day) 11.9 15.1 17.4 18.6"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "RA_EIA_STEO_GAS",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "max_age_days": 45,
+      "observed_at": null,
+      "origin_source_id": null,
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "published_at": "2026-09-09",
+      "publisher": "U.S. Energy Information Administration",
+      "retention": "excerpt",
+      "title": "September 2026 Short-Term Energy Outlook — Natural Gas",
+      "topics": [
+        "winter_inventory_forecast",
+        "natural_gas_supply_demand_forecast",
+        "LNG_exports"
+      ],
+      "type": "primary",
+      "url": "https://www.eia.gov/outlooks/steo/report/natgas.php",
+      "valid_as_of": "2026-09-09"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "ENERGY"
+      ],
+      "canonical_url": "https://www.eia.gov/outlooks/steo/report/global_oil.php",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "agency_estimate_not_raw_metered_observation",
+            "currency": null,
+            "measure": "EIA_estimated_crude_production_shut_ins",
+            "period": "2026-07_and_2026-08",
+            "scope": "global_crude_supply_disruptions_EIA_September_2026_assessment",
+            "unit": "million_barrels_per_day"
+          },
+          "id": "RA_OIL_SUPPLY",
+          "locator": "Global oil markets: estimated production shut-ins paragraph",
+          "quote": "We assess that crude oil production shut-ins averaged 6.7 million barrels per day (b/d) in August, up from 5.0 million b/d in July."
+        },
+        {
+          "definition": {
+            "adjustment": "spot_monthly_average_not_futures_or_total_return",
+            "currency": "USD",
+            "measure": "Brent_spot_monthly_average_price",
+            "period": "2026-08",
+            "scope": "Brent_crude_oil_monthly_average_EIA_September_2026",
+            "unit": "USD_per_barrel"
+          },
+          "id": "RA_BRENT_AUG",
+          "locator": "Global oil prices opening paragraph",
+          "quote": "The Brent crude oil spot price increased to an average of $91 per barrel (b) in August, $7/b higher than in July."
+        },
+        {
+          "definition": {
+            "adjustment": "conditional_agency_forecast_not_observed_future_price",
+            "currency": "USD",
+            "measure": "EIA_conditional_Brent_price_forecast",
+            "period": "2027-Q2_forecast_as_published_2026-09-09",
+            "scope": "depends_on_Middle_East_exports_and_shut_in_production_restarting",
+            "unit": "USD_per_barrel"
+          },
+          "id": "RA_OIL_FORECAST",
+          "locator": "Conditional expected oil-flow restoration and forecast prices paragraph",
+          "quote": "As exports from the Middle East gradually increase and shut-in oil production restarts, we forecast oil prices will begin to fall, decreasing to an average of $77/b by 2Q27."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "RA_EIA_STEO_OIL",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "max_age_days": 45,
+      "observed_at": null,
+      "origin_source_id": null,
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "published_at": "2026-09-09",
+      "publisher": "U.S. Energy Information Administration",
+      "retention": "excerpt",
+      "title": "September 2026 Short-Term Energy Outlook — Global Oil Markets",
+      "topics": [
+        "global_crude_supply_disruption",
+        "agency_estimate",
+        "conditional_forecast"
+      ],
+      "type": "primary",
+      "url": "https://www.eia.gov/outlooks/steo/report/global_oil.php",
+      "valid_as_of": "2026-09-09"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "CASH",
+        "SHORT_BOND",
+        "GOLD"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "H15_publication_and_observation_dates",
+            "period": "2026-09-25_to_2026-10-01",
+            "scope": "H15_release_2026-10-02_daily_table",
+            "unit": "calendar_date"
+          },
+          "id": "RA_REAL_YIELD_DATES",
+          "locator": "H.15 release date and daily column headers",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1"
+        },
+        {
+          "definition": {
+            "adjustment": "Treasury_inflation_indexed_constant_maturity_market_bid_yield",
+            "currency": "USD",
+            "measure": "US_TIPS_10Y_constant_maturity_yield",
+            "period": "2026-09-25_to_2026-10-01",
+            "scope": "US_Treasury_TIPS_interpolated_curve_not_policy_rate_not_gold_expected_return",
+            "unit": "percent_per_annum"
+          },
+          "id": "RA_REAL_YIELDS",
+          "locator": "Treasury constant maturities: Inflation indexed rows; 10-year latest Oct 1 column",
+          "quote": "Inflation indexed 10 5-year 2.64 2.73 2.72 2.73 2.65 7-year 2.73 2.80 2.80 2.82 2.76 10-year 2.83 2.90 2.91 2.93 2.88"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": "USD",
+            "measure": "TIPS_constant_maturity_yield_definition",
+            "period": "current_H15_method",
+            "scope": "U.S._Treasury_inflation_protected_constant_maturity_series",
+            "unit": "text"
+          },
+          "id": "RA_REAL_YIELD_DEFINITION",
+          "locator": "H.15 footnote 10",
+          "quote": "Yields on Treasury inflation protected securities (TIPS) adjusted to constant maturities. Source: U.S. Treasury."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "RA_FED_REAL_YIELD",
+      "jurisdiction": "United States",
+      "max_age_days": 10,
+      "observed_at": "2026-10-01",
+      "origin_source_id": null,
+      "policy_note": "Board public-domain disclaimer previously reviewed in this repository; reproduce short H.15 government-table text with Board/U.S. Treasury attribution. No logos/third-party assets. Excerpt retention only; robots checked by existing acquisition module. This is the same underlying H.15/U.S. Treasury dataset used by the macro case, not independent confirmation merely because the HTML endpoint differs from the CSV endpoint.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "published_at": "2026-10-02",
+      "publisher": "Board of Governors of the Federal Reserve System; U.S. Treasury underlying constant maturity data",
+      "retention": "excerpt",
+      "title": "H.15 Selected Interest Rates — inflation-indexed constant maturities",
+      "topics": [
+        "US_real_yield",
+        "gold_opportunity_cost_context"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "valid_as_of": "2026-10-02"
+    }
+  ]
+}

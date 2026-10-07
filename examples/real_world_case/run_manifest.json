@@ -1,0 +1,114 @@
+{
+  "claims": [
+    {
+      "context_ids": [
+        "E_FED_EXPANSION",
+        "E_FED_INFLATION"
+      ],
+      "counter_ids": [],
+      "id": "C_FED_CUT_50",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": null,
+      "support_ids": [
+        "E_FED_CUT"
+      ],
+      "verification": "supported_within_scope"
+    },
+    {
+      "context_ids": [
+        "E_FED_EXPANSION",
+        "E_FED_INFLATION"
+      ],
+      "counter_ids": [
+        "E_FED_CUT"
+      ],
+      "id": "CHECK_FED_CUT_25",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": null,
+      "support_ids": [],
+      "verification": "contradicted_within_scope"
+    },
+    {
+      "context_ids": [
+        "E_FED_EXPANSION",
+        "E_FED_INFLATION",
+        "E_QE_CONTEXT"
+      ],
+      "counter_ids": [],
+      "id": "C_COMMUNITY_TIMING",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": "E_HN_TIMING",
+      "support_ids": [
+        "E_FED_CUT"
+      ],
+      "verification": "partially_supported"
+    },
+    {
+      "context_ids": [
+        "E_FED_EXPANSION",
+        "E_QE_CONTEXT"
+      ],
+      "counter_ids": [],
+      "id": "C_COMMUNITY_RECESSION",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": "E_HN_RECESSION",
+      "support_ids": [],
+      "verification": "unverified"
+    }
+  ],
+  "code_sha256": "d9b80750ef62eda9c5fe367bf458773afbe5379fb6c01839cbbc058ba6ef4609",
+  "conclusion": "insufficient_evidence",
+  "diagnostics": [
+    "FED_20240918_STATEMENT: Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities.",
+    "FED_20240918_STATEMENT: freshness=stale; age assessed against source-specific 45-day limit; not a truth score",
+    "QUANTECON_BUSINESS_CYCLES: Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+    "QUANTECON_BUSINESS_CYCLES: Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities.",
+    "QUANTECON_BUSINESS_CYCLES: freshness=unknown; publication date is unknown; retrieval is not publication; age assessed against source-specific 365-day limit; not a truth score",
+    "HN_RATE_CUT_COMMENT: Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+    "HN_RATE_CUT_COMMENT: freshness=stale; age assessed against source-specific 7-day limit; not a truth score",
+    "HN_RECESSION_NARRATIVE: Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+    "HN_RECESSION_NARRATIVE: freshness=stale; age assessed against source-specific 7-day limit; not a truth score"
+  ],
+  "input_sha256": "1b34c3efe47af0be8c95d689e119b279afb7937e601df083d8cb87fdbd2d20f9",
+  "method_versions": {
+    "calculation": "rate_difference_v1",
+    "engine": "evidence_rules_v1",
+    "report": "korean_brief_v1",
+    "source_acquisition": "source_snapshot_v1",
+    "source_pipeline": "source_verification_v1"
+  },
+  "metrics": [],
+  "personal_conclusion": "insufficient_evidence",
+  "report_sha256": "aa2e2cc2c73d0122629d33a57d4ee4cf858b553166d08104b4ece4c66fe37b94",
+  "run_id": "e64a09f5f5aa02f50dca744c99c2efe33452aa7b9bbaeebe8e6b1f65997e2822",
+  "run_status": "completed",
+  "schema_version": "1",
+  "source_snapshots": {
+    "FED_20240918_STATEMENT": {
+      "freshness": "stale",
+      "payload_sha256": "e63fe6b64bd9a9ebd60b6c227eff5e21268f5ad298baf96c1904b655a7120b7c",
+      "snapshot_id": "944ee57eea36c3b5b1f244822a159884e57fc4e5136075aa1cf61bf2aa74bb0e",
+      "status": "available"
+    },
+    "HN_RATE_CUT_COMMENT": {
+      "freshness": "stale",
+      "payload_sha256": "5dd73c9fc9498cf4a996b51ae40cf0f339a325b4b2dafd1afcdf86d759949086",
+      "snapshot_id": "550fb998727e21d5a46c94f354f5ca155bfc0136eb0393478892d4d65cd4ef62",
+      "status": "available"
+    },
+    "HN_RECESSION_NARRATIVE": {
+      "freshness": "stale",
+      "payload_sha256": "da2f10917692a13c628cff1fbc2da8edf53d8506250fe5c969609f0003f3bcf9",
+      "snapshot_id": "41a77ef426733416d3f1076775c69ca7edb389fa92da13f182d68ba8f8b945fd",
+      "status": "available"
+    },
+    "QUANTECON_BUSINESS_CYCLES": {
+      "freshness": "unknown",
+      "payload_sha256": "d58b8bd0de287d478e61b0f93f0c5cc50e41f00b3dfc102b5efa6b715d23b9e6",
+      "snapshot_id": "7ebb75e7afc6ebcc127c907dd056cf0c32c662c8a117ca8637d3f5a403ecb9b1",
+      "status": "available"
+    }
+  },
+  "synthetic": false,
+  "version": "0.1.0"
+}

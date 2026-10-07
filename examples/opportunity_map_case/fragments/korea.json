@@ -1,0 +1,709 @@
+{
+  "sources": [
+    {
+      "id": "KR_EXPORT_SEP2026_BRIEFING",
+      "url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156783969",
+      "canonical_url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156783969",
+      "type": "primary",
+      "publisher": "산업통상부 / 대한민국 정책브리핑 공식 속기록",
+      "title": "2026년 9월 수출입동향 공식 브리핑",
+      "published_at": "2026-10-01",
+      "observed_at": "2026-09-30",
+      "valid_as_of": "2026-09-30",
+      "jurisdiction": "Republic of Korea",
+      "topics": [
+        "exports",
+        "semiconductors",
+        "industry_composition"
+      ],
+      "asset_ids": [
+        "KR_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.korea.kr/guide/copyRight.do",
+      "policy_note": "Reviewed korea.kr copyright policy and the article-specific KOGL Type 1 text notice. Preserve only three short unmodified text excerpts with authoring institution and canonical article URL; link this copyright policy with every citation. Do not retain photos, images, video, attachments, comments, or unrelated page text. Policy portal text is a publication channel for the named government speaker; not an independent corroborating source. Exact publication time and revision history are unknown.",
+      "retention": "excerpt",
+      "max_age_days": 45,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_KR_EXPORT_SEMI",
+          "quote": "먼저, 반도체 수출은 사상 처음으로 600억 달러를 돌파하며 603억 달러를 기록하였습니다. 지난 8월의 467억 달러를 훨씬 초과한 수치입니다.",
+          "locator": "Official ministerial briefing; semiconductor exports, September 2026",
+          "definition": {
+            "measure": "reported_semiconductor_export_value",
+            "unit": "100_million_USD",
+            "period": "2026-09",
+            "currency": "USD",
+            "adjustment": "unadjusted_nominal_export_value",
+            "scope": "Korean semiconductor exports; rounded official oral briefing"
+          }
+        },
+        {
+          "id": "Q_KR_EXPORT_NON_SEMI",
+          "quote": "반도체와 컴퓨터를 제외한 수출은 12% 증가하였습니다. 반도체만 제외했을 때는 23% 증가하였습니다.",
+          "locator": "Official ministerial briefing; non-semiconductor export composition",
+          "definition": {
+            "measure": "reported_non_semiconductor_export_growth",
+            "unit": "percent",
+            "period": "2026-09_vs_2025-09",
+            "currency": "USD",
+            "adjustment": "unadjusted_nominal_export_value_yoy",
+            "scope": "Korean goods exports excluding named sectors; rounded oral YoY values"
+          }
+        },
+        {
+          "id": "Q_KR_EXPORT_AUTO",
+          "quote": "자동차 수출은 추석 연휴로 인해 조업일수가 2.5% 감소하여 5% 감소한 61억 달러를 기록하였습니다.",
+          "locator": "Official ministerial briefing; automobile exports and attributed working-day effect",
+          "definition": {
+            "measure": "reported_automobile_export_value_and_explanation",
+            "unit": "text",
+            "period": "2026-09_vs_2025-09",
+            "currency": "USD",
+            "adjustment": "unadjusted_nominal_export_value_and_speaker_explanation",
+            "scope": "Korean automobile exports; briefing as spoken"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+      "canonical_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+      "type": "institution",
+      "publisher": "Samsung Electronics",
+      "title": "Samsung Electronics Announces Second Quarter 2026 Results",
+      "published_at": "2026-07-30",
+      "observed_at": "2026-06-30",
+      "valid_as_of": "2026-06-30",
+      "jurisdiction": "Republic of Korea; consolidated global business",
+      "topics": [
+        "earnings",
+        "AI_memory",
+        "consumer_device_costs"
+      ],
+      "asset_ids": [
+        "KR_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://news.samsung.com/global/terms",
+      "policy_note": "Samsung Newsroom Terms: access, copy, download, print solely for personal, informational and non-commercial use; preserve copyright notices. Only short unmodified earnings text is retained for this personal research workspace, with source attribution and Copyright© SAMSUNG All Rights Reserved. No full body, photographs, media, logos, comments or contacts. This permission does not authorize public/commercial redistribution of the excerpts or a mirrored service. Quarter-end observations are earnings publication data, not current market prices; publication time and revisions unknown.",
+      "retention": "excerpt",
+      "max_age_days": 120,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_KR_SAMSUNG_Q2",
+          "quote": "The Company posted KRW 171.5 trillion in consolidated revenue, another all-time quarterly high, representing a quarter-on-quarter (QoQ) increase of 28%. Operating profit also reached another all-time high, increasing to KRW 89.5 trillion.",
+          "locator": "Earnings release opening consolidated financial-results paragraph",
+          "definition": {
+            "measure": "company_reported_consolidated_revenue_and_operating_profit",
+            "unit": "trillion_KRW",
+            "period": "2026Q2_ended_2026-06-30",
+            "currency": "KRW",
+            "adjustment": "company_reported_consolidated_quarterly",
+            "scope": "Samsung Electronics consolidated reported results"
+          }
+        },
+        {
+          "id": "Q_KR_SAMSUNG_MEMORY",
+          "quote": "The Memory Business achieved another record-breaking quarter by proactively addressing AI demand despite limited capacity with a primary focus on server products. The continued industry-wide upward trend of prices also contributed to the record earnings.",
+          "locator": "DS business review; memory management explanation",
+          "definition": {
+            "measure": "company_reported_memory_business_drivers",
+            "unit": "text",
+            "period": "2026Q2",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "Samsung memory business; management explanation of reported results"
+          }
+        },
+        {
+          "id": "Q_KR_SAMSUNG_MX",
+          "quote": "While revenue grew year-on-year (YoY) on solid sales of the Galaxy S26 series and strong Galaxy A series momentum, earnings declined due to elevated component cost pressures across the industry.",
+          "locator": "MX and Networks business review; component-cost pressure",
+          "definition": {
+            "measure": "company_reported_MX_earnings_cost_pressure",
+            "unit": "text",
+            "period": "2026Q2",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "Samsung MX and Networks business; management explanation"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "KR_FSC_MARKET_20261001",
+      "url": "https://www.fsc.go.kr/no010101/87829",
+      "canonical_url": "https://www.fsc.go.kr/no010101/87829",
+      "type": "primary",
+      "publisher": "금융위원회",
+      "title": "금융시장 상황점검회의 개최",
+      "published_at": "2026-10-01",
+      "observed_at": "2026-09-30",
+      "valid_as_of": "2026-09-30",
+      "jurisdiction": "Republic of Korea",
+      "topics": [
+        "rates",
+        "funding_costs",
+        "credit",
+        "macro_risk"
+      ],
+      "asset_ids": [
+        "KR_EQUITY",
+        "KR_REALESTATE",
+        "CASH"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.fsc.go.kr/ut020104",
+      "policy_note": "Reviewed FSC copyright policy: FSC-owned public works freely usable under Copyright Act Article 24-2 with attribution; commercial benefit requires prior permission and third-party joint works are excluded. This is the FSC-authored public press release, not third-party images or speaker attachments. Preserve only three short text quotes for non-commercial personal research with 금융위원회 attribution; no names/contact details/photographs/files are retained. Reported market observation timestamps are separate from meeting/publication dates.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_KR_MARKET_GOV3Y",
+          "quote": "[국채 3y (%) ] (ʼ25년말) 2.953 → (ʼ26.2월말) 3.041 → (8월말) 3.838 → (9.30일) 4.011 (연중 +105.8bp, 9월중 +17.3bp)",
+          "locator": "Section 2 footnote: domestic government bond 3-year market yield",
+          "definition": {
+            "measure": "reported_Korean_government_bond_3y_yield",
+            "unit": "percent",
+            "period": "2026-09-30",
+            "currency": "KRW",
+            "adjustment": "quoted_market_yield_convention_not_independently_documented",
+            "scope": "FSC-reported domestic government 3-year nominal market yield; not BOK policy rate or a bank deposit"
+          }
+        },
+        {
+          "id": "Q_KR_MARKET_POLICY",
+          "quote": "금번 회의는 한국을 포함한 주요국 중앙은행 이 기준금리 를 잇달아 인상 함에 따라,",
+          "locator": "Section 1 meeting context: reported policy tightening",
+          "definition": {
+            "measure": "FSC_reported_policy_tightening_context",
+            "unit": "text",
+            "period": "meeting_2026-10-01",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "FSC description of Korea and other central banks; exact policy-rate level unavailable"
+          }
+        },
+        {
+          "id": "Q_KR_MARKET_REFINANCE",
+          "quote": "다만, 참석자들은 시장금리 수준 이 점점 높아지고 있는 상황 에서 경제주체의 자금조달 비용부담 이 누적되고 금리변동 에 대한 시장 민감도 가 상승 하고 있다고 언급하였다.",
+          "locator": "Section 2 participant discussion: funding costs",
+          "definition": {
+            "measure": "FSC_participant_funding_cost_risk_assessment",
+            "unit": "text",
+            "period": "meeting_2026-10-01",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "Views expressed by FSC meeting participants; not quantified loss prediction"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "KR_HOUSING_SUPPLY_20260813",
+      "url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156774369",
+      "canonical_url": "https://www.korea.kr/briefing/policyBriefingView.do?newsId=156774369",
+      "type": "primary",
+      "publisher": "국토교통부·금융위원회 / 대한민국 정책브리핑 공식 속기록",
+      "title": "전월세 및 매매시장 안정을 위한 주택 신속공급 방안 공식 브리핑",
+      "published_at": "2026-08-13",
+      "observed_at": "2026-08-13",
+      "valid_as_of": "2026-08-13",
+      "jurisdiction": "Republic of Korea; named Seoul/metropolitan locations",
+      "topics": [
+        "housing_supply",
+        "metropolitan_regions",
+        "LTV",
+        "DSR"
+      ],
+      "asset_ids": [
+        "KR_REALESTATE",
+        "CASH"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.korea.kr/guide/copyRight.do",
+      "policy_note": "Reviewed korea.kr copyright policy and the article-specific KOGL Type 1 text notice. Preserve only three short unmodified text excerpts with authoring institution and canonical article URL; link this copyright policy with every citation. Do not retain photos, images, video, attachments, comments, or unrelated page text. Policy portal text is a publication channel for the named government speaker; not an independent corroborating source. Exact publication time and revision history are unknown.",
+      "retention": "excerpt",
+      "max_age_days": 90,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_KR_HOUSING_LAG",
+          "quote": "주택 공급에는 장시간이 소요되어 수요와 시차가 존재하고, 특히 주택 공급의 대부분을 차지하는 민간 부문과 일반주택의 공급 회복이 더딘 점은 이러한 수급 불균형을 가중시키고 있습니다.",
+          "locator": "Housing minister opening: explanation of supply lag",
+          "definition": {
+            "measure": "minister_reported_housing_supply_lag_assessment",
+            "unit": "text",
+            "period": "briefing_2026-08-13",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "Ministerial explanation; policy background, not current nationwide or Seoul price measurement"
+          }
+        },
+        {
+          "id": "Q_KR_HOUSING_LOCATIONS",
+          "quote": "이번에 입지를 공개한 서울 강서, 남양주 도심, 경기 광주 3개 지구 2만 7,000호는 최대한 신속하게 추진하며 3~4년 내 착공하겠습니다.",
+          "locator": "Housing minister statement: named new public sites and planned groundbreaking",
+          "definition": {
+            "measure": "announced_public_housing_location_and_start_plan",
+            "unit": "text",
+            "period": "announced_2026-08-13_future_start_3_to_4_years",
+            "currency": "KRW",
+            "adjustment": "policy_plan_not_realized_supply",
+            "scope": "Named Seoul Gangseo, Namyangju downtown, Gyeonggi Gwangju sites; plans, not completions"
+          }
+        },
+        {
+          "id": "Q_KR_HOUSING_LOAN_CONSTRAINT",
+          "quote": "LTV·DSR 등 핵심 규제는 일관되게 유지하고, 투기적 대출에 대한 점검과 회수도 지속하겠습니다.",
+          "locator": "FSC chair statement: household lending constraints",
+          "definition": {
+            "measure": "announced_housing_credit_management_principle",
+            "unit": "text",
+            "period": "briefing_2026-08-13",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "FSC stated LTV/DSR policy principle; individual eligibility and later amendments unknown"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "KR_REB_WEEK_20260928_METADATA",
+      "url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224",
+      "canonical_url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224",
+      "type": "primary",
+      "publisher": "한국부동산원",
+      "title": "주간아파트가격동향(20260928기준) 공표 메타데이터",
+      "published_at": "2026-10-01",
+      "observed_at": "2026-09-28",
+      "valid_as_of": "2026-09-28",
+      "jurisdiction": "Republic of Korea; statistical publication metadata only",
+      "topics": [
+        "housing_statistical_release",
+        "missing_current_regional_data"
+      ],
+      "asset_ids": [
+        "KR_REALESTATE"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.reb.or.kr/reb/cm/cntnts/cntntsView.do?mi=9977&cntntsId=1293",
+      "policy_note": "Reviewed REB copyright policy: REB works wholly owned by the institution may be freely used under public copyright rules. This retains only the REB statistical publication title/date visible on its public HTML page with institution/URL attribution; no PDF, images, contact data or third-party material. HTML exposes no regional price or jeonse values. Public robots allow this /reb/na/ path but prohibit /upload/ and /r-one/statistics/ paths, which are not requested.",
+      "retention": "excerpt",
+      "max_age_days": 14,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_KR_REB_RELEASE",
+          "quote": "주간아파트가격동향(20260928기준) 등록일 2026.10.01.",
+          "locator": "Visible statistical publication title and registration date; attached PDF not parsed",
+          "definition": {
+            "measure": "publication_title_and_date",
+            "unit": "text",
+            "period": "observation_2026-09-28_release_2026-10-01",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "REB weekly apartment statistics publication metadata; no numeric regional values"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "KR_EXPORT_SEP2026_BRIEFING": "12b79538712df4e955c4eec8115757c5f82fc3c81c9a5ef7bfcb117c452045ad",
+    "KR_SAMSUNG_2026Q2_RESULTS": "bae8051b1fbb217cdfe8370b6265430ea2731e1b7bd88d96dd6a13cfdf36f760",
+    "KR_FSC_MARKET_20261001": "341613cc6e3d5b43edbc71dd494fbcc6440d226fbc65af60d455bfdd76dbbd16",
+    "KR_HOUSING_SUPPLY_20260813": "f8f4ed1e2c1c5987f4afd16df46fa2ceff3bc867993f081e3e0db5eb7afcd31d",
+    "KR_REB_WEEK_20260928_METADATA": "e2ee2ccab292cfccebdda8e93df725d176800faf6b5a35fc14e785e8748d4506"
+  },
+  "evidence": [
+    {
+      "id": "E_KR_EXPORT_SEMI",
+      "source_id": "KR_EXPORT_SEP2026_BRIEFING",
+      "excerpt_id": "Q_KR_EXPORT_SEMI",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "reported_semiconductor_export_value",
+        "unit": "100_million_USD",
+        "period": "2026-09",
+        "currency": "USD",
+        "adjustment": "unadjusted_nominal_export_value",
+        "scope": "Korean semiconductor exports; rounded official oral briefing"
+      },
+      "extraction": null,
+      "limitations": [
+        "공식 속기록에 발표된 반도체 수출액이다. 반올림된 구술 수치이며 기업별 매출·이익·주식가치가 아니다. 수출기업의 해외생산 및 내수매출 범위와 다르다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_EXPORT_NON_SEMI",
+      "source_id": "KR_EXPORT_SEP2026_BRIEFING",
+      "excerpt_id": "Q_KR_EXPORT_NON_SEMI",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "reported_non_semiconductor_export_growth",
+        "unit": "percent",
+        "period": "2026-09_vs_2025-09",
+        "currency": "USD",
+        "adjustment": "unadjusted_nominal_export_value_yoy",
+        "scope": "Korean goods exports excluding named sectors; rounded oral YoY values"
+      },
+      "extraction": null,
+      "limitations": [
+        "제외 업종별 정의가 다르다. 전체 한국 주식의 이익 증가율로 일반화하지 않는다. 수출액과 물량·이익률은 구분해야 한다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_EXPORT_AUTO",
+      "source_id": "KR_EXPORT_SEP2026_BRIEFING",
+      "excerpt_id": "Q_KR_EXPORT_AUTO",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "reported_automobile_export_value_and_explanation",
+        "unit": "text",
+        "period": "2026-09_vs_2025-09",
+        "currency": "USD",
+        "adjustment": "unadjusted_nominal_export_value_and_speaker_explanation",
+        "scope": "Korean automobile exports; briefing as spoken"
+      },
+      "extraction": null,
+      "limitations": [
+        "자동차 수출액 감소의 발표 사실과 조업일수 영향에 대한 실장의 설명이다. 모든 감소가 달력 때문이라는 인과 주장을 독립 검증하지 않았다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_SAMSUNG_Q2",
+      "source_id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "excerpt_id": "Q_KR_SAMSUNG_Q2",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "company_reported_consolidated_revenue_and_operating_profit",
+        "unit": "trillion_KRW",
+        "period": "2026Q2_ended_2026-06-30",
+        "currency": "KRW",
+        "adjustment": "company_reported_consolidated_quarterly",
+        "scope": "Samsung Electronics consolidated reported results"
+      },
+      "extraction": null,
+      "limitations": [
+        "기업의 공식 분기 발표다. 감사·현금흐름·재무상태·현재 주가·발행주식수·일회성 요인까지 별도 검증하지 않았다. 실적 호조만으로 현재 저평가라고 판단할 수 없다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_SAMSUNG_MEMORY",
+      "source_id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "excerpt_id": "Q_KR_SAMSUNG_MEMORY",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "company_reported_memory_business_drivers",
+        "unit": "text",
+        "period": "2026Q2",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "Samsung memory business; management explanation of reported results"
+      },
+      "extraction": null,
+      "limitations": [
+        "회사가 제시한 지난 분기 실적 원인이다. 미래 AI투자 지속·메모리가격·공급부족을 확인된 사실로 승격하지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_SAMSUNG_MX",
+      "source_id": "KR_SAMSUNG_2026Q2_RESULTS",
+      "excerpt_id": "Q_KR_SAMSUNG_MX",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "company_reported_MX_earnings_cost_pressure",
+        "unit": "text",
+        "period": "2026Q2",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "Samsung MX and Networks business; management explanation"
+      },
+      "extraction": null,
+      "limitations": [
+        "회사가 소비기기 사업에 부품비 부담을 보고했다는 사실이다. 반도체 호황이 모든 기업·사업부의 마진 개선을 뜻하지 않는 반대 단서다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_GOV3Y_CONTEXT",
+      "source_id": "KR_FSC_MARKET_20261001",
+      "excerpt_id": "Q_KR_MARKET_GOV3Y",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "reported_Korean_government_bond_3y_yield",
+        "unit": "percent",
+        "period": "2026-09-30",
+        "currency": "KRW",
+        "adjustment": "quoted_market_yield_convention_not_independently_documented",
+        "scope": "FSC-reported domestic government 3-year nominal market yield; not BOK policy rate or a bank deposit"
+      },
+      "extraction": null,
+      "limitations": [
+        "FSC가 인용한 시장금리이며 원시 시장 산정·주간 빈도·장중 종가 정의는 미확인이다. 기준금리·예금금리·현금 보장수익률로 대체하지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_TIGHTENING_CONTEXT",
+      "source_id": "KR_FSC_MARKET_20261001",
+      "excerpt_id": "Q_KR_MARKET_POLICY",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "FSC_reported_policy_tightening_context",
+        "unit": "text",
+        "period": "meeting_2026-10-01",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "FSC description of Korea and other central banks; exact policy-rate level unavailable"
+      },
+      "extraction": null,
+      "limitations": [
+        "FSC의 최근 정책환경 설명이라는 사실만 확인했다. 한국은행 최근 결정문과 정확한 현재 기준금리 수준은 확보하지 못했다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_FUNDING_COST_RISK",
+      "source_id": "KR_FSC_MARKET_20261001",
+      "excerpt_id": "Q_KR_MARKET_REFINANCE",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "FSC_participant_funding_cost_risk_assessment",
+        "unit": "text",
+        "period": "meeting_2026-10-01",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "Views expressed by FSC meeting participants; not quantified loss prediction"
+      },
+      "extraction": null,
+      "limitations": [
+        "회의 참석자들의 위험 평가다. 신용 이벤트 발생, 특정 자산 손실, 사용자의 대출금리 변화는 확정하지 않았다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_HOUSING_SUPPLY_LAG",
+      "source_id": "KR_HOUSING_SUPPLY_20260813",
+      "excerpt_id": "Q_KR_HOUSING_LAG",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "minister_reported_housing_supply_lag_assessment",
+        "unit": "text",
+        "period": "briefing_2026-08-13",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "Ministerial explanation; policy background, not current nationwide or Seoul price measurement"
+      },
+      "extraction": null,
+      "limitations": [
+        "8월 정부의 수급 설명이다. 10월 현재 지역별 실거래·매매·전세 상승률을 입증하지 않는다. 정책 배경의 90일 검토창은 가격 자료의 최신성 기준이 아니다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_HOUSING_NAMED_LOCATIONS",
+      "source_id": "KR_HOUSING_SUPPLY_20260813",
+      "excerpt_id": "Q_KR_HOUSING_LOCATIONS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "announced_public_housing_location_and_start_plan",
+        "unit": "text",
+        "period": "announced_2026-08-13_future_start_3_to_4_years",
+        "currency": "KRW",
+        "adjustment": "policy_plan_not_realized_supply",
+        "scope": "Named Seoul Gangseo, Namyangju downtown, Gyeonggi Gwangju sites; plans, not completions"
+      },
+      "extraction": null,
+      "limitations": [
+        "공급 계획과 지역명을 확인했다. 착공·입주 확정 실적이 아니며 전국의 모든 지역에 동일한 수급 상태를 적용하지 않는다. 시행 진척은 추가 확인이 필요하다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_HOUSING_LENDING_CONSTRAINT",
+      "source_id": "KR_HOUSING_SUPPLY_20260813",
+      "excerpt_id": "Q_KR_HOUSING_LOAN_CONSTRAINT",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "announced_housing_credit_management_principle",
+        "unit": "text",
+        "period": "briefing_2026-08-13",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "FSC stated LTV/DSR policy principle; individual eligibility and later amendments unknown"
+      },
+      "extraction": null,
+      "limitations": [
+        "정부가 발표한 관리 원칙이다. 현재 개인의 적용 LTV/DSR, 은행 실행금리, 우대대출 자격·한도·최신 개정내용은 미확인이다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_KR_REB_CURRENT_RELEASE",
+      "source_id": "KR_REB_WEEK_20260928_METADATA",
+      "excerpt_id": "Q_KR_REB_RELEASE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "publication_title_and_date",
+        "unit": "text",
+        "period": "observation_2026-09-28_release_2026-10-01",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "REB weekly apartment statistics publication metadata; no numeric regional values"
+      },
+      "extraction": null,
+      "limitations": [
+        "공식 최신 주간판의 관측·공표일만 확인했다. HTML에는 전국·수도권·서울 매매/전세 수치가 없고 현재 parser는 첨부 PDF를 지원하지 않는다. 가격 방향·전세가율·특정 지역 매력의 근거로 사용하지 않는다."
+      ],
+      "interpretation": null
+    }
+  ],
+  "notes": [
+    {
+      "asset_id": "KR_EQUITY",
+      "status": "investigate",
+      "evidence_ids": [
+        "E_KR_EXPORT_SEMI",
+        "E_KR_EXPORT_NON_SEMI",
+        "E_KR_EXPORT_AUTO",
+        "E_KR_SAMSUNG_Q2",
+        "E_KR_SAMSUNG_MEMORY",
+        "E_KR_SAMSUNG_MX",
+        "E_KR_FUNDING_COST_RISK"
+      ],
+      "positive": "반도체 수출과 한 기업의 메모리 사업 실적은 실제 수요·가격·현금흐름의 연결을 더 조사할 이유가 된다. 현재 주식이 싸다는 판단은 아니다.",
+      "counter": "반도체·소비기기·자동차의 방향이 다르고 부품비 및 자금조달 비용부담도 보고된다. 수출액 증가를 전체 기업 이익이나 투자수익으로 치환하지 않는다.",
+      "unknowns": [
+        "현재 KOSPI/관련 기업의 비교 가능한 가격·밸류에이션",
+        "현금흐름·재무상태·일회성 이익·수주/수요 지속",
+        "업종/기업 집중과 실제 사용자 보유노출",
+        "KRW 세후 상품/계좌 비용"
+      ],
+      "opportunity_cost": "현금 및 국채와의 기회비용을 비교할 질문은 생겼지만 기간·수익 정의·주가가 없어 기대수익률의 숫자 순위는 불가능하다. 미국 AI기업·한국 메모리기업을 동시에 보유하면 같은 고객 투자 사이클에 의존할 수 있다.",
+      "revisit": [
+        "메모리 가격·물량·수출과 기업 현금흐름이 엇갈리는가?",
+        "사업 호조가 현재 가격에 얼마나 반영됐는가?",
+        "서버 성장과 소비기기 비용부담이 분기별로 어떻게 변하는가?"
+      ]
+    },
+    {
+      "asset_id": "KR_REALESTATE",
+      "status": "insufficient_current_regional_price_evidence",
+      "evidence_ids": [
+        "E_KR_REB_CURRENT_RELEASE",
+        "E_KR_HOUSING_SUPPLY_LAG",
+        "E_KR_HOUSING_NAMED_LOCATIONS",
+        "E_KR_HOUSING_LENDING_CONSTRAINT",
+        "E_KR_FUNDING_COST_RISK"
+      ],
+      "positive": "실거주 필요가 있다면 매입·임차·금융자산 유지의 대안을 조사할 이유가 있다. 정부의 공급 시차와 명시한 서울·수도권 신규입지 계획은 지역별 후속 조사 단서다.",
+      "counter": "최신 지역별 실거래·전세·거래량·미분양 숫자를 확보하지 못했다. 공급 계획은 착공/입주 실적이 아니고 금융비용·대출조건·유동성은 주식과 다른 제약이다.",
+      "unknowns": [
+        "사용자의 현재 거주지역·통근·주택구입 목적/시점",
+        "주택 매입가능자금·부채·소득증빙·대출실행조건",
+        "전국/수도권/서울 및 후보 지역의 최신 매매·전세·실거래·거래량",
+        "지역별 입주물량·미분양·임대현금흐름·거래/세금/수선비"
+      ],
+      "opportunity_cost": "매입에 묶이는 자기자금·상환금·이사비용과 임차 유지 및 유동성 있는 KRW금융자산의 대안을 같은 주거 필요·기간으로 비교해야 한다. 실거주 편익을 자본차익 숫자에 더하지 않는다.",
+      "revisit": [
+        "지정한 서울 강서·남양주·경기광주 후보지는 실제 착공·입주 단계가 어디까지 갔는가?",
+        "사용자의 목표지역은 전국/수도권 평균과 어떻게 다른가?",
+        "현재 은행의 실행가능 대출조건을 적용한 자금여력이 충분한가?"
+      ]
+    },
+    {
+      "asset_id": "CASH",
+      "status": "role_visible_yield_unknown",
+      "evidence_ids": [
+        "E_KR_GOV3Y_CONTEXT",
+        "E_KR_TIGHTENING_CONTEXT",
+        "E_KR_HOUSING_LENDING_CONSTRAINT"
+      ],
+      "positive": "KRW 생활비·비상자금·주택 관련 지급 의무의 시점이 가까우면 원화 유동성 역할을 먼저 확인할 이유가 있다.",
+      "counter": "명목 현금의 구매력 위험 및 다른 자산의 수익 기회를 포기하는 비용이 있다. 현재 특정 예금/현금상품 조건을 확보하지 못했으며 보류가 곧 현금 우월성은 아니다.",
+      "unknowns": [
+        "현재 한국은행 정확한 기준금리",
+        "실제 가입가능한 원화 예금·현금성 상품의 만기·중도해지·예금보호·금리·세금",
+        "사용자의 필요 유동성 금액/시점과 부채"
+      ],
+      "opportunity_cost": "FSC 인용 3년 국채 시장금리는 원화 현금수익률이 아니다. 달러 국채금리가 높더라도 환율·상품·만기·KRW 의무지출 때문에 원화 예금과 동일한 대안으로 순위화할 수 없다.",
+      "revisit": [
+        "월 생활비·주택 자금·비상자금은 얼마이며 언제 지급해야 하는가?",
+        "실제 접근 가능한 원화 현금상품의 계약 조건과 세후 비용은 무엇인가?"
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "id": "KR_BOK_POLICY_ACCESS",
+      "url": "https://www.bok.or.kr/robots.txt",
+      "status": "unsupported_policy_response",
+      "reason": "robots returned HTTP 200 text/html;charset=ISO-8859-1. Existing acquire requires reliable text robots; no bypass/API reclassification used. Exact current BOK policy rate unknown."
+    },
+    {
+      "id": "KR_MOLIT_AUG2026_BODY",
+      "url": "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156783581",
+      "status": "unsupported_attachment_only",
+      "reason": "Official 2026-09-30 release HTML links PDF/HWPX and shows no statistics body. Housing transactions/unsold/completion values are not adopted from search snippets."
+    },
+    {
+      "id": "KR_REB_REGIONAL_VALUES",
+      "url": "https://www.reb.or.kr/reb/na/ntt/selectNttInfo.do?mi=9565&bbsId=1154&nttSn=117224",
+      "status": "unsupported_pdf_numeric_content",
+      "reason": "Latest 2026-09-28 weekly observation was released 2026-10-01 but attached PDF values are unsupported. HTML metadata is preserved separately. Nationwide/metropolitan/Seoul price and jeonse direction remain unknown."
+    },
+    {
+      "id": "KR_MOLIT_NAVER_OFFICIAL_BLOG",
+      "url": "https://blog.naver.com/mltmkr/224427107089",
+      "status": "policy_disallowed_AI_RAG",
+      "reason": "blog.naver.com robots explicitly prohibits AI training and retrieval-augmented generation. No post body was fetched or retained."
+    },
+    {
+      "id": "KR_YONHAP_RESEARCH_RETENTION",
+      "url": "https://www.yna.co.kr/policy/copyright",
+      "status": "retention_not_authorized",
+      "reason": "Copyright policy prohibits electronic storage and non-profit information services without written authorization; personal printing exception does not establish snapshot permission. No Yonhap article is admitted as evidence; discovery HTML is removed."
+    },
+    {
+      "id": "KR_EQUITY_VALUATION_MISSING",
+      "url": null,
+      "status": "insufficient_data",
+      "reason": "No current KRX/issuer share-price and comparable valuation data acquired in this bounded scan; no low/high valuation or expected equity return is claimed."
+    }
+  ]
+}

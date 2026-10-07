@@ -1,0 +1,12 @@
+{
+  "schema_version": "opportunity-scan-v1",
+  "method_version": "evidence_shortlist_v7",
+  "max_candidates": 4,
+  "selection_purpose": "research_priority_not_investment_ranking",
+  "regional_categories": ["reb_sale_index", "reb_volume", "reb_jeonse_index"],
+  "limits": [
+    "후보 선정은 검토 전 조건부 연구 해석이며 매수·배분의 의미가 아니다.",
+    "고정 출처는 인용·정의가 현재 판본에서도 일치한 경우만 사용한다.",
+    "관심·인지도는 표본에서 관측하며 증가율이나 대표성을 추정하지 않는다."
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "sources": [
+    {
+      "id": "DD_NVDA_Q2",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+      "type": "primary",
+      "publisher": "NVIDIA Corporation in SEC EDGAR",
+      "title": "NVIDIA regulatory quarterly economics and cash conversion",
+      "published_at": "2026-08-26",
+      "observed_at": "2026-07-26",
+      "valid_as_of": "2026-08-26",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.sec.gov/about/privacy-information",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 120,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "ECONOMICS",
+          "quote": "Three Months Ended Quarter-over-Quarter Change Year-over-Year Change Jul 26, 2026 Apr 26, 2026 Jul 27, 2025 ($ in millions, except per share data) Revenue $ 96,221 $ 81,615 $ 46,743 18 % 106 % Gross margin 75.0 % 74.9 % 72.4 % 0.1 pts 2.6 pts Operating expenses $ 8,408 $ 7,621 $ 5,413 10 % 55 % Operating income $ 63,734 $ 53,536 $ 28,440 19 % 124 % Net income $ 59,688 $ 58,321 $ 26,422 2 % 126 % Net income per diluted share $ 2.46 $ 2.39 $ 1.08 3 % 128 %",
+          "locator": "Quarter table",
+          "definition": {
+            "measure": "Quarter actual revenue/gross margin/operating income/net income/EPS",
+            "unit": "USD million, percent, USD/share",
+            "period": "FY2027 Q2 Jul26, FY2027 Q1 Apr26, FY2026 Q2 Jul27, columns inthatorder",
+            "currency": "USD",
+            "adjustment": "Reported GAAP; quarter-over-quarter and year-over-year columns distinct",
+            "scope": "NVIDIA consolidated, not the S&P500 or AI customers"
+          }
+        },
+        {
+          "id": "CASH",
+          "quote": "Cash flows from operating activities: Net income $ 118,010 $ 45,197 Adjustments to reconcile net income to net cash provided by operating activities: Stock-based compensation expense 3,954 3,099 Depreciation and amortization 2,124 1,280 Deferred income taxes 982 ( 2,160 ) Gains from equity securities, net ( 23,707 ) ( 2,073 ) Other 222 ( 196 ) Changes in operating assets and liabilities, net of acquisitions: Accounts receivable ( 24,590 ) ( 4,743 ) Inventories ( 10,204 ) ( 4,880 ) Prepaid expenses and other assets ( 6,480 ) 946 Accounts payable 4,125 2,255 Accrued and other current liabilities 8,015 3,075 Other long-term liabilities 1,970 979 Net cash provided by operating activities 74,421 42,779",
+          "locator": "Sixmonth cashflow table",
+          "definition": {
+            "measure": "Half-year income reconciliation to operating cashflow",
+            "unit": "USD million",
+            "period": "Six months ended2026-07-26 vs2025-07-27, columns inthatorder",
+            "currency": "USD",
+            "adjustment": "OCF includes workingcapital; investmentgains deducted from accountingincome; not quarter FCF or customer ROI",
+            "scope": "NVIDIA consolidated"
+          }
+        },
+        {
+          "id": "CREDIT",
+          "quote": "Five direct customers accounted for 22 %, 14 %, 13 %, 11 %, and 10 % of our accounts receivable balance as of July 26, 2026. Three direct customers accounted for 25 %, 18 %, and 13 % of our accounts receivable balance as of January 25, 2026. Payment from customers is generally due shortly after delivery of our products. In certain cases, for investment-grade customer purchases, we have and may in the future provide longer payment terms ranging from 90 days up to one year to assist customers with large data center builds depending on size.",
+          "locator": "Receivables concentration and paymentterms",
+          "definition": {
+            "measure": "Direct customer receivables shares and paymentterms",
+            "unit": "percent and days",
+            "period": "Balance2026-07-26 vs2026-01-25; terms as reported",
+            "currency": "USD",
+            "adjustment": "Shares of RECEIVABLES not revenue or default rates; longer terms not proof delinquency",
+            "scope": "NVIDIA unnamed direct customers; no identities inferred"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "DD_NVDA_Q2": "d6e3879ec2d94e115817629de4883a79bd49b185fdf7400218eb99da21b12326"
+  },
+  "evidence": [
+    {
+      "id": "E_DD_NVDA_Q2_ECONOMICS",
+      "source_id": "DD_NVDA_Q2",
+      "excerpt_id": "ECONOMICS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Quarter actual revenue/gross margin/operating income/net income/EPS",
+        "unit": "USD million, percent, USD/share",
+        "period": "FY2027 Q2 Jul26, FY2027 Q1 Apr26, FY2026 Q2 Jul27, columns inthatorder",
+        "currency": "USD",
+        "adjustment": "Reported GAAP; quarter-over-quarter and year-over-year columns distinct",
+        "scope": "NVIDIA consolidated, not the S&P500 or AI customers"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_NVDA_Q2_CASH",
+      "source_id": "DD_NVDA_Q2",
+      "excerpt_id": "CASH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Half-year income reconciliation to operating cashflow",
+        "unit": "USD million",
+        "period": "Six months ended2026-07-26 vs2025-07-27, columns inthatorder",
+        "currency": "USD",
+        "adjustment": "OCF includes workingcapital; investmentgains deducted from accountingincome; not quarter FCF or customer ROI",
+        "scope": "NVIDIA consolidated"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_NVDA_Q2_CREDIT",
+      "source_id": "DD_NVDA_Q2",
+      "excerpt_id": "CREDIT",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Direct customer receivables shares and paymentterms",
+        "unit": "percent and days",
+        "period": "Balance2026-07-26 vs2026-01-25; terms as reported",
+        "currency": "USD",
+        "adjustment": "Shares of RECEIVABLES not revenue or default rates; longer terms not proof delinquency",
+        "scope": "NVIDIA unnamed direct customers; no identities inferred"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    }
+  ],
+  "claims": [],
+  "notes": [],
+  "failures": [],
+  "research_notes": {
+    "limits": [
+      "Quarter actual supplier revenue and margin do not prove buyer investment return or current stock-price attractiveness.",
+      "First-half OCF is not a single-quarter flow; credit shares are receivables balance shares.",
+      "Prior quarter actual is shown inside current table, not earlier independent announcement vintage.",
+      "NVIDIA hosted automation restriction remains honored; independent public SEC filing used."
+    ]
+  }
+}

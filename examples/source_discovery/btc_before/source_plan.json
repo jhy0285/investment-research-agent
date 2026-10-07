@@ -1,0 +1,472 @@
+{
+  "as_of": "2026-10-04",
+  "asset_ids": [
+    "BTC"
+  ],
+  "claims": [
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_CR_FLOW_SLOWDOWN"
+      ],
+      "counter_ids": [],
+      "id": "CLAIM_BTC_RELATIVE_RETURN",
+      "limitations": [
+        "관련 구절이 있다는 사실이 서사의 전체 경제적 주장이나 인과를 입증하지 않는다."
+      ],
+      "narrative_evidence_id": "E_COM_HN_BTC_BEAR_PERFORMANCE",
+      "recheck": "동일 정의의 공식 원자료와 반대 논리를 추가 검토한다.",
+      "review": {
+        "rationale": "경제적 의미 검토 전 주장이다. 원문과 반대 근거를 대조한다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "BTC의 과거 상대성과와 향후 약세 댓글은 기간·배당·통화를 맞춘 자료가 없어 미확인이다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_CR_IBIT_REGISTRATION"
+      ],
+      "counter_ids": [],
+      "id": "CLAIM_CUSTODY",
+      "limitations": [
+        "관련 구절이 있다는 사실이 서사의 전체 경제적 주장이나 인과를 입증하지 않는다."
+      ],
+      "narrative_evidence_id": "E_COM_HN_BTC_CUSTODY_RISK",
+      "recheck": "동일 정의의 공식 원자료와 반대 논리를 추가 검토한다.",
+      "review": {
+        "rationale": "경제적 의미 검토 전 주장이다. 원문과 반대 근거를 대조한다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "거래소 가격 괴리와 보관·인출 위험을 검증할 필요가 있다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_COM_HN_BTC_BEAR_PERFORMANCE",
+        "E_COM_HN_BTC_CUSTODY_RISK",
+        "E_CR_IBIT_SPREAD",
+        "E_CR_IBIT_OBJECTIVE",
+        "E_CR_IBIT_REGISTRATION",
+        "E_CR_FLOW_SLOWDOWN",
+        "E_CR_FLOW_CAUTIOUS"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_BTC",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "verification": "unverified"
+    }
+  ],
+  "evidence": [
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "observed_public_utterance",
+        "period": "public_comment_2026-09-17T13:37:17+00:00",
+        "scope": "one_public_Hacker_News_comment_49740578",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_COMMENT",
+      "extraction": null,
+      "id": "E_COM_HN_BTC_BEAR_PERFORMANCE",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "JSON text의 S&amp;P는 원문의 HTML entity 표기다. 보존 구절은 raw JSON 선택 필드와 그대로 일치하며 한국어 요약에서는 S&P로 설명한다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ],
+      "source_id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "observed_public_utterance",
+        "period": "public_comment_2026-09-21T09:25:21+00:00",
+        "scope": "one_public_Hacker_News_comment_49785002",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_COMMENT",
+      "extraction": null,
+      "id": "E_COM_HN_BTC_CUSTODY_RISK",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ],
+      "source_id": "COM_HN_BTC_CUSTODY_RISK",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+        "currency": "USD",
+        "measure": "IBIT 30-day median bid/ask spread",
+        "period": "30-day window ending 2026-10-02 as labeled by issuer",
+        "scope": "IBIT shares on US secondary market, not Bitcoin spot market",
+        "unit": "percent_of_share_price"
+      },
+      "excerpt_id": "CR_IBIT_SPREAD",
+      "extraction": null,
+      "id": "E_CR_IBIT_SPREAD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Product secondary-market liquidity metric, not underlying token liquidity, a capital inflow, expected return, or user-access eligibility.",
+        "First publication timestamp unknown; the dated observation is 2026-10-02.",
+        "No numeric parser for this measure was added; quotation fact only, extraction null."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "IBIT investment objective",
+        "period": "source edition as of 2026-10-02",
+        "scope": "issuer description of IBIT, not a verified expected Bitcoin return",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_IBIT_OBJECTIVE",
+      "extraction": null,
+      "id": "E_CR_IBIT_OBJECTIVE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "IBIT legal registration status",
+        "period": "source edition as of 2026-10-02",
+        "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_IBIT_REGISTRATION",
+      "extraction": null,
+      "id": "E_CR_IBIT_REGISTRATION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "provider reported aggregate; no conversion, inferred asset split or annualization",
+        "currency": "USD",
+        "measure": "research provider reported digital-asset investment-product flows",
+        "period": "week-to-date as described in 2026-10-02 article versus preceding week; exact coverage timestamps unknown",
+        "scope": "CoinShares described fund flows; asset and geography breakdown not given in selected text; not BTC-only/ETH-only or US spot ETF-only",
+        "unit": "USD_million_and_USD_billion_as_quoted"
+      },
+      "excerpt_id": "CR_FLOW_SLOWDOWN",
+      "extraction": null,
+      "id": "E_CR_FLOW_SLOWDOWN",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Not US spot ETF flows exclusively; exact date range, component products, BTC/ETH allocation, fees and source flow-table reconciliation unknown.",
+        "Research author has digital-asset-product business interests; monetary-policy and macro claims elsewhere in the article were not adopted as verified facts.",
+        "Week-to-date and full preceding week do not have equal lengths; do not compute a percentage decline or annualize."
+      ],
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "research-provider characterization of cautious/selective fund flows",
+        "period": "2026-10-02 article",
+        "scope": "CoinShares author interpretation, not independently verified market sentiment or predictive probability",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_FLOW_CAUTIOUS",
+      "extraction": null,
+      "id": "E_CR_FLOW_CAUTIOUS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Not US spot ETF flows exclusively; exact date range, component products, BTC/ETH allocation, fees and source flow-table reconciliation unknown.",
+        "Research author has digital-asset-product business interests; monetary-policy and macro claims elsewhere in the article were not adopted as verified facts.",
+        "Week-to-date and full preceding week do not have equal lengths; do not compute a percentage decline or annualize."
+      ],
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "view": "macro"
+    }
+  ],
+  "id": "ASK_SELECTED_SOURCES",
+  "question": "BTC 지금 어때?",
+  "schema_version": "1",
+  "sources": [
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49740578",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "observed_public_utterance",
+            "period": "public_comment_2026-09-17T13:37:17+00:00",
+            "scope": "one_public_Hacker_News_comment_49740578",
+            "unit": "text"
+          },
+          "id": "Q_COMMENT",
+          "locator": "/text",
+          "quote": "It has underperformed both the S&amp;P 500 and gold over the last 5 years. I expect bitcoin inflation to continue. (AKA the bitcoin price to continue to go down)."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "max_age_days": 30,
+      "observed_at": "2026-09-17",
+      "origin_source_id": null,
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-17T13:37:17+00:00",
+      "publisher": "Hacker News official public API; individual public comment",
+      "retention": "excerpt",
+      "title": "One HN comment: Bitcoin mining sales and an unverified five-year comparison",
+      "topics": [
+        "btc_mining_demand_performance_hypothesis"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49740578.json",
+      "valid_as_of": "2026-09-17"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49785002",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "observed_public_utterance",
+            "period": "public_comment_2026-09-21T09:25:21+00:00",
+            "scope": "one_public_Hacker_News_comment_49785002",
+            "unit": "text"
+          },
+          "id": "Q_COMMENT",
+          "locator": "/text",
+          "quote": "because the promise of a bitcoin from an exchange is not the same thing as an actual bitcoin."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "COM_HN_BTC_CUSTODY_RISK",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "max_age_days": 30,
+      "observed_at": "2026-09-21",
+      "origin_source_id": null,
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-21T09:25:21+00:00",
+      "publisher": "Hacker News official public API; individual public comment",
+      "retention": "excerpt",
+      "title": "One HN comment: exchange Bitcoin claims and withdrawal risk",
+      "topics": [
+        "btc_exchange_custody_vs_underlying"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+      "valid_as_of": "2026-09-21"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "provider reported aggregate; no conversion, inferred asset split or annualization",
+            "currency": "USD",
+            "measure": "research provider reported digital-asset investment-product flows",
+            "period": "week-to-date as described in 2026-10-02 article versus preceding week; exact coverage timestamps unknown",
+            "scope": "CoinShares described fund flows; asset and geography breakdown not given in selected text; not BTC-only/ETH-only or US spot ETF-only",
+            "unit": "USD_million_and_USD_billion_as_quoted"
+          },
+          "id": "CR_FLOW_SLOWDOWN",
+          "locator": "Fund flows paragraph",
+          "quote": "We have seen only around US$150M of inflows so far this week, a dramatic slowdown from approximately US$3.5B last week."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "research-provider characterization of cautious/selective fund flows",
+            "period": "2026-10-02 article",
+            "scope": "CoinShares author interpretation, not independently verified market sentiment or predictive probability",
+            "unit": "statement"
+          },
+          "id": "CR_FLOW_CAUTIOUS",
+          "locator": "Fund flows paragraph: author characterization",
+          "quote": "Fund flows, however, show that investors remain cautious."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_COINSHARES_CURRENT_FLOWS",
+      "jurisdiction": "global",
+      "max_age_days": 7,
+      "observed_at": null,
+      "origin_source_id": null,
+      "policy_note": "Public article reached from current research index and robots permits the selected URL. The article states Copyright CoinShares, all rights reserved; no general redistribution license established. Retain two minimal attributed quotations needed for personal research critique, not entire article, figures, subscriber content or author profile. Copyright CoinShares; source and title retained. Quoted figures remain provider reports; exact window/asset coverage and original flow table are unverified.",
+      "policy_url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "published_at": "2026-10-02",
+      "publisher": "CoinShares / James Butterfill",
+      "retention": "excerpt",
+      "title": "Market update - October 2nd, 2026",
+      "topics": [
+        "crypto",
+        "fund-flows",
+        "macro-narrative"
+      ],
+      "type": "research",
+      "url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+            "currency": "USD",
+            "measure": "IBIT 30-day median bid/ask spread",
+            "period": "30-day window ending 2026-10-02 as labeled by issuer",
+            "scope": "IBIT shares on US secondary market, not Bitcoin spot market",
+            "unit": "percent_of_share_price"
+          },
+          "id": "CR_IBIT_SPREAD",
+          "locator": "Key Facts: 30 Day Median Bid/Ask Spread",
+          "quote": "30 Day Median Bid/Ask Spread 0.02% as of Oct 02, 2026"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "IBIT investment objective",
+            "period": "source edition as of 2026-10-02",
+            "scope": "issuer description of IBIT, not a verified expected Bitcoin return",
+            "unit": "statement"
+          },
+          "id": "CR_IBIT_OBJECTIVE",
+          "locator": "Product objective",
+          "quote": "The iShares Bitcoin Trust ETF seeks to reflect the performance of the price of bitcoin."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "IBIT legal registration status",
+            "period": "source edition as of 2026-10-02",
+            "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules",
+            "unit": "statement"
+          },
+          "id": "CR_IBIT_REGISTRATION",
+          "locator": "Product regulatory disclaimer",
+          "quote": "The iShares Bitcoin Trust ETF is not an investment company registered under the Investment Company Act of 1940, and therefore is not subject to the same regulatory requirements as mutual funds or ETFs registered under the Investment Company Act of 1940."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_IBIT_ISSUER",
+      "jurisdiction": "US",
+      "max_age_days": 7,
+      "observed_at": "2026-10-02",
+      "origin_source_id": null,
+      "policy_note": "Public product page; robots permits the chosen URL. BlackRock terms allow personal non-commercial downloads with proprietary notices and restrict public/commercial reuse without written permission. Retain only minimal attributed research quotations in this personal research example, not full content. This does not establish general public redistribution rights. Copyright BlackRock, Inc. All rights reserved.",
+      "policy_url": "https://www.blackrock.com/corporate/compliance/terms-and-conditions",
+      "published_at": null,
+      "publisher": "BlackRock / iShares",
+      "retention": "excerpt",
+      "title": "iShares Bitcoin Trust ETF issuer product page, dated fields 2026-10-02",
+      "topics": [
+        "crypto",
+        "product-liquidity",
+        "product-structure"
+      ],
+      "type": "primary",
+      "url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "valid_as_of": "2026-10-02"
+    }
+  ]
+}

@@ -1,0 +1,915 @@
+{
+  "as_of": "2026-10-04T14:14:50.188149+00:00",
+  "author": "검토한 원문 수치의 명시적 전사",
+  "calculations": [
+    {
+      "id": "CALC_SP_FORWARD_EY",
+      "input_ids": [
+        "F_SP_FORWARD_12M_PE"
+      ],
+      "label": "FactSet rolling forward earnings yield",
+      "limitations": [
+        "추정 이익을 가격으로 나눈 값이며 배당·현금 지급률·실현 투자수익률이 아니다.",
+        "미래 이익의 반복성과 추정치의 정확성은 별도 검토다."
+      ],
+      "method": "earnings_yield_v1"
+    },
+    {
+      "id": "CALC_SP_FY1_EY",
+      "input_ids": [
+        "F_SP_FY1_PE"
+      ],
+      "label": "State Street FY1 harmonic P/E 역수",
+      "limitations": [
+        "종목별 harmonic P/E의 역수이며 FactSet rolling forward earnings 정의와 동일하지 않다."
+      ],
+      "method": "earnings_yield_v1"
+    },
+    {
+      "id": "CALC_SP_TRAILING_EY",
+      "input_ids": [
+        "F_SP_TRAILING_PE"
+      ],
+      "label": "State Street trailing P/E 역수",
+      "limitations": [
+        "과거 회계 이익의 가격 대비 값이다. 미래 현금 수익률이나 저평가 판정이 아니다."
+      ],
+      "method": "earnings_yield_v1"
+    },
+    {
+      "id": "CALC_SP_FORWARD_10Y_GAP",
+      "input_ids": [
+        "F_SP_FORWARD_12M_PE",
+        "F_TREASURY_10Y_SEP30"
+      ],
+      "label": "rolling forward earnings yield 차감 같은 날 십 년 Treasury",
+      "limitations": [
+        "단순 정의상 차이이며 Equity Risk Premium·미래 초과수익·배분 기준이 아니다.",
+        "이익 성장·유보와 재투자·부채·세금·불확실성·회계 질이 Treasury 약정 현금흐름과 다르다."
+      ],
+      "method": "descriptive_yield_gap_v1"
+    },
+    {
+      "id": "CALC_SP_FY1_10Y_GAP",
+      "input_ids": [
+        "F_SP_FY1_PE",
+        "F_TREASURY_10Y"
+      ],
+      "label": "FY1 harmonic P/E 역수 차감 같은 날 십 년 Treasury",
+      "limitations": [
+        "동일 날짜에만 비교한 설명용 차이다. 주식 총수익률이나 정의된 model-implied ERP가 아니다.",
+        "다른 forward EPS 정의의 차이를 같은 시점의 추세로 해석하지 않는다."
+      ],
+      "method": "descriptive_yield_gap_v1"
+    }
+  ],
+  "comparison_limits": [
+    "이익수익률과 국채 금리의 차이는 확정 기대수익이나 ERP가 아니다."
+  ],
+  "facts": [
+    {
+      "basis": "forward_12m_pe",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_SP_FORWARD_12M_PE",
+      "label": "S&P 500 rolling forward십이 개월 P/E",
+      "observed_at": "2026-09-30",
+      "quote_context": "The forward 12-month P/E ratio is 19.0 (based on Wednesday’s closing price and forward EPS)",
+      "quote_token": "19.0",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "ratio",
+      "value": "19.0",
+      "window": "Rolling next twelve months EPS; price close2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_SP_PE_AVG5",
+      "label": "동일 provider forward P/E 오 년 평균",
+      "observed_at": "2026-09-30",
+      "quote_context": "which is below the 5-year average (19.8) and below the 10-year average (19.1).",
+      "quote_token": "19.8",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "ratio",
+      "value": "19.8",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_SP_PE_AVG10",
+      "label": "동일 provider forward P/E 십 년 평균",
+      "observed_at": "2026-09-30",
+      "quote_context": "which is below the 5-year average (19.8) and below the 10-year average (19.1).",
+      "quote_token": "19.1",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "ratio",
+      "value": "19.1",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_SP_PE_JUN30",
+      "label": "S&P 500 이전 분기말 rolling forward P/E",
+      "observed_at": "2026-06-30",
+      "quote_context": "This P/E ratio is also below the forward P/E ratio of 20.4 recorded at the end of the second quarter (June 30).",
+      "quote_token": "20.4",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "ratio",
+      "value": "20.4",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "forward_fy1_harmonic_pe",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_SP_FY1_PE",
+      "label": "State Street S&P 500 FY1 weighted harmonic P/E",
+      "observed_at": "2026-10-01",
+      "quote_context": "Index Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth 22.46% Number of Holdings 503 Price/Cash Flow 18.25 Price/Earnings 24.62 Price/Earnings Ratio FY1 20.43",
+      "quote_token": "20.43",
+      "source_definition": {
+        "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+        "currency": "USD",
+        "measure": "Index trailing P/E and FY1 harmonic P/E",
+        "period": "2026-10-01",
+        "scope": "S&P 500 characteristics shown by State Street on SPY page",
+        "unit": "ratio and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_VALUATION",
+      "unit": "ratio",
+      "value": "20.43",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "trailing_pe",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_SP_TRAILING_PE",
+      "label": "State Street S&P 500 trailing P/E",
+      "observed_at": "2026-10-01",
+      "quote_context": "Index Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth 22.46% Number of Holdings 503 Price/Cash Flow 18.25 Price/Earnings 24.62 Price/Earnings Ratio FY1 20.43",
+      "quote_token": "24.62",
+      "source_definition": {
+        "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+        "currency": "USD",
+        "measure": "Index trailing P/E and FY1 harmonic P/E",
+        "period": "2026-10-01",
+        "scope": "S&P 500 characteristics shown by State Street on SPY page",
+        "unit": "ratio and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_VALUATION",
+      "unit": "ratio",
+      "value": "24.62",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_EPS_REVISION",
+      "label": "셋째분기 EPS 예상치 분기 중 상향폭",
+      "observed_at": "2026-09-30",
+      "quote_context": "estimated earnings for the third quarter increased by 1.4% from June 30 to September 30.",
+      "quote_token": "1.4",
+      "source_definition": {
+        "adjustment": "Quarter-specific consensus EPS estimate revision; provider averages, not realized EPS growth",
+        "currency": "USD",
+        "measure": "Quarterly EPS estimate revision",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_REVISIONS",
+      "unit": "percent",
+      "value": "1.4",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_EARNINGS_GROWTH",
+      "label": "셋째분기 현재 예상 earnings growth",
+      "observed_at": "2026-10-02",
+      "quote_context": "the S&P 500 is expected to report (year-over-year) earnings growth of 29.5%, compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30.",
+      "quote_token": "29.5",
+      "source_definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "unit": "percent",
+      "value": "29.5",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_OLD_GROWTH",
+      "label": "셋째분기 시작 당시 예상 earnings growth",
+      "observed_at": "2026-06-30",
+      "quote_context": "compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30.",
+      "quote_token": "26.7",
+      "source_definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "unit": "percent",
+      "value": "26.7",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_REVENUE_GROWTH",
+      "label": "셋째분기 현재 예상 revenue growth",
+      "observed_at": "2026-10-02",
+      "quote_context": "the S&P 500 is expected to report (year-over-year) revenue growth of 12.3%, compared to the expectations for revenue growth of 10.9% on June 30.",
+      "quote_token": "12.3",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "percent",
+      "value": "12.3",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_OLD_REVENUE",
+      "label": "셋째분기 시작 당시 예상 revenue growth",
+      "observed_at": "2026-06-30",
+      "quote_context": "compared to the expectations for revenue growth of 10.9% on June 30.",
+      "quote_token": "10.9",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "percent",
+      "value": "10.9",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q4_EARNINGS_GROWTH",
+      "label": "넷째분기 예상 earnings growth",
+      "observed_at": "2026-10-02",
+      "quote_context": "For Q4 2026, analysts are calling for earnings growth of 27.6%.",
+      "quote_token": "27.6",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "percent",
+      "value": "27.6",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_CY_EARNINGS_GROWTH",
+      "label": "올해 예상 earnings growth",
+      "observed_at": "2026-10-02",
+      "quote_context": "For CY 2026, analysts are predicting (year-over-year) earnings growth of 32.4%.",
+      "quote_token": "32.4",
+      "source_definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "unit": "percent",
+      "value": "32.4",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_GUIDERS",
+      "label": "EPS guidance를 발표한 기업 수",
+      "observed_at": "2026-10-02",
+      "quote_context": "At this point in time, 116 companies in the index have issued EPS guidance for Q3 2026.",
+      "quote_token": "116",
+      "source_definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "unit": "count",
+      "value": "116",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_POSITIVE_GUIDANCE",
+      "label": "positive EPS guidance 기업 수",
+      "observed_at": "2026-10-02",
+      "quote_context": "44 have issued negative EPS guidance and 72 have issued positive EPS guidance.",
+      "quote_token": "72",
+      "source_definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "unit": "count",
+      "value": "72",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_NEGATIVE_GUIDANCE",
+      "label": "negative EPS guidance 기업 수",
+      "observed_at": "2026-10-02",
+      "quote_context": "44 have issued negative EPS guidance and 72 have issued positive EPS guidance.",
+      "quote_token": "44",
+      "source_definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "unit": "count",
+      "value": "44",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "reported_statistic",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_Q3_POSITIVE_SHARE",
+      "label": "guidance 기업 중 positive 비율",
+      "observed_at": "2026-10-02",
+      "quote_context": "The percentage of S&P 500 companies issuing positive EPS guidance for Q3 2026 is 62% (72 out of 116)",
+      "quote_token": "62%",
+      "source_definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "source_evidence_id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "unit": "percent",
+      "value": "62",
+      "window": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_NVDA",
+      "label": "NVDA index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "NVIDIA Corporation 8.46%",
+      "quote_token": "8.46%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "8.46",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_AAPL",
+      "label": "AAPL index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Apple Inc. 7.30%",
+      "quote_token": "7.30%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "7.30",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_MSFT",
+      "label": "MSFT index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Microsoft Corporation 5.77%",
+      "quote_token": "5.77%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "5.77",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_AMZN",
+      "label": "AMZN index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Amazon.com Inc. 3.69%",
+      "quote_token": "3.69%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "3.69",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_GOOGL_A",
+      "label": "GOOGL_A index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Alphabet Inc. Class A 3.01%",
+      "quote_token": "3.01%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "3.01",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_GOOGL_C",
+      "label": "GOOGL_C index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Alphabet Inc. Class C 2.41%",
+      "quote_token": "2.41%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "2.41",
+      "window": "2026-10-01"
+    },
+    {
+      "basis": "nominal_cmt_investment_yield",
+      "currency": "USD",
+      "entity": "UST_3M",
+      "id": "F_TREASURY_3M",
+      "label": "Treasury 3M nominal CMT yield",
+      "observed_at": "2026-10-01",
+      "quote_context": "3-month 4.24 4.28 4.25 4.20 4.17",
+      "quote_token": "4.17",
+      "source_definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "source_evidence_id": "E_DD_TR_CURVE",
+      "unit": "percent",
+      "value": "4.17",
+      "window": "nominal CMT tenor 3M observed2026-10-01, H15 investment basis"
+    },
+    {
+      "basis": "nominal_cmt_investment_yield",
+      "currency": "USD",
+      "entity": "UST_2Y",
+      "id": "F_TREASURY_2Y",
+      "label": "Treasury 2Y nominal CMT yield",
+      "observed_at": "2026-10-01",
+      "quote_context": "2-year 4.81 4.92 4.89 4.88 4.78",
+      "quote_token": "4.78",
+      "source_definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "source_evidence_id": "E_DD_TR_CURVE",
+      "unit": "percent",
+      "value": "4.78",
+      "window": "nominal CMT tenor 2Y observed2026-10-01, H15 investment basis"
+    },
+    {
+      "basis": "nominal_cmt_investment_yield",
+      "currency": "USD",
+      "entity": "UST_5Y",
+      "id": "F_TREASURY_5Y",
+      "label": "Treasury 5Y nominal CMT yield",
+      "observed_at": "2026-10-01",
+      "quote_context": "5-year 4.98 5.06 5.06 5.09 5.01",
+      "quote_token": "5.01",
+      "source_definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "source_evidence_id": "E_DD_TR_CURVE",
+      "unit": "percent",
+      "value": "5.01",
+      "window": "nominal CMT tenor 5Y observed2026-10-01, H15 investment basis"
+    },
+    {
+      "basis": "nominal_cmt_investment_yield",
+      "currency": "USD",
+      "entity": "UST_10Y",
+      "id": "F_TREASURY_10Y",
+      "label": "Treasury 10Y nominal CMT yield",
+      "observed_at": "2026-10-01",
+      "quote_context": "5.26 5.29 5.24",
+      "quote_token": "5.24",
+      "source_definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "source_evidence_id": "E_DD_TR_CURVE",
+      "unit": "percent",
+      "value": "5.24",
+      "window": "nominal CMT tenor 10Y observed2026-10-01, H15 investment basis"
+    },
+    {
+      "basis": "nominal_cmt_investment_yield",
+      "currency": "USD",
+      "entity": "UST_30Y",
+      "id": "F_TREASURY_30Y",
+      "label": "Treasury 30Y nominal CMT yield",
+      "observed_at": "2026-10-01",
+      "quote_context": "30-year 5.49 5.56 5.59 5.64 5.61",
+      "quote_token": "5.61",
+      "source_definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "source_evidence_id": "E_DD_TR_CURVE",
+      "unit": "percent",
+      "value": "5.61",
+      "window": "nominal CMT tenor 30Y observed2026-10-01, H15 investment basis"
+    },
+    {
+      "basis": "nominal_cmt_investment_yield",
+      "currency": "USD",
+      "entity": "UST_10Y",
+      "id": "F_TREASURY_10Y_SEP30",
+      "label": "Treasury십 년 matching valuation date",
+      "observed_at": "2026-09-30",
+      "quote_context": "5.26 5.29 5.24",
+      "quote_token": "5.29",
+      "source_definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "source_evidence_id": "E_DD_TR_CURVE",
+      "unit": "percent",
+      "value": "5.29",
+      "window": "nominal CMT tenor10Y observed2026-09-30, fourth date column H15 investment basis"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_AVGO",
+      "label": "AVGO index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Broadcom Inc. 2.48%",
+      "quote_token": "2.48%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "2.48",
+      "window": "Index top-security market-cap weight2026-10-01; not return or earnings contribution"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_META",
+      "label": "META index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Meta Platforms Inc Class A 2.42%",
+      "quote_token": "2.42%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "2.42",
+      "window": "Index top-security market-cap weight2026-10-01; not return or earnings contribution"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_MU",
+      "label": "MU index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Micron Technology Inc. 1.88%",
+      "quote_token": "1.88%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "1.88",
+      "window": "Index top-security market-cap weight2026-10-01; not return or earnings contribution"
+    },
+    {
+      "basis": "index_weight",
+      "currency": "USD",
+      "entity": "SP500",
+      "id": "F_WEIGHT_AMD",
+      "label": "AMD index security weight",
+      "observed_at": "2026-10-01",
+      "quote_context": "Advanced Micro Devices Inc. 1.52%",
+      "quote_token": "1.52%",
+      "source_definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "source_evidence_id": "E_DD_IDX_SPY_HOLDINGS",
+      "unit": "percent",
+      "value": "1.52",
+      "window": "Index top-security market-cap weight2026-10-01; not return or earnings contribution"
+    }
+  ],
+  "horizon": "미확인 투자기간에서 개인 판단을 확정하지 않는다.",
+  "id": "ASK_US_EARNINGS_TREASURY",
+  "judgment": "insufficient evidence",
+  "next_research": "현재 질문에 필요한 누락 원자료를 보완한다.",
+  "parent": null,
+  "profile": {
+    "base_currency": {
+      "status": "known",
+      "value": "KRW"
+    }
+  },
+  "question": "미국 주식의 이익 기대와 국채 기회비용을 구분한다.",
+  "review_status": "draft",
+  "sampling_limits": [
+    "선택한 지수 원자료의 검토 범위이며 전체 기업의 미래 이익을 검증한 것은 아니다."
+  ],
+  "schema_version": "deep-dive-review-v1",
+  "sections": {
+    "actual_results": [],
+    "ai_chain": [],
+    "base_case": [],
+    "bear_case": [],
+    "bull_case": [],
+    "community": [],
+    "concentration": [],
+    "conclusions": [
+      {
+        "evidence_ids": [
+          "F_SP_FORWARD_12M_PE",
+          "F_SP_FY1_PE",
+          "F_SP_TRAILING_PE",
+          "F_TREASURY_3M",
+          "F_TREASURY_2Y",
+          "F_TREASURY_5Y",
+          "F_TREASURY_10Y",
+          "F_TREASURY_30Y",
+          "F_TREASURY_10Y_SEP30"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      },
+      {
+        "evidence_ids": [
+          "F_SP_FORWARD_12M_PE",
+          "F_SP_FY1_PE",
+          "F_SP_TRAILING_PE",
+          "F_TREASURY_3M",
+          "F_TREASURY_2Y",
+          "F_TREASURY_5Y",
+          "F_TREASURY_10Y",
+          "F_TREASURY_30Y",
+          "F_TREASURY_10Y_SEP30"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      },
+      {
+        "evidence_ids": [
+          "F_SP_FORWARD_12M_PE",
+          "F_SP_FY1_PE",
+          "F_SP_TRAILING_PE",
+          "F_TREASURY_3M",
+          "F_TREASURY_2Y",
+          "F_TREASURY_5Y",
+          "F_TREASURY_10Y",
+          "F_TREASURY_30Y",
+          "F_TREASURY_10Y_SEP30"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      }
+    ],
+    "current_judgment": [],
+    "denominator": [
+      {
+        "evidence_ids": [
+          "F_SP_FORWARD_12M_PE",
+          "F_SP_FY1_PE",
+          "F_SP_TRAILING_PE",
+          "F_TREASURY_3M",
+          "F_TREASURY_2Y",
+          "F_TREASURY_5Y",
+          "F_TREASURY_10Y",
+          "F_TREASURY_30Y",
+          "F_TREASURY_10Y_SEP30"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      }
+    ],
+    "easy": [],
+    "korean_context": [],
+    "narrative_gaps": [],
+    "priced_expectations": [],
+    "reassessment": [],
+    "revisions": [],
+    "treasury": [
+      {
+        "evidence_ids": [
+          "F_SP_FORWARD_12M_PE",
+          "F_SP_FY1_PE",
+          "F_SP_TRAILING_PE",
+          "F_TREASURY_3M",
+          "F_TREASURY_2Y",
+          "F_TREASURY_5Y",
+          "F_TREASURY_10Y",
+          "F_TREASURY_30Y",
+          "F_TREASURY_10Y_SEP30"
+        ],
+        "role": "interpretation",
+        "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다."
+      }
+    ]
+  },
+  "tables": [],
+  "unknowns": [
+    "새로운 가격 매력 판단에는 실제 실적·수정·반대 근거의 의미 검토가 필요하다."
+  ]
+}

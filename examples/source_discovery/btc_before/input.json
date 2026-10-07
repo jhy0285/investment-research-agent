@@ -1,0 +1,159 @@
+{
+  "as_of": "2026-10-04T15:24:37.437424+00:00",
+  "catalog_sha256": "5bdcf4ea64f5e2749a8ef07d16d2264bc6f0533571cf76159bafa3befc8779fa",
+  "findings": [
+    {
+      "asset_ids": [
+        "BTC",
+        "ETF_IBIT"
+      ],
+      "counterargument": "거래 편의가 개선되어도 기초자산 가격 하락과 상품 구조의 위험이 사라지는 것은 아니다.",
+      "evidence_ids": [
+        "E_CR_IBIT_OBJECTIVE",
+        "E_CR_IBIT_REGISTRATION"
+      ],
+      "fingerprints": {
+        "E_CR_IBIT_OBJECTIVE": "7c9e3d37f9d106fb7c27127debaa583a8dc8a6813cf8d7d13d2b6cb4beaa6e8c",
+        "E_CR_IBIT_REGISTRATION": "f25c8d08df68d736802ce3696befb7a8ce9bcd1d4ab70d5fa570200b51ed720e"
+      },
+      "id": "BTC_PRODUCT",
+      "reassessment": "BTC 고유 수요·보관 조건·현재 상품 구조와 비용을 확인한다.",
+      "role": "interpretation_draft",
+      "text": "발행사는 IBIT가 Bitcoin 가격을 따르는 상품이라고 설명하고, 일반 미국 투자회사 규제와 다른 법적 구조를 명시한다. ETF의 거래 편의와 기초 Bitcoin의 가격 매력·보관 및 규제 위험은 따로 판단해야 한다."
+    },
+    {
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "counterargument": "짧은 기간의 유입 둔화는 장기 수요 약화나 미래 가격 하락을 증명하지 않는다.",
+      "evidence_ids": [
+        "E_CR_FLOW_SLOWDOWN",
+        "E_CR_FLOW_CAUTIOUS"
+      ],
+      "fingerprints": {
+        "E_CR_FLOW_CAUTIOUS": "cb7df15d617f7818cfc8c7ed039124616e3f748844bf0f3e5b3968b1c572d21f",
+        "E_CR_FLOW_SLOWDOWN": "252b2dc3a7218ba4d8918a3a06c307152d52e1794549af2612f95b1ce4e3b35e"
+      },
+      "id": "BTC_FLOW",
+      "reassessment": "동일 기간 BTC·ETH별 ETF 순유입과 실제 보유량을 따로 확인한다.",
+      "role": "interpretation_draft",
+      "text": "제공자는 디지털자산 투자상품의 주간 자금 유입이 둔화했고 투자자가 신중하다고 보고한다. 기관 수요가 계속 가속한다는 주장에는 반대 단서지만, 집계 전체의 흐름을 BTC 또는 ETH 단독 흐름으로 일반화할 수 없다."
+    }
+  ],
+  "has_macro": true,
+  "has_sources": true,
+  "method_versions": {
+    "acquisition": "source_snapshot_v1",
+    "catalog": "curated_research_catalog_v1",
+    "deep_dive": "deep_dive_v1",
+    "engine": "evidence_rules_v1",
+    "findings": "bounded_findings_v1",
+    "macro": "macro_series_v1",
+    "macro_pipeline": "macro_pipeline_v1",
+    "opportunity": "opportunity_map_v1",
+    "orchestrator": "research_orchestrator_v1",
+    "portfolio": "portfolio_composition_v1",
+    "routing": "research_routing_v2",
+    "source_verification": "source_verification_v1"
+  },
+  "methods": [
+    {
+      "bear_question": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "bull_question": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "downside": "수요 감소·레버리지 청산·규제·거래소/보관 위험; ETF와 현물 보관은 다르다.",
+      "economics": "사용·보유 수요와 희소성 가설을 검증한다. 기업 이익이나 PER로 평가하지 않는다.",
+      "family": "crypto",
+      "id": "BTC",
+      "label": "Bitcoin",
+      "macro_ids": [
+        "USD_KRW_NOON_REFERENCE"
+      ],
+      "missing": [
+        "BTC 단독 ETF 일별 순유입과 실제 보유량",
+        "가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+        "가격의 매력을 판단할 검증된 가치 대용 지표"
+      ],
+      "scope_note": "IBIT 상품과 제공자의 디지털자산 전체 flow를 구분한다. aggregate flow는 BTC 단독 flow가 아니다.",
+      "source_ids": [
+        "CR_IBIT_ISSUER",
+        "CR_COINSHARES_CURRENT_FLOWS",
+        "COM_HN_BTC_CUSTODY_RISK",
+        "COM_HN_BTC_BEAR_PERFORMANCE"
+      ]
+    }
+  ],
+  "plan": {
+    "clarifications": [],
+    "execution_status": "dispatched",
+    "limits": [
+      "선택한 모드의 조사 계획이며 금융 분석 결과·수치·추천이 아니다.",
+      "규칙 기반 질문 해석의 범위를 넘으면 확인하며 전체 Scan으로 대체하지 않는다.",
+      "관련 macro·대안만 조사한다. 미조사 자산의 열등함을 뜻하지 않는다.",
+      "필수 근거·보유 정보가 unknown이면 영향을 받는 결론을 보류한다."
+    ],
+    "method_version": "research_routing_v2",
+    "modes": [
+      "asset_deep_dive"
+    ],
+    "question": "BTC 지금 어때?",
+    "schema_version": "research-plan-v1",
+    "selection_source": "inferred_rules",
+    "status": "planned",
+    "tasks": [
+      {
+        "depends_on": [],
+        "id": "deep_1",
+        "mode": "asset_deep_dive",
+        "questions": [
+          "기대와 실제 근거·가장 강한 반대 논리",
+          "관련된 대안·macro만 필요한 범위에서 검토"
+        ],
+        "required_inputs": [
+          "프로토콜·사용·발행·공급·유동성",
+          "보관·거래 상대방·규제·downside·검증할 narrative"
+        ],
+        "scope": "specified_subject",
+        "subjects": [
+          {
+            "label": "Bitcoin",
+            "method_family": "crypto"
+          }
+        ]
+      }
+    ]
+  },
+  "portfolio": null,
+  "question": "BTC 지금 어때?",
+  "quoted_facts": {
+    "calculations": [],
+    "facts": []
+  },
+  "schema_version": "ask-input-v1",
+  "synthetic": false,
+  "tasks": [
+    {
+      "candidate_dependent": false,
+      "id": "deep_1",
+      "method_ids": [
+        "BTC"
+      ],
+      "mode": "asset_deep_dive",
+      "subject_method_ids": [
+        "BTC"
+      ],
+      "subjects": [
+        {
+          "label": "Bitcoin",
+          "method_family": "crypto"
+        }
+      ],
+      "unsupported": []
+    }
+  ],
+  "unresolved": [
+    "Bitcoin: BTC 단독 ETF 일별 순유입과 실제 보유량",
+    "Bitcoin: 가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+    "Bitcoin: 가격의 매력을 판단할 검증된 가치 대용 지표"
+  ]
+}

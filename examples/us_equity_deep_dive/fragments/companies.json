@@ -1,0 +1,937 @@
+{
+  "sources": [
+    {
+      "id": "DD_MSFT_Q4",
+      "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+      "canonical_url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+      "type": "primary",
+      "publisher": "Microsoft",
+      "title": "Microsoft actual earnings/cashflow evidence",
+      "published_at": "2026-07-29",
+      "observed_at": "2026-06-30",
+      "valid_as_of": "2026-07-29",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 120,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RESULTS",
+          "quote": "Revenue was $90.0 billion and increased 18% (up 17% in constant currency) · Operating income was $40.6 billion and increased 18% · Net income was $35.8 billion and increased 31% on a GAAP basis, and was $35.3 billion and increased 22% on a non-GAAP basis · Diluted earnings per share was $4.81 and increased 32% on a GAAP basis, and was $4.74 and increased 23% on a non-GAAP basis · Non-GAAP results exclude the impact from investments in OpenAI, explained in the Non-GAAP Definition section below Several discrete items impacted our financial results in the quarter when compared to our forward-looking guidance provided on April 29, 2026, resulting in a benefit of $0.27 on diluted earnings per share. These include a $3.2 billion gain from our investment in Anthropic and lower-than-expected expenses related to the Voluntary Retirement Program which were partially offset by severance expense and impairment charges in XBOX. When adjusting for these items, we exceeded expectations across revenue, operating income, and diluted earnings per share.",
+          "locator": "Visible reported RESULTS excerpt",
+          "definition": {
+            "measure": "Quarter revenue, operating income and reported EPS; one-off explanation",
+            "unit": "USD billion, USD/share and percent",
+            "period": "Quarter ended 2026-06-30, FY2026 Q4; year-over-year comparisons",
+            "currency": "USD",
+            "adjustment": "GAAP and OpenAI-adjusted non-GAAP distinct; adjustment does NOT remove all other investment gains or restructuring items",
+            "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "MONETIZATION",
+          "quote": "This year, Azure revenue surpassed $100 billion for the first time, and Microsoft 365 Copilot reached over 30 million paid seats, reflecting the confidence customers are placing in us to power their AI transformation.” “We delivered a strong quarter to close out the fiscal year, highlighted by Microsoft Cloud revenue of $59.3 billion, up 27% year-over-year,” said Amy Hood, executive vice president and chief financial officer of Microsoft.",
+          "locator": "Visible reported MONETIZATION excerpt",
+          "definition": {
+            "measure": "Azure recognized annual revenue and paid Copilot seats",
+            "unit": "USD billion annual revenue and paid-seat count",
+            "period": "FY2026 ending2026-06-30; reported2026-07-29",
+            "currency": "USD",
+            "adjustment": "Management report; Azure/cloud includes non-AI; paid seats are not disclosed incremental AI profit or capital ROI",
+            "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "CASH",
+          "quote": "Net cash from operations 55,441 42,647 182,935 136,162 Financing Repayments of debt, maturities of 90 days or less 0 0 0 (5,746) Repayments of debt 0 0 (3,000) (3,216) Common stock issued 520 548 2,009 2,056 Common stock repurchased (4,579) (4,546) (22,271) (18,420) Common stock cash dividends paid (6,758) (6,169) (26,445) (24,082) Other, net (962) (677) (2,839) (2,291) Net cash used in financing (11,779) (10,844) (52,546) (51,699) Investing Additions to property and equipment (35,802) (17,079) (115,948) (64,551)",
+          "locator": "Visible reported CASH excerpt",
+          "definition": {
+            "measure": "Operating cash and additions to property and equipment",
+            "unit": "USD million",
+            "period": "Three months2026/2025 and twelve months2026/2025 ended2026-06-30, columns in that order",
+            "currency": "USD",
+            "adjustment": "Cash additions to PP&E only; finance lease additions excluded; issuer cash-flow table, not total AI CAPEX",
+            "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_MSFT_Q3",
+      "url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast",
+      "canonical_url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast",
+      "type": "primary",
+      "publisher": "Microsoft",
+      "title": "Microsoft actual earnings/cashflow evidence",
+      "published_at": "2026-04-29",
+      "observed_at": "2026-03-31",
+      "valid_as_of": "2026-04-29",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q3/press-release-webcast",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 200,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RESULTS",
+          "quote": "Revenue was $82.9 billion and increased 18% (up 15% in constant currency) · Operating income was $38.4 billion and increased 20% (up 16% in constant currency) · Net income was $31.8 billion and increased 23% on a GAAP basis, and increased 20% (up 18% in constant currency) on a non-GAAP basis · Diluted earnings per share was $4.27 and increased 23% on a GAAP basis, and increased 21% (up 18% in constant currency) on a non-GAAP basis · Non-GAAP results exclude the impact from investments in OpenAI, explained in the Non-GAAP Definition section below “We are focused on delivering cloud and AI infrastructure and solutions that empower every business to eval-max their outcomes in the agentic computing era,\" said Satya Nadella, chairman and chief executive officer of Microsoft. “Our AI business surpassed an annual revenue run rate of $37 billion, up 123% year-over-year.”",
+          "locator": "Visible reported RESULTS excerpt",
+          "definition": {
+            "measure": "Revenue, operating income and management AI run-rate disclosure",
+            "unit": "USD billion, USD/share and percent",
+            "period": "Quarter ended2026-03-31 FY2026 Q3",
+            "currency": "USD",
+            "adjustment": "GAAP reported versus OpenAI-adjusted nonGAAP; AI annual revenue run-rate is extrapolation, not completed annual AI revenue or AI ROI",
+            "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "DEP",
+          "quote": "CASH FLOWS STATEMENTS (In millions) (Unaudited) Three Months Ended March 31, Nine Months Ended March 31, 2026 2025 2026 2025 Operations Net income $31,778 $25,824 $97,983 $74,599 Adjustments to reconcile net income to net cash from operations: Depreciation, amortization, and other 10,167 7,734 27,512 20,116",
+          "locator": "Visible reported DEP excerpt",
+          "definition": {
+            "measure": "Cash-flow depreciation/amortization/other adjustment",
+            "unit": "USD million",
+            "period": "Three months2026/2025 and nine months2026/2025 ended2026-03-31, columns in that order",
+            "currency": "USD",
+            "adjustment": "Depreciation amortization AND other combined; cannot label pure server depreciation; unaudited",
+            "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "CASH",
+          "quote": "Net cash from operations 46,679 37,044 127,494 93,515 Financing Repayments of debt, maturities of 90 days or less 0 0 0 (5,746) Repayments of debt 0 (2,250) (3,000) (3,216) Common stock issued 541 546 1,489 1,508 Common stock repurchased (4,627) (4,781) (17,692) (13,874) Common stock cash dividends paid (6,756) (6,169) (19,687) (17,913) Other, net (509) (382) (1,877) (1,614) Net cash used in financing (11,351) (13,036) (40,767) (40,855) Investing Additions to property and equipment (30,876) (16,745) (80,146) (47,472)",
+          "locator": "Visible reported CASH excerpt",
+          "definition": {
+            "measure": "Operating cash and cash PP&E additions",
+            "unit": "USD million",
+            "period": "Three months2026/2025 and nine months2026/2025 ended2026-03-31, columns in that order",
+            "currency": "USD",
+            "adjustment": "Cash PP&E additions exclude finance-lease additions; cash free flow residual not audited incremental AI capital return",
+            "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_AMZN_Q2",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+      "type": "primary",
+      "publisher": "Amazon",
+      "title": "Amazon actual earnings/cashflow evidence",
+      "published_at": "2026-07-31",
+      "observed_at": "2026-06-30",
+      "valid_as_of": "2026-07-31",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.sec.gov/about/privacy-information",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 120,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "SALES",
+          "quote": "Net sales information is as follows (in millions): Three Months Ended June 30, Six Months Ended June 30, 2025 2026 2025 2026 Net Sales: North America $ 100,068 $ 116,177 $ 192,955 $ 220,320 International 36,761 42,197 70,274 81,986 AWS 30,873 42,232 60,140 79,819 Consolidated $ 167,702 $ 200,606 $ 323,369 $ 382,125 Year-over-year Percentage Growth: North America 11 % 16 % 9 % 14 % International 16 15 10 17 AWS 17 37 17 33 Consolidated 13 20 11 18",
+          "locator": "Visible reported SALES excerpt",
+          "definition": {
+            "measure": "Segment and consolidated sales and growth",
+            "unit": "USD million and percent",
+            "period": "Three and six months ended2026/2025-06-30; year columns2025,2026 in each pair",
+            "currency": "USD",
+            "adjustment": "Reported sales; AWS includes non-AI cloud revenue; not pureAI revenue",
+            "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "FCF",
+          "quote": "Free cash flow is cash flow from operations reduced by “Purchases of property and equipment, net of proceeds from sales and incentives.” The following is a reconciliation of free cash flow to the most comparable GAAP cash flow measure, “Net cash provided by (used in) operating activities,” for the trailing twelve months ended June 30, 2025 and 2026 (in millions): Twelve Months Ended June 30, 2025 2026 Net cash provided by (used in) operating activities $ 121,137 $ 161,403 Purchases of property and equipment, net of proceeds from sales and incentives (102,953) (169,007) Free cash flow $ 18,184 $ (7,604) Net cash provided by (used in) investing activities $ (123,569) $ (216,775) Net cash provided by (used in) financing activities $ (8,652) $ 75,160",
+          "locator": "Visible reported FCF excerpt",
+          "definition": {
+            "measure": "Company free cashflow reconciliation",
+            "unit": "USD million",
+            "period": "Trailing twelve months ended2025 and2026-06-30, columns in that order",
+            "currency": "USD",
+            "adjustment": "Company-defined nonGAAP OCF minus cash purchases net of proceeds/incentives; NOT quarterly FCF or all leasing economic cost",
+            "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "GAINS",
+          "quote": "The upward adjustments relating to equity investments in private companies of $ 50.5 billion in Q2 2026 and $ 62.8 billion for the six months ended June 30, 2026 reflect observable changes in prices, primarily from our nonvoting preferred stock in Anthropic.",
+          "locator": "Visible reported GAINS excerpt",
+          "definition": {
+            "measure": "Private equity valuation gain explanation",
+            "unit": "USD billion",
+            "period": "Q2 and firsthalf2026 vs2025 as stated",
+            "currency": "USD",
+            "adjustment": "Unrealized valuation adjustments to private investments; not operating income or operating cash paid by AI customers",
+            "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_AMZN_Q2_OPERATING",
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm",
+      "type": "primary",
+      "publisher": "Amazon",
+      "title": "Amazon actual earnings/cashflow evidence",
+      "published_at": "2026-07-31",
+      "observed_at": "2026-06-30",
+      "valid_as_of": "2026-07-31",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.sec.gov/about/privacy-information",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 120,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "OPERATING",
+          "quote": "AWS Net sales $ 30,873 $ 42,232 $ 60,140 $ 79,819 Operating expenses 20,713 25,611 38,433 49,037 Operating income $ 10,160 $ 16,621 $ 21,707 $ 30,782 Consolidated Net sales $ 167,702 $ 200,606 $ 323,369 $ 382,125 Operating expenses 148,531 173,145 285,793 330,812 Operating income 19,171 27,461 37,576 51,313 Total non-operating income 1,686 53,396 4,960 69,378 Provision for income taxes ( 2,678 ) ( 18,199 ) ( 7,231 ) ( 27,759 ) Equity-method investment activity, net of tax ( 15 ) ( 11 ) ( 14 ) ( 30 ) Net income $ 18,164 $ 62,647 $ 35,291 $ 92,902",
+          "locator": "Visible reported OPERATING excerpt",
+          "definition": {
+            "measure": "AWS and consolidated operating economics",
+            "unit": "USD million",
+            "period": "Three and six months ended2025/2026-06-30, columns2025,2026 in each pair",
+            "currency": "USD",
+            "adjustment": "Segment operating income is distinct from GAAP total net income; AWS revenue not pureAI; unaudited",
+            "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "DEP",
+          "quote": "Depreciation and amortization of property and equipment and capitalized content costs, operating lease assets, and other 15,227 19,988 29,489 38,933 58,562 75,200",
+          "locator": "Visible reported DEP excerpt",
+          "definition": {
+            "measure": "Broad depreciation and amortization adjustment",
+            "unit": "USD million",
+            "period": "Three, six and twelve months ended2025/2026-06-30, six columns2025,2026 per pair",
+            "currency": "USD",
+            "adjustment": "Includes capitalized content costs, operating lease assets and other; not pureAI server depreciation",
+            "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "CASH",
+          "quote": "Net cash provided by (used in) operating activities 32,515 45,387 49,530 71,419 121,137 161,403 INVESTING ACTIVITIES: Purchases of property and equipment ( 32,183 ) ( 54,208 ) ( 57,202 ) ( 98,411 ) ( 107,656 ) ( 173,028 ) Proceeds from property and equipment sales and incentives 815 1,132 1,579 2,101 4,703 4,021",
+          "locator": "Visible reported CASH excerpt",
+          "definition": {
+            "measure": "Operating cash, gross cash PP&E and sale/incentive proceeds",
+            "unit": "USD million",
+            "period": "Three, six and twelve months ended2025/2026-06-30, six columns2025,2026 per pair",
+            "currency": "USD",
+            "adjustment": "Cash PP&E excludes newfinanceleaseassets; gross cash purchase not same as TTM netPP&E nonGAAP reconciliation",
+            "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_META_Q2",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx",
+      "canonical_url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx",
+      "type": "primary",
+      "publisher": "Meta Platforms",
+      "title": "Meta Platforms actual earnings/cashflow evidence",
+      "published_at": "2026-07-29",
+      "observed_at": "2026-06-30",
+      "valid_as_of": "2026-07-29",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 120,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RESULTS",
+          "quote": "Second Quarter 2026 Financial Highlights Three Months Ended June 30, % Change In millions, except percentages and per share amounts 2026 2025 Revenue $ 60,801 $ 47,516 28 % Costs and expenses 42,026 27,075 55 % Income from operations $ 18,775 $ 20,441 (8) % Operating margin 31 % 43 % Provision for income taxes $ 2,908 $ 2,197 32 % Effective tax rate 16 % 11 % Net income $ 15,848 $ 18,337 (14) % Diluted earnings per share (EPS) $ 6.18 $ 7.14 (13) %",
+          "locator": "Visible reported RESULTS excerpt",
+          "definition": {
+            "measure": "Revenue and operating profitability",
+            "unit": "USD million and percent",
+            "period": "Three and six months ended2025/2026-06-30, columns as shown",
+            "currency": "USD",
+            "adjustment": "GAAP unaudited; legal/restructuring impact separate from AI spend; past netincome includes tax effects",
+            "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "CAPEX_CASH",
+          "quote": "Capital expenditures – Capital expenditures, including principal payments on finance leases, were $31.08 billion. Capital return program – Dividend and dividend equivalent payments were $1.35 billion. Cash, cash equivalents, and marketable securities – Cash, cash equivalents, and marketable securities were $90.26 billion as of June 30, 2026. Long-term debt – Long-term debt was $83.66 billion as of June 30, 2026. Cash flow – Cash flow from operating activities was $31.86 billion, and free cash flow was $784 million. (1)",
+          "locator": "Visible reported CAPEX_CASH excerpt",
+          "definition": {
+            "measure": "Quarter cash investment, operating cash and free cash flow",
+            "unit": "USD billion and USD million",
+            "period": "Quarter ended2026-06-30",
+            "currency": "USD",
+            "adjustment": "CAPEX includes finance-lease principal; company-defined FCF, not same CAPEX basis as Microsoft/Alphabet/Amazon",
+            "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "GUIDANCE",
+          "quote": "We expect third quarter 2026 total revenue to be in the range of $61-64 billion. Our guidance assumes foreign currency is an approximately 1% headwind to year-over-year total revenue growth, based on current exchange rates. We are raising the lower-end of our expense outlook to incorporate the $2.4 billion charges related to legal proceedings recognized in the second quarter. We now expect full year 2026 total expenses to be in the range of $165-169 billion. We continue to expect to deliver operating income this year that is above 2025 operating income. We anticipate 2026 capital expenditures, including principal payments on finance leases, to be in the range of $130-145 billion, narrowed from our prior outlook of $125-145 billion.",
+          "locator": "Visible reported GUIDANCE excerpt",
+          "definition": {
+            "measure": "Expense and CAPEX guidance change",
+            "unit": "USD billion ranges and percent",
+            "period": "Full-year2026 guidance reported2026-07-29; prior guidance range as disclosed",
+            "currency": "USD",
+            "adjustment": "Management future estimates not actual spending; legal charges noted; full-yearoperatingincomeguidance not proofincrementalAI ROI",
+            "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_META_Q1",
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-First-Quarter-2026-Results/default.aspx",
+      "canonical_url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-First-Quarter-2026-Results/default.aspx",
+      "type": "primary",
+      "publisher": "Meta Platforms",
+      "title": "Meta Platforms actual earnings/cashflow evidence",
+      "published_at": "2026-04-29",
+      "observed_at": "2026-03-31",
+      "valid_as_of": "2026-04-29",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-First-Quarter-2026-Results/default.aspx",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 200,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RESULTS",
+          "quote": "First Quarter 2026 Financial Highlights Three Months Ended March 31, % Change In millions, except percentages and per share amounts 2026 2025 Revenue $ 56,311 $ 42,314 33 % Costs and expenses 33,439 24,759 35 % Income from operations $ 22,872 $ 17,555 30 % Operating margin 41 % 41 % Provision (benefit) for income taxes (1) $ (5,021) $ 1,738 NM Effective tax rate (1) (23) % 9 % Net income $ 26,773 $ 16,644 61 % Diluted earnings per share (EPS) (1) $ 10.44 $ 6.43 62 % ____________________________________",
+          "locator": "Visible reported RESULTS excerpt",
+          "definition": {
+            "measure": "Revenue and operating profitability",
+            "unit": "USD million and percent",
+            "period": "Quarter ended2026/2025-03-31",
+            "currency": "USD",
+            "adjustment": "Reported GAAP includes large income tax benefit; not pure ongoing business earnings",
+            "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "CAPEX_CASH",
+          "quote": "Capital expenditures – Capital expenditures, including principal payments on finance leases, were $19.84 billion. Capital return program – Dividend and dividend equivalent payments were $1.35 billion. Cash, cash equivalents, and marketable securities – Cash, cash equivalents, and marketable securities were $81.18 billion as of March 31, 2026. Cash flow – Cash flow from operating activities was $32.23 billion, and free cash flow was $12.39 billion. (1)",
+          "locator": "Visible reported CAPEX_CASH excerpt",
+          "definition": {
+            "measure": "Quarter cash investment operating cash and FCF",
+            "unit": "USD billion",
+            "period": "Quarter ended2026-03-31",
+            "currency": "USD",
+            "adjustment": "CAPEX includes finance-leaseprincipal, reportedcompanynonGAAP FCF",
+            "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "TAX",
+          "quote": "Includes an $8.03 billion income tax benefit recognized in the first quarter of 2026, which partially offsets the $15.93 billion non-cash tax charge recorded in the third quarter of 2025 upon enactment of the One Big Beautiful Bill Act. This benefit is the result of U.S. Treasury Notice 2026-7, which addressed the Corporate Alternative Minimum Tax treatment of previously capitalized U.S. research and development costs. Excluding this tax benefit, our effective tax rate would have been 37 percentage points higher and our diluted earnings per share (EPS) would have been $3.13 lower.",
+          "locator": "Visible reported TAX excerpt",
+          "definition": {
+            "measure": "Income tax benefit explanation",
+            "unit": "USD billion and USD/share",
+            "period": "Quarter ended2026-03-31",
+            "currency": "USD",
+            "adjustment": "One-off tax benefit not operating cashflow or recurring EPS; source statement only",
+            "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_GOOGL_Q2",
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/googexhibit991q22026.htm",
+      "type": "primary",
+      "publisher": "Alphabet",
+      "title": "Alphabet actual earnings/cashflow evidence",
+      "published_at": "2026-07-22",
+      "observed_at": "2026-06-30",
+      "valid_as_of": "2026-07-22",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.sec.gov/about/privacy-information",
+      "policy_note": "Public attributed issuer report; robots and source access enforced by existing acquire. Personal noncommercial research retains at most three short excerpts and hashes; no full document or redistribution licence claimed. Issuer statements, unaudited results and management estimates are distinct from audited investor ROI or price forecasts. SEC regulatory filing on publicly permitted EDGAR path; original issuer copyright is not assumed public domain.",
+      "retention": "excerpt",
+      "max_age_days": 120,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RESULTS",
+          "quote": "Google Cloud saw a meaningful acceleration in growth as revenues increased 82% to $24.8 billion, led by an increase in Google Cloud Platform (GCP) across enterprise AI Solutions and enterprise AI Infrastructure, as well as core GCP services. • Consolidated Alphabet operating income increased 30% and operating margin expanded by 2 percentage points to 34%. • Other income reflected a net gain of $98.0 billion, primarily the result of net unrealized gains on our equity securities. • Net income available to common stockholders increased 298% and EPS increased 294% to $9.11.",
+          "locator": "Visible reported RESULTS excerpt",
+          "definition": {
+            "measure": "Cloud growth, operating growth and valuation gains",
+            "unit": "USD billion, USD/share and percent",
+            "period": "Quarter ended2026-06-30",
+            "currency": "USD",
+            "adjustment": "Cloud revenue includes coreGCP nonAI; GAAP netincome includes unrealizedequitygain; management statements not AI incrementalROI",
+            "scope": "Alphabet consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "FCF",
+          "quote": "Quarter Ended TTM Q3 2025 Q4 2025 Q1 2026 Q2 2026 Q2 2026 Net cash provided by operating activities $ 48,414 $ 52,402 $ 45,790 $ 39,069 $ 185,675 Less: purchases of property and equipment (23,953) (27,851) (35,674) (44,924) (132,402) Free cash flow $ 24,461 $ 24,551 $ 10,116 $ (5,855) $ 53,273 Free cash flow: We define free cash flow as net cash provided by operating activities less capital expenditures. TTM free cash flow: We define trailing twelve months free cash flow as net cash provided by operating activities less capital expenditures for the most recent twelve consecutive months.",
+          "locator": "Visible reported FCF excerpt",
+          "definition": {
+            "measure": "Quarter and TTM FCF reconciliation",
+            "unit": "USD million",
+            "period": "ColumnsQ3 2025,Q4 2025,Q1 2026,Q2 2026,TTM endedQ2 2026",
+            "currency": "USD",
+            "adjustment": "Company definedOCF minuscashCAPEX, quartervsTTM keptseparate; historyasreportedcurrentrelease not firstannouncement vintage",
+            "scope": "Alphabet consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        },
+        {
+          "id": "DEP",
+          "quote": "Operating activities Net income $ 28,196 $ 112,193 $ 62,736 $ 174,771 Adjustments: Depreciation of property and equipment 4,998 7,104 9,485 13,586",
+          "locator": "Visible reported DEP excerpt",
+          "definition": {
+            "measure": "Depreciation of property and equipment",
+            "unit": "USD million",
+            "period": "Three months2025/2026 and six months2025/2026 endedJune30, columns inthatorder",
+            "currency": "USD",
+            "adjustment": "Unauditedcashflows; not only AIservers; company reportedexpenses",
+            "scope": "Alphabet consolidated/identified segment; company only, not index or pure AI cohort"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "DD_MSFT_Q4": "057377ceb5bd4486b99320eda019008534c5369adc71b9b02ba5b115866cb8d6",
+    "DD_MSFT_Q3": "ad412080214feceb3e9386aefa1ec0e189ed9d39e8ab1e6ee64fa74c98eda4ce",
+    "DD_AMZN_Q2": "7e8c6df634dc0f768926ef987dd17ccf9c8204826e01b38d636915e80e99c758",
+    "DD_AMZN_Q2_OPERATING": "01758ff10302234cb61120e5e967fbaa451f50f05bae45b4e90f78902efdf974",
+    "DD_META_Q2": "1794cb1b74b11b8b343855fd0c1e693b335ce60019a3121377b88ee464f4cc4c",
+    "DD_META_Q1": "1e879bc36e21c27f13d72748f5c24edf8f15d47327438d438117fbf4c3815494",
+    "DD_GOOGL_Q2": "28b743b35bda051a490972d025f93c8e3ade50acdd970d81047a3d9ad22457a2"
+  },
+  "evidence": [
+    {
+      "id": "E_DD_MSFT_Q4_RESULTS",
+      "source_id": "DD_MSFT_Q4",
+      "excerpt_id": "RESULTS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Quarter revenue, operating income and reported EPS; one-off explanation",
+        "unit": "USD billion, USD/share and percent",
+        "period": "Quarter ended 2026-06-30, FY2026 Q4; year-over-year comparisons",
+        "currency": "USD",
+        "adjustment": "GAAP and OpenAI-adjusted non-GAAP distinct; adjustment does NOT remove all other investment gains or restructuring items",
+        "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_MSFT_Q4_MONETIZATION",
+      "source_id": "DD_MSFT_Q4",
+      "excerpt_id": "MONETIZATION",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Azure recognized annual revenue and paid Copilot seats",
+        "unit": "USD billion annual revenue and paid-seat count",
+        "period": "FY2026 ending2026-06-30; reported2026-07-29",
+        "currency": "USD",
+        "adjustment": "Management report; Azure/cloud includes non-AI; paid seats are not disclosed incremental AI profit or capital ROI",
+        "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_MSFT_Q4_CASH",
+      "source_id": "DD_MSFT_Q4",
+      "excerpt_id": "CASH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Operating cash and additions to property and equipment",
+        "unit": "USD million",
+        "period": "Three months2026/2025 and twelve months2026/2025 ended2026-06-30, columns in that order",
+        "currency": "USD",
+        "adjustment": "Cash additions to PP&E only; finance lease additions excluded; issuer cash-flow table, not total AI CAPEX",
+        "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_MSFT_Q3_RESULTS",
+      "source_id": "DD_MSFT_Q3",
+      "excerpt_id": "RESULTS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Revenue, operating income and management AI run-rate disclosure",
+        "unit": "USD billion, USD/share and percent",
+        "period": "Quarter ended2026-03-31 FY2026 Q3",
+        "currency": "USD",
+        "adjustment": "GAAP reported versus OpenAI-adjusted nonGAAP; AI annual revenue run-rate is extrapolation, not completed annual AI revenue or AI ROI",
+        "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_MSFT_Q3_DEP",
+      "source_id": "DD_MSFT_Q3",
+      "excerpt_id": "DEP",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Cash-flow depreciation/amortization/other adjustment",
+        "unit": "USD million",
+        "period": "Three months2026/2025 and nine months2026/2025 ended2026-03-31, columns in that order",
+        "currency": "USD",
+        "adjustment": "Depreciation amortization AND other combined; cannot label pure server depreciation; unaudited",
+        "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_MSFT_Q3_CASH",
+      "source_id": "DD_MSFT_Q3",
+      "excerpt_id": "CASH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Operating cash and cash PP&E additions",
+        "unit": "USD million",
+        "period": "Three months2026/2025 and nine months2026/2025 ended2026-03-31, columns in that order",
+        "currency": "USD",
+        "adjustment": "Cash PP&E additions exclude finance-lease additions; cash free flow residual not audited incremental AI capital return",
+        "scope": "Microsoft consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_AMZN_Q2_SALES",
+      "source_id": "DD_AMZN_Q2",
+      "excerpt_id": "SALES",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Segment and consolidated sales and growth",
+        "unit": "USD million and percent",
+        "period": "Three and six months ended2026/2025-06-30; year columns2025,2026 in each pair",
+        "currency": "USD",
+        "adjustment": "Reported sales; AWS includes non-AI cloud revenue; not pureAI revenue",
+        "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_AMZN_Q2_FCF",
+      "source_id": "DD_AMZN_Q2",
+      "excerpt_id": "FCF",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Company free cashflow reconciliation",
+        "unit": "USD million",
+        "period": "Trailing twelve months ended2025 and2026-06-30, columns in that order",
+        "currency": "USD",
+        "adjustment": "Company-defined nonGAAP OCF minus cash purchases net of proceeds/incentives; NOT quarterly FCF or all leasing economic cost",
+        "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_AMZN_Q2_GAINS",
+      "source_id": "DD_AMZN_Q2",
+      "excerpt_id": "GAINS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Private equity valuation gain explanation",
+        "unit": "USD billion",
+        "period": "Q2 and firsthalf2026 vs2025 as stated",
+        "currency": "USD",
+        "adjustment": "Unrealized valuation adjustments to private investments; not operating income or operating cash paid by AI customers",
+        "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_AMZN_Q2_OPERATING_OPERATING",
+      "source_id": "DD_AMZN_Q2_OPERATING",
+      "excerpt_id": "OPERATING",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "AWS and consolidated operating economics",
+        "unit": "USD million",
+        "period": "Three and six months ended2025/2026-06-30, columns2025,2026 in each pair",
+        "currency": "USD",
+        "adjustment": "Segment operating income is distinct from GAAP total net income; AWS revenue not pureAI; unaudited",
+        "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_AMZN_Q2_OPERATING_DEP",
+      "source_id": "DD_AMZN_Q2_OPERATING",
+      "excerpt_id": "DEP",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Broad depreciation and amortization adjustment",
+        "unit": "USD million",
+        "period": "Three, six and twelve months ended2025/2026-06-30, six columns2025,2026 per pair",
+        "currency": "USD",
+        "adjustment": "Includes capitalized content costs, operating lease assets and other; not pureAI server depreciation",
+        "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_AMZN_Q2_OPERATING_CASH",
+      "source_id": "DD_AMZN_Q2_OPERATING",
+      "excerpt_id": "CASH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Operating cash, gross cash PP&E and sale/incentive proceeds",
+        "unit": "USD million",
+        "period": "Three, six and twelve months ended2025/2026-06-30, six columns2025,2026 per pair",
+        "currency": "USD",
+        "adjustment": "Cash PP&E excludes newfinanceleaseassets; gross cash purchase not same as TTM netPP&E nonGAAP reconciliation",
+        "scope": "Amazon consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_META_Q2_RESULTS",
+      "source_id": "DD_META_Q2",
+      "excerpt_id": "RESULTS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Revenue and operating profitability",
+        "unit": "USD million and percent",
+        "period": "Three and six months ended2025/2026-06-30, columns as shown",
+        "currency": "USD",
+        "adjustment": "GAAP unaudited; legal/restructuring impact separate from AI spend; past netincome includes tax effects",
+        "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_META_Q2_CAPEX_CASH",
+      "source_id": "DD_META_Q2",
+      "excerpt_id": "CAPEX_CASH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Quarter cash investment, operating cash and free cash flow",
+        "unit": "USD billion and USD million",
+        "period": "Quarter ended2026-06-30",
+        "currency": "USD",
+        "adjustment": "CAPEX includes finance-lease principal; company-defined FCF, not same CAPEX basis as Microsoft/Alphabet/Amazon",
+        "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_META_Q2_GUIDANCE",
+      "source_id": "DD_META_Q2",
+      "excerpt_id": "GUIDANCE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Expense and CAPEX guidance change",
+        "unit": "USD billion ranges and percent",
+        "period": "Full-year2026 guidance reported2026-07-29; prior guidance range as disclosed",
+        "currency": "USD",
+        "adjustment": "Management future estimates not actual spending; legal charges noted; full-yearoperatingincomeguidance not proofincrementalAI ROI",
+        "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_META_Q1_RESULTS",
+      "source_id": "DD_META_Q1",
+      "excerpt_id": "RESULTS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Revenue and operating profitability",
+        "unit": "USD million and percent",
+        "period": "Quarter ended2026/2025-03-31",
+        "currency": "USD",
+        "adjustment": "Reported GAAP includes large income tax benefit; not pure ongoing business earnings",
+        "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_META_Q1_CAPEX_CASH",
+      "source_id": "DD_META_Q1",
+      "excerpt_id": "CAPEX_CASH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Quarter cash investment operating cash and FCF",
+        "unit": "USD billion",
+        "period": "Quarter ended2026-03-31",
+        "currency": "USD",
+        "adjustment": "CAPEX includes finance-leaseprincipal, reportedcompanynonGAAP FCF",
+        "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_META_Q1_TAX",
+      "source_id": "DD_META_Q1",
+      "excerpt_id": "TAX",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Income tax benefit explanation",
+        "unit": "USD billion and USD/share",
+        "period": "Quarter ended2026-03-31",
+        "currency": "USD",
+        "adjustment": "One-off tax benefit not operating cashflow or recurring EPS; source statement only",
+        "scope": "Meta Platforms consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_GOOGL_Q2_RESULTS",
+      "source_id": "DD_GOOGL_Q2",
+      "excerpt_id": "RESULTS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Cloud growth, operating growth and valuation gains",
+        "unit": "USD billion, USD/share and percent",
+        "period": "Quarter ended2026-06-30",
+        "currency": "USD",
+        "adjustment": "Cloud revenue includes coreGCP nonAI; GAAP netincome includes unrealizedequitygain; management statements not AI incrementalROI",
+        "scope": "Alphabet consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_GOOGL_Q2_FCF",
+      "source_id": "DD_GOOGL_Q2",
+      "excerpt_id": "FCF",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Quarter and TTM FCF reconciliation",
+        "unit": "USD million",
+        "period": "ColumnsQ3 2025,Q4 2025,Q1 2026,Q2 2026,TTM endedQ2 2026",
+        "currency": "USD",
+        "adjustment": "Company definedOCF minuscashCAPEX, quartervsTTM keptseparate; historyasreportedcurrentrelease not firstannouncement vintage",
+        "scope": "Alphabet consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_GOOGL_Q2_DEP",
+      "source_id": "DD_GOOGL_Q2",
+      "excerpt_id": "DEP",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Depreciation of property and equipment",
+        "unit": "USD million",
+        "period": "Three months2025/2026 and six months2025/2026 endedJune30, columns inthatorder",
+        "currency": "USD",
+        "adjustment": "Unauditedcashflows; not only AIservers; company reportedexpenses",
+        "scope": "Alphabet consolidated/identified segment; company only, not index or pure AI cohort"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    }
+  ],
+  "claims": [],
+  "notes": [],
+  "failures": [],
+  "research_notes": {
+    "scope": [
+      "Five named firms are purposeful samples of different AI chain stages, not representative of all US equities.",
+      "Cash CAPEX, lease-principal-including CAPEX, quarterly FCF, trailing12month FCF and run-rate revenue are distinct.",
+      "Same SEC document may supply two bounded excerpt selections; never count as independent confirmation.",
+      "Alphabet full10Q exceeded2MiB; public8K furnished earnings exhibit independently fits existing limit; no increase or bypass.",
+      "No pureAI incremental profit, fullyallocated AI depreciation/ROIC or currentfirm price/PE inferred."
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "sources": [
+    {
+      "id": "MAC_H15_CASH_BILLS",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "type": "primary",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "title": "2026-10-02 H.15 effective funds and secondary Treasury bills",
+      "published_at": "2026-10-02",
+      "observed_at": "2026-10-01",
+      "valid_as_of": "2026-10-01",
+      "jurisdiction": "US",
+      "topics": [
+        "macro",
+        "cash",
+        "short_bonds"
+      ],
+      "asset_ids": [
+        "CASH",
+        "SHORT_BOND",
+        "LONG_BOND",
+        "DIVIDEND",
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "policy_note": "Federal Reserve Board public-domain data with attribution. H15 is shared underlying Treasury dataset with retained macro CSV and RA_FED_REAL_YIELD; these are not independent confirmations. Preserve date order and discount-basis footnotes.",
+      "retention": "excerpt",
+      "max_age_days": 10,
+      "origin_source_id": "RA_FED_REAL_YIELD",
+      "excerpts": [
+        {
+          "id": "DATES",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1 Federal funds (effective) 1 2 3 3.88 3.88 3.88 3.88 3.88",
+          "locator": "H15 selected rates DATES",
+          "definition": {
+            "measure": "H15_date_columns_and_effective_federal_funds_rate",
+            "unit": "date_columns_and_EFFR_percent",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "currency": "USD",
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only"
+          }
+        },
+        {
+          "id": "BILLS",
+          "quote": "U.S. government securities Treasury bills (secondary market) 3 4 4-week 3.90 3.89 3.88 3.85 3.89 3-month 4.08 4.10 4.07 4.03 4.00 6-month 4.21 4.27 4.22 4.19 4.13 1-year 4.28 4.34 4.37 4.33 4.24",
+          "locator": "H15 selected rates BILLS",
+          "definition": {
+            "measure": "H15_secondary_Treasury_bills_discount_basis",
+            "unit": "annualized_percent_discount_basis",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "currency": "USD",
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only"
+          }
+        },
+        {
+          "id": "BASIS",
+          "quote": "3. Annualized using a 360-day year or bank interest. 4. On a discount basis.",
+          "locator": "H15 selected rates BASIS",
+          "definition": {
+            "measure": "H15_secondary_Treasury_bills_discount_basis",
+            "unit": "annualized_percent_discount_basis",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "currency": "USD",
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "MAC_H15_CASH_BILLS": "9ae482789fb2daa490e8279ed25c6c93dab62a1152997731e27400d76246ed34"
+  },
+  "evidence": [
+    {
+      "id": "E_CASH_DATES",
+      "source_id": "MAC_H15_CASH_BILLS",
+      "excerpt_id": "DATES",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "H15_date_columns_and_effective_federal_funds_rate",
+        "unit": "date_columns_and_EFFR_percent",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "currency": "USD",
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ]
+    },
+    {
+      "id": "E_CASH_BILLS",
+      "source_id": "MAC_H15_CASH_BILLS",
+      "excerpt_id": "BILLS",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "H15_secondary_Treasury_bills_discount_basis",
+        "unit": "annualized_percent_discount_basis",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "currency": "USD",
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ]
+    },
+    {
+      "id": "E_CASH_BASIS",
+      "source_id": "MAC_H15_CASH_BILLS",
+      "excerpt_id": "BASIS",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "H15_secondary_Treasury_bills_discount_basis",
+        "unit": "annualized_percent_discount_basis",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "currency": "USD",
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ]
+    }
+  ],
+  "notes": [],
+  "failures": []
+}

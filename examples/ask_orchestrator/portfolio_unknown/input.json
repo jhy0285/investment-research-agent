@@ -1,0 +1,80 @@
+{
+  "as_of": "2026-10-04T14:29:27.332901+00:00",
+  "catalog_sha256": "5bdcf4ea64f5e2749a8ef07d16d2264bc6f0533571cf76159bafa3befc8779fa",
+  "findings": [],
+  "has_macro": false,
+  "has_sources": false,
+  "method_versions": {
+    "acquisition": "source_snapshot_v1",
+    "catalog": "curated_research_catalog_v1",
+    "deep_dive": "deep_dive_v1",
+    "engine": "evidence_rules_v1",
+    "findings": "bounded_findings_v1",
+    "macro": "macro_series_v1",
+    "macro_pipeline": "macro_pipeline_v1",
+    "opportunity": "opportunity_map_v1",
+    "orchestrator": "research_orchestrator_v1",
+    "portfolio": "portfolio_composition_v1",
+    "routing": "research_routing_v2",
+    "source_verification": "source_verification_v1"
+  },
+  "methods": [],
+  "plan": {
+    "clarifications": [],
+    "execution_status": "dispatched",
+    "limits": [
+      "선택한 모드의 조사 계획이며 금융 분석 결과·수치·추천이 아니다.",
+      "규칙 기반 질문 해석의 범위를 넘으면 확인하며 전체 Scan으로 대체하지 않는다.",
+      "관련 macro·대안만 조사한다. 미조사 자산의 열등함을 뜻하지 않는다.",
+      "필수 근거·보유 정보가 unknown이면 영향을 받는 결론을 보류한다."
+    ],
+    "method_version": "research_routing_v2",
+    "modes": [
+      "portfolio_review"
+    ],
+    "question": "내 포트폴리오 괜찮아?",
+    "schema_version": "research-plan-v1",
+    "selection_source": "inferred_rules",
+    "status": "planned",
+    "tasks": [
+      {
+        "depends_on": [],
+        "id": "portfolio",
+        "mode": "portfolio_review",
+        "questions": [
+          "자산 자체의 매력",
+          "기존 중복·과도한 노출",
+          "추가 자본이 전체 포트폴리오에 미치는 변화; 누락 정보로 안전·적절성을 확정하지 않는다."
+        ],
+        "required_inputs": [
+          "기준일과 실제 보유자산·수량/가치·통화·상품·중복 노출",
+          "현금·부채·소득/지출·추가 투자 가능액",
+          "비상자금·큰 자금수요·주택 계획·투자기간",
+          "위험 감당 능력과 감수 의향·관련 세법/계좌 제약"
+        ],
+        "scope": "actual_portfolio_and_constraints",
+        "subjects": []
+      }
+    ]
+  },
+  "portfolio": null,
+  "question": "내 포트폴리오 괜찮아?",
+  "quoted_facts": {
+    "calculations": [],
+    "facts": []
+  },
+  "schema_version": "ask-input-v1",
+  "synthetic": false,
+  "tasks": [
+    {
+      "candidate_dependent": false,
+      "id": "portfolio",
+      "method_ids": [],
+      "mode": "portfolio_review",
+      "subject_method_ids": [],
+      "subjects": [],
+      "unsupported": []
+    }
+  ],
+  "unresolved": []
+}

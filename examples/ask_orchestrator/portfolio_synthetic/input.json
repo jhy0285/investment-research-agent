@@ -1,0 +1,238 @@
+{
+  "as_of": "2026-09-10T12:00:00+00:00",
+  "catalog_sha256": "53b92d0806ac2cc904c778645ffe90f3cae0d5572cd107285547e78529df635b",
+  "findings": [],
+  "has_macro": true,
+  "has_sources": true,
+  "method_versions": {
+    "acquisition": "source_snapshot_v1",
+    "catalog": "curated_research_catalog_v1",
+    "deep_dive": "deep_dive_v1",
+    "engine": "evidence_rules_v1",
+    "findings": "bounded_findings_v1",
+    "macro": "macro_series_v1",
+    "macro_pipeline": "macro_pipeline_v1",
+    "opportunity": "opportunity_map_v1",
+    "orchestrator": "research_orchestrator_v1",
+    "portfolio": "portfolio_composition_v1",
+    "routing": "research_routing_v2",
+    "source_verification": "source_verification_v1"
+  },
+  "methods": [
+    {
+      "bear_question": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "bull_question": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "downside": "예상 이익 미달·배수 하락·집중·drawdown(큰 평가손실)·환율 위험이 있다.",
+      "economics": "기업의 미래 이익·현금흐름과 지불한 가격을 구분하고 국채 대안과 비교한다.",
+      "family": "equity_index",
+      "id": "US_EQUITY",
+      "label": "S&P 500 / 미국 주식",
+      "macro_ids": [
+        "US_TREASURY_NOMINAL_2Y",
+        "US_TREASURY_NOMINAL_10Y",
+        "USD_KRW_NOON_REFERENCE"
+      ],
+      "missing": [
+        "전체 consensus→actual→후속 revision의 같은 정의 패널",
+        "회사별 현금흐름과 전체 지수 기대의 연결"
+      ],
+      "scope_note": "확보한 valuation·이익 근거는 S&P 500 중심이다. Nasdaq이나 미국 개별주 전체로 일반화하지 않는다.",
+      "source_ids": [
+        "DD_IDX_FACTSET_Q3",
+        "DD_IDX_SPY",
+        "DD_TR_H15_CURVE"
+      ]
+    },
+    {
+      "bear_question": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "bull_question": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "downside": "수요 감소·레버리지 청산·규제·거래소/보관 위험; ETF와 현물 보관은 다르다.",
+      "economics": "사용·보유 수요와 희소성 가설을 검증한다. 기업 이익이나 PER로 평가하지 않는다.",
+      "family": "crypto",
+      "id": "BTC",
+      "label": "Bitcoin",
+      "macro_ids": [
+        "USD_KRW_NOON_REFERENCE"
+      ],
+      "missing": [
+        "BTC 단독 ETF 일별 순유입과 실제 보유량",
+        "가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+        "가격의 매력을 판단할 검증된 가치 대용 지표"
+      ],
+      "scope_note": "IBIT 상품과 제공자의 디지털자산 전체 flow를 구분한다. aggregate flow는 BTC 단독 flow가 아니다.",
+      "source_ids": [
+        "CR_IBIT_ISSUER",
+        "CR_COINSHARES_CURRENT_FLOWS",
+        "COM_HN_BTC_CUSTODY_RISK",
+        "COM_HN_BTC_BEAR_PERFORMANCE"
+      ]
+    }
+  ],
+  "plan": {
+    "clarifications": [],
+    "execution_status": "dispatched",
+    "limits": [
+      "선택한 모드의 조사 계획이며 금융 분석 결과·수치·추천이 아니다.",
+      "규칙 기반 질문 해석의 범위를 넘으면 확인하며 전체 Scan으로 대체하지 않는다.",
+      "관련 macro·대안만 조사한다. 미조사 자산의 열등함을 뜻하지 않는다.",
+      "필수 근거·보유 정보가 unknown이면 영향을 받는 결론을 보류한다."
+    ],
+    "method_version": "research_routing_v2",
+    "modes": [
+      "portfolio_review"
+    ],
+    "question": "내 포트폴리오 괜찮아?",
+    "schema_version": "research-plan-v1",
+    "selection_source": "inferred_rules",
+    "status": "planned",
+    "tasks": [
+      {
+        "depends_on": [],
+        "id": "portfolio",
+        "mode": "portfolio_review",
+        "questions": [
+          "자산 자체의 매력",
+          "기존 중복·과도한 노출",
+          "추가 자본이 전체 포트폴리오에 미치는 변화; 누락 정보로 안전·적절성을 확정하지 않는다."
+        ],
+        "required_inputs": [
+          "기준일과 실제 보유자산·수량/가치·통화·상품·중복 노출",
+          "현금·부채·소득/지출·추가 투자 가능액",
+          "비상자금·큰 자금수요·주택 계획·투자기간",
+          "위험 감당 능력과 감수 의향·관련 세법/계좌 제약"
+        ],
+        "scope": "actual_portfolio_and_constraints",
+        "subjects": []
+      }
+    ]
+  },
+  "portfolio": {
+    "as_of": "2026-09-10",
+    "base_currency": "KRW",
+    "cash_krw": "2000000",
+    "coverage": "complete",
+    "debt_krw": "1000000",
+    "future_cash_needs": [
+      {
+        "amount_krw": "3000000",
+        "name": "합성 이사 비용",
+        "needed_at": "2027-09-10"
+      }
+    ],
+    "holdings": [
+      {
+        "asset": "S&P500",
+        "id": "STOCK",
+        "name": "미국 주식",
+        "value_krw": "6000000"
+      },
+      {
+        "asset": "BTC",
+        "id": "COIN",
+        "name": "Bitcoin",
+        "value_krw": "2000000"
+      }
+    ],
+    "horizon_months": 60,
+    "monthly_investable_krw": "500000",
+    "schema_version": "portfolio-v1",
+    "synthetic": true
+  },
+  "question": "내 포트폴리오 괜찮아?",
+  "quoted_facts": {
+    "calculations": [
+      {
+        "id": "CALC_EY",
+        "input_ids": [
+          "F_PE"
+        ],
+        "label": "합성 이익수익률",
+        "limitations": [
+          "합성 입력, 미래 수익 아님"
+        ],
+        "method": "earnings_yield_v1"
+      },
+      {
+        "id": "CALC_GAP",
+        "input_ids": [
+          "F_PE",
+          "F_TREASURY"
+        ],
+        "label": "합성 이익수익률과 국채의 차이",
+        "limitations": [
+          "합성 입력, ERP 아님"
+        ],
+        "method": "descriptive_yield_gap_v1"
+      }
+    ],
+    "facts": [
+      {
+        "basis": "forward_12m_pe",
+        "currency": "USD",
+        "entity": "SYNTHETIC",
+        "id": "F_PE",
+        "label": "합성 F_PE",
+        "observed_at": "2026-09-10",
+        "quote_context": "Forward P/E 20.0",
+        "quote_token": "20.0",
+        "source_definition": {
+          "adjustment": "authored fixture",
+          "currency": "USD",
+          "measure": "authored synthetic valuation and yield",
+          "period": "synthetic snapshot",
+          "scope": "synthetic index and Treasury",
+          "unit": "ratio and percent"
+        },
+        "source_evidence_id": "E_DD_IDX_FACTSET_Q3",
+        "unit": "ratio",
+        "value": "20.0",
+        "window": "synthetic snapshot"
+      },
+      {
+        "basis": "nominal_cmt_investment_yield",
+        "currency": "USD",
+        "entity": "SYNTHETIC",
+        "id": "F_TREASURY",
+        "label": "합성 F_TREASURY",
+        "observed_at": "2026-09-10",
+        "quote_context": "Treasury 3.0 percent",
+        "quote_token": "3.0",
+        "source_definition": {
+          "adjustment": "authored fixture",
+          "currency": "USD",
+          "measure": "authored synthetic valuation and yield",
+          "period": "synthetic snapshot",
+          "scope": "synthetic index and Treasury",
+          "unit": "ratio and percent"
+        },
+        "source_evidence_id": "E_DD_TR_H15_CURVE",
+        "unit": "percent",
+        "value": "3.0",
+        "window": "synthetic snapshot"
+      }
+    ]
+  },
+  "schema_version": "ask-input-v1",
+  "synthetic": true,
+  "tasks": [
+    {
+      "candidate_dependent": false,
+      "id": "portfolio",
+      "method_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "mode": "portfolio_review",
+      "subject_method_ids": [],
+      "subjects": [],
+      "unsupported": []
+    }
+  ],
+  "unresolved": [
+    "S&P 500 / 미국 주식: 전체 consensus→actual→후속 revision의 같은 정의 패널",
+    "S&P 500 / 미국 주식: 회사별 현금흐름과 전체 지수 기대의 연결",
+    "Bitcoin: BTC 단독 ETF 일별 순유입과 실제 보유량",
+    "Bitcoin: 가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+    "Bitcoin: 가격의 매력을 판단할 검증된 가치 대용 지표"
+  ]
+}

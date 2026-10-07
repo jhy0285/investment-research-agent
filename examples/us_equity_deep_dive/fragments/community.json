@@ -1,0 +1,628 @@
+{
+  "sources": [
+    {
+      "id": "DD_COM_GOOGLE_LOSS",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49931960.json",
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49931960.json",
+      "type": "community",
+      "publisher": "HN public participants",
+      "title": "Actual HN narrative: DD_COM_GOOGLE_LOSS",
+      "published_at": "2026-10-02T10:35:05+00:00",
+      "observed_at": "2026-10-02T10:35:05+00:00",
+      "valid_as_of": "2026-10-02T10:35:05+00:00",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official documented unauthenticated HN public item API; bounded single-comment request, no account/profile fields selected, no removed/dead content. Only one short attributed analytic quotation and metadata retained for personal research; no complete thread or content redistribution licence claimed. Purpose-selected from public search, not representative or independent fact corroboration.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "NARRATIVE",
+          "quote": "> Google makes AI profits, its in their breakdowns. What \"AI profits\" exactly. Their capex is through the roof. What they're actually earning is in cloud , their own AI is lossy for sure. Who is paying for Gemini? Not many people.",
+          "locator": "/text",
+          "definition": {
+            "measure": "Observed public comment, content unverified",
+            "unit": "text",
+            "period": "2026-10-02T10:35:05+00:00",
+            "currency": null,
+            "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+            "scope": "Purpose-selected English HN comment, not market consensus"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_CAPEX_NEVER",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49926255.json",
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49926255.json",
+      "type": "community",
+      "publisher": "HN public participants",
+      "title": "Actual HN narrative: DD_COM_CAPEX_NEVER",
+      "published_at": "2026-10-01T19:49:49+00:00",
+      "observed_at": "2026-10-01T19:49:49+00:00",
+      "valid_as_of": "2026-10-01T19:49:49+00:00",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official documented unauthenticated HN public item API; bounded single-comment request, no account/profile fields selected, no removed/dead content. Only one short attributed analytic quotation and metadata retained for personal research; no complete thread or content redistribution licence claimed. Purpose-selected from public search, not representative or independent fact corroboration.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "NARRATIVE",
+          "quote": "You're focusing on the wrong part in the example. Enron's valuation was driven by irrational exuberance and market sentiment. In the case of Enron, the numbers were a fraud. In the case of AI, the numbers show utter carnage but everyone is trading on hope like it's musical chairs. There simply will never be enough revenue to justify to date and forward looking capex. At some point, investors are going to figure out they've been sold a b",
+          "locator": "/text",
+          "definition": {
+            "measure": "Observed public comment, content unverified",
+            "unit": "text",
+            "period": "2026-10-01T19:49:49+00:00",
+            "currency": null,
+            "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+            "scope": "Purpose-selected English HN comment, not market consensus"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_REAL_PROFITS",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49934445.json",
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49934445.json",
+      "type": "community",
+      "publisher": "HN public participants",
+      "title": "Actual HN narrative: DD_COM_REAL_PROFITS",
+      "published_at": "2026-10-02T15:15:23+00:00",
+      "observed_at": "2026-10-02T15:15:23+00:00",
+      "valid_as_of": "2026-10-02T15:15:23+00:00",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official documented unauthenticated HN public item API; bounded single-comment request, no account/profile fields selected, no removed/dead content. Only one short attributed analytic quotation and metadata retained for personal research; no complete thread or content redistribution licence claimed. Purpose-selected from public search, not representative or independent fact corroboration.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "NARRATIVE",
+          "quote": "There are signs that we are, and are not, in an AI bubble. Compared to the dotcom boom, firms are well positioned in terms of capital - they have revenue and profits. However, there's still the absurd speculative valuations, risk, and high expenditure (on said data centres). Also, Andrew Bailey from the Bank of England",
+          "locator": "/text",
+          "definition": {
+            "measure": "Observed public comment, content unverified",
+            "unit": "text",
+            "period": "2026-10-02T15:15:23+00:00",
+            "currency": null,
+            "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+            "scope": "Purpose-selected English HN comment, not market consensus"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_PRICED_SPENDING",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49931902.json",
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49931902.json",
+      "type": "community",
+      "publisher": "HN public participants",
+      "title": "Actual HN narrative: DD_COM_PRICED_SPENDING",
+      "published_at": "2026-10-02T10:27:40+00:00",
+      "observed_at": "2026-10-02T10:27:40+00:00",
+      "valid_as_of": "2026-10-02T10:27:40+00:00",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official documented unauthenticated HN public item API; bounded single-comment request, no account/profile fields selected, no removed/dead content. Only one short attributed analytic quotation and metadata retained for personal research; no complete thread or content redistribution licence claimed. Purpose-selected from public search, not representative or independent fact corroboration.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "NARRATIVE",
+          "quote": "because entire economy is booming due to AI spending which priced in for more spending and revenue in the future.",
+          "locator": "/text",
+          "definition": {
+            "measure": "Observed public comment, content unverified",
+            "unit": "text",
+            "period": "2026-10-02T10:27:40+00:00",
+            "currency": null,
+            "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+            "scope": "Purpose-selected English HN comment, not market consensus"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_TREASURY_RISK",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49757470.json",
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49757470.json",
+      "type": "community",
+      "publisher": "HN public participants",
+      "title": "Actual HN narrative: DD_COM_TREASURY_RISK",
+      "published_at": "2026-09-18T17:23:53+00:00",
+      "observed_at": "2026-09-18T17:23:53+00:00",
+      "valid_as_of": "2026-09-18T17:23:53+00:00",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official documented unauthenticated HN public item API; bounded single-comment request, no account/profile fields selected, no removed/dead content. Only one short attributed analytic quotation and metadata retained for personal research; no complete thread or content redistribution licence claimed. Purpose-selected from public search, not representative or independent fact corroboration.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "NARRATIVE",
+          "quote": "Your point about dollar exposure is true, we just have limited insight into foreign private ownership, as the article points out. If nations are using these vehicles to conceal their dollar exposure (or for some other purpose that results in the same effect), then we will have trouble understanding the functioning of the global economy and the risks present in the system. That seems important. Also, equities and treasuries are not equivalent. If foreign holdings are moving to equities over treasuries, the added risk will be a serious problem in a crisis. It could also be a sign that some nations are being “e",
+          "locator": "/text",
+          "definition": {
+            "measure": "Observed public comment, content unverified",
+            "unit": "text",
+            "period": "2026-09-18T17:23:53+00:00",
+            "currency": null,
+            "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+            "scope": "Purpose-selected English HN comment, not market consensus"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_REDDIT_ACCESS",
+      "url": "https://www.reddit.com/r/investing/search/?q=AI%20capex&restrict_sr=1&sort=new",
+      "canonical_url": "https://www.reddit.com/r/investing/search/?q=AI%20capex&restrict_sr=1&sort=new",
+      "type": "community",
+      "publisher": "Public discussion access attempt",
+      "title": "Actual public access attempt; content not adopted",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": null,
+      "jurisdiction": "public English-language site, not representative sample",
+      "topics": [
+        "us_equity_ai_narrative_access_attempt"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.redditinc.com/policies/user-agreement",
+      "policy_note": "Read-only public access and robots/policy inspection attempt. No login, redirect, cookie, access bypass or whole-discussion storage. Content is not adopted as evidence pending site-specific permitted-use review. Placeholder selector is input configuration and never an observed quotation.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_ACCESS_NOT_OBSERVED",
+          "quote": "DD community inspection selector not observed",
+          "locator": "planned_access_selector_not_observed",
+          "definition": {
+            "measure": "not_observed_access_attempt",
+            "unit": "text",
+            "period": "acquisition_2026-10-04",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "public_access_attempt_no_content_adopted"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_STOCKTWITS_ACCESS",
+      "url": "https://stocktwits.com/symbol/NVDA",
+      "canonical_url": "https://stocktwits.com/symbol/NVDA",
+      "type": "community",
+      "publisher": "Public discussion access attempt",
+      "title": "Actual public access attempt; content not adopted",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": null,
+      "jurisdiction": "public English-language site, not representative sample",
+      "topics": [
+        "us_equity_ai_narrative_access_attempt"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://stocktwits.com/terms",
+      "policy_note": "Read-only public access and robots/policy inspection attempt. No login, redirect, cookie, access bypass or whole-discussion storage. Content is not adopted as evidence pending site-specific permitted-use review. Placeholder selector is input configuration and never an observed quotation.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_ACCESS_NOT_OBSERVED",
+          "quote": "DD community inspection selector not observed",
+          "locator": "planned_access_selector_not_observed",
+          "definition": {
+            "measure": "not_observed_access_attempt",
+            "unit": "text",
+            "period": "acquisition_2026-10-04",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "public_access_attempt_no_content_adopted"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_X_ACCESS",
+      "url": "https://x.com/search?q=AI%20capex&src=typed_query&f=live",
+      "canonical_url": "https://x.com/search?q=AI%20capex&src=typed_query&f=live",
+      "type": "community",
+      "publisher": "Public discussion access attempt",
+      "title": "Actual public access attempt; content not adopted",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": null,
+      "jurisdiction": "public English-language site, not representative sample",
+      "topics": [
+        "us_equity_ai_narrative_access_attempt"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://x.com/en/tos",
+      "policy_note": "Read-only public access and robots/policy inspection attempt. No login, redirect, cookie, access bypass or whole-discussion storage. Content is not adopted as evidence pending site-specific permitted-use review. Placeholder selector is input configuration and never an observed quotation.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_ACCESS_NOT_OBSERVED",
+          "quote": "DD community inspection selector not observed",
+          "locator": "planned_access_selector_not_observed",
+          "definition": {
+            "measure": "not_observed_access_attempt",
+            "unit": "text",
+            "period": "acquisition_2026-10-04",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "public_access_attempt_no_content_adopted"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_BOGLEHEADS_ACCESS",
+      "url": "https://www.bogleheads.org/forum/viewforum.php?f=10",
+      "canonical_url": "https://www.bogleheads.org/forum/viewforum.php?f=10",
+      "type": "community",
+      "publisher": "Public discussion access attempt",
+      "title": "Actual public access attempt; content not adopted",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": null,
+      "jurisdiction": "public English-language site, not representative sample",
+      "topics": [
+        "us_equity_ai_narrative_access_attempt"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.bogleheads.org/wiki/Bogleheads:Terms_of_use",
+      "policy_note": "Read-only public access and robots/policy inspection attempt. No login, redirect, cookie, access bypass or whole-discussion storage. Content is not adopted as evidence pending site-specific permitted-use review. Placeholder selector is input configuration and never an observed quotation.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_ACCESS_NOT_OBSERVED",
+          "quote": "DD community inspection selector not observed",
+          "locator": "planned_access_selector_not_observed",
+          "definition": {
+            "measure": "not_observed_access_attempt",
+            "unit": "text",
+            "period": "acquisition_2026-10-04",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "public_access_attempt_no_content_adopted"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "DD_COM_LOBSTERS_ACCESS",
+      "url": "https://lobste.rs/t/ai",
+      "canonical_url": "https://lobste.rs/t/ai",
+      "type": "community",
+      "publisher": "Public discussion access attempt",
+      "title": "Actual public access attempt; content not adopted",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": null,
+      "jurisdiction": "public English-language site, not representative sample",
+      "topics": [
+        "us_equity_ai_narrative_access_attempt"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://lobste.rs/about",
+      "policy_note": "Read-only public access and robots/policy inspection attempt. No login, redirect, cookie, access bypass or whole-discussion storage. Content is not adopted as evidence pending site-specific permitted-use review. Placeholder selector is input configuration and never an observed quotation.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_ACCESS_NOT_OBSERVED",
+          "quote": "DD community inspection selector not observed",
+          "locator": "planned_access_selector_not_observed",
+          "definition": {
+            "measure": "not_observed_access_attempt",
+            "unit": "text",
+            "period": "acquisition_2026-10-04",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "public_access_attempt_no_content_adopted"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "DD_COM_GOOGLE_LOSS": "3a267eb7fb8d1df1a6af5040486e209d5e2d5222bced187e6137d1d5e1251ad2",
+    "DD_COM_CAPEX_NEVER": "ae7eac737b08b40e76c572af6b465fc8c7e77a8b006b69b0dff1f8cf48448e64",
+    "DD_COM_REAL_PROFITS": "6e3929ac00883c2f627f6d6473d4b82c3ddffda713357abf64e51e47abbb3245",
+    "DD_COM_PRICED_SPENDING": "4c396b72de0180ae2df387536d8e21746c5bb5b5ae451c485c1e64bfd21f67fe",
+    "DD_COM_TREASURY_RISK": "12be92dcd4e90a962a5f6cf6d101d42103f71ca2fbc7dfb66aff4b101ee93691",
+    "DD_COM_REDDIT_ACCESS": "37192f06d262efb3e346fa9f98e288db29a5bd4c5d14893e6c4460524a21cf29",
+    "DD_COM_STOCKTWITS_ACCESS": "24206beeb94a6b59e0b15d44c6143084be5d475a6a57b5dabd797a615a590aa0",
+    "DD_COM_X_ACCESS": "05f18cec9d1f707757097891ce884a8679fbb1a71e44886ee55d70bdf337b26a",
+    "DD_COM_BOGLEHEADS_ACCESS": "8be33dbdbf7de67719d45642f447758b468fd0c7534905efdadff51cce52e874",
+    "DD_COM_LOBSTERS_ACCESS": "367fd4cd27aecc9d68bd93a718d862fc81436dc173049d56885d1df5089be138"
+  },
+  "evidence": [
+    {
+      "id": "E_DD_COM_GOOGLE_LOSS_NARRATIVE",
+      "source_id": "DD_COM_GOOGLE_LOSS",
+      "excerpt_id": "NARRATIVE",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "Observed public comment, content unverified",
+        "unit": "text",
+        "period": "2026-10-02T10:35:05+00:00",
+        "currency": null,
+        "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+        "scope": "Purpose-selected English HN comment, not market consensus"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_COM_CAPEX_NEVER_NARRATIVE",
+      "source_id": "DD_COM_CAPEX_NEVER",
+      "excerpt_id": "NARRATIVE",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "Observed public comment, content unverified",
+        "unit": "text",
+        "period": "2026-10-01T19:49:49+00:00",
+        "currency": null,
+        "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+        "scope": "Purpose-selected English HN comment, not market consensus"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_COM_REAL_PROFITS_NARRATIVE",
+      "source_id": "DD_COM_REAL_PROFITS",
+      "excerpt_id": "NARRATIVE",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "Observed public comment, content unverified",
+        "unit": "text",
+        "period": "2026-10-02T15:15:23+00:00",
+        "currency": null,
+        "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+        "scope": "Purpose-selected English HN comment, not market consensus"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_COM_PRICED_SPENDING_NARRATIVE",
+      "source_id": "DD_COM_PRICED_SPENDING",
+      "excerpt_id": "NARRATIVE",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "Observed public comment, content unverified",
+        "unit": "text",
+        "period": "2026-10-02T10:27:40+00:00",
+        "currency": null,
+        "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+        "scope": "Purpose-selected English HN comment, not market consensus"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    },
+    {
+      "id": "E_DD_COM_TREASURY_RISK_NARRATIVE",
+      "source_id": "DD_COM_TREASURY_RISK",
+      "excerpt_id": "NARRATIVE",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "Observed public comment, content unverified",
+        "unit": "text",
+        "period": "2026-09-18T17:23:53+00:00",
+        "currency": null,
+        "adjustment": "Normalized visible original comment; HTML tags/entities normalized by existing source parser; translation and factual verification separate",
+        "scope": "Purpose-selected English HN comment, not market consensus"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    }
+  ],
+  "claims": [],
+  "notes": [
+    "Reddit/X/Lobsters/Bogleheads policy access failed without bypass. Stocktwits visible HTML has no verified messages in existing parser.",
+    "Only HN comment sample actually adopted; no representative sentiment, popularity score, bots or market-wide consensus inferred.",
+    "No actual observed rates-no-longer-matter claim was found within adopted sample. Silence is not evidence of absence."
+  ],
+  "failures": [
+    {
+      "id": "DD_COM_REDDIT_ACCESS",
+      "status": "policy_blocked",
+      "url": "https://www.reddit.com/r/investing/search/?q=AI%20capex&restrict_sr=1&sort=new",
+      "diagnostics": [
+        "policy: robots policy disallows this source"
+      ]
+    },
+    {
+      "id": "DD_COM_STOCKTWITS_ACCESS",
+      "status": "changed",
+      "url": "https://stocktwits.com/symbol/NVDA",
+      "diagnostics": [
+        "excerpt: selected excerpts are absent; source changed or selectors are wrong: Q_ACCESS_NOT_OBSERVED"
+      ]
+    },
+    {
+      "id": "DD_COM_X_ACCESS",
+      "status": "policy_blocked",
+      "url": "https://x.com/search?q=AI%20capex&src=typed_query&f=live",
+      "diagnostics": [
+        "policy: robots policy disallows this source"
+      ]
+    },
+    {
+      "id": "DD_COM_BOGLEHEADS_ACCESS",
+      "status": "policy_blocked",
+      "url": "https://www.bogleheads.org/forum/viewforum.php?f=10",
+      "diagnostics": [
+        "policy: robots policy could not be reliably established"
+      ]
+    },
+    {
+      "id": "DD_COM_LOBSTERS_ACCESS",
+      "status": "policy_blocked",
+      "url": "https://lobste.rs/t/ai",
+      "diagnostics": [
+        "policy: robots policy disallows this source"
+      ]
+    }
+  ],
+  "research_notes": {
+    "DD_COM_GOOGLE_LOSS": {
+      "item_id": 49931960,
+      "published_at": "2026-10-02T10:35:05+00:00",
+      "parent_item_id": 49919564,
+      "search_window": "2026-09-13 through research cutoff; latest API results purpose selected",
+      "factual_status": "unverified; compare with company data; absolute future return claims not verifiable"
+    },
+    "DD_COM_CAPEX_NEVER": {
+      "item_id": 49926255,
+      "published_at": "2026-10-01T19:49:49+00:00",
+      "parent_item_id": 49926241,
+      "search_window": "2026-09-13 through research cutoff; latest API results purpose selected",
+      "factual_status": "unverified; compare with company data; absolute future return claims not verifiable"
+    },
+    "DD_COM_REAL_PROFITS": {
+      "item_id": 49934445,
+      "published_at": "2026-10-02T15:15:23+00:00",
+      "parent_item_id": 49934178,
+      "search_window": "2026-09-13 through research cutoff; latest API results purpose selected",
+      "factual_status": "unverified; compare with company data; absolute future return claims not verifiable"
+    },
+    "DD_COM_PRICED_SPENDING": {
+      "item_id": 49931902,
+      "published_at": "2026-10-02T10:27:40+00:00",
+      "parent_item_id": 49893518,
+      "search_window": "2026-09-13 through research cutoff; latest API results purpose selected",
+      "factual_status": "unverified; compare with company data; absolute future return claims not verifiable"
+    },
+    "DD_COM_TREASURY_RISK": {
+      "item_id": 49757470,
+      "published_at": "2026-09-18T17:23:53+00:00",
+      "parent_item_id": 49757290,
+      "search_window": "2026-09-13 through research cutoff; latest API results purpose selected",
+      "factual_status": "unverified; compare with company data; absolute future return claims not verifiable"
+    }
+  }
+}

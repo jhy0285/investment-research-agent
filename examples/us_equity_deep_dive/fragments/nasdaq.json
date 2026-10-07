@@ -1,0 +1,82 @@
+{
+  "sources": [
+    {
+      "id": "DD_IDX_NDX_SCOPE",
+      "url": "https://indexes.nasdaq.com/Index/Overview/NDX",
+      "canonical_url": "https://indexes.nasdaq.com/Index/Overview/NDX",
+      "type": "institution",
+      "publisher": "Nasdaq Global Indexes",
+      "title": "Nasdaq100 scope and accessible-research limits",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": null,
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://indexes.nasdaq.com/Index/Overview/NDX",
+      "policy_note": "Public official index overview, robots checked. Only one short attributed descriptive scope quotation retained for personal research, no licensed index feed, weighting export or PDF redistribution. Publication/effective date unknown; this is captured provider description, not dated valuation observation or historical membership proof.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "SCOPE",
+          "quote": "The Nasdaq-100 Index® includes 100 of the largest domestic and international non-financial companies listed on The Nasdaq Stock Market based on market capitalization. The Index reflects companies across major industry groups including computer hardware and software, telecommunications, retail/wholesale trade and biotechnology. It does not contain securities of financial companies including investment companies.",
+          "locator": "Index description",
+          "definition": {
+            "measure": "Index inclusion and sector scope",
+            "unit": "index_definition",
+            "period": "Publication and methodology-effective date unknown",
+            "currency": "USD",
+            "adjustment": "Provider descriptive scope; membership count/weights/valuation as-of not established",
+            "scope": "Nasdaq100 includes largest listed nonfinancial companies; not S&P500 or completeUSmarket"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "DD_IDX_NDX_SCOPE": "8acb44251fa8ecdda53f0a0fecff488083a3ded8165f2a878ec8a3d7782e3518"
+  },
+  "evidence": [
+    {
+      "id": "E_DD_IDX_NDX_SCOPE_SCOPE",
+      "source_id": "DD_IDX_NDX_SCOPE",
+      "excerpt_id": "SCOPE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Index inclusion and sector scope",
+        "unit": "index_definition",
+        "period": "Publication and methodology-effective date unknown",
+        "currency": "USD",
+        "adjustment": "Provider descriptive scope; membership count/weights/valuation as-of not established",
+        "scope": "Nasdaq100 includes largest listed nonfinancial companies; not S&P500 or completeUSmarket"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ]
+    }
+  ],
+  "claims": [],
+  "notes": [
+    "QQQ public overview describes the Nasdaq100 but all return/valuation fields were Unable to load data.",
+    "Nasdaq Weighting/Breakdown pages returned no usable text under existing parser.",
+    "Latest linked official earnings PDF was Q42025; linked1H2026 AI recap and factsheet PDFs are not supported by existing bounded parser, so not used as current valuation evidence.",
+    "Nasdaq100 valuation/earnings consensus/equalweight price history insufficient in this acquisition; do not replace with S&P500 or growth ETF metrics."
+  ],
+  "failures": [],
+  "research_notes": {}
+}

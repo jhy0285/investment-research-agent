@@ -1,0 +1,889 @@
+{
+  "sources": [
+    {
+      "id": "US_FACTSET_Q3_2026",
+      "url": "https://insight.factset.com/sp-500-earnings-season-preview-q3-2026",
+      "canonical_url": "https://insight.factset.com/sp-500-earnings-season-preview-q3-2026",
+      "type": "data_provider",
+      "publisher": "FactSet",
+      "title": "S&P 500 Earnings Season Preview: Q3 2026",
+      "published_at": "2026-10-02",
+      "observed_at": null,
+      "valid_as_of": "2026-10-02",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "concentration",
+        "income"
+      ],
+      "asset_ids": [
+        "US_EQUITY",
+        "GROWTH",
+        "VALUE",
+        "DIVIDEND"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.factset.com/legal",
+      "policy_note": "Reviewed public article copyright/disclaimer and insight.factset.com robots allowing this article. Linked legal statement redirects were inspected explicitly; final www.factset.com/legal is a JavaScript shell, so full terms were not established by this bounded HTML client. No public-domain or bulk redistribution permission is claimed. Retain only three short attributed analytic excerpts and hashes for personal research, no full article/figures, with canonical attribution. Record this policy-review limitation; forecasts are provider statements, not investment advice or verified outcomes.",
+      "retention": "excerpt",
+      "max_age_days": 14,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "EPS_REVISIONS",
+          "quote": "On a per-share basis, estimated earnings for the third quarter increased by 1.4% from June 30 to September 30. In a typical quarter, analysts usually lower earnings estimates during the quarter.",
+          "locator": "Estimate revisions paragraph",
+          "definition": {
+            "measure": "Q3 2026 consensus EPS revision during quarter",
+            "unit": "percent",
+            "period": "2026-06-30 to 2026-09-30",
+            "currency": "USD",
+            "adjustment": "FactSet published estimate/valuation, unadjusted as stated",
+            "scope": "S&P 500, FactSet analyst consensus, not realized earnings"
+          }
+        },
+        {
+          "id": "EPS_EXPECTATION",
+          "quote": "As of today, the S&P 500 is expected to report (year-over-year) earnings growth of 29.5%, compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30.",
+          "locator": "Q3 consensus year-over-year growth paragraph",
+          "definition": {
+            "measure": "Q3 2026 consensus year-over-year earnings growth",
+            "unit": "percent",
+            "period": "Q3 2026, estimates reported 2026-10-02",
+            "currency": "USD",
+            "adjustment": "FactSet published estimate/valuation, unadjusted as stated",
+            "scope": "S&P 500, FactSet analyst consensus, not realized earnings"
+          }
+        },
+        {
+          "id": "FORWARD_PE",
+          "quote": "The forward 12-month P/E ratio is 19.0 (based on Wednesday’s closing price and forward EPS), which is below the 5-year average (19.8) and below the 10-year average (19.1). This P/E ratio is also below the forward P/E ratio of 20.4 recorded at the end of the second quarter (June 30).",
+          "locator": "Forward valuation paragraph",
+          "definition": {
+            "measure": "Rolling forward 12-month price to earnings and historical average comparators",
+            "unit": "ratio",
+            "period": "Wednesday close as described in 2026-10-02 article; publication date is distinct from price observation",
+            "currency": "USD",
+            "adjustment": "FactSet published estimate/valuation, unadjusted as stated",
+            "scope": "S&P 500, FactSet analyst consensus, not realized earnings"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "US_SPDR_GROWTH",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-growth-etf-spyg",
+      "canonical_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-growth-etf-spyg",
+      "type": "institution",
+      "publisher": "State Street Investment Management",
+      "title": "State Street SPDR Portfolio S&P 500 Growth ETF: fund characteristics and holdings",
+      "published_at": null,
+      "observed_at": "2026-10-01",
+      "valid_as_of": "2026-10-01",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "concentration",
+        "income"
+      ],
+      "asset_ids": [
+        "GROWTH",
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-growth-etf-spyg",
+      "policy_note": "Reviewed the public product-page footer and robots.txt: this product path is allowed. All rights reserved; no bulk/raw-document retention or claimed redistribution licence. Retain at most three short attributed excerpts for this personal research case, with canonical links and hashes; no logos, factsheet PDFs, or full portfolio download. The site is intended for US investors and gives local-jurisdiction restrictions: this research does not establish Korean product availability or constitute an offer.",
+      "retention": "excerpt",
+      "max_age_days": 14,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "EPS_GROWTH",
+          "quote": "Fund Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth ﻿Estimated 3-5 Year EPS Growth Based on the underlying holdings of the fund. The actual earnings estimates for the underlying holdings are provided by FactSet Estimates and are used to calculate a mean 3-5 year EPS growth rate estimate. 28.52% Number of Holdings 151",
+          "locator": "Fund Characteristics, estimated EPS growth",
+          "definition": {
+            "measure": "Mean estimated 3-5 year EPS growth of underlying holdings",
+            "unit": "percent",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "FactSet estimates; forecast not realized growth",
+            "scope": "SPYG fund portfolio, a S&P 500 Growth exposure proxy, not all growth companies"
+          }
+        },
+        {
+          "id": "FY1_PE",
+          "quote": "Price/Earnings Ratio FY1 ﻿Price/Earnings Ratio FY1 The weighted harmonic average of current share price divided by the forecasted one year earnings per share for each security in the fund. Negative and positive outliers are included in the calculation. 22.61",
+          "locator": "Fund Characteristics, FY1 price/earnings",
+          "definition": {
+            "measure": "Forecast fiscal year one portfolio P/E",
+            "unit": "ratio",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "Weighted harmonic average; positive and negative outliers included; FY1 is not rolling forward 12-month",
+            "scope": "SPYG fund portfolio, a S&P 500 Growth exposure proxy, not all growth companies"
+          }
+        },
+        {
+          "id": "TOP_HOLDINGS",
+          "quote": "Fund Top Holdings as of Oct 01 2026 Name Shares Held Weight NVIDIA CORP 37,213,389 15.13% MICROSOFT CORP 11,418,614 10.31% APPLE INC 11,221,153 6.53% ALPHABET INC CL A 9,023,586 5.38% BROADCOM INC 7,316,044 4.43%",
+          "locator": "Fund Top Holdings, first five rows",
+          "definition": {
+            "measure": "Disclosed weight of five largest named fund holdings",
+            "unit": "percent of assets",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "Reported portfolio holdings; not independent risk factors or expected returns",
+            "scope": "SPYG fund portfolio, a S&P 500 Growth exposure proxy, not all growth companies"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "US_SPDR_VALUE",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-value-etf-spyv",
+      "canonical_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-value-etf-spyv",
+      "type": "institution",
+      "publisher": "State Street Investment Management",
+      "title": "State Street SPDR Portfolio S&P 500 Value ETF: fund characteristics and holdings",
+      "published_at": null,
+      "observed_at": "2026-10-01",
+      "valid_as_of": "2026-10-01",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "concentration",
+        "income"
+      ],
+      "asset_ids": [
+        "VALUE",
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-value-etf-spyv",
+      "policy_note": "Reviewed the public product-page footer and robots.txt: this product path is allowed. All rights reserved; no bulk/raw-document retention or claimed redistribution licence. Retain at most three short attributed excerpts for this personal research case, with canonical links and hashes; no logos, factsheet PDFs, or full portfolio download. The site is intended for US investors and gives local-jurisdiction restrictions: this research does not establish Korean product availability or constitute an offer.",
+      "retention": "excerpt",
+      "max_age_days": 14,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "EPS_GROWTH",
+          "quote": "Fund Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth ﻿Estimated 3-5 Year EPS Growth Based on the underlying holdings of the fund. The actual earnings estimates for the underlying holdings are provided by FactSet Estimates and are used to calculate a mean 3-5 year EPS growth rate estimate. 14.73% Number of Holdings 437",
+          "locator": "Fund Characteristics, estimated EPS growth",
+          "definition": {
+            "measure": "Mean estimated 3-5 year EPS growth of underlying holdings",
+            "unit": "percent",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "FactSet estimates; forecast not realized growth",
+            "scope": "SPYV fund portfolio, a S&P 500 Value exposure proxy, not all value companies"
+          }
+        },
+        {
+          "id": "FY1_PE",
+          "quote": "Price/Earnings Ratio FY1 ﻿Price/Earnings Ratio FY1 The weighted harmonic average of current share price divided by the forecasted one year earnings per share for each security in the fund. Negative and positive outliers are included in the calculation. 18.19",
+          "locator": "Fund Characteristics, FY1 price/earnings",
+          "definition": {
+            "measure": "Forecast fiscal year one portfolio P/E",
+            "unit": "ratio",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "Weighted harmonic average; positive and negative outliers included; FY1 is not rolling forward 12-month",
+            "scope": "SPYV fund portfolio, a S&P 500 Value exposure proxy, not all value companies"
+          }
+        },
+        {
+          "id": "TOP_HOLDINGS",
+          "quote": "Fund Top Holdings as of Oct 01 2026 Name Shares Held Weight APPLE INC 8,923,778 8.26% AMAZON.COM INC 5,641,793 3.92% EXXONMOBIL HOLDINGS CORP 5,028,714 2.31% INTEL CORP 6,076,862 2.04% WALMART INC 5,450,255 1.59%",
+          "locator": "Fund Top Holdings, first five rows",
+          "definition": {
+            "measure": "Disclosed weight of five largest named fund holdings",
+            "unit": "percent of assets",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "Reported portfolio holdings; style classifications can overlap with growth exposure",
+            "scope": "SPYV fund portfolio, a S&P 500 Value exposure proxy, not all value companies"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "US_SPDR_DIVIDEND",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-high-dividend-etf-spyd",
+      "canonical_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-high-dividend-etf-spyd",
+      "type": "institution",
+      "publisher": "State Street Investment Management",
+      "title": "State Street SPDR Portfolio S&P 500 High Dividend ETF: valuation, distribution yield and sectors",
+      "published_at": null,
+      "observed_at": "2026-10-01",
+      "valid_as_of": "2026-10-01",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "valuation",
+        "concentration",
+        "income"
+      ],
+      "asset_ids": [
+        "DIVIDEND",
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-portfolio-sp-500-high-dividend-etf-spyd",
+      "policy_note": "Reviewed the public product-page footer and robots.txt: this product path is allowed. All rights reserved; no bulk/raw-document retention or claimed redistribution licence. Retain at most three short attributed excerpts for this personal research case, with canonical links and hashes; no logos, factsheet PDFs, or full portfolio download. The site is intended for US investors and gives local-jurisdiction restrictions: this research does not establish Korean product availability or constitute an offer.",
+      "retention": "excerpt",
+      "max_age_days": 14,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "FY1_PE",
+          "quote": "Price/Earnings Ratio FY1 ﻿Price/Earnings Ratio FY1 The weighted harmonic average of current share price divided by the forecasted one year earnings per share for each security in the fund. Negative and positive outliers are included in the calculation. 13.60",
+          "locator": "Fund Characteristics, FY1 price/earnings",
+          "definition": {
+            "measure": "Forecast fiscal year one portfolio P/E",
+            "unit": "ratio",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "Weighted harmonic average; positive and negative outliers included; FY1 is not rolling forward 12-month",
+            "scope": "SPYD fund portfolio, S&P 500 high-dividend exposure proxy, not all dividend companies"
+          }
+        },
+        {
+          "id": "DISTRIBUTION_YIELD",
+          "quote": "Fund Distribution Yield Fund Distribution Yield The sum of the distributions within the past 365 days divided by Net Asset Value per share, expressed as a percentage. 4.53%",
+          "locator": "Yields as of Oct 01 2026, Fund Distribution Yield",
+          "definition": {
+            "measure": "Trailing 365-day fund distributions divided by current NAV",
+            "unit": "percent annual trailing income yield",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "Distribution yield; not guaranteed forward income, SEC yield, YTM or total expected return",
+            "scope": "SPYD fund portfolio, S&P 500 high-dividend exposure proxy, not all dividend companies"
+          }
+        },
+        {
+          "id": "SECTOR_EXPOSURE",
+          "quote": "Fund Sector Breakdown as of Oct 01 2026 Sector Weight Real Estate 24.56% Consumer Staples 13.77% Financials 13.75% Utilities 10.84% Materials 7.68% Communication Services 5.48% Energy 5.46%",
+          "locator": "Fund Sector Breakdown, first seven rows",
+          "definition": {
+            "measure": "Disclosed fund sector portfolio weights",
+            "unit": "percent of assets",
+            "period": "2026-10-01",
+            "currency": "USD",
+            "adjustment": "GICS sector exposure at stated date; no risk contribution estimate",
+            "scope": "SPYD fund portfolio, S&P 500 high-dividend exposure proxy, not all dividend companies"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "NV_SEC_FY2027_Q2",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+      "canonical_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
+      "type": "primary",
+      "publisher": "NVIDIA Corporation, filing retained by U.S. SEC EDGAR",
+      "title": "NVIDIA FY2027 Q2 Form 10-Q: revenue, cash conversion and customer receivables",
+      "published_at": "2026-08-26",
+      "observed_at": "2026-07-26",
+      "valid_as_of": "2026-08-26",
+      "jurisdiction": "US",
+      "topics": [
+        "earnings",
+        "AI infrastructure",
+        "cash flow",
+        "customer concentration"
+      ],
+      "asset_ids": [
+        "US_EQUITY",
+        "GROWTH",
+        "KR_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.sec.gov/about/privacy-information",
+      "policy_note": "Reviewed SEC robots explicitly allowing /Archives/edgar/data and SEC fair-access policy: requests remain far below 10 per second, identifiable existing source-MVP User-Agent, no bulk crawl/authentication/redirect evasion. This is an independently publicly filed regulatory record hosted by SEC, not scraping the NVIDIA website whose automation restriction is respected. Only three attributed excerpts and hashes retained; issuer filing is not assumed public domain and full raw copy is not retained. Filing date 2026-08-26 confirmed from official data.sec.gov/submissions/CIK0001045810.json and dated signature; quarter end 2026-07-26 confirmed from filing cover. First-publication intraday time unknown.",
+      "retention": "excerpt",
+      "max_age_days": 90,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "REVENUE_DATACENTER",
+          "quote": "Revenue was $96.2 billion, up 106% from a year ago and up 18% sequentially. Data Center revenue was $89.0 billion, up 117% from a year ago and up 18% sequentially, driven by the ramp of our Blackwell Ultra infrastructure.",
+          "locator": "Form 10-Q Item 2 MD&A, Revenue by Market Platform discussion, page 27",
+          "definition": {
+            "measure": "Reported total and Data Center quarter revenue and stated year-over-year/sequential growth",
+            "unit": "USD billion and percent",
+            "period": "Three months ended 2026-07-26, FY2027 Q2",
+            "currency": "USD",
+            "adjustment": "Company reported GAAP revenue; market-platform presentation revised and prior periods recast as disclosed",
+            "scope": "NVIDIA consolidated and Data Center market platform, not total S&P 500 or all AI users"
+          }
+        },
+        {
+          "id": "CASH_CONVERSION",
+          "quote": "Cash provided by operating activities increased in the first half of fiscal year 2027 compared to the first half of fiscal year 2026 due to higher revenue, partially offset by an increase in accounts receivable due to extended payment terms on large multi-quarter agreements with certain investment-grade customers.",
+          "locator": "Form 10-Q Item 2 MD&A, Liquidity and Capital Resources, page 32",
+          "definition": {
+            "measure": "Management explanation of operating cash-flow change and extended customer payment terms",
+            "unit": "qualitative cash-flow explanation",
+            "period": "Six months ended 2026-07-26, FY2027 first half compared with prior-year first half",
+            "currency": "USD",
+            "adjustment": "Operating cash flow, not GAAP earnings, free cash flow or customer investment return",
+            "scope": "NVIDIA consolidated operating cash flow; management explanation, unaudited quarterly filing"
+          }
+        },
+        {
+          "id": "CUSTOMER_RECEIVABLES",
+          "quote": "Five direct customers accounted for 22 %, 14 %, 13 %, 11 %, and 10 % of our accounts receivable balance as of July 26, 2026. Three direct customers accounted for 25 %, 18 %, and 13 % of our accounts receivable balance as of January 25, 2026. Payment from customers is generally due shortly after delivery of our products. In certain cases, for investment-grade customer purchases, we have and may in the future provide longer payment terms ranging from 90 days up to one year to assist customers with large data center builds depending on size.",
+          "locator": "Form 10-Q Note 9 Supplemental Financial Statement Information, direct customer receivables concentration",
+          "definition": {
+            "measure": "Direct-customer accounts-receivable balance concentration and stated extended credit terms",
+            "unit": "percent of accounts receivable; credit-term days/year",
+            "period": "Balance as of 2026-07-26 compared with 2026-01-25",
+            "currency": "USD",
+            "adjustment": "Receivables balance shares, not revenue shares, end-customer demand, default probability or payment delinquency",
+            "scope": "Five unnamed direct NVIDIA customers; no customer identity inferred"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "US_FACTSET_Q3_2026": "111dfa7d413c486ea86a8faaddbb32801594d46c72479eaab7d7352d3dd33b58",
+    "US_SPDR_GROWTH": "88822c18af9c2df1319d0abec2f9c7a5af96040d6694b4990009f89684977a82",
+    "US_SPDR_VALUE": "f2e7f9ff9ed0967b352b64738e20eb3daf16909d259afd1b2366e4dcb300ef2b",
+    "US_SPDR_DIVIDEND": "9b2a5696ead294bfbff433ba8ec1cc7da2256e5ccc54a8e9a126da50818bc636",
+    "NV_SEC_FY2027_Q2": "480007f7cace0bac9f0c85854f1456f99a0ac00bbc12e12072601bc1d49f9ac0"
+  },
+  "evidence": [
+    {
+      "id": "US_FACTSET_Q3_2026_EPS_REVISIONS",
+      "source_id": "US_FACTSET_Q3_2026",
+      "excerpt_id": "EPS_REVISIONS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Q3 2026 consensus EPS revision during quarter",
+        "unit": "percent",
+        "period": "2026-06-30 to 2026-09-30",
+        "currency": "USD",
+        "adjustment": "FactSet published estimate/valuation, unadjusted as stated",
+        "scope": "S&P 500, FactSet analyst consensus, not realized earnings"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "발행일은 글의 October 2, 2026을 확인했으나 수요일 종가의 절대 시각과 개별 추정치의 이용 가능 시각은 unknown이다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_FACTSET_Q3_2026_EPS_EXPECTATION",
+      "source_id": "US_FACTSET_Q3_2026",
+      "excerpt_id": "EPS_EXPECTATION",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Q3 2026 consensus year-over-year earnings growth",
+        "unit": "percent",
+        "period": "Q3 2026, estimates reported 2026-10-02",
+        "currency": "USD",
+        "adjustment": "FactSet published estimate/valuation, unadjusted as stated",
+        "scope": "S&P 500, FactSet analyst consensus, not realized earnings"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "발행일은 글의 October 2, 2026을 확인했으나 수요일 종가의 절대 시각과 개별 추정치의 이용 가능 시각은 unknown이다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_FACTSET_Q3_2026_FORWARD_PE",
+      "source_id": "US_FACTSET_Q3_2026",
+      "excerpt_id": "FORWARD_PE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Rolling forward 12-month price to earnings and historical average comparators",
+        "unit": "ratio",
+        "period": "Wednesday close as described in 2026-10-02 article; publication date is distinct from price observation",
+        "currency": "USD",
+        "adjustment": "FactSet published estimate/valuation, unadjusted as stated",
+        "scope": "S&P 500, FactSet analyst consensus, not realized earnings"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "발행일은 글의 October 2, 2026을 확인했으나 수요일 종가의 절대 시각과 개별 추정치의 이용 가능 시각은 unknown이다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_GROWTH_EPS_GROWTH",
+      "source_id": "US_SPDR_GROWTH",
+      "excerpt_id": "EPS_GROWTH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Mean estimated 3-5 year EPS growth of underlying holdings",
+        "unit": "percent",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "FactSet estimates; forecast not realized growth",
+        "scope": "SPYG fund portfolio, a S&P 500 Growth exposure proxy, not all growth companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_GROWTH_FY1_PE",
+      "source_id": "US_SPDR_GROWTH",
+      "excerpt_id": "FY1_PE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Forecast fiscal year one portfolio P/E",
+        "unit": "ratio",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "Weighted harmonic average; positive and negative outliers included; FY1 is not rolling forward 12-month",
+        "scope": "SPYG fund portfolio, a S&P 500 Growth exposure proxy, not all growth companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_GROWTH_TOP_HOLDINGS",
+      "source_id": "US_SPDR_GROWTH",
+      "excerpt_id": "TOP_HOLDINGS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Disclosed weight of five largest named fund holdings",
+        "unit": "percent of assets",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "Reported portfolio holdings; not independent risk factors or expected returns",
+        "scope": "SPYG fund portfolio, a S&P 500 Growth exposure proxy, not all growth companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_VALUE_EPS_GROWTH",
+      "source_id": "US_SPDR_VALUE",
+      "excerpt_id": "EPS_GROWTH",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Mean estimated 3-5 year EPS growth of underlying holdings",
+        "unit": "percent",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "FactSet estimates; forecast not realized growth",
+        "scope": "SPYV fund portfolio, a S&P 500 Value exposure proxy, not all value companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_VALUE_FY1_PE",
+      "source_id": "US_SPDR_VALUE",
+      "excerpt_id": "FY1_PE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Forecast fiscal year one portfolio P/E",
+        "unit": "ratio",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "Weighted harmonic average; positive and negative outliers included; FY1 is not rolling forward 12-month",
+        "scope": "SPYV fund portfolio, a S&P 500 Value exposure proxy, not all value companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_VALUE_TOP_HOLDINGS",
+      "source_id": "US_SPDR_VALUE",
+      "excerpt_id": "TOP_HOLDINGS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Disclosed weight of five largest named fund holdings",
+        "unit": "percent of assets",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "Reported portfolio holdings; style classifications can overlap with growth exposure",
+        "scope": "SPYV fund portfolio, a S&P 500 Value exposure proxy, not all value companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_DIVIDEND_FY1_PE",
+      "source_id": "US_SPDR_DIVIDEND",
+      "excerpt_id": "FY1_PE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Forecast fiscal year one portfolio P/E",
+        "unit": "ratio",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "Weighted harmonic average; positive and negative outliers included; FY1 is not rolling forward 12-month",
+        "scope": "SPYD fund portfolio, S&P 500 high-dividend exposure proxy, not all dividend companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "예상 이익과 예상 배수는 실제 실적이나 보장 수익이 아니며, 추정치 하향 시 값의 경제적 의미가 달라진다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD",
+      "source_id": "US_SPDR_DIVIDEND",
+      "excerpt_id": "DISTRIBUTION_YIELD",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Trailing 365-day fund distributions divided by current NAV",
+        "unit": "percent annual trailing income yield",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "Distribution yield; not guaranteed forward income, SEC yield, YTM or total expected return",
+        "scope": "SPYD fund portfolio, S&P 500 high-dividend exposure proxy, not all dividend companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "US_SPDR_DIVIDEND_SECTOR_EXPOSURE",
+      "source_id": "US_SPDR_DIVIDEND",
+      "excerpt_id": "SECTOR_EXPOSURE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Disclosed fund sector portfolio weights",
+        "unit": "percent of assets",
+        "period": "2026-10-01",
+        "currency": "USD",
+        "adjustment": "GICS sector exposure at stated date; no risk contribution estimate",
+        "scope": "SPYD fund portfolio, S&P 500 high-dividend exposure proxy, not all dividend companies"
+      },
+      "extraction": null,
+      "limitations": [
+        "선택한 짧은 구절의 존재만 대조했다. 금융 의미와 미래 투자성과를 자동 검증한 자료가 아니다.",
+        "전체 원문을 보존하지 않아 offline replay는 저장 구절·메타데이터·hash의 동일성만 검증한다.",
+        "페이지의 최초 공개·개정일은 unknown이다. 항목의 2026-10-01 관측일과 실제 획득 시각을 공개일로 대체하지 않는다.",
+        "대표 펀드는 기초 주식 노출 조사용이며 한국 사용자에게 상품 추천이나 매수 가능성 확인을 뜻하지 않는다.",
+        "성장·가치·배당 범주는 겹칠 수 있다. 자료 수나 ETF 개수를 독립 분산·독립 증거 수로 세지 않는다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "NV_SEC_FY2027_Q2_REVENUE_DATACENTER",
+      "source_id": "NV_SEC_FY2027_Q2",
+      "excerpt_id": "REVENUE_DATACENTER",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Reported total and Data Center quarter revenue and stated year-over-year/sequential growth",
+        "unit": "USD billion and percent",
+        "period": "Three months ended 2026-07-26, FY2027 Q2",
+        "currency": "USD",
+        "adjustment": "Company reported GAAP revenue; market-platform presentation revised and prior periods recast as disclosed",
+        "scope": "NVIDIA consolidated and Data Center market platform, not total S&P 500 or all AI users"
+      },
+      "extraction": null,
+      "limitations": [
+        "공식 공시의 구절 존재를 대조했으며 재무제표 전체 감사나 미래 실적·수익 확정이 아니다. 분기 공시는 unaudited이다.",
+        "NVIDIA 한 기업과 공개된 기간에 한정한다. S&P 500 전체 이익·AI 최종사용자의 수익성·한국 반도체 기업의 성장으로 일반화하지 않는다.",
+        "KR_EQUITY 범위는 반도체 공급망 후속 질문의 문맥이다. 해당 한국 기업의 직접 계약·매출·마진·밸류에이션 근거는 없다.",
+        "보관된 세 구절·메타데이터·hash의 동일성을 재생한다. 전체 원문을 폐기했으므로 offline에서 원문 전체를 재검증한 것으로 설명하지 않는다.",
+        "공개일은 날짜만 확인했고 최초 발표의 정확한 시각과 향후 개정은 unknown이다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+      "source_id": "NV_SEC_FY2027_Q2",
+      "excerpt_id": "CASH_CONVERSION",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Management explanation of operating cash-flow change and extended customer payment terms",
+        "unit": "qualitative cash-flow explanation",
+        "period": "Six months ended 2026-07-26, FY2027 first half compared with prior-year first half",
+        "currency": "USD",
+        "adjustment": "Operating cash flow, not GAAP earnings, free cash flow or customer investment return",
+        "scope": "NVIDIA consolidated operating cash flow; management explanation, unaudited quarterly filing"
+      },
+      "extraction": null,
+      "limitations": [
+        "공식 공시의 구절 존재를 대조했으며 재무제표 전체 감사나 미래 실적·수익 확정이 아니다. 분기 공시는 unaudited이다.",
+        "NVIDIA 한 기업과 공개된 기간에 한정한다. S&P 500 전체 이익·AI 최종사용자의 수익성·한국 반도체 기업의 성장으로 일반화하지 않는다.",
+        "KR_EQUITY 범위는 반도체 공급망 후속 질문의 문맥이다. 해당 한국 기업의 직접 계약·매출·마진·밸류에이션 근거는 없다.",
+        "보관된 세 구절·메타데이터·hash의 동일성을 재생한다. 전체 원문을 폐기했으므로 offline에서 원문 전체를 재검증한 것으로 설명하지 않는다.",
+        "공개일은 날짜만 확인했고 최초 발표의 정확한 시각과 향후 개정은 unknown이다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES",
+      "source_id": "NV_SEC_FY2027_Q2",
+      "excerpt_id": "CUSTOMER_RECEIVABLES",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Direct-customer accounts-receivable balance concentration and stated extended credit terms",
+        "unit": "percent of accounts receivable; credit-term days/year",
+        "period": "Balance as of 2026-07-26 compared with 2026-01-25",
+        "currency": "USD",
+        "adjustment": "Receivables balance shares, not revenue shares, end-customer demand, default probability or payment delinquency",
+        "scope": "Five unnamed direct NVIDIA customers; no customer identity inferred"
+      },
+      "extraction": null,
+      "limitations": [
+        "공식 공시의 구절 존재를 대조했으며 재무제표 전체 감사나 미래 실적·수익 확정이 아니다. 분기 공시는 unaudited이다.",
+        "NVIDIA 한 기업과 공개된 기간에 한정한다. S&P 500 전체 이익·AI 최종사용자의 수익성·한국 반도체 기업의 성장으로 일반화하지 않는다.",
+        "KR_EQUITY 범위는 반도체 공급망 후속 질문의 문맥이다. 해당 한국 기업의 직접 계약·매출·마진·밸류에이션 근거는 없다.",
+        "보관된 세 구절·메타데이터·hash의 동일성을 재생한다. 전체 원문을 폐기했으므로 offline에서 원문 전체를 재검증한 것으로 설명하지 않는다.",
+        "공개일은 날짜만 확인했고 최초 발표의 정확한 시각과 향후 개정은 unknown이다."
+      ],
+      "interpretation": null
+    }
+  ],
+  "notes": [
+    {
+      "asset_id": "US_EQUITY",
+      "status": "investigate_further",
+      "evidence_ids": [
+        "US_FACTSET_Q3_2026_EPS_REVISIONS",
+        "US_FACTSET_Q3_2026_EPS_EXPECTATION",
+        "US_FACTSET_Q3_2026_FORWARD_PE"
+      ],
+      "positive": "분기 중 예상 EPS가 상향됐고 forward 배수는 제공자가 제시한 장기 평균보다 낮다는 현재 자료가 있어 미국 주식을 단순 고평가로 일괄 제외할 근거는 약하다.",
+      "counter": "성장률은 실현된 실적이 아니라 높은 컨센서스이며 가격에 좋은 실적 달성이 이미 반영됐을 수 있다. 평균보다 낮은 배수만으로 저평가·초과수익을 확정하지 않는다.",
+      "priced_expectations": "Q3 전년비 예상 이익성장과 예상 EPS를 분모로 한 forward 배수가 함께 보인다. 성장이 실제로 확인되는지와 추정치 하향 위험을 같이 조사한다.",
+      "opportunity_cost": "별도로 확보한 같은 시점의 USD 국채·현금 대안이 있는 환경에서 높은 불확실성의 주식 이익성장이 추가 위험을 감수할 이유가 되는지 질문한다. P/E 역수를 국채수익률과 같은 보장수익으로 비교하지 않는다.",
+      "unknowns": [
+        "실현 Q3 결과와 성장 기여 기업·산업의 분해",
+        "매출·마진·현금흐름 및 경기민감도",
+        "사용자의 기존 미국 주식/달러 노출"
+      ],
+      "recheck": [
+        "실제 실적이 예상 상향을 정당화하는가?",
+        "성장 기여도가 소수 기업에 집중됐는가?",
+        "높은 국채 수익률 대비 감수할 위험의 근거가 있는가?"
+      ]
+    },
+    {
+      "asset_id": "GROWTH",
+      "status": "investigate_further",
+      "evidence_ids": [
+        "US_SPDR_GROWTH_EPS_GROWTH",
+        "US_SPDR_GROWTH_FY1_PE",
+        "US_SPDR_GROWTH_TOP_HOLDINGS",
+        "US_FACTSET_Q3_2026_EPS_EXPECTATION"
+      ],
+      "positive": "대형 성장주 노출의 예상 EPS 성장과 사업가치 창출을 후속 조사할 근거는 있다. 단순 가격 모멘텀보다 실제 수익화·현금흐름을 질문한다.",
+      "counter": "대표 펀드는 NVIDIA와 Microsoft 등에 집중돼 있고 예상 성장에 의존한다. 높은 성장 전망이 이미 배수에 반영됐거나 기대 미달 시 평가가 크게 바뀔 수 있다.",
+      "priced_expectations": "FY1 배수와 3~5년 EPS 성장 추정치는 서로 기간과 계산방식이 다르므로 PEG나 목표가격을 임의 계산하지 않는다.",
+      "opportunity_cost": "금리·현금 대안의 확정성에 비해 장기 성장 기대의 불확실성을 감수하는 조건이 필요한 영역이다.",
+      "unknowns": [
+        "AI 투자 수익화·수요·마진·현금흐름",
+        "개별 기업의 현재 실현 실적과 guidance",
+        "사용자의 기술주 집중과 손실 감당 능력"
+      ],
+      "recheck": [
+        "매출 성장뿐 아니라 자유현금흐름이 늘고 있는가?",
+        "예상 이익 하향에도 현재 가격을 정당화할 수 있는가?",
+        "성장 ETF 추가가 기존 대형 기술주 노출을 중복하는가?"
+      ]
+    },
+    {
+      "asset_id": "VALUE",
+      "status": "investigate_further",
+      "evidence_ids": [
+        "US_SPDR_VALUE_EPS_GROWTH",
+        "US_SPDR_VALUE_FY1_PE",
+        "US_SPDR_VALUE_TOP_HOLDINGS",
+        "US_SPDR_GROWTH_FY1_PE",
+        "US_SPDR_GROWTH_TOP_HOLDINGS"
+      ],
+      "positive": "동일 발행자·동일 관측일·동일 FY1 정의의 대표 펀드에서 성장 노출보다 낮은 배수가 확인돼 서로 다른 실적 기대와 가격을 후속 비교할 출발점이 있다.",
+      "counter": "낮은 배수는 낮은 성장·사업 위험을 반영할 수 있다. 가치 펀드에도 Apple·Amazon이 있어 성장과 가치가 독립적인 자산군이라고 볼 수 없다.",
+      "priced_expectations": "성장 대비 낮은 성장 추정치와 낮은 배수가 함께 보인다. 이 차이가 충분한 보상인지는 사업과 업종 구성 검토 없이는 판단 유보다.",
+      "opportunity_cost": "가치주라는 이름만으로 높은 국채·현금 기회비용을 이기는 근거는 아니다. 이익 안정성·부채·주주환원·촉매를 따로 확인한다.",
+      "unknowns": [
+        "가격 할인 이유의 분해",
+        "업종별 정상 이익과 신용/경기민감도",
+        "성장과 가치의 전체 holdings 중복도"
+      ],
+      "recheck": [
+        "낮은 배수가 일시적 비관인가 구조적 이익 훼손인가?",
+        "전체 보유자산과 합치면 실질 집중은 어떻게 바뀌는가?"
+      ]
+    },
+    {
+      "asset_id": "DIVIDEND",
+      "status": "comparison_requires_definition",
+      "evidence_ids": [
+        "US_SPDR_DIVIDEND_FY1_PE",
+        "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD",
+        "US_SPDR_DIVIDEND_SECTOR_EXPOSURE"
+      ],
+      "positive": "대표 고배당 노출에는 과거 분배 현금흐름이 확인되고 현재 FY1 배수도 별도로 확인돼 현금흐름 지속성과 사업가치를 조사할 이유가 있다.",
+      "counter": "과거 분배수익률은 국채 YTM이나 미래 보장 현금수익률이 아니다. 부동산·유틸리티 노출 때문에 금리와 금융비용에 관한 추가 검토가 필요하다. 배당 삭감과 원금 손실 가능성은 남는다.",
+      "priced_expectations": "낮은 FY1 배수와 지난 365일 분배가 곧 시장 저평가를 뜻하지 않는다. 낮은 성장 기대·업종 구조·이익 감소·분배 지속성을 분해해야 한다.",
+      "opportunity_cost": "현재 국채·현금과 비교할 때 분배율만으로 고배당 주식을 우위에 놓지 않는다. 기간·미래/과거·원금 위험·KRW 환율·세후 현금흐름이 다른 비교다.",
+      "unknowns": [
+        "배당·분배의 지속성 및 현금흐름 커버",
+        "금리·신용·상업부동산 민감도",
+        "한국 계좌/원천징수/금융소득 조건"
+      ],
+      "recheck": [
+        "향후 배당이 영업현금흐름으로 지지되는가?",
+        "세후 분배와 원금 손실 위험을 감수할 이유가 국채 대안보다 충분한가?"
+      ]
+    },
+    {
+      "asset_id": "GROWTH",
+      "status": "narrative_fact_check_partial",
+      "evidence_ids": [
+        "NV_SEC_FY2027_Q2_REVENUE_DATACENTER",
+        "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+        "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES"
+      ],
+      "positive": "최신 공식 분기 공시에서 NVIDIA와 Data Center의 실현 매출 증가를 확인할 수 있어 AI 인프라 공급자의 현재 사업 규모가 커졌다는 좁은 사실은 지지한다.",
+      "counter": "기업 매출 증가는 AI 구매자의 투자수익·지속가능한 최종 수요·현재 주식의 저평가를 증명하지 않는다. 영업현금흐름 설명에는 연장 결제기간에 따른 매출채권 증가가 있고, 매출채권은 소수 직접 고객에 집중된다.",
+      "priced_expectations": "실현 매출을 확인해도 SPYG의 높은 기대 성장과 NVIDIA 주가에 어느 기대가 반영됐는지는 별도 가격·가치 연구다. Cash-flow 설명으로 부실채권·회계조작을 추정하지 않는다.",
+      "opportunity_cost": "주식 이익의 현금 전환과 고객 자금조달의 지속성을 국채·현금 대안의 확정성과 비교할 후속 연구 질문으로 남긴다.",
+      "unknowns": [
+        "HN AI 강세/약세 일반 주장 전체의 사실 여부",
+        "AI 구매자의 최종사용 수익성·투자 회수",
+        "현재 NVIDIA 적정가치 및 한국 업체의 직접 수혜",
+        "고객 결제 지연·연장조건의 정상화 여부"
+      ],
+      "recheck": [
+        "실제 매출 증가가 지속되는가?",
+        "매출 증가와 현금 회수의 시차가 확대되는가?",
+        "AI 인프라 구매자의 투자회수와 자금조달을 확인할 수 있는가?"
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "url": "https://www.ishares.com/us/products/239726/ishares-core-sp-500-etf",
+      "status": "size_limit",
+      "reason": "actual HTTP body exceeded existing 2MiB acquisition bound; not retained or bypassed; used bounded SPDR static public HTML alternative"
+    },
+    {
+      "url": "https://investor.vanguard.com/investment-products/etfs/profile/vug",
+      "status": "unsupported_visible_data",
+      "reason": "HTTP 200 but existing visible HTML normalizer returned empty text; embedded app data not extracted via a new parser; used SPDR alternative"
+    },
+    {
+      "url": "https://www.ssga.com/us/en/individual/etfs/spdr-portfolio-sp-500-growth-etf-spyg",
+      "status": "redirect",
+      "reason": "301 to explicitly inspected state-street-spdr-portfolio... canonical route; subsequent canonical URL separately configured and requested, no auto redirect"
+    },
+    {
+      "url": "https://go.factset.com/legal-statement",
+      "status": "terms_not_established",
+      "reason": "Explicit redirect chain led to www.factset.com/legal, HTTP 200 JavaScript shell with no visible legal terms. Policy note discloses this; no full-retention permission inferred."
+    },
+    {
+      "url": "https://www.ssga.com/us/en/individual/etfs/resources/legal",
+      "status": "redirect_to_resources",
+      "reason": "Explicitly inspected redirects led to /us/en/individual/resources rather than retained legal text; used product-page visible rights/local-restrictions disclaimer as policy provenance, no licence claim."
+    },
+    {
+      "url": "https://investor.nvidia.com/financial-info/financial-reports-and-sec-filings/default.aspx",
+      "status": "redirect",
+      "reason": "301 to /financial-info/financial-reports/default.aspx; final public listing inspected, but not adopted because single-company scope would add source burden without market breadth; did not treat listing revenue as market-wide facts."
+    },
+    {
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
+      "status": "policy_not_adopted",
+      "reason": "Actual public HTML inspected, but linked NVIDIA Terms of Service section 3.2(f) restricts automated acquisition. No NVIDIA-hosted snapshot or Evidence adopted; independently publicly filed SEC regulatory source selected instead."
+    }
+  ]
+}

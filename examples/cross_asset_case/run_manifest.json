@@ -1,0 +1,116 @@
+{
+  "claims": [
+    {
+      "counter_ids": [],
+      "id": "C_EARNINGS",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": null,
+      "support_ids": [
+        "E_EARNINGS"
+      ],
+      "verification": "supported_within_scope"
+    },
+    {
+      "counter_ids": [
+        "E_LONG_YIELD",
+        "E_POLICY_RATE"
+      ],
+      "id": "C_YIELD_ORDER",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": null,
+      "support_ids": [],
+      "verification": "contradicted_within_scope"
+    },
+    {
+      "counter_ids": [
+        "E_INFLATION",
+        "E_BOND_RISK"
+      ],
+      "id": "C_MARKET_EASING",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": null,
+      "support_ids": [
+        "E_MARKET_EXPECTATION"
+      ],
+      "verification": "partially_supported"
+    },
+    {
+      "counter_ids": [
+        "E_VALUATION",
+        "E_BREADTH"
+      ],
+      "id": "C_EQUITY_BALANCE",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": null,
+      "support_ids": [
+        "E_EARNINGS",
+        "E_LIQUIDITY"
+      ],
+      "verification": "disputed"
+    },
+    {
+      "counter_ids": [
+        "E_INFLATION",
+        "E_BOND_RISK"
+      ],
+      "id": "C_BOND_NARRATIVE",
+      "interpretation_status": "reviewed",
+      "narrative_evidence_id": "E_COMMUNITY_BOND",
+      "support_ids": [
+        "E_POLICY_RATE",
+        "E_LONG_YIELD",
+        "E_MARKET_EXPECTATION"
+      ],
+      "verification": "not_verifiable"
+    },
+    {
+      "counter_ids": [],
+      "id": "C_LIQUIDITY_CAUSALITY",
+      "interpretation_status": "pending",
+      "narrative_evidence_id": null,
+      "support_ids": [
+        "E_LIQUIDITY"
+      ],
+      "verification": "unverified"
+    }
+  ],
+  "code_sha256": "f730b00e6532fd88bc10beed75f972cbf89cc68ec7489670098baa8969e794f4",
+  "conclusion": "conditional",
+  "input_sha256": "ec2b7687943ef2e96be97b10d1de8cdc8e0b6dce43da675efc7991e02e2ace6a",
+  "method_versions": {
+    "calculation": "rate_difference_v1",
+    "engine": "evidence_rules_v1",
+    "report": "korean_brief_v1"
+  },
+  "metrics": [
+    {
+      "asset_ids": [
+        "cash"
+      ],
+      "id": "M_CASH_RATE_GAP",
+      "input_ids": [
+        "E_CASH_RATE",
+        "E_INFLATION"
+      ],
+      "label": "합성 명목 현금 이자율과 후행 물가상승률의 단순 차이",
+      "limitations": [
+        "명목 연 이자율에서 후행 연간 물가상승률을 뺀 기술적 차이이며 단위는 퍼센트포인트다.",
+        "미래 실질수익·사용자 실제 구매력 변화·동일기간 실현 수익이 아니다.",
+        "정확한 복리 실질수익 공식이나 미래 물가 추정을 사용하지 않는다.",
+        "비용·세금은 미확인으로 남기며 계산에 포함하지 않는다.",
+        "이 차이만으로 현금·국채·주식을 순위화하지 않는다.",
+        "두 연율 관측값의 단순 격차다. 관측 물가를 대입해도 미래 실질수익, 확정 투자성과 또는 자산 간 우위를 뜻하지 않는다. 비용·세금·가격변화는 계산하지 않았다."
+      ],
+      "method": "rate_difference_v1",
+      "unit": "percentage_points",
+      "value": "-0.5"
+    }
+  ],
+  "personal_conclusion": "insufficient_evidence",
+  "report_sha256": "525f1edb20f23a3db4bb38f286c628be10bb30b731f7419b730c0c3e20d1d489",
+  "run_id": "076004880871c82c5299d1a4a2ee1f566645e59249f2592d02c66aba82380b31",
+  "run_status": "completed",
+  "schema_version": "1",
+  "synthetic": true,
+  "version": "0.1.0"
+}

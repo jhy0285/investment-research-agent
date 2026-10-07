@@ -1,0 +1,498 @@
+{
+  "as_of": "2026-09-10",
+  "asset_ids": [
+    "US_EQUITY",
+    "BTC"
+  ],
+  "claims": [
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_FACTSET_Q3",
+        "E_DD_IDX_SPY",
+        "E_DD_TR_H15_CURVE"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_US_EQUITY",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_COM_HN_BTC_BEAR_PERFORMANCE",
+        "E_COM_HN_BTC_CUSTODY_RISK",
+        "E_CR_IBIT_ISSUER",
+        "E_CR_COINSHARES_CURRENT_FLOWS"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_BTC",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "verification": "unverified"
+    }
+  ],
+  "evidence": [
+    {
+      "definition": {
+        "adjustment": "authored fixture",
+        "currency": null,
+        "measure": "authored synthetic passage",
+        "period": "synthetic snapshot",
+        "scope": "synthetic fixture",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_SYNTHETIC",
+      "extraction": null,
+      "id": "E_COM_HN_BTC_BEAR_PERFORMANCE",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence."
+      ],
+      "source_id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "authored fixture",
+        "currency": null,
+        "measure": "authored synthetic passage",
+        "period": "synthetic snapshot",
+        "scope": "synthetic fixture",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_SYNTHETIC",
+      "extraction": null,
+      "id": "E_COM_HN_BTC_CUSTODY_RISK",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence."
+      ],
+      "source_id": "COM_HN_BTC_CUSTODY_RISK",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "authored fixture",
+        "currency": null,
+        "measure": "authored synthetic passage",
+        "period": "synthetic snapshot",
+        "scope": "synthetic fixture",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_SYNTHETIC",
+      "extraction": null,
+      "id": "E_CR_IBIT_ISSUER",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "authored fixture",
+        "currency": null,
+        "measure": "authored synthetic passage",
+        "period": "synthetic snapshot",
+        "scope": "synthetic fixture",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_SYNTHETIC",
+      "extraction": null,
+      "id": "E_CR_COINSHARES_CURRENT_FLOWS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence."
+      ],
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "authored fixture",
+        "currency": "USD",
+        "measure": "authored synthetic valuation and yield",
+        "period": "synthetic snapshot",
+        "scope": "synthetic index and Treasury",
+        "unit": "ratio and percent"
+      },
+      "excerpt_id": "Q_SYNTHETIC",
+      "extraction": null,
+      "id": "E_DD_IDX_FACTSET_Q3",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence."
+      ],
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "authored fixture",
+        "currency": null,
+        "measure": "authored synthetic passage",
+        "period": "synthetic snapshot",
+        "scope": "synthetic fixture",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_SYNTHETIC",
+      "extraction": null,
+      "id": "E_DD_IDX_SPY",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence."
+      ],
+      "source_id": "DD_IDX_SPY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "authored fixture",
+        "currency": "USD",
+        "measure": "authored synthetic valuation and yield",
+        "period": "synthetic snapshot",
+        "scope": "synthetic index and Treasury",
+        "unit": "ratio and percent"
+      },
+      "excerpt_id": "Q_SYNTHETIC",
+      "extraction": null,
+      "id": "E_DD_TR_H15_CURVE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence."
+      ],
+      "source_id": "DD_TR_H15_CURVE",
+      "view": "fundamental"
+    }
+  ],
+  "id": "ASK_SELECTED_SOURCES",
+  "question": "내 포트폴리오 괜찮아?",
+  "schema_version": "1",
+  "sources": [
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://synthetic-ask.example.org/com_hn_btc_bear_performance",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "authored fixture",
+            "currency": null,
+            "measure": "authored synthetic passage",
+            "period": "synthetic snapshot",
+            "scope": "synthetic fixture",
+            "unit": "text"
+          },
+          "id": "Q_SYNTHETIC",
+          "locator": "synthetic paragraph",
+          "quote": "Authored synthetic participants question durable demand."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "jurisdiction": "US",
+      "max_age_days": 5,
+      "observed_at": "2026-09-10T11:00:00Z",
+      "origin_source_id": null,
+      "policy_note": "Authored synthetic fixture retained only for offline tests.",
+      "policy_url": "https://synthetic-ask.example.org/terms",
+      "published_at": "2026-09-10T11:00:00Z",
+      "publisher": "Authored synthetic test publisher",
+      "retention": "excerpt",
+      "title": "Synthetic fixture, never live evidence",
+      "topics": [
+        "synthetic-test"
+      ],
+      "type": "community",
+      "url": "https://synthetic-ask.example.org/com_hn_btc_bear_performance",
+      "valid_as_of": "2026-09-10"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://synthetic-ask.example.org/com_hn_btc_custody_risk",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "authored fixture",
+            "currency": null,
+            "measure": "authored synthetic passage",
+            "period": "synthetic snapshot",
+            "scope": "synthetic fixture",
+            "unit": "text"
+          },
+          "id": "Q_SYNTHETIC",
+          "locator": "synthetic paragraph",
+          "quote": "Authored synthetic participants question durable demand."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "COM_HN_BTC_CUSTODY_RISK",
+      "jurisdiction": "US",
+      "max_age_days": 5,
+      "observed_at": "2026-09-10T11:00:00Z",
+      "origin_source_id": null,
+      "policy_note": "Authored synthetic fixture retained only for offline tests.",
+      "policy_url": "https://synthetic-ask.example.org/terms",
+      "published_at": "2026-09-10T11:00:00Z",
+      "publisher": "Authored synthetic test publisher",
+      "retention": "excerpt",
+      "title": "Synthetic fixture, never live evidence",
+      "topics": [
+        "synthetic-test"
+      ],
+      "type": "community",
+      "url": "https://synthetic-ask.example.org/com_hn_btc_custody_risk",
+      "valid_as_of": "2026-09-10"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://synthetic-ask.example.org/cr_coinshares_current_flows",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "authored fixture",
+            "currency": null,
+            "measure": "authored synthetic passage",
+            "period": "synthetic snapshot",
+            "scope": "synthetic fixture",
+            "unit": "text"
+          },
+          "id": "Q_SYNTHETIC",
+          "locator": "synthetic paragraph",
+          "quote": "Authored synthetic issuer describes its economics and risks."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_COINSHARES_CURRENT_FLOWS",
+      "jurisdiction": "US",
+      "max_age_days": 5,
+      "observed_at": "2026-09-10T11:00:00Z",
+      "origin_source_id": null,
+      "policy_note": "Authored synthetic fixture retained only for offline tests.",
+      "policy_url": "https://synthetic-ask.example.org/terms",
+      "published_at": "2026-09-10T11:00:00Z",
+      "publisher": "Authored synthetic test publisher",
+      "retention": "excerpt",
+      "title": "Synthetic fixture, never live evidence",
+      "topics": [
+        "synthetic-test"
+      ],
+      "type": "primary",
+      "url": "https://synthetic-ask.example.org/cr_coinshares_current_flows",
+      "valid_as_of": "2026-09-10"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://synthetic-ask.example.org/cr_ibit_issuer",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "authored fixture",
+            "currency": null,
+            "measure": "authored synthetic passage",
+            "period": "synthetic snapshot",
+            "scope": "synthetic fixture",
+            "unit": "text"
+          },
+          "id": "Q_SYNTHETIC",
+          "locator": "synthetic paragraph",
+          "quote": "Authored synthetic issuer describes its economics and risks."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_IBIT_ISSUER",
+      "jurisdiction": "US",
+      "max_age_days": 5,
+      "observed_at": "2026-09-10T11:00:00Z",
+      "origin_source_id": null,
+      "policy_note": "Authored synthetic fixture retained only for offline tests.",
+      "policy_url": "https://synthetic-ask.example.org/terms",
+      "published_at": "2026-09-10T11:00:00Z",
+      "publisher": "Authored synthetic test publisher",
+      "retention": "excerpt",
+      "title": "Synthetic fixture, never live evidence",
+      "topics": [
+        "synthetic-test"
+      ],
+      "type": "primary",
+      "url": "https://synthetic-ask.example.org/cr_ibit_issuer",
+      "valid_as_of": "2026-09-10"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://synthetic-ask.example.org/dd_idx_factset_q3",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "authored fixture",
+            "currency": "USD",
+            "measure": "authored synthetic valuation and yield",
+            "period": "synthetic snapshot",
+            "scope": "synthetic index and Treasury",
+            "unit": "ratio and percent"
+          },
+          "id": "Q_SYNTHETIC",
+          "locator": "synthetic paragraph",
+          "quote": "Synthetic fixture only. Forward P/E 20.0; Treasury 3.0 percent."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_IDX_FACTSET_Q3",
+      "jurisdiction": "US",
+      "max_age_days": 5,
+      "observed_at": "2026-09-10T11:00:00Z",
+      "origin_source_id": null,
+      "policy_note": "Authored synthetic fixture retained only for offline tests.",
+      "policy_url": "https://synthetic-ask.example.org/terms",
+      "published_at": "2026-09-10T11:00:00Z",
+      "publisher": "Authored synthetic test publisher",
+      "retention": "excerpt",
+      "title": "Synthetic fixture, never live evidence",
+      "topics": [
+        "synthetic-test"
+      ],
+      "type": "primary",
+      "url": "https://synthetic-ask.example.org/dd_idx_factset_q3",
+      "valid_as_of": "2026-09-10"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://synthetic-ask.example.org/dd_idx_spy",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "authored fixture",
+            "currency": null,
+            "measure": "authored synthetic passage",
+            "period": "synthetic snapshot",
+            "scope": "synthetic fixture",
+            "unit": "text"
+          },
+          "id": "Q_SYNTHETIC",
+          "locator": "synthetic paragraph",
+          "quote": "Authored synthetic issuer describes its economics and risks."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_IDX_SPY",
+      "jurisdiction": "US",
+      "max_age_days": 5,
+      "observed_at": "2026-09-10T11:00:00Z",
+      "origin_source_id": null,
+      "policy_note": "Authored synthetic fixture retained only for offline tests.",
+      "policy_url": "https://synthetic-ask.example.org/terms",
+      "published_at": "2026-09-10T11:00:00Z",
+      "publisher": "Authored synthetic test publisher",
+      "retention": "excerpt",
+      "title": "Synthetic fixture, never live evidence",
+      "topics": [
+        "synthetic-test"
+      ],
+      "type": "primary",
+      "url": "https://synthetic-ask.example.org/dd_idx_spy",
+      "valid_as_of": "2026-09-10"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://synthetic-ask.example.org/dd_tr_h15_curve",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "authored fixture",
+            "currency": "USD",
+            "measure": "authored synthetic valuation and yield",
+            "period": "synthetic snapshot",
+            "scope": "synthetic index and Treasury",
+            "unit": "ratio and percent"
+          },
+          "id": "Q_SYNTHETIC",
+          "locator": "synthetic paragraph",
+          "quote": "Synthetic fixture only. Forward P/E 20.0; Treasury 3.0 percent."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_TR_H15_CURVE",
+      "jurisdiction": "US",
+      "max_age_days": 5,
+      "observed_at": "2026-09-10T11:00:00Z",
+      "origin_source_id": null,
+      "policy_note": "Authored synthetic fixture retained only for offline tests.",
+      "policy_url": "https://synthetic-ask.example.org/terms",
+      "published_at": "2026-09-10T11:00:00Z",
+      "publisher": "Authored synthetic test publisher",
+      "retention": "excerpt",
+      "title": "Synthetic fixture, never live evidence",
+      "topics": [
+        "synthetic-test"
+      ],
+      "type": "primary",
+      "url": "https://synthetic-ask.example.org/dd_tr_h15_curve",
+      "valid_as_of": "2026-09-10"
+    }
+  ]
+}

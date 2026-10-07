@@ -1,0 +1,640 @@
+{
+  "sources": [
+    {
+      "id": "CR_IBIT_ISSUER",
+      "url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "canonical_url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "type": "primary",
+      "publisher": "BlackRock / iShares",
+      "title": "iShares Bitcoin Trust ETF issuer product page, dated fields 2026-10-02",
+      "published_at": null,
+      "observed_at": "2026-10-02",
+      "valid_as_of": "2026-10-02",
+      "jurisdiction": "US",
+      "topics": [
+        "crypto",
+        "product-liquidity",
+        "product-structure"
+      ],
+      "asset_ids": [
+        "BTC"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.blackrock.com/corporate/compliance/terms-and-conditions",
+      "policy_note": "Public product page; robots permits the chosen URL. BlackRock terms allow personal non-commercial downloads with proprietary notices and restrict public/commercial reuse without written permission. Retain only minimal attributed research quotations in this personal research example, not full content. This does not establish general public redistribution rights. Copyright BlackRock, Inc. All rights reserved.",
+      "retention": "excerpt",
+      "max_age_days": 7,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "CR_IBIT_SPREAD",
+          "quote": "30 Day Median Bid/Ask Spread 0.02% as of Oct 02, 2026",
+          "locator": "Key Facts: 30 Day Median Bid/Ask Spread",
+          "definition": {
+            "measure": "IBIT 30-day median bid/ask spread",
+            "unit": "percent_of_share_price",
+            "period": "30-day window ending 2026-10-02 as labeled by issuer",
+            "currency": "USD",
+            "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+            "scope": "IBIT shares on US secondary market, not Bitcoin spot market"
+          }
+        },
+        {
+          "id": "CR_IBIT_OBJECTIVE",
+          "quote": "The iShares Bitcoin Trust ETF seeks to reflect the performance of the price of bitcoin.",
+          "locator": "Product objective",
+          "definition": {
+            "measure": "IBIT investment objective",
+            "unit": "statement",
+            "period": "source edition as of 2026-10-02",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "issuer description of IBIT, not a verified expected Bitcoin return"
+          }
+        },
+        {
+          "id": "CR_IBIT_REGISTRATION",
+          "quote": "The iShares Bitcoin Trust ETF is not an investment company registered under the Investment Company Act of 1940, and therefore is not subject to the same regulatory requirements as mutual funds or ETFs registered under the Investment Company Act of 1940.",
+          "locator": "Product regulatory disclaimer",
+          "definition": {
+            "measure": "IBIT legal registration status",
+            "unit": "statement",
+            "period": "source edition as of 2026-10-02",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "CR_ETHA_ISSUER",
+      "url": "https://www.ishares.com/us/products/337614/ishares-ethereum-trust-etf",
+      "canonical_url": "https://www.ishares.com/us/products/337614/ishares-ethereum-trust-etf",
+      "type": "primary",
+      "publisher": "BlackRock / iShares",
+      "title": "iShares Ethereum Trust ETF issuer product page, dated fields 2026-10-02",
+      "published_at": null,
+      "observed_at": "2026-10-02",
+      "valid_as_of": "2026-10-02",
+      "jurisdiction": "US",
+      "topics": [
+        "crypto",
+        "product-liquidity",
+        "product-structure"
+      ],
+      "asset_ids": [
+        "ETH"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.blackrock.com/corporate/compliance/terms-and-conditions",
+      "policy_note": "Public product page; robots permits the chosen URL. BlackRock terms allow personal non-commercial downloads with proprietary notices and restrict public/commercial reuse without written permission. Retain only minimal attributed research quotations in this personal research example, not full content. This does not establish general public redistribution rights. Copyright BlackRock, Inc. All rights reserved.",
+      "retention": "excerpt",
+      "max_age_days": 7,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "CR_ETHA_SPREAD",
+          "quote": "30 Day Median Bid/Ask Spread 0.05% as of Oct 02, 2026",
+          "locator": "Key Facts: 30 Day Median Bid/Ask Spread",
+          "definition": {
+            "measure": "ETHA 30-day median bid/ask spread",
+            "unit": "percent_of_share_price",
+            "period": "30-day window ending 2026-10-02 as labeled by issuer",
+            "currency": "USD",
+            "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+            "scope": "ETHA shares on US secondary market, not Ethereum spot market"
+          }
+        },
+        {
+          "id": "CR_ETHA_OBJECTIVE",
+          "quote": "The iShares Ethereum Trust ETF seeks to reflect generally the performance of the price of ether, the native token of the Ethereum network.",
+          "locator": "Product objective",
+          "definition": {
+            "measure": "ETHA investment objective",
+            "unit": "statement",
+            "period": "source edition as of 2026-10-02",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "issuer description of ETHA exposure, not staking returns or verified expected Ether return"
+          }
+        },
+        {
+          "id": "CR_ETHA_CORPORATE_ACTION",
+          "quote": "On August 4, 2026, iShares filed to issue a reverse stock split for the iShares Ethereum Trust ETF (Nasdaq: ETHA). The reverse split will be effectuated after the close of trading on October 5, 2026. Shares of ETHA will begin trading on a split-adjusted basis on October 6, 2026.",
+          "locator": "Important Notice Regarding a Corporate Action",
+          "definition": {
+            "measure": "announced ETHA reverse split",
+            "unit": "statement",
+            "period": "announcement 2026-08-04; planned post-close action 2026-10-05; planned split-adjusted trading 2026-10-06",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "ETHA share corporate action; completion unknown as of research cutoff"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "CR_ETH_ISSUANCE_MECHANISM",
+      "url": "https://ethereum.org/roadmap/merge/issuance/",
+      "canonical_url": "https://ethereum.org/roadmap/merge/issuance/",
+      "type": "primary",
+      "publisher": "Ethereum.org contributors / Ethereum Foundation",
+      "title": "How The Merge impacted ETH supply",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": "2026-06-06",
+      "jurisdiction": "global",
+      "topics": [
+        "crypto",
+        "network-usage",
+        "issuance",
+        "fee-burn"
+      ],
+      "asset_ids": [
+        "ETH"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://ethereum.org/en/terms-of-use/",
+      "policy_note": "Public page and robots Allow /. Ethereum.org Terms of Use license non-code content under CC BY 4.0 unless otherwise marked. Attribute Ethereum.org contributors, title and URL; selected unmodified excerpts only. Page last update June 6, 2026 is an edition date, not first publication or current network observation. Copyright Ethereum Foundation / contributors; CC BY 4.0.",
+      "retention": "excerpt",
+      "max_age_days": 180,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "CR_ETH_ISSUANCE",
+          "quote": "The exact staking issuance fluctuates based on the total amount of ETH staked",
+          "locator": "ETH issuance tldr",
+          "definition": {
+            "measure": "Ethereum staking issuance mechanism",
+            "unit": "statement",
+            "period": "page last update 2026-06-06; current edition retrieved during research",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "Ethereum protocol mechanism; no current quantity, net issuance or staking return established"
+          }
+        },
+        {
+          "id": "CR_ETH_BURN",
+          "quote": "For a transaction to execute on Ethereum, a minimum fee (known as a \"base fee\") must be paid, which fluctuates continuously (block-to-block) depending on network activity. The fee is paid in ETH and is required for the transaction to be considered valid. This fee gets burned during the transaction process, removing it from circulation.",
+          "locator": "The burn",
+          "definition": {
+            "measure": "Ethereum base fee burn mechanism",
+            "unit": "statement",
+            "period": "page last update 2026-06-06; current edition retrieved during research",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "Ethereum protocol mechanism; no current network usage or burn-rate measurement"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "CR_COINSHARES_CURRENT_FLOWS",
+      "url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "canonical_url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "type": "research",
+      "publisher": "CoinShares / James Butterfill",
+      "title": "Market update - October 2nd, 2026",
+      "published_at": "2026-10-02",
+      "observed_at": null,
+      "valid_as_of": "2026-10-02",
+      "jurisdiction": "global",
+      "topics": [
+        "crypto",
+        "fund-flows",
+        "macro-narrative"
+      ],
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://coinshares.com/insights/research-data/market-update-02-10-2026/",
+      "policy_note": "Public article reached from current research index and robots permits the selected URL. The article states Copyright CoinShares, all rights reserved; no general redistribution license established. Retain two minimal attributed quotations needed for personal research critique, not entire article, figures, subscriber content or author profile. Copyright CoinShares; source and title retained. Quoted figures remain provider reports; exact window/asset coverage and original flow table are unverified.",
+      "retention": "excerpt",
+      "max_age_days": 7,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "CR_FLOW_SLOWDOWN",
+          "quote": "We have seen only around US$150M of inflows so far this week, a dramatic slowdown from approximately US$3.5B last week.",
+          "locator": "Fund flows paragraph",
+          "definition": {
+            "measure": "research provider reported digital-asset investment-product flows",
+            "unit": "USD_million_and_USD_billion_as_quoted",
+            "period": "week-to-date as described in 2026-10-02 article versus preceding week; exact coverage timestamps unknown",
+            "currency": "USD",
+            "adjustment": "provider reported aggregate; no conversion, inferred asset split or annualization",
+            "scope": "CoinShares described fund flows; asset and geography breakdown not given in selected text; not BTC-only/ETH-only or US spot ETF-only"
+          }
+        },
+        {
+          "id": "CR_FLOW_CAUTIOUS",
+          "quote": "Fund flows, however, show that investors remain cautious.",
+          "locator": "Fund flows paragraph: author characterization",
+          "definition": {
+            "measure": "research-provider characterization of cautious/selective fund flows",
+            "unit": "statement",
+            "period": "2026-10-02 article",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "CoinShares author interpretation, not independently verified market sentiment or predictive probability"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "CR_IBIT_ISSUER": "46a4b3743c1720f712bf886779945a5547230fefdf5a54fea3f024eea797aee5",
+    "CR_ETHA_ISSUER": "d94ebe00bbba594e8c2324696f95bf46a0827876e87b2c94dee6124df8470e92",
+    "CR_ETH_ISSUANCE_MECHANISM": "e786187073c345a9cd35ed73daf7a47adc94a9491cef135af1cab01903feb949",
+    "CR_COINSHARES_CURRENT_FLOWS": "c6c9508ec11d910ad08cfe8e39d87890577859dd103c55bd80b6bfed3c5eb218"
+  },
+  "evidence": [
+    {
+      "id": "E_CR_IBIT_SPREAD",
+      "source_id": "CR_IBIT_ISSUER",
+      "excerpt_id": "CR_IBIT_SPREAD",
+      "view": "quantitative",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "IBIT 30-day median bid/ask spread",
+        "unit": "percent_of_share_price",
+        "period": "30-day window ending 2026-10-02 as labeled by issuer",
+        "currency": "USD",
+        "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+        "scope": "IBIT shares on US secondary market, not Bitcoin spot market"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Product secondary-market liquidity metric, not underlying token liquidity, a capital inflow, expected return, or user-access eligibility.",
+        "First publication timestamp unknown; the dated observation is 2026-10-02.",
+        "No numeric parser for this measure was added; quotation fact only, extraction null."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_IBIT_OBJECTIVE",
+      "source_id": "CR_IBIT_ISSUER",
+      "excerpt_id": "CR_IBIT_OBJECTIVE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "IBIT investment objective",
+        "unit": "statement",
+        "period": "source edition as of 2026-10-02",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "issuer description of IBIT, not a verified expected Bitcoin return"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_IBIT_REGISTRATION",
+      "source_id": "CR_IBIT_ISSUER",
+      "excerpt_id": "CR_IBIT_REGISTRATION",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "IBIT legal registration status",
+        "unit": "statement",
+        "period": "source edition as of 2026-10-02",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_ETHA_SPREAD",
+      "source_id": "CR_ETHA_ISSUER",
+      "excerpt_id": "CR_ETHA_SPREAD",
+      "view": "quantitative",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "ETHA 30-day median bid/ask spread",
+        "unit": "percent_of_share_price",
+        "period": "30-day window ending 2026-10-02 as labeled by issuer",
+        "currency": "USD",
+        "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+        "scope": "ETHA shares on US secondary market, not Ethereum spot market"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Product secondary-market liquidity metric, not underlying token liquidity, a capital inflow, expected return, or user-access eligibility.",
+        "First publication timestamp unknown; the dated observation is 2026-10-02.",
+        "No numeric parser for this measure was added; quotation fact only, extraction null."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_ETHA_OBJECTIVE",
+      "source_id": "CR_ETHA_ISSUER",
+      "excerpt_id": "CR_ETHA_OBJECTIVE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "ETHA investment objective",
+        "unit": "statement",
+        "period": "source edition as of 2026-10-02",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "issuer description of ETHA exposure, not staking returns or verified expected Ether return"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_ETHA_CORPORATE_ACTION",
+      "source_id": "CR_ETHA_ISSUER",
+      "excerpt_id": "CR_ETHA_CORPORATE_ACTION",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "announced ETHA reverse split",
+        "unit": "statement",
+        "period": "announcement 2026-08-04; planned post-close action 2026-10-05; planned split-adjusted trading 2026-10-06",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "ETHA share corporate action; completion unknown as of research cutoff"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "2026-10-05 planned action and 2026-10-06 split-adjusted trading are future relative to research cutoff; announcement is not execution.",
+        "No inference about Ethereum network value or investor return from a reverse share split."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_ETH_ISSUANCE",
+      "source_id": "CR_ETH_ISSUANCE_MECHANISM",
+      "excerpt_id": "CR_ETH_ISSUANCE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Ethereum staking issuance mechanism",
+        "unit": "statement",
+        "period": "page last update 2026-06-06; current edition retrieved during research",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "Ethereum protocol mechanism; no current quantity, net issuance or staking return established"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Structural protocol description only; no current network transaction count, fees, ETH issuance/burn, net supply growth or staking yield measured.",
+        "The same page gives numerical examples under older staked-ETH assumptions; those examples are deliberately excluded from current facts.",
+        "Page edition date is known, first publication date is unknown."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_ETH_BURN",
+      "source_id": "CR_ETH_ISSUANCE_MECHANISM",
+      "excerpt_id": "CR_ETH_BURN",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Ethereum base fee burn mechanism",
+        "unit": "statement",
+        "period": "page last update 2026-06-06; current edition retrieved during research",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "Ethereum protocol mechanism; no current network usage or burn-rate measurement"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Structural protocol description only; no current network transaction count, fees, ETH issuance/burn, net supply growth or staking yield measured.",
+        "The same page gives numerical examples under older staked-ETH assumptions; those examples are deliberately excluded from current facts.",
+        "Page edition date is known, first publication date is unknown."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_FLOW_SLOWDOWN",
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "excerpt_id": "CR_FLOW_SLOWDOWN",
+      "view": "quantitative",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "research provider reported digital-asset investment-product flows",
+        "unit": "USD_million_and_USD_billion_as_quoted",
+        "period": "week-to-date as described in 2026-10-02 article versus preceding week; exact coverage timestamps unknown",
+        "currency": "USD",
+        "adjustment": "provider reported aggregate; no conversion, inferred asset split or annualization",
+        "scope": "CoinShares described fund flows; asset and geography breakdown not given in selected text; not BTC-only/ETH-only or US spot ETF-only"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Not US spot ETF flows exclusively; exact date range, component products, BTC/ETH allocation, fees and source flow-table reconciliation unknown.",
+        "Research author has digital-asset-product business interests; monetary-policy and macro claims elsewhere in the article were not adopted as verified facts.",
+        "Week-to-date and full preceding week do not have equal lengths; do not compute a percentage decline or annualize."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_CR_FLOW_CAUTIOUS",
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "excerpt_id": "CR_FLOW_CAUTIOUS",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "research-provider characterization of cautious/selective fund flows",
+        "unit": "statement",
+        "period": "2026-10-02 article",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "CoinShares author interpretation, not independently verified market sentiment or predictive probability"
+      },
+      "extraction": null,
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Not US spot ETF flows exclusively; exact date range, component products, BTC/ETH allocation, fees and source flow-table reconciliation unknown.",
+        "Research author has digital-asset-product business interests; monetary-policy and macro claims elsewhere in the article were not adopted as verified facts.",
+        "Week-to-date and full preceding week do not have equal lengths; do not compute a percentage decline or annualize."
+      ],
+      "interpretation": null
+    }
+  ],
+  "notes": [
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "research_status": "insufficient_for_relative_attractiveness",
+      "selected_evidence_ids": [
+        "E_CR_IBIT_SPREAD",
+        "E_CR_IBIT_OBJECTIVE",
+        "E_CR_IBIT_REGISTRATION",
+        "E_CR_FLOW_SLOWDOWN"
+      ],
+      "observed_facts": [
+        "IBIT 발행사는 2026-10-02 기준 30일 중간 매수·매도 호가 차이를 0.02%로 표시한다. 상품의 과거 거래 마찰이며 BTC 현물의 미래수익·ETF 자금유입이 아니다.",
+        "IBIT은 Bitcoin 가격 성과 반영을 목표로 한다고 명시한다. 현금·국채 이자처럼 계약상 지급되는 수익의 자료는 이번 조사에 없다.",
+        "CoinShares 최신 기사의 주중 유입은 암호자산 투자상품 전체 보고이며 BTC 단독 유입이라고 확인되지 않는다."
+      ],
+      "positive_case_to_test": "상품 접근과 작은 관측 거래 마찰이 지속적 실수요로 이어지는지 재조사할 수 있다. 발행사 문구와 스프레드만으로 투자 매력이 높다고 결론내리지 않는다.",
+      "counter_case": [
+        "상품 유동성과 새로운 자본의 지속 유입은 별개다. CoinShares의 전체 투자상품 주중 유입은 이전 주 전체보다 작다고 보도되지만 기간 길이와 자산 범위가 달라 변화율은 계산하지 않는다.",
+        "IBIT은 1940년 Investment Company Act 등록 투자회사가 아니라는 발행사 공시가 있다. 투자상품별 법적 조건을 검토해야 하며 한국 투자자 접근 허용은 별개다."
+      ],
+      "unknown": [
+        "BTC 단독 동일기간 현재 ETF 순유입 원자료",
+        "현재 네트워크 사용·채굴 경제성·수요의 지속성",
+        "펀딩비·open interest·청산·레버리지 집중",
+        "한국 거주자 상품 접근·세금·계좌 조건",
+        "사용자 전체 노출과 현금 사용 시점"
+      ],
+      "opportunity_cost": "현금·단기 국채의 확인 가능한 계약상 수익을 포기하고 BTC 가격변동·KRW 환산·보관/상품 위험을 감수할 근거를 아직 확보하지 못했다. 그렇다고 현금이 항상 우월하다는 결론도 아니다.",
+      "follow_up_questions": [
+        "동일 기간 BTC ETF 순유입과 상품별 수요는 무엇인가?",
+        "유동성 완화 서사를 공식 금리·달러·신용 자료가 지지하는가?",
+        "레버리지 쏠림 없이 실수요가 지속되는가?"
+      ],
+      "selection_reason": "가격차트만으로 제외하거나 추천하지 않고 자금수요·상품구조·대체 수익 확인 후보로 남긴다.",
+      "date_caveat": "10/2 관측 기준일은 확인했지만 최초 공개일·당시 판본은 unknown이다. 현재 획득 판본을 과거 연구에 소급하지 않는다."
+    },
+    {
+      "asset_ids": [
+        "ETH"
+      ],
+      "research_status": "insufficient_for_relative_attractiveness",
+      "selected_evidence_ids": [
+        "E_CR_ETHA_SPREAD",
+        "E_CR_ETHA_OBJECTIVE",
+        "E_CR_ETHA_CORPORATE_ACTION",
+        "E_CR_ETH_ISSUANCE",
+        "E_CR_ETH_BURN",
+        "E_CR_FLOW_SLOWDOWN"
+      ],
+      "observed_facts": [
+        "ETHA 발행사는 2026-10-02 기준 30일 중간 호가 차이를 0.05%로 표시한다. 해당 상품 거래 마찰이며 Ethereum 네트워크 가치가 아니다.",
+        "Ethereum 공식 문서는 staking 발행이 staked ETH 규모에 의존하고, 거래 base fee가 네트워크 활동에 따라 달라지며 소각된다고 설명한다. 현재 수량·순공급 감소가 확인됐다는 뜻은 아니다.",
+        "발행사는 8/4 발표한 ETHA reverse split이 10/5 장 종료 후 예정되고 10/6부터 조정 주식 거래 예정이라고 안내한다. 10/4 기준 완료 사건으로 표현하지 않는다."
+      ],
+      "positive_case_to_test": "ETH는 네트워크 사용에서 수수료·소각으로 전달되는 경로와 staking 발행·보상 경로를 따로 검토할 수 있다. 현재 거래·fees·burn·issuance가 확인되어야 사용 증가가 보유 매력으로 연결되는지 판단할 수 있다.",
+      "counter_case": [
+        "활동이 소각에 영향을 준다는 메커니즘은 항상 ETH가 순디플레이션이라는 증거가 아니다.",
+        "직접 ETH 보유·staking·ETHA는 다른 노출이다. ETHA가 staking 보상을 제공한다는 자료를 확보하지 않았으므로 보유 방식의 수익을 섞지 않는다.",
+        "ETHA 스프레드가 IBIT보다 크다는 두 상품 지표로 underlying BTC/ETH 기대수익·전체 시장 유동성·상대 매력을 순위화하지 않는다."
+      ],
+      "unknown": [
+        "현재 L1/L2 사용량과 수수료·소각의 관계",
+        "현재 ETH 발행량·순공급·staked ETH·실현 staking 보상",
+        "ETH 단독 동일기간 ETF 순유입",
+        "L2 성장과 L1 수수료·토큰 가치 포착",
+        "레버리지·청산 집중과 한국 투자자 접근 조건"
+      ],
+      "opportunity_cost": "BTC의 다른 수요 논리, 현금·국채 수익, 성장주 사업 현금흐름과 비교하려면 ETH 사용·발행·보상 자료와 실제 취득 방식의 위험이 더 필요하다.",
+      "follow_up_questions": [
+        "사용량 변화가 L1/L2의 어느 경로로 ETH fees·burn에 전달되는가?",
+        "동일 기간 현재 issuance와 burn의 차이는 무엇인가?",
+        "직접 staking과 ETHA의 비용·보상·락업·규정은 어떻게 다른가?"
+      ],
+      "selection_reason": "BTC와 같은 암호화폐 점수를 적용하지 않는다. 네트워크 수급 자료가 없어 별도 조사 후보로 남기고 매력 결론을 유보한다.",
+      "date_caveat": "공식 문서의 6/6 개정일과 현재 획득일을 현재 네트워크 관측일로 사용하지 않는다. 오래된 숫자 예시는 현시점 값에서 제외했다."
+    },
+    {
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "comparison_boundary": "IBIT/ETHA 스프레드는 동일 발행사의 같은 명명 지표·같은 2026-10-02 관측일이다. 토큰 가치·미래수익·한국 투자자 적합성 비교는 아니다. CoinShares 주중 전체 유입과 이전 전체 주의 유입은 동일 기간 비교가 아니므로 변화율을 계산하지 않는다.",
+      "independence": "두 iShares 자료는 같은 발행사이며 독립기관 두 곳의 확인이 아니다. CoinShares는 투자상품 사업의 이해관계가 있고 원본 flow table은 대조하지 못했다.",
+      "rights": "최소 인용과 출처·저작권만 보존한다. BlackRock/CoinShares 전체본문·일반 공개 재배포 권한을 확보한 것으로 표현하지 않는다. Ethereum 문서는 CC BY 4.0로 출처 표시한다.",
+      "verification": "구절 일치·정의·시점 검토를 수행했다. 지원되지 않는 numeric extraction은 null이며 금융 해석을 자동 사실판정했다고 주장하지 않는다."
+    }
+  ],
+  "failures": [
+    {
+      "source_id": "CR_ETHA_ISSUER",
+      "status": "changed",
+      "diagnostics": [
+        "excerpt: selected excerpts are absent; source changed or selectors are wrong: CR_ETHA_CORPORATE_ACTION"
+      ]
+    },
+    {
+      "source_id": "CR_ETH_ISSUANCE_MECHANISM",
+      "status": "unavailable",
+      "diagnostics": [
+        "fetch: source returned HTTP 301"
+      ]
+    },
+    {
+      "source_id": "CR_ETHA_ISSUER",
+      "prior_snapshot_id": "294097ca74aa53041859c3411ad4fff8444b0f08d5b9227a196193f7faf444aa",
+      "note": "Prior acquisition retained unchanged; corrected reviewed selector for the announced action date or explicitly confirmed canonical public URL, then made a new bounded acquisition."
+    },
+    {
+      "source_id": "CR_ETH_ISSUANCE_MECHANISM",
+      "prior_snapshot_id": "0d43aaffe37469a8117a28ff22333d2d96f92e155fcfda4a91e8ae0695a1be53",
+      "note": "Prior acquisition retained unchanged; corrected reviewed selector for the announced action date or explicitly confirmed canonical public URL, then made a new bounded acquisition."
+    },
+    {
+      "url": "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics?assets=btc,eth&metrics=TxCnt,FeeTotNtv,IssContNtv,AdrActCnt&frequency=1d&start_time=2026-09-25&end_time=2026-10-03&page_size=100",
+      "status": "probe_http_403",
+      "note": "Documented community endpoint returned 403. No authentication or bypass attempted; current network metrics not adopted."
+    },
+    {
+      "url": "https://etherscan.io/chart/tx",
+      "status": "probe_size_limit",
+      "note": "Read stopped after 2MiB+1. Chart response exceeded existing cap; no parser or larger cap introduced."
+    },
+    {
+      "url": "https://coinshares.com/insights/research-data/",
+      "status": "probe_period_unknown",
+      "note": "Index flow summary Last update field was blank. Undated figures not adopted; narrow dated 2026-10-02 article used instead."
+    },
+    {
+      "url": "https://ultrasound.money/",
+      "status": "probe_dynamic_data_unavailable",
+      "note": "Initial HTML had loading markers and zero-looking supply-change/burn placeholders without observation timestamps. No placeholder zero adopted."
+    },
+    {
+      "url": "https://coinshares.com/insights/research-data/fund-flows-28-09-26/",
+      "status": "probe_http_404",
+      "note": "Possible current-week article unavailable. Examined main sitemap dated fund-flow articles through June were not treated as current."
+    }
+  ]
+}

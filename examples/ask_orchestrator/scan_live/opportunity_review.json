@@ -1,0 +1,790 @@
+{
+  "access_notes": [],
+  "as_of": "2026-10-04T14:15:07.036822+00:00",
+  "author": "검토한 규칙 기반 연구 작성기",
+  "comparison_limits": [
+    "수익률 정의가 다른 수치를 순위나 미래 수익으로 합치지 않는다."
+  ],
+  "horizon": "사용자 투자기간은 확인한 입력 범위에서만 사용한다.",
+  "id": "ASK_EVIDENCE_REVIEW",
+  "next_research": {
+    "asset_id": "CASH",
+    "question": "부족한 현재 원자료와 반대 근거를 보완한다.",
+    "title": "필요한 원자료 검토"
+  },
+  "profile": {
+    "base_currency": {
+      "status": "known",
+      "value": "KRW"
+    }
+  },
+  "question": "질문에 필요한 근거와 비교 조건을 확인한다.",
+  "review_status": "draft",
+  "rows": [
+    {
+      "asset_id": "CASH",
+      "candidate": null,
+      "exposure": "현재 이자와 자금 접근성·대기의 선택 가치를 검토한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "현금과 현금성 자산",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CASH_DATES",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS",
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_CASH_DATES",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS",
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_CASH_DATES",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS",
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "사용자의 원화 예금/현금상품 계약금리·보호 범위"
+      ]
+    },
+    {
+      "asset_id": "SHORT_BOND",
+      "candidate": null,
+      "exposure": "계약 이자와 원금·현재 시작 수익률·재투자를 검토한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "미국 단기 Treasury",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CASH_DATES",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS",
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_CASH_DATES",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS",
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_CASH_DATES",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS",
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "실제 채권/ETF·만기·거래 YTM·비용·세금"
+      ]
+    },
+    {
+      "asset_id": "LONG_BOND",
+      "candidate": null,
+      "exposure": "장기 계약 현금흐름과 현재 yield를 검토한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "미국 장기 Treasury",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_DD_TR_DATES",
+          "E_DD_TR_CURVE",
+          "E_DD_TR_METHOD"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_DD_TR_DATES",
+          "E_DD_TR_CURVE",
+          "E_DD_TR_METHOD"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_DD_TR_DATES",
+          "E_DD_TR_CURVE",
+          "E_DD_TR_METHOD"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "실제 상품·계약 현금흐름·보유 기간·비용·세금"
+      ]
+    },
+    {
+      "asset_id": "US_EQUITY",
+      "candidate": null,
+      "exposure": "기업의 미래 이익·현금흐름과 지불한 가격을 구분하고 국채 대안과 비교한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "미국 주가지수 / 미국 주식",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_DD_IDX_FACTSET_Q3_REVISIONS",
+          "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+          "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+          "E_DD_IDX_SPY_VALUATION",
+          "E_DD_IDX_SPY_HOLDINGS",
+          "E_DD_IDX_SPY_PE_METHOD",
+          "E_DD_TR_DATES",
+          "E_DD_TR_CURVE",
+          "E_DD_TR_METHOD"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_DD_IDX_FACTSET_Q3_REVISIONS",
+          "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+          "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+          "E_DD_IDX_SPY_VALUATION",
+          "E_DD_IDX_SPY_HOLDINGS",
+          "E_DD_IDX_SPY_PE_METHOD",
+          "E_DD_TR_DATES",
+          "E_DD_TR_CURVE",
+          "E_DD_TR_METHOD"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_DD_IDX_FACTSET_Q3_REVISIONS",
+          "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+          "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+          "E_DD_IDX_SPY_VALUATION",
+          "E_DD_IDX_SPY_HOLDINGS",
+          "E_DD_IDX_SPY_PE_METHOD",
+          "E_DD_TR_DATES",
+          "E_DD_TR_CURVE",
+          "E_DD_TR_METHOD"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "전체 consensus→actual→후속 revision의 같은 정의 패널",
+        "회사별 현금흐름과 전체 지수 기대의 연결"
+      ]
+    },
+    {
+      "asset_id": "KR_EQUITY",
+      "candidate": null,
+      "exposure": "수출·산업 수급·기업 실적과 현재 가격 기대의 연결을 검토한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "한국 주식 / 반도체",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_EXPORT_NON_SEMI",
+          "E_KR_EXPORT_AUTO",
+          "E_KR_SAMSUNG_Q2",
+          "E_KR_SAMSUNG_MEMORY",
+          "E_KR_SAMSUNG_MX"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_EXPORT_NON_SEMI",
+          "E_KR_EXPORT_AUTO",
+          "E_KR_SAMSUNG_Q2",
+          "E_KR_SAMSUNG_MEMORY",
+          "E_KR_SAMSUNG_MX"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_EXPORT_NON_SEMI",
+          "E_KR_EXPORT_AUTO",
+          "E_KR_SAMSUNG_Q2",
+          "E_KR_SAMSUNG_MEMORY",
+          "E_KR_SAMSUNG_MX"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "동일 시점 한국 지수 valuation·이익 전망 수정",
+        "기업별 가격·현금흐름·SK하이닉스 공식 실적"
+      ]
+    },
+    {
+      "asset_id": "GOLD",
+      "candidate": null,
+      "exposure": "수요·통화/실질금리와 보유 비용을 검토한다. 계약 이자를 제공하지 않는다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "금",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELD_DATES",
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DEFINITION"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "현재 금 가격·직접 수요/수급·상품 비용"
+      ]
+    },
+    {
+      "asset_id": "ENERGY",
+      "candidate": null,
+      "exposure": "실물 수급·재고·공급 차질과 복구를 검토한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "에너지 / 원유",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "NATGAS",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "EV_RA_OIL_DATES",
+          "EV_RA_OIL_STOCKS",
+          "EV_RA_OIL_RELEASE",
+          "EV_RA_OIL_SUPPLY",
+          "EV_RA_BRENT_AUG",
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "EV_RA_OIL_DATES",
+          "EV_RA_OIL_STOCKS",
+          "EV_RA_OIL_RELEASE",
+          "EV_RA_OIL_SUPPLY",
+          "EV_RA_BRENT_AUG",
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "EV_RA_OIL_DATES",
+          "EV_RA_OIL_STOCKS",
+          "EV_RA_OIL_RELEASE",
+          "EV_RA_OIL_SUPPLY",
+          "EV_RA_BRENT_AUG",
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "계약별 선물 가격·현재 상품 구조·수요의 추가 관측"
+      ]
+    },
+    {
+      "asset_id": "NATGAS",
+      "candidate": null,
+      "exposure": "지역별 공급·소비·재고·LNG 수요와 선물곡선을 함께 검토한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "천연가스",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "BTC",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "EV_RA_GAS_STOCKS",
+          "EV_RA_GAS_STOCK_METHOD",
+          "EV_RA_GAS_RELEASE",
+          "EV_RA_GAS_STORAGE_FORECAST",
+          "EV_RA_GAS_PRODUCTION_FORECAST",
+          "EV_RA_GAS_FLOW_TABLE"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "EV_RA_GAS_STOCKS",
+          "EV_RA_GAS_STOCK_METHOD",
+          "EV_RA_GAS_RELEASE",
+          "EV_RA_GAS_STORAGE_FORECAST",
+          "EV_RA_GAS_PRODUCTION_FORECAST",
+          "EV_RA_GAS_FLOW_TABLE"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "EV_RA_GAS_STOCKS",
+          "EV_RA_GAS_STOCK_METHOD",
+          "EV_RA_GAS_RELEASE",
+          "EV_RA_GAS_STORAGE_FORECAST",
+          "EV_RA_GAS_PRODUCTION_FORECAST",
+          "EV_RA_GAS_FLOW_TABLE"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "Henry Hub 선물곡선·계약별 가격·roll 비용",
+        "날씨·같은 주의 계절/장기 재고 비교·실제 투자상품"
+      ]
+    },
+    {
+      "asset_id": "BTC",
+      "candidate": null,
+      "exposure": "사용·보유 수요와 희소성 가설을 검증한다. 기업 이익이나 PER로 평가하지 않는다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "Bitcoin",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "ETH",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CR_IBIT_SPREAD",
+          "E_CR_IBIT_OBJECTIVE",
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_CR_IBIT_SPREAD",
+          "E_CR_IBIT_OBJECTIVE",
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_CR_IBIT_SPREAD",
+          "E_CR_IBIT_OBJECTIVE",
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "BTC 단독 ETF 일별 순유입과 실제 보유량",
+        "가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+        "가격의 매력을 판단할 검증된 가치 대용 지표"
+      ]
+    },
+    {
+      "asset_id": "ETH",
+      "candidate": null,
+      "exposure": "네트워크 사용·수수료·발행/소각·수요의 연결을 검증한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "Ethereum",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "KR_REALESTATE"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CR_ETHA_SPREAD",
+          "E_CR_ETHA_OBJECTIVE",
+          "E_CR_ETHA_CORPORATE_ACTION",
+          "E_CR_ETH_ISSUANCE",
+          "E_CR_ETH_BURN",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_CR_ETHA_SPREAD",
+          "E_CR_ETHA_OBJECTIVE",
+          "E_CR_ETHA_CORPORATE_ACTION",
+          "E_CR_ETH_ISSUANCE",
+          "E_CR_ETH_BURN",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_CR_ETHA_SPREAD",
+          "E_CR_ETHA_OBJECTIVE",
+          "E_CR_ETHA_CORPORATE_ACTION",
+          "E_CR_ETH_ISSUANCE",
+          "E_CR_ETH_BURN",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "ETH 고유 최신 flow·사용·수수료·발행량",
+        "가격·레버리지·프로토콜 위험의 현재 자료"
+      ]
+    },
+    {
+      "asset_id": "KR_REALESTATE",
+      "candidate": null,
+      "exposure": "실거주 편익·임대 현금흐름·금융비용·매매 가격을 분리한다.",
+      "liquidity": "실제 상품·개인 조건은 확인한 범위만 사용한다.",
+      "name": "한국 주거 부동산",
+      "negative": {
+        "evidence_ids": [],
+        "text": "반대 논리와 같은 정의의 반증 자료를 추가로 검토해야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND",
+          "LONG_BOND",
+          "US_EQUITY",
+          "KR_EQUITY",
+          "GOLD",
+          "ENERGY",
+          "NATGAS",
+          "BTC",
+          "ETH"
+        ],
+        "evidence_ids": [],
+        "text": "다른 수익의 정의·기간·통화·손실 경로를 맞춰 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_KR_HOUSING_SUPPLY_LAG",
+          "E_KR_HOUSING_NAMED_LOCATIONS",
+          "E_KR_HOUSING_LENDING_CONSTRAINT",
+          "E_KR_REB_CURRENT_RELEASE"
+        ],
+        "text": "가설을 지지하는지 확인할 배경 자료다. 원문 존재가 가설의 증명은 아니다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_KR_HOUSING_SUPPLY_LAG",
+          "E_KR_HOUSING_NAMED_LOCATIONS",
+          "E_KR_HOUSING_LENDING_CONSTRAINT",
+          "E_KR_REB_CURRENT_RELEASE"
+        ],
+        "text": "현재 가격의 매력이나 우월성을 자동 확정하지 않고 검토를 이어간다."
+      },
+      "recheck": {
+        "evidence_ids": [],
+        "text": "새 원자료·반대 근거·사용자 제약이 판단을 바꾸는지 확인한다."
+      },
+      "return_definition": "수익의 원천과 정의를 구분하며 미래 수익을 추정하지 않는다.",
+      "state": {
+        "evidence_ids": [
+          "E_KR_HOUSING_SUPPLY_LAG",
+          "E_KR_HOUSING_NAMED_LOCATIONS",
+          "E_KR_HOUSING_LENDING_CONSTRAINT",
+          "E_KR_REB_CURRENT_RELEASE"
+        ],
+        "text": "선택한 원자료의 구절·시점과 조사 범위를 확인한다."
+      },
+      "uncertainty": [
+        "지역/단지/면적별 최신 실거래·거래량·전세·공급 연결",
+        "물건 가격·대출·실거주 기간·사용자 자금 제약"
+      ]
+    }
+  ],
+  "sampling_limits": [
+    "검토한 공개 URL의 제한된 표본이다. 전체 시장이나 커뮤니티를 대표하지 않는다."
+  ],
+  "schema_version": "opportunity-review-v1",
+  "sections": {
+    "community": [],
+    "drivers": [],
+    "easy": [],
+    "gaps": [],
+    "korean_context": [],
+    "market_narratives": [],
+    "overview": [],
+    "unknowns": []
+  }
+}

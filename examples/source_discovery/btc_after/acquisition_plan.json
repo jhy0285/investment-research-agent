@@ -1,0 +1,670 @@
+{
+  "as_of": "2026-10-04",
+  "asset_ids": [
+    "BTC"
+  ],
+  "claims": [
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "DISC_COMMUNITY_CLAIM_1",
+      "limitations": [
+        "커뮤니티 발언은 numeric evidence가 아니며 발언 전체의 진실·대표성은 검증하지 않는다."
+      ],
+      "narrative_evidence_id": "E_DISC_5f0f83824c96f4e4_1",
+      "recheck": "동일 날짜·정의의 발행사 원자료·정정·반대 자료를 확인한다.",
+      "review": {
+        "rationale": "공식/제공자 자료를 대조하되 같은 기간·정의의 검증 가능한 사실 문장이 부족하다. 발언 전체는 미확인이다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "발견된 공개 발언의 내용은 같은 정의의 원자료로 추가 확인해야 한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "DISC_COMMUNITY_CLAIM_2",
+      "limitations": [
+        "커뮤니티 발언은 numeric evidence가 아니며 발언 전체의 진실·대표성은 검증하지 않는다."
+      ],
+      "narrative_evidence_id": "E_DISC_6d8872b476132003_1",
+      "recheck": "동일 날짜·정의의 발행사 원자료·정정·반대 자료를 확인한다.",
+      "review": {
+        "rationale": "공식/제공자 자료를 대조하되 같은 기간·정의의 검증 가능한 사실 문장이 부족하다. 발언 전체는 미확인이다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "발견된 공개 발언의 내용은 같은 정의의 원자료로 추가 확인해야 한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_CR_IBIT_SPREAD",
+        "E_CR_IBIT_OBJECTIVE",
+        "E_CR_IBIT_REGISTRATION",
+        "E_DISC_a21cfbc31d12348f_1",
+        "E_DISC_a21cfbc31d12348f_2",
+        "E_DISC_437602cf5629b662_1",
+        "E_DISC_99468c78167bcecf_1",
+        "E_DISC_99468c78167bcecf_2",
+        "E_DISC_99468c78167bcecf_3"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_BTC",
+      "limitations": [
+        "새 관측값을 확보해도 가격 매력·미래 수익은 자동 확정하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "근거의 대표성·반대 논리·적정 가치 방법을 검토한다.",
+      "review": null,
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "현재 확인한 수요·비용·가격 근거가 Bitcoin의 보유 경제성을 충분히 설명하는가?",
+      "verification": "unverified"
+    }
+  ],
+  "evidence": [
+    {
+      "definition": {
+        "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+        "currency": "USD",
+        "measure": "IBIT 30-day median bid/ask spread",
+        "period": "30-day window ending 2026-10-02 as labeled by issuer",
+        "scope": "IBIT shares on US secondary market, not Bitcoin spot market",
+        "unit": "percent_of_share_price"
+      },
+      "excerpt_id": "CR_IBIT_SPREAD",
+      "extraction": null,
+      "id": "E_CR_IBIT_SPREAD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Product secondary-market liquidity metric, not underlying token liquidity, a capital inflow, expected return, or user-access eligibility.",
+        "First publication timestamp unknown; the dated observation is 2026-10-02.",
+        "No numeric parser for this measure was added; quotation fact only, extraction null."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "IBIT investment objective",
+        "period": "source edition as of 2026-10-02",
+        "scope": "issuer description of IBIT, not a verified expected Bitcoin return",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_IBIT_OBJECTIVE",
+      "extraction": null,
+      "id": "E_CR_IBIT_OBJECTIVE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "IBIT legal registration status",
+        "period": "source edition as of 2026-10-02",
+        "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules",
+        "unit": "statement"
+      },
+      "excerpt_id": "CR_IBIT_REGISTRATION",
+      "extraction": null,
+      "id": "E_CR_IBIT_REGISTRATION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Only the retained quotation and metadata can be replay-verified; discarded full page cannot be reconstructed.",
+        "A quotation match does not automatically establish economic meaning, predictive edge or investment suitability.",
+        "Issuer description does not establish investment merit, future return, staking rewards or Korean retail access.",
+        "First publication date unknown; current product page acquisition is not historical availability proof."
+      ],
+      "source_id": "CR_IBIT_ISSUER",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "unadjusted_exchange_trade",
+        "currency": "USD",
+        "measure": "COINBASE_BTC_USD_LAST_TRADE",
+        "period": "last_trade",
+        "scope": "Coinbase Exchange BTC-USD",
+        "unit": "USD_per_BTC"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_a21cfbc31d12348f_1",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소의 최근 체결·거래량이며 전 시장 대표 가격·총거래량이 아니다."
+      ],
+      "source_id": "DISC_a21cfbc31d12348f",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "exchange_reported_base_volume",
+        "currency": null,
+        "measure": "COINBASE_BTC_USD_24H_BASE_VOLUME",
+        "period": "rolling_24h",
+        "scope": "Coinbase Exchange BTC-USD",
+        "unit": "BTC"
+      },
+      "excerpt_id": "Q_2",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_a21cfbc31d12348f_2",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소의 최근 체결·거래량이며 전 시장 대표 가격·총거래량이 아니다.",
+        "가격 시각과 거래량의 24시간 종료 시각이 정확히 같다는 보장은 없다."
+      ],
+      "source_id": "DISC_a21cfbc31d12348f",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "partial_row_not_final_total",
+        "currency": "USD",
+        "measure": "US_SPOT_BTC_ETF_DAILY_NET_FLOW",
+        "period": "2026-10-02",
+        "scope": "US spot Bitcoin ETFs reported by Farside",
+        "unit": "USD_million"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": "dated_table_total_v1",
+      "id": "E_DISC_437602cf5629b662_1",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "순유입은 현금 유입·유출 집계이며 가격 상승·적정 가치의 증명이 아니다.",
+        "누락 ETF: IBIT; 잠정 합계를 전체 확정 순유입으로 사용하지 않는다.",
+        "발행사별 원자료의 독립 교차 확인을 완료하지 않은 데이터 제공자 집계다."
+      ],
+      "source_id": "DISC_437602cf5629b662",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "exchange_reported_not_annualized",
+        "currency": null,
+        "measure": "DERIBIT_BTC_PERPETUAL_FUNDING_8H",
+        "period": "reported_8h",
+        "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+        "unit": "fraction"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_99468c78167bcecf_1",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소·한 계약의 관측이다. 전체 레버리지·청산 규모나 포지션 방향을 증명하지 않는다.",
+        "funding은 매수·매도 보유자가 주고받는 비용 비율이며 연율·미래 수익률이 아니다."
+      ],
+      "source_id": "DISC_99468c78167bcecf",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "inverse_contract_USD_notional",
+        "currency": "USD",
+        "measure": "DERIBIT_BTC_PERPETUAL_OPEN_INTEREST",
+        "period": "exchange_snapshot",
+        "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+        "unit": "USD"
+      },
+      "excerpt_id": "Q_2",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_99468c78167bcecf_2",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소·한 계약의 관측이다. 전체 레버리지·청산 규모나 포지션 방향을 증명하지 않는다.",
+        "funding은 매수·매도 보유자가 주고받는 비용 비율이며 연율·미래 수익률이 아니다."
+      ],
+      "source_id": "DISC_99468c78167bcecf",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "mark_price_not_spot_or_execution_price",
+        "currency": "USD",
+        "measure": "DERIBIT_BTC_PERPETUAL_MARK_PRICE",
+        "period": "exchange_snapshot",
+        "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+        "unit": "USD_per_BTC"
+      },
+      "excerpt_id": "Q_3",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_99468c78167bcecf_3",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소·한 계약의 관측이다. 전체 레버리지·청산 규모나 포지션 방향을 증명하지 않는다.",
+        "funding은 매수·매도 보유자가 주고받는 비용 비율이며 연율·미래 수익률이 아니다."
+      ],
+      "source_id": "DISC_99468c78167bcecf",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "utterance_not_verified_financial_fact",
+        "currency": null,
+        "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+        "period": "publication_at_2026-09-26T00:19:05+00:00",
+        "scope": "purpose_sampled_Hacker_News_comment",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": null,
+      "id": "E_DISC_5f0f83824c96f4e4_1",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다.",
+        "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+      ],
+      "source_id": "DISC_5f0f83824c96f4e4",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "utterance_not_verified_financial_fact",
+        "currency": null,
+        "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+        "period": "publication_at_2026-09-21T09:25:21+00:00",
+        "scope": "purpose_sampled_Hacker_News_comment",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": null,
+      "id": "E_DISC_6d8872b476132003_1",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다.",
+        "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+      ],
+      "source_id": "DISC_6d8872b476132003",
+      "view": "community"
+    }
+  ],
+  "id": "ASK_SELECTED_SOURCES",
+  "question": "BTC 지금 어때?",
+  "schema_version": "1",
+  "sources": [
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "issuer-reported spread; no fee, FX or tax adjustment",
+            "currency": "USD",
+            "measure": "IBIT 30-day median bid/ask spread",
+            "period": "30-day window ending 2026-10-02 as labeled by issuer",
+            "scope": "IBIT shares on US secondary market, not Bitcoin spot market",
+            "unit": "percent_of_share_price"
+          },
+          "id": "CR_IBIT_SPREAD",
+          "locator": "Key Facts: 30 Day Median Bid/Ask Spread",
+          "quote": "30 Day Median Bid/Ask Spread 0.02% as of Oct 02, 2026"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "IBIT investment objective",
+            "period": "source edition as of 2026-10-02",
+            "scope": "issuer description of IBIT, not a verified expected Bitcoin return",
+            "unit": "statement"
+          },
+          "id": "CR_IBIT_OBJECTIVE",
+          "locator": "Product objective",
+          "quote": "The iShares Bitcoin Trust ETF seeks to reflect the performance of the price of bitcoin."
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "IBIT legal registration status",
+            "period": "source edition as of 2026-10-02",
+            "scope": "IBIT under the US Investment Company Act of 1940; not South Korean investor access rules",
+            "unit": "statement"
+          },
+          "id": "CR_IBIT_REGISTRATION",
+          "locator": "Product regulatory disclaimer",
+          "quote": "The iShares Bitcoin Trust ETF is not an investment company registered under the Investment Company Act of 1940, and therefore is not subject to the same regulatory requirements as mutual funds or ETFs registered under the Investment Company Act of 1940."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "CR_IBIT_ISSUER",
+      "jurisdiction": "US",
+      "max_age_days": 7,
+      "observed_at": "2026-10-02",
+      "origin_source_id": null,
+      "policy_note": "Public product page; robots permits the chosen URL. BlackRock terms allow personal non-commercial downloads with proprietary notices and restrict public/commercial reuse without written permission. Retain only minimal attributed research quotations in this personal research example, not full content. This does not establish general public redistribution rights. Copyright BlackRock, Inc. All rights reserved.",
+      "policy_url": "https://www.blackrock.com/corporate/compliance/terms-and-conditions",
+      "published_at": null,
+      "publisher": "BlackRock / iShares",
+      "retention": "excerpt",
+      "title": "iShares Bitcoin Trust ETF issuer product page, dated fields 2026-10-02",
+      "topics": [
+        "crypto",
+        "product-liquidity",
+        "product-structure"
+      ],
+      "type": "primary",
+      "url": "https://www.ishares.com/us/products/333011/ishares-bitcoin-trust-etf",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "unadjusted_exchange_trade",
+            "currency": "USD",
+            "measure": "COINBASE_BTC_USD_LAST_TRADE",
+            "period": "last_trade",
+            "scope": "Coinbase Exchange BTC-USD",
+            "unit": "USD_per_BTC"
+          },
+          "id": "Q_1",
+          "locator": "json_scalar:/price",
+          "quote": "85409.98"
+        },
+        {
+          "definition": {
+            "adjustment": "exchange_reported_base_volume",
+            "currency": null,
+            "measure": "COINBASE_BTC_USD_24H_BASE_VOLUME",
+            "period": "rolling_24h",
+            "scope": "Coinbase Exchange BTC-USD",
+            "unit": "BTC"
+          },
+          "id": "Q_2",
+          "locator": "json_scalar:/volume",
+          "quote": "1758.22618292"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_a21cfbc31d12348f",
+      "jurisdiction": "US",
+      "max_age_days": 1,
+      "observed_at": "2026-10-04T16:50:09.911158+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented unauthenticated public Exchange products/ticker endpoints; read-only bounded personal research. Retain only selected public numeric fields, dates and hashes, not a redistributable full market dataset. Directory identity and official ticker field definitions are checked.",
+      "policy_url": "https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-ticker",
+      "published_at": null,
+      "publisher": "Coinbase Exchange",
+      "retention": "excerpt",
+      "title": "현재 가격·거래 상태 · Coinbase Exchange",
+      "topics": [
+        "market_state"
+      ],
+      "type": "primary",
+      "url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+      "valid_as_of": "2026-10-04T16:50:09.911158+00:00"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://farside.co.uk/btc/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "partial_row_not_final_total",
+            "currency": "USD",
+            "measure": "US_SPOT_BTC_ETF_DAILY_NET_FLOW",
+            "period": "2026-10-02",
+            "scope": "US spot Bitcoin ETFs reported by Farside",
+            "unit": "USD_million"
+          },
+          "id": "Q_1",
+          "locator": "table:Bitcoin ETF Flow (US$m)/02 Oct 2026/Total",
+          "quote": "02 Oct 2026 - 29.3 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.4 0.0 0.0 31.7"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_437602cf5629b662",
+      "jurisdiction": "US ETF coverage / UK publisher",
+      "max_age_days": 4,
+      "observed_at": "2026-10-02T00:00:00+00:00",
+      "origin_source_id": null,
+      "policy_note": "Public publisher page and linked Bitcoin ETF flow table; respect robots, no login, redirect or access-limit bypass. Copyright remains with Farside Investors. Retain one latest dated table row, column definitions and hashes for attributed personal research; no whole HTML/table archive or systematic dataset redistribution. Provider itself warns of errors/inaccuracies. AUM/product structure are not daily net flows; no complete regulator/issuer daily aggregate was verified.",
+      "policy_url": "https://farside.co.uk/",
+      "published_at": null,
+      "publisher": "Farside Investors",
+      "retention": "excerpt",
+      "title": "BTC 현물 ETF 자금흐름 · Farside Investors",
+      "topics": [
+        "etf_flows"
+      ],
+      "type": "data_provider",
+      "url": "https://farside.co.uk/btc/",
+      "valid_as_of": "2026-10-02T00:00:00+00:00"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "exchange_reported_not_annualized",
+            "currency": null,
+            "measure": "DERIBIT_BTC_PERPETUAL_FUNDING_8H",
+            "period": "reported_8h",
+            "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+            "unit": "fraction"
+          },
+          "id": "Q_1",
+          "locator": "json_scalar:/result/funding_8h",
+          "quote": "3.82e-06"
+        },
+        {
+          "definition": {
+            "adjustment": "inverse_contract_USD_notional",
+            "currency": "USD",
+            "measure": "DERIBIT_BTC_PERPETUAL_OPEN_INTEREST",
+            "period": "exchange_snapshot",
+            "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+            "unit": "USD"
+          },
+          "id": "Q_2",
+          "locator": "json_scalar:/result/open_interest",
+          "quote": "796721140"
+        },
+        {
+          "definition": {
+            "adjustment": "mark_price_not_spot_or_execution_price",
+            "currency": "USD",
+            "measure": "DERIBIT_BTC_PERPETUAL_MARK_PRICE",
+            "period": "exchange_snapshot",
+            "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+            "unit": "USD_per_BTC"
+          },
+          "id": "Q_3",
+          "locator": "json_scalar:/result/mark_price",
+          "quote": "85419.44"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_99468c78167bcecf",
+      "jurisdiction": "exchange-specific",
+      "max_age_days": 1,
+      "observed_at": "2026-10-04T16:50:15.970000+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented public market-data APIs, no account or authentication; bounded GET for personal research. Retain selected numeric fields and hashes only. Check active mainnet inverse USD BTC-settled perpetual identity; funding_8h is a fraction and open_interest is USD notional for this contract, not all-market leverage.",
+      "policy_url": "https://docs.deribit.com/api-reference/market-data/public-ticker",
+      "published_at": null,
+      "publisher": "Deribit",
+      "retention": "excerpt",
+      "title": "파생 계약의 비용·미결제약정 · Deribit",
+      "topics": [
+        "derivatives"
+      ],
+      "type": "primary",
+      "url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+      "valid_as_of": "2026-10-04T16:50:15.970000+00:00"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49851823",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "utterance_not_verified_financial_fact",
+            "currency": null,
+            "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+            "period": "publication_at_2026-09-26T00:19:05+00:00",
+            "scope": "purpose_sampled_Hacker_News_comment",
+            "unit": "text"
+          },
+          "id": "Q_1",
+          "locator": "json_html:/text",
+          "quote": "And less passive, underutilizing, economically-parasitic investments from the rich. (Rich passive investment in land, uses land like Bitcoin for its deflationary nature, which compounds land prices while suppressing its full productive use."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_5f0f83824c96f4e4",
+      "jurisdiction": "unknown",
+      "max_age_days": 21,
+      "observed_at": "2026-09-26T00:19:05+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-26T00:19:05+00:00",
+      "publisher": "Hacker News / public HN API",
+      "retention": "excerpt",
+      "title": "최근 투자 내러티브 · Hacker News / public HN API",
+      "topics": [
+        "community"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49851823.json",
+      "valid_as_of": "2026-09-26T00:19:05+00:00"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49785002",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "utterance_not_verified_financial_fact",
+            "currency": null,
+            "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+            "period": "publication_at_2026-09-21T09:25:21+00:00",
+            "scope": "purpose_sampled_Hacker_News_comment",
+            "unit": "text"
+          },
+          "id": "Q_1",
+          "locator": "json_html:/text",
+          "quote": "The situation with dollars reminds me of the situation of bitcoin on MtGox just before it collapsed. The bitcoin price on MtGox diverged from the price on other exchanges. To a casual user it looked like you were getting a good deal by buying it on MtGox but that's because the last people out wouldn't be able to actually withdraw it, because the promise of a bitcoin from an exchange is not the same thing as an actual bitcoin."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_6d8872b476132003",
+      "jurisdiction": "unknown",
+      "max_age_days": 21,
+      "observed_at": "2026-09-21T09:25:21+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-21T09:25:21+00:00",
+      "publisher": "Hacker News / public HN API",
+      "retention": "excerpt",
+      "title": "최근 투자 내러티브 · Hacker News / public HN API",
+      "topics": [
+        "community"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+      "valid_as_of": "2026-09-21T09:25:21+00:00"
+    }
+  ]
+}

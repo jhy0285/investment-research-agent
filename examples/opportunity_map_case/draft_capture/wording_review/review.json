@@ -1,0 +1,1329 @@
+{
+  "access_notes": [
+    "Reddit는 robots 차단으로 수집하지 않았다. HN 공식 공개 item API를 사용했다.",
+    "공식 부동산 통계의 PDF·HWP를 현재 parser가 처리하지 못하며 별도 수치나 매체 내용을 대신 만들어 넣지 않았다.",
+    "BOK robots 응답 형식·WGC 자동 수집 제한·일부 금융 데이터 API 접근 제한을 우회하지 않았다.",
+    "출처 구절의 개인·비상업적 연구 범위와 정책·저작권을 각 snapshot에 기록했다. 전체 자료의 재배포 권리를 확보했다고 주장하지 않는다.",
+    "현재 조회 시점의 출처만으로 공식 전체 vintage·완전한 역사 시점 연구를 재현할 수 없다.",
+    "새 해석을 재생 시 자동 생성하지 않는다. 새 source 획득과 재검토 입력은 명시적으로 별도 실행한다."
+  ],
+  "as_of": "2026-10-04T04:16:53.131802+00:00",
+  "author": "Codex · 공개 원자료와 구절을 연결한 현재 연구 초안",
+  "comparison_limits": [
+    "주식 예상 이익·과거 분배율·국채 수익률·원자재 가격은 동일한 미래 수익률이 아니다.",
+    "성장·가치·배당 표본은 겹치며 전체 시장이나 모든 상품을 대표하지 않는다.",
+    "같은 통화·기간·세금·유동성·손실 경로로 맞춘 미래 보상은 계산하지 않았다.",
+    "기관 전망의 최신 판본도 미래 실현 사실이 아니다.",
+    "의미 검토가 대기 중인 연구 초안이며 자산 매력·배분을 확정하지 않는다."
+  ],
+  "horizon": "장기 투자 의향은 자기보고; 실제 자금별 사용 시점 미확인",
+  "id": "CURRENT_KRW_OPPORTUNITY_MAP",
+  "next_research": {
+    "asset_id": "US_EQUITY",
+    "question": "높은 예상 이익성장이 실제 기업 현금흐름과 폭넓은 실적 개선으로 뒷받침되는가? 현재 가격과 비용·KRW 조건을 확인했을 때 국채 대안의 기회비용을 감수할 논리가 있는가?",
+    "title": "미국 주식 예상 PER의 분모 검증과 국채 대안 비교"
+  },
+  "profile": {
+    "base_currency": {
+      "status": "self_reported",
+      "value": "KRW"
+    },
+    "birth_year": {
+      "status": "self_reported",
+      "value": 1998
+    },
+    "debt": {
+      "status": "unknown",
+      "value": null
+    },
+    "emergency_fund": {
+      "status": "unknown",
+      "value": null
+    },
+    "future_funding_needs": {
+      "status": "unknown",
+      "value": null
+    },
+    "housing_funds": {
+      "status": "unknown",
+      "value": null
+    },
+    "life_stage": {
+      "status": "self_reported",
+      "value": "자산 축적기"
+    },
+    "long_horizon": {
+      "status": "self_reported",
+      "value": true
+    },
+    "monthly_investment": {
+      "status": "unknown",
+      "value": null
+    },
+    "permanent_loss_concern": {
+      "status": "self_reported",
+      "value": true
+    },
+    "portfolio_allocation": {
+      "status": "unknown",
+      "value": null
+    },
+    "risk_capacity": {
+      "status": "unknown",
+      "value": null
+    },
+    "risk_tolerance": {
+      "status": "self_reported",
+      "value": "비교적 높은 변동성 감수 의향"
+    },
+    "stable_income": {
+      "status": "self_reported",
+      "value": true
+    },
+    "tax_resident": {
+      "status": "self_reported",
+      "value": "대한민국"
+    },
+    "total_assets": {
+      "status": "unknown",
+      "value": null
+    }
+  },
+  "question": "현재 한국 거주 자산축적기 개인 투자자의 신규 자금에 대해 어떤 영역을 더 깊게 연구할 가치가 있는가?",
+  "review_status": "draft",
+  "rows": [
+    {
+      "asset_id": "CASH",
+      "candidate": null,
+      "exposure": "KRW 생활비·대기자금과 USD 단기 자금은 별도",
+      "liquidity": "예금·MMF·단기채 상품의 인출 조건은 서로 다름",
+      "name": "현금·현금성 자산",
+      "negative": {
+        "evidence_ids": [
+          "MET_c1135e5d4dcc012f02dbf6a42f320006d3a4b95dc964f96e9b85fc8b055ae917",
+          "E_KR_FUNDING_COST_RISK"
+        ],
+        "text": "물가·재투자 조건과 자금조달 비용이 달라질 수 있다. 미국 물가를 한국 현금의 실질수익으로 빼서 계산하지 않는다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "US_EQUITY",
+          "SHORT_BOND"
+        ],
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION",
+          "E_CASH_BILLS"
+        ],
+        "text": "대기하면 주식의 사업 성장 참여를 놓칠 수 있지만 기대 이익과 보장 이자는 같은 보상이 아니다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CASH_BILLS"
+        ],
+        "text": "새 자금을 즉시 가격위험에 노출하지 않고 실제 투자조건을 비교할 출발점으로 현금 대안을 남긴다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_KR_GOV3Y_CONTEXT"
+        ],
+        "text": "현금은 비교의 기본 대안이다. 사용자 자금수요와 KRW 상품조건이 없어서 현금의 우월성은 확정하지 않는다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "E_CASH_BILLS"
+        ],
+        "text": "KRW 실제 상품조건·인출 제약과 사용 시점을 확인한다."
+      },
+      "return_definition": "실제 상품의 약정 또는 변동 이자·비용 확인 필요",
+      "state": {
+        "evidence_ids": [
+          "E_CASH_DATES",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS",
+          "E_KR_GOV3Y_CONTEXT"
+        ],
+        "text": "미국 유효정책금리·국채 단기 할인수익률은 이자를 받을 수 있는 대안의 기준 자료다. 한국 예금·MMF의 실행 금리로 대체하지 않는다."
+      },
+      "uncertainty": [
+        "KRW 예금·MMF 실제 금리와 보호·인출 조건",
+        "비상자금·부채·가까운 사용 시점"
+      ]
+    },
+    {
+      "asset_id": "SHORT_BOND",
+      "candidate": null,
+      "exposure": "미국 단기 USD 국채; 한국 국채 조건은 따로 확인",
+      "liquidity": "개별 채권 만기와 ETF 상시 듀레이션 차이",
+      "name": "단기 국채",
+      "negative": {
+        "evidence_ids": [
+          "E_FOMC_POLICY",
+          "OBS_8424e0112254d8ba4e20949656543c4204966432b76a785076aa0670fe697a28"
+        ],
+        "text": "정책 인상 이후의 재투자 환경·가격 변동·환율 위험은 남는다. 미국 국채의 신용과 KRW 원금의 안정은 같은 질문이 아니다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "LONG_BOND",
+          "US_EQUITY"
+        ],
+        "evidence_ids": [
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb",
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067",
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION"
+        ],
+        "text": "장기채보다 만기 노출을 줄이는 대신 장기 현금흐름 조건·주식 성장 참여를 놓칠 수 있다. 동일한 KRW 결과는 계산하지 않았다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb"
+        ],
+        "text": "확인 가능한 채권 현금흐름 조건을 위험자산 대안과 비교할 자료가 있다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb"
+        ],
+        "text": "상대 비교의 기준 대안으로 관찰하되 수익률만으로 개인에게 가장 적절하다고 판단하지 않는다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb",
+          "OBS_8424e0112254d8ba4e20949656543c4204966432b76a785076aa0670fe697a28"
+        ],
+        "text": "해당 상품의 보유기간 수익 정의와 KRW 노출을 확인한다."
+      },
+      "return_definition": "관측 수익률·보유기간 가격손익·재투자·비용 구분",
+      "state": {
+        "evidence_ids": [
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb",
+          "E_CASH_BILLS",
+          "E_CASH_BASIS"
+        ],
+        "text": "명목 국채 시장금리와 단기 bill 할인수익률을 확인했다. 상품별 수익 정의가 달라 숫자를 그대로 합치지 않는다."
+      },
+      "uncertainty": [
+        "실제 접근 상품의 만기·듀레이션·가격·비용·환헤지",
+        "보유기간과 KRW 자금 필요 시점"
+      ]
+    },
+    {
+      "asset_id": "LONG_BOND",
+      "candidate": null,
+      "exposure": "미국 장기 명목 USD 국채",
+      "liquidity": "듀레이션과 만기·상품별 차환 구조 확인 필요",
+      "name": "장기 국채",
+      "negative": {
+        "evidence_ids": [
+          "MET_3ea18e576c39364df9c143cdcd7fc95bbdea55430651d4dcad69b0344894d011",
+          "E_FOMC_POLICY"
+        ],
+        "text": "물가 상승률과 정책 인상은 자동 인하·원금 안정 논리의 반대 조건이다. 금리 변동의 만기별 가격 효과는 아직 계산하지 않았다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "SHORT_BOND",
+          "CASH"
+        ],
+        "evidence_ids": [
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067",
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb",
+          "E_CASH_BILLS"
+        ],
+        "text": "단기 국채·현금의 재투자 선택권 대신 장기 가격위험을 부담한다. 더 높은 명목 관측값만으로 미래 우위를 정할 수 없다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067"
+        ],
+        "text": "장기 현금흐름과 금리 변화에 대한 민감도를 조사할 관측 자료가 있다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "MET_66cfcff4c844417c160649fa6ef87a0a37e2b72d5e220d4755107a7792013ec1",
+          "E_FOMC_POLICY"
+        ],
+        "text": "만기별 상대 조건은 흥미롭지만 정책 인하 기대·가격 민감도를 검증할 자료가 부족하다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067",
+          "E_FOMC_POLICY"
+        ],
+        "text": "금리 기대·기간 프리미엄과 실제 상품의 가격 민감도를 확인한다."
+      },
+      "return_definition": "현금흐름·만기수익률·중도 가격손익을 분리",
+      "state": {
+        "evidence_ids": [
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067",
+          "MET_66cfcff4c844417c160649fa6ef87a0a37e2b72d5e220d4755107a7792013ec1",
+          "E_FOMC_POLICY"
+        ],
+        "text": "같은 날의 장단기 금리 차이가 양수이고 최근 정책 결정은 인상이다. 금리 인하만 전제로 한 장기채 이야기는 확인된 현재 정책과 구분해야 한다."
+      },
+      "uncertainty": [
+        "실제 듀레이션·기간 프리미엄·시장 기대 경로",
+        "장기 자금 가능 여부·환헤지 비용"
+      ]
+    },
+    {
+      "asset_id": "US_EQUITY",
+      "candidate": {
+        "changed": {
+          "evidence_ids": [
+            "US_FACTSET_Q3_2026_EPS_REVISIONS",
+            "US_FACTSET_Q3_2026_FORWARD_PE"
+          ],
+          "text": "분기 중 예상 이익은 상향됐고 예상 배수는 앞선 분기보다 낮아졌다."
+        },
+        "confirm": [
+          "기업별 실현 이익과 현금흐름",
+          "추정치 상향의 기업·산업별 분포",
+          "같은 기간의 실제 가격·비용·KRW 노출",
+          "반대 시나리오에서 유지되는 투자 논리"
+        ],
+        "counterargument": {
+          "evidence_ids": [
+            "US_FACTSET_Q3_2026_EPS_EXPECTATION",
+            "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+            "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES"
+          ],
+          "text": "이익 기대가 실현되지 않거나 고객 지출·현금회수가 약해지면 낮은 예상 배수도 충분한 보상은 아닐 수 있다. 구매자의 투자수익은 아직 모른다."
+        },
+        "interesting": {
+          "evidence_ids": [
+            "US_FACTSET_Q3_2026_FORWARD_PE",
+            "NV_SEC_FY2027_Q2_REVENUE_DATACENTER",
+            "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+            "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES"
+          ],
+          "text": "예상 배수 조정·실제 공급자 매출 성장과 현금회수 조건의 긴장을 함께 검증할 수 있다."
+        },
+        "why_now": {
+          "evidence_ids": [
+            "US_FACTSET_Q3_2026_FORWARD_PE"
+          ],
+          "text": "시장 전체가 비싸다는 단순 설명과 실제 예상 배수 자료 사이에 긴장이 있다."
+        }
+      },
+      "exposure": "미국 전체 주식; 이번 자료는 대형 지수 중심",
+      "liquidity": "일반 상장 노출과 실제 이용 상품 구분",
+      "name": "미국 주식",
+      "negative": {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION",
+          "US_SPDR_GROWTH_TOP_HOLDINGS",
+          "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+          "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES"
+        ],
+        "text": "높은 성장 기대와 기술기업 집중에 더해 일부 고객의 연장 결제조건·매출채권 집중이 공시됐다. 매출채권 비중을 매출 비중으로 바꾸지 않는다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "SHORT_BOND",
+          "LONG_BOND",
+          "CASH"
+        ],
+        "evidence_ids": [
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067",
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb",
+          "US_FACTSET_Q3_2026_FORWARD_PE"
+        ],
+        "text": "국채에서 관측되는 이자 대안 대신 기업 성장·가격 손익을 선택한다. 예상 PER의 역수를 기대수익률로 변환하거나 국채와 단순 순위화하지 않는다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_REVISIONS",
+          "NV_SEC_FY2027_Q2_REVENUE_DATACENTER",
+          "NV_SEC_FY2027_Q2_CASH_CONVERSION"
+        ],
+        "text": "미국 예상 이익의 상향과 함께 NVIDIA 공급자의 실제 매출·영업현금흐름 증가가 공시에 존재한다. 구매자의 수익화·현재 가격의 적정성은 별도다."
+      },
+      "priority": "candidate",
+      "priority_reason": {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_REVISIONS",
+          "US_FACTSET_Q3_2026_FORWARD_PE"
+        ],
+        "text": "실적 기대의 개선과 낮아진 예상 배수가 함께 있어 무엇이 가격에 반영됐는지 검증하는 후속 질문이 구체적이다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION"
+        ],
+        "text": "기업 실적 발표·현금흐름·추정치 하향과 시장 참여 폭을 다시 확인한다."
+      },
+      "return_definition": "기업 이익·가격·배당을 합친 총성과는 미계산",
+      "state": {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_REVISIONS",
+          "US_FACTSET_Q3_2026_FORWARD_PE"
+        ],
+        "text": "대형 지수의 예상 이익이 상향됐고 예상 PER은 제공자가 제시한 과거 평균보다 낮다. 낮아진 배수의 분모는 실현 이익이 아니다."
+      },
+      "uncertainty": [
+        "기업별 실제 현금흐름·마진·추정치 수정의 폭",
+        "중소형·시장 참여 폭·현재 가격에 반영된 가정"
+      ]
+    },
+    {
+      "asset_id": "KR_EQUITY",
+      "candidate": {
+        "changed": {
+          "evidence_ids": [
+            "E_KR_EXPORT_SEMI",
+            "E_KR_SAMSUNG_MEMORY"
+          ],
+          "text": "반도체 수출은 직전 달보다 커졌고 회사는 메모리 수익성의 기록을 보고했다."
+        },
+        "confirm": [
+          "현재 기업 가격과 이익·현금흐름의 정의",
+          "HBM·일반 메모리의 공급·투자·고객 계약",
+          "예상 이익 상향과 주가 반영의 차이",
+          "본인 한국 산업·소득·주거 집중 노출"
+        ],
+        "counterargument": {
+          "evidence_ids": [
+            "E_KR_SAMSUNG_MEMORY",
+            "E_KR_SAMSUNG_MX"
+          ],
+          "text": "현재 가격에 높은 이익 지속 기대가 반영돼 있을 수 있고 제품·산업마다 수익성 방향이 다르다."
+        },
+        "interesting": {
+          "evidence_ids": [
+            "E_KR_SAMSUNG_Q2",
+            "E_KR_SAMSUNG_MX"
+          ],
+          "text": "사업 성장이 실제 이익으로 연결됐다는 발표와 소비기기 비용 압력의 동시 존재가 흥미롭다."
+        },
+        "why_now": {
+          "evidence_ids": [
+            "E_KR_EXPORT_SEMI",
+            "E_KR_SAMSUNG_MEMORY"
+          ],
+          "text": "공식 수출과 회사 실적에서 반도체 중심의 중요한 변화가 나타났다."
+        }
+      },
+      "exposure": "한국 기업; 반도체를 전체 시장과 분리",
+      "liquidity": "종목·거래시장·실제 이용 상품 차이",
+      "name": "한국 주식",
+      "negative": {
+        "evidence_ids": [
+          "E_KR_SAMSUNG_MX",
+          "E_KR_FUNDING_COST_RISK",
+          "E_KR_EXPORT_AUTO"
+        ],
+        "text": "산업 비용 압력과 높아진 국내 자금조달 비용은 성장 수혜를 전체 기업에 적용하기 어렵게 한다. 수출 발표의 조업일 설명도 함께 봐야 한다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "US_EQUITY",
+          "SHORT_BOND"
+        ],
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_FUNDING_COST_RISK",
+          "OBS_8424e0112254d8ba4e20949656543c4204966432b76a785076aa0670fe697a28"
+        ],
+        "text": "KRW 투자 접근성과 성장 참여를 얻는 대신 한국 산업·근로소득·주거 노출이 겹칠 수 있다. 미국 기업·국채와 국가·통화 조건부터 비교한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_KR_SAMSUNG_MEMORY",
+          "E_KR_EXPORT_SEMI"
+        ],
+        "text": "AI 서버 수요와 메모리 가격이 회사 발표 실적에 연결돼 연구할 사업 가설이 있다."
+      },
+      "priority": "candidate",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_SAMSUNG_MEMORY",
+          "E_KR_SAMSUNG_MX"
+        ],
+        "text": "반도체 성장과 다른 사업의 수익성 부담이 함께 나타나 현재 가격에 반영된 업종별 기대를 나눠 조사할 이유가 있다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_EXPORT_AUTO"
+        ],
+        "text": "현재 기업 가격·제품별 수급·이익 전망과 조업일 영향을 다시 확인한다."
+      },
+      "return_definition": "기업 실적과 현재 가격·배당의 연결 미완료",
+      "state": {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_SAMSUNG_MEMORY",
+          "E_KR_EXPORT_AUTO",
+          "E_KR_SAMSUNG_MX"
+        ],
+        "text": "반도체 수출과 삼성의 최신 확보 분기 실적이 강한 반면 자동차 수출·소비기기 수익성은 다른 흐름을 보인다."
+      },
+      "uncertainty": [
+        "KOSPI·KOSDAQ 및 개별 기업의 현재 가격·밸류에이션",
+        "반도체 설비투자·제품별 마진·후속 수요",
+        "외국인 수급·추정치 수정"
+      ]
+    },
+    {
+      "asset_id": "GROWTH",
+      "candidate": null,
+      "exposure": "미국 성장 스타일의 제한된 펀드 표본",
+      "liquidity": "상장 표본의 유동성은 전체 성장주를 대표하지 않음",
+      "name": "성장주",
+      "negative": {
+        "evidence_ids": [
+          "US_SPDR_GROWTH_FY1_PE",
+          "US_SPDR_GROWTH_TOP_HOLDINGS"
+        ],
+        "text": "높은 기대·예상 배수와 특정 기업 집중을 함께 부담한다. 스타일 이름이 분산을 증명하지 않는다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "VALUE",
+          "SHORT_BOND"
+        ],
+        "evidence_ids": [
+          "US_SPDR_GROWTH_FY1_PE",
+          "US_SPDR_VALUE_FY1_PE",
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb"
+        ],
+        "text": "가치 스타일과 이자 대안에 비해 추가 성장의 실현이 필요한지 검토한다. 같은 예상 배수라도 구성·성장·손실 경로가 다르다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "US_SPDR_GROWTH_EPS_GROWTH"
+        ],
+        "text": "성장 기대가 현금흐름으로 이어지는 기업을 찾을 질문이 있다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "US_SPDR_GROWTH_TOP_HOLDINGS"
+        ],
+        "text": "미국 전체 후보의 하위 검증 질문으로 조사하고 별도 독립 자산군 후보로 중복 선정하지 않는다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "US_SPDR_GROWTH_EPS_GROWTH"
+        ],
+        "text": "예상 성장이 실제 현금흐름과 고객 수요로 이어지는지 확인한다."
+      },
+      "return_definition": "성장 기대와 실현 이익·가격손익 구분",
+      "state": {
+        "evidence_ids": [
+          "US_SPDR_GROWTH_EPS_GROWTH",
+          "US_SPDR_GROWTH_TOP_HOLDINGS"
+        ],
+        "text": "공식 표본에서 높은 이익성장 기대와 대형 기술기업 비중을 확인했다."
+      },
+      "uncertainty": [
+        "현재 현금흐름·고객 수요·개별 기업의 추정치",
+        "다른 성장주·한국 성장주를 대표하는지 여부"
+      ]
+    },
+    {
+      "asset_id": "VALUE",
+      "candidate": null,
+      "exposure": "미국 가치 스타일의 제한된 펀드 표본",
+      "liquidity": "실제 펀드·구성기업과 업종 차이",
+      "name": "가치주",
+      "negative": {
+        "evidence_ids": [
+          "US_SPDR_VALUE_EPS_GROWTH",
+          "US_SPDR_VALUE_TOP_HOLDINGS"
+        ],
+        "text": "낮은 성장·사업 악화 가능성을 검증해야 하며 가치와 성장 표본의 대형 기업 중복이 있다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "GROWTH",
+          "SHORT_BOND"
+        ],
+        "evidence_ids": [
+          "US_SPDR_VALUE_FY1_PE",
+          "US_SPDR_VALUE_EPS_GROWTH",
+          "US_SPDR_GROWTH_FY1_PE",
+          "US_SPDR_GROWTH_EPS_GROWTH",
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb"
+        ],
+        "text": "같은 정의에서 성장 표본보다 낮은 배수와 낮은 성장 기대를 함께 본다. 빠른 이익 증가 참여를 놓칠 수 있으며 낮은 배수만으로 보상을 확정하지 않는다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "US_SPDR_VALUE_FY1_PE"
+        ],
+        "text": "성장 기대의 가격 부담을 줄이는 다른 구성의 질문으로 볼 수 있다."
+      },
+      "priority": "monitor",
+      "priority_reason": {
+        "evidence_ids": [
+          "US_SPDR_VALUE_FY1_PE",
+          "US_SPDR_VALUE_TOP_HOLDINGS"
+        ],
+        "text": "미국 주식 후보 안에서 비교하며 스타일 표본 하나를 전체 가치주의 기회로 승격하지 않는다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "US_SPDR_VALUE_EPS_GROWTH",
+          "US_SPDR_VALUE_TOP_HOLDINGS"
+        ],
+        "text": "이익의 정상 수준과 업종·기업 중복을 확인한다."
+      },
+      "return_definition": "낮은 배수와 미래 이익·총성과는 별도",
+      "state": {
+        "evidence_ids": [
+          "US_SPDR_VALUE_FY1_PE",
+          "US_SPDR_VALUE_EPS_GROWTH",
+          "US_SPDR_VALUE_TOP_HOLDINGS"
+        ],
+        "text": "가치 표본의 예상 배수·성장 추정을 확인했다. 대형 기술기업 편입도 남아 있다."
+      },
+      "uncertainty": [
+        "업종별 경기 민감도와 정상 이익",
+        "개별 기업의 낮은 배수 원인·주주환원"
+      ]
+    },
+    {
+      "asset_id": "DIVIDEND",
+      "candidate": null,
+      "exposure": "미국 고배당 표본; 국내 배당주는 별도 미조사",
+      "liquidity": "분배금과 인출 필요·재투자 조건 차이",
+      "name": "배당 전략",
+      "negative": {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_SECTOR_EXPOSURE",
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD"
+        ],
+        "text": "부동산·유틸리티 집중과 배당 지속성이 원금 안정과 다르다. 과거 분배율은 미래 약정 수익이 아니다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "SHORT_BOND",
+          "GROWTH"
+        ],
+        "evidence_ids": [
+          "E_CASH_BILLS",
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD",
+          "US_SPDR_GROWTH_EPS_GROWTH"
+        ],
+        "text": "국채의 관측 이자와 경쟁하지만 배당에 가격손익·지속성·세금이 더해진다. 자산축적기에 현금 분배가 재투자보다 유리한지도 미확인이다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD"
+        ],
+        "text": "사업이 유지한다면 분배 현금흐름을 조사할 출발점이 있다."
+      },
+      "priority": "defer",
+      "priority_reason": {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD"
+        ],
+        "text": "현금 분배 필요와 세후 계좌조건이 없어 배당만을 위한 별도 Deep Dive는 지금 우선하지 않는다. 미국 주식 비교에서 함께 확인한다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_SECTOR_EXPOSURE"
+        ],
+        "text": "배당 지속성·재투자·세후 상품조건이 확인되면 다시 비교한다."
+      },
+      "return_definition": "과거 분배율·향후 배당·가격손익·총수익 구분",
+      "state": {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_FY1_PE",
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD",
+          "US_SPDR_DIVIDEND_SECTOR_EXPOSURE"
+        ],
+        "text": "고배당 표본의 낮은 예상 배수·과거 분배율과 부동산·방어 업종 비중을 확인했다."
+      },
+      "uncertainty": [
+        "배당성향·현금흐름·배당 성장",
+        "한국 계좌별 세후·재투자 효율·국내 배당 대안"
+      ]
+    },
+    {
+      "asset_id": "GOLD",
+      "candidate": null,
+      "exposure": "무이자 금 가격 노출; 실제 상품 미확인",
+      "liquidity": "현물·ETF·선물별 보관·만기 차이",
+      "name": "금",
+      "negative": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELD_DEFINITION",
+          "EV_RA_REAL_YIELDS"
+        ],
+        "text": "무이자 노출에는 실질금리 대안의 기회비용이 있다. 이것이 금 하락이나 채권 우위를 보장하지 않는다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "LONG_BOND",
+          "CASH"
+        ],
+        "evidence_ids": [
+          "EV_RA_REAL_YIELDS",
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067"
+        ],
+        "text": "실질금리 채권·현금의 이자 조건 대신 금 가격·통화 손익에 노출된다. 서로 다른 수익 정의를 직접 순위화하지 않는다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELDS"
+        ],
+        "text": "실질금리·통화·지정학 조건이 변하면 금 보유 이유를 다시 연구할 질문이 생긴다. 이번 자료는 금 수요의 실현을 확인하지 않는다."
+      },
+      "priority": "insufficient",
+      "priority_reason": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELDS"
+        ],
+        "text": "금 자체의 현재 가격·수요 근거가 부족해 실질금리 배경만으로 기회를 판단할 수 없다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELDS"
+        ],
+        "text": "허용되는 금 가격·수요 자료를 확보하고 같은 시점의 실질금리와 비교한다."
+      },
+      "return_definition": "가격손익·통화·상품 비용; 자체 이자와 구분",
+      "state": {
+        "evidence_ids": [
+          "EV_RA_REAL_YIELDS",
+          "EV_RA_REAL_YIELD_DATES"
+        ],
+        "text": "현재 금 가격·수요를 충분히 확인하지 못했다. 금과 비교할 양의 TIPS 실질금리 관측은 확보했다."
+      },
+      "uncertainty": [
+        "현재 금 가격·중앙은행 수요·ETF 흐름",
+        "현재 가격에 반영된 위험 프리미엄과 KRW 비용"
+      ]
+    },
+    {
+      "asset_id": "COMMODITIES",
+      "candidate": null,
+      "exposure": "에너지·금속·농산물을 섞은 노출은 개별 수급과 구분",
+      "liquidity": "만기·편입·담보 구조 확인 필요",
+      "name": "광범위 원자재",
+      "negative": {
+        "evidence_ids": [
+          "EV_RA_OIL_FORECAST",
+          "EV_RA_BRENT_AUG"
+        ],
+        "text": "원유 복구 경로를 가정한 기관 전망과 가격 반영의 불확실성이 있다. 원유 자료를 전체 원자재로 확대하지 않는다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "ENERGY",
+          "CASH"
+        ],
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY",
+          "E_CASH_BILLS"
+        ],
+        "text": "광범위 상품은 관심 있는 원유 가설 외의 노출도 담는다. 에너지 집중 연구와 현금 대안의 선택권을 비교해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY"
+        ],
+        "text": "실물 공급 변화가 특정 원자재의 조사 질문이 될 수 있다."
+      },
+      "priority": "insufficient",
+      "priority_reason": {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY"
+        ],
+        "text": "전체 원자재를 평가할 자료가 부족해 개별 에너지 질문을 먼저 조사한다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "지수 구성과 에너지 외의 수급·선물곡선이 확보되면 범위를 넓힌다."
+      },
+      "return_definition": "현물 가격과 선물 롤·지수 상품성과 구분",
+      "state": {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY"
+        ],
+        "text": "원유 공급 변화의 자료는 있지만 금속·농산물과 광범위 지수의 조건은 부족하다."
+      },
+      "uncertainty": [
+        "현재 지수 구성·금속·농산물 수급",
+        "선물곡선·롤 비용·KRW 이용 상품"
+      ]
+    },
+    {
+      "asset_id": "ENERGY",
+      "candidate": {
+        "changed": {
+          "evidence_ids": [
+            "EV_RA_OIL_SUPPLY"
+          ],
+          "text": "기관은 최근 월간판에서 원유 생산 차질의 증가를 추정했다."
+        },
+        "confirm": [
+          "최신 글로벌 생산·교역·수요",
+          "현재 현물과 만기별 선물곡선",
+          "공급 차질 복구와 가격 반영의 시간 순서",
+          "보유 상품의 만기·롤·KRW 비용"
+        ],
+        "counterargument": {
+          "evidence_ids": [
+            "EV_RA_BRENT_AUG",
+            "EV_RA_OIL_FORECAST"
+          ],
+          "text": "가격에 공급 위험이 이미 반영됐거나 복구가 빨라지면 긴장 가설이 충분한 보상이 아닐 수 있다. 현재 가격은 미확인이다."
+        },
+        "interesting": {
+          "evidence_ids": [
+            "EV_RA_OIL_FORECAST"
+          ],
+          "text": "공급 복구 속도에 따라 설명이 달라지는 조건부 가설이 있다."
+        },
+        "why_now": {
+          "evidence_ids": [
+            "EV_RA_OIL_SUPPLY",
+            "EV_RA_OIL_FORECAST"
+          ],
+          "text": "공급 차질과 회복을 가정한 반대 전망이 동시에 존재한다."
+        }
+      },
+      "exposure": "글로벌 원유 수급과 실제 보유상품은 별도",
+      "liquidity": "선물 만기·상품 롤과 에너지 기업 위험 차이",
+      "name": "에너지·원유",
+      "negative": {
+        "evidence_ids": [
+          "EV_RA_OIL_FORECAST",
+          "EV_RA_BRENT_AUG",
+          "EV_RA_OIL_STOCKS"
+        ],
+        "text": "기관은 공급 복구 시의 가격 하락 전망도 제시한다. 올해 팔월 평균가격과 미국 재고 한 점이 오늘의 글로벌 부족·저평가를 증명하지 않는다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "SHORT_BOND",
+          "US_EQUITY"
+        ],
+        "evidence_ids": [
+          "EV_RA_OIL_FORECAST",
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb",
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION"
+        ],
+        "text": "공급 위험에 노출되는 대신 이자 대안·기업 이익 성장 참여를 포기할 수 있다. 현재 가격에 반영된 공급 기대부터 검증해야 한다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY"
+        ],
+        "text": "공급 복구가 지연될 조건과 수급 긴장을 더 조사할 가치가 있다."
+      },
+      "priority": "candidate",
+      "priority_reason": {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY",
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "기관 자료가 공급 차질과 복구 전망을 동시에 제시해 현재 가격이 어느 경로를 반영하는지 묻는 후속 질문이 구체적이다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY",
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "최신 복구·수요·현물과 만기별 가격이 확인되면 위험 프리미엄을 다시 검토한다."
+      },
+      "return_definition": "현물·선물·기업 주식의 수익 원천 분리",
+      "state": {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY",
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "EIA는 최근 확보 월간판에서 공급 차질을 추정했다. 뒤의 가격 경로는 공급 복구를 가정한 전망이다."
+      },
+      "uncertainty": [
+        "현재 글로벌 공급 복구·수요·실행 가격",
+        "만기별 선물곡선·위험 프리미엄·롤 비용"
+      ]
+    },
+    {
+      "asset_id": "NATGAS",
+      "candidate": null,
+      "exposure": "미국 가스; 지역·허브·LNG 노출을 구분",
+      "liquidity": "계절성과 계약·상품 구조 확인 필요",
+      "name": "천연가스",
+      "negative": {
+        "evidence_ids": [
+          "EV_RA_GAS_STORAGE_FORECAST",
+          "EV_RA_GAS_PRODUCTION_FORECAST"
+        ],
+        "text": "기관은 평균보다 높은 겨울 전 재고와 생산 증가를 전망한다. 계절성만으로 부족·가격 상승을 선언할 수 없다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "SHORT_BOND"
+        ],
+        "evidence_ids": [
+          "EV_RA_GAS_STORAGE_FORECAST",
+          "E_CASH_BILLS"
+        ],
+        "text": "선물곡선·롤과 가격 경로를 확인하기 전에는 현금의 유동성 대안을 포기할 보상이 검증되지 않았다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "EV_RA_GAS_FLOW_TABLE"
+        ],
+        "text": "난방수요·LNG와 생산 변화가 후속 가설의 조건일 수 있다. 표의 올해·내년 연간 LNG 값은 전망이며 과거 역사 수치와 구분한다."
+      },
+      "priority": "insufficient",
+      "priority_reason": {
+        "evidence_ids": [
+          "EV_RA_GAS_STOCKS",
+          "EV_RA_GAS_STORAGE_FORECAST"
+        ],
+        "text": "수급 질문은 있지만 현재 가격·동일 주차 재고 비교가 부족해 겨울 수요만을 후보 선정 이유로 쓰지 않는다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "EV_RA_GAS_STOCKS",
+          "EV_RA_GAS_STOCK_METHOD"
+        ],
+        "text": "공식 동일 주차 재고와 현재 선물곡선·기상·생산을 맞춰 부족 가설을 다시 검토한다."
+      },
+      "return_definition": "현물·선물과 만기교체 상품성과는 다름",
+      "state": {
+        "evidence_ids": [
+          "EV_RA_GAS_STOCKS",
+          "EV_RA_GAS_RELEASE",
+          "EV_RA_GAS_STORAGE_FORECAST"
+        ],
+        "text": "최신 주간 working gas 관측과 기관의 겨울 전 재고·생산 전망을 확보했다. 전망은 실제 미래 재고가 아니다."
+      },
+      "uncertainty": [
+        "같은 주차의 과거 평균·연전 실제 재고 비교",
+        "현재 선물곡선·날씨·LNG 실제 가동·지역 병목"
+      ]
+    },
+    {
+      "asset_id": "BTC",
+      "candidate": null,
+      "exposure": "기초 BTC·거래소 청구권·미국 신탁상품을 구분",
+      "liquidity": "상품 거래와 기초자산 인출·보관 조건은 별도",
+      "name": "Bitcoin",
+      "negative": {
+        "evidence_ids": [
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN"
+        ],
+        "text": "상품은 일반 투자회사 규제와 다르며 유입 보고의 기간·자산 범위가 비교에 맞지 않는다. 거래 스프레드는 투자 가치의 지표가 아니다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "US_EQUITY",
+          "SHORT_BOND"
+        ],
+        "evidence_ids": [
+          "E_CR_IBIT_OBJECTIVE",
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb",
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION"
+        ],
+        "text": "기업 현금흐름이나 이자 대안 대신 가격·수요·보관 위험을 부담한다. 동일 기간 총성과·세금 자료 없이 우열을 판단하지 않는다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CR_IBIT_OBJECTIVE",
+          "E_CR_FLOW_SLOWDOWN"
+        ],
+        "text": "공개 상품의 접근 조건과 기관 유입 범위를 더 연구할 질문은 있다."
+      },
+      "priority": "insufficient",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_IBIT_SPREAD"
+        ],
+        "text": "현재 BTC별 수요·레버리지와 가치 판단 근거가 부족해 가격이나 상품 유동성으로 후보를 정하지 않는다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "E_CR_IBIT_REGISTRATION",
+          "E_CR_FLOW_SLOWDOWN"
+        ],
+        "text": "BTC별 동일 기간 유입과 보관·레버리지 조건이 확인되면 다시 검토한다."
+      },
+      "return_definition": "가격손익·비용·보관; 사업 현금흐름과 다름",
+      "state": {
+        "evidence_ids": [
+          "E_CR_IBIT_SPREAD",
+          "E_CR_FLOW_SLOWDOWN"
+        ],
+        "text": "발행사 상품의 현재 거래 스프레드와 광범위 디지털자산 투자상품 유입 논의를 확인했다. BTC별 순유입은 아니다."
+      },
+      "uncertainty": [
+        "BTC별 순유입·현재 수요·레버리지·가격 정의",
+        "직접 보관·거래소·상품의 조건과 KRW 계좌 접근"
+      ]
+    },
+    {
+      "asset_id": "ETH",
+      "candidate": null,
+      "exposure": "기초 ETH·네트워크 사용·보유상품을 구분",
+      "liquidity": "상장 상품과 직접 스테이킹·보관 구조 차이",
+      "name": "Ethereum",
+      "negative": {
+        "evidence_ids": [
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_ETHA_CORPORATE_ACTION"
+        ],
+        "text": "유입 보고는 ETH별 수요가 아니며 상품의 공표된 미래 주식병합 일정은 완료된 사건으로 사용하지 않는다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "BTC",
+          "US_EQUITY",
+          "SHORT_BOND"
+        ],
+        "evidence_ids": [
+          "E_CR_ETHA_OBJECTIVE",
+          "E_CR_IBIT_OBJECTIVE",
+          "OBS_c91d38cfb196adeed9e7d1132bdb9dbd777e11a48a5a0b94764f58fc4c6d6cdb"
+        ],
+        "text": "가격 노출과 네트워크 수요의 불확실성을 선택하는 대신 BTC·주식·국채의 다른 보상 원천을 포기할 수 있다. 비교 가능한 자료가 없다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_CR_ETHA_OBJECTIVE"
+        ],
+        "text": "BTC와 다른 네트워크·수요 기반의 검증 질문을 남긴다. 이번 상장상품의 목적은 ether 가격 노출이다."
+      },
+      "priority": "insufficient",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_CR_ETHA_SPREAD",
+          "E_CR_FLOW_SLOWDOWN"
+        ],
+        "text": "거래 스프레드와 전체 디지털자산 유입만으로 ETH 수요·상대 매력을 판정할 수 없다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "E_CR_ETHA_OBJECTIVE",
+          "E_CR_FLOW_SLOWDOWN"
+        ],
+        "text": "현재 네트워크 수량·ETH별 유입·상품 조건이 확보되면 BTC와 별도로 재검토한다."
+      },
+      "return_definition": "가격손익·발행·소각·스테이킹의 적용 여부 별도",
+      "state": {
+        "evidence_ids": [
+          "E_CR_ETHA_SPREAD",
+          "E_CR_FLOW_SLOWDOWN"
+        ],
+        "text": "현재 상품 스프레드와 광범위 디지털자산 유입 자료는 있지만 ETH별 네트워크 사용·순유입 수량은 부족하다."
+      },
+      "uncertainty": [
+        "현재 네트워크 활동·수수료·소각·발행 수량",
+        "스테이킹 여부·보관·유동성·규제·KRW 접근"
+      ]
+    },
+    {
+      "asset_id": "KR_REALESTATE",
+      "candidate": null,
+      "exposure": "전국·수도권·서울 및 개별 지역은 별도",
+      "liquidity": "거래 빈도·계약·대출·이사 제약; 상장가격과 다름",
+      "name": "한국 주거용 부동산",
+      "negative": {
+        "evidence_ids": [
+          "E_KR_HOUSING_LENDING_CONSTRAINT",
+          "E_KR_FUNDING_COST_RISK"
+        ],
+        "text": "대출 제약·누적 금융비용과 지역 자료 부족 때문에 가격 상승·저평가나 매수 가능성을 판단하기 어렵다."
+      },
+      "opportunity_cost": {
+        "alternative_ids": [
+          "CASH",
+          "KR_EQUITY"
+        ],
+        "evidence_ids": [
+          "E_KR_HOUSING_LENDING_CONSTRAINT",
+          "E_KR_HOUSING_NAMED_LOCATIONS"
+        ],
+        "text": "주거 편익을 얻을 수 있는 대신 현금 유동성과 금융자산 분산을 포기할 수 있다. 임대·차입·생활비 자료 없이 수익으로 환산하지 않는다."
+      },
+      "positive": {
+        "evidence_ids": [
+          "E_KR_HOUSING_NAMED_LOCATIONS",
+          "E_KR_HOUSING_SUPPLY_LAG"
+        ],
+        "text": "공급 시차와 명시된 서울·경기 입지는 지역별 후속 질문이 될 수 있다. 계획과 실제 입주는 다르다."
+      },
+      "priority": "insufficient",
+      "priority_reason": {
+        "evidence_ids": [
+          "E_KR_REB_CURRENT_RELEASE",
+          "E_KR_HOUSING_LENDING_CONSTRAINT"
+        ],
+        "text": "현재 지역가격과 개인 주거·재무 조건이 부족해 지역 Deep Dive 후보를 억지로 정하지 않는다."
+      },
+      "recheck": {
+        "evidence_ids": [
+          "E_KR_HOUSING_NAMED_LOCATIONS",
+          "E_KR_REB_CURRENT_RELEASE"
+        ],
+        "text": "거주 목적·대출조건과 지역 실거래·전세·공급을 확인하면 별도 고유 방법으로 조사한다."
+      },
+      "return_definition": "실거주 편익·임대·금융비용·가격손익 구분",
+      "state": {
+        "evidence_ids": [
+          "E_KR_REB_CURRENT_RELEASE",
+          "E_KR_HOUSING_SUPPLY_LAG",
+          "E_KR_HOUSING_LENDING_CONSTRAINT"
+        ],
+        "text": "최신 주간 통계판 공표와 수도권 공급계획·대출 제약은 확인했다. 지역가격·전세·실거래 값은 이번 경로에서 부족하다."
+      },
+      "uncertainty": [
+        "전국·수도권·서울의 실거래·거래량·전세·미분양",
+        "지역·실거주 계획·자기자본·부채·대출 한도"
+      ]
+    }
+  ],
+  "sampling_limits": [
+    "HN 목적 검색에서 고른 소수 영어 댓글이며 시장 전체의 대표 표본·합의·확산 속도를 추정하지 않는다.",
+    "같은 AI 스레드의 양쪽 발언은 독립 확인이 아니고 반복·인기도를 사실 점수로 사용하지 않는다.",
+    "미국 스타일 자료는 지정 펀드의 표본이며 FactSet 추정치를 공유한다.",
+    "Federal Reserve의 H. fifteen 금리자료와 기존 거시 CSV는 같은 underlying dataset이며 독립 증거 수로 늘리지 않는다.",
+    "한국 부동산은 정책배경과 최신 통계판 공표만 확인했고 지역 가격을 조사한 것으로 표현하지 않는다."
+  ],
+  "schema_version": "opportunity-review-v1",
+  "sections": {
+    "community": [
+      {
+        "evidence_ids": [
+          "E_COM_HN_AI_DEMAND_BULL",
+          "E_COM_HN_AI_VALUATION_BEAR"
+        ],
+        "text": "HN의 같은 AI 스레드에서 실제 성장 시장을 앞당긴다는 강세 해석과 고객 지출·경쟁이 밸류에이션을 지탱하지 못할 수 있다는 약세 가설이 함께 관측됐다. 같은 스레드의 발언을 독립 증거로 세지 않는다."
+      },
+      {
+        "evidence_ids": [
+          "E_COM_HN_MEMORY_CYCLE_RISK"
+        ],
+        "text": "메모리 설비투자가 완성될 때 수요가 꺾일 수 있다는 공급 사이클 반대 논리가 한 댓글에서 관측됐다. 현재 과잉공급이 확인됐다는 의미는 아니다."
+      },
+      {
+        "evidence_ids": [
+          "E_COM_HN_BTC_BEAR_PERFORMANCE",
+          "E_COM_HN_BTC_CUSTODY_RISK"
+        ],
+        "text": "BTC의 과거 상대성과·향후 약세 주장과 거래소 보관 위험에 관한 댓글을 관측했다. 배당·통화·기간을 맞춘 성과 자료와 현 보관 조건이 없어 내용은 검증되지 않았다."
+      }
+    ],
+    "drivers": [
+      {
+        "evidence_ids": [
+          "E_FOMC_POLICY",
+          "E_FOMC_INFLATION"
+        ],
+        "text": "최신 확보 FOMC 결정은 인상이며 기관은 물가가 여전히 높다고 평가했다. 정책 방향을 금리 인하 이야기로 대체할 수 없다."
+      },
+      {
+        "evidence_ids": [
+          "MET_66cfcff4c844417c160649fa6ef87a0a37e2b72d5e220d4755107a7792013ec1",
+          "MET_c1135e5d4dcc012f02dbf6a42f320006d3a4b95dc964f96e9b85fc8b055ae917",
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067"
+        ],
+        "text": "장단기 시장금리와 물가의 관측창은 다르다. 이자 대안과 할인율 배경은 중요하지만 같은 미래 실질수익으로 계산하지 않는다."
+      },
+      {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_FORWARD_PE",
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION"
+        ],
+        "text": "예상 이익의 변화와 현재 배수의 분모를 같이 봐야 한다. 낮은 예상 배수에는 높은 성장 기대가 함께 들어 있을 수 있다."
+      },
+      {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_FUNDING_COST_RISK"
+        ],
+        "text": "한국 반도체 수출의 상승과 높아진 국내 금융비용은 같은 기업·가계에 다른 경로로 작용할 수 있다."
+      },
+      {
+        "evidence_ids": [
+          "OBS_8424e0112254d8ba4e20949656543c4204966432b76a785076aa0670fe697a28"
+        ],
+        "text": "원/달러 관측은 한국 투자자의 외국자산 평가 환경이며 미국 자산의 사업 환경과 분리한다."
+      }
+    ],
+    "easy": [
+      "좋은 사업과 좋은 투자 가격은 따로 살펴봐야 한다.",
+      "미국과 한국 기업의 성장 자료가 있어도 이미 높은 기대가 가격에 들어 있을 수 있다.",
+      "이자를 받을 수 있는 대안과 기다릴 선택권도 함께 비교한다.",
+      "커뮤니티의 확신은 질문의 단서이며 사실 확인을 대신하지 않는다.",
+      "이번 후보는 더 조사할 주제이며 개인의 투자 비중이나 매수 명령이 아니다."
+    ],
+    "gaps": [
+      {
+        "evidence_ids": [
+          "E_COM_HN_AI_DEMAND_BULL",
+          "E_COM_HN_AI_VALUATION_BEAR",
+          "NV_SEC_FY2027_Q2_REVENUE_DATACENTER",
+          "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+          "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES"
+        ],
+        "text": "AI 수요가 모두 허구라는 설명에는 NVIDIA의 실제 매출 증가가 다른 근거다. 그러나 공급자 매출과 고객 투자 회수는 별개이며 결제 연장·매출채권 집중도 공시됐다. 자금순환 의혹·현재 주가 적정성은 확인하지 못했다."
+      },
+      {
+        "evidence_ids": [
+          "E_COM_HN_MEMORY_CYCLE_RISK",
+          "E_KR_SAMSUNG_MEMORY",
+          "E_KR_SAMSUNG_MX"
+        ],
+        "text": "메모리 성장과 비용 부담은 동시 발생할 수 있다. 강한 메모리 이익이 소비기기 수익성까지 좋아진다는 논리에는 회사의 비용 부담 발표가 반대 설명이다."
+      },
+      {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD",
+          "US_SPDR_DIVIDEND_SECTOR_EXPOSURE",
+          "E_CASH_BASIS"
+        ],
+        "text": "배당을 안정적인 이자처럼 읽기 어렵다. 과거 분배율·부동산 업종 집중과 국채 수익 정의가 달라 낮은 배수나 높은 분배만으로 더 좋은 대안은 아니다."
+      },
+      {
+        "evidence_ids": [
+          "US_SPDR_GROWTH_TOP_HOLDINGS",
+          "US_SPDR_VALUE_TOP_HOLDINGS",
+          "US_SPDR_GROWTH_EPS_GROWTH",
+          "US_SPDR_VALUE_EPS_GROWTH"
+        ],
+        "text": "같은 성장·가치 이름만으로 독립 분산을 기대하기 어렵다. 두 표본에 대형 기술기업이 겹치며 이익 추정의 원출처도 같다."
+      },
+      {
+        "evidence_ids": [
+          "E_COM_HN_BTC_BEAR_PERFORMANCE"
+        ],
+        "text": "BTC 과거 상대성과 댓글은 동일 기간·배당 포함 주식·금 가격 정의를 맞춘 데이터가 없어 미확인이다. 확인 자료 부족을 댓글의 거짓 증명으로 바꾸지 않는다."
+      }
+    ],
+    "korean_context": [
+      {
+        "evidence_ids": [
+          "OBS_8424e0112254d8ba4e20949656543c4204966432b76a785076aa0670fe697a28"
+        ],
+        "text": "한국 거주·KRW 생활비 기준을 적용한다. 미국 국채·주식의 USD 환경과 환율 노출은 별도이며 환헤지·실제 환전 비용을 확인해야 한다."
+      },
+      {
+        "evidence_ids": [
+          "E_KR_GOV3Y_CONTEXT",
+          "E_KR_FUNDING_COST_RISK"
+        ],
+        "text": "한국 국채 시장금리와 자금조달 비용의 변화는 국내 대안·주택 금융조건에 중요하다. 이를 예금금리·기준금리와 동일시하지 않는다."
+      },
+      {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD",
+          "E_CR_IBIT_REGISTRATION"
+        ],
+        "text": "배당 분배·해외 상품의 계좌별 과세·접근 조건을 아직 확인하지 못했다. 세율을 상수로 넣거나 자산축적기에 배당이 유리하다고 자동 결정하지 않는다."
+      },
+      {
+        "evidence_ids": [
+          "E_KR_FUNDING_COST_RISK",
+          "E_KR_HOUSING_LENDING_CONSTRAINT"
+        ],
+        "text": "한국 근로소득·주식·주거 노출은 관련될 수 있지만 현재 보유 내역과 주택 계획이 없어 실제 집중위험을 판정하지 않는다."
+      }
+    ],
+    "market_narratives": [
+      {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_EXPECTATION"
+        ],
+        "text": "이익 추정 제공자는 대형 지수의 높은 성장 전망을 제시했다. 이는 실현 결과나 가격 상승의 증명이 아니다."
+      },
+      {
+        "evidence_ids": [
+          "E_KR_SAMSUNG_MEMORY"
+        ],
+        "text": "메모리 업체는 AI 서버 수요와 가격이 실적을 뒷받침했다고 발표했다. 지속 가능한 수요·투자 회수는 다음 질문이다."
+      },
+      {
+        "evidence_ids": [
+          "EV_RA_OIL_FORECAST"
+        ],
+        "text": "기관의 원유 전망은 공급 복구 경로를 전제로 한다. 수급 긴장 주장과 반대 경로를 동시에 확인해야 한다."
+      },
+      {
+        "evidence_ids": [
+          "E_CR_FLOW_SLOWDOWN",
+          "E_CR_FLOW_CAUTIOUS"
+        ],
+        "text": "디지털자산 유입 기사에는 조심스러운 투자자 흐름의 평가가 있다. 기간 길이·BTC와 ETH의 범위가 맞지 않아 정량 감소율·자산별 수요로 해석하지 않는다."
+      },
+      {
+        "evidence_ids": [
+          "NV_SEC_FY2027_Q2_REVENUE_DATACENTER",
+          "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+          "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES"
+        ],
+        "text": "AI 공급자의 성장은 공시에 나타나지만 고객의 현금창출·결제·집중 조건까지 봐야 지속성 판단이 된다."
+      }
+    ],
+    "overview": [
+      {
+        "evidence_ids": [
+          "US_FACTSET_Q3_2026_EPS_REVISIONS",
+          "US_FACTSET_Q3_2026_FORWARD_PE",
+          "NV_SEC_FY2027_Q2_REVENUE_DATACENTER",
+          "NV_SEC_FY2027_Q2_CASH_CONVERSION",
+          "NV_SEC_FY2027_Q2_CUSTOMER_RECEIVABLES"
+        ],
+        "text": "미국 예상 이익의 상향·낮아진 PER과 실제 AI 공급자의 매출 증가가 있다. 고객 결제·매출채권 조건이 함께 공시되어 이익의 질과 분모를 검증할 가치가 있다."
+      },
+      {
+        "evidence_ids": [
+          "E_KR_EXPORT_SEMI",
+          "E_KR_EXPORT_AUTO",
+          "E_KR_SAMSUNG_MX"
+        ],
+        "text": "한국 반도체 성장은 다른 수출·사업 수익성과 같지 않다. 사업의 강함과 현재 주식 가격의 매력을 나누어 봐야 한다."
+      },
+      {
+        "evidence_ids": [
+          "E_FOMC_POLICY",
+          "OBS_07818a1242169b952349e54e0651560e013d9c511c3728a9955db7bd85184067",
+          "E_KR_GOV3Y_CONTEXT"
+        ],
+        "text": "관측된 국채 이자 대안과 현재 정책 인상은 위험자산·장기채의 기회비용을 비교할 기준이다. 미국 금리를 한국 현금 금리로 바꾸지 않는다."
+      },
+      {
+        "evidence_ids": [
+          "EV_RA_OIL_SUPPLY",
+          "EV_RA_OIL_FORECAST",
+          "EV_RA_GAS_STORAGE_FORECAST"
+        ],
+        "text": "에너지는 공급 차질과 복구 전망을 함께 조사할 후보다. 천연가스는 계절성만으로 부족을 주장할 수 없다."
+      },
+      {
+        "evidence_ids": [
+          "US_SPDR_DIVIDEND_DISTRIBUTION_YIELD",
+          "EV_RA_REAL_YIELDS",
+          "E_CR_FLOW_SLOWDOWN",
+          "E_KR_REB_CURRENT_RELEASE"
+        ],
+        "text": "배당·금·암호자산·부동산의 매력은 수익 정의·현재 수요·가격·개인 조건 부족으로 제한한다. 조사 부족은 그 자산이 나쁘다는 증명이 아니다."
+      }
+    ],
+    "unknowns": [
+      "현재 보유자산·현금·비상자금·부채·월 투자액·큰 자금수요·주택 계획과 실제 위험 감당 능력",
+      "기업별 미래 현금흐름·추정치의 신뢰성과 현재 가격에 반영된 기대",
+      "금 가격·수요·광범위 원자재 구성·현재 만기별 선물 가격",
+      "BTC·ETH별 순유입·레버리지·현재 네트워크 수량",
+      "한국 주거 지역별 실제 가격·거래량·전세·미분양·개인 대출 조건",
+      "누락된 반대 자료와 표본 대표성·시장 전체의 합의"
+    ]
+  }
+}

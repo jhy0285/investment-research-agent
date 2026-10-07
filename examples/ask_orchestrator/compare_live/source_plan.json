@@ -1,0 +1,726 @@
+{
+  "as_of": "2026-10-04",
+  "asset_ids": [
+    "US_EQUITY",
+    "SHORT_BOND"
+  ],
+  "claims": [
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_VALUATION",
+        "E_DD_IDX_SPY_HOLDINGS",
+        "E_DD_IDX_SPY_PE_METHOD",
+        "E_DD_TR_DATES",
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_US_EQUITY",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [
+        "E_CASH_DATES",
+        "E_CASH_BILLS",
+        "E_CASH_BASIS",
+        "EV_RA_REAL_YIELD_DATES",
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_SHORT_BOND",
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "만기와 자금 필요 시점·환율 노출이 맞지 않는가?",
+      "review": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "rule": "reviewed_links_v1",
+      "support_ids": [],
+      "text": "확인한 yield와 자금 사용 시점이 투자 목적에 맞는가?",
+      "verification": "unverified"
+    }
+  ],
+  "evidence": [
+    {
+      "definition": {
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "currency": "USD",
+        "measure": "H15_date_columns_and_effective_federal_funds_rate",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+        "unit": "date_columns_and_EFFR_percent"
+      },
+      "excerpt_id": "DATES",
+      "extraction": null,
+      "id": "E_CASH_DATES",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ],
+      "source_id": "MAC_H15_CASH_BILLS",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "currency": "USD",
+        "measure": "H15_secondary_Treasury_bills_discount_basis",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+        "unit": "annualized_percent_discount_basis"
+      },
+      "excerpt_id": "BILLS",
+      "extraction": null,
+      "id": "E_CASH_BILLS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ],
+      "source_id": "MAC_H15_CASH_BILLS",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+        "currency": "USD",
+        "measure": "H15_secondary_Treasury_bills_discount_basis",
+        "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+        "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+        "unit": "annualized_percent_discount_basis"
+      },
+      "excerpt_id": "BASIS",
+      "extraction": null,
+      "id": "E_CASH_BASIS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다."
+      ],
+      "source_id": "MAC_H15_CASH_BILLS",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": null,
+        "measure": "H15_publication_and_observation_dates",
+        "period": "2026-09-25_to_2026-10-01",
+        "scope": "H15_release_2026-10-02_daily_table",
+        "unit": "calendar_date"
+      },
+      "excerpt_id": "RA_REAL_YIELD_DATES",
+      "extraction": null,
+      "id": "EV_RA_REAL_YIELD_DATES",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Release date Oct 2 with observations through Oct 1; exact initial publication vintage/revision history unknown."
+      ],
+      "source_id": "RA_FED_REAL_YIELD",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "Treasury_inflation_indexed_constant_maturity_market_bid_yield",
+        "currency": "USD",
+        "measure": "US_TIPS_10Y_constant_maturity_yield",
+        "period": "2026-09-25_to_2026-10-01",
+        "scope": "US_Treasury_TIPS_interpolated_curve_not_policy_rate_not_gold_expected_return",
+        "unit": "percent_per_annum"
+      },
+      "excerpt_id": "RA_REAL_YIELDS",
+      "extraction": null,
+      "id": "EV_RA_REAL_YIELDS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "10Y TIPS Oct 1 is 2.88% per annum from final date column; positive real yield is opportunity-cost context only. No gold price, central-bank gold demand, dollar index or empirical gold-return relationship measured."
+      ],
+      "source_id": "RA_FED_REAL_YIELD",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "not_applicable",
+        "currency": "USD",
+        "measure": "TIPS_constant_maturity_yield_definition",
+        "period": "current_H15_method",
+        "scope": "U.S._Treasury_inflation_protected_constant_maturity_series",
+        "unit": "text"
+      },
+      "excerpt_id": "RA_REAL_YIELD_DEFINITION",
+      "extraction": null,
+      "id": "EV_RA_REAL_YIELD_DEFINITION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "Curve-based real yield is not guaranteed realized return; purchase price, holding horizon, inflation adjustment, costs, tax and KRW FX exposure differ."
+      ],
+      "source_id": "RA_FED_REAL_YIELD",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "Quarter-specific consensus EPS estimate revision; provider averages, not realized EPS growth",
+        "currency": "USD",
+        "measure": "Quarterly EPS estimate revision",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent"
+      },
+      "excerpt_id": "REVISIONS",
+      "extraction": null,
+      "id": "E_DD_IDX_FACTSET_Q3_REVISIONS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+        "currency": "USD",
+        "measure": "Company EPS guidance population",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "counts and percent"
+      },
+      "excerpt_id": "GUIDANCE",
+      "extraction": null,
+      "id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+        "currency": "USD",
+        "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+        "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+        "unit": "percent and ratio"
+      },
+      "excerpt_id": "GROWTH_PRICE",
+      "extraction": null,
+      "id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+        "currency": "USD",
+        "measure": "Index trailing P/E and FY1 harmonic P/E",
+        "period": "2026-10-01",
+        "scope": "S&P 500 characteristics shown by State Street on SPY page",
+        "unit": "ratio and percent"
+      },
+      "excerpt_id": "VALUATION",
+      "extraction": null,
+      "id": "E_DD_IDX_SPY_VALUATION",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_SPY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+        "currency": "USD",
+        "measure": "Index top-security market-cap weights",
+        "period": "2026-10-01",
+        "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+        "unit": "percent"
+      },
+      "excerpt_id": "HOLDINGS",
+      "extraction": null,
+      "id": "E_DD_IDX_SPY_HOLDINGS",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_SPY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "Forecasted ONE-YEAR earnings per share; negative/positive outliers included; not rolling forward12mo aggregate index calculation",
+        "currency": "USD",
+        "measure": "FY1 weighted harmonic P/E method",
+        "period": "2026-10-01",
+        "scope": "SPY underlying holdings methodology explained on product page",
+        "unit": "ratio definition"
+      },
+      "excerpt_id": "PE_METHOD",
+      "extraction": null,
+      "id": "E_DD_IDX_SPY_PE_METHOD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다."
+      ],
+      "source_id": "DD_IDX_SPY",
+      "view": "fundamental"
+    },
+    {
+      "definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "H15_date_column_order",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "H15 current release latest observation identity",
+        "unit": "dates"
+      },
+      "excerpt_id": "DATES",
+      "extraction": null,
+      "id": "E_DD_TR_DATES",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ],
+      "source_id": "DD_TR_H15_CURVE",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+        "unit": "annual_percent"
+      },
+      "excerpt_id": "CURVE",
+      "extraction": null,
+      "id": "E_DD_TR_CURVE",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ],
+      "source_id": "DD_TR_H15_CURVE",
+      "view": "macro"
+    },
+    {
+      "definition": {
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "currency": "USD",
+        "measure": "Treasury_constant_maturity_interpolation",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "scope": "Interpolation of closing bid yield curve; Treasury nominal securities, not a tradable single-security quote",
+        "unit": "source_method_definition"
+      },
+      "excerpt_id": "METHOD",
+      "extraction": null,
+      "id": "E_DD_TR_METHOD",
+      "interpretation": null,
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ],
+      "source_id": "DD_TR_H15_CURVE",
+      "view": "macro"
+    }
+  ],
+  "id": "ASK_SELECTED_SOURCES",
+  "question": "S&P500이랑 미국 국채 비교해줘",
+  "schema_version": "1",
+  "sources": [
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://insight.factset.com/sp-500-earnings-season-preview-q3-2026",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "Quarter-specific consensus EPS estimate revision; provider averages, not realized EPS growth",
+            "currency": "USD",
+            "measure": "Quarterly EPS estimate revision",
+            "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+            "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+            "unit": "percent"
+          },
+          "id": "REVISIONS",
+          "locator": "Analyst estimate revisions paragraph",
+          "quote": "On a per-share basis, estimated earnings for the third quarter increased by 1.4% from June 30 to September 30. In a typical quarter, analysts usually lower earnings estimates during the quarter. Over the past five years (20 quarters), earnings expectations have fallen by 2.2% on average during the quarter. Over the past ten years, (40 quarters), earnings expectations have fallen by 2.5% on average during the quarter."
+        },
+        {
+          "definition": {
+            "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+            "currency": "USD",
+            "measure": "Company EPS guidance population",
+            "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+            "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+            "unit": "counts and percent"
+          },
+          "id": "GUIDANCE",
+          "locator": "Positive and negative guidance population paragraph",
+          "quote": "At this point in time, 116 companies in the index have issued EPS guidance for Q3 2026. Of these companies, 44 have issued negative EPS guidance and 72 have issued positive EPS guidance. The number of companies issuing positive EPS guidance is well above the 5-year average of 42 and well above the 10-year average of 40. The percentage of S&P 500 companies issuing positive EPS guidance for Q3 2026 is 62% (72 out of 116), which is also well above the 5-year average of 40% and well above the 10-year average of 41%. Due to the upward revisions to earnings estimates by analysts and the positive EPS guidance issued by companies, the estimated (year-over-year) earnings growth rate for Q3 2026 is higher today relative to the start of the third quarter. As of today, the S&P 500 is expected to report (year-over-year) earnings growth of 29.5%, compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30."
+        },
+        {
+          "definition": {
+            "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+            "currency": "USD",
+            "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+            "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+            "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+            "unit": "percent and ratio"
+          },
+          "id": "GROWTH_PRICE",
+          "locator": "Expected earnings/revenue and forward valuation paragraphs",
+          "quote": "As of today, the S&P 500 is expected to report (year-over-year) revenue growth of 12.3%, compared to the expectations for revenue growth of 10.9% on June 30. If 12.3% is the actual revenue growth rate for the quarter, it will mark the third consecutive quarter of double-digit revenue growth for the index. All eleven sectors are projected to report year-over-year growth in revenues, led by the Information Technology, Energy, and Communication Services sectors. For Q4 2026, analysts are calling for earnings growth of 27.6%. For CY 2026, analysts are predicting (year-over-year) earnings growth of 32.4%. The forward 12-month P/E ratio is 19.0 (based on Wednesday’s closing price and forward EPS), which is below the 5-year average (19.8) and below the 10-year average (19.1). This P/E ratio is also below the forward P/E ratio of 20.4 recorded at the end of the second quarter (June 30)."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_IDX_FACTSET_Q3",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "observed_at": "2026-10-02",
+      "origin_source_id": null,
+      "policy_note": "Public FactSet analytical article with copyright and disclaimer; robots allow selected public article. Retain only three short attributed excerpts per article and hashes for personal noncommercial research, no figures or full article, no licence or investment recommendation claimed. FactSet estimate methodology and mixed GAAP/non-GAAP basis are provider statements. Provider articles share underlying estimates and are not independent corroboration. Historical articles are historical earnings-season observations, not current earnings estimates.",
+      "policy_url": "https://www.factset.com/legal",
+      "published_at": "2026-10-02",
+      "publisher": "FactSet",
+      "retention": "excerpt",
+      "title": "FactSet Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "type": "data_provider",
+      "url": "https://insight.factset.com/sp-500-earnings-season-preview-q3-2026",
+      "valid_as_of": "2026-10-02"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+            "currency": "USD",
+            "measure": "Index trailing P/E and FY1 harmonic P/E",
+            "period": "2026-10-01",
+            "scope": "S&P 500 characteristics shown by State Street on SPY page",
+            "unit": "ratio and percent"
+          },
+          "id": "VALUATION",
+          "locator": "Index characteristics row",
+          "quote": "Index Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth 22.46% Number of Holdings 503 Price/Cash Flow 18.25 Price/Earnings 24.62 Price/Earnings Ratio FY1 20.43"
+        },
+        {
+          "definition": {
+            "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+            "currency": "USD",
+            "measure": "Index top-security market-cap weights",
+            "period": "2026-10-01",
+            "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+            "unit": "percent"
+          },
+          "id": "HOLDINGS",
+          "locator": "Index top10 security weights",
+          "quote": "Download All Holdings: Daily Index Top Holdings as of Oct 01 2026 Name Weight NVIDIA Corporation 8.46% Apple Inc. 7.30% Microsoft Corporation 5.77% Amazon.com Inc. 3.69% Alphabet Inc. Class A 3.01% Broadcom Inc. 2.48% Meta Platforms Inc Class A 2.42% Alphabet Inc. Class C 2.41% Micron Technology Inc. 1.88% Advanced Micro Devices Inc. 1.52%"
+        },
+        {
+          "definition": {
+            "adjustment": "Forecasted ONE-YEAR earnings per share; negative/positive outliers included; not rolling forward12mo aggregate index calculation",
+            "currency": "USD",
+            "measure": "FY1 weighted harmonic P/E method",
+            "period": "2026-10-01",
+            "scope": "SPY underlying holdings methodology explained on product page",
+            "unit": "ratio definition"
+          },
+          "id": "PE_METHOD",
+          "locator": "FY1 PE methodology",
+          "quote": "Price/Earnings Ratio FY1 ﻿Price/Earnings Ratio FY1 The weighted harmonic average of current share price divided by the forecasted one year earnings per share for each security in the fund. Negative and positive outliers are included in the calculation. 20.43"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_IDX_SPY",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "observed_at": "2026-10-01",
+      "origin_source_id": null,
+      "policy_note": "Public product page with copyright and jurisdiction restrictions; robots allow this page. Only three small attributed analytical excerpts and hashes retained for personal research, not logos, full holdings or PDFs. No Korean product access or redistribution rights inferred. FactSet-based estimates overlap other FactSet evidence.",
+      "policy_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "published_at": null,
+      "publisher": "State Street Investment Management",
+      "retention": "excerpt",
+      "title": "State Street SPY: separately defined index valuation and concentration",
+      "topics": [
+        "earnings",
+        "valuation",
+        "AI",
+        "cash_flow"
+      ],
+      "type": "institution",
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "valid_as_of": "2026-10-01"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "currency": "USD",
+            "measure": "H15_date_column_order",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "scope": "H15 current release latest observation identity",
+            "unit": "dates"
+          },
+          "id": "DATES",
+          "locator": "H15 DATES visible table/text",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1 "
+        },
+        {
+          "definition": {
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "currency": "USD",
+            "measure": "Treasury_nominal_constant_maturity_curve",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+            "unit": "annual_percent"
+          },
+          "id": "CURVE",
+          "locator": "H15 CURVE visible table/text",
+          "quote": "Treasury constant maturities Nominal 9 1-month 4.04 4.04 4.04 4.02 4.06 3-month 4.24 4.28 4.25 4.20 4.17 6-month 4.33 4.41 4.36 4.33 4.27 1-year 4.50 4.59 4.58 4.54 4.44 2-year 4.81 4.92 4.89 4.88 4.78 3-year 4.94 5.01 4.98 5.00 4.91 5-year 4.98 5.06 5.06 5.09 5.01 7-year 5.06 5.15 5.16 5.19 5.12 10-year 5.17 5.24 5.26 5.29 5.24 20-year 5.54 5.60 5.64 5.68 5.64 30-year 5.49 5.56 5.59 5.64 5.61 "
+        },
+        {
+          "definition": {
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "currency": "USD",
+            "measure": "Treasury_constant_maturity_interpolation",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "scope": "Interpolation of closing bid yield curve; Treasury nominal securities, not a tradable single-security quote",
+            "unit": "source_method_definition"
+          },
+          "id": "METHOD",
+          "locator": "H15 METHOD visible table/text",
+          "quote": "Yields on Treasury nominal securities at “constant maturity” are interpolated by the U.S. Treasury from the daily yield curve for non-inflation-indexed Treasury securities. This curve, which relates the yield on a security to its time to maturity, is based on the closing market bid yields on actively traded Treasury securities in the over-the-counter market. These market yields are calculated from composites of quotations obtained by the Federal Reserve Bank of New York. The constant maturity yield values are read from the yield curve at fixed maturities, currently 1, 3, and 6 months and 1, 2, 3, 5, 7, 10, 20, and 30 years. This method provides a yield for a 10-year maturity, for example, even if no outstanding security has exactly 10 years remaining to maturity. "
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DD_TR_H15_CURVE",
+      "jurisdiction": "US",
+      "max_age_days": 10,
+      "observed_at": "2026-10-01",
+      "origin_source_id": null,
+      "policy_note": "Public-domain Federal Reserve information with attribution. Same underlying Treasury observations as macro FED_H15_TREASURY CSV; HTML is a definition/date cross-check, not independent empirical confirmation. Excerpts only; seals, logos and separate third-party content excluded.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "published_at": "2026-10-02",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "retention": "excerpt",
+      "title": "H15 released 2026-10-02: same-date nominal Treasury constant-maturity curve",
+      "topics": [
+        "Treasury",
+        "interest_rates",
+        "opportunity_cost",
+        "valuation"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "valid_as_of": "2026-10-01"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "currency": "USD",
+            "measure": "H15_date_columns_and_effective_federal_funds_rate",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+            "unit": "date_columns_and_EFFR_percent"
+          },
+          "id": "DATES",
+          "locator": "H15 selected rates DATES",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1 Federal funds (effective) 1 2 3 3.88 3.88 3.88 3.88 3.88"
+        },
+        {
+          "definition": {
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "currency": "USD",
+            "measure": "H15_secondary_Treasury_bills_discount_basis",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+            "unit": "annualized_percent_discount_basis"
+          },
+          "id": "BILLS",
+          "locator": "H15 selected rates BILLS",
+          "quote": "U.S. government securities Treasury bills (secondary market) 3 4 4-week 3.90 3.89 3.88 3.85 3.89 3-month 4.08 4.10 4.07 4.03 4.00 6-month 4.21 4.27 4.22 4.19 4.13 1-year 4.28 4.34 4.37 4.33 4.24"
+        },
+        {
+          "definition": {
+            "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+            "currency": "USD",
+            "measure": "H15_secondary_Treasury_bills_discount_basis",
+            "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+            "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+            "unit": "annualized_percent_discount_basis"
+          },
+          "id": "BASIS",
+          "locator": "H15 selected rates BASIS",
+          "quote": "3. Annualized using a 360-day year or bank interest. 4. On a discount basis."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "MAC_H15_CASH_BILLS",
+      "jurisdiction": "US",
+      "max_age_days": 10,
+      "observed_at": "2026-10-01",
+      "origin_source_id": "RA_FED_REAL_YIELD",
+      "policy_note": "Federal Reserve Board public-domain data with attribution. H15 is shared underlying Treasury dataset with retained macro CSV and RA_FED_REAL_YIELD; these are not independent confirmations. Preserve date order and discount-basis footnotes.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "published_at": "2026-10-02",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "retention": "excerpt",
+      "title": "2026-10-02 H.15 effective funds and secondary Treasury bills",
+      "topics": [
+        "macro",
+        "cash",
+        "short_bonds"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "valid_as_of": "2026-10-01"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": null,
+            "measure": "H15_publication_and_observation_dates",
+            "period": "2026-09-25_to_2026-10-01",
+            "scope": "H15_release_2026-10-02_daily_table",
+            "unit": "calendar_date"
+          },
+          "id": "RA_REAL_YIELD_DATES",
+          "locator": "H.15 release date and daily column headers",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1"
+        },
+        {
+          "definition": {
+            "adjustment": "Treasury_inflation_indexed_constant_maturity_market_bid_yield",
+            "currency": "USD",
+            "measure": "US_TIPS_10Y_constant_maturity_yield",
+            "period": "2026-09-25_to_2026-10-01",
+            "scope": "US_Treasury_TIPS_interpolated_curve_not_policy_rate_not_gold_expected_return",
+            "unit": "percent_per_annum"
+          },
+          "id": "RA_REAL_YIELDS",
+          "locator": "Treasury constant maturities: Inflation indexed rows; 10-year latest Oct 1 column",
+          "quote": "Inflation indexed 10 5-year 2.64 2.73 2.72 2.73 2.65 7-year 2.73 2.80 2.80 2.82 2.76 10-year 2.83 2.90 2.91 2.93 2.88"
+        },
+        {
+          "definition": {
+            "adjustment": "not_applicable",
+            "currency": "USD",
+            "measure": "TIPS_constant_maturity_yield_definition",
+            "period": "current_H15_method",
+            "scope": "U.S._Treasury_inflation_protected_constant_maturity_series",
+            "unit": "text"
+          },
+          "id": "RA_REAL_YIELD_DEFINITION",
+          "locator": "H.15 footnote 10",
+          "quote": "Yields on Treasury inflation protected securities (TIPS) adjusted to constant maturities. Source: U.S. Treasury."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "RA_FED_REAL_YIELD",
+      "jurisdiction": "United States",
+      "max_age_days": 10,
+      "observed_at": "2026-10-01",
+      "origin_source_id": null,
+      "policy_note": "Board public-domain disclaimer previously reviewed in this repository; reproduce short H.15 government-table text with Board/U.S. Treasury attribution. No logos/third-party assets. Excerpt retention only; robots checked by existing acquisition module. This is the same underlying H.15/U.S. Treasury dataset used by the macro case, not independent confirmation merely because the HTML endpoint differs from the CSV endpoint.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "published_at": "2026-10-02",
+      "publisher": "Board of Governors of the Federal Reserve System; U.S. Treasury underlying constant maturity data",
+      "retention": "excerpt",
+      "title": "H.15 Selected Interest Rates — inflation-indexed constant maturities",
+      "topics": [
+        "US_real_yield",
+        "gold_opportunity_cost_context"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "valid_as_of": "2026-10-02"
+    }
+  ]
+}

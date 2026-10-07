@@ -1,0 +1,263 @@
+{
+  "schema_version": "bounded-findings-v1",
+  "findings": [
+    {
+      "id": "BTC_PRODUCT",
+      "asset_ids": [
+        "BTC",
+        "ETF_IBIT"
+      ],
+      "evidence_ids": [
+        "E_CR_IBIT_OBJECTIVE",
+        "E_CR_IBIT_REGISTRATION"
+      ],
+      "fingerprints": {
+        "E_CR_IBIT_OBJECTIVE": "7c9e3d37f9d106fb7c27127debaa583a8dc8a6813cf8d7d13d2b6cb4beaa6e8c",
+        "E_CR_IBIT_REGISTRATION": "f25c8d08df68d736802ce3696befb7a8ce9bcd1d4ab70d5fa570200b51ed720e"
+      },
+      "text": "발행사는 IBIT가 Bitcoin 가격을 따르는 상품이라고 설명하고, 일반 미국 투자회사 규제와 다른 법적 구조를 명시한다. ETF의 거래 편의와 기초 Bitcoin의 가격 매력·보관 및 규제 위험은 따로 판단해야 한다.",
+      "counterargument": "거래 편의가 개선되어도 기초자산 가격 하락과 상품 구조의 위험이 사라지는 것은 아니다.",
+      "reassessment": "BTC 고유 수요·보관 조건·현재 상품 구조와 비용을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "BTC_FLOW",
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "evidence_ids": [
+        "E_CR_FLOW_SLOWDOWN",
+        "E_CR_FLOW_CAUTIOUS"
+      ],
+      "fingerprints": {
+        "E_CR_FLOW_SLOWDOWN": "252b2dc3a7218ba4d8918a3a06c307152d52e1794549af2612f95b1ce4e3b35e",
+        "E_CR_FLOW_CAUTIOUS": "cb7df15d617f7818cfc8c7ed039124616e3f748844bf0f3e5b3968b1c572d21f"
+      },
+      "text": "제공자는 디지털자산 투자상품의 주간 자금 유입이 둔화했고 투자자가 신중하다고 보고한다. 기관 수요가 계속 가속한다는 주장에는 반대 단서지만, 집계 전체의 흐름을 BTC 또는 ETH 단독 흐름으로 일반화할 수 없다.",
+      "counterargument": "짧은 기간의 유입 둔화는 장기 수요 약화나 미래 가격 하락을 증명하지 않는다.",
+      "reassessment": "동일 기간 BTC·ETH별 ETF 순유입과 실제 보유량을 따로 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "ETH_PRODUCT",
+      "asset_ids": [
+        "ETH",
+        "ETF_ETHA"
+      ],
+      "evidence_ids": [
+        "E_CR_ETHA_OBJECTIVE",
+        "E_CR_ETHA_CORPORATE_ACTION"
+      ],
+      "fingerprints": {
+        "E_CR_ETHA_OBJECTIVE": "79f254086e5fc74521dba42a09f9d0a6d0b1de52ac76126e04f720a124972786",
+        "E_CR_ETHA_CORPORATE_ACTION": "bd13965f78c1fb3baefe5b7f62d12ad0335197e0d00003d8f6adf00a8431050a"
+      },
+      "text": "ETHA는 ether 가격을 따르는 상품이며 발행사는 주식 병합을 예고했다. 병합에 따른 주당 가격 변화와 기초자산의 경제적 가치 변화는 구분해야 한다.",
+      "counterargument": "주당 가격·주식 수의 기계적 변화가 네트워크 성장이나 투자 수익의 개선은 아니다.",
+      "reassessment": "실제 병합 일정·조정된 수량과 가격·수수료 및 ETH 고유 수요를 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "GAS_FORECAST",
+      "asset_ids": [
+        "NATGAS"
+      ],
+      "evidence_ids": [
+        "EV_RA_GAS_STORAGE_FORECAST",
+        "EV_RA_GAS_PRODUCTION_FORECAST"
+      ],
+      "fingerprints": {
+        "EV_RA_GAS_STORAGE_FORECAST": "e9e58ded65be83c7de3157d5a9a099500a635a85819242dcffd3f962523dda01",
+        "EV_RA_GAS_PRODUCTION_FORECAST": "7922ce4b6b53193b364d1e03cca5fdaef3b3f1b7aa5b2bcd2e3a4d613e9e6fa3"
+      },
+      "text": "EIA는 계절 종료 재고가 최근 다년 평균보다 높고 생산이 늘어날 것으로 전망한다. 지속적 재고 부족을 당연시하는 강세 가설에는 반대 단서다. 이 전망을 이미 실현된 재고로 취급해서는 안 된다.",
+      "counterargument": "날씨·LNG 수요·생산 차질이 전망 경로를 바꿀 수 있으며 현물 수급과 투자상품의 선물 수익은 다르다.",
+      "reassessment": "공식 주간 재고를 같은 주의 계절 평균과 비교하고 Henry Hub 선물곡선·계약 교체 비용을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "GAS_OBSERVATION",
+      "asset_ids": [
+        "NATGAS"
+      ],
+      "evidence_ids": [
+        "EV_RA_GAS_STOCKS",
+        "EV_RA_GAS_STOCK_METHOD"
+      ],
+      "fingerprints": {
+        "EV_RA_GAS_STOCKS": "7d7f374a0bfd777a90b096817eedb2824efa29ad5d1d1cd388bdcab698909110",
+        "EV_RA_GAS_STOCK_METHOD": "23abcf6dba6bcddacc8fe7a987e1ab3c44774e7d5716ece5c73d5abf65c5d8ad"
+      },
+      "text": "현재 확보한 주간 재고 표는 미국 Lower 48의 실제 working gas 관측이다. 그 표만으로 역사적 부족을 확정할 수 없으며, 재분류·표본 불확실성과 같은 주의 장기 비교가 필요하다.",
+      "counterargument": "절대 재고량이나 직전 주 변화만으로 계절적 과잉·부족과 투자상품의 미래 성과를 확정할 수 없다.",
+      "reassessment": "같은 주 장기 평균·범위와 다음 발표에서 실제 저장 경로를 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "US_REVISIONS",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE"
+      ],
+      "fingerprints": {
+        "E_DD_IDX_FACTSET_Q3_REVISIONS": "c352e10e684e924b1c27f4d3238b5521e25dcad6f2c3be23070d8f3b57579671",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE": "4bedd4fc473893265bed7627685fe8f3fe6cf2d935b8235c30e21aed6db1d99b"
+      },
+      "text": "FactSet은 분기 중 EPS(주당 이익) 예상치가 상향되었고 긍정적 기업 가이던스가 많았다고 보고한다. forward P/E의 분모가 최근 계속 낮아진다는 가설을 이 판본은 지지하지 않는다. 상향된 예상치의 실현 가능성은 별도 검증 대상이다.",
+      "counterargument": "예상치 상향은 실제 매출·마진·현금흐름이 같은 수준으로 실현된다는 증거가 아니다.",
+      "reassessment": "같은 정의의 consensus·실제 실적·후속 수정 패널과 sector별 실적을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "US_VALUATION",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_PE_METHOD"
+      ],
+      "fingerprints": {
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE": "72f077b43ffcdfe0d4551f40d2a90a1b602e54054eb2155eb3f1cf870e87532c",
+        "E_DD_IDX_SPY_PE_METHOD": "928daa6b7800986238e0775119b3bacf4bd486da32a67bd3ee961132c255962d"
+      },
+      "text": "FactSet의 forward 기간과 SPY의 FY1(다음 회계연도) 가중 조화평균 P/E는 정의가 다르다. 더 낮은 숫자를 골라 저평가라고 결론낼 수 없고, 예상 이익이 실제로 실현되는지와 현재 국채 대안을 함께 봐야 한다.",
+      "counterargument": "성장이 실제 현금으로 이어지고 높은 이익이 지속되면 현재 배수의 정당화 논리가 강해질 수 있다.",
+      "reassessment": "동일 날짜·동일 정의의 배수와 이익 수정·실제 현금 회수를 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "US_CONCENTRATION",
+      "asset_ids": [
+        "US_EQUITY",
+        "ETF_SPY"
+      ],
+      "evidence_ids": [
+        "E_DD_IDX_SPY_HOLDINGS"
+      ],
+      "fingerprints": {
+        "E_DD_IDX_SPY_HOLDINGS": "56b6f90f4cca3275363a4c2267c91ee868ea854b25c9a470ba976673ae2c21f2"
+      },
+      "text": "발행사 보유구성은 지수 안의 대형 기술기업 노출을 보여준다. 지수 전체를 보유해도 개별 기업·AI 투자 사이클에 대한 경제적 노출이 클 수 있다. 집중 자체를 나쁘다고 단정하지 않는다.",
+      "counterargument": "대형기업의 높은 이익·현금 창출력과 경쟁력이 집중을 설명할 수 있다.",
+      "reassessment": "시가총액·이익 기여·동일가중 성과와 사용자의 다른 보유에서 겹치는 노출을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "BILL_BASIS",
+      "asset_ids": [
+        "CASH",
+        "SHORT_BOND"
+      ],
+      "evidence_ids": [
+        "E_CASH_BILLS",
+        "E_CASH_BASIS"
+      ],
+      "fingerprints": {
+        "E_CASH_BILLS": "b59eb9e4e4d35cf3d2b72ddd15bf8fce2ed3c015a584fdede0bf38d170b114b0",
+        "E_CASH_BASIS": "db26a9992337e967989ff46141e05cf025a6d98ae0523d7d432b97f537704f37"
+      },
+      "text": "단기 Treasury bill 표는 할인 방식과 연율 기준을 명시한다. 이 표의 숫자를 투자자가 실제 받을 YTM(만기까지 보유한 거래 수익률)이나 한국 예금 금리로 직접 바꿔 읽으면 안 된다.",
+      "counterargument": "채권 거래가격·잔존 만기·재투자·세금·환율에 따라 실현 수익과 생활비 기준 위험이 달라진다.",
+      "reassessment": "실제 상품의 가격·만기·수익률 정의와 원화 자금 필요 시점을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "TREASURY_CURVE",
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND",
+        "LONG_BOND"
+      ],
+      "evidence_ids": [
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "fingerprints": {
+        "E_DD_TR_CURVE": "d300e913dbf15c86273e7f8d7bbed353ff892a9e1855d56647d3e094777d0075",
+        "E_DD_TR_METHOD": "016cc9568ad866a51b16f6e3ec5562e25ff0e59a416de32c4c3c887926270f69"
+      },
+      "text": "H.15 constant maturity(일정 만기의 기준 수익률)는 수익률곡선에서 읽은 비교 기준이다. 실행 가능한 특정 채권의 가격과 YTM은 별도이며, 장기 국채의 낮은 신용 위험이 낮은 매도 가격 위험을 뜻하지 않는다.",
+      "counterargument": "금리 하락 시 장기 가격 상승 가능성과 금리 상승·조기 자금수요의 손실 가능성을 함께 검토해야 한다.",
+      "reassessment": "실제 채권·ETF의 duration(금리 변화에 따른 가격 민감도)·비용·보유 기간을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "KR_MEMORY",
+      "asset_ids": [
+        "KR_EQUITY",
+        "SAMSUNG"
+      ],
+      "evidence_ids": [
+        "E_KR_SAMSUNG_MEMORY",
+        "E_KR_SAMSUNG_MX"
+      ],
+      "fingerprints": {
+        "E_KR_SAMSUNG_MEMORY": "eb89233e18c1270015dc903d12bd63aaaf0cd35e17f86ed212fa92e7c6a275a5",
+        "E_KR_SAMSUNG_MX": "31dce90059def1ab1985ba2d235ac6fe29acb02050db8e718b8bd6ba895d5b4e"
+      },
+      "text": "삼성전자는 AI 수요와 메모리 가격 상승을 실적 배경으로 설명하지만, 기기 부문에서는 부품 비용 압력을 설명한다. AI 공급자의 호조와 모든 산업·기업의 이익 개선은 같은 사실이 아니다.",
+      "counterargument": "가격·수요 상승이 지속되면 공급자 이익이 강할 수 있지만 사이클 반전과 고객의 비용 부담도 중요하다.",
+      "reassessment": "현재 주가 기대·기업별 현금흐름·증설·다른 기업의 공식 실적을 따로 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "OIL_RECOVERY",
+      "asset_ids": [
+        "ENERGY"
+      ],
+      "evidence_ids": [
+        "EV_RA_OIL_SUPPLY",
+        "EV_RA_OIL_FORECAST"
+      ],
+      "fingerprints": {
+        "EV_RA_OIL_SUPPLY": "03e10c56146d9258443f6c481d5964d50e785bda8289166bad38ff9e90bda541",
+        "EV_RA_OIL_FORECAST": "d6a16e3c718894f75c5f6d06979361817762ba9becab68bde59704b477e702fd"
+      },
+      "text": "EIA는 원유 생산 차질과 향후 공급 복구에 따른 가격 하락 경로를 함께 제시한다. 현재 공급 차질 서사와 영구적인 부족 가설은 구분해야 하며, 회복 전망을 실제 회복으로 기록하지 않는다.",
+      "counterargument": "생산 복구 지연이나 추가 공급 차질이 전망을 무효화할 수 있다.",
+      "reassessment": "실제 생산·수출·상업 재고와 계약별 선물 가격을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "GOLD_RATE",
+      "asset_ids": [
+        "GOLD"
+      ],
+      "evidence_ids": [
+        "EV_RA_REAL_YIELD_DEFINITION",
+        "EV_RA_REAL_YIELDS"
+      ],
+      "fingerprints": {
+        "EV_RA_REAL_YIELD_DEFINITION": "956b55d9109b260c0e2ecdb0b17c991f24be387174042f225ceeb0d816212eba",
+        "EV_RA_REAL_YIELDS": "dfff7a3a37c612e803b55d7300d15674e218ef999b7470ac1c91ecf65985633e"
+      },
+      "text": "확보한 TIPS(물가연동 국채) 실질금리는 이자를 지급하지 않는 금의 기회비용을 검토하는 관련 자료다. 금 가격·직접 수요 없이 실질금리 하나만으로 금의 매력을 확정할 수 없다.",
+      "counterargument": "안전자산 수요·중앙은행 매수·통화 신뢰가 금리 기회비용과 다른 경로로 수요를 바꿀 수 있다.",
+      "reassessment": "현재 금 가격·실물/투자 수요·상품 비용을 확인한다.",
+      "role": "interpretation_draft"
+    },
+    {
+      "id": "HOUSING_LOCAL",
+      "asset_ids": [
+        "KR_REALESTATE"
+      ],
+      "evidence_ids": [
+        "E_KR_HOUSING_SUPPLY_LAG",
+        "E_KR_HOUSING_LENDING_CONSTRAINT"
+      ],
+      "fingerprints": {
+        "E_KR_HOUSING_SUPPLY_LAG": "933338310db8d3c3820c1da9c8838fba40f74b06e96844ada18f5b8e8ea86286",
+        "E_KR_HOUSING_LENDING_CONSTRAINT": "7e9bea13299cf7d4f8bfabea29956dcb157d3fe725a1194c98536bd61de56624"
+      },
+      "text": "정부 자료는 공급 시차와 대출 규제를 설명한다. 전국 정책만으로 동탄 특정 단지의 거래가격·실거주 가치·대출 가능성을 판단할 수 없다.",
+      "counterargument": "지역별 수요·입주·전세·일자리·교통과 실제 금융 조건이 전국 정책보다 물건별 경제성에 더 직접적일 수 있다.",
+      "reassessment": "단지·면적·최근 실거래·전세·대출·실거주 기간과 필요 자금을 확인한다.",
+      "role": "interpretation_draft"
+    }
+  ]
+}

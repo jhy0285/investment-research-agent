@@ -1,0 +1,750 @@
+{
+  "sources": [
+    {
+      "id": "RA_EIA_GAS_WEEKLY",
+      "url": "https://www.eia.gov/dnav/ng/ng_stor_wkly_s1_w.htm",
+      "canonical_url": "https://www.eia.gov/dnav/ng/ng_stor_wkly_s1_w.htm",
+      "type": "primary",
+      "publisher": "U.S. Energy Information Administration",
+      "title": "Weekly Working Gas in Underground Storage (Billion Cubic Feet)",
+      "published_at": "2026-10-01",
+      "observed_at": "2026-09-25",
+      "valid_as_of": "2026-10-01",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "topics": [
+        "weekly_working_gas_inventory",
+        "storage_definition"
+      ],
+      "asset_ids": [
+        "NATGAS",
+        "ENERGY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "retention": "excerpt",
+      "max_age_days": 45,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RA_GAS_STOCKS",
+          "quote": "Region 08/21/26 08/28/26 09/04/26 09/11/26 09/18/26 09/25/26 View History Total Lower 48 States 3,184 3,214 3,254 3,298 3,351 3,415 2010-2026",
+          "locator": "Weekly table date headers and Total Lower 48 States row",
+          "definition": {
+            "measure": "US_Lower48_weekly_working_gas_storage",
+            "unit": "billion_cubic_feet",
+            "period": "2026-08-21_to_2026-09-25",
+            "currency": null,
+            "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+            "scope": "US_Lower48_underground_working_gas_includes_reclassifications"
+          }
+        },
+        {
+          "id": "RA_GAS_STOCK_METHOD",
+          "quote": "Changes in reported stock levels reflect all events affecting working gas in storage, including injections, withdrawals, and reclassifications between base and working gas, including information on estimated measures of sampling variability for the most current published estimates of weekly stocks and their net changes.",
+          "locator": "Notes: changes in reported stock levels",
+          "definition": {
+            "measure": "working_gas_stock_change_definition",
+            "unit": "text",
+            "period": "current_table_method",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "US_weekly_working_gas_storage_estimation"
+          }
+        },
+        {
+          "id": "RA_GAS_RELEASE",
+          "quote": "Release Date: 10/1/2026 Next Release Date: 10/8/2026",
+          "locator": "Table footer release calendar",
+          "definition": {
+            "measure": "weekly_gas_release_date",
+            "unit": "calendar_date",
+            "period": "2026-10-01",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "EIA_current_dnav_weekly_gas_table"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "RA_EIA_OIL_WEEKLY",
+      "url": "https://www.eia.gov/dnav/pet/pet_stoc_wstk_dcu_nus_w.htm",
+      "canonical_url": "https://www.eia.gov/dnav/pet/pet_stoc_wstk_dcu_nus_w.htm",
+      "type": "primary",
+      "publisher": "U.S. Energy Information Administration",
+      "title": "U.S. Weekly Petroleum Stocks (Thousand Barrels)",
+      "published_at": "2026-09-30",
+      "observed_at": "2026-09-25",
+      "valid_as_of": "2026-09-30",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "topics": [
+        "commercial_crude_inventory"
+      ],
+      "asset_ids": [
+        "ENERGY",
+        "COMMODITIES"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "retention": "excerpt",
+      "max_age_days": 45,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RA_OIL_DATES",
+          "quote": "08/21/26 08/28/26 09/04/26 09/11/26 09/18/26 09/25/26",
+          "locator": "Weekly table date headers",
+          "definition": {
+            "measure": "weekly_stock_observation_dates",
+            "unit": "calendar_date",
+            "period": "2026-08-21_to_2026-09-25",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "US_weekly_petroleum_stocks_table_columns"
+          }
+        },
+        {
+          "id": "RA_OIL_STOCKS",
+          "quote": "Commercial Crude Oil (Excl. Lease Stock) 428,910 424,460 424,069 423,429 426,398 427,320 1982-2026",
+          "locator": "Commercial Crude Oil (Excl. Lease Stock) row aligned to RA_OIL_DATES",
+          "definition": {
+            "measure": "US_commercial_crude_oil_inventory",
+            "unit": "thousand_barrels",
+            "period": "2026-08-21_to_2026-09-25",
+            "currency": null,
+            "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+            "scope": "US_commercial_crude_excludes_SPR_and_lease_stock"
+          }
+        },
+        {
+          "id": "RA_OIL_RELEASE",
+          "quote": "Release Date: 9/30/2026 Next Release Date: 10/7/2026",
+          "locator": "Table footer release calendar",
+          "definition": {
+            "measure": "weekly_petroleum_release_date",
+            "unit": "calendar_date",
+            "period": "2026-09-30",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "EIA_current_dnav_weekly_petroleum_table"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "RA_EIA_STEO_OIL",
+      "url": "https://www.eia.gov/outlooks/steo/report/global_oil.php",
+      "canonical_url": "https://www.eia.gov/outlooks/steo/report/global_oil.php",
+      "type": "primary",
+      "publisher": "U.S. Energy Information Administration",
+      "title": "September 2026 Short-Term Energy Outlook — Global Oil Markets",
+      "published_at": "2026-09-09",
+      "observed_at": null,
+      "valid_as_of": "2026-09-09",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "topics": [
+        "global_crude_supply_disruption",
+        "agency_estimate",
+        "conditional_forecast"
+      ],
+      "asset_ids": [
+        "ENERGY",
+        "COMMODITIES"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "retention": "excerpt",
+      "max_age_days": 45,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RA_OIL_SUPPLY",
+          "quote": "We assess that crude oil production shut-ins averaged 6.7 million barrels per day (b/d) in August, up from 5.0 million b/d in July.",
+          "locator": "Global oil markets: estimated production shut-ins paragraph",
+          "definition": {
+            "measure": "EIA_estimated_crude_production_shut_ins",
+            "unit": "million_barrels_per_day",
+            "period": "2026-07_and_2026-08",
+            "currency": null,
+            "adjustment": "agency_estimate_not_raw_metered_observation",
+            "scope": "global_crude_supply_disruptions_EIA_September_2026_assessment"
+          }
+        },
+        {
+          "id": "RA_BRENT_AUG",
+          "quote": "The Brent crude oil spot price increased to an average of $91 per barrel (b) in August, $7/b higher than in July.",
+          "locator": "Global oil prices opening paragraph",
+          "definition": {
+            "measure": "Brent_spot_monthly_average_price",
+            "unit": "USD_per_barrel",
+            "period": "2026-08",
+            "currency": "USD",
+            "adjustment": "spot_monthly_average_not_futures_or_total_return",
+            "scope": "Brent_crude_oil_monthly_average_EIA_September_2026"
+          }
+        },
+        {
+          "id": "RA_OIL_FORECAST",
+          "quote": "As exports from the Middle East gradually increase and shut-in oil production restarts, we forecast oil prices will begin to fall, decreasing to an average of $77/b by 2Q27.",
+          "locator": "Conditional expected oil-flow restoration and forecast prices paragraph",
+          "definition": {
+            "measure": "EIA_conditional_Brent_price_forecast",
+            "unit": "USD_per_barrel",
+            "period": "2027-Q2_forecast_as_published_2026-09-09",
+            "currency": "USD",
+            "adjustment": "conditional_agency_forecast_not_observed_future_price",
+            "scope": "depends_on_Middle_East_exports_and_shut_in_production_restarting"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "RA_EIA_STEO_GAS",
+      "url": "https://www.eia.gov/outlooks/steo/report/natgas.php",
+      "canonical_url": "https://www.eia.gov/outlooks/steo/report/natgas.php",
+      "type": "primary",
+      "publisher": "U.S. Energy Information Administration",
+      "title": "September 2026 Short-Term Energy Outlook — Natural Gas",
+      "published_at": "2026-09-09",
+      "observed_at": null,
+      "valid_as_of": "2026-09-09",
+      "jurisdiction": "United States; global scope where explicitly stated",
+      "topics": [
+        "winter_inventory_forecast",
+        "natural_gas_supply_demand_forecast",
+        "LNG_exports"
+      ],
+      "asset_ids": [
+        "NATGAS",
+        "ENERGY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "policy_note": "Reviewed 2026-10-04 KST: EIA Copyrights and Reuse permits use/distribution of U.S. government data and report text with source/publication-date acknowledgment; protected third-party assets/logos excluded. Retain only three short text excerpts, not site assets. EIA robots allows these dnav/outlooks paths. Korean notes are project interpretations/translations, not EIA statements. Source: U.S. Energy Information Administration, publication date recorded per source.",
+      "retention": "excerpt",
+      "max_age_days": 45,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RA_GAS_STORAGE_FORECAST",
+          "quote": "We forecast U.S. working natural gas inventories will total 3,969 billion cubic feet (Bcf) on October 31, 2026, 5% above the previous five-year average (2021–2025) and 1% above October 2025 levels.",
+          "locator": "Natural gas storage: October 31 inventory forecast",
+          "definition": {
+            "measure": "EIA_US_working_gas_inventory_and_historical_comparison_forecast",
+            "unit": "billion_cubic_feet_and_percent",
+            "period": "2026-10-31_forecast_as_published_2026-09-09",
+            "currency": null,
+            "adjustment": "forecast_not_current_inventory_not_seasonally_adjusted",
+            "scope": "US_working_gas_storage_comparison_2021_2025_mean_and_October_2025"
+          }
+        },
+        {
+          "id": "RA_GAS_PRODUCTION_FORECAST",
+          "quote": "U.S. marketed natural gas production continues to grow in our forecast, providing additional supply to meet demand and support storage additions. Production increases by 4.5 billion cubic feet per day (Bcf/d) in 2026 and 4.6 Bcf/d in 2027.",
+          "locator": "Natural gas production: national marketed output forecast",
+          "definition": {
+            "measure": "EIA_market_natural_gas_production_growth_forecast",
+            "unit": "billion_cubic_feet_per_day",
+            "period": "2026_and_2027_forecast_as_published_2026-09-09",
+            "currency": null,
+            "adjustment": "forecast_change_not_observed_growth",
+            "scope": "US_marketed_natural_gas_not_same_as_dry_gas_series"
+          }
+        },
+        {
+          "id": "RA_GAS_FLOW_TABLE",
+          "quote": "U.S. dry natural gas production (billion cubic feet per day) 103.07 107.64 111.70 115.90 U.S. natural gas consumption (billion cubic feet per day) 90.33 91.88 92.21 94.28 U.S. LNG exports (billion cubic feet per day) 11.9 15.1 17.4 18.6",
+          "locator": "Natural Gas summary table; columns 2024, 2025, 2026 projected, 2027 projected",
+          "definition": {
+            "measure": "EIA_dry_gas_production_consumption_and_LNG_exports",
+            "unit": "billion_cubic_feet_per_day",
+            "period": "2024_2025_historical_and_2026_2027_projected_as_published_2026-09-09",
+            "currency": null,
+            "adjustment": "annual_average_historical_and_forecast_must_be_separated",
+            "scope": "US_dry_gas_production_domestic_consumption_LNG_exports"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "RA_FED_REAL_YIELD",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "type": "primary",
+      "publisher": "Board of Governors of the Federal Reserve System; U.S. Treasury underlying constant maturity data",
+      "title": "H.15 Selected Interest Rates — inflation-indexed constant maturities",
+      "published_at": "2026-10-02",
+      "observed_at": "2026-10-01",
+      "valid_as_of": "2026-10-02",
+      "jurisdiction": "United States",
+      "topics": [
+        "US_real_yield",
+        "gold_opportunity_cost_context"
+      ],
+      "asset_ids": [
+        "GOLD",
+        "SHORT_BOND",
+        "LONG_BOND",
+        "CASH"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "policy_note": "Board public-domain disclaimer previously reviewed in this repository; reproduce short H.15 government-table text with Board/U.S. Treasury attribution. No logos/third-party assets. Excerpt retention only; robots checked by existing acquisition module. This is the same underlying H.15/U.S. Treasury dataset used by the macro case, not independent confirmation merely because the HTML endpoint differs from the CSV endpoint.",
+      "retention": "excerpt",
+      "max_age_days": 10,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "RA_REAL_YIELD_DATES",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1",
+          "locator": "H.15 release date and daily column headers",
+          "definition": {
+            "measure": "H15_publication_and_observation_dates",
+            "unit": "calendar_date",
+            "period": "2026-09-25_to_2026-10-01",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "H15_release_2026-10-02_daily_table"
+          }
+        },
+        {
+          "id": "RA_REAL_YIELDS",
+          "quote": "Inflation indexed 10 5-year 2.64 2.73 2.72 2.73 2.65 7-year 2.73 2.80 2.80 2.82 2.76 10-year 2.83 2.90 2.91 2.93 2.88",
+          "locator": "Treasury constant maturities: Inflation indexed rows; 10-year latest Oct 1 column",
+          "definition": {
+            "measure": "US_TIPS_10Y_constant_maturity_yield",
+            "unit": "percent_per_annum",
+            "period": "2026-09-25_to_2026-10-01",
+            "currency": "USD",
+            "adjustment": "Treasury_inflation_indexed_constant_maturity_market_bid_yield",
+            "scope": "US_Treasury_TIPS_interpolated_curve_not_policy_rate_not_gold_expected_return"
+          }
+        },
+        {
+          "id": "RA_REAL_YIELD_DEFINITION",
+          "quote": "Yields on Treasury inflation protected securities (TIPS) adjusted to constant maturities. Source: U.S. Treasury.",
+          "locator": "H.15 footnote 10",
+          "definition": {
+            "measure": "TIPS_constant_maturity_yield_definition",
+            "unit": "text",
+            "period": "current_H15_method",
+            "currency": "USD",
+            "adjustment": "not_applicable",
+            "scope": "U.S._Treasury_inflation_protected_constant_maturity_series"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "RA_EIA_GAS_WEEKLY": "7f78bf62cbc906574f2a9df4491d31896b1fb31cdd2f29a2cab1339e64c76cae",
+    "RA_EIA_OIL_WEEKLY": "5f91c3eb4c9a0e257ab49f5d07e51679dd22a93522eabdca2a524fc01eb54c72",
+    "RA_EIA_STEO_OIL": "19d1524dc04b16777e659135cde3209e7be6adc456734d290ea5dc2de96d1225",
+    "RA_EIA_STEO_GAS": "d1a618891802a7c771cb8f34bc010757c9e8c81c9d39574c5cf723644eb5a347",
+    "RA_FED_REAL_YIELD": "3771e5f8b4fbfa6628f0a079a4298625079254d971d1c5953f2cce220f51812d"
+  },
+  "evidence": [
+    {
+      "id": "EV_RA_GAS_STOCKS",
+      "source_id": "RA_EIA_GAS_WEEKLY",
+      "excerpt_id": "RA_GAS_STOCKS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "US_Lower48_weekly_working_gas_storage",
+        "unit": "billion_cubic_feet",
+        "period": "2026-08-21_to_2026-09-25",
+        "currency": null,
+        "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+        "scope": "US_Lower48_underground_working_gas_includes_reclassifications"
+      },
+      "extraction": null,
+      "limitations": [
+        "Six weekly estimates; latest is 2026-09-25. No five-year average or year-ago inventory comparison retained; working gas changes can include reclassification. Not a scarcity or price forecast."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_GAS_STOCK_METHOD",
+      "source_id": "RA_EIA_GAS_WEEKLY",
+      "excerpt_id": "RA_GAS_STOCK_METHOD",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "working_gas_stock_change_definition",
+        "unit": "text",
+        "period": "current_table_method",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "US_weekly_working_gas_storage_estimation"
+      },
+      "extraction": null,
+      "limitations": [
+        "Method explanation, not a measured net injection calculation or independently quantified sampling error."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_GAS_RELEASE",
+      "source_id": "RA_EIA_GAS_WEEKLY",
+      "excerpt_id": "RA_GAS_RELEASE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "weekly_gas_release_date",
+        "unit": "calendar_date",
+        "period": "2026-10-01",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "EIA_current_dnav_weekly_gas_table"
+      },
+      "extraction": null,
+      "limitations": [
+        "Date only; exact intraday publication time unknown. Use actual retrieval completion as the conservative known-at floor."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_OIL_DATES",
+      "source_id": "RA_EIA_OIL_WEEKLY",
+      "excerpt_id": "RA_OIL_DATES",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "weekly_stock_observation_dates",
+        "unit": "calendar_date",
+        "period": "2026-08-21_to_2026-09-25",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "US_weekly_petroleum_stocks_table_columns"
+      },
+      "extraction": null,
+      "limitations": [
+        "Column alignment metadata, not a standalone stock observation."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_OIL_STOCKS",
+      "source_id": "RA_EIA_OIL_WEEKLY",
+      "excerpt_id": "RA_OIL_STOCKS",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "US_commercial_crude_oil_inventory",
+        "unit": "thousand_barrels",
+        "period": "2026-08-21_to_2026-09-25",
+        "currency": null,
+        "adjustment": "reported_weekly_estimates_not_seasonally_adjusted",
+        "scope": "US_commercial_crude_excludes_SPR_and_lease_stock"
+      },
+      "extraction": null,
+      "limitations": [
+        "Commercial inventory excludes strategic reserve and lease stock. No same-week five-year average retained; weekly U.S. inventory is not global balance."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_OIL_RELEASE",
+      "source_id": "RA_EIA_OIL_WEEKLY",
+      "excerpt_id": "RA_OIL_RELEASE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "weekly_petroleum_release_date",
+        "unit": "calendar_date",
+        "period": "2026-09-30",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "EIA_current_dnav_weekly_petroleum_table"
+      },
+      "extraction": null,
+      "limitations": [
+        "Date only; exact intraday publication time unknown. Latest estimated weekly row can be revised."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_OIL_SUPPLY",
+      "source_id": "RA_EIA_STEO_OIL",
+      "excerpt_id": "RA_OIL_SUPPLY",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "EIA_estimated_crude_production_shut_ins",
+        "unit": "million_barrels_per_day",
+        "period": "2026-07_and_2026-08",
+        "currency": null,
+        "adjustment": "agency_estimate_not_raw_metered_observation",
+        "scope": "global_crude_supply_disruptions_EIA_September_2026_assessment"
+      },
+      "extraction": null,
+      "limitations": [
+        "EIA assessed shut-ins, not separately verified metered production. Same September STEO as forecast; correlated evidence, not independent source confirmation."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_BRENT_AUG",
+      "source_id": "RA_EIA_STEO_OIL",
+      "excerpt_id": "RA_BRENT_AUG",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Brent_spot_monthly_average_price",
+        "unit": "USD_per_barrel",
+        "period": "2026-08",
+        "currency": "USD",
+        "adjustment": "spot_monthly_average_not_futures_or_total_return",
+        "scope": "Brent_crude_oil_monthly_average_EIA_September_2026"
+      },
+      "extraction": null,
+      "limitations": [
+        "August monthly-average spot price, not October 2 executable price, futures curve, ETF total return or fair-value assessment."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_OIL_FORECAST",
+      "source_id": "RA_EIA_STEO_OIL",
+      "excerpt_id": "RA_OIL_FORECAST",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "EIA_conditional_Brent_price_forecast",
+        "unit": "USD_per_barrel",
+        "period": "2027-Q2_forecast_as_published_2026-09-09",
+        "currency": "USD",
+        "adjustment": "conditional_agency_forecast_not_observed_future_price",
+        "scope": "depends_on_Middle_East_exports_and_shut_in_production_restarting"
+      },
+      "extraction": null,
+      "limitations": [
+        "Conditional EIA projection for future period, not future fact or system prediction; restoration assumptions can fail. Same source as supply estimate, not independent."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_GAS_STORAGE_FORECAST",
+      "source_id": "RA_EIA_STEO_GAS",
+      "excerpt_id": "RA_GAS_STORAGE_FORECAST",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "EIA_US_working_gas_inventory_and_historical_comparison_forecast",
+        "unit": "billion_cubic_feet_and_percent",
+        "period": "2026-10-31_forecast_as_published_2026-09-09",
+        "currency": null,
+        "adjustment": "forecast_not_current_inventory_not_seasonally_adjusted",
+        "scope": "US_working_gas_storage_comparison_2021_2025_mean_and_October_2025"
+      },
+      "extraction": null,
+      "limitations": [
+        "2026-10-31 is a forecast period beyond cutoff. It is not latest observed inventory or proof that current inventory is 5% above average. Regional balances vary."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_GAS_PRODUCTION_FORECAST",
+      "source_id": "RA_EIA_STEO_GAS",
+      "excerpt_id": "RA_GAS_PRODUCTION_FORECAST",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "EIA_market_natural_gas_production_growth_forecast",
+        "unit": "billion_cubic_feet_per_day",
+        "period": "2026_and_2027_forecast_as_published_2026-09-09",
+        "currency": null,
+        "adjustment": "forecast_change_not_observed_growth",
+        "scope": "US_marketed_natural_gas_not_same_as_dry_gas_series"
+      },
+      "extraction": null,
+      "limitations": [
+        "Future annual marketed production-growth estimate, not current observed dry production. No assumed deterministic price relationship."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_GAS_FLOW_TABLE",
+      "source_id": "RA_EIA_STEO_GAS",
+      "excerpt_id": "RA_GAS_FLOW_TABLE",
+      "view": "fundamental",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "EIA_dry_gas_production_consumption_and_LNG_exports",
+        "unit": "billion_cubic_feet_per_day",
+        "period": "2024_2025_historical_and_2026_2027_projected_as_published_2026-09-09",
+        "currency": null,
+        "adjustment": "annual_average_historical_and_forecast_must_be_separated",
+        "scope": "US_dry_gas_production_domestic_consumption_LNG_exports"
+      },
+      "extraction": null,
+      "limitations": [
+        "Columns are 2024/2025 historical and 2026/2027 projected. Forecast supply, consumption and exports must not be represented as current measured daily flows."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_REAL_YIELD_DATES",
+      "source_id": "RA_FED_REAL_YIELD",
+      "excerpt_id": "RA_REAL_YIELD_DATES",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "H15_publication_and_observation_dates",
+        "unit": "calendar_date",
+        "period": "2026-09-25_to_2026-10-01",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "H15_release_2026-10-02_daily_table"
+      },
+      "extraction": null,
+      "limitations": [
+        "Release date Oct 2 with observations through Oct 1; exact initial publication vintage/revision history unknown."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_REAL_YIELDS",
+      "source_id": "RA_FED_REAL_YIELD",
+      "excerpt_id": "RA_REAL_YIELDS",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "US_TIPS_10Y_constant_maturity_yield",
+        "unit": "percent_per_annum",
+        "period": "2026-09-25_to_2026-10-01",
+        "currency": "USD",
+        "adjustment": "Treasury_inflation_indexed_constant_maturity_market_bid_yield",
+        "scope": "US_Treasury_TIPS_interpolated_curve_not_policy_rate_not_gold_expected_return"
+      },
+      "extraction": null,
+      "limitations": [
+        "10Y TIPS Oct 1 is 2.88% per annum from final date column; positive real yield is opportunity-cost context only. No gold price, central-bank gold demand, dollar index or empirical gold-return relationship measured."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "EV_RA_REAL_YIELD_DEFINITION",
+      "source_id": "RA_FED_REAL_YIELD",
+      "excerpt_id": "RA_REAL_YIELD_DEFINITION",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "TIPS_constant_maturity_yield_definition",
+        "unit": "text",
+        "period": "current_H15_method",
+        "currency": "USD",
+        "adjustment": "not_applicable",
+        "scope": "U.S._Treasury_inflation_protected_constant_maturity_series"
+      },
+      "extraction": null,
+      "limitations": [
+        "Curve-based real yield is not guaranteed realized return; purchase price, holding horizon, inflation adjustment, costs, tax and KRW FX exposure differ."
+      ],
+      "interpretation": null
+    }
+  ],
+  "notes": [
+    {
+      "asset_ids": [
+        "GOLD"
+      ],
+      "evidence_ids": [
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION"
+      ],
+      "positive": "실질금리가 내려가거나 통화/지정학 불확실성이 커질 때 금을 후속 조사할 가설은 가능하다. 이번 자료는 그 조건의 실현이나 금의 상대 매력을 확인하지 못했다.",
+      "counter": "10/1 10년 TIPS 기준 연2.88%의 양의 실질금리가 관측되어 무이자 금 보유의 현금흐름 기회비용을 검토할 이유가 있다. 금 하락이나 국채 우위로 단정하지 않는다.",
+      "unknown": "현재 금 가격·선물곡선·중앙은행 매수·ETF 흐름·가격에 반영된 위험 수준 미확인. WGC 약관의 scrape/reproduce 제한으로 원문 재배포 연구에 채택하지 않았다.",
+      "opportunity_cost": "금은 이자·배당을 지급하지 않는 기초 노출이다. TIPS 수익률과 금의 미래 수익을 같은 수익률로 비교하지 않고 보유 기간·통화·상품 비용을 확인해야 한다.",
+      "follow_up": "허용되는 금 가격/수요 원자료, 동일 시점 실질금리·달러 자료, 접근 상품·KRW 비용을 확보한 뒤 상대 매력을 평가한다.",
+      "status": "insufficient_evidence"
+    },
+    {
+      "asset_ids": [
+        "COMMODITIES"
+      ],
+      "evidence_ids": [
+        "EV_RA_OIL_SUPPLY",
+        "EV_RA_BRENT_AUG",
+        "EV_RA_OIL_FORECAST"
+      ],
+      "positive": "원유 공급 차질이 실물 수급에 영향을 주는 조사 후보를 발견했다. 이는 광범위 원자재 전체의 기회가 아니다.",
+      "counter": "농산물·산업금속·귀금속 자료가 없고 선물 편입 상품의 비중·롤 비용도 없다. 에너지의 공급 차질을 broad commodities 전체의 전망으로 확대할 수 없다.",
+      "unknown": "광범위 원자재 지수 구성·현재 가격·선물곡선·롤 수익·KRW 접근 비용 미확인.",
+      "opportunity_cost": "Broad commodity 상품을 선택하면 관심 있는 원유 가설과 다른 기초 노출/롤 비용도 보유할 수 있다. 현금/국채와 달리 자체 약정 현금흐름이 없는 노출이라는 차이를 비교한다.",
+      "follow_up": "조사가치가 있는 개별 원자재를 먼저 고르고 허용되는 수급·선물곡선·상품 방법 자료를 추가한다.",
+      "status": "insufficient_evidence"
+    },
+    {
+      "asset_ids": [
+        "ENERGY"
+      ],
+      "evidence_ids": [
+        "EV_RA_OIL_SUPPLY",
+        "EV_RA_BRENT_AUG",
+        "EV_RA_OIL_FORECAST",
+        "EV_RA_OIL_STOCKS",
+        "EV_RA_OIL_DATES"
+      ],
+      "positive": "EIA의 9월판은 8월 공급 차질을 추정했다. 공급 복구 경로가 늦어지면 원유 수급 긴장에 관한 조사 가설을 재검토할 수 있다.",
+      "counter": "8월 Brent 평균가격은 이미 91달러/배럴로 제시되며 공급 차질의 일부가 가격에 반영됐을 가능성은 미확인이다. EIA는 공급 복구를 가정한 가격 하락 전망도 함께 제시한다. 미국 주간 상업 재고 한 지점만으로 세계 공급 부족을 증명하지 않는다.",
+      "unknown": "10/2 실행 가격·선물곡선·현재 글로벌 공급 차질·수요·상품 롤 비용·공급 복구 실현 여부 미확인.",
+      "opportunity_cost": "위험프리미엄이 반영된 에너지 노출의 불확실한 가격 손익과 국채/현금의 약정 또는 관측 수익을 직접 순위화하지 않는다. 선물 가격과 현물 공급 주장은 별개다.",
+      "follow_up": "허용되는 최신 글로벌 공급/교역·수요 자료와 현재 현물/만기별 선물 가격을 맞춰 공급 가설이 가격에 얼마나 반영됐는지 검토한다.",
+      "status": "conditional_research_candidate"
+    },
+    {
+      "asset_ids": [
+        "NATGAS"
+      ],
+      "evidence_ids": [
+        "EV_RA_GAS_STOCKS",
+        "EV_RA_GAS_STOCK_METHOD",
+        "EV_RA_GAS_STORAGE_FORECAST",
+        "EV_RA_GAS_PRODUCTION_FORECAST",
+        "EV_RA_GAS_FLOW_TABLE"
+      ],
+      "positive": "겨울 난방수요·LNG 수출이 보유 논리의 조건일 수 있으나 최신 날씨, 지역 생산/수요, 현재 가격으로 검증이 필요하다. EIA의 LNG 수출 수치는 전망이며 실제 수요 증가의 확인이 아니다.",
+      "counter": "최신 주간 working gas 수준만으로 부족을 선언할 수 없다. EIA 9월판은 10/31 재고가 과거5년평균보다 높고 생산도 증가할 것으로 전망해 단순한 겨울=상승 논리에 반대하는 조건을 제시한다.",
+      "unknown": "동일 주차5년평균·연전 대비 관측 재고, 현재 현물/선물곡선, 날씨 전망·LNG 실제 가동·지역 병목·롤 비용 미확인. 1월에 종료된 Weekly Update를 현재 자료로 쓰지 않았다.",
+      "opportunity_cost": "가스 선물·ETF 보유에는 만기 교체와 변동성 경로가 영향을 줄 수 있으므로 현물 상승 주장만으로 상품 수익을 추론하지 않는다. 현금 대안의 유동성 가치도 함께 본다.",
+      "follow_up": "동일 주차 공식 재고 비교와 현재 만기별 선물곡선, 날씨/난방도일·생산·LNG 가동을 우선 확인한 뒤 부족 가설을 재평가한다.",
+      "status": "insufficient_evidence"
+    }
+  ],
+  "failures": [
+    {
+      "source_id": "RA_WGC_NOT_ADOPTED",
+      "url": "https://www.gold.org/terms-and-conditions",
+      "status": "policy_not_adopted",
+      "reason": "Personal non-commercial viewing allowance does not authorize this automated research/republication use: terms expressly restrict scrape/reproduce without prior authorization. No Goldhub content is retained or used as market evidence."
+    },
+    {
+      "source_id": "RA_EIA_IR_GAS_REDIRECT",
+      "url": "https://ir.eia.gov/ngs/ngs.html",
+      "status": "redirect_not_followed",
+      "reason": "HTTP302 to signed secure URL; existing collector prohibits redirects and credential-bearing URLs. Public eia.gov dnav current table used instead; no signed query token retained."
+    },
+    {
+      "source_id": "RA_EIA_WEEKLY_UPDATE_ENDED",
+      "url": "https://www.eia.gov/naturalgas/weekly/",
+      "status": "outdated_not_adopted",
+      "reason": "Final publication dated 2026-01-22 for week ending Jan21; not used as current price/futures evidence. Current supplement is on beta path disallowed by EIA robots, which is not bypassed."
+    }
+  ]
+}

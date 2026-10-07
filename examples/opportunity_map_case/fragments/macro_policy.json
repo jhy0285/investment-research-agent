@@ -1,0 +1,172 @@
+{
+  "sources": [
+    {
+      "id": "MAC_FOMC_20260916",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "canonical_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+      "type": "primary",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "title": "2026-09-16 FOMC statement",
+      "published_at": "2026-09-16T18:00:00Z",
+      "observed_at": "2026-09-16",
+      "valid_as_of": "2026-09-16",
+      "jurisdiction": "US",
+      "topics": [
+        "macro",
+        "policy",
+        "cash",
+        "bonds",
+        "equities"
+      ],
+      "asset_ids": [
+        "CASH",
+        "SHORT_BOND",
+        "LONG_BOND",
+        "US_EQUITY",
+        "GROWTH",
+        "VALUE",
+        "DIVIDEND",
+        "GOLD",
+        "COMMODITIES",
+        "ENERGY",
+        "NATGAS",
+        "BTC",
+        "ETH",
+        "KR_EQUITY",
+        "KR_REALESTATE"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "policy_note": "Federal Reserve Board public-domain statement retained as short attributed excerpts; no seals/logos or third-party content. Official FOMC calendar checked: latest scheduled statement shown September 16, 2026.",
+      "retention": "excerpt",
+      "max_age_days": 60,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "POLICY",
+          "quote": "The Committee decided to raise the target range for the federal funds rate by 1/4 percentage point to 3-3/4 to 4 percent, in support of the Federal Reserve's dual mandate.",
+          "locator": "FOMC statement policy paragraph",
+          "definition": {
+            "measure": "FOMC_POLICY",
+            "unit": "source_statement",
+            "period": "policy in force since 2026-09-16",
+            "currency": "USD",
+            "adjustment": "target_range_not_market_yield",
+            "scope": "U.S. policy decision and Committee assessment, not asset return or independently verified macro statistic"
+          }
+        },
+        {
+          "id": "ACTIVITY",
+          "quote": "Economic activity is expanding at a solid pace. While uncertainty remains elevated owing, in part, to geopolitical developments, domestic spending has been resilient. Productivity growth is strong, and capital investment is robust.",
+          "locator": "FOMC statement activity paragraph",
+          "definition": {
+            "measure": "FOMC_ACTIVITY",
+            "unit": "source_statement",
+            "period": "policy in force since 2026-09-16",
+            "currency": "USD",
+            "adjustment": "target_range_not_market_yield",
+            "scope": "U.S. policy decision and Committee assessment, not asset return or independently verified macro statistic"
+          }
+        },
+        {
+          "id": "INFLATION",
+          "quote": "Job gains have kept pace with the workforce, and the unemployment rate has changed little. Inflation remains elevated.",
+          "locator": "FOMC statement inflation paragraph",
+          "definition": {
+            "measure": "FOMC_INFLATION",
+            "unit": "source_statement",
+            "period": "policy in force since 2026-09-16",
+            "currency": "USD",
+            "adjustment": "target_range_not_market_yield",
+            "scope": "U.S. policy decision and Committee assessment, not asset return or independently verified macro statistic"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "MAC_FOMC_20260916": "918bf417ecdfc25db3bcb506bf0a73fb421fe7b106c17c26713d81d06fd36712"
+  },
+  "evidence": [
+    {
+      "id": "E_FOMC_POLICY",
+      "source_id": "MAC_FOMC_20260916",
+      "excerpt_id": "POLICY",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "FOMC_POLICY",
+        "unit": "source_statement",
+        "period": "policy in force since 2026-09-16",
+        "currency": "USD",
+        "adjustment": "target_range_not_market_yield",
+        "scope": "U.S. policy decision and Committee assessment, not asset return or independently verified macro statistic"
+      },
+      "extraction": null,
+      "limitations": [
+        "Fed가 해당 결정·평가를 발표했다는 원문이다. 정책금리는 예금·Treasury 상품수익률과 다르며 경제평가는 기관의 평가다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_FOMC_ACTIVITY",
+      "source_id": "MAC_FOMC_20260916",
+      "excerpt_id": "ACTIVITY",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "FOMC_ACTIVITY",
+        "unit": "source_statement",
+        "period": "policy in force since 2026-09-16",
+        "currency": "USD",
+        "adjustment": "target_range_not_market_yield",
+        "scope": "U.S. policy decision and Committee assessment, not asset return or independently verified macro statistic"
+      },
+      "extraction": null,
+      "limitations": [
+        "Fed가 해당 결정·평가를 발표했다는 원문이다. 정책금리는 예금·Treasury 상품수익률과 다르며 경제평가는 기관의 평가다."
+      ],
+      "interpretation": null
+    },
+    {
+      "id": "E_FOMC_INFLATION",
+      "source_id": "MAC_FOMC_20260916",
+      "excerpt_id": "INFLATION",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "FOMC_INFLATION",
+        "unit": "source_statement",
+        "period": "policy in force since 2026-09-16",
+        "currency": "USD",
+        "adjustment": "target_range_not_market_yield",
+        "scope": "U.S. policy decision and Committee assessment, not asset return or independently verified macro statistic"
+      },
+      "extraction": null,
+      "limitations": [
+        "Fed가 해당 결정·평가를 발표했다는 원문이다. 정책금리는 예금·Treasury 상품수익률과 다르며 경제평가는 기관의 평가다."
+      ],
+      "interpretation": null
+    }
+  ],
+  "notes": [
+    {
+      "asset_ids": [
+        "CASH",
+        "SHORT_BOND",
+        "LONG_BOND"
+      ],
+      "evidence_ids": [
+        "E_FOMC_POLICY",
+        "E_FOMC_ACTIVITY",
+        "E_FOMC_INFLATION"
+      ],
+      "positive": "현재 정책 결정은 인상이며 금리 인하를 전제로 한 장기채 논리를 다시 검토할 필요가 있다. USD 정책금리를 KRW 현금 수익률로 변환하지 않는다.",
+      "counter": "현재 물가와 경제활동이 기관평가상견조하다는것이장기채투자손실을보장하지는않는다. 장기금리에는성장·기간프리미엄·공급요인이겹친다.",
+      "unknown": "KRW 예금·MMF 실제수익률, 상품별듀레이션·비용·세금, 금리선물기대경로."
+    }
+  ],
+  "failures": []
+}

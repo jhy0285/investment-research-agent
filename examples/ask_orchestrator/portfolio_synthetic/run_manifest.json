@@ -1,0 +1,2169 @@
+{
+  "artifact_sha256": {
+    "deep_review.json": "098f2a158c6bed605daf6ee4c9e1fe85378a3d8b04bfce34654669d5ef8c21cd",
+    "evidence_review.json": "828f1a8e1a17520918859def0043fc2b8f1a017ed4deb253b02f81587db6eb59",
+    "input.json": "19e0f2d8326f41141f42b0746d3e2cf3d5a5ee6e6c7f147240aa2883ccc1c170",
+    "macro_pins.json": "5fc8605c4fbaa93369b4793a807ad687efcee103bd8de217758ef973bd67054c",
+    "macro_plan.json": "cc0fc4dbab0786898b222b94195d1f6dc8ef9e9f826991974c51eabec0988d8e",
+    "macro_snapshots/S_FX/a044b226681a6387af1672ff3dd41bc5dc09b704c2dccae3ccabf49d7947f2ee.json": "e1b3495237202d7210764a3d9f0fce98c9fb0233af7b87b070a24d23af00ceb5",
+    "macro_snapshots/S_YIELDS/928e1e09c1082f4f967708ff0a2a879fee492efa1bbf690be313bcf678fa8c60.json": "47381d91f42f1e51f6a5699271b5059856db9f5e64de9ef005aa2237f85085a4",
+    "report.md": "51a280046c013a56fee0919fb3d06218aa619efac851a2a54531bf0f4ce90b87",
+    "source_pins.json": "27b58776549b4d547c04c09f68e5fd820d82737ee858b9ba95a4cf2aa8148bd4",
+    "source_plan.json": "51eae47f4c6cba9fff24dfca6580049226b7a2ad19d16050e8e1b22709bc88ed",
+    "source_snapshots/COM_HN_BTC_BEAR_PERFORMANCE/fab5887f225a7917ae14641ff2eac4b39cc7295b95c99a3d44853defd4f436ef.json": "39a0b1a0b071936805c3a4639254c1c3384614a65a07dcb9b1eeede311f61e1e",
+    "source_snapshots/COM_HN_BTC_CUSTODY_RISK/0b22d7a316667b18fc4936f6c93a5cd55a3d03f9632f14046d3cff3b920273e2.json": "6600e66ece9864865174df1195b73bf5684b563da0bb6539642fc8d59ee74cc2",
+    "source_snapshots/CR_COINSHARES_CURRENT_FLOWS/6706f5790f517c0dba4332cdddc76f026133fd54889e7bd9aa78a67dd81a7342.json": "82dfdea8bcec10a5ff6159f39dc1ae9b8f94d8cded348e9c52f87e3f82c37e6d",
+    "source_snapshots/CR_IBIT_ISSUER/8ac154063ee1dc89ca4f0e9eb094ec0c119c659c0b4ade3c2734e5b5495b698d.json": "d92a1da2c1685eefcd69aeab099af8c85783c4a4b36f84978e772490c5d04137",
+    "source_snapshots/DD_IDX_FACTSET_Q3/70e68011228b27ae252bed8c34e371369ea29ed5243d296cadd4e97cd77c0d07.json": "7c2745edeaaa44b62bceb3163cb78c78e522a982d5776d5468c38b993991b750",
+    "source_snapshots/DD_IDX_SPY/679de074e8a72c79fa12cdf57d37181f76b7c1ab645cfe0894d036a20fc0e4a1.json": "c714ff7c6e2f8e9534fa233fcc32dbb26b0f6b9ea76e776999620ba35a095c6e",
+    "source_snapshots/DD_TR_H15_CURVE/4ce401f045c4ace518537b9bdb740eb672d7f712419de29d25804bf0891f0104.json": "5a08ce4b12ed18181184679975de0be26beddb879e0fe774097092109089d0fb",
+    "started.json": "7596d48e75b42c104be19dabaf635afbe5d7ea471766c35b0d448ab77cc83244"
+  },
+  "as_of": "2026-09-10T12:00:00+00:00",
+  "calculations": [
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "id": "MET_fb38e689bdce9ccffc95bc569bd02d5e1ad3c01db2084cc3d9eb31c2014b1485",
+      "input_ids": [
+        "OBS_baa1c8a7706744a4ec4b2376c237147a4975fce54e4c18ad9ed25904aced71d0",
+        "OBS_772b7be89563c67aa881f888b2f99cbe2ce812a59e4a2f825f36d2defb015976"
+      ],
+      "label": "직전 관측치 대비 변화",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "previous_change_v1",
+      "unit": "KRW_per_USD",
+      "value": "10"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "MET_79cbbcaf624b436e994db6310b1fc4c195cd94dfbe999dab03bff2bd6ef525a1",
+      "input_ids": [
+        "OBS_4a7ebb688605194c2b9bca295327a036e69af95851474805ad9846839705f428",
+        "OBS_6333f059b7c0f680dc1be5c70e8133446f7c65ca90c30753c6f0825a95adf3a8"
+      ],
+      "label": "직전 관측치 대비 변화",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "previous_change_v1",
+      "unit": "percentage_points",
+      "value": "0.50"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "MET_a62cf22b20a7883ce4ac04181e039220df715a8a086711de475f6e72a3efd230",
+      "input_ids": [
+        "OBS_37ca53e054042d4dc0645afce032b17472f680936ce1b02916b3d8cf7754f66a",
+        "OBS_7d4a276ab88b493bf9842e73f10ce791c961b71887342389239c15a10b6132b9"
+      ],
+      "label": "직전 관측치 대비 변화",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "previous_change_v1",
+      "unit": "percentage_points",
+      "value": "0.50"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "MET_586fd48cc159c2051aa0140188a349034634d1a85d22ebdc708eddfe8f183046",
+      "input_ids": [
+        "OBS_6333f059b7c0f680dc1be5c70e8133446f7c65ca90c30753c6f0825a95adf3a8",
+        "OBS_7d4a276ab88b493bf9842e73f10ce791c961b71887342389239c15a10b6132b9"
+      ],
+      "label": "10년−2년 국채 수익률 차이",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "yield_spread_v1",
+      "unit": "percentage_points",
+      "value": "1.50"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "CALC_EY",
+      "input_ids": [
+        "F_PE"
+      ],
+      "label": "합성 이익수익률",
+      "limitations": [
+        "합성 입력, 미래 수익 아님"
+      ],
+      "method": "earnings_yield_v1",
+      "unit": "percent",
+      "value": "5"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "CALC_GAP",
+      "input_ids": [
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "label": "합성 이익수익률과 국채의 차이",
+      "limitations": [
+        "합성 입력, ERP 아님"
+      ],
+      "method": "descriptive_yield_gap_v1",
+      "unit": "percentage_points",
+      "value": "2.0"
+    },
+    {
+      "asset_ids": [],
+      "id": "PORT_TOTAL",
+      "input_ids": [
+        "PORT_VALUE_STOCK",
+        "PORT_VALUE_COIN",
+        "PORT_CASH"
+      ],
+      "label": "제공된 전체 보유 평가액과 현금 합계",
+      "limitations": [
+        "제공된 KRW 평가액의 합계다. 외부 가격·전체 계좌의 정확성을 검증한 값은 아니다."
+      ],
+      "method": "portfolio_total_v1",
+      "unit": "KRW",
+      "value": "10000000"
+    },
+    {
+      "asset_ids": [
+        "STOCK"
+      ],
+      "id": "PORT_WEIGHT_STOCK",
+      "input_ids": [
+        "PORT_VALUE_STOCK",
+        "PORT_VALUE_COIN",
+        "PORT_CASH"
+      ],
+      "label": "STOCK의 제공된 평가액 비중",
+      "limitations": [
+        "분모는 제공된 보유액과 현금 합계다. 권고·적정 비중이 아니다."
+      ],
+      "method": "portfolio_weight_v1",
+      "unit": "percent",
+      "value": "60.0"
+    },
+    {
+      "asset_ids": [
+        "COIN"
+      ],
+      "id": "PORT_WEIGHT_COIN",
+      "input_ids": [
+        "PORT_VALUE_STOCK",
+        "PORT_VALUE_COIN",
+        "PORT_CASH"
+      ],
+      "label": "COIN의 제공된 평가액 비중",
+      "limitations": [
+        "분모는 제공된 보유액과 현금 합계다. 권고·적정 비중이 아니다."
+      ],
+      "method": "portfolio_weight_v1",
+      "unit": "percent",
+      "value": "20.0"
+    },
+    {
+      "asset_ids": [
+        "CASH"
+      ],
+      "id": "PORT_WEIGHT_CASH",
+      "input_ids": [
+        "PORT_VALUE_STOCK",
+        "PORT_VALUE_COIN",
+        "PORT_CASH"
+      ],
+      "label": "CASH의 제공된 평가액 비중",
+      "limitations": [
+        "분모는 제공된 보유액과 현금 합계다. 권고·적정 비중이 아니다."
+      ],
+      "method": "portfolio_weight_v1",
+      "unit": "percent",
+      "value": "20.0"
+    },
+    {
+      "asset_ids": [],
+      "id": "PORT_NET_ASSETS",
+      "input_ids": [
+        "PORT_VALUE_STOCK",
+        "PORT_VALUE_COIN",
+        "PORT_CASH",
+        "PORT_DEBT"
+      ],
+      "label": "제공된 총자산에서 부채를 뺀 금액",
+      "limitations": [
+        "부채 상환 일정·금리·담보·소득 충격을 평가하지 않는다."
+      ],
+      "method": "portfolio_net_assets_v1",
+      "unit": "KRW",
+      "value": "9000000"
+    },
+    {
+      "asset_ids": [],
+      "id": "PORT_CASH_NEEDS",
+      "input_ids": [
+        "PORT_NEED_0"
+      ],
+      "label": "사용자가 나열한 향후 자금수요 합계",
+      "limitations": [
+        "여러 필요 시점의 명목 합계다. 시점별 지급 가능성·수익·할인을 추정하지 않는다."
+      ],
+      "method": "portfolio_cash_needs_v1",
+      "unit": "KRW",
+      "value": "3000000"
+    }
+  ],
+  "claims_evaluated": [
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_conclusions_0",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_conclusions_1",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_conclusions_2",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_denominator_0",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_treasury_0",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_FACTSET_Q3",
+        "E_DD_IDX_SPY",
+        "E_DD_TR_H15_CURVE"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_US_EQUITY",
+      "interpretation": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다.",
+        "주장 의미에 대한 명시적 검토가 없어 확인 상태로 승격하지 않았다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "support_ids": [],
+      "text": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [
+        "E_COM_HN_BTC_BEAR_PERFORMANCE",
+        "E_COM_HN_BTC_CUSTODY_RISK",
+        "E_CR_IBIT_ISSUER",
+        "E_CR_COINSHARES_CURRENT_FLOWS"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_BTC",
+      "interpretation": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다.",
+        "주장 의미에 대한 명시적 검토가 없어 확인 상태로 승격하지 않았다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "support_ids": [],
+      "text": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_fb38e689bdce9ccffc95bc569bd02d5e1ad3c01db2084cc3d9eb31c2014b1485",
+      "interpretation": {
+        "rationale": "previous_change_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_baa1c8a7706744a4ec4b2376c237147a4975fce54e4c18ad9ed25904aced71d0",
+        "OBS_772b7be89563c67aa881f888b2f99cbe2ce812a59e4a2f825f36d2defb015976"
+      ],
+      "text": "직전 관측치 대비 변화: 10 KRW_per_USD",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_79cbbcaf624b436e994db6310b1fc4c195cd94dfbe999dab03bff2bd6ef525a1",
+      "interpretation": {
+        "rationale": "previous_change_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_4a7ebb688605194c2b9bca295327a036e69af95851474805ad9846839705f428",
+        "OBS_6333f059b7c0f680dc1be5c70e8133446f7c65ca90c30753c6f0825a95adf3a8"
+      ],
+      "text": "직전 관측치 대비 변화: 0.50 percentage_points",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_a62cf22b20a7883ce4ac04181e039220df715a8a086711de475f6e72a3efd230",
+      "interpretation": {
+        "rationale": "previous_change_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_37ca53e054042d4dc0645afce032b17472f680936ce1b02916b3d8cf7754f66a",
+        "OBS_7d4a276ab88b493bf9842e73f10ce791c961b71887342389239c15a10b6132b9"
+      ],
+      "text": "직전 관측치 대비 변화: 0.50 percentage_points",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_586fd48cc159c2051aa0140188a349034634d1a85d22ebdc708eddfe8f183046",
+      "interpretation": {
+        "rationale": "yield_spread_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_6333f059b7c0f680dc1be5c70e8133446f7c65ca90c30753c6f0825a95adf3a8",
+        "OBS_7d4a276ab88b493bf9842e73f10ce791c961b71887342389239c15a10b6132b9"
+      ],
+      "text": "10년−2년 국채 수익률 차이: 1.50 percentage_points",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_0",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_1",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_2",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_3",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_4",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_5",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_6",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_7",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_8",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_9",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_10",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "BTC"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_11",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    }
+  ],
+  "code_sha256": "50209ddbf0197c1cb47c8098d31b38f6d496b59e441d0ce1af67599b148164b7",
+  "conclusion": "insufficient_evidence",
+  "evidence_used": [
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "BTC"
+      ],
+      "currency": null,
+      "id": "E_COM_HN_BTC_BEAR_PERFORMANCE",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_narrative",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": null,
+          "measure": "authored synthetic passage",
+          "period": "synthetic snapshot",
+          "scope": "synthetic fixture",
+          "unit": "text"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "fab5887f225a7917ae14641ff2eac4b39cc7295b95c99a3d44853defd4f436ef"
+      },
+      "source_id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "text": "Authored synthetic participants question durable demand.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "community"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "BTC"
+      ],
+      "currency": null,
+      "id": "E_COM_HN_BTC_CUSTODY_RISK",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_narrative",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": null,
+          "measure": "authored synthetic passage",
+          "period": "synthetic snapshot",
+          "scope": "synthetic fixture",
+          "unit": "text"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "0b22d7a316667b18fc4936f6c93a5cd55a3d03f9632f14046d3cff3b920273e2"
+      },
+      "source_id": "COM_HN_BTC_CUSTODY_RISK",
+      "text": "Authored synthetic participants question durable demand.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "community"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "BTC"
+      ],
+      "currency": null,
+      "id": "E_CR_IBIT_ISSUER",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": null,
+          "measure": "authored synthetic passage",
+          "period": "synthetic snapshot",
+          "scope": "synthetic fixture",
+          "unit": "text"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "8ac154063ee1dc89ca4f0e9eb094ec0c119c659c0b4ade3c2734e5b5495b698d"
+      },
+      "source_id": "CR_IBIT_ISSUER",
+      "text": "Authored synthetic issuer describes its economics and risks.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "BTC"
+      ],
+      "currency": null,
+      "id": "E_CR_COINSHARES_CURRENT_FLOWS",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": null,
+          "measure": "authored synthetic passage",
+          "period": "synthetic snapshot",
+          "scope": "synthetic fixture",
+          "unit": "text"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "6706f5790f517c0dba4332cdddc76f026133fd54889e7bd9aa78a67dd81a7342"
+      },
+      "source_id": "CR_COINSHARES_CURRENT_FLOWS",
+      "text": "Authored synthetic issuer describes its economics and risks.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_FACTSET_Q3",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": "USD",
+          "measure": "authored synthetic valuation and yield",
+          "period": "synthetic snapshot",
+          "scope": "synthetic index and Treasury",
+          "unit": "ratio and percent"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "70e68011228b27ae252bed8c34e371369ea29ed5243d296cadd4e97cd77c0d07"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "Synthetic fixture only. Forward P/E 20.0; Treasury 3.0 percent.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_SPY",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": null,
+          "measure": "authored synthetic passage",
+          "period": "synthetic snapshot",
+          "scope": "synthetic fixture",
+          "unit": "text"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "679de074e8a72c79fa12cdf57d37181f76b7c1ab645cfe0894d036a20fc0e4a1"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Authored synthetic issuer describes its economics and risks.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_TR_H15_CURVE",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": "USD",
+          "measure": "authored synthetic valuation and yield",
+          "period": "synthetic snapshot",
+          "scope": "synthetic index and Treasury",
+          "unit": "ratio and percent"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "4ce401f045c4ace518537b9bdb740eb672d7f712419de29d25804bf0891f0104"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "Synthetic fixture only. Forward P/E 20.0; Treasury 3.0 percent.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_37ca53e054042d4dc0645afce032b17472f680936ce1b02916b3d8cf7754f66a",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 7, column RIFLGFCY02_N.B, Time Period=2026-09-08",
+      "observed_at": "2026-09-08",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_2Y",
+          "period": "daily",
+          "scope": "Nominal 2-year Treasury constant maturity yield, synthetic values",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_37ca53e054042d4dc0645afce032b17472f680936ce1b02916b3d8cf7754f66a",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "928e1e09c1082f4f967708ff0a2a879fee492efa1bbf690be313bcf678fa8c60"
+      },
+      "source_id": "S_YIELDS",
+      "text": "합성 미국 국채 2년; observation=2026-09-08; value=1.50 percent",
+      "unit": "percent",
+      "value": "1.50",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_4a7ebb688605194c2b9bca295327a036e69af95851474805ad9846839705f428",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 7, column RIFLGFCY10_N.B, Time Period=2026-09-08",
+      "observed_at": "2026-09-08",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_10Y",
+          "period": "daily",
+          "scope": "Nominal 10-year Treasury constant maturity yield, synthetic values",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_4a7ebb688605194c2b9bca295327a036e69af95851474805ad9846839705f428",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "928e1e09c1082f4f967708ff0a2a879fee492efa1bbf690be313bcf678fa8c60"
+      },
+      "source_id": "S_YIELDS",
+      "text": "합성 미국 국채 10년; observation=2026-09-08; value=3.00 percent",
+      "unit": "percent",
+      "value": "3.00",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_6333f059b7c0f680dc1be5c70e8133446f7c65ca90c30753c6f0825a95adf3a8",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 8, column RIFLGFCY10_N.B, Time Period=2026-09-09",
+      "observed_at": "2026-09-09",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_10Y",
+          "period": "daily",
+          "scope": "Nominal 10-year Treasury constant maturity yield, synthetic values",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_6333f059b7c0f680dc1be5c70e8133446f7c65ca90c30753c6f0825a95adf3a8",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "928e1e09c1082f4f967708ff0a2a879fee492efa1bbf690be313bcf678fa8c60"
+      },
+      "source_id": "S_YIELDS",
+      "text": "합성 미국 국채 10년; observation=2026-09-09; value=3.50 percent",
+      "unit": "percent",
+      "value": "3.50",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "currency": "KRW",
+      "id": "OBS_772b7be89563c67aa881f888b2f99cbe2ce812a59e4a2f825f36d2defb015976",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 8, column RXI_N.B.KO, Time Period=2026-09-09",
+      "observed_at": "2026-09-09",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "KRW",
+          "measure": "USD_KRW_NOON_REFERENCE",
+          "period": "daily",
+          "scope": "KRW per one USD, synthetic values",
+          "unit": "KRW_per_USD"
+        },
+        "excerpt_id": "OBS_772b7be89563c67aa881f888b2f99cbe2ce812a59e4a2f825f36d2defb015976",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "a044b226681a6387af1672ff3dd41bc5dc09b704c2dccae3ccabf49d7947f2ee"
+      },
+      "source_id": "S_FX",
+      "text": "합성 달러당 원화; observation=2026-09-09; value=1310 KRW_per_USD",
+      "unit": "KRW_per_USD",
+      "value": "1310",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_7d4a276ab88b493bf9842e73f10ce791c961b71887342389239c15a10b6132b9",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 8, column RIFLGFCY02_N.B, Time Period=2026-09-09",
+      "observed_at": "2026-09-09",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_2Y",
+          "period": "daily",
+          "scope": "Nominal 2-year Treasury constant maturity yield, synthetic values",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_7d4a276ab88b493bf9842e73f10ce791c961b71887342389239c15a10b6132b9",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "928e1e09c1082f4f967708ff0a2a879fee492efa1bbf690be313bcf678fa8c60"
+      },
+      "source_id": "S_YIELDS",
+      "text": "합성 미국 국채 2년; observation=2026-09-09; value=2.00 percent",
+      "unit": "percent",
+      "value": "2.00",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "currency": "KRW",
+      "id": "OBS_baa1c8a7706744a4ec4b2376c237147a4975fce54e4c18ad9ed25904aced71d0",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-09-10",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 7, column RXI_N.B.KO, Time Period=2026-09-08",
+      "observed_at": "2026-09-08",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "KRW",
+          "measure": "USD_KRW_NOON_REFERENCE",
+          "period": "daily",
+          "scope": "KRW per one USD, synthetic values",
+          "unit": "KRW_per_USD"
+        },
+        "excerpt_id": "OBS_baa1c8a7706744a4ec4b2376c237147a4975fce54e4c18ad9ed25904aced71d0",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "a044b226681a6387af1672ff3dd41bc5dc09b704c2dccae3ccabf49d7947f2ee"
+      },
+      "source_id": "S_FX",
+      "text": "합성 달러당 원화; observation=2026-09-08; value=1300 KRW_per_USD",
+      "unit": "KRW_per_USD",
+      "value": "1300",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_PE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": "synthetic snapshot",
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": "USD",
+          "measure": "합성 F_PE",
+          "period": "synthetic snapshot",
+          "scope": "SYNTHETIC",
+          "unit": "ratio"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "70e68011228b27ae252bed8c34e371369ea29ed5243d296cadd4e97cd77c0d07"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "Forward P/E 20.0",
+      "unit": "ratio",
+      "value": "20.0",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_TREASURY",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Authored synthetic fixture; not actual market evidence.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "synthetic paragraph",
+      "observed_at": "2026-09-10",
+      "period": "synthetic snapshot",
+      "provenance": {
+        "definition": {
+          "adjustment": "authored fixture",
+          "currency": "USD",
+          "measure": "합성 F_TREASURY",
+          "period": "synthetic snapshot",
+          "scope": "SYNTHETIC",
+          "unit": "percent"
+        },
+        "excerpt_id": "Q_SYNTHETIC",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "4ce401f045c4ace518537b9bdb740eb672d7f712419de29d25804bf0891f0104"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "Treasury 3.0 percent",
+      "unit": "percent",
+      "value": "3.0",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [],
+      "currency": "KRW",
+      "id": "PORT_VALUE_STOCK",
+      "interpretation": {
+        "rationale": "사용자의 자기보고 입력이다. 계산 가능성과 투자 적절성은 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "검증 범위는 제공된 입력의 형식·계산이다. 실제 잔액 검증이 아니다."
+      ],
+      "locator": "PORT_VALUE_STOCK",
+      "observed_at": "2026-09-10",
+      "period": "self_reported_snapshot",
+      "provenance": null,
+      "source_id": "ASK_PORTFOLIO_INPUT",
+      "text": "미국 주식 · 사용자 제공 값",
+      "unit": "KRW",
+      "value": "6000000",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [],
+      "currency": "KRW",
+      "id": "PORT_VALUE_COIN",
+      "interpretation": {
+        "rationale": "사용자의 자기보고 입력이다. 계산 가능성과 투자 적절성은 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "검증 범위는 제공된 입력의 형식·계산이다. 실제 잔액 검증이 아니다."
+      ],
+      "locator": "PORT_VALUE_COIN",
+      "observed_at": "2026-09-10",
+      "period": "self_reported_snapshot",
+      "provenance": null,
+      "source_id": "ASK_PORTFOLIO_INPUT",
+      "text": "Bitcoin · 사용자 제공 값",
+      "unit": "KRW",
+      "value": "2000000",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [],
+      "currency": "KRW",
+      "id": "PORT_CASH",
+      "interpretation": {
+        "rationale": "사용자의 자기보고 입력이다. 계산 가능성과 투자 적절성은 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "검증 범위는 제공된 입력의 형식·계산이다. 실제 잔액 검증이 아니다."
+      ],
+      "locator": "PORT_CASH",
+      "observed_at": "2026-09-10",
+      "period": "self_reported_snapshot",
+      "provenance": null,
+      "source_id": "ASK_PORTFOLIO_INPUT",
+      "text": "cash_krw · 사용자 제공 값",
+      "unit": "KRW",
+      "value": "2000000",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [],
+      "currency": "KRW",
+      "id": "PORT_DEBT",
+      "interpretation": {
+        "rationale": "사용자의 자기보고 입력이다. 계산 가능성과 투자 적절성은 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "검증 범위는 제공된 입력의 형식·계산이다. 실제 잔액 검증이 아니다."
+      ],
+      "locator": "PORT_DEBT",
+      "observed_at": "2026-09-10",
+      "period": "self_reported_snapshot",
+      "provenance": null,
+      "source_id": "ASK_PORTFOLIO_INPUT",
+      "text": "debt_krw · 사용자 제공 값",
+      "unit": "KRW",
+      "value": "1000000",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [],
+      "currency": "KRW",
+      "id": "PORT_MONTHLY",
+      "interpretation": {
+        "rationale": "사용자의 자기보고 입력이다. 계산 가능성과 투자 적절성은 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "검증 범위는 제공된 입력의 형식·계산이다. 실제 잔액 검증이 아니다."
+      ],
+      "locator": "PORT_MONTHLY",
+      "observed_at": "2026-09-10",
+      "period": "self_reported_snapshot",
+      "provenance": null,
+      "source_id": "ASK_PORTFOLIO_INPUT",
+      "text": "monthly_investable_krw · 사용자 제공 값",
+      "unit": "KRW",
+      "value": "500000",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-09-10",
+      "asset_ids": [],
+      "currency": "KRW",
+      "id": "PORT_NEED_0",
+      "interpretation": {
+        "rationale": "사용자의 자기보고 입력이다. 계산 가능성과 투자 적절성은 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "검증 범위는 제공된 입력의 형식·계산이다. 실제 잔액 검증이 아니다."
+      ],
+      "locator": "PORT_NEED_0",
+      "observed_at": "2026-09-10",
+      "period": "self_reported_snapshot",
+      "provenance": null,
+      "source_id": "ASK_PORTFOLIO_INPUT",
+      "text": "합성 이사 비용 · 사용자 제공 값",
+      "unit": "KRW",
+      "value": "3000000",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    }
+  ],
+  "execution_status": "completed",
+  "finding_checks": [],
+  "follow_up_reference": {
+    "run_id": "5c3fa1995eabe27e94dc6246636f2a3ee83768b84446b4b40c383dcabe45d71f",
+    "subject_ids": [
+      "US_EQUITY",
+      "BTC"
+    ]
+  },
+  "input_sha256": "332367b58cc747874272a3d97b28584d58257f0b01d783ae24e73bc73090e75e",
+  "method_versions": {
+    "acquisition": "source_snapshot_v1",
+    "catalog": "curated_research_catalog_v1",
+    "deep_dive": "deep_dive_v1",
+    "engine": "evidence_rules_v1",
+    "findings": "bounded_findings_v1",
+    "macro": "macro_series_v1",
+    "macro_pipeline": "macro_pipeline_v1",
+    "opportunity": "opportunity_map_v1",
+    "orchestrator": "research_orchestrator_v1",
+    "portfolio": "portfolio_composition_v1",
+    "report": "ask_report_v1",
+    "routing": "research_routing_v2",
+    "source_verification": "source_verification_v1"
+  },
+  "methods": [
+    {
+      "bear_question": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "bull_question": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "downside": "예상 이익 미달·배수 하락·집중·drawdown(큰 평가손실)·환율 위험이 있다.",
+      "economics": "기업의 미래 이익·현금흐름과 지불한 가격을 구분하고 국채 대안과 비교한다.",
+      "family": "equity_index",
+      "id": "US_EQUITY",
+      "label": "S&P 500 / 미국 주식",
+      "macro_ids": [
+        "US_TREASURY_NOMINAL_2Y",
+        "US_TREASURY_NOMINAL_10Y",
+        "USD_KRW_NOON_REFERENCE"
+      ],
+      "missing": [
+        "전체 consensus→actual→후속 revision의 같은 정의 패널",
+        "회사별 현금흐름과 전체 지수 기대의 연결"
+      ],
+      "scope_note": "확보한 valuation·이익 근거는 S&P 500 중심이다. Nasdaq이나 미국 개별주 전체로 일반화하지 않는다.",
+      "source_ids": [
+        "DD_IDX_FACTSET_Q3",
+        "DD_IDX_SPY",
+        "DD_TR_H15_CURVE"
+      ]
+    },
+    {
+      "bear_question": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "bull_question": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "downside": "수요 감소·레버리지 청산·규제·거래소/보관 위험; ETF와 현물 보관은 다르다.",
+      "economics": "사용·보유 수요와 희소성 가설을 검증한다. 기업 이익이나 PER로 평가하지 않는다.",
+      "family": "crypto",
+      "id": "BTC",
+      "label": "Bitcoin",
+      "macro_ids": [
+        "USD_KRW_NOON_REFERENCE"
+      ],
+      "missing": [
+        "BTC 단독 ETF 일별 순유입과 실제 보유량",
+        "가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+        "가격의 매력을 판단할 검증된 가치 대용 지표"
+      ],
+      "scope_note": "IBIT 상품과 제공자의 디지털자산 전체 flow를 구분한다. aggregate flow는 BTC 단독 flow가 아니다.",
+      "source_ids": [
+        "CR_IBIT_ISSUER",
+        "CR_COINSHARES_CURRENT_FLOWS",
+        "COM_HN_BTC_CUSTODY_RISK",
+        "COM_HN_BTC_BEAR_PERFORMANCE"
+      ]
+    }
+  ],
+  "personal_conclusion": "insufficient_evidence",
+  "personal_constraints": [
+    "비상자금이 미확인이라 현금 비중이 과도하거나 추가 투자에 충분하다고 판단할 수 없다.",
+    "주택 구입 필요자금과 시점이 미확인이라 장기간 자금이 묶이는 선택의 적절성을 판단할 수 없다.",
+    "위험 감당 능력이 미확인이라 나이·소득·위험 감수 의향에서 손실 한도·투자 비중·레버리지 허용을 도출할 수 없다."
+  ],
+  "pipeline_invocations": [
+    {
+      "function": "replay_deep_dive",
+      "purpose": "quoted_financials_and_source_macro_validation"
+    },
+    {
+      "function": "review_portfolio",
+      "purpose": "self_reported_composition"
+    },
+    {
+      "function": "run_research",
+      "purpose": "evidence_quality_and_conclusion_limits"
+    }
+  ],
+  "portfolio_missing": [],
+  "question": "내 포트폴리오 괜찮아?",
+  "reasoning": [
+    {
+      "counterargument": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3",
+        "E_DD_IDX_SPY",
+        "E_DD_TR_H15_CURVE",
+        "F_PE",
+        "F_TREASURY"
+      ],
+      "id": "INSIGHT_US_EQUITY",
+      "limitations": [
+        "전체 consensus→actual→후속 revision의 같은 정의 패널",
+        "회사별 현금흐름과 전체 지수 기대의 연결"
+      ],
+      "metric_ids": [],
+      "reassessment": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "role": "interpretation_draft",
+      "text": "확보한 valuation·이익 근거는 S&P 500 중심이다. Nasdaq이나 미국 개별주 전체로 일반화하지 않는다. 현재 가격의 매력·미래 수익은 이 자료만으로 확정하지 않는다."
+    },
+    {
+      "counterargument": "유입 둔화·보관 위험이 강세 논리를 약화시키는가?",
+      "evidence_ids": [
+        "E_CR_IBIT_ISSUER",
+        "E_CR_COINSHARES_CURRENT_FLOWS"
+      ],
+      "id": "INSIGHT_BTC",
+      "limitations": [
+        "BTC 단독 ETF 일별 순유입과 실제 보유량",
+        "가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+        "가격의 매력을 판단할 검증된 가치 대용 지표"
+      ],
+      "metric_ids": [],
+      "reassessment": "투자상품의 자금 유입이 Bitcoin 고유 수요의 지속으로 이어지는가?",
+      "role": "interpretation_draft",
+      "text": "IBIT 상품과 제공자의 디지털자산 전체 flow를 구분한다. aggregate flow는 BTC 단독 flow가 아니다. 현재 가격의 매력·미래 수익은 이 자료만으로 확정하지 않는다."
+    },
+    {
+      "counterargument": "좋은 자산도 기존 노출·자금수요·부채에 따라 추가 보유가 적절하지 않을 수 있다.",
+      "evidence_ids": [
+        "PORT_VALUE_STOCK",
+        "PORT_VALUE_COIN",
+        "PORT_CASH",
+        "PORT_DEBT",
+        "PORT_MONTHLY",
+        "PORT_NEED_0"
+      ],
+      "id": "INSIGHT_PORTFOLIO",
+      "limitations": [],
+      "metric_ids": [
+        "PORT_TOTAL",
+        "PORT_WEIGHT_STOCK",
+        "PORT_WEIGHT_COIN",
+        "PORT_WEIGHT_CASH",
+        "PORT_NET_ASSETS",
+        "PORT_CASH_NEEDS"
+      ],
+      "reassessment": "전체 보유와 평가 기준일·현금·부채·향후 자금수요·손실 감당 능력을 확인한다.",
+      "role": "self_reported_composition",
+      "text": "제공된 보유 구성의 계산과 자산의 시장 매력, 추가 보유의 적절성은 별도 판단이다."
+    }
+  ],
+  "report": {
+    "path": "report.md",
+    "sha256": "51a280046c013a56fee0919fb3d06218aa619efac851a2a54531bf0f4ce90b87"
+  },
+  "request_sha256": "db8344fae5b097d21a9b927846282bd874b5b44a4582ac5ecc0229faaabd0a18",
+  "research_status": "partial",
+  "resolved_intent": {
+    "clarifications": [],
+    "execution_status": "dispatched",
+    "limits": [
+      "선택한 모드의 조사 계획이며 금융 분석 결과·수치·추천이 아니다.",
+      "규칙 기반 질문 해석의 범위를 넘으면 확인하며 전체 Scan으로 대체하지 않는다.",
+      "관련 macro·대안만 조사한다. 미조사 자산의 열등함을 뜻하지 않는다.",
+      "필수 근거·보유 정보가 unknown이면 영향을 받는 결론을 보류한다."
+    ],
+    "method_version": "research_routing_v2",
+    "modes": [
+      "portfolio_review"
+    ],
+    "question": "내 포트폴리오 괜찮아?",
+    "schema_version": "research-plan-v1",
+    "selection_source": "inferred_rules",
+    "status": "planned",
+    "tasks": [
+      {
+        "depends_on": [],
+        "id": "portfolio",
+        "mode": "portfolio_review",
+        "questions": [
+          "자산 자체의 매력",
+          "기존 중복·과도한 노출",
+          "추가 자본이 전체 포트폴리오에 미치는 변화; 누락 정보로 안전·적절성을 확정하지 않는다."
+        ],
+        "required_inputs": [
+          "기준일과 실제 보유자산·수량/가치·통화·상품·중복 노출",
+          "현금·부채·소득/지출·추가 투자 가능액",
+          "비상자금·큰 자금수요·주택 계획·투자기간",
+          "위험 감당 능력과 감수 의향·관련 세법/계좌 제약"
+        ],
+        "scope": "actual_portfolio_and_constraints",
+        "subjects": []
+      }
+    ]
+  },
+  "run_id": "5c3fa1995eabe27e94dc6246636f2a3ee83768b84446b4b40c383dcabe45d71f",
+  "schema_version": "ask-run-v1",
+  "scope": [
+    {
+      "candidate_dependent": false,
+      "id": "portfolio",
+      "method_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "mode": "portfolio_review",
+      "subject_method_ids": [],
+      "subjects": [],
+      "unsupported": []
+    }
+  ],
+  "selected_modes": [
+    "portfolio_review"
+  ],
+  "sources_accessed": [
+    {
+      "available_at": null,
+      "id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-ask.example.org/com_hn_btc_bear_performance",
+      "name": "Synthetic fixture, never live evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "1e1383976bb125ef70f050d7bc72b3945373bc57692b385d722b0de5a1eb298c",
+        "observed_at": "2026-09-10T11:00:00Z",
+        "payload_sha256": "223b448672def8b2cb98e96772600e165d8077a2c6bbd84dd9b8ef880ea4232b",
+        "policy_note": "Authored synthetic fixture retained only for offline tests.",
+        "policy_url": "https://synthetic-ask.example.org/terms",
+        "published_at": "2026-09-10T11:00:00Z",
+        "publisher": "Authored synthetic test publisher",
+        "raw_sha256": "552b65ef951391b333bf646941b481a0ba773dad08748e3f7011738bcd743c8d",
+        "retention": "excerpt",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "fab5887f225a7917ae14641ff2eac4b39cc7295b95c99a3d44853defd4f436ef",
+        "status": "available",
+        "title": "Synthetic fixture, never live evidence",
+        "topics": [
+          "synthetic-test"
+        ],
+        "valid_as_of": "2026-09-10"
+      },
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "community"
+    },
+    {
+      "available_at": null,
+      "id": "COM_HN_BTC_CUSTODY_RISK",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-ask.example.org/com_hn_btc_custody_risk",
+      "name": "Synthetic fixture, never live evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "1e1383976bb125ef70f050d7bc72b3945373bc57692b385d722b0de5a1eb298c",
+        "observed_at": "2026-09-10T11:00:00Z",
+        "payload_sha256": "223b448672def8b2cb98e96772600e165d8077a2c6bbd84dd9b8ef880ea4232b",
+        "policy_note": "Authored synthetic fixture retained only for offline tests.",
+        "policy_url": "https://synthetic-ask.example.org/terms",
+        "published_at": "2026-09-10T11:00:00Z",
+        "publisher": "Authored synthetic test publisher",
+        "raw_sha256": "552b65ef951391b333bf646941b481a0ba773dad08748e3f7011738bcd743c8d",
+        "retention": "excerpt",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "0b22d7a316667b18fc4936f6c93a5cd55a3d03f9632f14046d3cff3b920273e2",
+        "status": "available",
+        "title": "Synthetic fixture, never live evidence",
+        "topics": [
+          "synthetic-test"
+        ],
+        "valid_as_of": "2026-09-10"
+      },
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "community"
+    },
+    {
+      "available_at": null,
+      "id": "CR_COINSHARES_CURRENT_FLOWS",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-ask.example.org/cr_coinshares_current_flows",
+      "name": "Synthetic fixture, never live evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "2ea109223f604ea6cdc17a29324fdd13a0301b453bbe649fba6caa5086ce2fb2",
+        "observed_at": "2026-09-10T11:00:00Z",
+        "payload_sha256": "31248bb7f6e02c56e98965ef2acd044b6a31d3f0c1021002dbb6982f928fcc8a",
+        "policy_note": "Authored synthetic fixture retained only for offline tests.",
+        "policy_url": "https://synthetic-ask.example.org/terms",
+        "published_at": "2026-09-10T11:00:00Z",
+        "publisher": "Authored synthetic test publisher",
+        "raw_sha256": "070411b3d53a78aa93b8a7d89eedac8da71c4841bc0c8a43ba1a39bf7719bdf0",
+        "retention": "excerpt",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "6706f5790f517c0dba4332cdddc76f026133fd54889e7bd9aa78a67dd81a7342",
+        "status": "available",
+        "title": "Synthetic fixture, never live evidence",
+        "topics": [
+          "synthetic-test"
+        ],
+        "valid_as_of": "2026-09-10"
+      },
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "CR_IBIT_ISSUER",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-ask.example.org/cr_ibit_issuer",
+      "name": "Synthetic fixture, never live evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "2ea109223f604ea6cdc17a29324fdd13a0301b453bbe649fba6caa5086ce2fb2",
+        "observed_at": "2026-09-10T11:00:00Z",
+        "payload_sha256": "31248bb7f6e02c56e98965ef2acd044b6a31d3f0c1021002dbb6982f928fcc8a",
+        "policy_note": "Authored synthetic fixture retained only for offline tests.",
+        "policy_url": "https://synthetic-ask.example.org/terms",
+        "published_at": "2026-09-10T11:00:00Z",
+        "publisher": "Authored synthetic test publisher",
+        "raw_sha256": "070411b3d53a78aa93b8a7d89eedac8da71c4841bc0c8a43ba1a39bf7719bdf0",
+        "retention": "excerpt",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "8ac154063ee1dc89ca4f0e9eb094ec0c119c659c0b4ade3c2734e5b5495b698d",
+        "status": "available",
+        "title": "Synthetic fixture, never live evidence",
+        "topics": [
+          "synthetic-test"
+        ],
+        "valid_as_of": "2026-09-10"
+      },
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "DD_IDX_FACTSET_Q3",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-ask.example.org/dd_idx_factset_q3",
+      "name": "Synthetic fixture, never live evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "f0cbd8277bda9dcbb3dab7aad76d9baa42043746eae8b8c08979d2019560027a",
+        "observed_at": "2026-09-10T11:00:00Z",
+        "payload_sha256": "c508b1ba656d1c88673b3e1d615187f08e7034124b2627173a8333bf6f687a94",
+        "policy_note": "Authored synthetic fixture retained only for offline tests.",
+        "policy_url": "https://synthetic-ask.example.org/terms",
+        "published_at": "2026-09-10T11:00:00Z",
+        "publisher": "Authored synthetic test publisher",
+        "raw_sha256": "e42cc3b1e765faeb1f8790d2af60dce116df0abc77a2d59cef448361a22989fd",
+        "retention": "excerpt",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "70e68011228b27ae252bed8c34e371369ea29ed5243d296cadd4e97cd77c0d07",
+        "status": "available",
+        "title": "Synthetic fixture, never live evidence",
+        "topics": [
+          "synthetic-test"
+        ],
+        "valid_as_of": "2026-09-10"
+      },
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "DD_IDX_SPY",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-ask.example.org/dd_idx_spy",
+      "name": "Synthetic fixture, never live evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "2ea109223f604ea6cdc17a29324fdd13a0301b453bbe649fba6caa5086ce2fb2",
+        "observed_at": "2026-09-10T11:00:00Z",
+        "payload_sha256": "31248bb7f6e02c56e98965ef2acd044b6a31d3f0c1021002dbb6982f928fcc8a",
+        "policy_note": "Authored synthetic fixture retained only for offline tests.",
+        "policy_url": "https://synthetic-ask.example.org/terms",
+        "published_at": "2026-09-10T11:00:00Z",
+        "publisher": "Authored synthetic test publisher",
+        "raw_sha256": "070411b3d53a78aa93b8a7d89eedac8da71c4841bc0c8a43ba1a39bf7719bdf0",
+        "retention": "excerpt",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "679de074e8a72c79fa12cdf57d37181f76b7c1ab645cfe0894d036a20fc0e4a1",
+        "status": "available",
+        "title": "Synthetic fixture, never live evidence",
+        "topics": [
+          "synthetic-test"
+        ],
+        "valid_as_of": "2026-09-10"
+      },
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "DD_TR_H15_CURVE",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-ask.example.org/dd_tr_h15_curve",
+      "name": "Synthetic fixture, never live evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "f0cbd8277bda9dcbb3dab7aad76d9baa42043746eae8b8c08979d2019560027a",
+        "observed_at": "2026-09-10T11:00:00Z",
+        "payload_sha256": "c508b1ba656d1c88673b3e1d615187f08e7034124b2627173a8333bf6f687a94",
+        "policy_note": "Authored synthetic fixture retained only for offline tests.",
+        "policy_url": "https://synthetic-ask.example.org/terms",
+        "published_at": "2026-09-10T11:00:00Z",
+        "publisher": "Authored synthetic test publisher",
+        "raw_sha256": "e42cc3b1e765faeb1f8790d2af60dce116df0abc77a2d59cef448361a22989fd",
+        "retention": "excerpt",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "4ce401f045c4ace518537b9bdb740eb672d7f712419de29d25804bf0891f0104",
+        "status": "available",
+        "title": "Synthetic fixture, never live evidence",
+        "topics": [
+          "synthetic-test"
+        ],
+        "valid_as_of": "2026-09-10"
+      },
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "S_YIELDS",
+      "limitations": [
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-macro.example.org/s_yields",
+      "name": "Synthetic fixture, never actual market evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_api",
+        "content_type": "text/csv",
+        "freshness": "per_observation",
+        "jurisdiction": "US",
+        "normalized_sha256": "938198d8f91d96c70e041c3563b1a1b0b717d150e4c688181ccd1fb04a7d00e2",
+        "observed_at": null,
+        "payload_sha256": "d61f4a454435db628e318c6a56870cab5222fa8a6fb7585228b022ad5f88397f",
+        "policy_note": "Synthetic HTTP fixture retained for offline tests only.",
+        "policy_url": "https://synthetic-macro.example.org/terms",
+        "published_at": null,
+        "publisher": "Synthetic macro test publisher",
+        "raw_sha256": "54580229c51e72f70e3801d9af0525f19a4f3863329426b41113af3b332025d1",
+        "retention": "full",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "928e1e09c1082f4f967708ff0a2a879fee492efa1bbf690be313bcf678fa8c60",
+        "status": "available",
+        "title": "Synthetic fixture, never actual market evidence",
+        "topics": [
+          "synthetic-macro-test"
+        ],
+        "valid_as_of": null
+      },
+      "published_at": null,
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "S_FX",
+      "limitations": [
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://synthetic-macro.example.org/s_fx",
+      "name": "Synthetic fixture, never actual market evidence",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_api",
+        "content_type": "text/csv",
+        "freshness": "per_observation",
+        "jurisdiction": "US",
+        "normalized_sha256": "e32a51b313c1b5c631a1faa0f1e4d53dcd67a38dc787f6c444e25d48088100ee",
+        "observed_at": null,
+        "payload_sha256": "c028fdf2b7734ba921e11fe54278c1e74b3b52fbc0ff61403d3fe6d25d6259bb",
+        "policy_note": "Synthetic HTTP fixture retained for offline tests only.",
+        "policy_url": "https://synthetic-macro.example.org/terms",
+        "published_at": null,
+        "publisher": "Synthetic macro test publisher",
+        "raw_sha256": "6cdb19d34bff022b5e74ff0bd1b7adcb89aab70a4c19379e32f3773b382a23c8",
+        "retention": "full",
+        "retrieved_at": "2026-09-10T12:00:00Z",
+        "snapshot_id": "a044b226681a6387af1672ff3dd41bc5dc09b704c2dccae3ccabf49d7947f2ee",
+        "status": "available",
+        "title": "Synthetic fixture, never actual market evidence",
+        "topics": [
+          "synthetic-macro-test"
+        ],
+        "valid_as_of": null
+      },
+      "published_at": null,
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    },
+    {
+      "available_at": "2026-09-10",
+      "id": "ASK_PORTFOLIO_INPUT",
+      "limitations": [
+        "자기보고 금액이며 계좌 잔액·시장가격의 외부 검증이 아니다.",
+        "KRW로 입력한 평가액만 사용하고 환율을 추정하지 않는다."
+      ],
+      "location": "local:input.json#/portfolio",
+      "name": "사용자가 제공한 KRW 보유 입력",
+      "origin_source_id": null,
+      "provenance": null,
+      "published_at": "2026-09-10",
+      "retrieved_at": "2026-09-10",
+      "type": "primary"
+    }
+  ],
+  "synthetic": true,
+  "task_results": [
+    {
+      "method_ids": [
+        "US_EQUITY",
+        "BTC"
+      ],
+      "mode": "portfolio_review",
+      "status": "completed_composition",
+      "task_id": "portfolio"
+    }
+  ],
+  "unresolved_questions": [
+    "S&P 500 / 미국 주식: 전체 consensus→actual→후속 revision의 같은 정의 패널",
+    "S&P 500 / 미국 주식: 회사별 현금흐름과 전체 지수 기대의 연결",
+    "Bitcoin: BTC 단독 ETF 일별 순유입과 실제 보유량",
+    "Bitcoin: 가격·거래량·선물 funding/미결제약정·청산·network의 최신 자료",
+    "Bitcoin: 가격의 매력을 판단할 검증된 가치 대용 지표"
+  ]
+}

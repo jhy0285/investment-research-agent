@@ -1,0 +1,191 @@
+{
+  "sources": [
+    {
+      "id": "DD_TR_H15_CURVE",
+      "url": "https://www.federalreserve.gov/releases/h15/",
+      "canonical_url": "https://www.federalreserve.gov/releases/h15/",
+      "type": "primary",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "title": "H15 released 2026-10-02: same-date nominal Treasury constant-maturity curve",
+      "published_at": "2026-10-02",
+      "observed_at": "2026-10-01",
+      "valid_as_of": "2026-10-01",
+      "jurisdiction": "US",
+      "topics": [
+        "Treasury",
+        "interest_rates",
+        "opportunity_cost",
+        "valuation"
+      ],
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND",
+        "LONG_BOND",
+        "INTERMEDIATE_BOND"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "policy_note": "Public-domain Federal Reserve information with attribution. Same underlying Treasury observations as macro FED_H15_TREASURY CSV; HTML is a definition/date cross-check, not independent empirical confirmation. Excerpts only; seals, logos and separate third-party content excluded.",
+      "retention": "excerpt",
+      "max_age_days": 10,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "DATES",
+          "quote": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1 ",
+          "locator": "H15 DATES visible table/text",
+          "definition": {
+            "measure": "H15_date_column_order",
+            "unit": "dates",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "currency": "USD",
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "scope": "H15 current release latest observation identity"
+          }
+        },
+        {
+          "id": "CURVE",
+          "quote": "Treasury constant maturities Nominal 9 1-month 4.04 4.04 4.04 4.02 4.06 3-month 4.24 4.28 4.25 4.20 4.17 6-month 4.33 4.41 4.36 4.33 4.27 1-year 4.50 4.59 4.58 4.54 4.44 2-year 4.81 4.92 4.89 4.88 4.78 3-year 4.94 5.01 4.98 5.00 4.91 5-year 4.98 5.06 5.06 5.09 5.01 7-year 5.06 5.15 5.16 5.19 5.12 10-year 5.17 5.24 5.26 5.29 5.24 20-year 5.54 5.60 5.64 5.68 5.64 30-year 5.49 5.56 5.59 5.64 5.61 ",
+          "locator": "H15 CURVE visible table/text",
+          "definition": {
+            "measure": "Treasury_nominal_constant_maturity_curve",
+            "unit": "annual_percent",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "currency": "USD",
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date"
+          }
+        },
+        {
+          "id": "METHOD",
+          "quote": "Yields on Treasury nominal securities at “constant maturity” are interpolated by the U.S. Treasury from the daily yield curve for non-inflation-indexed Treasury securities. This curve, which relates the yield on a security to its time to maturity, is based on the closing market bid yields on actively traded Treasury securities in the over-the-counter market. These market yields are calculated from composites of quotations obtained by the Federal Reserve Bank of New York. The constant maturity yield values are read from the yield curve at fixed maturities, currently 1, 3, and 6 months and 1, 2, 3, 5, 7, 10, 20, and 30 years. This method provides a yield for a 10-year maturity, for example, even if no outstanding security has exactly 10 years remaining to maturity. ",
+          "locator": "H15 METHOD visible table/text",
+          "definition": {
+            "measure": "Treasury_constant_maturity_interpolation",
+            "unit": "source_method_definition",
+            "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+            "currency": "USD",
+            "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+            "scope": "Interpolation of closing bid yield curve; Treasury nominal securities, not a tradable single-security quote"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "DD_TR_H15_CURVE": "e213205d355b63a4d58107a4f8f02c071ec2712c970f56bc15001c4bb3c938f2"
+  },
+  "evidence": [
+    {
+      "id": "E_DD_TR_DATES",
+      "source_id": "DD_TR_H15_CURVE",
+      "excerpt_id": "DATES",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "H15_date_column_order",
+        "unit": "dates",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "currency": "USD",
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "scope": "H15 current release latest observation identity"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ]
+    },
+    {
+      "id": "E_DD_TR_CURVE",
+      "source_id": "DD_TR_H15_CURVE",
+      "excerpt_id": "CURVE",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Treasury_nominal_constant_maturity_curve",
+        "unit": "annual_percent",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "currency": "USD",
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ]
+    },
+    {
+      "id": "E_DD_TR_METHOD",
+      "source_id": "DD_TR_H15_CURVE",
+      "excerpt_id": "METHOD",
+      "view": "macro",
+      "kind": "external_fact",
+      "definition": {
+        "measure": "Treasury_constant_maturity_interpolation",
+        "unit": "source_method_definition",
+        "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+        "currency": "USD",
+        "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+        "scope": "Interpolation of closing bid yield curve; Treasury nominal securities, not a tradable single-security quote"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다."
+      ]
+    }
+  ],
+  "claims": [],
+  "notes": [
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND",
+        "LONG_BOND"
+      ],
+      "evidence_ids": [
+        "E_DD_TR_DATES",
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "positive": "현재 같은 날의 국채 벤치마크 금리는 단기·중기·장기별로 서로 다르다. 주식 이익수익률과 비교하려면 동일한 명목 달러 정의와 시점차를 공개해야 한다.",
+      "counter": "국채의 시작 금리도 확정된 원화 실현수익이 아니다. 장기 보유 채권은 중도 가격 변동, 재투자, 물가, 환율, 비용과 세금의 조건이 남는다.",
+      "unknown": "실제 거래 채권의 가격·쿠폰·만기와 ETF의 듀레이션·비용, 사용자 보유기간·환헤지·계좌 조건을 확인하지 않았다."
+    }
+  ],
+  "failures": [],
+  "research_notes": {
+    "latest_observation": "2026-10-01",
+    "published_at": "2026-10-02",
+    "same_date_nominal_CMT_investment_basis_percent": {
+      "3_month": "4.17",
+      "1_year": "4.44",
+      "2_year": "4.78",
+      "5_year": "5.01",
+      "7_year": "5.12",
+      "10_year": "5.24",
+      "20_year": "5.64",
+      "30_year": "5.61"
+    },
+    "facts_not_substitutes": {
+      "3_month_discount_bill_rate": "4.00",
+      "EFFR": "3.88",
+      "currency": "USD; rate ratio units, not USD currency amounts"
+    },
+    "comparison_contract": [
+      "CMT from one common observation date; closing bid yield curve interpolation. Compare against forward or trailing equity earnings yield separately and retain vendor period methodology.",
+      "1/PE*100 is an accounting earnings-price ratio. Neither forward estimated accounting earnings nor trailing earnings is a bond coupon, distributed cash yield or guaranteed annual equity return.",
+      "Earnings yield minus Treasury yield is a descriptive ratio gap, not a complete model-implied equity risk premium. Growth, margins, dilution, retained-earnings reinvestment, payout and equity drawdowns remain separate.",
+      "Do not subtract current historical CPI YoY to assert future real return. Breakeven/inflation premium needs same-maturity TIPS model assumptions and is not collected here.",
+      "Short duration has lower usual interest-rate price sensitivity but reinvestment exposure. Long duration locks a longer cash-flow term but is more sensitive to yield changes before maturity. Duration is not identical to maturity.",
+      "Direct coupon Treasury held to maturity has a nominal USD cash-flow contract; reinvestment of coupons at assumed YTM and credit/default conditions matter for matching realized compound YTM. Coupon-free bills held to maturity avoid coupon reinvestment but maturity rollover is uncertain.",
+      "A rolling bond ETF lacks an individual investor bond maturity promise and its distribution/SEC yield is not this CMT value.",
+      "KRW investor can lose domestic-currency value even when Treasury meets USD payments. Equities and Treasuries share USD currency exposure; compare economic asset cash flows separately from FX.",
+      "Fed H15 HTML and old CSV share source observations and are not independent confirmations."
+    ]
+  }
+}

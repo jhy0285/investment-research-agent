@@ -1,0 +1,12 @@
+[project]
+name = "investment-research-agent"
+version = "0.1.0"
+description = "Cross-asset research briefs, public-source verification and macro evidence for a Korean investor"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.setuptools.package-data]
+investment_research = ["catalog/*.json"]
+
+[tool.setuptools.packages.find]
+include = ["investment_research*"]

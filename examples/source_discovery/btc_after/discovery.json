@@ -1,0 +1,1601 @@
+{
+  "candidates": [
+    {
+      "advertised_at": null,
+      "advertised_date_status": "unknown",
+      "canonical_owner": true,
+      "canonical_url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+      "discovered_via": "https://api.exchange.coinbase.com/products",
+      "discovery_sha256": "3b9fdb3684fe7fd84d636223e61eb71c362cc220a5d0fc2249bc29cdcc332437",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented unauthenticated public Exchange products/ticker endpoints; read-only bounded personal research. Retain only selected public numeric fields, dates and hashes, not a redistributable full market dataset. Directory identity and official ticker field definitions are checked.",
+          "robots": "documented_public_api",
+          "url": "https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-ticker"
+        },
+        "raw_sha256": "70518e1e7b9e0ead1304fece6a9dadd606f7511b1be910ec2fb9d56b0c99a0db",
+        "retrieved_at": "2026-10-04T16:50:10.506454+00:00",
+        "status": "available",
+        "url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker"
+      },
+      "edition_key": "COINBASE_MARKETS:BTC:market_state",
+      "evidence_ids": [
+        "E_DISC_a21cfbc31d12348f_1",
+        "E_DISC_a21cfbc31d12348f_2"
+      ],
+      "freshness": {
+        "age_seconds": 10.102644,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 3600,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_566222748d82eb55",
+      "identity": "BTC-USD",
+      "index_identity_fields": {
+        "base_currency": "BTC",
+        "id": "BTC-USD",
+        "quote_currency": "USD",
+        "status": "online",
+        "trading_disabled": false
+      },
+      "index_locator": "/692",
+      "method": "market_directory",
+      "need_id": "NEED_BTC_MARKET_STATE",
+      "provider_id": "COINBASE_MARKETS",
+      "search_rank": 692,
+      "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+      "source_id": "DISC_a21cfbc31d12348f",
+      "source_type": "primary",
+      "source_version": "2026-10-04T16:50:09.911158+00:00#70518e1e7b9e0ead1304fece6a9dadd606f7511b1be910ec2fb9d56b0c99a0db",
+      "status": "selected",
+      "url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "한 거래소의 최근 체결·거래량이며 전 시장 대표 가격·총거래량이 아니다."
+        ],
+        "observed_at": "2026-10-04T16:50:09.911158+00:00",
+        "published_at": null,
+        "records": [
+          {
+            "definition": {
+              "adjustment": "unadjusted_exchange_trade",
+              "currency": "USD",
+              "measure": "COINBASE_BTC_USD_LAST_TRADE",
+              "period": "last_trade",
+              "scope": "Coinbase Exchange BTC-USD",
+              "unit": "USD_per_BTC"
+            },
+            "evidence_id": "E_DISC_a21cfbc31d12348f_1",
+            "extraction": "decimal_scalar_v1",
+            "label": "Coinbase BTC/USD 최근 체결 가격",
+            "limitations": [],
+            "locator": "json_scalar:/price",
+            "quote": "85409.98"
+          },
+          {
+            "definition": {
+              "adjustment": "exchange_reported_base_volume",
+              "currency": null,
+              "measure": "COINBASE_BTC_USD_24H_BASE_VOLUME",
+              "period": "rolling_24h",
+              "scope": "Coinbase Exchange BTC-USD",
+              "unit": "BTC"
+            },
+            "evidence_id": "E_DISC_a21cfbc31d12348f_2",
+            "extraction": "decimal_scalar_v1",
+            "label": "Coinbase BTC/USD 24시간 거래량",
+            "limitations": [
+              "가격 시각과 거래량의 24시간 종료 시각이 정확히 같다는 보장은 없다."
+            ],
+            "locator": "json_scalar:/volume",
+            "quote": "1758.22618292"
+          }
+        ],
+        "valid_as_of": "2026-10-04T16:50:09.911158+00:00"
+      },
+      "version_at": "2026-10-04T16:50:09.911158+00:00"
+    },
+    {
+      "advertised_at": null,
+      "advertised_date_status": "unknown",
+      "canonical_owner": true,
+      "canonical_url": "https://farside.co.uk/btc/",
+      "discovered_via": "https://farside.co.uk/",
+      "discovery_sha256": "da711168c4cae6b959ed9bbb735ee0f606576bd63e3b3e203310f312a2f23f3d",
+      "document": {
+        "content_type": "text/html; charset=UTF-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_http",
+          "checked_at": "2026-10-04T16:50:11.829730+00:00",
+          "review_note": "Public publisher page and linked Bitcoin ETF flow table; respect robots, no login, redirect or access-limit bypass. Copyright remains with Farside Investors. Retain one latest dated table row, column definitions and hashes for attributed personal research; no whole HTML/table archive or systematic dataset redistribution. Provider itself warns of errors/inaccuracies. AUM/product structure are not daily net flows; no complete regulator/issuer daily aggregate was verified.",
+          "robots": "allowed",
+          "robots_sha256": "b6805128e10dfea0167276a088d35f06169f35da7e800b90f5353d198d62a5a0",
+          "robots_status": 200,
+          "robots_url": "https://farside.co.uk/robots.txt",
+          "url": "https://farside.co.uk/"
+        },
+        "raw_sha256": "98618cc4d4b6f23f5ed9852638f47e089b25c829e55eb44d9eed97d0e79b31ba",
+        "retrieved_at": "2026-10-04T16:50:13.046995+00:00",
+        "status": "available",
+        "url": "https://farside.co.uk/btc/"
+      },
+      "edition_key": "FARSIDE_PUBLISHER:BTC:etf_flows",
+      "evidence_ids": [
+        "E_DISC_437602cf5629b662_1"
+      ],
+      "freshness": {
+        "age_seconds": 233420.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 345600,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_60c8078213e2f480",
+      "identity": "https://farside.co.uk/btc/",
+      "index_identity_fields": {
+        "href": "https://farside.co.uk/btc/",
+        "label": "Bitcoin"
+      },
+      "index_locator": "anchor[4]/href",
+      "method": "publisher_links",
+      "need_id": "NEED_BTC_ETF_FLOWS",
+      "provider_id": "FARSIDE_PUBLISHER",
+      "search_rank": 4,
+      "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+      "source_id": "DISC_437602cf5629b662",
+      "source_type": "data_provider",
+      "source_version": "2026-10-02T00:00:00+00:00#98618cc4d4b6f23f5ed9852638f47e089b25c829e55eb44d9eed97d0e79b31ba",
+      "status": "selected",
+      "url": "https://farside.co.uk/btc/",
+      "verified": {
+        "canonical": "https://farside.co.uk/btc/",
+        "complete": false,
+        "limitations": [
+          "순유입은 현금 유입·유출 집계이며 가격 상승·적정 가치의 증명이 아니다.",
+          "누락 ETF: IBIT; 잠정 합계를 전체 확정 순유입으로 사용하지 않는다."
+        ],
+        "missing_columns": [
+          "IBIT"
+        ],
+        "observed_at": "2026-10-02T00:00:00+00:00",
+        "published_at": null,
+        "records": [
+          {
+            "definition": {
+              "adjustment": "partial_row_not_final_total",
+              "currency": "USD",
+              "measure": "US_SPOT_BTC_ETF_DAILY_NET_FLOW",
+              "period": "2026-10-02",
+              "scope": "US spot Bitcoin ETFs reported by Farside",
+              "unit": "USD_million"
+            },
+            "evidence_id": "E_DISC_437602cf5629b662_1",
+            "extraction": "dated_table_total_v1",
+            "label": "미국 현물 BTC ETF 잠정 합계 (미완성 행)",
+            "limitations": [
+              "발행사별 원자료의 독립 교차 확인을 완료하지 않은 데이터 제공자 집계다."
+            ],
+            "locator": "table:Bitcoin ETF Flow (US$m)/02 Oct 2026/Total",
+            "quote": "02 Oct 2026 - 29.3 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.4 0.0 0.0 31.7"
+          }
+        ],
+        "table_columns": [
+          "",
+          "IBIT",
+          "FBTC",
+          "BITB",
+          "ARKB",
+          "BTCO",
+          "EZBC",
+          "BRRR",
+          "HODL",
+          "BTCW",
+          "MSBT",
+          "GBTC",
+          "BTC",
+          "Total"
+        ],
+        "valid_as_of": "2026-10-02T00:00:00+00:00"
+      },
+      "version_at": "2026-10-02T00:00:00+00:00"
+    },
+    {
+      "advertised_at": null,
+      "advertised_date_status": "unknown",
+      "canonical_owner": true,
+      "canonical_url": "https://farside.co.uk/bitcoin-futures/",
+      "discovered_via": "https://farside.co.uk/",
+      "discovery_sha256": "da711168c4cae6b959ed9bbb735ee0f606576bd63e3b3e203310f312a2f23f3d",
+      "document": {
+        "content_type": "text/html; charset=UTF-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_http",
+          "checked_at": "2026-10-04T16:50:13.074445+00:00",
+          "review_note": "Public publisher page and linked Bitcoin ETF flow table; respect robots, no login, redirect or access-limit bypass. Copyright remains with Farside Investors. Retain one latest dated table row, column definitions and hashes for attributed personal research; no whole HTML/table archive or systematic dataset redistribution. Provider itself warns of errors/inaccuracies. AUM/product structure are not daily net flows; no complete regulator/issuer daily aggregate was verified.",
+          "robots": "allowed",
+          "robots_sha256": "b6805128e10dfea0167276a088d35f06169f35da7e800b90f5353d198d62a5a0",
+          "robots_status": 200,
+          "robots_url": "https://farside.co.uk/robots.txt",
+          "url": "https://farside.co.uk/"
+        },
+        "raw_sha256": "597cdba802e3f25b51dce24c2a93b268d23a2f77803341b0c534abfea0fde50c",
+        "retrieved_at": "2026-10-04T16:50:15.249488+00:00",
+        "status": "available",
+        "url": "https://farside.co.uk/bitcoin-futures/"
+      },
+      "edition_key": "FARSIDE_PUBLISHER:BTC:etf_flows",
+      "error": "BTC flow table title/unit not confirmed",
+      "freshness": {
+        "reason": "actual source not successfully opened and parsed",
+        "status": "unavailable"
+      },
+      "id": "CAND_a701824c0c0ca87d",
+      "identity": "https://farside.co.uk/bitcoin-futures/",
+      "index_identity_fields": {
+        "href": "https://farside.co.uk/bitcoin-futures/",
+        "label": "BTC Charts"
+      },
+      "index_locator": "anchor[11]/href",
+      "method": "publisher_links",
+      "need_id": "NEED_BTC_ETF_FLOWS",
+      "provider_id": "FARSIDE_PUBLISHER",
+      "search_rank": 11,
+      "selection_reason": "BTC flow table title/unit not confirmed",
+      "source_type": "data_provider",
+      "status": "rejected",
+      "url": "https://farside.co.uk/bitcoin-futures/",
+      "version_at": null
+    },
+    {
+      "advertised_at": null,
+      "advertised_date_status": "unknown",
+      "canonical_owner": true,
+      "canonical_url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+      "discovered_via": "https://www.deribit.com/api/v2/public/get_instruments?currency=BTC&kind=future&expired=false",
+      "discovery_sha256": "17a0e6356bbfdd7a42e61ce3ac3caf1268a22eb0bee6205ba568ef6e92d51b74",
+      "document": {
+        "content_type": "application/json",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public market-data APIs, no account or authentication; bounded GET for personal research. Retain selected numeric fields and hashes only. Check active mainnet inverse USD BTC-settled perpetual identity; funding_8h is a fraction and open_interest is USD notional for this contract, not all-market leverage.",
+          "robots": "documented_public_api",
+          "url": "https://docs.deribit.com/api-reference/market-data/public-ticker"
+        },
+        "raw_sha256": "e4fdf39b40377a39ee245f8c55249171767ccae7b00cf12eb876708c6478e881",
+        "retrieved_at": "2026-10-04T16:50:16.071550+00:00",
+        "status": "available",
+        "url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL"
+      },
+      "edition_key": "DERIBIT_INSTRUMENTS:BTC:derivatives",
+      "evidence_ids": [
+        "E_DISC_99468c78167bcecf_1",
+        "E_DISC_99468c78167bcecf_2",
+        "E_DISC_99468c78167bcecf_3"
+      ],
+      "freshness": {
+        "age_seconds": 4.043802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 3600,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_a480c1711cca73f0",
+      "identity": "BTC-PERPETUAL",
+      "index_identity_fields": {
+        "base_currency": "BTC",
+        "instrument_name": "BTC-PERPETUAL",
+        "instrument_type": "reversed",
+        "is_active": true,
+        "kind": "future",
+        "quote_currency": "USD",
+        "settlement_currency": "BTC"
+      },
+      "index_locator": "/result/0",
+      "method": "instrument_directory",
+      "need_id": "NEED_BTC_DERIVATIVES",
+      "provider_id": "DERIBIT_INSTRUMENTS",
+      "search_rank": 0,
+      "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+      "source_id": "DISC_99468c78167bcecf",
+      "source_type": "primary",
+      "source_version": "2026-10-04T16:50:15.970000+00:00#e4fdf39b40377a39ee245f8c55249171767ccae7b00cf12eb876708c6478e881",
+      "status": "selected",
+      "url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "한 거래소·한 계약의 관측이다. 전체 레버리지·청산 규모나 포지션 방향을 증명하지 않는다.",
+          "funding은 매수·매도 보유자가 주고받는 비용 비율이며 연율·미래 수익률이 아니다."
+        ],
+        "observed_at": "2026-10-04T16:50:15.970000+00:00",
+        "published_at": null,
+        "records": [
+          {
+            "definition": {
+              "adjustment": "exchange_reported_not_annualized",
+              "currency": null,
+              "measure": "DERIBIT_BTC_PERPETUAL_FUNDING_8H",
+              "period": "reported_8h",
+              "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+              "unit": "fraction"
+            },
+            "evidence_id": "E_DISC_99468c78167bcecf_1",
+            "extraction": "decimal_scalar_v1",
+            "label": "Deribit 무기한 선물 8시간 funding 비율",
+            "limitations": [],
+            "locator": "json_scalar:/result/funding_8h",
+            "quote": "3.82e-06"
+          },
+          {
+            "definition": {
+              "adjustment": "inverse_contract_USD_notional",
+              "currency": "USD",
+              "measure": "DERIBIT_BTC_PERPETUAL_OPEN_INTEREST",
+              "period": "exchange_snapshot",
+              "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+              "unit": "USD"
+            },
+            "evidence_id": "E_DISC_99468c78167bcecf_2",
+            "extraction": "decimal_scalar_v1",
+            "label": "Deribit 무기한 선물 미결제약정",
+            "limitations": [],
+            "locator": "json_scalar:/result/open_interest",
+            "quote": "796721140"
+          },
+          {
+            "definition": {
+              "adjustment": "mark_price_not_spot_or_execution_price",
+              "currency": "USD",
+              "measure": "DERIBIT_BTC_PERPETUAL_MARK_PRICE",
+              "period": "exchange_snapshot",
+              "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+              "unit": "USD_per_BTC"
+            },
+            "evidence_id": "E_DISC_99468c78167bcecf_3",
+            "extraction": "decimal_scalar_v1",
+            "label": "Deribit 무기한 선물 평가 가격",
+            "limitations": [],
+            "locator": "json_scalar:/result/mark_price",
+            "quote": "85419.44"
+          }
+        ],
+        "valid_as_of": "2026-10-04T16:50:15.970000+00:00"
+      },
+      "version_at": "2026-10-04T16:50:15.970000+00:00"
+    },
+    {
+      "advertised_at": "2026-09-26T00:19:05Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://news.ycombinator.com/item?id=49851823",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "4162f1ccf43add48f92093b6e725846d19d532a851d0bf5c22eba4bb27c89452",
+        "retrieved_at": "2026-10-04T16:50:17.500062+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49851823.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49851823",
+      "evidence_ids": [
+        "E_DISC_5f0f83824c96f4e4_1"
+      ],
+      "freshness": {
+        "age_seconds": 750675.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 1814400,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_2348d934f4c6f0ba",
+      "identity": "49851823",
+      "index_identity_fields": {
+        "created_at": "2026-09-26T00:19:05Z",
+        "objectID": "49851823"
+      },
+      "index_locator": "/hits/0/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 0,
+      "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+      "source_id": "DISC_5f0f83824c96f4e4",
+      "source_type": "community",
+      "source_version": "2026-09-26T00:19:05+00:00#4162f1ccf43add48f92093b6e725846d19d532a851d0bf5c22eba4bb27c89452",
+      "status": "selected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49851823.json",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다."
+        ],
+        "observed_at": "2026-09-26T00:19:05+00:00",
+        "published_at": "2026-09-26T00:19:05+00:00",
+        "records": [
+          {
+            "definition": {
+              "adjustment": "utterance_not_verified_financial_fact",
+              "currency": null,
+              "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+              "period": "publication_at_2026-09-26T00:19:05+00:00",
+              "scope": "purpose_sampled_Hacker_News_comment",
+              "unit": "text"
+            },
+            "evidence_id": "E_DISC_5f0f83824c96f4e4_1",
+            "extraction": null,
+            "label": "관측된 Bitcoin 투자 토론",
+            "limitations": [
+              "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+            ],
+            "locator": "json_html:/text",
+            "quote": "And less passive, underutilizing, economically-parasitic investments from the rich. (Rich passive investment in land, uses land like Bitcoin for its deflationary nature, which compounds land prices while suppressing its full productive use."
+          }
+        ],
+        "valid_as_of": "2026-09-26T00:19:05+00:00"
+      },
+      "version_at": "2026-09-26T00:19:05+00:00"
+    },
+    {
+      "advertised_at": "2026-09-24T06:08:02Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49826810.json",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "d37dcd0dc411fcef2967450a7fd7d6722c2b6d326152612cb7d49c33c36e6cab",
+        "retrieved_at": "2026-10-04T16:50:17.990977+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49826810.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49826810",
+      "error": "opened comment is not relevant investment discussion",
+      "freshness": {
+        "reason": "actual source not successfully opened and parsed",
+        "status": "unavailable"
+      },
+      "id": "CAND_329e837738e07577",
+      "identity": "49826810",
+      "index_identity_fields": {
+        "created_at": "2026-09-24T06:08:02Z",
+        "objectID": "49826810"
+      },
+      "index_locator": "/hits/1/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 1,
+      "selection_reason": "opened comment is not relevant investment discussion",
+      "source_type": "community",
+      "status": "rejected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49826810.json",
+      "version_at": "2026-09-24T06:08:02Z"
+    },
+    {
+      "advertised_at": "2026-09-21T09:25:21Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://news.ycombinator.com/item?id=49785002",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "8b5871f5d66b451d9b829e83698f4be2cb1e99cf08d029b441a0296c05c08f8c",
+        "retrieved_at": "2026-10-04T16:50:18.469909+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49785002",
+      "evidence_ids": [
+        "E_DISC_6d8872b476132003_1"
+      ],
+      "freshness": {
+        "age_seconds": 1149899.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 1814400,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_982fbb41f960b4bf",
+      "identity": "49785002",
+      "index_identity_fields": {
+        "created_at": "2026-09-21T09:25:21Z",
+        "objectID": "49785002"
+      },
+      "index_locator": "/hits/3/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 3,
+      "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+      "source_id": "DISC_6d8872b476132003",
+      "source_type": "community",
+      "source_version": "2026-09-21T09:25:21+00:00#8b5871f5d66b451d9b829e83698f4be2cb1e99cf08d029b441a0296c05c08f8c",
+      "status": "selected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다."
+        ],
+        "observed_at": "2026-09-21T09:25:21+00:00",
+        "published_at": "2026-09-21T09:25:21+00:00",
+        "records": [
+          {
+            "definition": {
+              "adjustment": "utterance_not_verified_financial_fact",
+              "currency": null,
+              "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+              "period": "publication_at_2026-09-21T09:25:21+00:00",
+              "scope": "purpose_sampled_Hacker_News_comment",
+              "unit": "text"
+            },
+            "evidence_id": "E_DISC_6d8872b476132003_1",
+            "extraction": null,
+            "label": "관측된 Bitcoin 투자 토론",
+            "limitations": [
+              "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+            ],
+            "locator": "json_html:/text",
+            "quote": "The situation with dollars reminds me of the situation of bitcoin on MtGox just before it collapsed. The bitcoin price on MtGox diverged from the price on other exchanges. To a casual user it looked like you were getting a good deal by buying it on MtGox but that's because the last people out wouldn't be able to actually withdraw it, because the promise of a bitcoin from an exchange is not the same thing as an actual bitcoin."
+          }
+        ],
+        "valid_as_of": "2026-09-21T09:25:21+00:00"
+      },
+      "version_at": "2026-09-21T09:25:21+00:00"
+    },
+    {
+      "advertised_at": "2026-09-20T19:07:05Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49778922.json",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "c4f0368d6b90d0c6d60436e2afeccd8ea1d4e965c85086cca04ee61c2a7e4d8c",
+        "retrieved_at": "2026-10-04T16:50:18.815863+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49778922.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49778922",
+      "freshness": {
+        "age_seconds": 1201395.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 1814400,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_0639185ca7280028",
+      "identity": "49778922",
+      "index_identity_fields": {
+        "created_at": "2026-09-20T19:07:05Z",
+        "objectID": "49778922"
+      },
+      "index_locator": "/hits/4/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 4,
+      "selection_reason": "sufficient scoped evidence selected; hierarchy/canonical preference, not search rank",
+      "source_type": "community",
+      "status": "rejected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49778922.json",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다."
+        ],
+        "observed_at": "2026-09-20T19:07:05+00:00",
+        "published_at": "2026-09-20T19:07:05+00:00",
+        "records": [
+          {
+            "definition": {
+              "adjustment": "utterance_not_verified_financial_fact",
+              "currency": null,
+              "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+              "period": "publication_at_2026-09-20T19:07:05+00:00",
+              "scope": "purpose_sampled_Hacker_News_comment",
+              "unit": "text"
+            },
+            "extraction": null,
+            "label": "관측된 Bitcoin 투자 토론",
+            "limitations": [
+              "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+            ],
+            "locator": "json_html:/text",
+            "quote": "It's not just normal consumer memory. Everything with a chip in it is getting more expensive because of the AI circlejerk. When Bitcoin screwed over consumers, at least normal memory prices weren't affected (though that time a shitcoin based around storing large amounts of data made the rounds, hard drive prices did take a brief hit)."
+          }
+        ],
+        "valid_as_of": "2026-09-20T19:07:05+00:00"
+      },
+      "version_at": "2026-09-20T19:07:05+00:00"
+    },
+    {
+      "advertised_at": "2026-09-17T14:08:55Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49741006.json",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "055c424e8f426538d1a37f6a4eb8fc2a57f448117163108b3bdfa0476a89fdac",
+        "retrieved_at": "2026-10-04T16:50:19.053470+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49741006.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49741006",
+      "freshness": {
+        "age_seconds": 1478485.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 1814400,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_bdb4c87db240c759",
+      "identity": "49741006",
+      "index_identity_fields": {
+        "created_at": "2026-09-17T14:08:55Z",
+        "objectID": "49741006"
+      },
+      "index_locator": "/hits/5/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 5,
+      "selection_reason": "sufficient scoped evidence selected; hierarchy/canonical preference, not search rank",
+      "source_type": "community",
+      "status": "rejected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49741006.json",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다."
+        ],
+        "observed_at": "2026-09-17T14:08:55+00:00",
+        "published_at": "2026-09-17T14:08:55+00:00",
+        "records": [
+          {
+            "definition": {
+              "adjustment": "utterance_not_verified_financial_fact",
+              "currency": null,
+              "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+              "period": "publication_at_2026-09-17T14:08:55+00:00",
+              "scope": "purpose_sampled_Hacker_News_comment",
+              "unit": "text"
+            },
+            "extraction": null,
+            "label": "관측된 Bitcoin 투자 토론",
+            "limitations": [
+              "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+            ],
+            "locator": "json_html:/text",
+            "quote": "Many of these quotes are technical or social critiques of Bitcoin, not claims that it is \"dead\". Here's one for example: https://bitcoindeaths.com/posts/2023-10-26-every-single-bitc... . It is dishonest to frame this as a disproven claim just because the price has gone up since the quote. The truth of this claim has nothing to do with the success or failure of Bitcoin."
+          }
+        ],
+        "valid_as_of": "2026-09-17T14:08:55+00:00"
+      },
+      "version_at": "2026-09-17T14:08:55+00:00"
+    },
+    {
+      "advertised_at": "2026-09-17T13:52:06Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49740762.json",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "2fadb34c28117ca173b196466e8bc8607c031944132316f98f850dfe3397d6c5",
+        "retrieved_at": "2026-10-04T16:50:19.340696+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49740762.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49740762",
+      "freshness": {
+        "age_seconds": 1479494.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 1814400,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_56035cb6ae4b0528",
+      "identity": "49740762",
+      "index_identity_fields": {
+        "created_at": "2026-09-17T13:52:06Z",
+        "objectID": "49740762"
+      },
+      "index_locator": "/hits/6/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 6,
+      "selection_reason": "sufficient scoped evidence selected; hierarchy/canonical preference, not search rank",
+      "source_type": "community",
+      "status": "rejected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49740762.json",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다."
+        ],
+        "observed_at": "2026-09-17T13:52:06+00:00",
+        "published_at": "2026-09-17T13:52:06+00:00",
+        "records": [
+          {
+            "definition": {
+              "adjustment": "utterance_not_verified_financial_fact",
+              "currency": null,
+              "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+              "period": "publication_at_2026-09-17T13:52:06+00:00",
+              "scope": "purpose_sampled_Hacker_News_comment",
+              "unit": "text"
+            },
+            "extraction": null,
+            "label": "관측된 Bitcoin 투자 토론",
+            "limitations": [
+              "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+            ],
+            "locator": "json_html:/text",
+            "quote": "The problem with bitcoin is that the only real evidence of it's success is it's price has gone up."
+          }
+        ],
+        "valid_as_of": "2026-09-17T13:52:06+00:00"
+      },
+      "version_at": "2026-09-17T13:52:06+00:00"
+    },
+    {
+      "advertised_at": "2026-09-17T13:37:17Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49740578.json",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "a9192413459f88bf7f5bb6ddeadab25f91826f5ef22a85199b7f993de9688237",
+        "retrieved_at": "2026-10-04T16:50:19.642098+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49740578.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49740578",
+      "freshness": {
+        "age_seconds": 1480383.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 1814400,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_2cce332c3392e08e",
+      "identity": "49740578",
+      "index_identity_fields": {
+        "created_at": "2026-09-17T13:37:17Z",
+        "objectID": "49740578"
+      },
+      "index_locator": "/hits/7/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 7,
+      "selection_reason": "sufficient scoped evidence selected; hierarchy/canonical preference, not search rank",
+      "source_type": "community",
+      "status": "rejected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49740578.json",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다."
+        ],
+        "observed_at": "2026-09-17T13:37:17+00:00",
+        "published_at": "2026-09-17T13:37:17+00:00",
+        "records": [
+          {
+            "definition": {
+              "adjustment": "utterance_not_verified_financial_fact",
+              "currency": null,
+              "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+              "period": "publication_at_2026-09-17T13:37:17+00:00",
+              "scope": "purpose_sampled_Hacker_News_comment",
+              "unit": "text"
+            },
+            "extraction": null,
+            "label": "관측된 Bitcoin 투자 토론",
+            "limitations": [
+              "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+            ],
+            "locator": "json_html:/text",
+            "quote": "21M is the theoretical cap. At the moment there are 20M and more are constantly being mined. Miners have to convert bitcoin into real currency to pay for their electricity both for mining and transaction fees. This means that there is always a supply of bitcoin for sale. Which is fine if there is still demand for new bitcoin, but who's buying bitcoin these days? It has underperformed both the S&P 500 and gold over the last 5 years. I expect bitcoin inflation to continue. (AKA the bitcoin price to continue to go down)."
+          }
+        ],
+        "valid_as_of": "2026-09-17T13:37:17+00:00"
+      },
+      "version_at": "2026-09-17T13:37:17+00:00"
+    },
+    {
+      "advertised_at": "2026-09-17T12:06:00Z",
+      "advertised_date_status": "known",
+      "canonical_owner": true,
+      "canonical_url": "https://hacker-news.firebaseio.com/v0/item/49739584.json",
+      "discovered_via": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+      "discovery_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "document": {
+        "content_type": "application/json; charset=utf-8",
+        "diagnostics": [],
+        "http_status": 200,
+        "policy": {
+          "access_method": "public_api",
+          "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+          "robots": "documented_public_api",
+          "url": "https://github.com/HackerNews/API"
+        },
+        "raw_sha256": "ec74772c27a0c02fbf4e320e037ec8ffb59025b5431953daa541f3a4004e41fe",
+        "retrieved_at": "2026-10-04T16:50:20.013591+00:00",
+        "status": "available",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49739584.json"
+      },
+      "edition_key": "HN_DISCUSSION_SEARCH:BTC:community:item:49739584",
+      "freshness": {
+        "age_seconds": 1485860.013802,
+        "basis": "valid_as_of/observed_at/published_at",
+        "max_age_seconds": 1814400,
+        "reason": "category-specific relevance window; not a reliability score",
+        "status": "fresh"
+      },
+      "id": "CAND_842c8152cac921cb",
+      "identity": "49739584",
+      "index_identity_fields": {
+        "created_at": "2026-09-17T12:06:00Z",
+        "objectID": "49739584"
+      },
+      "index_locator": "/hits/8/objectID",
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "search_rank": 8,
+      "selection_reason": "sufficient scoped evidence selected; hierarchy/canonical preference, not search rank",
+      "source_type": "community",
+      "status": "rejected",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49739584.json",
+      "verified": {
+        "complete": true,
+        "limitations": [
+          "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다."
+        ],
+        "observed_at": "2026-09-17T12:06:00+00:00",
+        "published_at": "2026-09-17T12:06:00+00:00",
+        "records": [
+          {
+            "definition": {
+              "adjustment": "utterance_not_verified_financial_fact",
+              "currency": null,
+              "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+              "period": "publication_at_2026-09-17T12:06:00+00:00",
+              "scope": "purpose_sampled_Hacker_News_comment",
+              "unit": "text"
+            },
+            "extraction": null,
+            "label": "관측된 Bitcoin 투자 토론",
+            "limitations": [
+              "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+            ],
+            "locator": "json_html:/text",
+            "quote": "I think that a large part of the priced in \"value\" of Bitcoin is just lots and lots of Bitcoin that nobody can access anymore."
+          }
+        ],
+        "valid_as_of": "2026-09-17T12:06:00+00:00"
+      },
+      "version_at": "2026-09-17T12:06:00+00:00"
+    }
+  ],
+  "community_verification": [
+    {
+      "evidence_ids": [],
+      "factual_claim": null,
+      "narrative_evidence_id": "E_DISC_5f0f83824c96f4e4_1",
+      "reason": "공식/제공자 자료를 대조하되 같은 기간·정의의 검증 가능한 사실 문장이 부족하다. 발언 전체는 미확인이다.",
+      "source_id": "DISC_5f0f83824c96f4e4",
+      "verification": "unverified"
+    },
+    {
+      "evidence_ids": [],
+      "factual_claim": null,
+      "narrative_evidence_id": "E_DISC_6d8872b476132003_1",
+      "reason": "공식/제공자 자료를 대조하되 같은 기간·정의의 검증 가능한 사실 문장이 부족하다. 발언 전체는 미확인이다.",
+      "source_id": "DISC_6d8872b476132003",
+      "verification": "unverified"
+    }
+  ],
+  "contract_version": "discovery_document_contracts_v1",
+  "evidence": [
+    {
+      "definition": {
+        "adjustment": "unadjusted_exchange_trade",
+        "currency": "USD",
+        "measure": "COINBASE_BTC_USD_LAST_TRADE",
+        "period": "last_trade",
+        "scope": "Coinbase Exchange BTC-USD",
+        "unit": "USD_per_BTC"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_a21cfbc31d12348f_1",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소의 최근 체결·거래량이며 전 시장 대표 가격·총거래량이 아니다."
+      ],
+      "source_id": "DISC_a21cfbc31d12348f",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "exchange_reported_base_volume",
+        "currency": null,
+        "measure": "COINBASE_BTC_USD_24H_BASE_VOLUME",
+        "period": "rolling_24h",
+        "scope": "Coinbase Exchange BTC-USD",
+        "unit": "BTC"
+      },
+      "excerpt_id": "Q_2",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_a21cfbc31d12348f_2",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소의 최근 체결·거래량이며 전 시장 대표 가격·총거래량이 아니다.",
+        "가격 시각과 거래량의 24시간 종료 시각이 정확히 같다는 보장은 없다."
+      ],
+      "source_id": "DISC_a21cfbc31d12348f",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "partial_row_not_final_total",
+        "currency": "USD",
+        "measure": "US_SPOT_BTC_ETF_DAILY_NET_FLOW",
+        "period": "2026-10-02",
+        "scope": "US spot Bitcoin ETFs reported by Farside",
+        "unit": "USD_million"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": "dated_table_total_v1",
+      "id": "E_DISC_437602cf5629b662_1",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "순유입은 현금 유입·유출 집계이며 가격 상승·적정 가치의 증명이 아니다.",
+        "누락 ETF: IBIT; 잠정 합계를 전체 확정 순유입으로 사용하지 않는다.",
+        "발행사별 원자료의 독립 교차 확인을 완료하지 않은 데이터 제공자 집계다."
+      ],
+      "source_id": "DISC_437602cf5629b662",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "exchange_reported_not_annualized",
+        "currency": null,
+        "measure": "DERIBIT_BTC_PERPETUAL_FUNDING_8H",
+        "period": "reported_8h",
+        "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+        "unit": "fraction"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_99468c78167bcecf_1",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소·한 계약의 관측이다. 전체 레버리지·청산 규모나 포지션 방향을 증명하지 않는다.",
+        "funding은 매수·매도 보유자가 주고받는 비용 비율이며 연율·미래 수익률이 아니다."
+      ],
+      "source_id": "DISC_99468c78167bcecf",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "inverse_contract_USD_notional",
+        "currency": "USD",
+        "measure": "DERIBIT_BTC_PERPETUAL_OPEN_INTEREST",
+        "period": "exchange_snapshot",
+        "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+        "unit": "USD"
+      },
+      "excerpt_id": "Q_2",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_99468c78167bcecf_2",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소·한 계약의 관측이다. 전체 레버리지·청산 규모나 포지션 방향을 증명하지 않는다.",
+        "funding은 매수·매도 보유자가 주고받는 비용 비율이며 연율·미래 수익률이 아니다."
+      ],
+      "source_id": "DISC_99468c78167bcecf",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "mark_price_not_spot_or_execution_price",
+        "currency": "USD",
+        "measure": "DERIBIT_BTC_PERPETUAL_MARK_PRICE",
+        "period": "exchange_snapshot",
+        "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+        "unit": "USD_per_BTC"
+      },
+      "excerpt_id": "Q_3",
+      "extraction": "decimal_scalar_v1",
+      "id": "E_DISC_99468c78167bcecf_3",
+      "interpretation": {
+        "rationale": "원문 필드·대상·시각·단위 전사만 확인했다. 경제적 해석·투자 매력의 의미 검토가 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic discovery document contract",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "한 거래소·한 계약의 관측이다. 전체 레버리지·청산 규모나 포지션 방향을 증명하지 않는다.",
+        "funding은 매수·매도 보유자가 주고받는 비용 비율이며 연율·미래 수익률이 아니다."
+      ],
+      "source_id": "DISC_99468c78167bcecf",
+      "view": "quantitative"
+    },
+    {
+      "definition": {
+        "adjustment": "utterance_not_verified_financial_fact",
+        "currency": null,
+        "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+        "period": "publication_at_2026-09-26T00:19:05+00:00",
+        "scope": "purpose_sampled_Hacker_News_comment",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": null,
+      "id": "E_DISC_5f0f83824c96f4e4_1",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다.",
+        "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+      ],
+      "source_id": "DISC_5f0f83824c96f4e4",
+      "view": "community"
+    },
+    {
+      "definition": {
+        "adjustment": "utterance_not_verified_financial_fact",
+        "currency": null,
+        "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+        "period": "publication_at_2026-09-21T09:25:21+00:00",
+        "scope": "purpose_sampled_Hacker_News_comment",
+        "unit": "text"
+      },
+      "excerpt_id": "Q_1",
+      "extraction": null,
+      "id": "E_DISC_6d8872b476132003_1",
+      "interpretation": null,
+      "kind": "observed_narrative",
+      "limitations": [
+        "목적 표집한 공개 토론이다. 검색 순위·좋아요·반복은 독립적인 사실 근거가 아니다.",
+        "발언 존재만 확인한다. 내용·대표성은 확인되지 않았다."
+      ],
+      "source_id": "DISC_6d8872b476132003",
+      "view": "community"
+    }
+  ],
+  "index_retention": "selected candidate identities/links, policy and hashes only; full search/index bodies not retained",
+  "indexes": [
+    {
+      "content_type": "application/json; charset=utf-8",
+      "diagnostics": [],
+      "http_status": 200,
+      "method": "market_directory",
+      "need_id": "NEED_BTC_MARKET_STATE",
+      "policy": {
+        "access_method": "public_api",
+        "review_note": "Documented unauthenticated public Exchange products/ticker endpoints; read-only bounded personal research. Retain only selected public numeric fields, dates and hashes, not a redistributable full market dataset. Directory identity and official ticker field definitions are checked.",
+        "robots": "documented_public_api",
+        "url": "https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-ticker"
+      },
+      "provider_id": "COINBASE_MARKETS",
+      "query": null,
+      "raw_sha256": "3b9fdb3684fe7fd84d636223e61eb71c362cc220a5d0fc2249bc29cdcc332437",
+      "retrieved_at": "2026-10-04T16:50:10.250927+00:00",
+      "role": "discovery_candidates_only_not_evidence",
+      "status": "available",
+      "url": "https://api.exchange.coinbase.com/products"
+    },
+    {
+      "content_type": "text/html; charset=UTF-8",
+      "diagnostics": [],
+      "http_status": 200,
+      "method": "publisher_links",
+      "need_id": "NEED_BTC_ETF_FLOWS",
+      "policy": {
+        "access_method": "public_http",
+        "checked_at": "2026-10-04T16:50:10.506819+00:00",
+        "review_note": "Public publisher page and linked Bitcoin ETF flow table; respect robots, no login, redirect or access-limit bypass. Copyright remains with Farside Investors. Retain one latest dated table row, column definitions and hashes for attributed personal research; no whole HTML/table archive or systematic dataset redistribution. Provider itself warns of errors/inaccuracies. AUM/product structure are not daily net flows; no complete regulator/issuer daily aggregate was verified.",
+        "robots": "allowed",
+        "robots_sha256": "b6805128e10dfea0167276a088d35f06169f35da7e800b90f5353d198d62a5a0",
+        "robots_status": 200,
+        "robots_url": "https://farside.co.uk/robots.txt",
+        "url": "https://farside.co.uk/"
+      },
+      "provider_id": "FARSIDE_PUBLISHER",
+      "query": null,
+      "raw_sha256": "da711168c4cae6b959ed9bbb735ee0f606576bd63e3b3e203310f312a2f23f3d",
+      "retrieved_at": "2026-10-04T16:50:11.821598+00:00",
+      "role": "discovery_candidates_only_not_evidence",
+      "status": "available",
+      "url": "https://farside.co.uk/"
+    },
+    {
+      "content_type": "application/json",
+      "diagnostics": [],
+      "http_status": 200,
+      "method": "instrument_directory",
+      "need_id": "NEED_BTC_DERIVATIVES",
+      "policy": {
+        "access_method": "public_api",
+        "review_note": "Documented public market-data APIs, no account or authentication; bounded GET for personal research. Retain selected numeric fields and hashes only. Check active mainnet inverse USD BTC-settled perpetual identity; funding_8h is a fraction and open_interest is USD notional for this contract, not all-market leverage.",
+        "robots": "documented_public_api",
+        "url": "https://docs.deribit.com/api-reference/market-data/public-ticker"
+      },
+      "provider_id": "DERIBIT_INSTRUMENTS",
+      "query": null,
+      "raw_sha256": "17a0e6356bbfdd7a42e61ce3ac3caf1268a22eb0bee6205ba568ef6e92d51b74",
+      "retrieved_at": "2026-10-04T16:50:15.699545+00:00",
+      "role": "discovery_candidates_only_not_evidence",
+      "status": "available",
+      "url": "https://www.deribit.com/api/v2/public/get_instruments?currency=BTC&kind=future&expired=false"
+    },
+    {
+      "content_type": null,
+      "diagnostics": [
+        "policy: robots policy disallows this source"
+      ],
+      "http_status": null,
+      "method": "access_probe",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "policy": {
+        "access_method": "public_http",
+        "checked_at": "2026-10-04T16:50:16.071888+00:00",
+        "review_note": "Check public HTTP robots access only; do not bypass disallow, authenticate, collect user profiles or retain post content. This MVP has no authorized Reddit content contract. A permitted access check would still not promote posts without a reviewed parser and access/retention policy.",
+        "robots": "not_checked",
+        "robots_sha256": "41aea42110242175c7b4247f222fa95ac6caee62044af686b684785832781857",
+        "robots_status": 200,
+        "robots_url": "https://www.reddit.com/robots.txt",
+        "url": "https://support.reddithelp.com/hc/en-us/articles/26410290525844-Public-Content-Policy"
+      },
+      "provider_id": "REDDIT_PUBLIC_ACCESS",
+      "query": null,
+      "raw_sha256": null,
+      "retrieved_at": "2026-10-04T16:50:16.255270+00:00",
+      "role": "discovery_candidates_only_not_evidence",
+      "status": "policy_blocked",
+      "url": "https://www.reddit.com/r/Bitcoin/search.json?q=ETF&restrict_sr=on&sort=new&limit=5"
+    },
+    {
+      "content_type": "application/json",
+      "diagnostics": [],
+      "http_status": 200,
+      "method": "community_search",
+      "need_id": "NEED_BTC_COMMUNITY",
+      "policy": {
+        "access_method": "public_api",
+        "review_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+        "robots": "documented_public_api",
+        "url": "https://github.com/HackerNews/API"
+      },
+      "provider_id": "HN_DISCUSSION_SEARCH",
+      "query": "bitcoin price; comment; chronological public search; screen for investment relevance",
+      "raw_sha256": "0f4db1a4082f280a930b67806ae5b466c672e7b6bd39a8e1c048d3942792e257",
+      "retrieved_at": "2026-10-04T16:50:16.992245+00:00",
+      "role": "discovery_candidates_only_not_evidence",
+      "status": "available",
+      "url": "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30"
+    }
+  ],
+  "method_version": "need_first_source_discovery_v1",
+  "needs": [
+    {
+      "asset_id": "BTC",
+      "category": "market_state",
+      "id": "NEED_BTC_MARKET_STATE",
+      "label": "현재 가격·거래 상태",
+      "max_age_seconds": 3600,
+      "max_selected": 1,
+      "reason": "사용자 질문의 Bitcoin 판단에 필요한 현재 가격·거래 상태"
+    },
+    {
+      "asset_id": "BTC",
+      "category": "etf_flows",
+      "id": "NEED_BTC_ETF_FLOWS",
+      "label": "BTC 현물 ETF 자금흐름",
+      "max_age_seconds": 345600,
+      "max_selected": 1,
+      "reason": "사용자 질문의 Bitcoin 판단에 필요한 BTC 현물 ETF 자금흐름"
+    },
+    {
+      "asset_id": "BTC",
+      "category": "derivatives",
+      "id": "NEED_BTC_DERIVATIVES",
+      "label": "파생 계약의 비용·미결제약정",
+      "max_age_seconds": 3600,
+      "max_selected": 1,
+      "reason": "사용자 질문의 Bitcoin 판단에 필요한 파생 계약의 비용·미결제약정"
+    },
+    {
+      "asset_id": "BTC",
+      "category": "community",
+      "id": "NEED_BTC_COMMUNITY",
+      "label": "최근 투자 내러티브",
+      "max_age_seconds": 1814400,
+      "max_selected": 2,
+      "reason": "사용자 질문의 Bitcoin 판단에 필요한 최근 투자 내러티브"
+    }
+  ],
+  "requests": [
+    "https://api.exchange.coinbase.com/products",
+    "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+    "https://farside.co.uk/robots.txt",
+    "https://farside.co.uk/",
+    "https://farside.co.uk/btc/",
+    "https://farside.co.uk/bitcoin-futures/",
+    "https://www.deribit.com/api/v2/public/get_instruments?currency=BTC&kind=future&expired=false",
+    "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+    "https://www.reddit.com/robots.txt",
+    "https://hn.algolia.com/api/v1/search_by_date?query=bitcoin%20price&tags=comment&hitsPerPage=30",
+    "https://hacker-news.firebaseio.com/v0/item/49851823.json",
+    "https://hacker-news.firebaseio.com/v0/item/49826810.json",
+    "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+    "https://hacker-news.firebaseio.com/v0/item/49778922.json",
+    "https://hacker-news.firebaseio.com/v0/item/49741006.json",
+    "https://hacker-news.firebaseio.com/v0/item/49740762.json",
+    "https://hacker-news.firebaseio.com/v0/item/49740578.json",
+    "https://hacker-news.firebaseio.com/v0/item/49739584.json"
+  ],
+  "research_kind": "current",
+  "schema_version": "source-discovery-v1",
+  "selection_as_of": "2026-10-04T16:50:20.013802+00:00",
+  "sources": [
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "unadjusted_exchange_trade",
+            "currency": "USD",
+            "measure": "COINBASE_BTC_USD_LAST_TRADE",
+            "period": "last_trade",
+            "scope": "Coinbase Exchange BTC-USD",
+            "unit": "USD_per_BTC"
+          },
+          "id": "Q_1",
+          "locator": "json_scalar:/price",
+          "quote": "85409.98"
+        },
+        {
+          "definition": {
+            "adjustment": "exchange_reported_base_volume",
+            "currency": null,
+            "measure": "COINBASE_BTC_USD_24H_BASE_VOLUME",
+            "period": "rolling_24h",
+            "scope": "Coinbase Exchange BTC-USD",
+            "unit": "BTC"
+          },
+          "id": "Q_2",
+          "locator": "json_scalar:/volume",
+          "quote": "1758.22618292"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_a21cfbc31d12348f",
+      "jurisdiction": "US",
+      "max_age_days": 1,
+      "observed_at": "2026-10-04T16:50:09.911158+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented unauthenticated public Exchange products/ticker endpoints; read-only bounded personal research. Retain only selected public numeric fields, dates and hashes, not a redistributable full market dataset. Directory identity and official ticker field definitions are checked.",
+      "policy_url": "https://docs.cdp.coinbase.com/api-reference/exchange-api/rest-api/products/get-product-ticker",
+      "published_at": null,
+      "publisher": "Coinbase Exchange",
+      "retention": "excerpt",
+      "title": "현재 가격·거래 상태 · Coinbase Exchange",
+      "topics": [
+        "market_state"
+      ],
+      "type": "primary",
+      "url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+      "valid_as_of": "2026-10-04T16:50:09.911158+00:00"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://farside.co.uk/btc/",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "partial_row_not_final_total",
+            "currency": "USD",
+            "measure": "US_SPOT_BTC_ETF_DAILY_NET_FLOW",
+            "period": "2026-10-02",
+            "scope": "US spot Bitcoin ETFs reported by Farside",
+            "unit": "USD_million"
+          },
+          "id": "Q_1",
+          "locator": "table:Bitcoin ETF Flow (US$m)/02 Oct 2026/Total",
+          "quote": "02 Oct 2026 - 29.3 0.0 0.0 0.0 0.0 0.0 0.0 0.0 2.4 0.0 0.0 31.7"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_437602cf5629b662",
+      "jurisdiction": "US ETF coverage / UK publisher",
+      "max_age_days": 4,
+      "observed_at": "2026-10-02T00:00:00+00:00",
+      "origin_source_id": null,
+      "policy_note": "Public publisher page and linked Bitcoin ETF flow table; respect robots, no login, redirect or access-limit bypass. Copyright remains with Farside Investors. Retain one latest dated table row, column definitions and hashes for attributed personal research; no whole HTML/table archive or systematic dataset redistribution. Provider itself warns of errors/inaccuracies. AUM/product structure are not daily net flows; no complete regulator/issuer daily aggregate was verified.",
+      "policy_url": "https://farside.co.uk/",
+      "published_at": null,
+      "publisher": "Farside Investors",
+      "retention": "excerpt",
+      "title": "BTC 현물 ETF 자금흐름 · Farside Investors",
+      "topics": [
+        "etf_flows"
+      ],
+      "type": "data_provider",
+      "url": "https://farside.co.uk/btc/",
+      "valid_as_of": "2026-10-02T00:00:00+00:00"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "exchange_reported_not_annualized",
+            "currency": null,
+            "measure": "DERIBIT_BTC_PERPETUAL_FUNDING_8H",
+            "period": "reported_8h",
+            "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+            "unit": "fraction"
+          },
+          "id": "Q_1",
+          "locator": "json_scalar:/result/funding_8h",
+          "quote": "3.82e-06"
+        },
+        {
+          "definition": {
+            "adjustment": "inverse_contract_USD_notional",
+            "currency": "USD",
+            "measure": "DERIBIT_BTC_PERPETUAL_OPEN_INTEREST",
+            "period": "exchange_snapshot",
+            "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+            "unit": "USD"
+          },
+          "id": "Q_2",
+          "locator": "json_scalar:/result/open_interest",
+          "quote": "796721140"
+        },
+        {
+          "definition": {
+            "adjustment": "mark_price_not_spot_or_execution_price",
+            "currency": "USD",
+            "measure": "DERIBIT_BTC_PERPETUAL_MARK_PRICE",
+            "period": "exchange_snapshot",
+            "scope": "Deribit BTC-PERPETUAL inverse USD contract settled in BTC",
+            "unit": "USD_per_BTC"
+          },
+          "id": "Q_3",
+          "locator": "json_scalar:/result/mark_price",
+          "quote": "85419.44"
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_99468c78167bcecf",
+      "jurisdiction": "exchange-specific",
+      "max_age_days": 1,
+      "observed_at": "2026-10-04T16:50:15.970000+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented public market-data APIs, no account or authentication; bounded GET for personal research. Retain selected numeric fields and hashes only. Check active mainnet inverse USD BTC-settled perpetual identity; funding_8h is a fraction and open_interest is USD notional for this contract, not all-market leverage.",
+      "policy_url": "https://docs.deribit.com/api-reference/market-data/public-ticker",
+      "published_at": null,
+      "publisher": "Deribit",
+      "retention": "excerpt",
+      "title": "파생 계약의 비용·미결제약정 · Deribit",
+      "topics": [
+        "derivatives"
+      ],
+      "type": "primary",
+      "url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+      "valid_as_of": "2026-10-04T16:50:15.970000+00:00"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49851823",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "utterance_not_verified_financial_fact",
+            "currency": null,
+            "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+            "period": "publication_at_2026-09-26T00:19:05+00:00",
+            "scope": "purpose_sampled_Hacker_News_comment",
+            "unit": "text"
+          },
+          "id": "Q_1",
+          "locator": "json_html:/text",
+          "quote": "And less passive, underutilizing, economically-parasitic investments from the rich. (Rich passive investment in land, uses land like Bitcoin for its deflationary nature, which compounds land prices while suppressing its full productive use."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_5f0f83824c96f4e4",
+      "jurisdiction": "unknown",
+      "max_age_days": 21,
+      "observed_at": "2026-09-26T00:19:05+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-26T00:19:05+00:00",
+      "publisher": "Hacker News / public HN API",
+      "retention": "excerpt",
+      "title": "최근 투자 내러티브 · Hacker News / public HN API",
+      "topics": [
+        "community"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49851823.json",
+      "valid_as_of": "2026-09-26T00:19:05+00:00"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "BTC"
+      ],
+      "canonical_url": "https://news.ycombinator.com/item?id=49785002",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "adjustment": "utterance_not_verified_financial_fact",
+            "currency": null,
+            "measure": "OBSERVED_BTC_COMMUNITY_NARRATIVE",
+            "period": "publication_at_2026-09-21T09:25:21+00:00",
+            "scope": "purpose_sampled_Hacker_News_comment",
+            "unit": "text"
+          },
+          "id": "Q_1",
+          "locator": "json_html:/text",
+          "quote": "The situation with dollars reminds me of the situation of bitcoin on MtGox just before it collapsed. The bitcoin price on MtGox diverged from the price on other exchanges. To a casual user it looked like you were getting a good deal by buying it on MtGox but that's because the last people out wouldn't be able to actually withdraw it, because the promise of a bitcoin from an exchange is not the same thing as an actual bitcoin."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "DISC_6d8872b476132003",
+      "jurisdiction": "unknown",
+      "max_age_days": 21,
+      "observed_at": "2026-09-21T09:25:21+00:00",
+      "origin_source_id": null,
+      "policy_note": "Documented public Algolia HN search and original HN item API; search responses are discovery references only. Open actual item and verify identity, publication, text and live/not-deleted state. Retain at most two bounded relevant text excerpts with attribution/permalink and hashes; no author/profile/contact/like data or full response retention. Purpose sample is not representative market sentiment.",
+      "policy_url": "https://github.com/HackerNews/API",
+      "published_at": "2026-09-21T09:25:21+00:00",
+      "publisher": "Hacker News / public HN API",
+      "retention": "excerpt",
+      "title": "최근 투자 내러티브 · Hacker News / public HN API",
+      "topics": [
+        "community"
+      ],
+      "type": "community",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+      "valid_as_of": "2026-09-21T09:25:21+00:00"
+    }
+  ]
+}

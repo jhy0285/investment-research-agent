@@ -1,0 +1,278 @@
+{
+  "schema_version": "semiconductor-coverage-v1",
+  "method_version": "korean_semiconductor_comparison_v1",
+  "providers": [
+    {
+      "access_method": "public_http",
+      "jurisdiction": "KR",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_DART_SAMSUNG",
+      "publisher": "금융감독원 DART 공시목록",
+      "type": "primary",
+      "canonical": true,
+      "asset_ids": [
+        "SAMSUNG"
+      ],
+      "categories": [
+        "semiconductor_registration",
+        "semiconductor_filing"
+      ],
+      "method": "semiconductor_dart_directory",
+      "contract": "semiconductor_dart_v1",
+      "seed_url": "https://dart.fss.or.kr/dsac001/mainY.do?selectDate=2026.08.14&sort=crp&series=asc&maxResults=100&currentPage=5",
+      "report_period": "2026-06",
+      "candidate_hosts": [
+        "dart.fss.or.kr"
+      ],
+      "policy_url": "https://dart.fss.or.kr/introduction/content2.do"
+    },
+    {
+      "access_method": "public_http",
+      "jurisdiction": "KR",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_PRICE_SAMSUNG",
+      "publisher": "한국경제 코리아마켓 시세 제공자",
+      "type": "data_provider",
+      "canonical": false,
+      "asset_ids": [
+        "SAMSUNG"
+      ],
+      "categories": [
+        "semiconductor_price"
+      ],
+      "method": "reviewed_document",
+      "contract": "semiconductor_market_v1",
+      "seed_url": "https://markets.hankyung.com/stock/005930",
+      "candidate_hosts": [
+        "markets.hankyung.com"
+      ],
+      "policy_url": "https://markets.hankyung.com/stock/005930",
+      "identity_fields": {
+        "stock_code": "005930",
+        "share_class": "ordinary",
+        "currency": "KRW"
+      }
+    },
+    {
+      "access_method": "public_api",
+      "jurisdiction": "global",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_HN_SAMSUNG",
+      "publisher": "Hacker News 공개 토론",
+      "type": "community",
+      "canonical": true,
+      "asset_ids": [
+        "SAMSUNG"
+      ],
+      "categories": [
+        "semiconductor_community"
+      ],
+      "method": "community_search",
+      "contract": "semiconductor_hn_v1",
+      "seed_url": "https://hn.algolia.com/api/v1/search_by_date?query=Samsung%20HBM&tags=comment&hitsPerPage=10",
+      "candidate_template": "https://hacker-news.firebaseio.com/v0/item/{identity}.json",
+      "candidate_hosts": [
+        "hacker-news.firebaseio.com",
+        "news.ycombinator.com"
+      ],
+      "policy_url": "https://hn.algolia.com/api",
+      "query": "Samsung%20HBM",
+      "max_candidates": 2
+    },
+    {
+      "access_method": "public_http",
+      "jurisdiction": "KR",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_DART_SK_HYNIX",
+      "publisher": "금융감독원 DART 공시목록",
+      "type": "primary",
+      "canonical": true,
+      "asset_ids": [
+        "SK_HYNIX"
+      ],
+      "categories": [
+        "semiconductor_registration",
+        "semiconductor_filing"
+      ],
+      "method": "semiconductor_dart_directory",
+      "contract": "semiconductor_dart_v1",
+      "seed_url": "https://dart.fss.or.kr/dsac001/mainY.do?selectDate=2026.08.14&sort=crp&series=asc&maxResults=100&currentPage=3",
+      "report_period": "2026-06",
+      "candidate_hosts": [
+        "dart.fss.or.kr"
+      ],
+      "policy_url": "https://dart.fss.or.kr/introduction/content2.do"
+    },
+    {
+      "access_method": "public_http",
+      "jurisdiction": "KR",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_PRICE_SK_HYNIX",
+      "publisher": "한국경제 코리아마켓 시세 제공자",
+      "type": "data_provider",
+      "canonical": false,
+      "asset_ids": [
+        "SK_HYNIX"
+      ],
+      "categories": [
+        "semiconductor_price"
+      ],
+      "method": "reviewed_document",
+      "contract": "semiconductor_market_v1",
+      "seed_url": "https://markets.hankyung.com/stock/000660",
+      "candidate_hosts": [
+        "markets.hankyung.com"
+      ],
+      "policy_url": "https://markets.hankyung.com/stock/000660",
+      "identity_fields": {
+        "stock_code": "000660",
+        "share_class": "ordinary",
+        "currency": "KRW"
+      }
+    },
+    {
+      "access_method": "public_api",
+      "jurisdiction": "global",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_HN_SK_HYNIX",
+      "publisher": "Hacker News 공개 토론",
+      "type": "community",
+      "canonical": true,
+      "asset_ids": [
+        "SK_HYNIX"
+      ],
+      "categories": [
+        "semiconductor_community"
+      ],
+      "method": "community_search",
+      "contract": "semiconductor_hn_v1",
+      "seed_url": "https://hn.algolia.com/api/v1/search_by_date?query=hynix&tags=comment&hitsPerPage=10",
+      "candidate_template": "https://hacker-news.firebaseio.com/v0/item/{identity}.json",
+      "candidate_hosts": [
+        "hacker-news.firebaseio.com",
+        "news.ycombinator.com"
+      ],
+      "policy_url": "https://hn.algolia.com/api",
+      "query": "hynix",
+      "max_candidates": 2
+    },
+    {
+      "access_method": "public_http",
+      "jurisdiction": "KR",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_SAMSUNG_STATEMENTS",
+      "publisher": "Samsung Electronics 공식 연결 재무제표",
+      "type": "primary",
+      "canonical": true,
+      "asset_ids": [
+        "SAMSUNG"
+      ],
+      "categories": [
+        "semiconductor_accounts"
+      ],
+      "method": "semiconductor_statement_links",
+      "contract": "semiconductor_samsung_statement_v1",
+      "seed_url": "https://www.samsung.com/global/ir/financial-information/audited-financial-statements/",
+      "candidate_hosts": [
+        "www.samsung.com",
+        "images.samsung.com"
+      ],
+      "policy_url": "https://www.samsung.com/global/ir/ir-resources/legal-disclaimers/",
+      "blocks": [
+        "quarter",
+        "quarter_yoy",
+        "ytd",
+        "prior_ytd",
+        "annual",
+        "eps_half",
+        "eps_annual",
+        "balance",
+        "cashflow",
+        "notes"
+      ]
+    },
+    {
+      "access_method": "public_http",
+      "jurisdiction": "KR",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_HYNIX_ACCOUNTS",
+      "publisher": "SK하이닉스 IR 연결 Euroland 재무 제공자",
+      "type": "data_provider",
+      "canonical": false,
+      "asset_ids": [
+        "SK_HYNIX"
+      ],
+      "categories": [
+        "semiconductor_accounts"
+      ],
+      "method": "reviewed_document",
+      "contract": "semiconductor_hynix_provider_v1",
+      "seed_url": "https://asia.tools.euroland.com/tools/ia/?companycode=kr-000660&v=redesign&lang=en-gb",
+      "candidate_hosts": [
+        "asia.tools.euroland.com"
+      ],
+      "policy_url": "https://www.skhynix.com/ir/UI-FR-IR07/",
+      "identity_fields": {
+        "company_code": "kr-000660"
+      },
+      "blocks": [
+        "quarter_yoy",
+        "ttm_q3",
+        "ttm_q4",
+        "eps_a",
+        "eps_b",
+        "balance",
+        "quality",
+        "cashflow"
+      ]
+    },
+    {
+      "access_method": "public_http",
+      "jurisdiction": "KR",
+      "policy_note": "검토한 공개 페이지의 제한된 원문 구절/필드만 귀속 표시하여 개인 연구 및 replay에 보존한다. robots·HTTPS·2 MiB 제한·로그인/권한을 우회하지 않는다. 검색/접수 목록은 금융 수치의 원공시 검증이 아니다.",
+      "id": "SEMI_REDDIT_ACCESS",
+      "publisher": "Reddit 공개 기업 토론",
+      "type": "community",
+      "canonical": false,
+      "asset_ids": [
+        "SAMSUNG",
+        "SK_HYNIX"
+      ],
+      "categories": [
+        "semiconductor_community"
+      ],
+      "method": "access_probe",
+      "contract": "unsupported",
+      "seed_url": "https://www.reddit.com/search.json?q=Samsung%20HBM&sort=new&limit=5",
+      "candidate_hosts": [
+        "www.reddit.com"
+      ],
+      "policy_url": "https://www.redditinc.com/policies/data-api-terms"
+    },
+    {
+      "id": "SEMI_SAMSUNG_EARNINGS_DRIVERS",
+      "publisher": "Samsung Electronics Newsroom",
+      "type": "primary",
+      "canonical": true,
+      "jurisdiction": "KR",
+      "categories": [
+        "semiconductor_accounts"
+      ],
+      "asset_ids": [
+        "SAMSUNG"
+      ],
+      "method": "reviewed_document",
+      "seed_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+      "candidate_hosts": [
+        "news.samsung.com"
+      ],
+      "contract": "semiconductor_samsung_drivers_v1",
+      "access_method": "public_http",
+      "policy_url": "https://news.samsung.com/global/",
+      "policy_note": "Official public quarterly release; respect robots, no redirects/access-limit bypass. Retain at most three selected fields/passages per need, source dates and hashes for attributed personal research. This reviewed release URL is not automatic discovery of future quarters. A stale or changed release is withheld; no invented newer edition.",
+      "blocks": [
+        "earnings_drivers"
+      ]
+    }
+  ]
+}

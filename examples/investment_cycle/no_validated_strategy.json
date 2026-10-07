@@ -1,0 +1,20 @@
+{
+  "candidates": [],
+  "new_cash_krw": "10000000",
+  "policy": {
+    "caps": {
+      "A": "0.4",
+      "B": "0.2",
+      "C": "0.05",
+      "group_cap": "0.5"
+    },
+    "minimum_historical": 20,
+    "minimum_live": 10,
+    "minimum_recent": 10,
+    "minimum_validation": 10
+  },
+  "profile": null,
+  "scenario_note": "신규 현금 1,000만원의 예시다. 개인 재무 조건이 미확인인 자금은 집행하지 않는다.",
+  "schema_version": "investment-plan-v1",
+  "synthetic": false
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "korean-coverage-v1",
+  "method_version": "korean_official_coverage_v1",
+  "company_providers": {
+    "SAMSUNG": {
+      "id": "SAMSUNG_OFFICIAL_RELEASE",
+      "publisher": "Samsung Electronics Newsroom",
+      "type": "primary",
+      "canonical": true,
+      "jurisdiction": "KR",
+      "categories": ["company_results", "company_business"],
+      "asset_ids": ["SAMSUNG"],
+      "method": "reviewed_document",
+      "seed_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+      "candidate_hosts": ["news.samsung.com"],
+      "contract": "samsung_quarterly_release_v1",
+      "access_method": "public_http",
+      "policy_url": "https://news.samsung.com/global/",
+      "policy_note": "Official public quarterly release; respect robots, no redirects/access-limit bypass. Retain at most three selected fields/passages per need, source dates and hashes for attributed personal research. This reviewed release URL is not automatic discovery of future quarters. A stale or changed release is withheld; no invented newer edition."
+    },
+    "SK_HYNIX": {
+      "id": "SK_HYNIX_IR_FINANCIALS",
+      "publisher": "Euroland (SK hynix official IR-linked provider)",
+      "type": "data_provider",
+      "canonical": false,
+      "jurisdiction": "KR",
+      "categories": ["company_results", "company_prior"],
+      "asset_ids": ["SK_HYNIX"],
+      "method": "issuer_financial_link",
+      "seed_url": "https://www.skhynix.com/ir/UI-FR-IR07/",
+      "candidate_hosts": ["asia.tools.euroland.com"],
+      "contract": "euroland_hynix_quarterly_v1",
+      "access_method": "public_http",
+      "policy_url": "https://www.skhynix.com/ir/UI-FR-IR07/",
+      "policy_note": "Read the public official issuer IR financial-statements page and its explicitly embedded public financial provider. Respect each host's robots. Never execute JavaScript; decode only the reviewed named JSON array. Preserve three quarterly scalar fields per need, company/period/unit and hashes, not the whole provider dataset. Provider data are not regulatory filings; consolidation/attribution and independent primary-source verification remain unknown."
+    }
+  },
+  "unconnected": [
+    {"source": "DART Open API", "reason": "Official API key not configured; no authentication bypass. Candidate for normalized original filings and segment/cash-flow evidence."},
+    {"source": "KRX market-data API", "reason": "Current price/valuation API authorization not configured. Historical period-end vendor prices are not current prices."},
+    {"source": "SK hynix newsroom", "reason": "Robots access could not be reliably established during live review. Official earnings IR list is accessible; linked presentation exceeds the current bounded collector and has no reviewed PDF contract."},
+    {"source": "MOLIT individual apartment transactions", "reason": "Public portal access not reliably permitted in this environment; service-key API not configured. Regional real-transaction index is a separate partial alternative, never individual transaction prices."},
+    {"source": "Regional supply/move-ins and mortgage terms", "reason": "No reviewed current regional dataset/product contract connected in this task; retain as an evidence gap."}
+  ]
+}

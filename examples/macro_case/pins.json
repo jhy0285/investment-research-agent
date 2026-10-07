@@ -1,0 +1,20 @@
+{
+  "as_of": "2026-10-03T17:13:16.107675+00:00",
+  "plan_id": "CURRENT_OFFICIAL_MACRO",
+  "plan_sha256": "0f22590d696de2afc25e7ece9970446ee3b968dba7ae51527da55f11ff0cc8c4",
+  "schema_version": "macro-pins-v1",
+  "snapshots": {
+    "BLS_CPI_API": [
+      "5f659b87469da318e1d476987fb1d686bdf23f34cae1194297a4996299564a05"
+    ],
+    "BLS_CPI_RELEASE": [
+      "2453dd6520e8899086a09329e0e73b013935feed8091429efd5dec9dbfece26b"
+    ],
+    "FED_H10_KRW": [
+      "e6024ea571d2a6c5b6cd6ed43e1ca06a25673b8ccb4051ed3fdb284d32f9ca0f"
+    ],
+    "FED_H15_TREASURY": [
+      "79a230cc8bff4d412dd2e177ce59c8d2f218131dd37a72bf1cda3324e78f6c9b"
+    ]
+  }
+}

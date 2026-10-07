@@ -1,0 +1,287 @@
+{
+  "bindings": [
+    {
+      "adapter": "bls_cpi_v1",
+      "field": "CUUR0000SA0",
+      "release_source_id": "BLS_CPI_RELEASE",
+      "series_id": "US_CPI_U_HEADLINE_NSA",
+      "source_id": "BLS_CPI_API",
+      "start_date": "2024-01-01"
+    },
+    {
+      "adapter": "fed_csv_v1",
+      "field": "RIFLGFCY02_N.B",
+      "series_id": "US_TREASURY_NOMINAL_2Y",
+      "source_id": "FED_H15_TREASURY",
+      "start_date": "2025-10-01"
+    },
+    {
+      "adapter": "fed_csv_v1",
+      "field": "RIFLGFCY10_N.B",
+      "series_id": "US_TREASURY_NOMINAL_10Y",
+      "source_id": "FED_H15_TREASURY",
+      "start_date": "2025-10-01"
+    },
+    {
+      "adapter": "fed_csv_v1",
+      "field": "RXI_N.B.KO",
+      "series_id": "USD_KRW_NOON_REFERENCE",
+      "source_id": "FED_H10_KRW",
+      "start_date": "2025-10-01"
+    }
+  ],
+  "id": "ASK_SELECTED_MACRO",
+  "question": "확인 가능한 미국 물가·국채 금리와 KRW 환율은 각각 어떤 상태이며, 관측·공개·판본의 한계는 무엇인가?",
+  "schema_version": "1",
+  "series": [
+    {
+      "adjustment": "not_seasonally_adjusted",
+      "canonical_id": "US_CPI_U_HEADLINE_NSA",
+      "currency": null,
+      "definition": "All items CPI-U, U.S. city average, 1982–84=100; not seasonally adjusted. Monthly label is the reference month, not the release date.",
+      "frequency": "monthly",
+      "jurisdiction": "US",
+      "max_age_days": 75,
+      "name": "미국 headline CPI-U 원지수 (NSA)",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "release_characteristics": "Monthly, typically released in the following month; date varies. Current release is cross-checked against retained official excerpts.",
+      "revision_characteristics": "Full release/revision history absent from v1 API. Current fetched version is not a historical first release; missing October 2025 remains explicit.",
+      "source_id": "BLS_CPI_API",
+      "transformation": "raw",
+      "unit": "index"
+    },
+    {
+      "adjustment": "not_seasonally_adjusted",
+      "canonical_id": "US_TREASURY_NOMINAL_2Y",
+      "currency": "USD",
+      "definition": "2-year constant-maturity Treasury yield, quoted on investment basis, annual percent; not policy rate, real yield or realized bond return. CSV Currency NA means no currency amount; underlying Treasury exposure is USD.",
+      "frequency": "daily",
+      "jurisdiction": "US",
+      "max_age_days": 10,
+      "name": "미국 국채 2년 명목 시장금리",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "release_characteristics": "U.S. business-day observation; publication lag and weekends differ from observation date.",
+      "revision_characteristics": "Current H.15 CSV may include corrections; complete first-release/vintage history unavailable.",
+      "source_id": "FED_H15_TREASURY",
+      "tenor_years": 2,
+      "transformation": "raw",
+      "unit": "percent",
+      "yield_type": "nominal"
+    },
+    {
+      "adjustment": "not_seasonally_adjusted",
+      "canonical_id": "US_TREASURY_NOMINAL_10Y",
+      "currency": "USD",
+      "definition": "10-year constant-maturity Treasury yield, quoted on investment basis, annual percent; not policy rate, real yield or realized bond return. CSV Currency NA means no currency amount; underlying Treasury exposure is USD.",
+      "frequency": "daily",
+      "jurisdiction": "US",
+      "max_age_days": 10,
+      "name": "미국 국채 10년 명목 시장금리",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "release_characteristics": "U.S. business-day observation; publication lag and weekends differ from observation date.",
+      "revision_characteristics": "Current H.15 CSV may include corrections; complete first-release/vintage history unavailable.",
+      "source_id": "FED_H15_TREASURY",
+      "tenor_years": 10,
+      "transformation": "raw",
+      "unit": "percent",
+      "yield_type": "nominal"
+    },
+    {
+      "adjustment": "not_seasonally_adjusted",
+      "canonical_id": "USD_KRW_NOON_REFERENCE",
+      "currency": "KRW",
+      "definition": "South Korean won per U.S. dollar; noon New York buying/reference rate. An increase means more KRW per USD, not a domestic executed FX rate or a realized foreign-asset return.",
+      "frequency": "daily",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "name": "원/달러 뉴욕 정오 기준환율",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "release_characteristics": "Daily observations normally published in a weekly H.10 release; no invented weekend or not-yet-released daily value.",
+      "revision_characteristics": "Current country CSV can incorporate subsequent corrections; an official August 2026 correction notice exists, but full row revision timestamps/history are unavailable.",
+      "source_id": "FED_H10_KRW",
+      "transformation": "raw",
+      "unit": "KRW_per_USD"
+    }
+  ],
+  "sources": [
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "CASH",
+        "BOND",
+        "EQUITY"
+      ],
+      "canonical_url": "https://www.bls.gov/news.release/cpi.htm",
+      "content_type": "text/html",
+      "excerpts": [
+        {
+          "definition": {
+            "kind": "reviewed_macro_feed_identity_or_release"
+          },
+          "id": "RELEASE_TIME",
+          "locator": "official release embargo/publication paragraph",
+          "quote": "Transmission of material in this release is embargoed until 8:30 a.m. (ET) Friday, September 11, 2026"
+        },
+        {
+          "definition": {
+            "kind": "reviewed_macro_feed_identity_or_release"
+          },
+          "id": "CPI_PERIOD",
+          "locator": "official release heading",
+          "quote": "CONSUMER PRICE INDEX - AUGUST 2026"
+        },
+        {
+          "definition": {
+            "kind": "reviewed_macro_feed_identity_or_release"
+          },
+          "id": "CPI_VALUE",
+          "locator": "official unadjusted CPI-U paragraph",
+          "quote": "The Consumer Price Index for All Urban Consumers (CPI-U) increased 3.4 percent over the last 12 months to an index level of 334.980 (1982-84=100)."
+        }
+      ],
+      "full_retention_permission": null,
+      "id": "BLS_CPI_RELEASE",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "policy_note": "Official BLS public-domain release; preserve only three verification excerpts with attribution. Separate API terms apply to API data.",
+      "policy_url": "https://www.bls.gov/bls/linksite.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "retention": "excerpt",
+      "title": "Consumer Price Index — August 2026 release",
+      "topics": [
+        "macro",
+        "interest_rates",
+        "inflation",
+        "KRW"
+      ],
+      "type": "primary",
+      "url": "https://www.bls.gov/news.release/cpi.htm"
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "CASH",
+        "BOND",
+        "EQUITY"
+      ],
+      "canonical_url": "https://api.bls.gov/publicAPI/v1/timeseries/data/CUUR0000SA0",
+      "content_type": "application/json",
+      "excerpts": [
+        {
+          "definition": {
+            "kind": "reviewed_macro_feed_identity_or_release"
+          },
+          "id": "SERIES_ID",
+          "locator": "/Results/series/0/seriesID",
+          "quote": "CUUR0000SA0"
+        }
+      ],
+      "full_retention_permission": "U.S. government public-domain data, cited to publisher; see recorded policy.",
+      "id": "BLS_CPI_API",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "policy_note": "Documented unregistered v1 GET API: https://www.bls.gov/developers/api_signature.htm . Public-domain data: https://www.bls.gov/bls/linksite.htm . Cite access/retrieval date. BLS.gov cannot vouch for the data or analyses derived from these data after the data have been retrieved from BLS.gov.",
+      "policy_url": "https://www.bls.gov/developers/termsOfService.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "retention": "full",
+      "title": "BLS CPI-U all items, U.S. city average, not seasonally adjusted",
+      "topics": [
+        "macro",
+        "interest_rates",
+        "inflation",
+        "KRW"
+      ],
+      "type": "primary",
+      "url": "https://api.bls.gov/publicAPI/v1/timeseries/data/CUUR0000SA0"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "CASH",
+        "BOND",
+        "EQUITY"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H15&series=bf17364827e38702b42a58cf8eaa3f78&lastobs=&from=&to=&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "content_type": "text/csv",
+      "excerpts": [
+        {
+          "definition": {
+            "kind": "reviewed_macro_feed_identity_or_release"
+          },
+          "id": "TWO_YEAR",
+          "locator": "CSV Time Period header / 2-year column",
+          "quote": "RIFLGFCY02_N.B"
+        },
+        {
+          "definition": {
+            "kind": "reviewed_macro_feed_identity_or_release"
+          },
+          "id": "TEN_YEAR",
+          "locator": "CSV Time Period header / 10-year column",
+          "quote": "RIFLGFCY10_N.B"
+        }
+      ],
+      "full_retention_permission": "U.S. government public-domain data, cited to publisher; see recorded policy.",
+      "id": "FED_H15_TREASURY",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "policy_note": "The Federal Reserve Board permits reuse of public-domain information with Board attribution; no seals, logos or third-party content are fetched.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "retention": "full",
+      "title": "H.15 Treasury constant-maturity nominal yield CSV",
+      "topics": [
+        "macro",
+        "interest_rates",
+        "inflation",
+        "KRW"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H15&series=bf17364827e38702b42a58cf8eaa3f78&lastobs=&from=&to=&filetype=csv&label=include&layout=seriescolumn&type=package"
+    },
+    {
+      "access_method": "public_http",
+      "asset_ids": [
+        "CASH",
+        "BOND",
+        "EQUITY"
+      ],
+      "canonical_url": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=250&from=&to=&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "content_type": "text/csv",
+      "excerpts": [
+        {
+          "definition": {
+            "kind": "reviewed_macro_feed_identity_or_release"
+          },
+          "id": "KRW",
+          "locator": "CSV Time Period header / South Korean Won column",
+          "quote": "RXI_N.B.KO"
+        }
+      ],
+      "full_retention_permission": "U.S. government public-domain data, cited to publisher; see recorded policy.",
+      "id": "FED_H10_KRW",
+      "jurisdiction": "US",
+      "max_age_days": 14,
+      "policy_note": "The Federal Reserve Board permits reuse of public-domain information with Board attribution; no seals, logos or third-party content are fetched. Definition: https://www.federalreserve.gov/releases/h10/about.htm . Noon New York buying rate; daily observations released weekly; current country CSV can include later corrections.",
+      "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+      "publisher": "Board of Governors of the Federal Reserve System",
+      "retention": "full",
+      "title": "H.10 South Korean won per U.S. dollar daily reference rate CSV",
+      "topics": [
+        "macro",
+        "interest_rates",
+        "inflation",
+        "KRW"
+      ],
+      "type": "primary",
+      "url": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=250&from=&to=&filetype=csv&label=include&layout=seriescolumn&type=package"
+    }
+  ],
+  "yield_pair": [
+    "US_TREASURY_NOMINAL_10Y",
+    "US_TREASURY_NOMINAL_2Y"
+  ],
+  "yoy_series_ids": [
+    "US_CPI_U_HEADLINE_NSA"
+  ]
+}

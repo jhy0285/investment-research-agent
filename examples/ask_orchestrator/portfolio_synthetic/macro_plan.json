@@ -1,0 +1,163 @@
+{
+  "bindings": [
+    {
+      "adapter": "fed_csv_v1",
+      "field": "RIFLGFCY02_N.B",
+      "series_id": "US_TREASURY_NOMINAL_2Y",
+      "source_id": "S_YIELDS",
+      "start_date": "2025-01-01"
+    },
+    {
+      "adapter": "fed_csv_v1",
+      "field": "RIFLGFCY10_N.B",
+      "series_id": "US_TREASURY_NOMINAL_10Y",
+      "source_id": "S_YIELDS",
+      "start_date": "2025-01-01"
+    },
+    {
+      "adapter": "fed_csv_v1",
+      "field": "RXI_N.B.KO",
+      "series_id": "USD_KRW_NOON_REFERENCE",
+      "source_id": "S_FX",
+      "start_date": "2025-01-01"
+    }
+  ],
+  "id": "ASK_SELECTED_MACRO",
+  "question": "합성 macro fixture의 정의와 당시 판본을 재현할 수 있는가?",
+  "schema_version": "1",
+  "series": [
+    {
+      "adjustment": "not_seasonally_adjusted",
+      "canonical_id": "US_TREASURY_NOMINAL_2Y",
+      "currency": "USD",
+      "definition": "Nominal 2-year Treasury constant maturity yield, synthetic values",
+      "frequency": "daily",
+      "jurisdiction": "US",
+      "max_age_days": 20,
+      "name": "합성 미국 국채 2년",
+      "publisher": "Synthetic macro test publisher",
+      "release_characteristics": "Unknown individual publication times; actual fetch time retained.",
+      "revision_characteristics": "unknown",
+      "source_id": "S_YIELDS",
+      "tenor_years": 2,
+      "transformation": "raw",
+      "unit": "percent",
+      "yield_type": "nominal"
+    },
+    {
+      "adjustment": "not_seasonally_adjusted",
+      "canonical_id": "US_TREASURY_NOMINAL_10Y",
+      "currency": "USD",
+      "definition": "Nominal 10-year Treasury constant maturity yield, synthetic values",
+      "frequency": "daily",
+      "jurisdiction": "US",
+      "max_age_days": 20,
+      "name": "합성 미국 국채 10년",
+      "publisher": "Synthetic macro test publisher",
+      "release_characteristics": "Unknown individual publication times; actual fetch time retained.",
+      "revision_characteristics": "unknown",
+      "source_id": "S_YIELDS",
+      "tenor_years": 10,
+      "transformation": "raw",
+      "unit": "percent",
+      "yield_type": "nominal"
+    },
+    {
+      "adjustment": "not_seasonally_adjusted",
+      "canonical_id": "USD_KRW_NOON_REFERENCE",
+      "currency": "KRW",
+      "definition": "KRW per one USD, synthetic values",
+      "frequency": "daily",
+      "jurisdiction": "US",
+      "max_age_days": 20,
+      "name": "합성 달러당 원화",
+      "publisher": "Synthetic macro test publisher",
+      "release_characteristics": "Unknown individual publication times; actual fetch time retained.",
+      "revision_characteristics": "unknown",
+      "source_id": "S_FX",
+      "tenor_years": null,
+      "transformation": "raw",
+      "unit": "KRW_per_USD",
+      "yield_type": null
+    }
+  ],
+  "sources": [
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "CASH",
+        "BOND",
+        "EQUITY"
+      ],
+      "canonical_url": "https://synthetic-macro.example.org/s_yields",
+      "content_type": "text/csv",
+      "excerpts": [
+        {
+          "definition": "Synthetic provider identity marker, not a market claim.",
+          "id": "SELECTOR_S_YIELDS",
+          "locator": "CSV header identity",
+          "quote": "Time Period"
+        }
+      ],
+      "full_retention_permission": "The synthetic test data are authored for these tests.",
+      "id": "S_YIELDS",
+      "jurisdiction": "US",
+      "max_age_days": 90,
+      "observed_at": null,
+      "origin_source_id": null,
+      "policy_note": "Synthetic HTTP fixture retained for offline tests only.",
+      "policy_url": "https://synthetic-macro.example.org/terms",
+      "published_at": null,
+      "publisher": "Synthetic macro test publisher",
+      "retention": "full",
+      "title": "Synthetic fixture, never actual market evidence",
+      "topics": [
+        "synthetic-macro-test"
+      ],
+      "type": "primary",
+      "url": "https://synthetic-macro.example.org/s_yields",
+      "valid_as_of": null
+    },
+    {
+      "access_method": "public_api",
+      "asset_ids": [
+        "CASH",
+        "BOND",
+        "EQUITY"
+      ],
+      "canonical_url": "https://synthetic-macro.example.org/s_fx",
+      "content_type": "text/csv",
+      "excerpts": [
+        {
+          "definition": "Synthetic provider identity marker, not a market claim.",
+          "id": "SELECTOR_S_FX",
+          "locator": "CSV header identity",
+          "quote": "Time Period"
+        }
+      ],
+      "full_retention_permission": "The synthetic test data are authored for these tests.",
+      "id": "S_FX",
+      "jurisdiction": "US",
+      "max_age_days": 90,
+      "observed_at": null,
+      "origin_source_id": null,
+      "policy_note": "Synthetic HTTP fixture retained for offline tests only.",
+      "policy_url": "https://synthetic-macro.example.org/terms",
+      "published_at": null,
+      "publisher": "Synthetic macro test publisher",
+      "retention": "full",
+      "title": "Synthetic fixture, never actual market evidence",
+      "topics": [
+        "synthetic-macro-test"
+      ],
+      "type": "primary",
+      "url": "https://synthetic-macro.example.org/s_fx",
+      "valid_as_of": null
+    }
+  ],
+  "yield_pair": [
+    "US_TREASURY_NOMINAL_10Y",
+    "US_TREASURY_NOMINAL_2Y"
+  ],
+  "yoy_series_ids": []
+}

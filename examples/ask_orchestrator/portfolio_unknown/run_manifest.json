@@ -1,0 +1,158 @@
+{
+  "artifact_sha256": {
+    "input.json": "997b6925902b7a2c4762805c317ce896bec9ce015e4f82e074bfde775225d85e",
+    "report.md": "46ddb7b01a560a1c12f0f3c903daa1988663fe5725ee91d8c081d56adbfe9535",
+    "started.json": "c9dbb05ad9697cf6e9afecf4d20b7441338acaa726c13db1bcc2788fa5fc464b"
+  },
+  "as_of": "2026-10-04T14:29:27.332901+00:00",
+  "calculations": [],
+  "claims_evaluated": [],
+  "code_sha256": "50209ddbf0197c1cb47c8098d31b38f6d496b59e441d0ce1af67599b148164b7",
+  "conclusion": "insufficient_evidence",
+  "evidence_used": [],
+  "execution_status": "completed",
+  "finding_checks": [],
+  "follow_up_reference": {
+    "run_id": "ca29b2beefe7437dc5de07acae7015b12f8c27800a197cc6f62e04f7f9d22057",
+    "subject_ids": []
+  },
+  "input_sha256": "3d93e9161ed7bca98c67d32da5fc53b1851a16324f4674db4d57212c1dcc7ac6",
+  "method_versions": {
+    "acquisition": "source_snapshot_v1",
+    "catalog": "curated_research_catalog_v1",
+    "deep_dive": "deep_dive_v1",
+    "engine": "evidence_rules_v1",
+    "findings": "bounded_findings_v1",
+    "macro": "macro_series_v1",
+    "macro_pipeline": "macro_pipeline_v1",
+    "opportunity": "opportunity_map_v1",
+    "orchestrator": "research_orchestrator_v1",
+    "portfolio": "portfolio_composition_v1",
+    "report": "ask_report_v1",
+    "routing": "research_routing_v2",
+    "source_verification": "source_verification_v1"
+  },
+  "methods": [],
+  "personal_conclusion": "insufficient_evidence",
+  "personal_constraints": [
+    "총자산이 미확인이라 실제 손실 감당 규모와 전체 자산 대비 투자금의 크기를 판단할 수 없다.",
+    "비상자금이 미확인이라 현금 비중이 과도하거나 추가 투자에 충분하다고 판단할 수 없다.",
+    "부채가 미확인이라 무부채로 가정하거나 부채 상환과 투자 사이의 개인 기회비용을 판단할 수 없다.",
+    "주택 구입 필요자금과 시점이 미확인이라 장기간 자금이 묶이는 선택의 적절성을 판단할 수 없다.",
+    "현재 포트폴리오 배분과 보유범위가 미확인이라 전체 집중위험이나 분산·안전성을 판단할 수 없다.",
+    "월 추가 투자 가능액이 미확인이라 안정적인 근로소득에서 투자 가능 금액을 추정할 수 없다.",
+    "위험 감당 능력이 미확인이라 나이·소득·위험 감수 의향에서 손실 한도·투자 비중·레버리지 허용을 도출할 수 없다."
+  ],
+  "pipeline_invocations": [
+    {
+      "function": "run_research",
+      "purpose": "evidence_quality_and_conclusion_limits"
+    }
+  ],
+  "portfolio_missing": [
+    "실제 보유내역·금액/구성·누락 범위",
+    "현금",
+    "부채",
+    "월 추가 투자 가능액",
+    "향후 큰 자금수요",
+    "투자기간"
+  ],
+  "question": "내 포트폴리오 괜찮아?",
+  "reasoning": [
+    {
+      "counterargument": "좋은 자산도 기존 노출·자금수요·부채에 따라 추가 보유가 적절하지 않을 수 있다.",
+      "evidence_ids": [],
+      "id": "INSIGHT_PORTFOLIO",
+      "limitations": [
+        "실제 보유내역·금액/구성·누락 범위",
+        "현금",
+        "부채",
+        "월 추가 투자 가능액",
+        "향후 큰 자금수요",
+        "투자기간"
+      ],
+      "metric_ids": [],
+      "reassessment": "전체 보유와 평가 기준일·현금·부채·향후 자금수요·손실 감당 능력을 확인한다.",
+      "role": "self_reported_composition",
+      "text": "제공된 보유 구성의 계산과 자산의 시장 매력, 추가 보유의 적절성은 별도 판단이다."
+    }
+  ],
+  "report": {
+    "path": "report.md",
+    "sha256": "46ddb7b01a560a1c12f0f3c903daa1988663fe5725ee91d8c081d56adbfe9535"
+  },
+  "request_sha256": "2f0f1b03a5c99260ba1f903a78ce49935ccc9875533c98695e7070216dc06f43",
+  "research_status": "needs_input",
+  "resolved_intent": {
+    "clarifications": [],
+    "execution_status": "dispatched",
+    "limits": [
+      "선택한 모드의 조사 계획이며 금융 분석 결과·수치·추천이 아니다.",
+      "규칙 기반 질문 해석의 범위를 넘으면 확인하며 전체 Scan으로 대체하지 않는다.",
+      "관련 macro·대안만 조사한다. 미조사 자산의 열등함을 뜻하지 않는다.",
+      "필수 근거·보유 정보가 unknown이면 영향을 받는 결론을 보류한다."
+    ],
+    "method_version": "research_routing_v2",
+    "modes": [
+      "portfolio_review"
+    ],
+    "question": "내 포트폴리오 괜찮아?",
+    "schema_version": "research-plan-v1",
+    "selection_source": "inferred_rules",
+    "status": "planned",
+    "tasks": [
+      {
+        "depends_on": [],
+        "id": "portfolio",
+        "mode": "portfolio_review",
+        "questions": [
+          "자산 자체의 매력",
+          "기존 중복·과도한 노출",
+          "추가 자본이 전체 포트폴리오에 미치는 변화; 누락 정보로 안전·적절성을 확정하지 않는다."
+        ],
+        "required_inputs": [
+          "기준일과 실제 보유자산·수량/가치·통화·상품·중복 노출",
+          "현금·부채·소득/지출·추가 투자 가능액",
+          "비상자금·큰 자금수요·주택 계획·투자기간",
+          "위험 감당 능력과 감수 의향·관련 세법/계좌 제약"
+        ],
+        "scope": "actual_portfolio_and_constraints",
+        "subjects": []
+      }
+    ]
+  },
+  "run_id": "ca29b2beefe7437dc5de07acae7015b12f8c27800a197cc6f62e04f7f9d22057",
+  "schema_version": "ask-run-v1",
+  "scope": [
+    {
+      "candidate_dependent": false,
+      "id": "portfolio",
+      "method_ids": [],
+      "mode": "portfolio_review",
+      "subject_method_ids": [],
+      "subjects": [],
+      "unsupported": []
+    }
+  ],
+  "selected_modes": [
+    "portfolio_review"
+  ],
+  "sources_accessed": [],
+  "synthetic": false,
+  "task_results": [
+    {
+      "method_ids": [],
+      "mode": "portfolio_review",
+      "status": "needs_input",
+      "task_id": "portfolio"
+    }
+  ],
+  "unresolved_questions": [
+    "사용자 입력: 실제 보유내역·금액/구성·누락 범위",
+    "사용자 입력: 현금",
+    "사용자 입력: 부채",
+    "사용자 입력: 월 추가 투자 가능액",
+    "사용자 입력: 향후 큰 자금수요",
+    "사용자 입력: 투자기간"
+  ]
+}

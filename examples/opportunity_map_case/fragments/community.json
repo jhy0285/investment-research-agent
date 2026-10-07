@@ -1,0 +1,559 @@
+{
+  "sources": [
+    {
+      "id": "COM_HN_AI_VALUATION_BEAR",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49685171.json",
+      "canonical_url": "https://news.ycombinator.com/item?id=49685171",
+      "type": "community",
+      "publisher": "Hacker News official public API; individual public comment",
+      "title": "One HN comment: AI demand, competition and NVIDIA valuation risk",
+      "published_at": "2026-09-13T15:35:49+00:00",
+      "observed_at": "2026-09-13",
+      "valid_as_of": "2026-09-13",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "topics": [
+        "ai_demand_valuation_risk"
+      ],
+      "asset_ids": [
+        "US_EQUITY",
+        "GROWTH",
+        "KR_EQUITY"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_COMMENT",
+          "quote": "We're concerned that competitive pressures and possible reductions from sky-high demand could make it really hard for nv to justify or maintain their current valuation. That is, revenues may be unusually cyclically high. It's going to be hard for frontier labs to keep spending at this rate without starting to make money.",
+          "locator": "/text",
+          "definition": {
+            "measure": "observed_public_utterance",
+            "unit": "text",
+            "period": "public_comment_2026-09-13T15:35:49+00:00",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "one_public_Hacker_News_comment_49685171"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "COM_HN_AI_DEMAND_BULL",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49682800.json",
+      "canonical_url": "https://news.ycombinator.com/item?id=49682800",
+      "type": "community",
+      "publisher": "Hacker News official public API; individual public comment",
+      "title": "One HN comment: AI as a growing real market rather than overinvestment",
+      "published_at": "2026-09-13T11:31:31+00:00",
+      "observed_at": "2026-09-13",
+      "valid_as_of": "2026-09-13",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "topics": [
+        "ai_real_demand_bull_thesis"
+      ],
+      "asset_ids": [
+        "US_EQUITY",
+        "GROWTH",
+        "KR_EQUITY"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_COMMENT",
+          "quote": "It is a bit circular but it also a growing real market. NVIDIA is accelerating the market and also making money. It is a smart strategy on their part. We are not at the top of this trend yet so I do not see this as over investment.",
+          "locator": "/text",
+          "definition": {
+            "measure": "observed_public_utterance",
+            "unit": "text",
+            "period": "public_comment_2026-09-13T11:31:31+00:00",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "one_public_Hacker_News_comment_49682800"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "COM_HN_MEMORY_CYCLE_RISK",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49930845.json",
+      "canonical_url": "https://news.ycombinator.com/item?id=49930845",
+      "type": "community",
+      "publisher": "Hacker News official public API; individual public comment",
+      "title": "One HN comment: memory capital investment and demand-cycle risk",
+      "published_at": "2026-10-02T07:37:14+00:00",
+      "observed_at": "2026-10-02",
+      "valid_as_of": "2026-10-02",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "topics": [
+        "memory_supply_capex_cycle_risk"
+      ],
+      "asset_ids": [
+        "KR_EQUITY",
+        "US_EQUITY",
+        "GROWTH"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_COMMENT",
+          "quote": "Historically the RAM industry has done the opposite (ramped up production aggressively due to high prices) only for that production to all come online during a glut. This process can be fatal for a company as your expensive fixed investment hits a demand cycle that can turn overnight.",
+          "locator": "/text",
+          "definition": {
+            "measure": "observed_public_utterance",
+            "unit": "text",
+            "period": "public_comment_2026-10-02T07:37:14+00:00",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "one_public_Hacker_News_comment_49930845"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49740578.json",
+      "canonical_url": "https://news.ycombinator.com/item?id=49740578",
+      "type": "community",
+      "publisher": "Hacker News official public API; individual public comment",
+      "title": "One HN comment: Bitcoin mining sales and an unverified five-year comparison",
+      "published_at": "2026-09-17T13:37:17+00:00",
+      "observed_at": "2026-09-17",
+      "valid_as_of": "2026-09-17",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "topics": [
+        "btc_mining_demand_performance_hypothesis"
+      ],
+      "asset_ids": [
+        "BTC",
+        "US_EQUITY",
+        "GOLD"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_COMMENT",
+          "quote": "It has underperformed both the S&amp;P 500 and gold over the last 5 years. I expect bitcoin inflation to continue. (AKA the bitcoin price to continue to go down).",
+          "locator": "/text",
+          "definition": {
+            "measure": "observed_public_utterance",
+            "unit": "text",
+            "period": "public_comment_2026-09-17T13:37:17+00:00",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "one_public_Hacker_News_comment_49740578"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "COM_HN_BTC_CUSTODY_RISK",
+      "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+      "canonical_url": "https://news.ycombinator.com/item?id=49785002",
+      "type": "community",
+      "publisher": "Hacker News official public API; individual public comment",
+      "title": "One HN comment: exchange Bitcoin claims and withdrawal risk",
+      "published_at": "2026-09-21T09:25:21+00:00",
+      "observed_at": "2026-09-21",
+      "valid_as_of": "2026-09-21",
+      "jurisdiction": "English-language public discussion; not a Korean-investor sample",
+      "topics": [
+        "btc_exchange_custody_vs_underlying"
+      ],
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "content_type": "application/json",
+      "access_method": "public_api",
+      "policy_url": "https://github.com/HackerNews/API",
+      "policy_note": "Official API documentation permits unauthenticated item reads. Access is not a blanket copyright licence: retain only one necessary short quotation for attributed internal research, its public item link, dates and integrity hashes; no author handles, profiles, full comment or discussion copies. Discovery used documented HN Algolia search and quoted body verified again through official item API. No commercial redistribution assumed.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_COMMENT",
+          "quote": "because the promise of a bitcoin from an exchange is not the same thing as an actual bitcoin.",
+          "locator": "/text",
+          "definition": {
+            "measure": "observed_public_utterance",
+            "unit": "text",
+            "period": "public_comment_2026-09-21T09:25:21+00:00",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "one_public_Hacker_News_comment_49785002"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    },
+    {
+      "id": "COM_REDDIT_ACCESS_BLOCKED",
+      "url": "https://www.reddit.com/r/stocks/",
+      "canonical_url": "https://www.reddit.com/r/stocks/",
+      "type": "community",
+      "publisher": "Reddit public investing discussion; access not granted",
+      "title": "Reddit investing discussion access check; no content acquired",
+      "published_at": null,
+      "observed_at": null,
+      "valid_as_of": null,
+      "jurisdiction": "unknown",
+      "topics": [
+        "access_policy"
+      ],
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "content_type": "text/html",
+      "access_method": "public_http",
+      "policy_url": "https://support.reddithelp.com/hc/en-us/articles/26410290525844-Public-Content-Policy",
+      "policy_note": "robots.txt User-agent:* Disallow:/ checked; public content policy requires permitted access. Stop on robots refusal without trying alternate hosts, login, cookies or scraping. Excerpt selector is planned configuration and never claimed as observed content.",
+      "retention": "excerpt",
+      "max_age_days": 30,
+      "origin_source_id": null,
+      "excerpts": [
+        {
+          "id": "Q_ACCESS_NOT_OBSERVED",
+          "quote": "Stocks",
+          "locator": "planned_page_text_not_observed",
+          "definition": {
+            "measure": "not_observed_access_attempt",
+            "unit": "text",
+            "period": "acquisition_2026-10-04",
+            "currency": null,
+            "adjustment": "not_applicable",
+            "scope": "Reddit_r_stocks_public_page_not_retrieved"
+          }
+        }
+      ],
+      "full_retention_permission": null
+    }
+  ],
+  "snapshot_refs": {
+    "COM_HN_AI_VALUATION_BEAR": "64cb0872c111666a6b6c80b181c54276e88533f1455360d4736dc0d926ee8e5f",
+    "COM_HN_AI_DEMAND_BULL": "c1b8e1097f454caecddd8c4fe0000d7812587d4053472786279902d61c4443de",
+    "COM_HN_MEMORY_CYCLE_RISK": "e790df366f4ddb2c46adc4b54ff25a3ec8b6d316b383dae8b05ff7f2c7041f02",
+    "COM_HN_BTC_BEAR_PERFORMANCE": "f769bf045cb05d4bc26fb697ef4562d6e6e372883fd6da7e0b820ed6ae39ca72",
+    "COM_HN_BTC_CUSTODY_RISK": "f151f40fb1c516510d5f53830ed8c4d85b9c8bf033d90309f27718400191ce60",
+    "COM_REDDIT_ACCESS_BLOCKED": "636a93f3b9e302fd54b84e77ec174962011284e39d6791a458cc10b47213135e"
+  },
+  "evidence": [
+    {
+      "id": "E_COM_HN_AI_VALUATION_BEAR",
+      "source_id": "COM_HN_AI_VALUATION_BEAR",
+      "excerpt_id": "Q_COMMENT",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "observed_public_utterance",
+        "unit": "text",
+        "period": "public_comment_2026-09-13T15:35:49+00:00",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "one_public_Hacker_News_comment_49685171"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "같은 스레드 COM_HN_AI_VALUATION_BEAR/COM_HN_AI_DEMAND_BULL 발언은 다른 관점을 보존하며 독립 출처 두 개로 세지 않는다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ]
+    },
+    {
+      "id": "E_COM_HN_AI_DEMAND_BULL",
+      "source_id": "COM_HN_AI_DEMAND_BULL",
+      "excerpt_id": "Q_COMMENT",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "observed_public_utterance",
+        "unit": "text",
+        "period": "public_comment_2026-09-13T11:31:31+00:00",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "one_public_Hacker_News_comment_49682800"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "같은 스레드 COM_HN_AI_VALUATION_BEAR/COM_HN_AI_DEMAND_BULL 발언은 다른 관점을 보존하며 독립 출처 두 개로 세지 않는다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ]
+    },
+    {
+      "id": "E_COM_HN_MEMORY_CYCLE_RISK",
+      "source_id": "COM_HN_MEMORY_CYCLE_RISK",
+      "excerpt_id": "Q_COMMENT",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "observed_public_utterance",
+        "unit": "text",
+        "period": "public_comment_2026-10-02T07:37:14+00:00",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "one_public_Hacker_News_comment_49930845"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ]
+    },
+    {
+      "id": "E_COM_HN_BTC_BEAR_PERFORMANCE",
+      "source_id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "excerpt_id": "Q_COMMENT",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "observed_public_utterance",
+        "unit": "text",
+        "period": "public_comment_2026-09-17T13:37:17+00:00",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "one_public_Hacker_News_comment_49740578"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "JSON text의 S&amp;P는 원문의 HTML entity 표기다. 보존 구절은 raw JSON 선택 필드와 그대로 일치하며 한국어 요약에서는 S&P로 설명한다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ]
+    },
+    {
+      "id": "E_COM_HN_BTC_CUSTODY_RISK",
+      "source_id": "COM_HN_BTC_CUSTODY_RISK",
+      "excerpt_id": "Q_COMMENT",
+      "view": "community",
+      "kind": "observed_narrative",
+      "definition": {
+        "measure": "observed_public_utterance",
+        "unit": "text",
+        "period": "public_comment_2026-09-21T09:25:21+00:00",
+        "currency": null,
+        "adjustment": "not_applicable",
+        "scope": "one_public_Hacker_News_comment_49785002"
+      },
+      "extraction": null,
+      "interpretation": null,
+      "limitations": [
+        "선별한 공개 댓글 하나의 발언 관측이며 HN·한국 투자자·전체 시장의 대표 표본이 아니다.",
+        "발언 존재와 발언 내용의 사실성·투자 우위·미래 수익을 구분한다. 원자료 검증 전 숫자 또는 투자상 지지 근거로 채택하지 않는다.",
+        "검색 결과 정렬·언어·삭제된 댓글·이해관계·봇 가능성에 따른 선택편향이 있으며 이를 측정하거나 개인별 성향을 추정하지 않았다.",
+        "영어 기술 커뮤니티 한 채널의 목적 표본이다. 반복·공감·댓글수·인기도를 consensus나 미래 확률로 바꾸지 않는다.",
+        "댓글을 검색하게 한 기사·게시물 제목은 댓글의 존재나 내용 사실성을 검증한 1차 자료가 아니다.",
+        "게시 시각은 선별 시 공식 item API의 Unix time과 대조한 SourceSpec 입력이다. excerpt-only replay는 API 전체 time 필드를 재검증하지 않으며 보존한 metadata·구절의 동일성만 확인한다."
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "source_id": "COM_HN_AI_VALUATION_BEAR",
+      "evidence_ids": [
+        "E_COM_HN_AI_VALUATION_BEAR"
+      ],
+      "asset_ids": [
+        "US_EQUITY",
+        "GROWTH",
+        "KR_EQUITY"
+      ],
+      "stance": "bearish_risk_hypothesis",
+      "published_at": "2026-09-13T15:35:49+00:00",
+      "retrieved_at": "2026-10-04T03:56:29.331763Z",
+      "thread_url": "https://news.ycombinator.com/item?id=49682319",
+      "summary_ko": "AI 고객의 지속 지출과 경쟁 압력이 NVIDIA의 현재 밸류에이션을 지탱하기 어려울 수 있다는 약세 가설이 한 댓글에서 관측됐다.",
+      "claims_to_verify": [
+        "최근 NVIDIA 매출·영업현금흐름·고객 집중·투자 약정은 공식 10-Q/IR에서 어떻게 나타나는가?",
+        "AI 고객의 자금조달과 지속 가능한 매출·현금흐름은 구분되어 있는가?",
+        "높은 매출이 일시적 경기순환 고점이라는 주장은 별도 시계열과 고객 수요 자료로 확인되는가?"
+      ],
+      "content_status": "unverified_narrative; quotation presence only",
+      "selection_limit": "HN Algolia 목적 검색의 관련성 결과에서 서로 다른 논리·분야를 수동 선별. 알고리즘 정렬·영어·단일 채널·누락 및 삭제 편향. 대표성·새 등장·확산 속도·반복성·시장 consensus를 추정하지 않았다."
+    },
+    {
+      "source_id": "COM_HN_AI_DEMAND_BULL",
+      "evidence_ids": [
+        "E_COM_HN_AI_DEMAND_BULL"
+      ],
+      "asset_ids": [
+        "US_EQUITY",
+        "GROWTH",
+        "KR_EQUITY"
+      ],
+      "stance": "bullish_interpretation",
+      "published_at": "2026-09-13T11:31:31+00:00",
+      "retrieved_at": "2026-10-04T03:56:29.737049Z",
+      "thread_url": "https://news.ycombinator.com/item?id=49682319",
+      "summary_ko": "AI 투자는 순환적 금융 거래 요소가 있어도 실제 성장 시장을 앞당기는 전략이며 아직 과잉투자 단계가 아니라는 강세 해석이 같은 스레드의 한 댓글에서 관측됐다.",
+      "claims_to_verify": [
+        "공식 보고 매출·현금흐름과 투자·공급 계약을 분리해 실제 사업 성장 범위를 확인할 수 있는가?",
+        "현재 성장 사실이 설비투자 회수 가능성과 미래 가격 상승을 증명하는가? (별도 가설)",
+        "업체 간 지분투자·공급계약으로 발생하는 원출처 의존과 고객 위험은 무엇인가?"
+      ],
+      "content_status": "unverified_narrative; quotation presence only",
+      "selection_limit": "HN Algolia 목적 검색의 관련성 결과에서 서로 다른 논리·분야를 수동 선별. 알고리즘 정렬·영어·단일 채널·누락 및 삭제 편향. 대표성·새 등장·확산 속도·반복성·시장 consensus를 추정하지 않았다."
+    },
+    {
+      "source_id": "COM_HN_MEMORY_CYCLE_RISK",
+      "evidence_ids": [
+        "E_COM_HN_MEMORY_CYCLE_RISK"
+      ],
+      "asset_ids": [
+        "KR_EQUITY",
+        "US_EQUITY",
+        "GROWTH"
+      ],
+      "stance": "contrarian_bearish_risk_hypothesis",
+      "published_at": "2026-10-02T07:37:14+00:00",
+      "retrieved_at": "2026-10-04T03:56:30.028122Z",
+      "thread_url": "https://news.ycombinator.com/item?id=49920932",
+      "summary_ko": "메모리 가격 상승을 따라 설비투자를 늘려도 생산능력이 완성될 때 수요가 꺾일 수 있다는 공급 사이클 반대 논리가 한 댓글에서 관측됐다.",
+      "claims_to_verify": [
+        "메모리 업체 IR의 설비투자·생산능력·HBM/일반 DRAM 제품 구성·수요 가이던스는 무엇인가?",
+        "특정 업체의 공급 부족 가이던스와 업계 전체 공급 부족 사실을 구분할 수 있는가?",
+        "과거 RAM 사이클의 일반화가 현재 HBM 수익성·공급 계약에 적용되는지는 별도 검토가 필요하다."
+      ],
+      "content_status": "unverified_narrative; quotation presence only",
+      "selection_limit": "HN Algolia 목적 검색의 관련성 결과에서 서로 다른 논리·분야를 수동 선별. 알고리즘 정렬·영어·단일 채널·누락 및 삭제 편향. 대표성·새 등장·확산 속도·반복성·시장 consensus를 추정하지 않았다."
+    },
+    {
+      "source_id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "evidence_ids": [
+        "E_COM_HN_BTC_BEAR_PERFORMANCE"
+      ],
+      "asset_ids": [
+        "BTC",
+        "US_EQUITY",
+        "GOLD"
+      ],
+      "stance": "bearish_prediction_unverified",
+      "published_at": "2026-09-17T13:37:17+00:00",
+      "retrieved_at": "2026-10-04T03:56:30.291174Z",
+      "thread_url": "https://news.ycombinator.com/item?id=49738879",
+      "summary_ko": "새 BTC 공급과 수요에 의문을 제기하며 최근 5년 S&P 500·금 대비 성과가 낮았고 가격이 더 떨어질 것이라고 주장한 한 댓글을 관측했다. 성과 주장과 전망은 미검증이다.",
+      "claims_to_verify": [
+        "댓글 작성일 2026-09-17 종료, 정확한 5년 시작일·가격시각·USD 통화·S&P500 배당 포함 총수익·금 가격 정의를 고정한 독립 비교가 있는가?",
+        "채굴 신규 공급과 매도 가능성은 현재 가격 방향을 필연적으로 증명하지 않는다. 수요·보유 변화와 대안 설명이 필요한가?",
+        "기간을 정하지 않은 BTC 약세 전망은 현재 확보 근거로 미래 사실 검증할 수 없다."
+      ],
+      "content_status": "unverified_narrative; quotation presence only",
+      "selection_limit": "HN Algolia 목적 검색의 관련성 결과에서 서로 다른 논리·분야를 수동 선별. 알고리즘 정렬·영어·단일 채널·누락 및 삭제 편향. 대표성·새 등장·확산 속도·반복성·시장 consensus를 추정하지 않았다."
+    },
+    {
+      "source_id": "COM_HN_BTC_CUSTODY_RISK",
+      "evidence_ids": [
+        "E_COM_HN_BTC_CUSTODY_RISK"
+      ],
+      "asset_ids": [
+        "BTC",
+        "ETH"
+      ],
+      "stance": "risk_focused_alternative_explanation",
+      "published_at": "2026-09-21T09:25:21+00:00",
+      "retrieved_at": "2026-10-04T03:56:30.399138Z",
+      "thread_url": "https://news.ycombinator.com/item?id=49779253",
+      "summary_ko": "거래소에서 보이는 낮은 가격이 자산 자체의 저평가 대신 인출·상대방 위험을 반영할 수 있다는 보관 구조의 반대 설명이 한 댓글에서 관측됐다.",
+      "claims_to_verify": [
+        "투자상품·거래소 청구권·직접 보관한 기초 BTC를 구분하고 법적 보관·인출 조건을 확인했는가?",
+        "MtGox 당시 가격 괴리·인출 불가의 구체적 역사 사실은 별도 1차 법원·공식 자료로 검증해야 한다.",
+        "한 과거 거래소 사례를 현재 모든 거래소나 ETH에 동일하게 적용하는 주장은 확인되지 않았다."
+      ],
+      "content_status": "unverified_narrative; quotation presence only",
+      "selection_limit": "HN Algolia 목적 검색의 관련성 결과에서 서로 다른 논리·분야를 수동 선별. 알고리즘 정렬·영어·단일 채널·누락 및 삭제 편향. 대표성·새 등장·확산 속도·반복성·시장 consensus를 추정하지 않았다."
+    }
+  ],
+  "failures": [
+    {
+      "source_id": "COM_REDDIT_ACCESS_BLOCKED",
+      "status": "policy_blocked",
+      "snapshot_id": "636a93f3b9e302fd54b84e77ec174962011284e39d6791a458cc10b47213135e",
+      "retrieved_at": "2026-10-04T03:56:30.620715Z",
+      "diagnostics": [
+        "policy: robots policy disallows this source"
+      ],
+      "robots_status": 200,
+      "robots_sha256": "41aea42110242175c7b4247f222fa95ac6caee62044af686b684785832781857",
+      "effect": "Reddit 현재 내러티브를 관측하지 못했다. 접근 실패는 약세·강세·사실 반증이 아니며 HN을 Reddit 대표 의견으로 대체하지 않는다.",
+      "body_requested": false
+    },
+    {
+      "source_id": "COM_HN_BTC_BEAR_PERFORMANCE",
+      "status": "changed",
+      "snapshot_id": "1255db3d6b049c0cab4130089ba4a773850d2435e50975ed128b1d88b0f6702a",
+      "retrieved_at": "2026-10-04T03:55:32.665711Z",
+      "reason": "초기 선택 구절은 화면용 HTML entity를 해독한 형태였고 raw JSON의 S&amp;P 문자열과 일치하지 않았다. 원문 변경을 의미하지 않는다. 현재 selector를 raw JSON에 맞춰 수정하고 새 immutable snapshot에서 일치 확인.",
+      "effect": "초기 실패 snapshot을 근거로 사용하지 않음."
+    },
+    {
+      "source_id": "COM_HN_BTC_CUSTODY_RISK",
+      "status": "changed",
+      "snapshot_id": "d703a317eac5ece58b8f0ae800a5d1f51943b9217069cfed7330fa38f0daec52",
+      "retrieved_at": "2026-10-04T03:55:33.293808Z",
+      "reason": "초기 선택 구절의 apostrophe는 raw JSON에서 HTML entity로 표현되어 추출 일치에 실패했다. 원문 변경을 의미하지 않는다. 필요한 핵심 구절로 selector를 좁히고 새 immutable snapshot에서 일치 확인.",
+      "effect": "초기 실패 snapshot을 근거로 사용하지 않음."
+    }
+  ],
+  "discovery": [
+    {
+      "api": "https://hn.algolia.com/api",
+      "method": "unauthenticated documented search GET, comment tag, created_at_i>=1789257600 (2026-09-13T00:00:00Z)",
+      "queries": [
+        "AI bubble",
+        "Nvidia valuation",
+        "Bitcoin price",
+        "Ethereum",
+        "natural gas",
+        "housing Korea"
+      ],
+      "selection": "관련 금융·사업·보관 논리를 포함한 댓글만 목적 선별; 구직·개인주소·무관 기술 댓글 제외. 검색 hit count, 순위, 작성자 프로필을 근거로 사용하지 않음.",
+      "verification": "선별한 5개 item의 실제 본문·삭제 여부·공개 시각을 공식 Firebase item API에서 확인. 날짜는 API Unix time에서 UTC로 변환했고 기사 제목을 댓글 인용으로 혼합하지 않음."
+    }
+  ],
+  "research_scope": "2026-10-04 KST 기준, 최근 3주 영어 HN 목적 표본 5개. 두 HN 스레드의 AI 사업/메모리 논리와 두 스레드의 BTC 성과/보관 논리. Reddit는 정책 차단. 원문 인용 외 한국어 요약과 검증 질문은 작성자의 분석 메모이며 확인 사실·투자 권고가 아님."
+}

@@ -1,0 +1,265 @@
+{
+  "after": {
+    "as_of": "2026-10-04T16:50:22.196338+00:00",
+    "calculation_count": 1,
+    "code_sha256": "add344a677ad37a773065974fca3b504b0acc34b136c2b677ff98b00ecc893e4",
+    "evaluated_claim_count": 11,
+    "report_sha256": "64b47106efae499c33f869da1751ec2f8005d3def03773c4dd924f2ba858ae6d",
+    "research_status": "partial",
+    "run_id": "86277279153475d3046fd72c50a857d53d569df6cecc572c74f49a7b05d9db8c",
+    "selected_modes": [
+      "asset_deep_dive"
+    ],
+    "source_spec_count": 7,
+    "synthetic": false,
+    "used_evidence_count": 13
+  },
+  "before": {
+    "as_of": "2026-10-04T15:24:37.437424+00:00",
+    "calculation_count": 1,
+    "code_sha256": "50209ddbf0197c1cb47c8098d31b38f6d496b59e441d0ce1af67599b148164b7",
+    "evaluated_claim_count": 12,
+    "report_sha256": "1b5b32e9f185e21eebc4cdcbc8b9a88007a704c7729e8e8daf76e3ebdaea087e",
+    "research_status": "partial",
+    "run_id": "e193ed21217a88e94cd057fa8434ae07d1787797c101d14a29dee4b1539db372",
+    "selected_modes": [
+      "asset_deep_dive"
+    ],
+    "source_spec_count": 5,
+    "synthetic": false,
+    "used_evidence_count": 9
+  },
+  "current_judgment": "insufficient evidence for price attractiveness; current observations improved, full ETF flow unavailable",
+  "discovery": {
+    "candidate_count": 12,
+    "community_verification": [
+      {
+        "claim_id": "DISC_COMMUNITY_CLAIM_1",
+        "counter_ids": [],
+        "evidence_ids": [],
+        "factual_claim": null,
+        "narrative_evidence_id": "E_DISC_5f0f83824c96f4e4_1",
+        "reason": "공식/제공자 자료를 대조하되 같은 기간·정의의 검증 가능한 사실 문장이 부족하다. 발언 전체는 미확인이다.",
+        "source_id": "DISC_5f0f83824c96f4e4",
+        "support_ids": [],
+        "verification": "unverified"
+      },
+      {
+        "claim_id": "DISC_COMMUNITY_CLAIM_2",
+        "counter_ids": [],
+        "evidence_ids": [],
+        "factual_claim": null,
+        "narrative_evidence_id": "E_DISC_6d8872b476132003_1",
+        "reason": "공식/제공자 자료를 대조하되 같은 기간·정의의 검증 가능한 사실 문장이 부족하다. 발언 전체는 미확인이다.",
+        "source_id": "DISC_6d8872b476132003",
+        "support_ids": [],
+        "verification": "unverified"
+      }
+    ],
+    "contract_version": "discovery_document_contracts_v1",
+    "method_version": "need_first_source_discovery_v1",
+    "needs": [
+      {
+        "canonical_preference": {
+          "primary_available": true,
+          "reason": "공식 거래소 원문을 사용했다.",
+          "selected_types": [
+            "primary"
+          ]
+        },
+        "category": "market_state",
+        "evidence_ids": [
+          "E_DISC_a21cfbc31d12348f_1",
+          "E_DISC_a21cfbc31d12348f_2"
+        ],
+        "gaps": [],
+        "id": "NEED_BTC_MARKET_STATE",
+        "status": "available"
+      },
+      {
+        "canonical_preference": {
+          "primary_available": false,
+          "reason": "같은 정의의 공식 일별 전체 집계 연결은 없다. 상품 설명·AUM은 순유입과 달라 대체하지 않았고 확인한 제공자 행만 사용한다.",
+          "selected_types": [
+            "data_provider"
+          ]
+        },
+        "category": "etf_flows",
+        "evidence_ids": [
+          "E_DISC_437602cf5629b662_1"
+        ],
+        "gaps": [
+          "최신 ETF 행에 누락 값이 있어 전체 확정 순유입은 unavailable; 잠정 합계만 확인했다."
+        ],
+        "id": "NEED_BTC_ETF_FLOWS",
+        "status": "partial"
+      },
+      {
+        "canonical_preference": {
+          "primary_available": true,
+          "reason": "공식 거래소 원문을 사용했다.",
+          "selected_types": [
+            "primary"
+          ]
+        },
+        "category": "derivatives",
+        "evidence_ids": [
+          "E_DISC_99468c78167bcecf_1",
+          "E_DISC_99468c78167bcecf_2",
+          "E_DISC_99468c78167bcecf_3"
+        ],
+        "gaps": [],
+        "id": "NEED_BTC_DERIVATIVES",
+        "status": "available"
+      },
+      {
+        "canonical_preference": {
+          "primary_available": false,
+          "reason": "공개 발언의 원문을 확인한다. 금융 사실의 원출처 지위로 올리지 않는다.",
+          "selected_types": [
+            "community"
+          ]
+        },
+        "category": "community",
+        "evidence_ids": [
+          "E_DISC_5f0f83824c96f4e4_1",
+          "E_DISC_6d8872b476132003_1"
+        ],
+        "gaps": [],
+        "id": "NEED_BTC_COMMUNITY",
+        "status": "available"
+      }
+    ],
+    "request_count": 18,
+    "selected_candidate_count": 5,
+    "selected_sources": [
+      {
+        "evidence_ids": [
+          "E_DISC_a21cfbc31d12348f_1",
+          "E_DISC_a21cfbc31d12348f_2"
+        ],
+        "freshness": {
+          "age_seconds": 10.102644,
+          "basis": "valid_as_of/observed_at/published_at",
+          "max_age_seconds": 3600,
+          "reason": "category-specific relevance window; not a reliability score",
+          "status": "fresh"
+        },
+        "need_id": "NEED_BTC_MARKET_STATE",
+        "observed_at": "2026-10-04T16:50:09.911158+00:00",
+        "provider_id": "COINBASE_MARKETS",
+        "published_at": null,
+        "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+        "source_id": "DISC_a21cfbc31d12348f",
+        "source_version": "2026-10-04T16:50:09.911158+00:00#70518e1e7b9e0ead1304fece6a9dadd606f7511b1be910ec2fb9d56b0c99a0db",
+        "url": "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+        "was_pre_registered": false
+      },
+      {
+        "evidence_ids": [
+          "E_DISC_437602cf5629b662_1"
+        ],
+        "freshness": {
+          "age_seconds": 233420.013802,
+          "basis": "valid_as_of/observed_at/published_at",
+          "max_age_seconds": 345600,
+          "reason": "category-specific relevance window; not a reliability score",
+          "status": "fresh"
+        },
+        "need_id": "NEED_BTC_ETF_FLOWS",
+        "observed_at": "2026-10-02T00:00:00+00:00",
+        "provider_id": "FARSIDE_PUBLISHER",
+        "published_at": null,
+        "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+        "source_id": "DISC_437602cf5629b662",
+        "source_version": "2026-10-02T00:00:00+00:00#98618cc4d4b6f23f5ed9852638f47e089b25c829e55eb44d9eed97d0e79b31ba",
+        "url": "https://farside.co.uk/btc/",
+        "was_pre_registered": false
+      },
+      {
+        "evidence_ids": [
+          "E_DISC_99468c78167bcecf_1",
+          "E_DISC_99468c78167bcecf_2",
+          "E_DISC_99468c78167bcecf_3"
+        ],
+        "freshness": {
+          "age_seconds": 4.043802,
+          "basis": "valid_as_of/observed_at/published_at",
+          "max_age_seconds": 3600,
+          "reason": "category-specific relevance window; not a reliability score",
+          "status": "fresh"
+        },
+        "need_id": "NEED_BTC_DERIVATIVES",
+        "observed_at": "2026-10-04T16:50:15.970000+00:00",
+        "provider_id": "DERIBIT_INSTRUMENTS",
+        "published_at": null,
+        "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+        "source_id": "DISC_99468c78167bcecf",
+        "source_version": "2026-10-04T16:50:15.970000+00:00#e4fdf39b40377a39ee245f8c55249171767ccae7b00cf12eb876708c6478e881",
+        "url": "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+        "was_pre_registered": false
+      },
+      {
+        "evidence_ids": [
+          "E_DISC_5f0f83824c96f4e4_1"
+        ],
+        "freshness": {
+          "age_seconds": 750675.013802,
+          "basis": "valid_as_of/observed_at/published_at",
+          "max_age_seconds": 1814400,
+          "reason": "category-specific relevance window; not a reliability score",
+          "status": "fresh"
+        },
+        "need_id": "NEED_BTC_COMMUNITY",
+        "observed_at": "2026-09-26T00:19:05+00:00",
+        "provider_id": "HN_DISCUSSION_SEARCH",
+        "published_at": "2026-09-26T00:19:05+00:00",
+        "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+        "source_id": "DISC_5f0f83824c96f4e4",
+        "source_version": "2026-09-26T00:19:05+00:00#4162f1ccf43add48f92093b6e725846d19d532a851d0bf5c22eba4bb27c89452",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49851823.json",
+        "was_pre_registered": false
+      },
+      {
+        "evidence_ids": [
+          "E_DISC_6d8872b476132003_1"
+        ],
+        "freshness": {
+          "age_seconds": 1149899.013802,
+          "basis": "valid_as_of/observed_at/published_at",
+          "max_age_seconds": 1814400,
+          "reason": "category-specific relevance window; not a reliability score",
+          "status": "fresh"
+        },
+        "need_id": "NEED_BTC_COMMUNITY",
+        "observed_at": "2026-09-21T09:25:21+00:00",
+        "provider_id": "HN_DISCUSSION_SEARCH",
+        "published_at": "2026-09-21T09:25:21+00:00",
+        "selection_reason": "opened source, relevant contract, current edition; prefer primary/canonical source when compatible",
+        "source_id": "DISC_6d8872b476132003",
+        "source_version": "2026-09-21T09:25:21+00:00#8b5871f5d66b451d9b829e83698f4be2cb1e99cf08d029b441a0296c05c08f8c",
+        "url": "https://hacker-news.firebaseio.com/v0/item/49785002.json",
+        "was_pre_registered": true
+      }
+    ],
+    "source_selection_record": "btc_after/discovery.json"
+  },
+  "input_manifest_sha256": {
+    "btc_after": "f7743a29dd6fc9ee1746af364a96ff6ce99ec4400d53ab508cdfa29ad1ebae3c",
+    "btc_before": "d887efbb9d4576927449aea534f23bbf20682ed9494ce074705d6fc55c6f9a24"
+  },
+  "limitations": [
+    "Two real acquisitions at different times compare evidence coverage, not market returns or causal investment performance.",
+    "SourceSpec counts are not counts of independent providers. A numeric quote verification does not validate a trading thesis.",
+    "Official exchange observations are venue/contract-specific. Farside aggregate is provider-reported, partial and not issuer-cross-verified.",
+    "Public community sample is purpose-selected, not market sentiment; its factual implications remain unverified."
+  ],
+  "newly_discovered_urls": [
+    "https://api.exchange.coinbase.com/products/BTC-USD/ticker",
+    "https://farside.co.uk/btc/",
+    "https://www.deribit.com/api/v2/public/ticker?instrument_name=BTC-PERPETUAL",
+    "https://hacker-news.firebaseio.com/v0/item/49851823.json"
+  ],
+  "question": "BTC 지금 어때?",
+  "schema_version": "source-discovery-comparison-v1"
+}

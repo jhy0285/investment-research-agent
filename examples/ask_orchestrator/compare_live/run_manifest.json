@@ -1,0 +1,4014 @@
+{
+  "artifact_sha256": {
+    "deep_review.json": "be0065a78b34406b8a4134bbda52266a11c828ae85deabe5138f47e8a8b69f6d",
+    "evidence_review.json": "b70ddaa428f173d02dc236dc5aee27c7fcf17e192ef8b754bf59321a00dea084",
+    "input.json": "58d4786f60a7fe8376c357196f10f7a0987b579aca5eb7decf2cb01312f70d2c",
+    "macro_pins.json": "3d6d700aa48f15f31355bc864e15dbaee0f4ab1562211be425512f6c2577f9de",
+    "macro_plan.json": "2603f54c75869453f12014eadd35dd3831f930fff637a717a67edf939ad3f8ee",
+    "macro_snapshots/FED_H10_KRW/732342bf0180debe581e4e0cfe2e3501ab725b621760fe1f2c994c8b91791c0a.json": "7b17c81eb52235334e9d240d4202745785257731352f6fef966b25cc820a8a3f",
+    "macro_snapshots/FED_H15_TREASURY/07375a7e58beb393347ed2d7434b5fc855936fce1be17598b45df63ed03aa9ff.json": "74b4d4cd7faef103f655133df84b1df9222642f2cd7196ce6f49fba0b6236ffd",
+    "report.md": "500b2d9f62e487d80320eafab764b7257b495e7630a1ef10724e4a42135791ec",
+    "source_pins.json": "acdb07ae40f1e6dec73eb80505e0422cf65535fbedcac1a0027e62aaa2bae6a0",
+    "source_plan.json": "5e5553202ca4a0c176a45dfc5afe453514bff65ba1528a150baaffef0ec0d44b",
+    "source_snapshots/DD_IDX_FACTSET_Q3/924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103.json": "5d7e9b772f4af04ba9dd592cd56d67cdcd983f43e604427685f6adc1a86b0707",
+    "source_snapshots/DD_IDX_SPY/9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d.json": "238c3b4ed0938c280ebe7b8a6cd90a34f75d3e202bc9072f0db374572a165c00",
+    "source_snapshots/DD_TR_H15_CURVE/312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624.json": "787bcb24345decfeb288558f4b2cd8986e9c463362e8147e6cb1470190b4d9f4",
+    "source_snapshots/MAC_H15_CASH_BILLS/67374dceaa432b8639960c234c9d72bc3ea42278c3ac2546f735cf5e5cb5224a.json": "7cfe0337a8643bba3e8ca3480cd50c68cdb03c4224f1786b7320f6201ae74bbf",
+    "source_snapshots/RA_FED_REAL_YIELD/8ac84093e278d6860cb4ebb0d9512c0c5943f98f97dd5c9b152c14fe173454a5.json": "631ee383ea6add2ce51940f8ee1bda09ef7d717ee704f164bcae60aef431dbd5",
+    "started.json": "ab1e91070b3fcd4ed9cddad4f00deaff4ef33487d5e47a364b3a23aae4563434"
+  },
+  "as_of": "2026-10-04T14:14:50.188149+00:00",
+  "calculations": [
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "id": "MET_133bfad5667dd7d2774eb6126b8cc5c13f12025a0ad4685a4e1d48be56625fbc",
+      "input_ids": [
+        "OBS_14312dd2dc628a6f4babaa38bfec610a80d5a833ab9e781907c9964292b02f21",
+        "OBS_b80c716dbf5b5add44d503b52b4a4c09c0407f974988710604f62abd9536ccff"
+      ],
+      "label": "직전 관측치 대비 변화",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "previous_change_v1",
+      "unit": "KRW_per_USD",
+      "value": "-12.9300"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND",
+        "US_EQUITY"
+      ],
+      "id": "MET_cefeb0ce70a984d7eea6cd6b085e8515d312857c45eae3e6d918b6dc34be45a3",
+      "input_ids": [
+        "OBS_472ee3cc1f327954e2f4d1b2267c289b62b6dc7b006f0385008f0b456e500b62",
+        "OBS_b06a29f2421f9e7a89037c406c98e2c250979201412af4b2d48ca108cf42fa38"
+      ],
+      "label": "직전 관측치 대비 변화",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "previous_change_v1",
+      "unit": "percentage_points",
+      "value": "-0.05"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND",
+        "US_EQUITY"
+      ],
+      "id": "MET_ba2c3502c92e417d5940db27a03ce827fc10b67af806ad423a6083586a5cb2f9",
+      "input_ids": [
+        "OBS_a2b7a448be9d0bd6d8ca6bb7c5574d4cb388590c227a318ee1a19007107dbe88",
+        "OBS_3d824c9edcd332c8a08dfa0f171d682430a28c4d4170c7ee90e90e4c7570ba38"
+      ],
+      "label": "직전 관측치 대비 변화",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "previous_change_v1",
+      "unit": "percentage_points",
+      "value": "-0.10"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND",
+        "US_EQUITY"
+      ],
+      "id": "MET_333cdbb21ac8fceff5b2a7e2b8f21ddadb2c2483735346228aa67a8062b74616",
+      "input_ids": [
+        "OBS_b06a29f2421f9e7a89037c406c98e2c250979201412af4b2d48ca108cf42fa38",
+        "OBS_3d824c9edcd332c8a08dfa0f171d682430a28c4d4170c7ee90e90e4c7570ba38"
+      ],
+      "label": "10년−2년 국채 수익률 차이",
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "method": "yield_spread_v1",
+      "unit": "percentage_points",
+      "value": "0.46"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "CALC_SP_FORWARD_EY",
+      "input_ids": [
+        "F_SP_FORWARD_12M_PE"
+      ],
+      "label": "FactSet rolling forward earnings yield",
+      "limitations": [
+        "추정 이익을 가격으로 나눈 값이며 배당·현금 지급률·실현 투자수익률이 아니다.",
+        "미래 이익의 반복성과 추정치의 정확성은 별도 검토다."
+      ],
+      "method": "earnings_yield_v1",
+      "unit": "percent",
+      "value": "5.2631578947368421052631578947368421052631578947368"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "CALC_SP_FY1_EY",
+      "input_ids": [
+        "F_SP_FY1_PE"
+      ],
+      "label": "State Street FY1 harmonic P/E 역수",
+      "limitations": [
+        "종목별 harmonic P/E의 역수이며 FactSet rolling forward earnings 정의와 동일하지 않다."
+      ],
+      "method": "earnings_yield_v1",
+      "unit": "percent",
+      "value": "4.8947626040137053352912383749388154674498286833089"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "CALC_SP_TRAILING_EY",
+      "input_ids": [
+        "F_SP_TRAILING_PE"
+      ],
+      "label": "State Street trailing P/E 역수",
+      "limitations": [
+        "과거 회계 이익의 가격 대비 값이다. 미래 현금 수익률이나 저평가 판정이 아니다."
+      ],
+      "method": "earnings_yield_v1",
+      "unit": "percent",
+      "value": "4.0617384240454914703493095044679122664500406173842"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "CALC_SP_FORWARD_10Y_GAP",
+      "input_ids": [
+        "F_SP_FORWARD_12M_PE",
+        "F_TREASURY_10Y_SEP30"
+      ],
+      "label": "rolling forward earnings yield 차감 같은 날 십 년 Treasury",
+      "limitations": [
+        "단순 정의상 차이이며 Equity Risk Premium·미래 초과수익·배분 기준이 아니다.",
+        "이익 성장·유보와 재투자·부채·세금·불확실성·회계 질이 Treasury 약정 현금흐름과 다르다."
+      ],
+      "method": "descriptive_yield_gap_v1",
+      "unit": "percentage_points",
+      "value": "-0.0268421052631578947368421052631578947368421052632"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "id": "CALC_SP_FY1_10Y_GAP",
+      "input_ids": [
+        "F_SP_FY1_PE",
+        "F_TREASURY_10Y"
+      ],
+      "label": "FY1 harmonic P/E 역수 차감 같은 날 십 년 Treasury",
+      "limitations": [
+        "동일 날짜에만 비교한 설명용 차이다. 주식 총수익률이나 정의된 model-implied ERP가 아니다.",
+        "다른 forward EPS 정의의 차이를 같은 시점의 추세로 해석하지 않는다."
+      ],
+      "method": "descriptive_yield_gap_v1",
+      "unit": "percentage_points",
+      "value": "-0.3452373959862946647087616250611845325501713166911"
+    }
+  ],
+  "claims_evaluated": [
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_SP_FORWARD_12M_PE",
+        "F_SP_FY1_PE",
+        "F_SP_TRAILING_PE",
+        "F_TREASURY_3M",
+        "F_TREASURY_2Y",
+        "F_TREASURY_5Y",
+        "F_TREASURY_10Y",
+        "F_TREASURY_30Y",
+        "F_TREASURY_10Y_SEP30"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_conclusions_0",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_SP_FORWARD_12M_PE",
+        "F_SP_FY1_PE",
+        "F_SP_TRAILING_PE",
+        "F_TREASURY_3M",
+        "F_TREASURY_2Y",
+        "F_TREASURY_5Y",
+        "F_TREASURY_10Y",
+        "F_TREASURY_30Y",
+        "F_TREASURY_10Y_SEP30"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_conclusions_1",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_SP_FORWARD_12M_PE",
+        "F_SP_FY1_PE",
+        "F_SP_TRAILING_PE",
+        "F_TREASURY_3M",
+        "F_TREASURY_2Y",
+        "F_TREASURY_5Y",
+        "F_TREASURY_10Y",
+        "F_TREASURY_30Y",
+        "F_TREASURY_10Y_SEP30"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_conclusions_2",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_SP_FORWARD_12M_PE",
+        "F_SP_FY1_PE",
+        "F_SP_TRAILING_PE",
+        "F_TREASURY_3M",
+        "F_TREASURY_2Y",
+        "F_TREASURY_5Y",
+        "F_TREASURY_10Y",
+        "F_TREASURY_30Y",
+        "F_TREASURY_10Y_SEP30"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_denominator_0",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "F_SP_FORWARD_12M_PE",
+        "F_SP_FY1_PE",
+        "F_SP_TRAILING_PE",
+        "F_TREASURY_3M",
+        "F_TREASURY_2Y",
+        "F_TREASURY_5Y",
+        "F_TREASURY_10Y",
+        "F_TREASURY_30Y",
+        "F_TREASURY_10Y_SEP30"
+      ],
+      "counter_ids": [],
+      "id": "DEEP_DRAFT_treasury_0",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "경제적 해석은 명시한 근거에 연결한 연구 초안이다. 자료 대조와 자동 진실 판정은 다르다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·가격 조건을 확인하면 재검토한다.",
+      "support_ids": [],
+      "text": "확보한 수치의 정의·기간·시점을 확인하며 기대 이익과 국채 대안을 구분한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE"
+      ],
+      "counter_ids": [],
+      "id": "ASK_FINDING_US_REVISIONS",
+      "interpretation": {
+        "rationale": "원문·정의가 일치한 좁은 해석 초안이다. 투자 가설의 의미 검토 완료가 아니다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "원문 존재와 경제적 해석의 사실 검증은 구분한다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "같은 정의의 consensus·실제 실적·후속 수정 패널과 sector별 실적을 확인한다.",
+      "support_ids": [],
+      "text": "FactSet은 분기 중 EPS(주당 이익) 예상치가 상향되었고 긍정적 기업 가이던스가 많았다고 보고한다. forward P/E의 분모가 최근 계속 낮아진다는 가설을 이 판본은 지지하지 않는다. 상향된 예상치의 실현 가능성은 별도 검증 대상이다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_PE_METHOD"
+      ],
+      "counter_ids": [],
+      "id": "ASK_FINDING_US_VALUATION",
+      "interpretation": {
+        "rationale": "원문·정의가 일치한 좁은 해석 초안이다. 투자 가설의 의미 검토 완료가 아니다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "원문 존재와 경제적 해석의 사실 검증은 구분한다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "동일 날짜·동일 정의의 배수와 이익 수정·실제 현금 회수를 확인한다.",
+      "support_ids": [],
+      "text": "FactSet의 forward 기간과 SPY의 FY1(다음 회계연도) 가중 조화평균 P/E는 정의가 다르다. 더 낮은 숫자를 골라 저평가라고 결론낼 수 없고, 예상 이익이 실제로 실현되는지와 현재 국채 대안을 함께 봐야 한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_SPY_HOLDINGS"
+      ],
+      "counter_ids": [],
+      "id": "ASK_FINDING_US_CONCENTRATION",
+      "interpretation": {
+        "rationale": "원문·정의가 일치한 좁은 해석 초안이다. 투자 가설의 의미 검토 완료가 아니다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "원문 존재와 경제적 해석의 사실 검증은 구분한다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "시가총액·이익 기여·동일가중 성과와 사용자의 다른 보유에서 겹치는 노출을 확인한다.",
+      "support_ids": [],
+      "text": "발행사 보유구성은 지수 안의 대형 기술기업 노출을 보여준다. 지수 전체를 보유해도 개별 기업·AI 투자 사이클에 대한 경제적 노출이 클 수 있다. 집중 자체를 나쁘다고 단정하지 않는다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [
+        "E_CASH_BILLS",
+        "E_CASH_BASIS"
+      ],
+      "counter_ids": [],
+      "id": "ASK_FINDING_BILL_BASIS",
+      "interpretation": {
+        "rationale": "원문·정의가 일치한 좁은 해석 초안이다. 투자 가설의 의미 검토 완료가 아니다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "원문 존재와 경제적 해석의 사실 검증은 구분한다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "실제 상품의 가격·만기·수익률 정의와 원화 자금 필요 시점을 확인한다.",
+      "support_ids": [],
+      "text": "단기 Treasury bill 표는 할인 방식과 연율 기준을 명시한다. 이 표의 숫자를 투자자가 실제 받을 YTM(만기까지 보유한 거래 수익률)이나 한국 예금 금리로 직접 바꿔 읽으면 안 된다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "context_ids": [
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "counter_ids": [],
+      "id": "ASK_FINDING_TREASURY_CURVE",
+      "interpretation": {
+        "rationale": "원문·정의가 일치한 좁은 해석 초안이다. 투자 가설의 의미 검토 완료가 아니다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "E_DD_TR_CURVE: 자산 범위 불일치",
+        "E_DD_TR_METHOD: 자산 범위 불일치",
+        "원문 존재와 경제적 해석의 사실 검증은 구분한다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "실제 채권·ETF의 duration(금리 변화에 따른 가격 민감도)·비용·보유 기간을 확인한다.",
+      "support_ids": [],
+      "text": "H.15 constant maturity(일정 만기의 기준 수익률)는 수익률곡선에서 읽은 비교 기준이다. 실행 가능한 특정 채권의 가격과 YTM은 별도이며, 장기 국채의 낮은 신용 위험이 낮은 매도 가격 위험을 뜻하지 않는다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_VALUATION",
+        "E_DD_IDX_SPY_HOLDINGS",
+        "E_DD_IDX_SPY_PE_METHOD",
+        "E_DD_TR_DATES",
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_US_EQUITY",
+      "interpretation": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다.",
+        "주장 의미에 대한 명시적 검토가 없어 확인 상태로 승격하지 않았다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "support_ids": [],
+      "text": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [
+        "E_CASH_DATES",
+        "E_CASH_BILLS",
+        "E_CASH_BASIS",
+        "EV_RA_REAL_YIELD_DATES",
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION"
+      ],
+      "counter_ids": [],
+      "id": "ASK_THESIS_SHORT_BOND",
+      "interpretation": {
+        "rationale": "가설의 사실 확인과 가격 매력 판단은 아직 완료되지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "배경 원문을 가설의 증명으로 승격하지 않는다.",
+        "주장 의미에 대한 명시적 검토가 없어 확인 상태로 승격하지 않았다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "만기와 자금 필요 시점·환율 노출이 맞지 않는가?",
+      "support_ids": [],
+      "text": "확인한 yield와 자금 사용 시점이 투자 목적에 맞는가?",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_133bfad5667dd7d2774eb6126b8cc5c13f12025a0ad4685a4e1d48be56625fbc",
+      "interpretation": {
+        "rationale": "previous_change_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_14312dd2dc628a6f4babaa38bfec610a80d5a833ab9e781907c9964292b02f21",
+        "OBS_b80c716dbf5b5add44d503b52b4a4c09c0407f974988710604f62abd9536ccff"
+      ],
+      "text": "직전 관측치 대비 변화: -12.9300 KRW_per_USD",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_cefeb0ce70a984d7eea6cd6b085e8515d312857c45eae3e6d918b6dc34be45a3",
+      "interpretation": {
+        "rationale": "previous_change_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_472ee3cc1f327954e2f4d1b2267c289b62b6dc7b006f0385008f0b456e500b62",
+        "OBS_b06a29f2421f9e7a89037c406c98e2c250979201412af4b2d48ca108cf42fa38"
+      ],
+      "text": "직전 관측치 대비 변화: -0.05 percentage_points",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_ba2c3502c92e417d5940db27a03ce827fc10b67af806ad423a6083586a5cb2f9",
+      "interpretation": {
+        "rationale": "previous_change_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_a2b7a448be9d0bd6d8ca6bb7c5574d4cb388590c227a318ee1a19007107dbe88",
+        "OBS_3d824c9edcd332c8a08dfa0f171d682430a28c4d4170c7ee90e90e4c7570ba38"
+      ],
+      "text": "직전 관측치 대비 변화: -0.10 percentage_points",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "CLAIM_MET_333cdbb21ac8fceff5b2a7e2b8f21ddadb2c2483735346228aa67a8062b74616",
+      "interpretation": {
+        "rationale": "yield_spread_v1; 좁은 계산 사실만 확인",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_transform_v1",
+        "status": "reviewed"
+      },
+      "limitations": [
+        "Decimal precision 50; ROUND_HALF_EVEN",
+        "결측 보간/forward-fill 없음"
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "원자료·정의·공개·판본이 달라지면 같은 규칙으로 다시 계산한다.",
+      "support_ids": [
+        "OBS_b06a29f2421f9e7a89037c406c98e2c250979201412af4b2d48ca108cf42fa38",
+        "OBS_3d824c9edcd332c8a08dfa0f171d682430a28c4d4170c7ee90e90e4c7570ba38"
+      ],
+      "text": "10년−2년 국채 수익률 차이: 0.46 percentage_points",
+      "verification": "supported_within_scope"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_0",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_1",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_2",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_3",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_4",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_5",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_6",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_7",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_8",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_9",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_10",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "context_ids": [],
+      "counter_ids": [],
+      "id": "OPPORTUNITY_DRAFT_11",
+      "interpretation": {
+        "rationale": "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "limitations": [
+        "연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다."
+      ],
+      "narrative_evidence_id": null,
+      "recheck": "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+      "support_ids": [],
+      "text": "후속 연구의 원문과 비교 조건을 보존한다.",
+      "verification": "unverified"
+    }
+  ],
+  "code_sha256": "50209ddbf0197c1cb47c8098d31b38f6d496b59e441d0ce1af67599b148164b7",
+  "conclusion": "insufficient_evidence",
+  "evidence_used": [
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "currency": null,
+      "id": "E_CASH_DATES",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H15 selected rates DATES",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+          "currency": "USD",
+          "measure": "H15_date_columns_and_effective_federal_funds_rate",
+          "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+          "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+          "unit": "date_columns_and_EFFR_percent"
+        },
+        "excerpt_id": "DATES",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "67374dceaa432b8639960c234c9d72bc3ea42278c3ac2546f735cf5e5cb5224a"
+      },
+      "source_id": "MAC_H15_CASH_BILLS",
+      "text": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1 Federal funds (effective) 1 2 3 3.88 3.88 3.88 3.88 3.88",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "currency": null,
+      "id": "E_CASH_BILLS",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H15 selected rates BILLS",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+          "currency": "USD",
+          "measure": "H15_secondary_Treasury_bills_discount_basis",
+          "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+          "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+          "unit": "annualized_percent_discount_basis"
+        },
+        "excerpt_id": "BILLS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "67374dceaa432b8639960c234c9d72bc3ea42278c3ac2546f735cf5e5cb5224a"
+      },
+      "source_id": "MAC_H15_CASH_BILLS",
+      "text": "U.S. government securities Treasury bills (secondary market) 3 4 4-week 3.90 3.89 3.88 3.85 3.89 3-month 4.08 4.10 4.07 4.03 4.00 6-month 4.21 4.27 4.22 4.19 4.13 1-year 4.28 4.34 4.37 4.33 4.24",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "currency": null,
+      "id": "E_CASH_BASIS",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "금리열은 날짜header순서의관측, Treasury bills는할인기준. 정책범위·투자기준constant-maturity·KRW예금·실현성과와직접동일시하지않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H15 selected rates BASIS",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "discount basis and 360-day conventions; not constant maturity investment yield, KRW deposit rate or realized return",
+          "currency": "USD",
+          "measure": "H15_secondary_Treasury_bills_discount_basis",
+          "period": "five daily observations 2026-09-25 through 2026-10-01 in displayed column order",
+          "scope": "U.S. H15 Treasury bill benchmark and money-market backdrop only",
+          "unit": "annualized_percent_discount_basis"
+        },
+        "excerpt_id": "BASIS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "67374dceaa432b8639960c234c9d72bc3ea42278c3ac2546f735cf5e5cb5224a"
+      },
+      "source_id": "MAC_H15_CASH_BILLS",
+      "text": "3. Annualized using a 360-day year or bank interest. 4. On a discount basis.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "currency": null,
+      "id": "EV_RA_REAL_YIELD_DATES",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Release date Oct 2 with observations through Oct 1; exact initial publication vintage/revision history unknown.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H.15 release date and daily column headers",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "not_applicable",
+          "currency": null,
+          "measure": "H15_publication_and_observation_dates",
+          "period": "2026-09-25_to_2026-10-01",
+          "scope": "H15_release_2026-10-02_daily_table",
+          "unit": "calendar_date"
+        },
+        "excerpt_id": "RA_REAL_YIELD_DATES",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "8ac84093e278d6860cb4ebb0d9512c0c5943f98f97dd5c9b152c14fe173454a5"
+      },
+      "source_id": "RA_FED_REAL_YIELD",
+      "text": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "currency": null,
+      "id": "EV_RA_REAL_YIELDS",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "10Y TIPS Oct 1 is 2.88% per annum from final date column; positive real yield is opportunity-cost context only. No gold price, central-bank gold demand, dollar index or empirical gold-return relationship measured.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "Treasury constant maturities: Inflation indexed rows; 10-year latest Oct 1 column",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "Treasury_inflation_indexed_constant_maturity_market_bid_yield",
+          "currency": "USD",
+          "measure": "US_TIPS_10Y_constant_maturity_yield",
+          "period": "2026-09-25_to_2026-10-01",
+          "scope": "US_Treasury_TIPS_interpolated_curve_not_policy_rate_not_gold_expected_return",
+          "unit": "percent_per_annum"
+        },
+        "excerpt_id": "RA_REAL_YIELDS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "8ac84093e278d6860cb4ebb0d9512c0c5943f98f97dd5c9b152c14fe173454a5"
+      },
+      "source_id": "RA_FED_REAL_YIELD",
+      "text": "Inflation indexed 10 5-year 2.64 2.73 2.72 2.73 2.65 7-year 2.73 2.80 2.80 2.82 2.76 10-year 2.83 2.90 2.91 2.93 2.88",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "currency": null,
+      "id": "EV_RA_REAL_YIELD_DEFINITION",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "Curve-based real yield is not guaranteed realized return; purchase price, holding horizon, inflation adjustment, costs, tax and KRW FX exposure differ.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H.15 footnote 10",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "not_applicable",
+          "currency": "USD",
+          "measure": "TIPS_constant_maturity_yield_definition",
+          "period": "current_H15_method",
+          "scope": "U.S._Treasury_inflation_protected_constant_maturity_series",
+          "unit": "text"
+        },
+        "excerpt_id": "RA_REAL_YIELD_DEFINITION",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "8ac84093e278d6860cb4ebb0d9512c0c5943f98f97dd5c9b152c14fe173454a5"
+      },
+      "source_id": "RA_FED_REAL_YIELD",
+      "text": "Yields on Treasury inflation protected securities (TIPS) adjusted to constant maturities. Source: U.S. Treasury.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_FACTSET_Q3_REVISIONS",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "Analyst estimate revisions paragraph",
+      "observed_at": "2026-10-02",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "Quarter-specific consensus EPS estimate revision; provider averages, not realized EPS growth",
+          "currency": "USD",
+          "measure": "Quarterly EPS estimate revision",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+          "unit": "percent"
+        },
+        "excerpt_id": "REVISIONS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "On a per-share basis, estimated earnings for the third quarter increased by 1.4% from June 30 to September 30. In a typical quarter, analysts usually lower earnings estimates during the quarter. Over the past five years (20 quarters), earnings expectations have fallen by 2.2% on average during the quarter. Over the past ten years, (40 quarters), earnings expectations have fallen by 2.5% on average during the quarter.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "Positive and negative guidance population paragraph",
+      "observed_at": "2026-10-02",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+          "currency": "USD",
+          "measure": "Company EPS guidance population",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+          "unit": "counts and percent"
+        },
+        "excerpt_id": "GUIDANCE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "At this point in time, 116 companies in the index have issued EPS guidance for Q3 2026. Of these companies, 44 have issued negative EPS guidance and 72 have issued positive EPS guidance. The number of companies issuing positive EPS guidance is well above the 5-year average of 42 and well above the 10-year average of 40. The percentage of S&P 500 companies issuing positive EPS guidance for Q3 2026 is 62% (72 out of 116), which is also well above the 5-year average of 40% and well above the 10-year average of 41%. Due to the upward revisions to earnings estimates by analysts and the positive EPS guidance issued by companies, the estimated (year-over-year) earnings growth rate for Q3 2026 is higher today relative to the start of the third quarter. As of today, the S&P 500 is expected to report (year-over-year) earnings growth of 29.5%, compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-10-02",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "Consensus quarterly earnings/revenue growth and rolling forward P/E",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "S&P 500, provider FactSet; quarterly reporting population and vintage as described, not audited total future index income",
+          "unit": "percent and ratio"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "As of today, the S&P 500 is expected to report (year-over-year) revenue growth of 12.3%, compared to the expectations for revenue growth of 10.9% on June 30. If 12.3% is the actual revenue growth rate for the quarter, it will mark the third consecutive quarter of double-digit revenue growth for the index. All eleven sectors are projected to report year-over-year growth in revenues, led by the Information Technology, Energy, and Communication Services sectors. For Q4 2026, analysts are calling for earnings growth of 27.6%. For CY 2026, analysts are predicting (year-over-year) earnings growth of 32.4%. The forward 12-month P/E ratio is 19.0 (based on Wednesday’s closing price and forward EPS), which is below the 5-year average (19.8) and below the 10-year average (19.1). This P/E ratio is also below the forward P/E ratio of 20.4 recorded at the end of the second quarter (June 30).",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_SPY_VALUATION",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "Index characteristics row",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+          "currency": "USD",
+          "measure": "Index trailing P/E and FY1 harmonic P/E",
+          "period": "2026-10-01",
+          "scope": "S&P 500 characteristics shown by State Street on SPY page",
+          "unit": "ratio and percent"
+        },
+        "excerpt_id": "VALUATION",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Index Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth 22.46% Number of Holdings 503 Price/Cash Flow 18.25 Price/Earnings 24.62 Price/Earnings Ratio FY1 20.43",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_SPY_HOLDINGS",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "Index top-security market-cap weights",
+          "period": "2026-10-01",
+          "scope": "S&P 500 top10 securities; Alphabet dual classes are one issuer",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Download All Holdings: Daily Index Top Holdings as of Oct 01 2026 Name Weight NVIDIA Corporation 8.46% Apple Inc. 7.30% Microsoft Corporation 5.77% Amazon.com Inc. 3.69% Alphabet Inc. Class A 3.01% Broadcom Inc. 2.48% Meta Platforms Inc Class A 2.42% Alphabet Inc. Class C 2.41% Micron Technology Inc. 1.88% Advanced Micro Devices Inc. 1.52%",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_IDX_SPY_PE_METHOD",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "FY1 PE methodology",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "Forecasted ONE-YEAR earnings per share; negative/positive outliers included; not rolling forward12mo aggregate index calculation",
+          "currency": "USD",
+          "measure": "FY1 weighted harmonic P/E method",
+          "period": "2026-10-01",
+          "scope": "SPY underlying holdings methodology explained on product page",
+          "unit": "ratio definition"
+        },
+        "excerpt_id": "PE_METHOD",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Price/Earnings Ratio FY1 ﻿Price/Earnings Ratio FY1 The weighted harmonic average of current share price divided by the forecasted one year earnings per share for each security in the fund. Negative and positive outliers are included in the calculation. 20.43",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_TR_DATES",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H15 DATES visible table/text",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "H15_date_column_order",
+          "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+          "scope": "H15 current release latest observation identity",
+          "unit": "dates"
+        },
+        "excerpt_id": "DATES",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "Release date: October 2, 2026 Selected Interest Rates Yields in percent per annum Instruments 2026 Sep 25 2026 Sep 28 2026 Sep 29 2026 Sep 30 2026 Oct 1",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_TR_CURVE",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H15 CURVE visible table/text",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury_nominal_constant_maturity_curve",
+          "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+          "scope": "U.S. Treasury nominal constant-maturity yield curve, every tenor same displayed observation date",
+          "unit": "annual_percent"
+        },
+        "excerpt_id": "CURVE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "Treasury constant maturities Nominal 9 1-month 4.04 4.04 4.04 4.02 4.06 3-month 4.24 4.28 4.25 4.20 4.17 6-month 4.33 4.41 4.36 4.33 4.27 1-year 4.50 4.59 4.58 4.54 4.44 2-year 4.81 4.92 4.89 4.88 4.78 3-year 4.94 5.01 4.98 5.00 4.91 5-year 4.98 5.06 5.06 5.09 5.01 7-year 5.06 5.15 5.16 5.19 5.12 10-year 5.17 5.24 5.26 5.29 5.24 20-year 5.54 5.60 5.64 5.68 5.64 30-year 5.49 5.56 5.59 5.64 5.61",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": null,
+      "id": "E_DD_TR_METHOD",
+      "interpretation": {
+        "rationale": "원문 의미의 해석 검토는 아직 수행하지 않았다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다."
+      ],
+      "locator": "H15 METHOD visible table/text",
+      "observed_at": "2026-10-01",
+      "period": null,
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury_constant_maturity_interpolation",
+          "period": "2026-10-01 latest displayed observation, released 2026-10-02; full columns 2026-09-25, 2026-09-28, 2026-09-29, 2026-09-30, 2026-10-01",
+          "scope": "Interpolation of closing bid yield curve; Treasury nominal securities, not a tradable single-security quote",
+          "unit": "source_method_definition"
+        },
+        "excerpt_id": "METHOD",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "Yields on Treasury nominal securities at “constant maturity” are interpolated by the U.S. Treasury from the daily yield curve for non-inflation-indexed Treasury securities. This curve, which relates the yield on a security to its time to maturity, is based on the closing market bid yields on actively traded Treasury securities in the over-the-counter market. These market yields are calculated from composites of quotations obtained by the Federal Reserve Bank of New York. The constant maturity yield values are read from the yield curve at fixed maturities, currently 1, 3, and 6 months and 1, 2, 3, 5, 7, 10, 20, and 30 years. This method provides a yield for a 10-year maturity, for example, even if no outstanding security has exactly 10 years remaining to maturity.",
+      "unit": null,
+      "value": null,
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "currency": "KRW",
+      "id": "OBS_14312dd2dc628a6f4babaa38bfec610a80d5a833ab9e781907c9964292b02f21",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 255, column RXI_N.B.KO, Time Period=2026-09-24",
+      "observed_at": "2026-09-24",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "KRW",
+          "measure": "USD_KRW_NOON_REFERENCE",
+          "period": "daily",
+          "scope": "South Korean won per U.S. dollar; noon New York buying/reference rate. An increase means more KRW per USD, not a domestic executed FX rate or a realized foreign-asset return.",
+          "unit": "KRW_per_USD"
+        },
+        "excerpt_id": "OBS_14312dd2dc628a6f4babaa38bfec610a80d5a833ab9e781907c9964292b02f21",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "732342bf0180debe581e4e0cfe2e3501ab725b621760fe1f2c994c8b91791c0a"
+      },
+      "source_id": "FED_H10_KRW",
+      "text": "원/달러 뉴욕 정오 기준환율; observation=2026-09-24; value=1369.4400 KRW_per_USD",
+      "unit": "KRW_per_USD",
+      "value": "1369.4400",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND",
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_3d824c9edcd332c8a08dfa0f171d682430a28c4d4170c7ee90e90e4c7570ba38",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 16899, column RIFLGFCY02_N.B, Time Period=2026-10-01",
+      "observed_at": "2026-10-01",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_2Y",
+          "period": "daily",
+          "scope": "2-year constant-maturity Treasury yield, quoted on investment basis, annual percent; not policy rate, real yield or realized bond return. CSV Currency NA means no currency amount; underlying Treasury exposure is USD.",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_3d824c9edcd332c8a08dfa0f171d682430a28c4d4170c7ee90e90e4c7570ba38",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "07375a7e58beb393347ed2d7434b5fc855936fce1be17598b45df63ed03aa9ff"
+      },
+      "source_id": "FED_H15_TREASURY",
+      "text": "미국 국채 2년 명목 시장금리; observation=2026-10-01; value=4.78 percent",
+      "unit": "percent",
+      "value": "4.78",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND",
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_472ee3cc1f327954e2f4d1b2267c289b62b6dc7b006f0385008f0b456e500b62",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 16898, column RIFLGFCY10_N.B, Time Period=2026-09-30",
+      "observed_at": "2026-09-30",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_10Y",
+          "period": "daily",
+          "scope": "10-year constant-maturity Treasury yield, quoted on investment basis, annual percent; not policy rate, real yield or realized bond return. CSV Currency NA means no currency amount; underlying Treasury exposure is USD.",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_472ee3cc1f327954e2f4d1b2267c289b62b6dc7b006f0385008f0b456e500b62",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "07375a7e58beb393347ed2d7434b5fc855936fce1be17598b45df63ed03aa9ff"
+      },
+      "source_id": "FED_H15_TREASURY",
+      "text": "미국 국채 10년 명목 시장금리; observation=2026-09-30; value=5.29 percent",
+      "unit": "percent",
+      "value": "5.29",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND",
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_a2b7a448be9d0bd6d8ca6bb7c5574d4cb388590c227a318ee1a19007107dbe88",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 16898, column RIFLGFCY02_N.B, Time Period=2026-09-30",
+      "observed_at": "2026-09-30",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_2Y",
+          "period": "daily",
+          "scope": "2-year constant-maturity Treasury yield, quoted on investment basis, annual percent; not policy rate, real yield or realized bond return. CSV Currency NA means no currency amount; underlying Treasury exposure is USD.",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_a2b7a448be9d0bd6d8ca6bb7c5574d4cb388590c227a318ee1a19007107dbe88",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "07375a7e58beb393347ed2d7434b5fc855936fce1be17598b45df63ed03aa9ff"
+      },
+      "source_id": "FED_H15_TREASURY",
+      "text": "미국 국채 2년 명목 시장금리; observation=2026-09-30; value=4.88 percent",
+      "unit": "percent",
+      "value": "4.88",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "SHORT_BOND",
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "OBS_b06a29f2421f9e7a89037c406c98e2c250979201412af4b2d48ca108cf42fa38",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 16899, column RIFLGFCY10_N.B, Time Period=2026-10-01",
+      "observed_at": "2026-10-01",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "USD",
+          "measure": "US_TREASURY_NOMINAL_10Y",
+          "period": "daily",
+          "scope": "10-year constant-maturity Treasury yield, quoted on investment basis, annual percent; not policy rate, real yield or realized bond return. CSV Currency NA means no currency amount; underlying Treasury exposure is USD.",
+          "unit": "percent"
+        },
+        "excerpt_id": "OBS_b06a29f2421f9e7a89037c406c98e2c250979201412af4b2d48ca108cf42fa38",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "07375a7e58beb393347ed2d7434b5fc855936fce1be17598b45df63ed03aa9ff"
+      },
+      "source_id": "FED_H15_TREASURY",
+      "text": "미국 국채 10년 명목 시장금리; observation=2026-10-01; value=5.24 percent",
+      "unit": "percent",
+      "value": "5.24",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "currency": "KRW",
+      "id": "OBS_b80c716dbf5b5add44d503b52b4a4c09c0407f974988710604f62abd9536ccff",
+      "interpretation": {
+        "rationale": "공식 필드·정의·수치의 결정적 파싱 기록. 사람의 투자 해석 검토나 의미 전체의 자동 검증이 아니다.",
+        "reviewed_at": "2026-10-04",
+        "reviewer": "deterministic_macro_parser_v1",
+        "status": "reviewed"
+      },
+      "kind": "observed_fact",
+      "limitations": [
+        "원관측의 수치 확인이며 수익률·인과·투자 매력의 확인이 아니다.",
+        "전체 개정 이력은 미확인이다."
+      ],
+      "locator": "CSV row 256, column RXI_N.B.KO, Time Period=2026-09-25",
+      "observed_at": "2026-09-25",
+      "period": "daily",
+      "provenance": {
+        "definition": {
+          "adjustment": "not_seasonally_adjusted",
+          "currency": "KRW",
+          "measure": "USD_KRW_NOON_REFERENCE",
+          "period": "daily",
+          "scope": "South Korean won per U.S. dollar; noon New York buying/reference rate. An increase means more KRW per USD, not a domestic executed FX rate or a realized foreign-asset return.",
+          "unit": "KRW_per_USD"
+        },
+        "excerpt_id": "OBS_b80c716dbf5b5add44d503b52b4a4c09c0407f974988710604f62abd9536ccff",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "732342bf0180debe581e4e0cfe2e3501ab725b621760fe1f2c994c8b91791c0a"
+      },
+      "source_id": "FED_H10_KRW",
+      "text": "원/달러 뉴욕 정오 기준환율; observation=2026-09-25; value=1356.5100 KRW_per_USD",
+      "unit": "KRW_per_USD",
+      "value": "1356.5100",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_SP_FORWARD_12M_PE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-09-30",
+      "period": "Rolling next twelve months EPS; price close2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "S&P 500 rolling forward십이 개월 P/E",
+          "period": "Rolling next twelve months EPS; price close2026-09-30",
+          "scope": "SP500",
+          "unit": "ratio"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "The forward 12-month P/E ratio is 19.0 (based on Wednesday’s closing price and forward EPS)",
+      "unit": "ratio",
+      "value": "19.0",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_SP_PE_AVG5",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-09-30",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "동일 provider forward P/E 오 년 평균",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "ratio"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "which is below the 5-year average (19.8) and below the 10-year average (19.1).",
+      "unit": "ratio",
+      "value": "19.8",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_SP_PE_AVG10",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-09-30",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "동일 provider forward P/E 십 년 평균",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "ratio"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "which is below the 5-year average (19.8) and below the 10-year average (19.1).",
+      "unit": "ratio",
+      "value": "19.1",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_SP_PE_JUN30",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-06-30",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "S&P 500 이전 분기말 rolling forward P/E",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "ratio"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "This P/E ratio is also below the forward P/E ratio of 20.4 recorded at the end of the second quarter (June 30).",
+      "unit": "ratio",
+      "value": "20.4",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_SP_FY1_PE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index characteristics row",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+          "currency": "USD",
+          "measure": "State Street S&P 500 FY1 weighted harmonic P/E",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "ratio"
+        },
+        "excerpt_id": "VALUATION",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Index Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth 22.46% Number of Holdings 503 Price/Cash Flow 18.25 Price/Earnings 24.62 Price/Earnings Ratio FY1 20.43",
+      "unit": "ratio",
+      "value": "20.43",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_SP_TRAILING_PE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index characteristics row",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Trailing last12mo PE and FY1 weighted harmonic estimate PE are distinct; NOT FactSet rolling forward12mo PE",
+          "currency": "USD",
+          "measure": "State Street S&P 500 trailing P/E",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "ratio"
+        },
+        "excerpt_id": "VALUATION",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Index Characteristics as of Oct 01 2026 Est. 3-5 Year EPS Growth 22.46% Number of Holdings 503 Price/Cash Flow 18.25 Price/Earnings 24.62 Price/Earnings Ratio FY1 20.43",
+      "unit": "ratio",
+      "value": "24.62",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_EPS_REVISION",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Analyst estimate revisions paragraph",
+      "observed_at": "2026-09-30",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Quarter-specific consensus EPS estimate revision; provider averages, not realized EPS growth",
+          "currency": "USD",
+          "measure": "셋째분기 EPS 예상치 분기 중 상향폭",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "REVISIONS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "estimated earnings for the third quarter increased by 1.4% from June 30 to September 30.",
+      "unit": "percent",
+      "value": "1.4",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_EARNINGS_GROWTH",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Positive and negative guidance population paragraph",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+          "currency": "USD",
+          "measure": "셋째분기 현재 예상 earnings growth",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "GUIDANCE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "the S&P 500 is expected to report (year-over-year) earnings growth of 29.5%, compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30.",
+      "unit": "percent",
+      "value": "29.5",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_OLD_GROWTH",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Positive and negative guidance population paragraph",
+      "observed_at": "2026-06-30",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+          "currency": "USD",
+          "measure": "셋째분기 시작 당시 예상 earnings growth",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "GUIDANCE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "compared to the estimated (year-over-year) earnings growth rate of 26.7% on June 30.",
+      "unit": "percent",
+      "value": "26.7",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_REVENUE_GROWTH",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "셋째분기 현재 예상 revenue growth",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "the S&P 500 is expected to report (year-over-year) revenue growth of 12.3%, compared to the expectations for revenue growth of 10.9% on June 30.",
+      "unit": "percent",
+      "value": "12.3",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_OLD_REVENUE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-06-30",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "셋째분기 시작 당시 예상 revenue growth",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "compared to the expectations for revenue growth of 10.9% on June 30.",
+      "unit": "percent",
+      "value": "10.9",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q4_EARNINGS_GROWTH",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "넷째분기 예상 earnings growth",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "For Q4 2026, analysts are calling for earnings growth of 27.6%.",
+      "unit": "percent",
+      "value": "27.6",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_CY_EARNINGS_GROWTH",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Expected earnings/revenue and forward valuation paragraphs",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Forward earnings are estimates, valuation based on Wednesday 2026-09-30 close, rolling forward 12 months; historical average comparators share stated basis",
+          "currency": "USD",
+          "measure": "올해 예상 earnings growth",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "GROWTH_PRICE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "For CY 2026, analysts are predicting (year-over-year) earnings growth of 32.4%.",
+      "unit": "percent",
+      "value": "32.4",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_GUIDERS",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Positive and negative guidance population paragraph",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+          "currency": "USD",
+          "measure": "EPS guidance를 발표한 기업 수",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "count"
+        },
+        "excerpt_id": "GUIDANCE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "At this point in time, 116 companies in the index have issued EPS guidance for Q3 2026.",
+      "unit": "count",
+      "value": "116",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_POSITIVE_GUIDANCE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Positive and negative guidance population paragraph",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+          "currency": "USD",
+          "measure": "positive EPS guidance 기업 수",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "count"
+        },
+        "excerpt_id": "GUIDANCE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "44 have issued negative EPS guidance and 72 have issued positive EPS guidance.",
+      "unit": "count",
+      "value": "72",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_NEGATIVE_GUIDANCE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Positive and negative guidance population paragraph",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+          "currency": "USD",
+          "measure": "negative EPS guidance 기업 수",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "count"
+        },
+        "excerpt_id": "GUIDANCE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "44 have issued negative EPS guidance and 72 have issued positive EPS guidance.",
+      "unit": "count",
+      "value": "44",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_Q3_POSITIVE_SHARE",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Positive and negative guidance population paragraph",
+      "observed_at": "2026-10-02",
+      "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "provenance": {
+        "definition": {
+          "adjustment": "Reported positive/negative guidance count among guiders only, not analyst upgrade/downgrade counts or all index members",
+          "currency": "USD",
+          "measure": "guidance 기업 중 positive 비율",
+          "period": "Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "GUIDANCE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103"
+      },
+      "source_id": "DD_IDX_FACTSET_Q3",
+      "text": "The percentage of S&P 500 companies issuing positive EPS guidance for Q3 2026 is 62% (72 out of 116)",
+      "unit": "percent",
+      "value": "62",
+      "verification": "supported_within_scope",
+      "view": "quantitative"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_NVDA",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "NVDA index security weight",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "NVIDIA Corporation 8.46%",
+      "unit": "percent",
+      "value": "8.46",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_AAPL",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "AAPL index security weight",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Apple Inc. 7.30%",
+      "unit": "percent",
+      "value": "7.30",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_MSFT",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "MSFT index security weight",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Microsoft Corporation 5.77%",
+      "unit": "percent",
+      "value": "5.77",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_AMZN",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "AMZN index security weight",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Amazon.com Inc. 3.69%",
+      "unit": "percent",
+      "value": "3.69",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_GOOGL_A",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "GOOGL_A index security weight",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Alphabet Inc. Class A 3.01%",
+      "unit": "percent",
+      "value": "3.01",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_GOOGL_C",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "2026-10-01",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "GOOGL_C index security weight",
+          "period": "2026-10-01",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Alphabet Inc. Class C 2.41%",
+      "unit": "percent",
+      "value": "2.41",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_TREASURY_3M",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "H15 CURVE visible table/text",
+      "observed_at": "2026-10-01",
+      "period": "nominal CMT tenor 3M observed2026-10-01, H15 investment basis",
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury 3M nominal CMT yield",
+          "period": "nominal CMT tenor 3M observed2026-10-01, H15 investment basis",
+          "scope": "UST_3M",
+          "unit": "percent"
+        },
+        "excerpt_id": "CURVE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "3-month 4.24 4.28 4.25 4.20 4.17",
+      "unit": "percent",
+      "value": "4.17",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_TREASURY_2Y",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "H15 CURVE visible table/text",
+      "observed_at": "2026-10-01",
+      "period": "nominal CMT tenor 2Y observed2026-10-01, H15 investment basis",
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury 2Y nominal CMT yield",
+          "period": "nominal CMT tenor 2Y observed2026-10-01, H15 investment basis",
+          "scope": "UST_2Y",
+          "unit": "percent"
+        },
+        "excerpt_id": "CURVE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "2-year 4.81 4.92 4.89 4.88 4.78",
+      "unit": "percent",
+      "value": "4.78",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_TREASURY_5Y",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "H15 CURVE visible table/text",
+      "observed_at": "2026-10-01",
+      "period": "nominal CMT tenor 5Y observed2026-10-01, H15 investment basis",
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury 5Y nominal CMT yield",
+          "period": "nominal CMT tenor 5Y observed2026-10-01, H15 investment basis",
+          "scope": "UST_5Y",
+          "unit": "percent"
+        },
+        "excerpt_id": "CURVE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "5-year 4.98 5.06 5.06 5.09 5.01",
+      "unit": "percent",
+      "value": "5.01",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_TREASURY_10Y",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "H15 CURVE visible table/text",
+      "observed_at": "2026-10-01",
+      "period": "nominal CMT tenor 10Y observed2026-10-01, H15 investment basis",
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury 10Y nominal CMT yield",
+          "period": "nominal CMT tenor 10Y observed2026-10-01, H15 investment basis",
+          "scope": "UST_10Y",
+          "unit": "percent"
+        },
+        "excerpt_id": "CURVE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "5.26 5.29 5.24",
+      "unit": "percent",
+      "value": "5.24",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_TREASURY_30Y",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "H15 CURVE visible table/text",
+      "observed_at": "2026-10-01",
+      "period": "nominal CMT tenor 30Y observed2026-10-01, H15 investment basis",
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury 30Y nominal CMT yield",
+          "period": "nominal CMT tenor 30Y observed2026-10-01, H15 investment basis",
+          "scope": "UST_30Y",
+          "unit": "percent"
+        },
+        "excerpt_id": "CURVE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "30-year 5.49 5.56 5.59 5.64 5.61",
+      "unit": "percent",
+      "value": "5.61",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_TREASURY_10Y_SEP30",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "최종 열은 2026-10-01이며 앞의 네 열과 섞지 않는다. CMT는 시장곡선 보간의 벤치마크다. 개별 채권·ETF의 실행 수익률이나 원화 수익률은 아니다. 같은 원천인 Fed CSV와 독립 증거로 세지 않는다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "H15 CURVE visible table/text",
+      "observed_at": "2026-09-30",
+      "period": "nominal CMT tenor10Y observed2026-09-30, fourth date column H15 investment basis",
+      "provenance": {
+        "definition": {
+          "adjustment": "nominal constant-maturity Treasury yield quoted on investment basis; annual percent; not policy rate, discount-basis bill rate, zero-coupon spot yield, product execution YTM or realized return",
+          "currency": "USD",
+          "measure": "Treasury십 년 matching valuation date",
+          "period": "nominal CMT tenor10Y observed2026-09-30, fourth date column H15 investment basis",
+          "scope": "UST_10Y",
+          "unit": "percent"
+        },
+        "excerpt_id": "CURVE",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624"
+      },
+      "source_id": "DD_TR_H15_CURVE",
+      "text": "5.26 5.29 5.24",
+      "unit": "percent",
+      "value": "5.29",
+      "verification": "supported_within_scope",
+      "view": "macro"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_AVGO",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "AVGO index security weight",
+          "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Broadcom Inc. 2.48%",
+      "unit": "percent",
+      "value": "2.48",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_META",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "META index security weight",
+          "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Meta Platforms Inc Class A 2.42%",
+      "unit": "percent",
+      "value": "2.42",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_MU",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "MU index security weight",
+          "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Micron Technology Inc. 1.88%",
+      "unit": "percent",
+      "value": "1.88",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    },
+    {
+      "analyzed_at": "2026-10-04",
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "currency": "USD",
+      "id": "F_WEIGHT_AMD",
+      "interpretation": {
+        "rationale": "원문 숫자의 전사 확인은 경제적 의미·투자 판단의 확인과 다르다.",
+        "reviewed_at": null,
+        "reviewer": null,
+        "status": "pending"
+      },
+      "kind": "external_fact",
+      "limitations": [
+        "발표된 구절의 존재 확인이며 경제적 해석·지속성·투자수익의 확인과 다르다. 자료 정의·기간·범위와 source의 정책 및 판본 한계를 따른다.",
+        "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        "quoted_scalar_v1: exact token and declared context/definition checked; semantic field mapping is authored review, not automatic source audit"
+      ],
+      "locator": "Index top10 security weights",
+      "observed_at": "2026-10-01",
+      "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+      "provenance": {
+        "definition": {
+          "adjustment": "Index weights, not SPY fund held weights, earnings weights or contribution to price return",
+          "currency": "USD",
+          "measure": "AMD index security weight",
+          "period": "Index top-security market-cap weight2026-10-01; not return or earnings contribution",
+          "scope": "SP500",
+          "unit": "percent"
+        },
+        "excerpt_id": "HOLDINGS",
+        "freshness": "fresh",
+        "match_status": "matched",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d"
+      },
+      "source_id": "DD_IDX_SPY",
+      "text": "Advanced Micro Devices Inc. 1.52%",
+      "unit": "percent",
+      "value": "1.52",
+      "verification": "supported_within_scope",
+      "view": "fundamental"
+    }
+  ],
+  "execution_status": "completed",
+  "finding_checks": [
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "counterargument": "예상치 상향은 실제 매출·마진·현금흐름이 같은 수준으로 실현된다는 증거가 아니다.",
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE"
+      ],
+      "fingerprints": {
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE": "4bedd4fc473893265bed7627685fe8f3fe6cf2d935b8235c30e21aed6db1d99b",
+        "E_DD_IDX_FACTSET_Q3_REVISIONS": "c352e10e684e924b1c27f4d3238b5521e25dcad6f2c3be23070d8f3b57579671"
+      },
+      "id": "US_REVISIONS",
+      "reassessment": "같은 정의의 consensus·실제 실적·후속 수정 패널과 sector별 실적을 확인한다.",
+      "role": "interpretation_draft",
+      "status": "available_draft",
+      "text": "FactSet은 분기 중 EPS(주당 이익) 예상치가 상향되었고 긍정적 기업 가이던스가 많았다고 보고한다. forward P/E의 분모가 최근 계속 낮아진다는 가설을 이 판본은 지지하지 않는다. 상향된 예상치의 실현 가능성은 별도 검증 대상이다.",
+      "withheld_reasons": []
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "counterargument": "성장이 실제 현금으로 이어지고 높은 이익이 지속되면 현재 배수의 정당화 논리가 강해질 수 있다.",
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_PE_METHOD"
+      ],
+      "fingerprints": {
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE": "72f077b43ffcdfe0d4551f40d2a90a1b602e54054eb2155eb3f1cf870e87532c",
+        "E_DD_IDX_SPY_PE_METHOD": "928daa6b7800986238e0775119b3bacf4bd486da32a67bd3ee961132c255962d"
+      },
+      "id": "US_VALUATION",
+      "reassessment": "동일 날짜·동일 정의의 배수와 이익 수정·실제 현금 회수를 확인한다.",
+      "role": "interpretation_draft",
+      "status": "available_draft",
+      "text": "FactSet의 forward 기간과 SPY의 FY1(다음 회계연도) 가중 조화평균 P/E는 정의가 다르다. 더 낮은 숫자를 골라 저평가라고 결론낼 수 없고, 예상 이익이 실제로 실현되는지와 현재 국채 대안을 함께 봐야 한다.",
+      "withheld_reasons": []
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY"
+      ],
+      "counterargument": "대형기업의 높은 이익·현금 창출력과 경쟁력이 집중을 설명할 수 있다.",
+      "evidence_ids": [
+        "E_DD_IDX_SPY_HOLDINGS"
+      ],
+      "fingerprints": {
+        "E_DD_IDX_SPY_HOLDINGS": "56b6f90f4cca3275363a4c2267c91ee868ea854b25c9a470ba976673ae2c21f2"
+      },
+      "id": "US_CONCENTRATION",
+      "reassessment": "시가총액·이익 기여·동일가중 성과와 사용자의 다른 보유에서 겹치는 노출을 확인한다.",
+      "role": "interpretation_draft",
+      "status": "available_draft",
+      "text": "발행사 보유구성은 지수 안의 대형 기술기업 노출을 보여준다. 지수 전체를 보유해도 개별 기업·AI 투자 사이클에 대한 경제적 노출이 클 수 있다. 집중 자체를 나쁘다고 단정하지 않는다.",
+      "withheld_reasons": []
+    },
+    {
+      "asset_ids": [
+        "SHORT_BOND"
+      ],
+      "counterargument": "채권 거래가격·잔존 만기·재투자·세금·환율에 따라 실현 수익과 생활비 기준 위험이 달라진다.",
+      "evidence_ids": [
+        "E_CASH_BILLS",
+        "E_CASH_BASIS"
+      ],
+      "fingerprints": {
+        "E_CASH_BASIS": "db26a9992337e967989ff46141e05cf025a6d98ae0523d7d432b97f537704f37",
+        "E_CASH_BILLS": "b59eb9e4e4d35cf3d2b72ddd15bf8fce2ed3c015a584fdede0bf38d170b114b0"
+      },
+      "id": "BILL_BASIS",
+      "reassessment": "실제 상품의 가격·만기·수익률 정의와 원화 자금 필요 시점을 확인한다.",
+      "role": "interpretation_draft",
+      "status": "available_draft",
+      "text": "단기 Treasury bill 표는 할인 방식과 연율 기준을 명시한다. 이 표의 숫자를 투자자가 실제 받을 YTM(만기까지 보유한 거래 수익률)이나 한국 예금 금리로 직접 바꿔 읽으면 안 된다.",
+      "withheld_reasons": []
+    },
+    {
+      "asset_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "counterargument": "금리 하락 시 장기 가격 상승 가능성과 금리 상승·조기 자금수요의 손실 가능성을 함께 검토해야 한다.",
+      "evidence_ids": [
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD"
+      ],
+      "fingerprints": {
+        "E_DD_TR_CURVE": "d300e913dbf15c86273e7f8d7bbed353ff892a9e1855d56647d3e094777d0075",
+        "E_DD_TR_METHOD": "016cc9568ad866a51b16f6e3ec5562e25ff0e59a416de32c4c3c887926270f69"
+      },
+      "id": "TREASURY_CURVE",
+      "reassessment": "실제 채권·ETF의 duration(금리 변화에 따른 가격 민감도)·비용·보유 기간을 확인한다.",
+      "role": "interpretation_draft",
+      "status": "withheld",
+      "text": "H.15 constant maturity(일정 만기의 기준 수익률)는 수익률곡선에서 읽은 비교 기준이다. 실행 가능한 특정 채권의 가격과 YTM은 별도이며, 장기 국채의 낮은 신용 위험이 낮은 매도 가격 위험을 뜻하지 않는다.",
+      "withheld_reasons": [
+        "E_DD_TR_CURVE: 자산 범위 불일치",
+        "E_DD_TR_METHOD: 자산 범위 불일치"
+      ]
+    }
+  ],
+  "follow_up_reference": {
+    "run_id": "3e978032761e8cc8f4433174a54e3240cad917c09bf57666bf012e271a7960af",
+    "subject_ids": [
+      "US_EQUITY",
+      "SHORT_BOND"
+    ]
+  },
+  "input_sha256": "d31f4110232828cc5f08596c5f3d4c47d21991adf2a057ad44d10ac9fb591bfc",
+  "method_versions": {
+    "acquisition": "source_snapshot_v1",
+    "catalog": "curated_research_catalog_v1",
+    "deep_dive": "deep_dive_v1",
+    "engine": "evidence_rules_v1",
+    "findings": "bounded_findings_v1",
+    "macro": "macro_series_v1",
+    "macro_pipeline": "macro_pipeline_v1",
+    "opportunity": "opportunity_map_v1",
+    "orchestrator": "research_orchestrator_v1",
+    "portfolio": "portfolio_composition_v1",
+    "report": "ask_report_v1",
+    "routing": "research_routing_v2",
+    "source_verification": "source_verification_v1"
+  },
+  "methods": [
+    {
+      "bear_question": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "bull_question": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "downside": "예상 이익 미달·배수 하락·집중·drawdown(큰 평가손실)·환율 위험이 있다.",
+      "economics": "기업의 미래 이익·현금흐름과 지불한 가격을 구분하고 국채 대안과 비교한다.",
+      "family": "equity_index",
+      "id": "US_EQUITY",
+      "label": "S&P 500 / 미국 주식",
+      "macro_ids": [
+        "US_TREASURY_NOMINAL_2Y",
+        "US_TREASURY_NOMINAL_10Y",
+        "USD_KRW_NOON_REFERENCE"
+      ],
+      "missing": [
+        "전체 consensus→actual→후속 revision의 같은 정의 패널",
+        "회사별 현금흐름과 전체 지수 기대의 연결"
+      ],
+      "scope_note": "확보한 valuation·이익 근거는 S&P 500 중심이다. Nasdaq이나 미국 개별주 전체로 일반화하지 않는다.",
+      "source_ids": [
+        "DD_IDX_FACTSET_Q3",
+        "DD_IDX_SPY",
+        "DD_TR_H15_CURVE"
+      ]
+    },
+    {
+      "bear_question": "만기와 자금 필요 시점·환율 노출이 맞지 않는가?",
+      "bull_question": "확인한 yield와 자금 사용 시점이 투자 목적에 맞는가?",
+      "downside": "재투자·매도 가격·환율 위험이 있다. 달러 국채와 원화 생활비는 다르다.",
+      "economics": "계약 이자와 원금·현재 시작 수익률·재투자를 검토한다.",
+      "family": "bond",
+      "id": "SHORT_BOND",
+      "label": "미국 단기 Treasury",
+      "macro_ids": [
+        "US_TREASURY_NOMINAL_2Y",
+        "US_TREASURY_NOMINAL_10Y",
+        "USD_KRW_NOON_REFERENCE"
+      ],
+      "missing": [
+        "실제 채권/ETF·만기·거래 YTM·비용·세금"
+      ],
+      "scope_note": "H.15 기준금리는 실행 YTM이나 확정 기간수익이 아니다.",
+      "source_ids": [
+        "MAC_H15_CASH_BILLS"
+      ]
+    }
+  ],
+  "personal_conclusion": "insufficient_evidence",
+  "personal_constraints": [
+    "총자산이 미확인이라 실제 손실 감당 규모와 전체 자산 대비 투자금의 크기를 판단할 수 없다.",
+    "비상자금이 미확인이라 현금 비중이 과도하거나 추가 투자에 충분하다고 판단할 수 없다.",
+    "부채가 미확인이라 무부채로 가정하거나 부채 상환과 투자 사이의 개인 기회비용을 판단할 수 없다.",
+    "주택 구입 필요자금과 시점이 미확인이라 장기간 자금이 묶이는 선택의 적절성을 판단할 수 없다.",
+    "현재 포트폴리오 배분과 보유범위가 미확인이라 전체 집중위험이나 분산·안전성을 판단할 수 없다.",
+    "월 추가 투자 가능액이 미확인이라 안정적인 근로소득에서 투자 가능 금액을 추정할 수 없다.",
+    "위험 감당 능력이 미확인이라 나이·소득·위험 감수 의향에서 손실 한도·투자 비중·레버리지 허용을 도출할 수 없다."
+  ],
+  "pipeline_invocations": [
+    {
+      "function": "replay_deep_dive",
+      "purpose": "quoted_financials_and_source_macro_validation"
+    },
+    {
+      "function": "run_research",
+      "purpose": "evidence_quality_and_conclusion_limits"
+    }
+  ],
+  "portfolio_missing": [
+    "실제 보유내역·금액/구성·누락 범위",
+    "현금",
+    "부채",
+    "월 추가 투자 가능액",
+    "향후 큰 자금수요",
+    "투자기간"
+  ],
+  "question": "S&P500이랑 미국 국채 비교해줘",
+  "reasoning": [
+    {
+      "counterargument": "예상치 상향은 실제 매출·마진·현금흐름이 같은 수준으로 실현된다는 증거가 아니다.",
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE"
+      ],
+      "id": "INSIGHT_FINDING_US_REVISIONS",
+      "limitations": [
+        "검토 전 해석이며 원문의 경제적 의미를 자동 검증하지 않는다."
+      ],
+      "metric_ids": [],
+      "reassessment": "같은 정의의 consensus·실제 실적·후속 수정 패널과 sector별 실적을 확인한다.",
+      "role": "interpretation_draft",
+      "text": "FactSet은 분기 중 EPS(주당 이익) 예상치가 상향되었고 긍정적 기업 가이던스가 많았다고 보고한다. forward P/E의 분모가 최근 계속 낮아진다는 가설을 이 판본은 지지하지 않는다. 상향된 예상치의 실현 가능성은 별도 검증 대상이다."
+    },
+    {
+      "counterargument": "성장이 실제 현금으로 이어지고 높은 이익이 지속되면 현재 배수의 정당화 논리가 강해질 수 있다.",
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_PE_METHOD"
+      ],
+      "id": "INSIGHT_FINDING_US_VALUATION",
+      "limitations": [
+        "검토 전 해석이며 원문의 경제적 의미를 자동 검증하지 않는다."
+      ],
+      "metric_ids": [],
+      "reassessment": "동일 날짜·동일 정의의 배수와 이익 수정·실제 현금 회수를 확인한다.",
+      "role": "interpretation_draft",
+      "text": "FactSet의 forward 기간과 SPY의 FY1(다음 회계연도) 가중 조화평균 P/E는 정의가 다르다. 더 낮은 숫자를 골라 저평가라고 결론낼 수 없고, 예상 이익이 실제로 실현되는지와 현재 국채 대안을 함께 봐야 한다."
+    },
+    {
+      "counterargument": "대형기업의 높은 이익·현금 창출력과 경쟁력이 집중을 설명할 수 있다.",
+      "evidence_ids": [
+        "E_DD_IDX_SPY_HOLDINGS"
+      ],
+      "id": "INSIGHT_FINDING_US_CONCENTRATION",
+      "limitations": [
+        "검토 전 해석이며 원문의 경제적 의미를 자동 검증하지 않는다."
+      ],
+      "metric_ids": [],
+      "reassessment": "시가총액·이익 기여·동일가중 성과와 사용자의 다른 보유에서 겹치는 노출을 확인한다.",
+      "role": "interpretation_draft",
+      "text": "발행사 보유구성은 지수 안의 대형 기술기업 노출을 보여준다. 지수 전체를 보유해도 개별 기업·AI 투자 사이클에 대한 경제적 노출이 클 수 있다. 집중 자체를 나쁘다고 단정하지 않는다."
+    },
+    {
+      "counterargument": "채권 거래가격·잔존 만기·재투자·세금·환율에 따라 실현 수익과 생활비 기준 위험이 달라진다.",
+      "evidence_ids": [
+        "E_CASH_BILLS",
+        "E_CASH_BASIS"
+      ],
+      "id": "INSIGHT_FINDING_BILL_BASIS",
+      "limitations": [
+        "검토 전 해석이며 원문의 경제적 의미를 자동 검증하지 않는다."
+      ],
+      "metric_ids": [],
+      "reassessment": "실제 상품의 가격·만기·수익률 정의와 원화 자금 필요 시점을 확인한다.",
+      "role": "interpretation_draft",
+      "text": "단기 Treasury bill 표는 할인 방식과 연율 기준을 명시한다. 이 표의 숫자를 투자자가 실제 받을 YTM(만기까지 보유한 거래 수익률)이나 한국 예금 금리로 직접 바꿔 읽으면 안 된다."
+    },
+    {
+      "counterargument": "높은 이익 기대와 금리 대안이 현재 가격의 추가 보상을 줄이는가?",
+      "evidence_ids": [
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_VALUATION",
+        "E_DD_IDX_SPY_HOLDINGS",
+        "E_DD_IDX_SPY_PE_METHOD",
+        "E_DD_TR_DATES",
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD",
+        "F_SP_FORWARD_12M_PE",
+        "F_SP_PE_AVG5",
+        "F_SP_PE_AVG10",
+        "F_SP_PE_JUN30",
+        "F_SP_FY1_PE",
+        "F_SP_TRAILING_PE",
+        "F_Q3_EPS_REVISION",
+        "F_Q3_EARNINGS_GROWTH",
+        "F_Q3_OLD_GROWTH",
+        "F_Q3_REVENUE_GROWTH",
+        "F_Q3_OLD_REVENUE",
+        "F_Q4_EARNINGS_GROWTH",
+        "F_CY_EARNINGS_GROWTH",
+        "F_Q3_GUIDERS",
+        "F_Q3_POSITIVE_GUIDANCE",
+        "F_Q3_NEGATIVE_GUIDANCE",
+        "F_Q3_POSITIVE_SHARE",
+        "F_WEIGHT_NVDA",
+        "F_WEIGHT_AAPL",
+        "F_WEIGHT_MSFT",
+        "F_WEIGHT_AMZN",
+        "F_WEIGHT_GOOGL_A",
+        "F_WEIGHT_GOOGL_C",
+        "F_TREASURY_3M",
+        "F_TREASURY_2Y",
+        "F_TREASURY_5Y",
+        "F_TREASURY_10Y",
+        "F_TREASURY_30Y",
+        "F_TREASURY_10Y_SEP30",
+        "F_WEIGHT_AVGO",
+        "F_WEIGHT_META",
+        "F_WEIGHT_MU",
+        "F_WEIGHT_AMD"
+      ],
+      "id": "INSIGHT_US_EQUITY",
+      "limitations": [
+        "전체 consensus→actual→후속 revision의 같은 정의 패널",
+        "회사별 현금흐름과 전체 지수 기대의 연결"
+      ],
+      "metric_ids": [],
+      "reassessment": "예상 이익 상향이 실제 매출·마진·현금흐름으로 이어지는가?",
+      "role": "interpretation_draft",
+      "text": "확보한 valuation·이익 근거는 S&P 500 중심이다. Nasdaq이나 미국 개별주 전체로 일반화하지 않는다. 현재 가격의 매력·미래 수익은 이 자료만으로 확정하지 않는다."
+    },
+    {
+      "counterargument": "만기와 자금 필요 시점·환율 노출이 맞지 않는가?",
+      "evidence_ids": [
+        "E_CASH_DATES",
+        "E_CASH_BILLS",
+        "E_CASH_BASIS",
+        "EV_RA_REAL_YIELD_DATES",
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION"
+      ],
+      "id": "INSIGHT_SHORT_BOND",
+      "limitations": [
+        "실제 채권/ETF·만기·거래 YTM·비용·세금"
+      ],
+      "metric_ids": [],
+      "reassessment": "확인한 yield와 자금 사용 시점이 투자 목적에 맞는가?",
+      "role": "interpretation_draft",
+      "text": "H.15 기준금리는 실행 YTM이나 확정 기간수익이 아니다. 현재 가격의 매력·미래 수익은 이 자료만으로 확정하지 않는다."
+    },
+    {
+      "counterargument": "금리 대안·성장 미달·유동성·실거주와 자금수요 조건이 비교를 바꿀 수 있다.",
+      "evidence_ids": [
+        "E_CASH_DATES",
+        "E_CASH_BILLS",
+        "E_CASH_BASIS",
+        "EV_RA_REAL_YIELD_DATES",
+        "EV_RA_REAL_YIELDS",
+        "EV_RA_REAL_YIELD_DEFINITION",
+        "E_DD_IDX_FACTSET_Q3_REVISIONS",
+        "E_DD_IDX_FACTSET_Q3_GUIDANCE",
+        "E_DD_IDX_FACTSET_Q3_GROWTH_PRICE",
+        "E_DD_IDX_SPY_VALUATION",
+        "E_DD_IDX_SPY_HOLDINGS",
+        "E_DD_IDX_SPY_PE_METHOD",
+        "E_DD_TR_DATES",
+        "E_DD_TR_CURVE",
+        "E_DD_TR_METHOD",
+        "OBS_14312dd2dc628a6f4babaa38bfec610a80d5a833ab9e781907c9964292b02f21",
+        "OBS_3d824c9edcd332c8a08dfa0f171d682430a28c4d4170c7ee90e90e4c7570ba38",
+        "OBS_472ee3cc1f327954e2f4d1b2267c289b62b6dc7b006f0385008f0b456e500b62",
+        "OBS_a2b7a448be9d0bd6d8ca6bb7c5574d4cb388590c227a318ee1a19007107dbe88",
+        "OBS_b06a29f2421f9e7a89037c406c98e2c250979201412af4b2d48ca108cf42fa38",
+        "OBS_b80c716dbf5b5add44d503b52b4a4c09c0407f974988710604f62abd9536ccff",
+        "F_SP_FORWARD_12M_PE",
+        "F_SP_PE_AVG5",
+        "F_SP_PE_AVG10",
+        "F_SP_PE_JUN30",
+        "F_SP_FY1_PE",
+        "F_SP_TRAILING_PE",
+        "F_Q3_EPS_REVISION",
+        "F_Q3_EARNINGS_GROWTH",
+        "F_Q3_OLD_GROWTH",
+        "F_Q3_REVENUE_GROWTH",
+        "F_Q3_OLD_REVENUE",
+        "F_Q4_EARNINGS_GROWTH",
+        "F_CY_EARNINGS_GROWTH",
+        "F_Q3_GUIDERS",
+        "F_Q3_POSITIVE_GUIDANCE",
+        "F_Q3_NEGATIVE_GUIDANCE",
+        "F_Q3_POSITIVE_SHARE",
+        "F_WEIGHT_NVDA",
+        "F_WEIGHT_AAPL",
+        "F_WEIGHT_MSFT",
+        "F_WEIGHT_AMZN",
+        "F_WEIGHT_GOOGL_A",
+        "F_WEIGHT_GOOGL_C",
+        "F_TREASURY_3M",
+        "F_TREASURY_2Y",
+        "F_TREASURY_5Y",
+        "F_TREASURY_10Y",
+        "F_TREASURY_30Y",
+        "F_TREASURY_10Y_SEP30",
+        "F_WEIGHT_AVGO",
+        "F_WEIGHT_META",
+        "F_WEIGHT_MU",
+        "F_WEIGHT_AMD"
+      ],
+      "id": "INSIGHT_COMPARE_compare",
+      "limitations": [],
+      "metric_ids": [
+        "MET_133bfad5667dd7d2774eb6126b8cc5c13f12025a0ad4685a4e1d48be56625fbc",
+        "MET_cefeb0ce70a984d7eea6cd6b085e8515d312857c45eae3e6d918b6dc34be45a3",
+        "MET_ba2c3502c92e417d5940db27a03ce827fc10b67af806ad423a6083586a5cb2f9",
+        "MET_333cdbb21ac8fceff5b2a7e2b8f21ddadb2c2483735346228aa67a8062b74616",
+        "CALC_SP_FORWARD_EY",
+        "CALC_SP_FY1_EY",
+        "CALC_SP_TRAILING_EY",
+        "CALC_SP_FORWARD_10Y_GAP",
+        "CALC_SP_FY1_10Y_GAP"
+      ],
+      "reassessment": "같은 기준의 현재 가격/현금흐름·투자기간·사용자 자금 제약을 확인한다.",
+      "role": "interpretation_draft",
+      "text": "확보한 대안의 수익 원천·손실 경로·기간·통화는 다르다. 전체 우열과 개인 적절성은 확인한 범위 밖에서 유보한다."
+    }
+  ],
+  "report": {
+    "path": "report.md",
+    "sha256": "500b2d9f62e487d80320eafab764b7257b495e7630a1ef10724e4a42135791ec"
+  },
+  "request_sha256": "df61f9831d2625bbe8c00ae1deade197c1c1e97758764afea69eb7491850be74",
+  "research_status": "partial",
+  "resolved_intent": {
+    "clarifications": [],
+    "execution_status": "dispatched",
+    "limits": [
+      "선택한 모드의 조사 계획이며 금융 분석 결과·수치·추천이 아니다.",
+      "규칙 기반 질문 해석의 범위를 넘으면 확인하며 전체 Scan으로 대체하지 않는다.",
+      "관련 macro·대안만 조사한다. 미조사 자산의 열등함을 뜻하지 않는다.",
+      "필수 근거·보유 정보가 unknown이면 영향을 받는 결론을 보류한다."
+    ],
+    "method_version": "research_routing_v2",
+    "modes": [
+      "compare"
+    ],
+    "question": "S&P500이랑 미국 국채 비교해줘",
+    "schema_version": "research-plan-v1",
+    "selection_source": "inferred_rules",
+    "status": "planned",
+    "tasks": [
+      {
+        "depends_on": [],
+        "id": "compare",
+        "mode": "compare",
+        "questions": [
+          "수익의 경제적 원천과 가정",
+          "downside와 손실 경로",
+          "기회비용",
+          "해당되는 valuation 정의",
+          "유동성·투자기간",
+          "관련 세금·계좌·환율 제약",
+          "확인된 사용자 상황에서의 적절성; 비교 불가능한 축은 표시"
+        ],
+        "required_inputs": [
+          "각 대안에 고유한 자료·정의·손실 경로",
+          "관련 기간·통화·사용자 제약"
+        ],
+        "scope": "provided_alternatives",
+        "subjects": [
+          {
+            "label": "S&P 500",
+            "method_family": "equity_index"
+          },
+          {
+            "label": "미국 국채",
+            "method_family": "bond"
+          }
+        ]
+      }
+    ]
+  },
+  "run_id": "3e978032761e8cc8f4433174a54e3240cad917c09bf57666bf012e271a7960af",
+  "schema_version": "ask-run-v1",
+  "scope": [
+    {
+      "candidate_dependent": false,
+      "id": "compare",
+      "method_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "mode": "compare",
+      "subject_method_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "subjects": [
+        {
+          "label": "S&P 500",
+          "method_family": "equity_index"
+        },
+        {
+          "label": "미국 국채",
+          "method_family": "bond"
+        }
+      ],
+      "unsupported": []
+    }
+  ],
+  "selected_modes": [
+    "compare"
+  ],
+  "sources_accessed": [
+    {
+      "available_at": null,
+      "id": "DD_IDX_FACTSET_Q3",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://insight.factset.com/sp-500-earnings-season-preview-q3-2026",
+      "name": "FactSet Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "31915ac526a91241148e14f683b9276651acc06c8584e717129b350f1d275eb7",
+        "observed_at": "2026-10-02",
+        "payload_sha256": "4e44447e5adf5afb3722140d81d84f47764604c1cc9eefb9f4a0ca532335dcc8",
+        "policy_note": "Public FactSet analytical article with copyright and disclaimer; robots allow selected public article. Retain only three short attributed excerpts per article and hashes for personal noncommercial research, no figures or full article, no licence or investment recommendation claimed. FactSet estimate methodology and mixed GAAP/non-GAAP basis are provider statements. Provider articles share underlying estimates and are not independent corroboration. Historical articles are historical earnings-season observations, not current earnings estimates.",
+        "policy_url": "https://www.factset.com/legal",
+        "published_at": "2026-10-02",
+        "publisher": "FactSet",
+        "raw_sha256": "237d90daef39e303e1753843f0f750d052267b93236fd5b0f91eec9903855976",
+        "retention": "excerpt",
+        "retrieved_at": "2026-10-04T14:14:46.545303Z",
+        "snapshot_id": "924abe90196b443f7dbd7e9782dba44b5c8f21b5ea196afe9c9310fe9a4c1103",
+        "status": "available",
+        "title": "FactSet Q3 2026 consensus vintage 2026-10-02; quarter-end revision window 2026-06-30 to 2026-09-30",
+        "topics": [
+          "earnings",
+          "valuation",
+          "AI",
+          "cash_flow"
+        ],
+        "valid_as_of": "2026-10-02"
+      },
+      "published_at": "2026-10-02",
+      "retrieved_at": "2026-10-04",
+      "type": "data_provider"
+    },
+    {
+      "available_at": null,
+      "id": "DD_IDX_SPY",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+      "name": "State Street SPY: separately defined index valuation and concentration",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "fac7dfcb208ee83e397ee2fb392eb03cde2b03faa26d6aa2b9256d908b13fb38",
+        "observed_at": "2026-10-01",
+        "payload_sha256": "4505d4f5ca21dbf226d814a8c27fbe036994be37de426e78d622e56103ecea75",
+        "policy_note": "Public product page with copyright and jurisdiction restrictions; robots allow this page. Only three small attributed analytical excerpts and hashes retained for personal research, not logos, full holdings or PDFs. No Korean product access or redistribution rights inferred. FactSet-based estimates overlap other FactSet evidence.",
+        "policy_url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy",
+        "published_at": null,
+        "publisher": "State Street Investment Management",
+        "raw_sha256": "bd7daac67ce6f74cb16118b20c29fe2744661c47fcd7d65b823e2b92934888d6",
+        "retention": "excerpt",
+        "retrieved_at": "2026-10-04T14:14:48.054055Z",
+        "snapshot_id": "9758d8e74002f3566643ba3a8ff805a9d50b26d997a8e925a948904367131c0d",
+        "status": "available",
+        "title": "State Street SPY: separately defined index valuation and concentration",
+        "topics": [
+          "earnings",
+          "valuation",
+          "AI",
+          "cash_flow"
+        ],
+        "valid_as_of": "2026-10-01"
+      },
+      "published_at": null,
+      "retrieved_at": "2026-10-04",
+      "type": "institution"
+    },
+    {
+      "available_at": null,
+      "id": "DD_TR_H15_CURVE",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://www.federalreserve.gov/releases/h15/",
+      "name": "H15 released 2026-10-02: same-date nominal Treasury constant-maturity curve",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "6c7fda35c6c63b50f457ded19a18d7fdb2d516d4b4f3ce0e1137e1a372411e81",
+        "observed_at": "2026-10-01",
+        "payload_sha256": "79a3bbc80fb199736a6d62309e330abe4382dea0ac2b878c0f396f908a98f70c",
+        "policy_note": "Public-domain Federal Reserve information with attribution. Same underlying Treasury observations as macro FED_H15_TREASURY CSV; HTML is a definition/date cross-check, not independent empirical confirmation. Excerpts only; seals, logos and separate third-party content excluded.",
+        "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+        "published_at": "2026-10-02",
+        "publisher": "Board of Governors of the Federal Reserve System",
+        "raw_sha256": "b754c41aa206e691b14d4bf1722cf95182a2c02630bccac7d709011dcf5f35db",
+        "retention": "excerpt",
+        "retrieved_at": "2026-10-04T14:14:48.646301Z",
+        "snapshot_id": "312b297ee967f002e0b7cd28f2df7ae5c9e6db0d9b567d39747be348c23c2624",
+        "status": "available",
+        "title": "H15 released 2026-10-02: same-date nominal Treasury constant-maturity curve",
+        "topics": [
+          "Treasury",
+          "interest_rates",
+          "opportunity_cost",
+          "valuation"
+        ],
+        "valid_as_of": "2026-10-01"
+      },
+      "published_at": "2026-10-02",
+      "retrieved_at": "2026-10-04",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "MAC_H15_CASH_BILLS",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://www.federalreserve.gov/releases/h15/",
+      "name": "2026-10-02 H.15 effective funds and secondary Treasury bills",
+      "origin_source_id": "RA_FED_REAL_YIELD",
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "US",
+        "normalized_sha256": "6c7fda35c6c63b50f457ded19a18d7fdb2d516d4b4f3ce0e1137e1a372411e81",
+        "observed_at": "2026-10-01",
+        "payload_sha256": "c07033443e628bb351d65e6f0a239612ebb233b9d2f8d35220cc9d7012d3315d",
+        "policy_note": "Federal Reserve Board public-domain data with attribution. H15 is shared underlying Treasury dataset with retained macro CSV and RA_FED_REAL_YIELD; these are not independent confirmations. Preserve date order and discount-basis footnotes.",
+        "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+        "published_at": "2026-10-02",
+        "publisher": "Board of Governors of the Federal Reserve System",
+        "raw_sha256": "6831ef48e2e7595068c161fce304362a497b1648626cf9225d96de74caac08ad",
+        "retention": "excerpt",
+        "retrieved_at": "2026-10-04T14:14:49.100558Z",
+        "snapshot_id": "67374dceaa432b8639960c234c9d72bc3ea42278c3ac2546f735cf5e5cb5224a",
+        "status": "available",
+        "title": "2026-10-02 H.15 effective funds and secondary Treasury bills",
+        "topics": [
+          "macro",
+          "cash",
+          "short_bonds"
+        ],
+        "valid_as_of": "2026-10-01"
+      },
+      "published_at": "2026-10-02",
+      "retrieved_at": "2026-10-04",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "RA_FED_REAL_YIELD",
+      "limitations": [
+        "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.",
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://www.federalreserve.gov/releases/h15/",
+      "name": "H.15 Selected Interest Rates — inflation-indexed constant maturities",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/html",
+        "freshness": "fresh",
+        "jurisdiction": "United States",
+        "normalized_sha256": "6c7fda35c6c63b50f457ded19a18d7fdb2d516d4b4f3ce0e1137e1a372411e81",
+        "observed_at": "2026-10-01",
+        "payload_sha256": "4b6bd38331143d507d46d529add53a77da7895b645f9e8a2077d9591719afe06",
+        "policy_note": "Board public-domain disclaimer previously reviewed in this repository; reproduce short H.15 government-table text with Board/U.S. Treasury attribution. No logos/third-party assets. Excerpt retention only; robots checked by existing acquisition module. This is the same underlying H.15/U.S. Treasury dataset used by the macro case, not independent confirmation merely because the HTML endpoint differs from the CSV endpoint.",
+        "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+        "published_at": "2026-10-02",
+        "publisher": "Board of Governors of the Federal Reserve System; U.S. Treasury underlying constant maturity data",
+        "raw_sha256": "12c5875b2064a77104ff108aa41bef64e654d608a01c2718a9aacd58d89a95a5",
+        "retention": "excerpt",
+        "retrieved_at": "2026-10-04T14:14:49.470539Z",
+        "snapshot_id": "8ac84093e278d6860cb4ebb0d9512c0c5943f98f97dd5c9b152c14fe173454a5",
+        "status": "available",
+        "title": "H.15 Selected Interest Rates — inflation-indexed constant maturities",
+        "topics": [
+          "US_real_yield",
+          "gold_opportunity_cost_context"
+        ],
+        "valid_as_of": "2026-10-02"
+      },
+      "published_at": "2026-10-02",
+      "retrieved_at": "2026-10-04",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "FED_H15_TREASURY",
+      "limitations": [
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H15&series=bf17364827e38702b42a58cf8eaa3f78&lastobs=&from=&to=&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "name": "H.15 Treasury constant-maturity nominal yield CSV",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/csv",
+        "freshness": "per_observation",
+        "jurisdiction": "US",
+        "normalized_sha256": "7fc1b00a97692140da18af34f07c863d5e87102056dd24429397d5902088892b",
+        "observed_at": null,
+        "payload_sha256": "2816fe45201beabe3da0c4732dc3bad68a1c7b418057264de84e145ffe2935c2",
+        "policy_note": "The Federal Reserve Board permits reuse of public-domain information with Board attribution; no seals, logos or third-party content are fetched.",
+        "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+        "published_at": null,
+        "publisher": "Board of Governors of the Federal Reserve System",
+        "raw_sha256": "a72bc770cb6c4f269931eb4014d7dfe4f9624dd948649d765fefdaf4f718fd7c",
+        "retention": "full",
+        "retrieved_at": "2026-10-04T14:14:49.936418Z",
+        "snapshot_id": "07375a7e58beb393347ed2d7434b5fc855936fce1be17598b45df63ed03aa9ff",
+        "status": "available",
+        "title": "H.15 Treasury constant-maturity nominal yield CSV",
+        "topics": [
+          "macro",
+          "interest_rates",
+          "inflation",
+          "KRW"
+        ],
+        "valid_as_of": null
+      },
+      "published_at": null,
+      "retrieved_at": "2026-10-04",
+      "type": "primary"
+    },
+    {
+      "available_at": null,
+      "id": "FED_H10_KRW",
+      "limitations": [
+        "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+      ],
+      "location": "https://www.federalreserve.gov/datadownload/Output.aspx?rel=H10&series=60f32914ab61dfab590e0e470153e3ae&lastobs=250&from=&to=&filetype=csv&label=include&layout=seriescolumn&type=package",
+      "name": "H.10 South Korean won per U.S. dollar daily reference rate CSV",
+      "origin_source_id": null,
+      "provenance": {
+        "access_method": "public_http",
+        "content_type": "text/csv",
+        "freshness": "per_observation",
+        "jurisdiction": "US",
+        "normalized_sha256": "a6df24ddc46749152062d97001a2dac7cd897203e57f2fc8ff2f36ad0e256353",
+        "observed_at": null,
+        "payload_sha256": "f30d02b572c8722d2c9e5645130190f2da29bcbdcd83c97897225de4045f0802",
+        "policy_note": "The Federal Reserve Board permits reuse of public-domain information with Board attribution; no seals, logos or third-party content are fetched. Definition: https://www.federalreserve.gov/releases/h10/about.htm . Noon New York buying rate; daily observations released weekly; current country CSV can include later corrections.",
+        "policy_url": "https://www.federalreserve.gov/disclaimer.htm",
+        "published_at": null,
+        "publisher": "Board of Governors of the Federal Reserve System",
+        "raw_sha256": "d15be650c4a2484ddd9c09dc63f2ff70386b0e57ecde3da70f0106d194007eed",
+        "retention": "full",
+        "retrieved_at": "2026-10-04T14:14:50.185981Z",
+        "snapshot_id": "732342bf0180debe581e4e0cfe2e3501ab725b621760fe1f2c994c8b91791c0a",
+        "status": "available",
+        "title": "H.10 South Korean won per U.S. dollar daily reference rate CSV",
+        "topics": [
+          "macro",
+          "interest_rates",
+          "inflation",
+          "KRW"
+        ],
+        "valid_as_of": null
+      },
+      "published_at": null,
+      "retrieved_at": "2026-10-04",
+      "type": "primary"
+    }
+  ],
+  "synthetic": false,
+  "task_results": [
+    {
+      "method_ids": [
+        "US_EQUITY",
+        "SHORT_BOND"
+      ],
+      "mode": "compare",
+      "status": "partial",
+      "task_id": "compare"
+    }
+  ],
+  "unresolved_questions": [
+    "S&P 500 / 미국 주식: 전체 consensus→actual→후속 revision의 같은 정의 패널",
+    "S&P 500 / 미국 주식: 회사별 현금흐름과 전체 지수 기대의 연결",
+    "미국 단기 Treasury: 실제 채권/ETF·만기·거래 YTM·비용·세금"
+  ]
+}

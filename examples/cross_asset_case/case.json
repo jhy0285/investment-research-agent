@@ -1,0 +1,993 @@
+{
+  "schema_version": "1",
+  "synthetic": true,
+  "brief": {
+    "id": "BRIEF_SYNTHETIC_CROSS_ASSET_V1",
+    "question": "현재 한국의 자산축적기 투자자가 추가 투자자금을 배분한다고 할 때, 현금성 자산, 국채, 주식 노출 중 어떤 선택지를 더 깊게 검토할 가치가 있는가? 이번 답변은 합성 자료로 연구 흐름을 검증한다.",
+    "as_of": "2025-01-31",
+    "base_currency": "KRW",
+    "horizon": "사용자 자기보고상 장기 투자 가능. 추가 자금의 실제 사용 시점은 미확인이다.",
+    "market_context_ids": [
+      "E_POLICY_RATE",
+      "E_LONG_YIELD",
+      "E_INFLATION",
+      "E_MARKET_EXPECTATION",
+      "E_LIQUIDITY"
+    ],
+    "excluded": [
+      "한국 부동산: 주택 구입 필요자금·지역·주거 목적이 미확인이고 지역별 거래·임대·대출 자료가 없어 보류한다.",
+      "회사채: 신용·스프레드·발행기관 자료가 없어 보류한다.",
+      "금·천연가스 등 원자재와 에너지: 수급·선물 구조 자료가 없어 보류한다.",
+      "암호자산: 네트워크·보관·유동성 근거가 없어 보류한다.",
+      "개별 미국·한국 종목과 글로벌 ETF 상품: 이번 범위는 합성 경제적 노출 비교이며 상품·계좌 선택은 보류한다."
+    ],
+    "comparison_limits": [
+      "기간: 장기 자기보고와 실제 추가 자금의 사용 시점은 구분하며, 동일 보유기간의 미래 성과는 계산하지 않는다.",
+      "통화: 합성 관측은 KRW 범위로 한정한다. 실제 해외 노출의 원화 환산 자료는 없다.",
+      "수익 정의: 현금의 명목 연 이자율·국채 만기수익률·주식 이익 증가 구절은 다른 개념이다. 같은 미래 수익률로 순위화하지 않는다.",
+      "비용: 거래·운용·환전 비용은 미확인이다. 비용을 영으로 채우거나 비용후 결과로 표현하지 않는다.",
+      "세금: 대한민국 거주자라는 가상 자기보고만 있고 규칙·계좌·개인 과세 자료가 없다. 실제 세금은 계산하지 않는다.",
+      "환헤지: 실제 외화 노출·헤지 방식·헤지 비용은 미확인이다. 환헤지 성과를 생성하지 않는다.",
+      "유동성: 합성 현금 인출 조건과 국채·주식 매도 가능성은 구분한다. 매도 가능하다는 사실이 원하는 가격의 회수를 보장하지 않는다.",
+      "불확실성: 합성 시나리오의 지지·반대 논리를 보여 줄 뿐 미래 수익·상승 확률·최적 투자비중·전체 시장 최선을 판단하지 않는다."
+    ]
+  },
+  "profile": {
+    "id": "PROFILE_SYNTHETIC_ACCUMULATION_V1",
+    "as_of": "2025-01-31",
+    "fields": {
+      "tax_residency": {
+        "status": "known",
+        "value": "대한민국 세법상 거주자라는 가상 자기보고"
+      },
+      "birth_year": {
+        "status": "known",
+        "value": 1998
+      },
+      "base_currency": {
+        "status": "known",
+        "value": "KRW"
+      },
+      "stage": {
+        "status": "known",
+        "value": "자산 축적기"
+      },
+      "employment": {
+        "status": "known",
+        "value": "안정적인 근로소득이라는 가상 자기보고"
+      },
+      "horizon": {
+        "status": "known",
+        "value": "장기 투자 가능이라는 가상 자기보고"
+      },
+      "total_assets": {
+        "status": "unknown",
+        "value": null
+      },
+      "emergency_fund": {
+        "status": "unknown",
+        "value": null
+      },
+      "debt": {
+        "status": "unknown",
+        "value": null
+      },
+      "housing_funds": {
+        "status": "unknown",
+        "value": null
+      },
+      "portfolio_allocation": {
+        "status": "unknown",
+        "value": null
+      },
+      "monthly_investment": {
+        "status": "unknown",
+        "value": null
+      },
+      "risk_capacity": {
+        "status": "unknown",
+        "value": null
+      }
+    }
+  },
+  "sources": [
+    {
+      "id": "S_PRIMARY",
+      "type": "primary",
+      "name": "합성 공식 금리·물가 원자료 묶음",
+      "location": "synthetic://cross-asset-case/s_primary/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": null,
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "정책금리와 후행 물가 관측만 담으며 미래 정책 경로나 물가를 전망하지 않는다."
+      ]
+    },
+    {
+      "id": "S_CASH_INSTITUTION",
+      "type": "institution",
+      "name": "합성 기관의 현금성 노출 조건표",
+      "location": "synthetic://cross-asset-case/s_cash_institution/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": null,
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "가상 이자·인출 조건이며 모든 실제 현금 상품의 안전성이나 조건을 대표하지 않는다."
+      ]
+    },
+    {
+      "id": "S_COMPANY_INSTITUTION",
+      "type": "institution",
+      "name": "합성 기업군의 사업 실적 자료",
+      "location": "synthetic://cross-asset-case/s_company_institution/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": null,
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "정해진 가상 기업군의 보고기간 실적이며 전체 시장이나 미래 이익을 대표하지 않는다."
+      ]
+    },
+    {
+      "id": "S_DATA_PROVIDER",
+      "type": "data_provider",
+      "name": "합성 금융 관측표 제공자",
+      "location": "synthetic://cross-asset-case/s_data_provider/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": null,
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "만기수익률·시장 기대 요약·참여 범위의 가상 관측이다. 완전한 가격 경로나 실제 투자성과는 없다."
+      ]
+    },
+    {
+      "id": "S_RESEARCH",
+      "type": "research",
+      "name": "합성 전문 연구 메모",
+      "location": "synthetic://cross-asset-case/s_research/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": null,
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "명시한 가상 비교틀의 유동성·가격 부담 해석이며 추정이나 논리의 타당성을 자동 보증하지 않는다."
+      ]
+    },
+    {
+      "id": "S_NEWS",
+      "type": "news",
+      "name": "합성 경제 기사",
+      "location": "synthetic://cross-asset-case/s_news/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": "S_PRIMARY",
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "합성 공식 원자료의 물가 구절을 재인용한다. 독립적인 물가 확인으로 세지 않는다."
+      ]
+    },
+    {
+      "id": "S_EXPERT",
+      "type": "expert",
+      "name": "합성 채권 전문가의 반대 검토 메모",
+      "location": "synthetic://cross-asset-case/s_expert/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": null,
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "가상 전문가의 금리 위험 설명이며 실제 전망이나 결과 확인이 아니다. 이해관계는 실제로 조사하지 않았다."
+      ]
+    },
+    {
+      "id": "S_COMMUNITY",
+      "type": "community",
+      "name": "합성 공개 토론 표본",
+      "location": "synthetic://cross-asset-case/s_community/v1",
+      "published_at": "2025-01-27",
+      "available_at": "2025-01-28",
+      "retrieved_at": "2025-01-30",
+      "origin_source_id": null,
+      "limitations": [
+        "개발 검증용 합성 출처이며 실제 기관·문서·시장 자료가 아니다.",
+        "가상의 공개 토론 구절만 보존한다. 실제 이용자·플랫폼·개인 식별자는 없다.",
+        "선택한 구절은 전체 투자자를 대표하지 않는다. 반복·좋아요·조회수로 신뢰도나 확률을 만들지 않는다."
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E_CASH_RATE",
+      "source_id": "S_CASH_INSTITUTION",
+      "text": "합성 현금성 노출 조건표에 명목 연 이자율이 기록되어 있다.",
+      "locator": "합성 문서 v1의 E_CASH_RATE 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "cash"
+      ],
+      "view": "quantitative",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "가상 계약의 세전·비용전 명목 이자율이다. 실제 수령액·미래 갱신금리·실질수익률이 아니다."
+      ],
+      "value": "2.5",
+      "unit": "percent",
+      "period": "annual_rate",
+      "currency": "KRW"
+    },
+    {
+      "id": "E_CASH_LIQUIDITY",
+      "source_id": "S_CASH_INSTITUTION",
+      "text": "합성 현금성 노출 조건표는 원화 수시 인출이 가능한 조건을 명시한다.",
+      "locator": "합성 문서 v1의 E_CASH_LIQUIDITY 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "cash"
+      ],
+      "view": "fundamental",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "해당 가상 조건에 한정하며 모든 현금성 자산의 원금 보장·무위험을 주장하지 않는다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_INFLATION",
+      "source_id": "S_PRIMARY",
+      "text": "합성 공식 물가 원자료에 후행 연간 소비자물가 상승률이 기록되어 있다.",
+      "locator": "합성 문서 v1의 E_INFLATION 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "cash",
+        "government_bond",
+        "equity"
+      ],
+      "view": "macro",
+      "kind": "observed_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "원화 생활비 맥락의 후행 물가 관측이다. 미래 물가율이나 사용자별 생활비 상승률이 아니다."
+      ],
+      "value": "3.0",
+      "unit": "percent",
+      "period": "annual_rate",
+      "currency": "KRW"
+    },
+    {
+      "id": "E_POLICY_RATE",
+      "source_id": "S_PRIMARY",
+      "text": "합성 공식 금리 원자료에 기준 시점의 정책금리가 기록되어 있다.",
+      "locator": "합성 문서 v1의 E_POLICY_RATE 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "cash",
+        "government_bond",
+        "equity"
+      ],
+      "view": "macro",
+      "kind": "observed_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "정책금리는 현금 상품 금리·주식 수익률과 같지 않다. 향후 인하 시점은 이 관측으로 확인할 수 없다."
+      ],
+      "value": "3.5",
+      "unit": "percent",
+      "period": "annual_rate",
+      "currency": "KRW"
+    },
+    {
+      "id": "E_LONG_YIELD",
+      "source_id": "S_DATA_PROVIDER",
+      "text": "합성 관측표에 지정한 장기 국채 노출의 만기수익률이 기록되어 있다.",
+      "locator": "합성 문서 v1의 E_LONG_YIELD 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "government_bond"
+      ],
+      "view": "quantitative",
+      "kind": "observed_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "가상 만기수익률은 보유기간의 확정 총수익이 아니다. 듀레이션·현금흐름·재투자·매도가격 자료가 없다."
+      ],
+      "value": "4.5",
+      "unit": "percent",
+      "period": "annual_rate",
+      "currency": "KRW"
+    },
+    {
+      "id": "E_MARKET_EXPECTATION",
+      "source_id": "S_DATA_PROVIDER",
+      "text": "합성 시장 기대 요약에는 향후 통화정책 완화를 예상하는 가격 해석이 포함되어 있다.",
+      "locator": "합성 문서 v1의 E_MARKET_EXPECTATION 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "government_bond",
+        "equity"
+      ],
+      "view": "macro",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "가격에서 읽은 기대의 합성 요약이다. 실제 정책 경로·큰 인하·채권의 확정 수익을 관측한 것이 아니다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_BOND_RISK",
+      "source_id": "S_EXPERT",
+      "text": "합성 전문가의 반대 검토는 물가 압력이 이어지거나 장기금리가 상승하면 만기 전 장기채 가격이 하락할 수 있다고 경고한다.",
+      "locator": "합성 문서 v1의 E_BOND_RISK 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "government_bond"
+      ],
+      "view": "macro",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "검토 의견의 존재와 조건부 손실 경로를 기록한다. 실제 금리 상승의 확률이나 손실 크기는 계산하지 않는다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_EARNINGS",
+      "source_id": "S_COMPANY_INSTITUTION",
+      "text": "합성 기업군의 확정 실적 자료에는 비교 가능한 이전 보고기간보다 이익이 증가한 것으로 기록되어 있다.",
+      "locator": "합성 문서 v1의 E_EARNINGS 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "equity"
+      ],
+      "view": "fundamental",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "지정한 가상 기업군의 보고된 이익에만 한정한다. 미래 성장이나 전체 주식시장 성과를 증명하지 않는다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_LIQUIDITY",
+      "source_id": "S_RESEARCH",
+      "text": "합성 연구 메모는 지정한 관측 기간의 자금 조달 조건이 이전 비교기간보다 완화된 것으로 요약한다.",
+      "locator": "합성 문서 v1의 E_LIQUIDITY 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "equity"
+      ],
+      "view": "macro",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "합성 연구의 정의와 비교 범위에 한정한다. 주식 가격 상승의 원인이나 지속성을 입증하지 않는다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_VALUATION",
+      "source_id": "S_RESEARCH",
+      "text": "합성 연구 메모는 주식 가격이 내부의 명시된 비교틀에서 부담스러운 영역에 있다고 해석한다.",
+      "locator": "합성 문서 v1의 E_VALUATION 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "equity"
+      ],
+      "view": "fundamental",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "가격 부담은 합성 비교틀의 해석이다. 내재가치 확정·가격 하락 예측·저평가 순위를 뜻하지 않는다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_BREADTH",
+      "source_id": "S_DATA_PROVIDER",
+      "text": "합성 관측표는 상승 참여가 일부 구성에 집중되며 비교기간보다 참여 범위가 약화된 것으로 기록한다.",
+      "locator": "합성 문서 v1의 E_BREADTH 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "equity"
+      ],
+      "view": "quantitative",
+      "kind": "observed_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "지정한 가상 구성과 기간의 비수치 요약이다. 전체 시장 폭이나 미래 하락 확률로 확대하지 않는다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_NEWS_INFLATION",
+      "source_id": "S_NEWS",
+      "text": "합성 경제 기사는 합성 공식 원자료의 후행 물가 관측을 재인용한다.",
+      "locator": "합성 문서 v1의 E_NEWS_INFLATION 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "cash",
+        "government_bond",
+        "equity"
+      ],
+      "view": "macro",
+      "kind": "external_fact",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "E_INFLATION과 같은 S_PRIMARY 원출처에 의존하므로 별개의 독립 확인으로 세지 않는다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    },
+    {
+      "id": "E_COMMUNITY_BOND",
+      "source_id": "S_COMMUNITY",
+      "text": "합성 공개 토론 구절에는 “금리가 곧 크게 떨어질 것이므로 장기채는 지금 거의 확실한 기회다”라는 발언이 있다.",
+      "locator": "합성 문서 v1의 E_COMMUNITY_BOND 구절",
+      "observed_at": "2025-01-24",
+      "analyzed_at": "2025-01-31",
+      "asset_ids": [
+        "government_bond"
+      ],
+      "view": "community",
+      "kind": "observed_narrative",
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "합성 원문 구절과 fixture의 대상·시점을 대조한 검토 기록이다. 이 기록은 실제 시장 확인이나 미래 결과의 검증이 아니다."
+      },
+      "limitations": [
+        "개발 검증용 합성 근거이며 실제 현재 시장에 적용할 수 없다.",
+        "확인한 것은 가상 구절에 이런 발언이 있다는 사실이다. 발언 내용의 사실성은 C_BOND_NARRATIVE에서 별도로 다룬다.",
+        "반복·좋아요·조회수·전체 시장의 대표성은 입력하거나 추정하지 않았다."
+      ],
+      "value": null,
+      "unit": null,
+      "period": null,
+      "currency": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "C_EARNINGS",
+      "text": "합성 기업군의 보고된 이익 증가라는 좁은 사실은 해당 합성 실적 구절에서 확인된다.",
+      "asset_ids": [
+        "equity"
+      ],
+      "verification": "supported_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "E_EARNINGS의 합성 확정 실적 구절에만 한정해 확인한다. 이익 증가를 주식의 미래 수익이나 투자 우위로 확대하지 않는다."
+      },
+      "support_ids": [
+        "E_EARNINGS"
+      ],
+      "counter_ids": [],
+      "narrative_evidence_id": null,
+      "limitations": [
+        "실제 기업·시장에 대한 확인이 아니다.",
+        "다른 이익 정의·수정·미확인 기업군은 검토하지 않았다."
+      ],
+      "recheck": "같은 기업군·회계 정의의 새 실적이나 정정이 있으면 이익 증가 구절을 다시 대조한다."
+    },
+    {
+      "id": "C_YIELD_ORDER",
+      "text": "합성 기준 시점의 장기 국채 만기수익률은 합성 정책금리보다 낮다.",
+      "asset_ids": [
+        "government_bond"
+      ],
+      "verification": "contradicted_within_scope",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "같은 합성 기준 시점의 E_LONG_YIELD와 E_POLICY_RATE 값이 이 부등관계와 모순된다. 잘못된 비교를 반박된 주장으로 보존하는 검증 사례다."
+      },
+      "support_ids": [],
+      "counter_ids": [
+        "E_LONG_YIELD",
+        "E_POLICY_RATE"
+      ],
+      "narrative_evidence_id": null,
+      "limitations": [
+        "의도적으로 틀리게 넣은 합성 주장이다. 확인된 사실로 게시하면 안 된다.",
+        "두 금리를 비교해도 채권 보유기간 수익이나 상대 투자 매력은 증명되지 않는다."
+      ],
+      "recheck": "두 관측의 날짜·금리 정의·단위가 바뀌면 같은 범위의 부등관계를 다시 확인한다."
+    },
+    {
+      "id": "C_MARKET_EASING",
+      "text": "합성 시장 기대 자료에는 정책 완화의 단서가 있지만 큰 인하의 시점과 실제 실현까지 확인된 것은 아니다.",
+      "asset_ids": [
+        "government_bond"
+      ],
+      "verification": "partially_supported",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "E_MARKET_EXPECTATION은 완화 기대 해석의 존재만 지지한다. E_INFLATION과 E_BOND_RISK를 반대 검토로 연결하며 미래 정책의 실현은 미확인으로 남긴다."
+      },
+      "support_ids": [
+        "E_MARKET_EXPECTATION"
+      ],
+      "counter_ids": [
+        "E_INFLATION",
+        "E_BOND_RISK"
+      ],
+      "narrative_evidence_id": null,
+      "limitations": [
+        "정책 완화 기대와 실제 정책 결정은 다른 대상이다.",
+        "미래 인하 폭·시점·발생 확률을 계산하지 않는다."
+      ],
+      "recheck": "새 물가 관측·정책 발표·시장 기대 변화가 생기면 기대와 실제 결정의 차이를 다시 조사한다."
+    },
+    {
+      "id": "C_EQUITY_BALANCE",
+      "text": "합성 주식 자료의 이익·유동성 개선은 추가 조사 이유를 주지만 가격 부담·참여 범위 약화와 충돌해 상대 우위를 확정하기 어렵다.",
+      "asset_ids": [
+        "equity"
+      ],
+      "verification": "disputed",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "E_EARNINGS·E_LIQUIDITY의 지지 논리와 E_VALUATION·E_BREADTH의 반대 논리를 함께 검토했다. 이 입력은 주식의 확정 매력·순위·투자비중을 제공하지 않는다."
+      },
+      "support_ids": [
+        "E_EARNINGS",
+        "E_LIQUIDITY"
+      ],
+      "counter_ids": [
+        "E_VALUATION",
+        "E_BREADTH"
+      ],
+      "narrative_evidence_id": null,
+      "limitations": [
+        "서로 다른 질문의 관측을 단일 점수로 더하지 않는다.",
+        "가격에 반영된 기대와 실제 미래 성장 사이의 차이는 미확인이다."
+      ],
+      "recheck": "이익 정정·가격 부담 변화·유동성 역전·참여 범위 회복 또는 추가 약화가 나타나면 양쪽 논리를 다시 비교한다."
+    },
+    {
+      "id": "C_BOND_NARRATIVE",
+      "text": "금리가 곧 크게 떨어질 것이므로 장기채는 지금 거의 확실한 기회다.",
+      "asset_ids": [
+        "government_bond"
+      ],
+      "verification": "not_verifiable",
+      "interpretation": {
+        "status": "reviewed",
+        "reviewer": "synthetic-fixture-review",
+        "reviewed_at": "2025-01-31",
+        "rationale": "E_COMMUNITY_BOND에서 발언의 존재는 확인했다. E_POLICY_RATE·E_LONG_YIELD·E_INFLATION·E_MARKET_EXPECTATION·E_BOND_RISK와 비교했지만 미래 큰 인하와 거의 확실한 투자성과를 기준 시점에서 확인할 수 없다. 미확인 상태를 검토한 기록이며 투자 주장 채택이 아니다."
+      },
+      "support_ids": [
+        "E_POLICY_RATE",
+        "E_LONG_YIELD",
+        "E_MARKET_EXPECTATION"
+      ],
+      "counter_ids": [
+        "E_INFLATION",
+        "E_BOND_RISK"
+      ],
+      "narrative_evidence_id": "E_COMMUNITY_BOND",
+      "limitations": [
+        "합성 발언의 존재와 내용의 진실성은 별개다.",
+        "현재 금리와 기대는 향후 인하·가격 상승·기회 확실성을 증명하지 않는다.",
+        "확인 불가를 반증이나 현금 우위로 바꾸지 않는다."
+      ],
+      "recheck": "새 공식 정책·물가 자료와 장기금리 변화, 실제 상품의 만기·현금흐름·가격 민감도를 확인한 뒤 조건부 논리를 다시 조사한다."
+    },
+    {
+      "id": "C_LIQUIDITY_CAUSALITY",
+      "text": "합성 유동성 조건의 개선이 주식 가격 상승의 원인이다.",
+      "asset_ids": [
+        "equity"
+      ],
+      "verification": "unverified",
+      "interpretation": {
+        "status": "pending",
+        "reviewer": null,
+        "reviewed_at": null,
+        "rationale": "합성 유동성 구절만 있으며 가격 경로·인과 식별·다른 설명을 대조한 검토가 없다. 검토 전 가설로 남기고 확정 인사이트로 사용하지 않는다."
+      },
+      "support_ids": [
+        "E_LIQUIDITY"
+      ],
+      "counter_ids": [],
+      "narrative_evidence_id": null,
+      "limitations": [
+        "동행과 인과를 구분하기 위한 미검토 합성 주장이다.",
+        "출처와 근거 ID의 존재만으로 인과성이 검증되지 않는다."
+      ],
+      "recheck": "필요한 가격·사업·금리·기대 자료와 경쟁하는 설명을 확보하고 별도 의미 검토를 완료해야 한다."
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "cash",
+      "name": "현금성 자산 · 합성 KRW 노출",
+      "exposure": "cash",
+      "return_definition": "합성 조건표의 세전·비용전 명목 연 이자율. 미래 갱신금리·실현 성과·실질수익률은 계산하지 않는다.",
+      "liquidity": "합성 조건표상 수시 인출 가능. 실제 상품 접근·기관 위험·인출 예외는 미확인이다.",
+      "support_ids": [
+        "E_CASH_RATE",
+        "E_CASH_LIQUIDITY"
+      ],
+      "counter_ids": [
+        "E_INFLATION",
+        "E_NEWS_INFLATION"
+      ],
+      "unknowns": [
+        "비상자금·가까운 자금수요·주택 구입 자금이 미확인이다.",
+        "실제 현금 상품·비용·세금·기관 위험·향후 이자 조건이 미확인이다.",
+        "현재 현금 비중을 모르므로 현금이 과도한지 판단할 수 없다."
+      ],
+      "recheck": [
+        {
+          "text": "현금 이자 조건이나 새 물가 관측이 바뀌면 단순 금리 차이와 인출 조건을 다시 확인한다.",
+          "evidence_ids": [
+            "E_CASH_RATE",
+            "E_INFLATION",
+            "E_CASH_LIQUIDITY"
+          ],
+          "interpretation": {
+            "status": "reviewed",
+            "reviewer": "synthetic-fixture-review",
+            "reviewed_at": "2025-01-31",
+            "rationale": "합성 현금 조건·후행 물가·유동성 구절의 적용 범위에서만 재조사 항목을 도출했다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "government_bond",
+      "name": "국채 · 합성 장기 KRW 노출",
+      "exposure": "government_bond",
+      "return_definition": "합성 장기 국채 만기수익률 관측. 계약 현금흐름·재투자·만기 전 매도가격이 없어 보유기간 총수익과 구분한다.",
+      "liquidity": "합성 시장에서 매도할 수 있는 노출로 가정하지만 현금으로 쓸 때 원하는 가격이 보장되지는 않는다. 실제 거래 유동성은 미확인이다.",
+      "support_ids": [
+        "E_LONG_YIELD",
+        "E_MARKET_EXPECTATION"
+      ],
+      "counter_ids": [
+        "E_INFLATION",
+        "E_BOND_RISK"
+      ],
+      "unknowns": [
+        "실제 채권·만기·듀레이션·현금흐름·재투자 조건이 미확인이다.",
+        "주택 구입 등 자금 필요 시점·손실 감당 능력이 미확인이다.",
+        "큰 금리 인하의 시점·정도·실현 여부와 비용·세금이 미확인이다."
+      ],
+      "recheck": [
+        {
+          "text": "물가·정책 경로·장기금리·시장 기대가 바뀌거나 실제 채권 현금흐름과 가격 민감도를 확보하면 양쪽 논리를 다시 조사한다.",
+          "evidence_ids": [
+            "E_INFLATION",
+            "E_POLICY_RATE",
+            "E_LONG_YIELD",
+            "E_MARKET_EXPECTATION",
+            "E_BOND_RISK"
+          ],
+          "interpretation": {
+            "status": "reviewed",
+            "reviewer": "synthetic-fixture-review",
+            "reviewed_at": "2025-01-31",
+            "rationale": "합성 금리 관측과 기대·위험 구절을 조건부 재검토 항목으로 연결했으며 금리 방향을 예측하지 않는다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "equity",
+      "name": "주식 · 합성 기업군 노출",
+      "exposure": "equity",
+      "return_definition": "합성 이익·유동성·가격 부담·참여 범위의 정성 근거. 가격·배당 총수익과 미래 기대수익률은 제공하지 않는다.",
+      "liquidity": "합성 상장 노출을 가정한다. 매도 가능성과 자금 필요 시 손실 없이 회수할 가능성은 다르며 실제 거래 조건은 미확인이다.",
+      "support_ids": [
+        "E_EARNINGS",
+        "E_LIQUIDITY"
+      ],
+      "counter_ids": [
+        "E_VALUATION",
+        "E_BREADTH"
+      ],
+      "unknowns": [
+        "실제 기업·국가·산업·통화·상품 범위가 미확인이다.",
+        "현재 보유 노출·집중위험·부채·손실 감당 능력이 미확인이다.",
+        "미래 이익·가격 반영 기대·비용·세금·실제 환노출은 미확인이다."
+      ],
+      "recheck": [
+        {
+          "text": "새 실적과 가격 부담·자금 조달 조건·시장 참여 범위가 바뀌면 성장 지지와 반대 논리를 함께 다시 검토한다.",
+          "evidence_ids": [
+            "E_EARNINGS",
+            "E_LIQUIDITY",
+            "E_VALUATION",
+            "E_BREADTH"
+          ],
+          "interpretation": {
+            "status": "reviewed",
+            "reviewer": "synthetic-fixture-review",
+            "reviewed_at": "2025-01-31",
+            "rationale": "합성 주식의 지지·반대 범위에 필요한 관찰 항목을 연결했으며 매매 조건·미래 수익으로 확정하지 않는다."
+          }
+        }
+      ]
+    }
+  ],
+  "calculations": [
+    {
+      "id": "M_CASH_RATE_GAP",
+      "label": "합성 명목 현금 이자율과 후행 물가상승률의 단순 차이",
+      "method": "rate_difference_v1",
+      "input_ids": [
+        "E_CASH_RATE",
+        "E_INFLATION"
+      ],
+      "asset_ids": [
+        "cash"
+      ],
+      "limitations": [
+        "명목 연 이자율에서 후행 연간 물가상승률을 뺀 기술적 차이이며 단위는 퍼센트포인트다.",
+        "미래 실질수익·사용자 실제 구매력 변화·동일기간 실현 수익이 아니다.",
+        "정확한 복리 실질수익 공식이나 미래 물가 추정을 사용하지 않는다.",
+        "비용·세금은 미확인으로 남기며 계산에 포함하지 않는다.",
+        "이 차이만으로 현금·국채·주식을 순위화하지 않는다."
+      ]
+    }
+  ],
+  "opportunity_costs": [
+    {
+      "alternative_id": "cash",
+      "forgone_asset_id": "equity",
+      "explanation": {
+        "text": "합성 현금을 유지하면 인출 선택권을 두는 대신 주식의 이익 성장에 참여할 가능성을 포기한다. 그러나 주식의 가격 부담과 참여 범위 약화 위험도 피할 수 있어 실제 미래 차이는 확정할 수 없다.",
+        "evidence_ids": [
+          "E_CASH_LIQUIDITY",
+          "E_EARNINGS",
+          "E_VALUATION",
+          "E_BREADTH"
+        ],
+        "interpretation": {
+          "status": "reviewed",
+          "reviewer": "synthetic-fixture-review",
+          "reviewed_at": "2025-01-31",
+          "rationale": "합성 유동성·성장 근거와 주식 반대 자료를 함께 연결한 조건부 기회비용이다. 미래 수익이나 현금 우위를 판단하지 않는다."
+        }
+      }
+    },
+    {
+      "alternative_id": "cash",
+      "forgone_asset_id": "government_bond",
+      "explanation": {
+        "text": "합성 현금을 유지하면 장기 국채 수익률과 정책 완화 기대를 더 조사할 선택을 미루지만, 장기금리 상승에 따른 만기 전 가격 손실을 감수하지 않을 수 있다. 이자율과 만기수익률의 차이를 확정 수익 차이로 바꾸지 않는다.",
+        "evidence_ids": [
+          "E_CASH_RATE",
+          "E_LONG_YIELD",
+          "E_MARKET_EXPECTATION",
+          "E_BOND_RISK"
+        ],
+        "interpretation": {
+          "status": "reviewed",
+          "reviewer": "synthetic-fixture-review",
+          "reviewed_at": "2025-01-31",
+          "rationale": "서로 다른 금리 정의와 채권 손실 경로를 공개한 합성 비교다. 실제 동일기간 수익 차이는 계산하지 않는다."
+        }
+      }
+    },
+    {
+      "alternative_id": "government_bond",
+      "forgone_asset_id": "cash",
+      "explanation": {
+        "text": "합성 장기 국채를 선택하면 현금의 수시 인출 조건을 포기할 수 있고 자금 필요 시 시장가격으로 매도해야 할 수 있다. 출발 수익률은 조사 이유지만 물가·금리 변화가 가격 회수에 영향을 줄 수 있다.",
+        "evidence_ids": [
+          "E_CASH_LIQUIDITY",
+          "E_LONG_YIELD",
+          "E_INFLATION",
+          "E_BOND_RISK"
+        ],
+        "interpretation": {
+          "status": "reviewed",
+          "reviewer": "synthetic-fixture-review",
+          "reviewed_at": "2025-01-31",
+          "rationale": "합성 국채 관측과 현금 인출 조건을 자금수요 관점으로 연결했다. 실제 상품 잠금이나 무위험 회수를 가정하지 않는다."
+        }
+      }
+    },
+    {
+      "alternative_id": "government_bond",
+      "forgone_asset_id": "equity",
+      "explanation": {
+        "text": "합성 국채에 자금을 쓰면 같은 자금으로 주식 이익 성장에 참여할 선택을 포기한다. 그러나 주식 가격 부담과 국채 금리 위험이 각각 있어 두 노출의 미래 우열은 이 입력으로 정할 수 없다.",
+        "evidence_ids": [
+          "E_LONG_YIELD",
+          "E_BOND_RISK",
+          "E_EARNINGS",
+          "E_VALUATION"
+        ],
+        "interpretation": {
+          "status": "reviewed",
+          "reviewer": "synthetic-fixture-review",
+          "reviewed_at": "2025-01-31",
+          "rationale": "국채 만기수익률과 주식 이익 증가를 같은 미래 수익 숫자로 다루지 않는 합성 조건부 비교다."
+        }
+      }
+    },
+    {
+      "alternative_id": "equity",
+      "forgone_asset_id": "cash",
+      "explanation": {
+        "text": "합성 주식 노출을 선택하면 현금의 명시된 이자·인출 선택권을 포기한다. 이익 성장의 가능성은 조사할 수 있지만 가격 부담과 참여 범위 약화가 있어 필요 자금을 주식에 둘 적절성은 별도로 확인해야 한다.",
+        "evidence_ids": [
+          "E_CASH_RATE",
+          "E_CASH_LIQUIDITY",
+          "E_EARNINGS",
+          "E_VALUATION",
+          "E_BREADTH"
+        ],
+        "interpretation": {
+          "status": "reviewed",
+          "reviewer": "synthetic-fixture-review",
+          "reviewed_at": "2025-01-31",
+          "rationale": "합성 성장 근거와 가격·참여 위험, 현금 조건을 함께 검토했다. 미확인 개인 자금수요를 채우거나 배분 비중을 제시하지 않는다."
+        }
+      }
+    },
+    {
+      "alternative_id": "equity",
+      "forgone_asset_id": "government_bond",
+      "explanation": {
+        "text": "합성 주식 노출을 선택하면 국채의 관측된 출발 수익률과 현금흐름 조건을 더 검토할 선택을 포기한다. 주식에는 성장과 가격 부담이, 국채에는 금리 손실 경로가 있어 동일기간 대안 성과는 아직 비교할 수 없다.",
+        "evidence_ids": [
+          "E_EARNINGS",
+          "E_VALUATION",
+          "E_LONG_YIELD",
+          "E_BOND_RISK"
+        ],
+        "interpretation": {
+          "status": "reviewed",
+          "reviewer": "synthetic-fixture-review",
+          "reviewed_at": "2025-01-31",
+          "rationale": "주식과 국채의 다른 수익 원천·손실 경로를 연결한 합성 비교이며 실제 채권 계약 현금흐름은 미확인임을 유지한다."
+        }
+      }
+    }
+  ]
+}
