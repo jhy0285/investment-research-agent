@@ -514,6 +514,62 @@ class InvestmentCycleTests(unittest.TestCase):
         with self.assertRaises(SourceError):
             replay_cycle(self.root / 'run')
 
+    def test_unverified_current_data_withholds_judgment_on_holding(self):
+        # Missing data is not negative evidence: the held position is kept and
+        # only new buying stops. v1 asked for a reduction and must still replay.
+        self.c['held'] = True
+        self.snapshot['evidence'] = [e for e in self.snapshot['evidence'] if e['id'] != 'E_QUOTE']
+        row = evaluate(self.plan, self.snapshot)['decisions'][0]
+        self.assertEqual((row['grade'], row['action']), ('D', '보유 유지'))
+        self.assertIn('현재 투자상품 가격의 검증 원문 연결이 없음', row['blockers'])
+        old = evaluate(self.plan, self.snapshot, 'investment_cycle_v1')
+        self.assertEqual(old['method_version'], 'investment_cycle_v1')
+        self.assertEqual((old['decisions'][0]['grade'], old['decisions'][0]['action']), ('D', '비중 축소 검토'))
+        self.c['held'] = False
+        self.assertEqual(evaluate(self.plan, self.snapshot)['decisions'][0]['action'], '신규 매수하지 않음')
+
+    def test_observed_failure_still_reduces_holding_despite_data_gap(self):
+        self.c['held'] = True
+        for r in self.c['prices']['rows']:
+            if r['at'] >= '2020':
+                r['value'] = '1'
+        self.snapshot['evidence'] = [e for e in self.snapshot['evidence'] if e['id'] != 'E_QUOTE']
+        row = evaluate(self.plan, self.snapshot)['decisions'][0]
+        self.assertEqual((row['verification'], row['grade'], row['action']), ('degraded', 'F', '비중 축소 검토'))
+
+    def test_lookahead_history_cannot_drive_reduction(self):
+        # A failure measured on data retrieved after the judgment is look-ahead.
+        plan, snapshot = deepcopy(self.plan), deepcopy(self.snapshot)
+        plan['synthetic'] = snapshot['synthetic'] = False
+        c = plan['candidates'][0]
+        c['held'] = True
+        for d in (c['prices'], c['benchmark']):
+            d['synthetic'] = False
+        for r in c['prices']['rows']:
+            if r['at'] >= '2020':
+                r['value'] = '1'
+        row = evaluate(plan, snapshot)['decisions'][0]
+        self.assertIn('현재 판단 시점 이후에 확보한 자료다. 실제 당시 보유한 자료로만 승인한다.', row['blockers'])
+        self.assertEqual((row['grade'], row['action']), ('D', '보유 유지'))
+
+    def test_saved_v1_cycle_replays_with_its_own_rule(self):
+        class Run:
+            pass
+
+        self.c['held'] = True
+        self.snapshot['evidence'] = [e for e in self.snapshot['evidence'] if e['id'] != 'E_QUOTE']
+        with (
+            patch('investment_research.orchestrator.replay_ask', return_value=Run()),
+            patch('investment_research.investment_cycle.research_snapshot', return_value=self.snapshot),
+            patch('investment_research.investment_cycle.VERSION', 'investment_cycle_v1'),
+            patch('investment_research.investment_cycle.evaluate.__defaults__', ('investment_cycle_v1',)),
+        ):
+            saved = run_cycle(self.plan, 'unused', self.root / 'v1')
+        self.assertEqual(saved['decisions'][0]['action'], '비중 축소 검토')
+        self.assertEqual(replay_cycle(self.root / 'v1'), saved)
+        with self.assertRaises(SourceError):
+            evaluate(self.plan, self.snapshot, 'investment_cycle_v0')
+
     def test_review_cli_and_invalid_plan_exit_codes(self):
         from investment_research.__main__ import main
 

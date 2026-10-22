@@ -7,7 +7,18 @@ import hashlib
 from pathlib import Path
 
 from .backtest import VERSION as BACKTEST_VERSION, approval, condition_state, run_backtest
-from .decision_data import VERSION, MARKETS, default_plan, digest, load, number, save, validate_plan, timestamp as _time
+from .decision_data import (
+    SUPPORTED_VERSIONS,
+    VERSION,
+    MARKETS,
+    default_plan,
+    digest,
+    load,
+    number,
+    save,
+    validate_plan,
+    timestamp as _time,
+)
 from .sources import SourceError
 
 BUY_ACTIONS = ('적극 매수', '분할 매수', '소액 매수')
@@ -87,9 +98,8 @@ def _references(c, snapshot):
     return problems
 
 
-def decide(c, snapshot, policy):
-    at = _time(snapshot['as_of'])
-    row = dict(
+def _base_row(c, snapshot):
+    return dict(
         asset_id=c['asset_id'],
         name=c['name'],
         group=c['group'],
@@ -113,13 +123,10 @@ def decide(c, snapshot, policy):
         strategy=None,
         research_sha256=snapshot['research_sha256'],
     )
-    if c['mode'] == 'unvalidated':
-        row['blockers'] = c.get('gaps', []) + ['투자 가설·과거/최근 검증·현재 조건이 등록되지 않음']
-        if c['held']:
-            row['action'] = '보유 유지'
-        return row
-    s = c['strategy']
-    row.update(
+
+
+def _strategy_fields(c, s):
+    return dict(
         strategy=deepcopy(s),
         thesis=s['hypothesis'],
         holding_horizon=s['holding_horizon'],
@@ -129,12 +136,31 @@ def decide(c, snapshot, policy):
         invalidation='다음 조건 중 하나가 실제 발생하면 가설을 재검토한다: '
         + '; '.join(r['feature'] + ' ' + r['op'] + ' ' + str(r['value']) for r in s['invalidations']),
     )
+
+
+def _links(evidence, asset_id, value, unit, currency, measure, observed_at):
+    """A current number counts only when the verified passage states the same observation."""
+    return (
+        evidence is not None
+        and asset_id in evidence['asset_ids']
+        and evidence['value'] is not None
+        and number(evidence['value']) == number(value)
+        and evidence['unit'] == unit
+        and evidence['currency'] == currency
+        and evidence['definition']['measure'] == measure
+        and evidence['observed_at'] == _time(observed_at).date().isoformat()
+    )
+
+
+def _current_state(c, snapshot, s, at):
+    """Today's conditions, quote and the reasons they cannot be certified."""
     refs = _references(c, snapshot)
-    if not snapshot['synthetic']:
-        if any(_time(d['retrieved_at']) > at for d in (c['prices'], c['benchmark'])) or any(
-            _time(f['retrieved_at']) > at for f in c['features']
-        ):
-            refs.append('현재 판단 시점 이후에 확보한 자료다. 실제 당시 보유한 자료로만 승인한다.')
+    lookahead = not snapshot['synthetic'] and (
+        any(_time(d['retrieved_at']) > at for d in (c['prices'], c['benchmark']))
+        or any(_time(f['retrieved_at']) > at for f in c['features'])
+    )
+    if lookahead:
+        refs.append('현재 판단 시점 이후에 확보한 자료다. 실제 당시 보유한 자료로만 승인한다.')
     signal = condition_state(s['conditions'], c['features'], at)
     price = condition_state(s['price_conditions'], c['features'], at)
     invalid = [condition_state([r], c['features'], at) for r in s['invalidations']]
@@ -157,38 +183,43 @@ def decide(c, snapshot, policy):
             ),
             None,
         )
-        e = sources.get(f.get('evidence_id')) if f else None
-        if (
-            e is None
-            or c['asset_id'] not in e['asset_ids']
-            or e['value'] is None
-            or number(e['value']) != number(check['value'])
-            or e['unit'] != f['unit']
-            or e['currency'] != f['currency']
-            or e['definition']['measure'] != f['measure']
-            or e['observed_at'] != _time(f['observed_at']).date().isoformat()
+        if f is None or not _links(
+            sources.get(f.get('evidence_id')),
+            c['asset_id'],
+            check['value'],
+            f['unit'],
+            f['currency'],
+            f['measure'],
+            f['observed_at'],
         ):
             reason = check['feature'] + ': 현재 수치의 검증 원문 연결이 없음'
             refs.append(reason)
             if check in invalid_checks:
                 invalid_refs.append(reason)
-    q = sources.get(c.get('current_price_evidence_id'))
-    if quote is not None and (
-        q is None
-        or c['asset_id'] not in q['asset_ids']
-        or q['value'] is None
-        or number(q['value']) != number(quote['value'])
-        or q['currency'] != quote['currency']
-        or q['unit'] != quote['unit']
-        or q['definition']['measure'] != quote['measure']
-        or q['observed_at'] != _time(quote['at']).date().isoformat()
+    if quote is not None and not _links(
+        sources.get(c.get('current_price_evidence_id')),
+        c['asset_id'],
+        quote['value'],
+        quote['unit'],
+        quote['currency'],
+        quote['measure'],
+        quote['at'],
     ):
         refs.append('현재 투자상품 가격의 검증 원문 연결이 없음')
-    row.update(
-        current_signal=signal, price_state=price, current_price=quote, invalidation_checks=invalid, blockers=list(refs)
+    stale = quote is None or at - _time(quote['at']) > timedelta(days=c['max_price_age_days'])
+    return dict(
+        signal=signal,
+        price=price,
+        invalid=invalid,
+        quote=quote,
+        refs=refs,
+        invalid_refs=invalid_refs,
+        lookahead=lookahead,
+        stale=stale,
     )
-    if quote is None or at - _time(quote['at']) > timedelta(days=c['max_price_age_days']):
-        row['blockers'].append('실제 투자상품의 현재 가격이 미확보 또는 오래됨')
+
+
+def _verification(c, snapshot, s, at, policy, row):
     if c['mode'] == 'quantitative':
         bt = run_backtest(c, at)
         status, why = approval(bt, s, policy)
@@ -205,51 +236,122 @@ def decide(c, snapshot, policy):
         status = 'degraded'
         row['verification'] = 'degraded'
         row['blockers'].append('실제 추천 결과에서 전략 ' + feedback['status'] + ' 상태다. 신규 매수를 중단한다.')
-    invalidated = any(i['state'] == 'pass' for i in invalid) and not invalid_refs
-    if invalidated:
-        row.update(
-            grade='F',
-            action='매도 검토' if c['held'] else '신규 매수하지 않음',
-            rationale='투자 가설을 무효화하는 조건이 실제 발생했다.',
-        )
-    elif refs or quote is None or at - _time(quote['at']) > timedelta(days=c['max_price_age_days']):
-        row.update(
+    return status
+
+
+def _invalidated(c):
+    return dict(
+        grade='F',
+        action='매도 검토' if c['held'] else '신규 매수하지 않음',
+        rationale='투자 가설을 무효화하는 조건이 실제 발생했다.',
+    )
+
+
+def _failed(c):
+    return dict(
+        grade='F',
+        action='비중 축소 검토' if c['held'] else '신규 매수하지 않음',
+        rationale='과거 검증 실패 또는 최근 성과 붕괴로 신규 매수를 중단한다.',
+    )
+
+
+def _outcome_v1(c, current, status):
+    """Original rule, kept so investment_cycle_v1 runs replay unchanged.
+
+    It answered unverified current data on a held position with a weight
+    reduction review, which treats missing data as negative evidence.
+    """
+    if current['invalidated']:
+        return _invalidated(c)
+    if current['refs'] or current['stale']:
+        return dict(
             grade='D',
             action='비중 축소 검토' if c['held'] else '신규 매수하지 않음',
             rationale='현재 판단에 필요한 원자료 또는 실제 상품 가격이 검증되지 않았다.',
         )
-    elif status in ('failed', 'degraded'):
-        row.update(
-            grade='F',
-            action='비중 축소 검토' if c['held'] else '신규 매수하지 않음',
-            rationale='과거 검증 실패 또는 최근 성과 붕괴로 신규 매수를 중단한다.',
+    if status in ('failed', 'degraded'):
+        return _failed(c)
+    return _signal_outcome(c, current, status)
+
+
+def _outcome_v2(c, current, status):
+    """Missing data withholds judgment; only observed failure reduces a holding.
+
+    A failed or degraded verification is acted on before data gaps unless the
+    history itself was retrieved after the judgment time (look-ahead).
+    """
+    if current['invalidated']:
+        return _invalidated(c)
+    if status in ('failed', 'degraded') and not current['lookahead']:
+        return _failed(c)
+    if current['refs'] or current['stale']:
+        return dict(
+            grade='D',
+            action='보유 유지' if c['held'] else '신규 매수하지 않음',
+            rationale='현재 판단에 필요한 원자료 또는 실제 상품 가격이 검증되지 않아 판단을 보류한다. '
+            '자료 부족은 매도·축소의 근거가 아니다.',
         )
-    elif signal['state'] == 'fail' or price['state'] == 'fail':
-        row.update(
+    return _signal_outcome(c, current, status)
+
+
+def _signal_outcome(c, current, status):
+    if current['signal']['state'] == 'fail' or current['price']['state'] == 'fail':
+        return dict(
             grade='F',
             action='보유 유지' if c['held'] else '조건 충족 대기',
             rationale='현재 매수 조건 또는 가격 조건이 충족되지 않았다.',
         )
-    elif signal['state'] == 'unknown' or price['state'] == 'unknown':
-        row.update(
+    if current['signal']['state'] == 'unknown' or current['price']['state'] == 'unknown':
+        return dict(
             grade='D',
             action='보유 유지' if c['held'] else '조건 충족 대기',
             rationale='현재 신호가 확인되지 않아 조건 충족까지 기다린다.',
         )
-    elif status == 'insufficient':
-        row.update(
+    if status == 'insufficient':
+        return dict(
             grade='C',
             action='보유 유지' if c['held'] else '신규 매수하지 않음',
             rationale='과거 검증 표본 또는 우위가 충분하지 않아 신규 매수하지 않는다.',
         )
-    else:
-        grade = {'passed': 'A', 'partial': 'B', 'event_review': 'C'}[status]
-        row.update(
-            grade=grade,
-            action='분할 매수' if grade == 'A' else '소액 매수',
-            rationale='투자 논리·현재 조건·가격을 확인했고 '
-            + ('과거와 최근 검증을 통과했다.' if grade == 'A' else '근거의 제한에 맞춰 소액만 배분한다.'),
-        )
+    grade = {'passed': 'A', 'partial': 'B', 'event_review': 'C'}[status]
+    return dict(
+        grade=grade,
+        action='분할 매수' if grade == 'A' else '소액 매수',
+        rationale='투자 논리·현재 조건·가격을 확인했고 '
+        + ('과거와 최근 검증을 통과했다.' if grade == 'A' else '근거의 제한에 맞춰 소액만 배분한다.'),
+    )
+
+
+OUTCOMES = {'investment_cycle_v1': _outcome_v1, 'investment_cycle_v2': _outcome_v2}
+assert set(OUTCOMES) == set(SUPPORTED_VERSIONS)
+
+
+def decide(c, snapshot, policy, version=VERSION):
+    """Grade and action for one candidate under the given decision method version."""
+    if version not in OUTCOMES:
+        raise SourceError('unsupported investment decision version')
+    at = _time(snapshot['as_of'])
+    row = _base_row(c, snapshot)
+    if c['mode'] == 'unvalidated':
+        row['blockers'] = c.get('gaps', []) + ['투자 가설·과거/최근 검증·현재 조건이 등록되지 않음']
+        if c['held']:
+            row['action'] = '보유 유지'
+        return row
+    s = c['strategy']
+    row.update(_strategy_fields(c, s))
+    current = _current_state(c, snapshot, s, at)
+    row.update(
+        current_signal=current['signal'],
+        price_state=current['price'],
+        current_price=current['quote'],
+        invalidation_checks=current['invalid'],
+        blockers=list(current['refs']),
+    )
+    if current['stale']:
+        row['blockers'].append('실제 투자상품의 현재 가격이 미확보 또는 오래됨')
+    status = _verification(c, snapshot, s, at, policy, row)
+    current['invalidated'] = any(i['state'] == 'pass' for i in current['invalid']) and not current['invalid_refs']
+    row.update(OUTCOMES[version](c, current, status))
     return row
 
 
@@ -315,7 +417,7 @@ def allocate(rows, plan):
     )
 
 
-def evaluate(plan, snapshot):
+def evaluate(plan, snapshot, version=VERSION):
     plan = deepcopy(validate_plan(plan))
     if plan['synthetic'] != snapshot['synthetic']:
         raise SourceError('research and decision plan synthetic status differ')
@@ -342,7 +444,7 @@ def evaluate(plan, snapshot):
         > 1
     ):
         raise SourceError('ranked candidates must use the same holding horizon and independent periods')
-    rows = [decide(c, snapshot, plan['policy']) for c in plan['candidates']]
+    rows = [decide(c, snapshot, plan['policy'], version) for c in plan['candidates']]
     original_order = {c['asset_id']: i for i, c in enumerate(plan['candidates'])}
 
     def order(r):
@@ -365,7 +467,7 @@ def evaluate(plan, snapshot):
     ]
     return dict(
         schema_version='investment-decision-v1',
-        method_version=VERSION,
+        method_version=version,
         backtest_version=BACKTEST_VERSION,
         as_of=snapshot['as_of'],
         synthetic=plan['synthetic'],
@@ -396,7 +498,7 @@ def attach_to_ask(run):
         raise SourceError('investment plan checksum mismatch')
     snapshot = research_snapshot(run)
     snapshot['strategy_feedback'] = run.input.get('strategy_feedback', {})
-    result = evaluate(plan, snapshot)
+    result = evaluate(plan, snapshot, run.input['investment_cycle_version'])
     if run.input.get('previous_investment'):
         result['changes'] = changes(run.input['previous_investment'], result)
     return result
@@ -448,7 +550,7 @@ def replay_cycle(directory):
 
     root = Path(directory)
     manifest = load(root / 'run_manifest.json')
-    if manifest['method_version'] != VERSION:
+    if manifest['method_version'] not in SUPPORTED_VERSIONS:
         raise SourceError('unsupported decision replay version')
     for name, h in manifest['artifacts'].items():
         if (
@@ -459,7 +561,7 @@ def replay_cycle(directory):
     if set(manifest['artifacts']) != {'input.json', 'decision.json', 'report.md'}:
         raise SourceError('missing decision replay artifact')
     data = load(root / 'input.json')
-    result = evaluate(data['plan'], data['research'])
+    result = evaluate(data['plan'], data['research'], manifest['method_version'])
     if data['previous']:
         result['changes'] = changes(data['previous'], result)
     if result != load(root / 'decision.json') or render_decision(result) != (root / 'report.md').read_text(

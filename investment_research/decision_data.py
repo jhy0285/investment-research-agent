@@ -15,7 +15,10 @@ from functools import wraps
 
 from .sources import SourceError, _parse_json, _time as _parse_time
 
-VERSION = 'investment_cycle_v1'
+VERSION = 'investment_cycle_v2'
+# v1 reduced a held position when current data were unverified; it stays
+# replayable so saved judgments are reproduced exactly, never rewritten.
+SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2')
 HORIZONS = {'1w': 0, '1m': 1, '3m': 3, '6m': 6, '1y': 12}
 MARKETS = (
     '미국 주식',

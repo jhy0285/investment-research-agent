@@ -1259,11 +1259,11 @@ def replay_ask(directory, *, question=None):
 
         expected['commodity'] = COMMODITY_VERSION
     if data.get('investment_cycle_version'):
-        from .decision_data import VERSION as INVESTMENT_VERSION
+        from .decision_data import SUPPORTED_VERSIONS as INVESTMENT_VERSIONS
 
-        if data['investment_cycle_version'] != INVESTMENT_VERSION:
+        if data['investment_cycle_version'] not in INVESTMENT_VERSIONS:
             raise SourceError('unsupported investment cycle version')
-        expected['investment_cycle'] = INVESTMENT_VERSION
+        expected['investment_cycle'] = data['investment_cycle_version']
     if data.get('schema_version') != 'ask-input-v1' or data.get('method_versions') != expected:
         raise SourceError('unsupported ask replay or changed method versions')
     if question is not None and question.strip() != data['question'].strip():
