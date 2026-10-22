@@ -24,26 +24,47 @@ from investment_research.source_pipeline import _digest, load_source_plan, repla
 from investment_research.sources import FetchResponse, SourceError, SourceSpec, acquire
 from tests import test_macro_pipeline as macro_fixture
 
-
 ACQUIRED = macro_fixture.ACQUIRED_AT
 CUTOFF = ACQUIRED + timedelta(minutes=30)
 ASSETS = (
-    "CASH", "SHORT_BOND", "LONG_BOND", "US_EQUITY", "KR_EQUITY", "GLOBAL_ETF",
-    "GROWTH", "VALUE", "DIVIDEND", "CREDIT", "GOLD", "COMMODITY", "ENERGY",
-    "CRYPTO", "KR_REAL_ESTATE",
+    "CASH",
+    "SHORT_BOND",
+    "LONG_BOND",
+    "US_EQUITY",
+    "KR_EQUITY",
+    "GLOBAL_ETF",
+    "GROWTH",
+    "VALUE",
+    "DIVIDEND",
+    "CREDIT",
+    "GOLD",
+    "COMMODITY",
+    "ENERGY",
+    "CRYPTO",
+    "KR_REAL_ESTATE",
 )
 PRIMARY_QUOTE = "The synthetic Committee decided to lower its target range by 3/4 percentage point."
 COMMUNITY_QUOTE = "Synthetic participants say gold is guaranteed to rise after a 75 basis points cut."
 DEFINITION = {
-    "measure": "policy_rate_cut", "unit": "basis_points", "period": "policy_decision",
-    "currency": "USD", "adjustment": "unadjusted", "scope": "one synthetic policy decision",
+    "measure": "policy_rate_cut",
+    "unit": "basis_points",
+    "period": "policy_decision",
+    "currency": "USD",
+    "adjustment": "unadjusted",
+    "scope": "one synthetic policy decision",
 }
 NARRATIVE_DEFINITION = {
-    "measure": "public_statement", "unit": "text", "period": "public_discussion",
-    "currency": None, "adjustment": "not_applicable", "scope": "one synthetic public utterance",
+    "measure": "public_statement",
+    "unit": "text",
+    "period": "public_discussion",
+    "currency": None,
+    "adjustment": "not_applicable",
+    "scope": "one synthetic public utterance",
 }
 REVIEWED = {
-    "status": "reviewed", "reviewer": "synthetic fixture reviewer", "reviewed_at": "2026-09-10",
+    "status": "reviewed",
+    "reviewer": "synthetic fixture reviewer",
+    "reviewed_at": "2026-09-10",
     "rationale": "합성 원문의 좁은 정의를 확인한 테스트 입력이며 실제 투자 검토가 아니다.",
 }
 
@@ -63,28 +84,60 @@ def synthetic_source_data():
         ("S_COMMUNITY", "community", COMMUNITY_QUOTE, NARRATIVE_DEFINITION),
     ):
         url = "https://synthetic-opportunity.example.org/" + identifier.lower()
-        specifications.append(asdict(SourceSpec(
-            id=identifier, url=url, canonical_url=url, type=source_type,
-            publisher="Synthetic opportunity fixture publisher", title="Synthetic passage; never actual market evidence",
-            published_at="2026-09-10T11:00:00Z", observed_at="2026-09-10T11:00:00Z",
-            valid_as_of="2026-09-10", jurisdiction="US", topics=("synthetic-opportunity-test",),
-            asset_ids=ASSETS, content_type="text/html", access_method="public_http",
-            policy_url="https://synthetic-opportunity.example.org/terms",
-            policy_note="Authored synthetic test passages; no external content or personal information.",
-            retention="excerpt", max_age_days=5,
-            excerpts=({"id": "Q_" + identifier, "quote": quote, "locator": "synthetic fixture paragraph",
-                       "definition": deepcopy(definition)},),
-        )))
-        items.append({
-            "id": "E_PRIMARY" if source_type == "primary" else "E_COMMUNITY", "source_id": identifier,
-            "excerpt_id": "Q_" + identifier, "view": "macro" if source_type == "primary" else "community",
-            "kind": "external_fact" if source_type == "primary" else "observed_narrative",
-            "definition": deepcopy(definition), "extraction": "fed_rate_cut_v1" if source_type == "primary" else None,
-            "interpretation": None, "limitations": ["합성 테스트 입력이며 실제 시장에 적용하지 않는다."],
-        })
+        specifications.append(
+            asdict(
+                SourceSpec(
+                    id=identifier,
+                    url=url,
+                    canonical_url=url,
+                    type=source_type,
+                    publisher="Synthetic opportunity fixture publisher",
+                    title="Synthetic passage; never actual market evidence",
+                    published_at="2026-09-10T11:00:00Z",
+                    observed_at="2026-09-10T11:00:00Z",
+                    valid_as_of="2026-09-10",
+                    jurisdiction="US",
+                    topics=("synthetic-opportunity-test",),
+                    asset_ids=ASSETS,
+                    content_type="text/html",
+                    access_method="public_http",
+                    policy_url="https://synthetic-opportunity.example.org/terms",
+                    policy_note="Authored synthetic test passages; no external content or personal information.",
+                    retention="excerpt",
+                    max_age_days=5,
+                    excerpts=(
+                        {
+                            "id": "Q_" + identifier,
+                            "quote": quote,
+                            "locator": "synthetic fixture paragraph",
+                            "definition": deepcopy(definition),
+                        },
+                    ),
+                )
+            )
+        )
+        items.append(
+            {
+                "id": "E_PRIMARY" if source_type == "primary" else "E_COMMUNITY",
+                "source_id": identifier,
+                "excerpt_id": "Q_" + identifier,
+                "view": "macro" if source_type == "primary" else "community",
+                "kind": "external_fact" if source_type == "primary" else "observed_narrative",
+                "definition": deepcopy(definition),
+                "extraction": "fed_rate_cut_v1" if source_type == "primary" else None,
+                "interpretation": None,
+                "limitations": ["합성 테스트 입력이며 실제 시장에 적용하지 않는다."],
+            }
+        )
     return {
-        "schema_version": "1", "id": "PLAN_SYNTHETIC_OPPORTUNITY", "question": "합성 원문을 범위가 명시된 조사 질문으로 연결할 수 있는가?",
-        "as_of": "2026-09-10", "asset_ids": list(ASSETS), "sources": specifications, "evidence": items, "claims": [],
+        "schema_version": "1",
+        "id": "PLAN_SYNTHETIC_OPPORTUNITY",
+        "question": "합성 원문을 범위가 명시된 조사 질문으로 연결할 수 있는가?",
+        "as_of": "2026-09-10",
+        "asset_ids": list(ASSETS),
+        "sources": specifications,
+        "evidence": items,
+        "claims": [],
     }
 
 
@@ -95,25 +148,49 @@ def synthetic_review_data():
         if asset in {"CASH", "SHORT_BOND"}:
             candidate = {name: statement() for name in ("why_now", "changed", "interesting", "counterargument")}
             candidate["confirm"] = ["다른 공식 자료와 상품 조건이 같은 설명을 지지하는지 확인한다."]
-        rows.append({
-            "asset_id": asset, "name": "합성 " + asset, "exposure": "합성 경제적 노출",
-            "return_definition": "미래 수익을 산출하지 않는 조사 범위", "liquidity": "실제 상품별 유동성은 미확인",
-            "state": statement(), "positive": statement(), "negative": statement(),
-            "uncertainty": ["추가 원자료와 경제적 의미 검토가 필요하다."],
-            "opportunity_cost": statement(alternatives=(ASSETS[(index + 1) % len(ASSETS)],)),
-            "priority": "candidate" if candidate else "monitor", "priority_reason": statement(),
-            "recheck": statement(), "candidate": candidate,
-        })
-    sections = {name: [statement()] for name in (
-        "overview", "drivers", "market_narratives", "community", "gaps", "korean_context",
-    )}
+        rows.append(
+            {
+                "asset_id": asset,
+                "name": "합성 " + asset,
+                "exposure": "합성 경제적 노출",
+                "return_definition": "미래 수익을 산출하지 않는 조사 범위",
+                "liquidity": "실제 상품별 유동성은 미확인",
+                "state": statement(),
+                "positive": statement(),
+                "negative": statement(),
+                "uncertainty": ["추가 원자료와 경제적 의미 검토가 필요하다."],
+                "opportunity_cost": statement(alternatives=(ASSETS[(index + 1) % len(ASSETS)],)),
+                "priority": "candidate" if candidate else "monitor",
+                "priority_reason": statement(),
+                "recheck": statement(),
+                "candidate": candidate,
+            }
+        )
+    sections = {
+        name: [statement()]
+        for name in (
+            "overview",
+            "drivers",
+            "market_narratives",
+            "community",
+            "gaps",
+            "korean_context",
+        )
+    }
     sections["community"] = [statement("합성 공개 발언에서 조사 가설만 관측했다.", ("E_COMMUNITY",))]
     sections["unknowns"] = ["보유자산과 부채 및 실제 손실 감당 능력은 미확인이다."]
-    sections["easy"] = ["이는 실제 시장을 설명하지 않는 합성 조사 지도다.", "확인되지 않은 경제적 의미를 투자 매력으로 확정하지 않는다."]
+    sections["easy"] = [
+        "이는 실제 시장을 설명하지 않는 합성 조사 지도다.",
+        "확인되지 않은 경제적 의미를 투자 매력으로 확정하지 않는다.",
+    ]
     return {
-        "schema_version": "opportunity-review-v1", "id": "SYNTHETIC_OPPORTUNITY_REVIEW",
-        "question": "명시된 합성 대안 중 무엇을 더 조사해야 하는가?", "as_of": CUTOFF.isoformat(),
-        "author": "합성 테스트 작성자", "review_status": "draft", "horizon": "기간 미확인",
+        "schema_version": "opportunity-review-v1",
+        "id": "SYNTHETIC_OPPORTUNITY_REVIEW",
+        "question": "명시된 합성 대안 중 무엇을 더 조사해야 하는가?",
+        "as_of": CUTOFF.isoformat(),
+        "author": "합성 테스트 작성자",
+        "review_status": "draft",
+        "horizon": "기간 미확인",
         "profile": {
             "base_currency": {"status": "known", "value": "KRW"},
             "birth_year": {"status": "self_reported", "value": 1998},
@@ -122,8 +199,13 @@ def synthetic_review_data():
             "portfolio_allocation": {"status": "unknown", "value": None},
         },
         "comparison_limits": ["금리와 과거 가격 변화를 동일한 미래 수익률로 순위화하지 않는다."],
-        "rows": rows, "sections": sections,
-        "next_research": {"asset_id": "CASH", "title": "합성 현금 조건 확인", "question": "실제 조건을 추가로 확인할 수 있는가?"},
+        "rows": rows,
+        "sections": sections,
+        "next_research": {
+            "asset_id": "CASH",
+            "title": "합성 현금 조건 확인",
+            "question": "실제 조건을 추가로 확인할 수 있는가?",
+        },
         "sampling_limits": ["합성 자료만 사용하며 전체 시장 대표성이 없다."],
         "access_notes": ["외부 사이트 접근 없이 직접 작성한 fixture만 재생한다."],
     }
@@ -143,19 +225,40 @@ class OpportunityTests(unittest.TestCase):
         self.review_data = synthetic_review_data()
         self.macro_data = macro_fixture.synthetic_plan_data()
         self.documents = {
-            "https://synthetic-opportunity.example.org/s_primary": FetchResponse(("<p>" + PRIMARY_QUOTE + "</p>").encode(), "text/html"),
-            "https://synthetic-opportunity.example.org/s_community": FetchResponse(("<p>" + COMMUNITY_QUOTE + "</p>").encode(), "text/html"),
+            "https://synthetic-opportunity.example.org/s_primary": FetchResponse(
+                ("<p>" + PRIMARY_QUOTE + "</p>").encode(), "text/html"
+            ),
+            "https://synthetic-opportunity.example.org/s_community": FetchResponse(
+                ("<p>" + COMMUNITY_QUOTE + "</p>").encode(), "text/html"
+            ),
             self.macro_data["sources"][0]["url"]: FetchResponse(macro_fixture.cpi_document(), "application/json"),
-            self.macro_data["sources"][1]["url"]: FetchResponse(macro_fixture.fed_csv((macro_fixture.TWO_FIELD, macro_fixture.TEN_FIELD), (
-                ("2026-09-01", "1.50", "3.00"), ("2026-09-02", "2.00", "3.50"),
-            )), "text/csv"),
-            self.macro_data["sources"][2]["url"]: FetchResponse(macro_fixture.fed_csv((macro_fixture.FX_FIELD,), (
-                ("2026-09-01", "1300"), ("2026-09-02", "1310"),
-            ), identifier_prefix="H10/H10/"), "text/csv"),
+            self.macro_data["sources"][1]["url"]: FetchResponse(
+                macro_fixture.fed_csv(
+                    (macro_fixture.TWO_FIELD, macro_fixture.TEN_FIELD),
+                    (
+                        ("2026-09-01", "1.50", "3.00"),
+                        ("2026-09-02", "2.00", "3.50"),
+                    ),
+                ),
+                "text/csv",
+            ),
+            self.macro_data["sources"][2]["url"]: FetchResponse(
+                macro_fixture.fed_csv(
+                    (macro_fixture.FX_FIELD,),
+                    (
+                        ("2026-09-01", "1300"),
+                        ("2026-09-02", "1310"),
+                    ),
+                    identifier_prefix="H10/H10/",
+                ),
+                "text/csv",
+            ),
         }
         self.requests = []
         for target in ("socket.socket.connect", "socket.getaddrinfo", "investment_research.sources._fetch_http"):
-            blocker = patch(target, side_effect=AssertionError("external HTTP/DNS forbidden in synthetic opportunity tests"))
+            blocker = patch(
+                target, side_effect=AssertionError("external HTTP/DNS forbidden in synthetic opportunity tests")
+            )
             blocker.start()
             self.addCleanup(blocker.stop)
         self.macro_path.write_text(json.dumps(self.macro_data), encoding="utf-8")
@@ -177,22 +280,30 @@ class OpportunityTests(unittest.TestCase):
         return load_source_plan(self.source_path)
 
     def review(self, data=None):
-        self.review_path.write_text(json.dumps(self.review_data if data is None else data, ensure_ascii=False), encoding="utf-8")
+        self.review_path.write_text(
+            json.dumps(self.review_data if data is None else data, ensure_ascii=False), encoding="utf-8"
+        )
         return load_opportunity_review(self.review_path)
 
     def prepare(self, data=None, *, now=ACQUIRED):
         plan = self.source_plan(data)
         pins = {
-            "schema_version": "1", "plan_id": plan.id, "sources_digest": _digest([asdict(spec) for spec in plan.sources]),
-            "snapshots": {spec.id: acquire(spec, self.source_store, fetcher=self.fetcher, now=now).snapshot_id for spec in plan.sources},
+            "schema_version": "1",
+            "plan_id": plan.id,
+            "sources_digest": _digest([asdict(spec) for spec in plan.sources]),
+            "snapshots": {
+                spec.id: acquire(spec, self.source_store, fetcher=self.fetcher, now=now).snapshot_id
+                for spec in plan.sources
+            },
         }
         self.requests.clear()
         return plan, pins
 
     def replay(self, source_data=None, review_data=None, *, now=ACQUIRED):
         plan, pins = self.prepare(source_data, now=now)
-        return replay_opportunity(self.review(review_data), plan, self.source_store, pins,
-                                  self.macro_plan, self.macro_store, self.macro_pins)
+        return replay_opportunity(
+            self.review(review_data), plan, self.source_store, pins, self.macro_plan, self.macro_store, self.macro_pins
+        )
 
     @staticmethod
     def row(run, asset="CASH"):
@@ -215,11 +326,20 @@ class OpportunityTests(unittest.TestCase):
         with self.assertRaises(SourceError):
             self.source_plan(data)
         data = deepcopy(self.source_data)
-        data["claims"] = [{
-            "id": "C_BAD", "text": "합성 범위 밖 주장", "asset_ids": ["UNDECLARED"], "rule": "reviewed_links_v1",
-            "support_ids": ["E_PRIMARY"], "counter_ids": [], "context_ids": [], "narrative_evidence_id": None,
-            "review": REVIEWED, "verification": "supported_within_scope",
-        }]
+        data["claims"] = [
+            {
+                "id": "C_BAD",
+                "text": "합성 범위 밖 주장",
+                "asset_ids": ["UNDECLARED"],
+                "rule": "reviewed_links_v1",
+                "support_ids": ["E_PRIMARY"],
+                "counter_ids": [],
+                "context_ids": [],
+                "narrative_evidence_id": None,
+                "review": REVIEWED,
+                "verification": "supported_within_scope",
+            }
+        ]
         with self.assertRaises(SourceError):
             self.source_plan(data)
 
@@ -254,11 +374,20 @@ class OpportunityTests(unittest.TestCase):
     def test_even_reviewed_narrative_content_cannot_be_promoted_by_source_claim(self):
         data = deepcopy(self.source_data)
         data["evidence"][1]["interpretation"] = REVIEWED
-        data["claims"] = [{
-            "id": "C_NARRATIVE", "text": "합성 커뮤니티의 보장 주장을 확인하려는 입력", "asset_ids": ["GOLD"],
-            "rule": "reviewed_links_v1", "support_ids": ["E_COMMUNITY"], "counter_ids": [], "context_ids": [],
-            "narrative_evidence_id": "E_COMMUNITY", "review": REVIEWED, "verification": "supported_within_scope",
-        }]
+        data["claims"] = [
+            {
+                "id": "C_NARRATIVE",
+                "text": "합성 커뮤니티의 보장 주장을 확인하려는 입력",
+                "asset_ids": ["GOLD"],
+                "rule": "reviewed_links_v1",
+                "support_ids": ["E_COMMUNITY"],
+                "counter_ids": [],
+                "context_ids": [],
+                "narrative_evidence_id": "E_COMMUNITY",
+                "review": REVIEWED,
+                "verification": "supported_within_scope",
+            }
+        ]
         run = self.replay(source_data=data)
         claim = next(item for item in run.case.claims if item.id == "C_NARRATIVE")
         self.assertEqual(claim.verification, VerificationStatus.UNVERIFIED)
@@ -293,7 +422,10 @@ class OpportunityTests(unittest.TestCase):
         self.assertEqual(self.row(run)["priority_reason"]["_available_ids"], [])
 
     def test_failed_source_and_unmatched_passage_are_unavailable_not_successful_current_evidence(self):
-        for response in (FetchResponse(b"synthetic outage", "text/html", status=503), FetchResponse(b"<p>Different synthetic passage.</p>", "text/html")):
+        for response in (
+            FetchResponse(b"synthetic outage", "text/html", status=503),
+            FetchResponse(b"<p>Different synthetic passage.</p>", "text/html"),
+        ):
             with self.subTest(status=response.status):
                 self.documents[self.source_data["sources"][0]["url"]] = response
                 run = self.replay()
@@ -381,11 +513,15 @@ class OpportunityTests(unittest.TestCase):
         changed = deepcopy(pins)
         changed["sources_digest"] = "0" * 64
         with self.assertRaises(SourceError):
-            replay_opportunity(self.review(), plan, self.source_store, changed, self.macro_plan, self.macro_store, self.macro_pins)
+            replay_opportunity(
+                self.review(), plan, self.source_store, changed, self.macro_plan, self.macro_store, self.macro_pins
+            )
         changed = deepcopy(pins)
         changed["snapshots"]["S_PRIMARY"] = "0" * 64
         with self.assertRaises(SourceError):
-            replay_opportunity(self.review(), plan, self.source_store, changed, self.macro_plan, self.macro_store, self.macro_pins)
+            replay_opportunity(
+                self.review(), plan, self.source_store, changed, self.macro_plan, self.macro_store, self.macro_pins
+            )
 
     def test_review_digest_and_pinned_observation_metric_trace_are_preserved(self):
         run = self.replay()
@@ -400,8 +536,7 @@ class OpportunityTests(unittest.TestCase):
             for ref in metric.input_ids:
                 self.assertIn(ref, evidence)
                 self.assertIsNotNone(evidence[ref].value)
-                self.assertIn(evidence[ref].provenance.snapshot_id,
-                              run.macro.snapshot_refs[evidence[ref].source_id])
+                self.assertIn(evidence[ref].provenance.snapshot_id, run.macro.snapshot_refs[evidence[ref].source_id])
         run_costs = {(item.alternative_id, item.forgone_asset_id) for item in run.case.opportunity_costs}
         self.assertEqual(run_costs, {(asset, ASSETS[(index + 1) % len(ASSETS)]) for index, asset in enumerate(ASSETS)})
 
@@ -412,8 +547,9 @@ class OpportunityTests(unittest.TestCase):
         legacy = replay_plan(plan, self.source_store, pins)
         original = next(item for item in legacy.evidence if item.id == "E_PRIMARY")
         self.assertEqual(original.provenance.freshness, "unknown")
-        run = replay_opportunity(self.review(), plan, self.source_store, pins,
-                                 self.macro_plan, self.macro_store, self.macro_pins)
+        run = replay_opportunity(
+            self.review(), plan, self.source_store, pins, self.macro_plan, self.macro_store, self.macro_pins
+        )
         source = next(item for item in run.case.sources if item.id == "S_PRIMARY")
         self.assertIsNone(source.published_at)
         self.assertIsNone(source.provenance.published_at)
@@ -451,8 +587,9 @@ class OpportunityTests(unittest.TestCase):
         review = self.review()
         review.data["rows"][0]["priority_reason"]["text"] = "바뀐 합성 조사 해석"
         with self.assertRaises(SourceError):
-            replay_opportunity(review, plan, self.source_store, pins,
-                               self.macro_plan, self.macro_store, self.macro_pins)
+            replay_opportunity(
+                review, plan, self.source_store, pins, self.macro_plan, self.macro_store, self.macro_pins
+            )
 
     def test_malformed_status_and_priority_types_are_validation_errors(self):
         for field in ("review_status", "priority", "profile_status"):
@@ -470,11 +607,20 @@ class OpportunityTests(unittest.TestCase):
     def test_report_withholds_future_current_assertion_and_source_claim_but_keeps_fresh_narrative_label(self):
         source_data = deepcopy(self.source_data)
         source_data["evidence"][0]["interpretation"] = REVIEWED
-        source_data["claims"] = [{
-            "id": "C_SYNTHETIC_CURRENT", "text": "합성 정책 원문의 좁은 인하 폭을 확인한다.", "asset_ids": ["CASH"],
-            "rule": "reviewed_links_v1", "support_ids": ["E_PRIMARY"], "counter_ids": [], "context_ids": [],
-            "narrative_evidence_id": None, "review": REVIEWED, "verification": "supported_within_scope",
-        }]
+        source_data["claims"] = [
+            {
+                "id": "C_SYNTHETIC_CURRENT",
+                "text": "합성 정책 원문의 좁은 인하 폭을 확인한다.",
+                "asset_ids": ["CASH"],
+                "rule": "reviewed_links_v1",
+                "support_ids": ["E_PRIMARY"],
+                "counter_ids": [],
+                "context_ids": [],
+                "narrative_evidence_id": None,
+                "review": REVIEWED,
+                "verification": "supported_within_scope",
+            }
+        ]
         data = deepcopy(self.review_data)
         current_assertion = "합성 현재 금리가 급격하게 하락한 상태라는 주장"
         narrative_observation = "합성 공개 토론에서 보장 수익을 기대하는 발언을 관측했다."
@@ -504,18 +650,23 @@ class OpportunityTests(unittest.TestCase):
             with self.subTest(stale=stale):
                 source_data = deepcopy(self.source_data)
                 if stale:
-                    self.documents[source_data["sources"][0]["url"]] = FetchResponse(("<p>" + PRIMARY_QUOTE + "</p>").encode(), "text/html")
+                    self.documents[source_data["sources"][0]["url"]] = FetchResponse(
+                        ("<p>" + PRIMARY_QUOTE + "</p>").encode(), "text/html"
+                    )
                     source_data["sources"][0]["published_at"] = "2026-08-01T11:00:00Z"
                     source_data["sources"][0]["observed_at"] = "2026-08-01T11:00:00Z"
                     source_data["sources"][0]["valid_as_of"] = "2026-08-01"
                 else:
-                    self.documents[source_data["sources"][0]["url"]] = FetchResponse(b"Unavailable synthetic passage", "text/html", status=503)
+                    self.documents[source_data["sources"][0]["url"]] = FetchResponse(
+                        b"Unavailable synthetic passage", "text/html", status=503
+                    )
                 run = self.replay(source_data=source_data, review_data=data)
                 report = render_opportunity_report(run)
                 body = report.split("## 부록 · 원문과 재현", 1)[0]
                 self.assertNotIn(assertion, body)
                 self.assertEqual(render_opportunity_report(run), report)
                 import re
+
                 targets = set(re.findall(r'\]\(#([^\)]+)\)', report))
                 anchors = set(re.findall(r'<a id="([^"]+)"', report))
                 self.assertTrue(targets <= anchors)
@@ -527,14 +678,29 @@ class OpportunityTests(unittest.TestCase):
         macro_pins = self.directory / "macro_pins.json"
         source_pins.write_text(json.dumps(pins), encoding="utf-8")
         macro_pins.write_text(json.dumps(self.macro_pins), encoding="utf-8")
-        arguments = ("opportunity", "replay", self.review_path, "--plan", self.source_path,
-                     "--store", self.source_store, "--pins", source_pins, "--macro-plan", self.macro_path,
-                     "--macro-store", self.macro_store, "--macro-pins", macro_pins)
+        arguments = (
+            "opportunity",
+            "replay",
+            self.review_path,
+            "--plan",
+            self.source_path,
+            "--store",
+            self.source_store,
+            "--pins",
+            source_pins,
+            "--macro-plan",
+            self.macro_path,
+            "--macro-store",
+            self.macro_store,
+            "--macro-pins",
+            macro_pins,
+        )
         return arguments, (self.review_path, self.source_path, source_pins, self.macro_path, macro_pins)
 
     @staticmethod
     def cli_call(*arguments):
         from investment_research.__main__ import main
+
         stdout, stderr = StringIO(), StringIO()
         with redirect_stdout(stdout), redirect_stderr(stderr):
             status = main(list(map(str, arguments)))
@@ -542,8 +708,16 @@ class OpportunityTests(unittest.TestCase):
 
     def test_cli_replay_and_manifest_are_deterministic_offline_and_bad_pins_produce_no_report(self):
         arguments, inputs = self.cli_args()
-        with patch("investment_research.source_pipeline.acquire", side_effect=AssertionError("opportunity replay must not acquire")), \
-                patch("investment_research.macro_pipeline.acquire_macro", side_effect=AssertionError("opportunity replay must not acquire macro")):
+        with (
+            patch(
+                "investment_research.source_pipeline.acquire",
+                side_effect=AssertionError("opportunity replay must not acquire"),
+            ),
+            patch(
+                "investment_research.macro_pipeline.acquire_macro",
+                side_effect=AssertionError("opportunity replay must not acquire macro"),
+            ),
+        ):
             first = self.cli_call(*arguments)
             second = self.cli_call(*arguments)
             self.assertEqual(first[0], 0, first[2])

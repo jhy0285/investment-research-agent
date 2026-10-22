@@ -17,19 +17,38 @@ from pathlib import Path
 import re
 
 from .models import (
-    Alternative, EvidenceProvenance, EvidenceRecord, InterpretationStatus,
-    ProfileField, ProfileSnapshot, ResearchBrief, ResearchCase, ResearchClaim,
-    Review, SourceProvenance, SourceRecord, SourceType, VerificationStatus,
+    Alternative,
+    EvidenceProvenance,
+    EvidenceRecord,
+    InterpretationStatus,
+    ProfileField,
+    ProfileSnapshot,
+    ResearchBrief,
+    ResearchCase,
+    ResearchClaim,
+    Review,
+    SourceProvenance,
+    SourceRecord,
+    SourceType,
+    VerificationStatus,
 )
 from .sources import SourceError, SourceSpec, acquire, freshness, load_snapshot, _parse_json, _validate
 from .validation import InputValidationError, _review
-
 
 PIPELINE_VERSION = "source_verification_v1"
 OBSERVATION_DATES_VERSION = 'per_record_observation_dates_v1'
 ASSET_IDS = ("CASH", "BOND", "EQUITY")
 DEFINITION_FIELDS = {"measure", "unit", "period", "currency", "adjustment", "scope"}
-EXTRACTIONS = {None, "fed_rate_cut_v1", "basis_points_statement_v1", "decimal_scalar_v1", "dated_table_total_v1", "grouped_decimal_scalar_v1", "eth_dated_table_total_v2", "spaced_signed_decimal_v1"}
+EXTRACTIONS = {
+    None,
+    "fed_rate_cut_v1",
+    "basis_points_statement_v1",
+    "decimal_scalar_v1",
+    "dated_table_total_v1",
+    "grouped_decimal_scalar_v1",
+    "eth_dated_table_total_v2",
+    "spaced_signed_decimal_v1",
+}
 
 
 @dataclass(frozen=True)
@@ -59,46 +78,83 @@ def _observation_timing(period, explicit=None):
     field uses that period's end; the period and precision remain in the audit.
     A reviewed API may additionally supply its own actual snapshot timestamp.
     """
-    start=end=None;precision='unknown';instant=None
-    if re.fullmatch(r'\d{4}-\d{2}-\d{2}(?:T.+)?',period):
+    start = end = None
+    precision = 'unknown'
+    instant = None
+    if re.fullmatch(r'\d{4}-\d{2}-\d{2}(?:T.+)?', period):
         from .sources import _time
-        parsed=_time(period);start=end=parsed.date();precision='instant' if 'T' in period else 'day'
-        instant=parsed if precision=='instant' else None
-    elif re.fullmatch(r'\d{4}-\d{2}',period):
-        y,m=map(int,period.split('-'));start=date(y,m,1);end=date(y,m,calendar.monthrange(y,m)[1]);precision='month'
-    elif re.fullmatch(r'\d{4}(?:Q[1-4]| [1-4]Q|H[12])',period):
-        y=int(period[:4])
-        if 'H' in period:m=1+(int(period[-1])-1)*6;length=6;precision='half_year'
-        else:q=int(period[5]);m=1+(q-1)*3;length=3;precision='quarter'
-        start=date(y,m,1);last=m+length-1;end=date(y,last,calendar.monthrange(y,last)[1])
-    elif re.fullmatch(r'\d{4}',period):
-        y=int(period);start=date(y,1,1);end=date(y,12,31);precision='year'
-    elif re.fullmatch(r'week_ending_\d{4}-\d{2}-\d{2}',period):
-        end=date.fromisoformat(period.removeprefix('week_ending_'));precision='week_ending'
-    elif re.fullmatch(r'\d{4}-\d{2}-\d{2}\.\.\d{4}-\d{2}-\d{2}',period):
-        a,b=period.split('..');start,end=date.fromisoformat(a),date.fromisoformat(b)
-        if start>end:raise SourceError('observation period is reversed')
-        precision='reporting_interval'
+
+        parsed = _time(period)
+        start = end = parsed.date()
+        precision = 'instant' if 'T' in period else 'day'
+        instant = parsed if precision == 'instant' else None
+    elif re.fullmatch(r'\d{4}-\d{2}', period):
+        y, m = map(int, period.split('-'))
+        start = date(y, m, 1)
+        end = date(y, m, calendar.monthrange(y, m)[1])
+        precision = 'month'
+    elif re.fullmatch(r'\d{4}(?:Q[1-4]| [1-4]Q|H[12])', period):
+        y = int(period[:4])
+        if 'H' in period:
+            m = 1 + (int(period[-1]) - 1) * 6
+            length = 6
+            precision = 'half_year'
+        else:
+            q = int(period[5])
+            m = 1 + (q - 1) * 3
+            length = 3
+            precision = 'quarter'
+        start = date(y, m, 1)
+        last = m + length - 1
+        end = date(y, last, calendar.monthrange(y, last)[1])
+    elif re.fullmatch(r'\d{4}', period):
+        y = int(period)
+        start = date(y, 1, 1)
+        end = date(y, 12, 31)
+        precision = 'year'
+    elif re.fullmatch(r'week_ending_\d{4}-\d{2}-\d{2}', period):
+        end = date.fromisoformat(period.removeprefix('week_ending_'))
+        precision = 'week_ending'
+    elif re.fullmatch(r'\d{4}-\d{2}-\d{2}\.\.\d{4}-\d{2}-\d{2}', period):
+        a, b = period.split('..')
+        start, end = date.fromisoformat(a), date.fromisoformat(b)
+        if start > end:
+            raise SourceError('observation period is reversed')
+        precision = 'reporting_interval'
     if explicit is not None:
         from .sources import _time
-        actual=_time(explicit)
-        if actual is None:raise SourceError('explicit row observation timestamp is missing')
-        if end is not None and actual.date()!=end:
+
+        actual = _time(explicit)
+        if actual is None:
+            raise SourceError('explicit row observation timestamp is missing')
+        if end is not None and actual.date() != end:
             raise SourceError('explicit row observation disagrees with its calendar period')
-        instant=actual
-        if precision=='unknown':precision='snapshot'
-    at=instant.isoformat() if instant is not None else end.isoformat() if end is not None else None
-    return dict(observed_at=at,precision=precision,period=period,
-        period_start=start.isoformat() if start else None,period_end=end.isoformat() if end else None,
-        date_meaning='period_end_label_not_daily_measurement' if precision in ('month','quarter','half_year','year','reporting_interval') else 'row_timestamp_or_calendar_label' if at else 'unconfirmed_no_source_date_fallback')
+        instant = actual
+        if precision == 'unknown':
+            precision = 'snapshot'
+    at = instant.isoformat() if instant is not None else end.isoformat() if end is not None else None
+    return dict(
+        observed_at=at,
+        precision=precision,
+        period=period,
+        period_start=start.isoformat() if start else None,
+        period_end=end.isoformat() if end else None,
+        date_meaning=(
+            'period_end_label_not_daily_measurement'
+            if precision in ('month', 'quarter', 'half_year', 'year', 'reporting_interval')
+            else 'row_timestamp_or_calendar_label' if at else 'unconfirmed_no_source_date_fallback'
+        ),
+    )
 
 
 def dated_evidence(e):
     """Whether a row has a confirmed time label for a change calculation."""
-    if e.observed_at is None or e.provenance is None:return False
-    if e.view=='macro':return True  # The macro parser already binds each row.
-    timing=observation_timing(e.provenance.definition['period'])
-    return timing['observed_at'] is not None and _timestamp_day(timing['observed_at'])==e.observed_at
+    if e.observed_at is None or e.provenance is None:
+        return False
+    if e.view == 'macro':
+        return True  # The macro parser already binds each row.
+    timing = observation_timing(e.provenance.definition['period'])
+    return timing['observed_at'] is not None and _timestamp_day(timing['observed_at']) == e.observed_at
 
 
 def _digest(value: object) -> str:
@@ -208,18 +264,32 @@ def load_source_plan(path: str | Path) -> SourcePlan:
     try:
         if path.stat().st_size > 1024 * 1024:
             raise SourceError("source plan exceeds its size limit")
-        data = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique,
-                          parse_constant=lambda _: (_ for _ in ()).throw(SourceError("nonfinite JSON value")))
+        data = json.loads(
+            path.read_text(encoding="utf-8"),
+            object_pairs_hook=unique,
+            parse_constant=lambda _: (_ for _ in ()).throw(SourceError("nonfinite JSON value")),
+        )
     except (OSError, UnicodeDecodeError, json.JSONDecodeError, RecursionError) as exc:
         raise SourceError("source plan is unavailable or invalid UTF-8 JSON") from exc
-    d = _object(data, {"schema_version", "id", "question", "as_of", "sources", "evidence", "claims"}, {"asset_ids","scan_extension","observation_dates_version"}, "plan")
-    date_version=d.get('observation_dates_version')
-    if date_version not in (None,OBSERVATION_DATES_VERSION):raise SourceError('unsupported observation dates method')
-    extension=d.get('scan_extension')
-    if extension not in (None,'four_asset_minimum_v2','commodity_deep_v1'):raise SourceError('unreviewed source plan extension')
+    d = _object(
+        data,
+        {"schema_version", "id", "question", "as_of", "sources", "evidence", "claims"},
+        {"asset_ids", "scan_extension", "observation_dates_version"},
+        "plan",
+    )
+    date_version = d.get('observation_dates_version')
+    if date_version not in (None, OBSERVATION_DATES_VERSION):
+        raise SourceError('unsupported observation dates method')
+    extension = d.get('scan_extension')
+    if extension not in (None, 'four_asset_minimum_v2', 'commodity_deep_v1'):
+        raise SourceError('unreviewed source plan extension')
     if d["schema_version"] != "1":
         raise SourceError("unsupported source plan schema")
-    identifier, question, cutoff = _id(d["id"], "plan.id"), _text(d["question"], "plan.question"), _day(d["as_of"], "plan.as_of")
+    identifier, question, cutoff = (
+        _id(d["id"], "plan.id"),
+        _text(d["question"], "plan.question"),
+        _day(d["as_of"], "plan.as_of"),
+    )
     asset_ids = _strings(d.get("asset_ids", list(ASSET_IDS)), "plan.asset_ids", True)
     if not asset_ids:
         raise SourceError("plan.asset_ids: at least one asset ID is required")
@@ -252,9 +322,14 @@ def load_source_plan(path: str | Path) -> SourcePlan:
             seen.add(parent)
             parent = sources[parent].origin_source_id
     evidence = []
-    for index, item in enumerate(_list(d["evidence"], "evidence",160 if extension else 100)):
+    for index, item in enumerate(_list(d["evidence"], "evidence", 160 if extension else 100)):
         p = f"evidence[{index}]"
-        _object(item, {"id", "source_id", "excerpt_id", "view", "kind", "definition", "extraction", "limitations"}, {"interpretation","observed_at"}, p)
+        _object(
+            item,
+            {"id", "source_id", "excerpt_id", "view", "kind", "definition", "extraction", "limitations"},
+            {"interpretation", "observed_at"},
+            p,
+        )
         for key in ("id", "source_id", "excerpt_id"):
             _id(item[key], p + "." + key)
         if item["source_id"] not in sources:
@@ -264,13 +339,19 @@ def load_source_plan(path: str | Path) -> SourcePlan:
         if excerpt is None or _definition(item["definition"], p + ".definition") != excerpt["definition"]:
             raise SourceError(p + ": excerpt reference or definition mismatch")
         if 'observed_at' in item:
-            if date_version is None:raise SourceError('row dates require an explicit method version')
-            observation_timing(item['definition']['period'],item['observed_at'])
-        if _text(item["view"], p + ".view") not in {"macro", "fundamental", "quantitative", "community"} or _text(item["kind"], p + ".kind") not in {"observed_fact", "external_fact", "observed_narrative"}:
+            if date_version is None:
+                raise SourceError('row dates require an explicit method version')
+            observation_timing(item['definition']['period'], item['observed_at'])
+        if _text(item["view"], p + ".view") not in {"macro", "fundamental", "quantitative", "community"} or _text(
+            item["kind"], p + ".kind"
+        ) not in {"observed_fact", "external_fact", "observed_narrative"}:
             raise SourceError(p + ": unsupported research view or evidence kind")
         if spec.type == "community" and (item["view"] != "community" or item["kind"] != "observed_narrative"):
             raise SourceError(p + ": community text must remain observed narrative")
-        if not (item["extraction"] is None or isinstance(item["extraction"], str)) or item["extraction"] not in EXTRACTIONS:
+        if (
+            not (item["extraction"] is None or isinstance(item["extraction"], str))
+            or item["extraction"] not in EXTRACTIONS
+        ):
             raise SourceError(p + ": unsupported numeric extraction")
         _review_record(item.get("interpretation"), p + ".interpretation")
         _strings(item["limitations"], p + ".limitations")
@@ -285,7 +366,22 @@ def load_source_plan(path: str | Path) -> SourcePlan:
     claims = []
     for index, item in enumerate(_list(d["claims"], "claims")):
         p = f"claims[{index}]"
-        _object(item, {"id", "text", "asset_ids", "rule", "support_ids", "counter_ids", "context_ids", "narrative_evidence_id", "review"}, {"assertion", "verification", "limitations", "recheck"}, p)
+        _object(
+            item,
+            {
+                "id",
+                "text",
+                "asset_ids",
+                "rule",
+                "support_ids",
+                "counter_ids",
+                "context_ids",
+                "narrative_evidence_id",
+                "review",
+            },
+            {"assertion", "verification", "limitations", "recheck"},
+            p,
+        )
         _id(item["id"], p + ".id")
         _text(item["text"], p + ".text")
         scope = _strings(item["asset_ids"], p + ".asset_ids", True)
@@ -303,7 +399,12 @@ def load_source_plan(path: str | Path) -> SourcePlan:
                 raise SourceError(p + ": invalid narrative reference")
         _review_record(item["review"], p + ".review")
         if item["rule"] == "numeric_equality_v1":
-            assertion = _object(item.get("assertion"), {"evidence_id", "expected_value", "unit", "period", "currency", "measure", "scope"}, {"adjustment"}, p + ".assertion")
+            assertion = _object(
+                item.get("assertion"),
+                {"evidence_id", "expected_value", "unit", "period", "currency", "measure", "scope"},
+                {"adjustment"},
+                p + ".assertion",
+            )
             check_reference(assertion["evidence_id"], scope, p + ".assertion.evidence_id")
             _decimal(assertion["expected_value"], p + ".assertion.expected_value")
             for key in ("unit", "period", "currency", "measure", "scope"):
@@ -325,7 +426,17 @@ def load_source_plan(path: str | Path) -> SourcePlan:
     ids = [identifier, *sources, *by_id, *(c["id"] for c in claims)]
     if len(evidence) != len(by_id) or len(ids) != len(set(ids)) or set(ids) & set(asset_ids):
         raise SourceError("plan has duplicate or reserved IDs")
-    return SourcePlan(identifier, question, cutoff, tuple(specifications), tuple(evidence), tuple(claims), _digest(data), asset_ids,date_version)
+    return SourcePlan(
+        identifier,
+        question,
+        cutoff,
+        tuple(specifications),
+        tuple(evidence),
+        tuple(claims),
+        _digest(data),
+        asset_ids,
+        date_version,
+    )
 
 
 def acquire_plan(plan: SourcePlan, store: str | Path, *, fetcher=None, now=None, progress=None) -> dict:
@@ -341,9 +452,12 @@ def acquire_plan(plan: SourcePlan, store: str | Path, *, fetcher=None, now=None,
         snapshots[spec.id] = shot.snapshot_id
         if progress is not None:
             progress(spec.id + ': ' + shot.status)
-    return {"schema_version": "1", "plan_id": plan.id,
-            "sources_digest": _digest([asdict(s) for s in plan.sources]),
-            "snapshots": snapshots}
+    return {
+        "schema_version": "1",
+        "plan_id": plan.id,
+        "sources_digest": _digest([asdict(s) for s in plan.sources]),
+        "snapshots": snapshots,
+    }
 
 
 def load_pins(path: str | Path) -> dict:
@@ -368,6 +482,7 @@ def validate_evidence(case, cutoff, config):
     edits snapshots or quietly reinterprets an old pinned research run.
     """
     from .evidence_guard import guard_case, validate_config
+
     validate_config(config)
     return guard_case(case, cutoff, numeric_ids=config['numeric_ids'])
 
@@ -376,15 +491,19 @@ def _extract(quote: str, method: str | None, definition: dict) -> Decimal | None
     if method is None:
         return None
     if method == 'spaced_signed_decimal_v1':
-        if (not definition['measure'].startswith('CME_') or not definition['measure'].endswith('_DAY_CHANGE')
-                or 'settlement_change_vs_previous_trading_session' not in definition['adjustment']
-                or definition['currency'] != 'USD' or not re.fullmatch(r'[+-] \d+(?:\.\d+)?', quote)):
+        if (
+            not definition['measure'].startswith('CME_')
+            or not definition['measure'].endswith('_DAY_CHANGE')
+            or 'settlement_change_vs_previous_trading_session' not in definition['adjustment']
+            or definition['currency'] != 'USD'
+            or not re.fullmatch(r'[+-] \d+(?:\.\d+)?', quote)
+        ):
             return None
         return _decimal(quote.replace(' ', ''), 'explicitly signed CME daily price change')
     if method == 'grouped_decimal_scalar_v1':
-        if definition['unit']=='text' or not re.fullmatch(r'[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?',quote):
+        if definition['unit'] == 'text' or not re.fullmatch(r'[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?', quote):
             return None
-        return _decimal(quote.replace(',',''),'grouped source scalar')
+        return _decimal(quote.replace(',', ''), 'grouped source scalar')
     if method == "decimal_scalar_v1":
         # The discovery contract supplies a checked JSON field and six-part
         # definition. This rule only transcribes its entire decimal token.
@@ -392,17 +511,22 @@ def _extract(quote: str, method: str | None, definition: dict) -> Decimal | None
             return None
         return _decimal(quote, "source scalar")
     if method == "dated_table_total_v1":
-        if (definition["measure"] != "US_SPOT_BTC_ETF_DAILY_NET_FLOW"
-                or definition["unit"] != "USD_million" or definition["currency"] != "USD"
-                or definition["scope"] != "US spot Bitcoin ETFs reported by Farside"
-                or not re.fullmatch(r"\d{2} [A-Z][a-z]{2} \d{4}(?: (?:-|\(?[\d,]+(?:\.\d+)?\)?))+", quote)):
+        if (
+            definition["measure"] != "US_SPOT_BTC_ETF_DAILY_NET_FLOW"
+            or definition["unit"] != "USD_million"
+            or definition["currency"] != "USD"
+            or definition["scope"] != "US spot Bitcoin ETFs reported by Farside"
+            or not re.fullmatch(r"\d{2} [A-Z][a-z]{2} \d{4}(?: (?:-|\(?[\d,]+(?:\.\d+)?\)?))+", quote)
+        ):
             return None
         try:
             quoted_day = datetime.strptime(' '.join(quote.split()[:3]), '%d %b %Y').date().isoformat()
         except ValueError:
             return None
         if definition['period'] != quoted_day or definition['adjustment'] not in {
-                'complete_row_provider_reported_not_issuer_confirmed','partial_row_not_final_total'}:
+            'complete_row_provider_reported_not_issuer_confirmed',
+            'partial_row_not_final_total',
+        }:
             return None
         token = quote.split()[-1]
         if token == "-":
@@ -410,27 +534,42 @@ def _extract(quote: str, method: str | None, definition: dict) -> Decimal | None
         token = '-' + token[1:-1] if token.startswith('(') and token.endswith(')') else token
         return _decimal(token.replace(',', ''), "dated table total")
     if method == 'eth_dated_table_total_v2':
-        if (definition['measure']!='US_SPOT_ETH_ETF_DAILY_NET_FLOW' or definition['scope']!='US spot Ethereum ETFs reported by Farside'
-                or definition['adjustment']!='complete_row_provider_reported_not_issuer_confirmed'):
+        if (
+            definition['measure'] != 'US_SPOT_ETH_ETF_DAILY_NET_FLOW'
+            or definition['scope'] != 'US spot Ethereum ETFs reported by Farside'
+            or definition['adjustment'] != 'complete_row_provider_reported_not_issuer_confirmed'
+        ):
             return None
         # Reuse the existing dated-token check; stored definition remains ETH.
-        btc={**definition,'measure':'US_SPOT_BTC_ETF_DAILY_NET_FLOW','scope':'US spot Bitcoin ETFs reported by Farside'}
-        total=_extract(quote,'dated_table_total_v1',btc)
-        cells=quote.split()[3:]
-        if total is None or len(cells)<3 or '-' in cells:return None
+        btc = {
+            **definition,
+            'measure': 'US_SPOT_BTC_ETF_DAILY_NET_FLOW',
+            'scope': 'US spot Bitcoin ETFs reported by Farside',
+        }
+        total = _extract(quote, 'dated_table_total_v1', btc)
+        cells = quote.split()[3:]
+        if total is None or len(cells) < 3 or '-' in cells:
+            return None
+
         def cell(token):
-            negative=token.startswith('(') and token.endswith(')')
-            value=_decimal(token.strip('()').replace(',',''),'ETH flow component')
+            negative = token.startswith('(') and token.endswith(')')
+            value = _decimal(token.strip('()').replace(',', ''), 'ETH flow component')
             return -value if negative else value
+
         with localcontext() as ctx:
-            ctx.prec=50
-            values=[cell(v) for v in cells]
+            ctx.prec = 50
+            values = [cell(v) for v in cells]
             # Each published rounded cell contributes at most half its last
             # decimal place. This is transcription tolerance, not a trust score.
-            rounding=sum(Decimal(1).scaleb(v.as_tuple().exponent)/2 for v in values)
-            if abs(sum(values[:-1])-values[-1])>rounding:return None
+            rounding = sum(Decimal(1).scaleb(v.as_tuple().exponent) / 2 for v in values)
+            if abs(sum(values[:-1]) - values[-1]) > rounding:
+                return None
         return total
-    if definition["unit"] != "basis_points" or definition["period"] != "policy_decision" or definition["currency"] != "USD":
+    if (
+        definition["unit"] != "basis_points"
+        or definition["period"] != "policy_decision"
+        or definition["currency"] != "USD"
+    ):
         return None
     if method == "fed_rate_cut_v1":
         match = re.search(r"decided to lower\b[^.;]{0,240}?\bby\s+(\d+)/(\d+)\s+percentage point\b", quote, re.I)
@@ -447,7 +586,11 @@ def _extract(quote: str, method: str | None, definition: dict) -> Decimal | None
 def replay_plan(plan: SourcePlan, store: str | Path, pins: dict, as_of: date | None = None) -> ResearchCase:
     """Validate pinned local snapshots and adapt them to the existing models."""
     _object(pins, {"schema_version", "plan_id", "sources_digest", "snapshots"}, set(), "pins")
-    if pins["schema_version"] != "1" or pins["plan_id"] != plan.id or pins["sources_digest"] != _digest([asdict(s) for s in plan.sources]):
+    if (
+        pins["schema_version"] != "1"
+        or pins["plan_id"] != plan.id
+        or pins["sources_digest"] != _digest([asdict(s) for s in plan.sources])
+    ):
         raise SourceError("pins do not match the reviewed source plan")
     if not isinstance(pins["snapshots"], dict) or set(pins["snapshots"]) != {s.id for s in plan.sources}:
         raise SourceError("pins must reference exactly the reviewed sources")
@@ -461,20 +604,54 @@ def replay_plan(plan: SourcePlan, store: str | Path, pins: dict, as_of: date | N
             raise SourceError("snapshot source metadata differs from the reviewed plan")
         snapshots[spec.id] = shot
         age = freshness(shot, datetime.combine(cutoff, time.max, timezone.utc))
-        status = ("unavailable" if shot.status != "available" else "future" if age["status"] == "future"
-                  else "unknown" if spec.published_at is None else age["status"])
+        status = (
+            "unavailable"
+            if shot.status != "available"
+            else "future" if age["status"] == "future" else "unknown" if spec.published_at is None else age["status"]
+        )
         ages[spec.id] = status
         diagnostics.extend(f"{spec.id}: {item}" for item in shot.diagnostics)
-        age_reason = ("publication date is unknown; retrieval is not publication; " + age["reason"]
-                      if status == "unknown" and spec.published_at is None else age["reason"])
+        age_reason = (
+            "publication date is unknown; retrieval is not publication; " + age["reason"]
+            if status == "unknown" and spec.published_at is None
+            else age["reason"]
+        )
         diagnostics.append(f"{spec.id}: freshness={status}; {age_reason}")
-        provenance = SourceProvenance(shot.snapshot_id, spec.publisher, spec.title, shot.retrieved_at,
-            spec.jurisdiction, spec.topics, spec.content_type, spec.access_method, spec.policy_url,
-            spec.policy_note, spec.retention, shot.raw_sha256, shot.normalized_sha256,
-            shot.payload_sha256, shot.status, spec.published_at, spec.observed_at, spec.valid_as_of, status)
-        source_records.append(SourceRecord(spec.id, SourceType(spec.type), spec.title, spec.canonical_url,
-            _timestamp_day(spec.published_at), None, _timestamp_day(shot.retrieved_at), spec.origin_source_id,
-            tuple(shot.diagnostics), provenance))
+        provenance = SourceProvenance(
+            shot.snapshot_id,
+            spec.publisher,
+            spec.title,
+            shot.retrieved_at,
+            spec.jurisdiction,
+            spec.topics,
+            spec.content_type,
+            spec.access_method,
+            spec.policy_url,
+            spec.policy_note,
+            spec.retention,
+            shot.raw_sha256,
+            shot.normalized_sha256,
+            shot.payload_sha256,
+            shot.status,
+            spec.published_at,
+            spec.observed_at,
+            spec.valid_as_of,
+            status,
+        )
+        source_records.append(
+            SourceRecord(
+                spec.id,
+                SourceType(spec.type),
+                spec.title,
+                spec.canonical_url,
+                _timestamp_day(spec.published_at),
+                None,
+                _timestamp_day(shot.retrieved_at),
+                spec.origin_source_id,
+                tuple(shot.diagnostics),
+                provenance,
+            )
+        )
     source_lookup = {s.id: s for s in source_records}
     evidence = []
     for item in plan.evidence:
@@ -484,7 +661,11 @@ def replay_plan(plan: SourcePlan, store: str | Path, pins: dict, as_of: date | N
             diagnostics.append(f"{item['id']}: failed source or missing passage; no successful evidence was produced")
             continue
         review = _review_record(item.get("interpretation"), "evidence.interpretation")
-        timing=observation_timing(item['definition']['period'],item.get('observed_at')) if plan.observation_dates_version else None
+        timing = (
+            observation_timing(item['definition']['period'], item.get('observed_at'))
+            if plan.observation_dates_version
+            else None
+        )
         observed = _timestamp_day(timing['observed_at']) if timing else _timestamp_day(shot.source.get("observed_at"))
         earliest = max(_timestamp_day(shot.retrieved_at), observed or date.min)
         _review_not_before(review, earliest, f"evidence.{item['id']}.interpretation")
@@ -492,32 +673,65 @@ def replay_plan(plan: SourcePlan, store: str | Path, pins: dict, as_of: date | N
         if item["kind"] == "observed_narrative":
             numeric = None
         definition = item["definition"]
-        limitations = tuple(item["limitations"]) + ("구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",)
+        limitations = tuple(item["limitations"]) + (
+            "구절 존재 또는 명시적 원문 수치만 확인한다. 경제적 일반 주장·인과·미래 투자성과를 자동 검증한 것이 아니다.",
+        )
         if timing and timing['observed_at'] is None:
-            limitations+=("해당 행의 실제 관측일이 미확인이다. 자료 전체 최신일·공개일·획득일로 채우거나 변화 계산에 사용하지 않는다.",)
-        elif timing and timing['date_meaning']=='period_end_label_not_daily_measurement':
-            limitations+=("observed_at은 명시된 보고기간의 말일 표기이며 그 하루의 측정값을 뜻하지 않는다.",)
+            limitations += (
+                "해당 행의 실제 관측일이 미확인이다. 자료 전체 최신일·공개일·획득일로 채우거나 변화 계산에 사용하지 않는다.",
+            )
+        elif timing and timing['date_meaning'] == 'period_end_label_not_daily_measurement':
+            limitations += ("observed_at은 명시된 보고기간의 말일 표기이며 그 하루의 측정값을 뜻하지 않는다.",)
         if item["extraction"] is not None and numeric is None and item["kind"] != "observed_narrative":
             limitations += ("지원하는 수치·정의로 추출할 수 없어 수치 주장을 확인하지 않았다.",)
         analyzed = max(earliest, review.reviewed_at or date.min)
-        evidence.append(EvidenceRecord(item["id"], item["source_id"], excerpt["quote"], excerpt["locator"],
-            observed, analyzed, tuple(shot.source["asset_ids"]) or plan.asset_ids,
-            item["view"], item["kind"], VerificationStatus.SUPPORTED, review, limitations, numeric,
-            definition["unit"] if numeric is not None else None, definition["period"] if numeric is not None else None,
-            definition["currency"] if numeric is not None else None,
-            EvidenceProvenance(shot.snapshot_id, item["excerpt_id"], "matched", ages[item["source_id"]], definition)))
+        evidence.append(
+            EvidenceRecord(
+                item["id"],
+                item["source_id"],
+                excerpt["quote"],
+                excerpt["locator"],
+                observed,
+                analyzed,
+                tuple(shot.source["asset_ids"]) or plan.asset_ids,
+                item["view"],
+                item["kind"],
+                VerificationStatus.SUPPORTED,
+                review,
+                limitations,
+                numeric,
+                definition["unit"] if numeric is not None else None,
+                definition["period"] if numeric is not None else None,
+                definition["currency"] if numeric is not None else None,
+                EvidenceProvenance(
+                    shot.snapshot_id, item["excerpt_id"], "matched", ages[item["source_id"]], definition
+                ),
+            )
+        )
     by_id = {e.id: e for e in evidence}
 
     def factual(ref: str) -> bool:
         e = by_id.get(ref)
-        return bool(e and e.kind != "observed_narrative" and source_lookup[e.source_id].type != SourceType.COMMUNITY
-                    and e.interpretation.status == InterpretationStatus.REVIEWED and e.provenance.freshness != "future")
+        return bool(
+            e
+            and e.kind != "observed_narrative"
+            and source_lookup[e.source_id].type != SourceType.COMMUNITY
+            and e.interpretation.status == InterpretationStatus.REVIEWED
+            and e.provenance.freshness != "future"
+        )
 
     claims = []
     for item in plan.claims:
-        support, counter, context = ([ref for ref in item[key] if ref in by_id] for key in ("support_ids", "counter_ids", "context_ids"))
+        support, counter, context = (
+            [ref for ref in item[key] if ref in by_id] for key in ("support_ids", "counter_ids", "context_ids")
+        )
         narrative = item["narrative_evidence_id"] if item["narrative_evidence_id"] in by_id else None
-        refs = item["support_ids"] + item["counter_ids"] + item["context_ids"] + ([item["narrative_evidence_id"]] if item["narrative_evidence_id"] else [])
+        refs = (
+            item["support_ids"]
+            + item["counter_ids"]
+            + item["context_ids"]
+            + ([item["narrative_evidence_id"]] if item["narrative_evidence_id"] else [])
+        )
         if item["rule"] == "numeric_equality_v1":
             refs += [item["assertion"]["evidence_id"]]
         missing = [ref for ref in refs if ref not in by_id]
@@ -537,9 +751,15 @@ def replay_plan(plan: SourcePlan, store: str | Path, pins: dict, as_of: date | N
             assertion = item["assertion"]
             ref, expected = assertion["evidence_id"], _decimal(assertion["expected_value"], "assertion.expected_value")
             e = by_id.get(ref)
-            compatible = (e is not None
-                and all(e.provenance.definition[key] == assertion[key] for key in ("unit", "period", "currency", "measure", "scope"))
-                and e.provenance.definition["adjustment"] == assertion.get("adjustment", e.provenance.definition["adjustment"]))
+            compatible = (
+                e is not None
+                and all(
+                    e.provenance.definition[key] == assertion[key]
+                    for key in ("unit", "period", "currency", "measure", "scope")
+                )
+                and e.provenance.definition["adjustment"]
+                == assertion.get("adjustment", e.provenance.definition["adjustment"])
+            )
             if not factual(ref) or e.value is None or not compatible:
                 limitations.append("비커뮤니티 검토 근거·지원 수치 추출·동일 정의가 부족하여 수치 주장은 미확인이다.")
             else:
@@ -550,22 +770,71 @@ def replay_plan(plan: SourcePlan, store: str | Path, pins: dict, as_of: date | N
         else:
             desired = VerificationStatus(item["verification"])
             supports, opposes = any(factual(ref) for ref in support), any(factual(ref) for ref in counter)
-            if ((desired not in (VerificationStatus.SUPPORTED, VerificationStatus.PARTIAL, VerificationStatus.DISPUTED) or supports)
-                    and (desired not in (VerificationStatus.CONTRADICTED, VerificationStatus.DISPUTED) or opposes)):
+            if (
+                desired not in (VerificationStatus.SUPPORTED, VerificationStatus.PARTIAL, VerificationStatus.DISPUTED)
+                or supports
+            ) and (desired not in (VerificationStatus.CONTRADICTED, VerificationStatus.DISPUTED) or opposes):
                 state = desired
             else:
                 limitations.append("커뮤니티 내용·누락·미검토 근거만으로 주장을 확인하지 않았다.")
-            limitations.append("reviewed_links_v1: 내용의 의미 판정은 명시한 사례 검토 기록이며 자동 사실 판정이 아니다.")
-        claims.append(ResearchClaim(item["id"], item["text"], tuple(item["asset_ids"]), state, review,
-            tuple(support), tuple(counter), narrative, tuple(limitations),
-            item.get("recheck", "구절·정의·시점과 반대 근거를 추가로 검토한다."), tuple(context)))
-    brief = ResearchBrief(plan.id, plan.question, cutoff, "KRW", "실제 과거 공개 자료의 출처·주장 검증; 현재 투자 판단은 하지 않는다.",
-        tuple(e.id for e in evidence if e.kind != "observed_narrative"), ("전체 시장 조사·개인 자산배분·매매 판단은 이번 범위에서 제외한다.",),
-        ("자료의 과거 사실 확인과 현재 투자환경 적용은 다르다.", "자료 정의가 다른 수치를 수익률·매력 순위로 합치지 않는다."))
+            limitations.append(
+                "reviewed_links_v1: 내용의 의미 판정은 명시한 사례 검토 기록이며 자동 사실 판정이 아니다."
+            )
+        claims.append(
+            ResearchClaim(
+                item["id"],
+                item["text"],
+                tuple(item["asset_ids"]),
+                state,
+                review,
+                tuple(support),
+                tuple(counter),
+                narrative,
+                tuple(limitations),
+                item.get("recheck", "구절·정의·시점과 반대 근거를 추가로 검토한다."),
+                tuple(context),
+            )
+        )
+    brief = ResearchBrief(
+        plan.id,
+        plan.question,
+        cutoff,
+        "KRW",
+        "실제 과거 공개 자료의 출처·주장 검증; 현재 투자 판단은 하지 않는다.",
+        tuple(e.id for e in evidence if e.kind != "observed_narrative"),
+        ("전체 시장 조사·개인 자산배분·매매 판단은 이번 범위에서 제외한다.",),
+        (
+            "자료의 과거 사실 확인과 현재 투자환경 적용은 다르다.",
+            "자료 정의가 다른 수치를 수익률·매력 순위로 합치지 않는다.",
+        ),
+    )
     profile = ProfileSnapshot(plan.id + "_PROFILE", cutoff, {"base_currency": ProfileField("known", "KRW")})
     labels = dict(zip(ASSET_IDS, zip(("현금성 노출", "국채 노출", "주식 노출"), ("cash", "government_bond", "equity"))))
-    alternatives = tuple(Alternative(identifier, *labels.get(identifier, (identifier, identifier.lower())),
-        "투자수익을 계산하지 않는다", "실제 상품·유동성은 미확인이다", (), (),
-        ("출처 검증만 수행하여 자산의 매력·개인 적절성은 미확인이다.",), ()) for identifier in plan.asset_ids)
-    return ResearchCase("1", False, brief, profile, tuple(source_records), tuple(evidence), tuple(claims), alternatives,
-        (), (), _digest({"plan": plan.input_digest, "pins": pins, "as_of": cutoff.isoformat(), "method": PIPELINE_VERSION}), True, tuple(diagnostics))
+    alternatives = tuple(
+        Alternative(
+            identifier,
+            *labels.get(identifier, (identifier, identifier.lower())),
+            "투자수익을 계산하지 않는다",
+            "실제 상품·유동성은 미확인이다",
+            (),
+            (),
+            ("출처 검증만 수행하여 자산의 매력·개인 적절성은 미확인이다.",),
+            (),
+        )
+        for identifier in plan.asset_ids
+    )
+    return ResearchCase(
+        "1",
+        False,
+        brief,
+        profile,
+        tuple(source_records),
+        tuple(evidence),
+        tuple(claims),
+        alternatives,
+        (),
+        (),
+        _digest({"plan": plan.input_digest, "pins": pins, "as_of": cutoff.isoformat(), "method": PIPELINE_VERSION}),
+        True,
+        tuple(diagnostics),
+    )

@@ -106,7 +106,9 @@ class SourceCLITests(unittest.TestCase):
     def test_acquire_preserves_existing_pins_before_any_get(self):
         existing = b"User-owned acquisition record\n"
         self.pins_path.write_bytes(existing)
-        with patch("investment_research.source_pipeline.acquire_plan", side_effect=AssertionError("must refuse before GET")) as fetch:
+        with patch(
+            "investment_research.source_pipeline.acquire_plan", side_effect=AssertionError("must refuse before GET")
+        ) as fetch:
             code, stdout, stderr = self.call(*self.acquire_arguments())
         self.assertEqual(code, 2)
         self.assertEqual(stdout, "")
@@ -117,7 +119,9 @@ class SourceCLITests(unittest.TestCase):
 
     def test_replay_repeats_without_network_and_writes_traceable_manifest(self):
         pins = self.prepare_replay()
-        with patch("investment_research.source_pipeline.acquire_plan", side_effect=AssertionError("replay must not acquire")):
+        with patch(
+            "investment_research.source_pipeline.acquire_plan", side_effect=AssertionError("replay must not acquire")
+        ):
             first = self.call(*self.replay_arguments())
             second = self.call(*self.replay_arguments())
         self.assertEqual(first[0], 0, first[2])

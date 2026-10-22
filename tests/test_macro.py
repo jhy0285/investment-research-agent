@@ -25,7 +25,6 @@ from investment_research.macro import (
     yoy,
 )
 
-
 AS_OF = date(2026, 10, 3)
 
 
@@ -95,8 +94,9 @@ def snapshot_bytes(snapshot):
             return str(value)
         raise TypeError(type(value).__name__)
 
-    return json.dumps(asdict(snapshot), default=encode, sort_keys=True,
-                      ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    return json.dumps(
+        asdict(snapshot), default=encode, sort_keys=True, ensure_ascii=False, separators=(",", ":")
+    ).encode("utf-8")
 
 
 class MacroTests(unittest.TestCase):
@@ -109,14 +109,17 @@ class MacroTests(unittest.TestCase):
     def test_historical_selection_uses_first_release_and_preserves_later_revision(self):
         series = definition()
         initial = observation(
-            series, "2026-08-01", "100",
+            series,
+            "2026-08-01",
+            "100",
             released_at=instant("2026-09-10T14:00:00Z"),
             vintage_at=instant("2026-09-10T14:00:00Z"),
             retrieved_at=instant("2026-09-10T15:00:00Z"),
             vintage_id="synthetic-first-release",
         )
         revision = replace(
-            initial, value=Decimal("101"),
+            initial,
+            value=Decimal("101"),
             vintage_at=instant("2026-10-02T14:00:00Z"),
             revised_at=instant("2026-10-02T14:00:00Z"),
             retrieved_at=instant("2026-10-03T04:00:00Z"),
@@ -139,8 +142,7 @@ class MacroTests(unittest.TestCase):
         series = definition()
         original = observation(series, "2026-08-01", "100")
         future = instant("2026-10-02T12:00:00Z")
-        for field in ("released_at", "vintage_at", "revised_at", "known_at",
-                      "valid_as_of", "observation_date"):
+        for field in ("released_at", "vintage_at", "revised_at", "known_at", "valid_as_of", "observation_date"):
             with self.subTest(field=field):
                 value = date(2026, 10, 1) if field in {"valid_as_of", "observation_date"} else future
                 changed = replace(original, **{field: value})
@@ -152,7 +154,9 @@ class MacroTests(unittest.TestCase):
     def test_date_cutoff_means_end_of_day_but_datetime_is_exact(self):
         series = definition()
         released = observation(
-            series, "2026-10-01", "100",
+            series,
+            "2026-10-01",
+            "100",
             released_at=instant("2026-10-03T21:00:00Z"),
             vintage_at=instant("2026-10-03T21:00:00Z"),
         )
@@ -165,8 +169,7 @@ class MacroTests(unittest.TestCase):
 
     def test_unknown_release_or_version_history_uses_retrieval_without_inventing_release(self):
         series = definition()
-        base = observation(series, "2026-08-01", "100",
-                           retrieved_at=instant("2026-10-03T04:00:00Z"), vintage_at=None)
+        base = observation(series, "2026-08-01", "100", retrieved_at=instant("2026-10-03T04:00:00Z"), vintage_at=None)
         for release in (None, instant("2026-09-10T14:00:00Z")):
             with self.subTest(release=release):
                 item = replace(base, released_at=release)
@@ -197,17 +200,26 @@ class MacroTests(unittest.TestCase):
         self.assertEqual(registry[raw.canonical_id], raw)
         with self.assertRaises(TypeError):
             registry[raw.canonical_id] = transformed
-        for changes in ({"unit": "percent"}, {"adjustment": "seasonally_adjusted"},
-                        {"transformation": "yoy_v1"}, {"definition": "Synthetic core CPI, different measure"}):
+        for changes in (
+            {"unit": "percent"},
+            {"adjustment": "seasonally_adjusted"},
+            {"transformation": "yoy_v1"},
+            {"definition": "Synthetic core CPI, different measure"},
+        ):
             with self.subTest(changes=changes), self.assertRaises(MacroError):
                 make_registry([raw, replace(raw, **changes)])
 
     def test_observation_definition_changes_are_rejected_instead_of_silently_combined(self):
         series = definition(currency="USD")
         item = observation(series, "2026-08-01", "100")
-        for changes in ({"unit": "percent"}, {"frequency": "daily"},
-                        {"adjustment": "seasonally_adjusted"}, {"currency": "KRW"},
-                        {"source_id": "S_OTHER_SYNTHETIC"}, {"observation_date": date(2026, 8, 15)}):
+        for changes in (
+            {"unit": "percent"},
+            {"frequency": "daily"},
+            {"adjustment": "seasonally_adjusted"},
+            {"currency": "KRW"},
+            {"source_id": "S_OTHER_SYNTHETIC"},
+            {"observation_date": date(2026, 8, 15)},
+        ):
             with self.subTest(changes=changes), self.assertRaises(MacroError):
                 select_series(series, [replace(item, **changes)], AS_OF)
 
@@ -226,11 +238,13 @@ class MacroTests(unittest.TestCase):
         august = observation(series, "2026-08-01", None)
         latest_missing = select_series(series, [july, august], date(2026, 8, 31))
         absent = select_series(series, [july], date(2026, 8, 31), expected_period=date(2026, 8, 1))
-        delayed = replace(august, value=Decimal("101"),
-                          released_at=instant("2026-09-10T14:00:00Z"),
-                          vintage_at=instant("2026-09-10T14:00:00Z"))
-        not_released = select_series(series, [july, delayed], date(2026, 8, 31),
-                                     expected_period=date(2026, 8, 1))
+        delayed = replace(
+            august,
+            value=Decimal("101"),
+            released_at=instant("2026-09-10T14:00:00Z"),
+            vintage_at=instant("2026-09-10T14:00:00Z"),
+        )
+        not_released = select_series(series, [july, delayed], date(2026, 8, 31), expected_period=date(2026, 8, 1))
         self.assertEqual(latest_missing.status, "missing")
         self.assertIsNone(latest_missing.latest.value)
         self.assertEqual(absent.status, "missing")
@@ -285,10 +299,13 @@ class MacroTests(unittest.TestCase):
     def test_missing_invalid_or_wrong_month_endpoint_blocks_yoy_without_imputation(self):
         series = definition()
         current = observation(series, "2026-08-01", "110")
-        for prior in (None, observation(series, "2025-07-01", "100"),
-                      observation(series, "2025-08-01", None),
-                      observation(series, "2025-08-01", "0"),
-                      observation(series, "2025-08-01", "-100")):
+        for prior in (
+            None,
+            observation(series, "2025-07-01", "100"),
+            observation(series, "2025-08-01", None),
+            observation(series, "2025-08-01", "0"),
+            observation(series, "2025-08-01", "-100"),
+        ):
             with self.subTest(prior=prior):
                 items = [current] if prior is None else [current, prior]
                 metric = yoy(select_series(series, items, AS_OF))
@@ -311,10 +328,15 @@ class MacroTests(unittest.TestCase):
 
     def test_inflation_can_slow_while_its_raw_price_index_rises(self):
         series = definition()
-        items = [observation(series, period, value) for period, value in (
-            ("2025-07-01", "100"), ("2025-08-01", "110"),
-            ("2026-07-01", "110"), ("2026-08-01", "115.5"),
-        )]
+        items = [
+            observation(series, period, value)
+            for period, value in (
+                ("2025-07-01", "100"),
+                ("2025-08-01", "110"),
+                ("2026-07-01", "110"),
+                ("2026-08-01", "115.5"),
+            )
+        ]
         selected = select_series(series, items, AS_OF)
         raw_change = previous_change(selected)
         inflation = inflation_trend(selected)
@@ -328,10 +350,15 @@ class MacroTests(unittest.TestCase):
 
     def test_inflation_trend_requires_each_exact_endpoint_for_both_months(self):
         series = definition()
-        items = [observation(series, period, value) for period, value in (
-            ("2025-07-01", "100"), ("2025-08-01", "100"),
-            ("2026-07-01", "108"), ("2026-08-01", "110"),
-        )]
+        items = [
+            observation(series, period, value)
+            for period, value in (
+                ("2025-07-01", "100"),
+                ("2025-08-01", "100"),
+                ("2026-07-01", "108"),
+                ("2026-08-01", "110"),
+            )
+        ]
         for removed in items:
             with self.subTest(missing=removed.observation_date):
                 remaining = [item for item in items if item != removed]
@@ -386,11 +413,17 @@ class MacroTests(unittest.TestCase):
     def test_yield_spread_rejects_different_financial_definitions(self):
         ten, two = yield_definition(10), yield_definition(2)
         a = select_series(ten, [observation(ten, "2026-09-29", "4.5")], AS_OF)
-        for changes in ({"unit": "basis_points"}, {"frequency": "monthly"},
-                        {"currency": "KRW"}, {"currency": None},
-                        {"yield_type": "real_treasury"}, {"yield_type": "target_policy_rate"},
-                        {"adjustment": "adjusted"}, {"tenor_years": 3},
-                        {"transformation": "previous_change_v1"}):
+        for changes in (
+            {"unit": "basis_points"},
+            {"frequency": "monthly"},
+            {"currency": "KRW"},
+            {"currency": None},
+            {"yield_type": "real_treasury"},
+            {"yield_type": "target_policy_rate"},
+            {"adjustment": "adjusted"},
+            {"tenor_years": 3},
+            {"transformation": "previous_change_v1"},
+        ):
             with self.subTest(changes=changes):
                 changed = replace(two, **changes)
                 period = "2026-09-01" if changed.frequency == "monthly" else "2026-09-29"
@@ -417,10 +450,14 @@ class MacroTests(unittest.TestCase):
         cpi, ten, two = definition(), yield_definition(10), yield_definition(2)
         definitions = [cpi, ten, two]
         items = [
-            observation(cpi, "2025-07-01", "100"), observation(cpi, "2025-08-01", "100"),
-            observation(cpi, "2026-07-01", "105"), observation(cpi, "2026-08-01", "110"),
-            observation(ten, "2026-09-25", "4"), observation(ten, "2026-09-29", "4.12345"),
-            observation(two, "2026-09-25", "3.9"), observation(two, "2026-09-29", "3.98765"),
+            observation(cpi, "2025-07-01", "100"),
+            observation(cpi, "2025-08-01", "100"),
+            observation(cpi, "2026-07-01", "105"),
+            observation(cpi, "2026-08-01", "110"),
+            observation(ten, "2026-09-25", "4"),
+            observation(ten, "2026-09-29", "4.12345"),
+            observation(two, "2026-09-25", "3.9"),
+            observation(two, "2026-09-29", "3.98765"),
         ]
         pair = (ten.canonical_id, two.canonical_id)
         with localcontext() as context:
@@ -428,15 +465,19 @@ class MacroTests(unittest.TestCase):
             first = build_macro_snapshot(definitions, items, AS_OF, (cpi.canonical_id,), pair)
         with localcontext() as context:
             context.prec = 28
-            repeated = build_macro_snapshot(list(reversed(definitions)), list(reversed(items)),
-                                            AS_OF, (cpi.canonical_id,), pair)
+            repeated = build_macro_snapshot(
+                list(reversed(definitions)), list(reversed(items)), AS_OF, (cpi.canonical_id,), pair
+            )
         self.assertEqual(snapshot_bytes(first), snapshot_bytes(repeated))
         spread = next(metric for metric in first.metrics if metric.transformation == "yield_spread_v1")
         self.assertEqual(spread.value, Decimal(".13580"))
-        self.assertEqual(next(metric for metric in first.metrics if metric.transformation == "yoy_v1").value,
-                         Decimal("10"))
-        self.assertEqual(next(metric for metric in first.metrics if metric.transformation == "inflation_trend_v1").value,
-                         Decimal("5"))
+        self.assertEqual(
+            next(metric for metric in first.metrics if metric.transformation == "yoy_v1").value, Decimal("10")
+        )
+        self.assertEqual(
+            next(metric for metric in first.metrics if metric.transformation == "inflation_trend_v1").value,
+            Decimal("5"),
+        )
 
     def test_snapshot_rejects_unknown_series_instead_of_dropping_data(self):
         cpi = definition()

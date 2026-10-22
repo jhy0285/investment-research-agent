@@ -3,6 +3,7 @@
 Inputs are reviewed data, not forecasts inferred by a language model. A latest
 revised historical series cannot masquerade as a point-in-time series.
 """
+
 from calendar import monthrange
 from datetime import timedelta
 from decimal import Decimal, InvalidOperation
@@ -16,30 +17,53 @@ from .sources import SourceError, _parse_json, _time as _parse_time
 
 VERSION = 'investment_cycle_v1'
 HORIZONS = {'1w': 0, '1m': 1, '3m': 3, '6m': 6, '1y': 12}
-MARKETS = ('미국 주식', '한국 주식', '성장주', 'AI', '반도체', '가치주', '배당주',
-           '미국 국채', '한국 국채', '금', '은', '원유', '천연가스', '산업금속',
-           '기타 원자재', 'Bitcoin', 'Ethereum', '주요 암호화폐',
-           '서울/수도권 부동산', '글로벌 부동산', '새로운 투자 기회')
+MARKETS = (
+    '미국 주식',
+    '한국 주식',
+    '성장주',
+    'AI',
+    '반도체',
+    '가치주',
+    '배당주',
+    '미국 국채',
+    '한국 국채',
+    '금',
+    '은',
+    '원유',
+    '천연가스',
+    '산업금속',
+    '기타 원자재',
+    'Bitcoin',
+    'Ethereum',
+    '주요 암호화폐',
+    '서울/수도권 부동산',
+    '글로벌 부동산',
+    '새로운 투자 기회',
+)
 
 
 def timestamp(value):
-    if not isinstance(value,str) or len(value)<19:
+    if not isinstance(value, str) or len(value) < 19:
         raise SourceError('investment timestamps require explicit time and timezone')
-    result=_parse_time(value)
-    if result is None:raise SourceError('investment timestamp cannot be unknown')
+    result = _parse_time(value)
+    if result is None:
+        raise SourceError('investment timestamp cannot be unknown')
     return result
 
 
-_time=timestamp
+_time = timestamp
 
 
 def contract(function):
     @wraps(function)
-    def wrapped(*args,**kwargs):
-        try:return function(*args,**kwargs)
-        except SourceError:raise
-        except (KeyError,TypeError,AttributeError,ValueError,OverflowError) as exc:
-            raise SourceError(function.__name__+': malformed or missing required field') from exc
+    def wrapped(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except SourceError:
+            raise
+        except (KeyError, TypeError, AttributeError, ValueError, OverflowError) as exc:
+            raise SourceError(function.__name__ + ': malformed or missing required field') from exc
+
     return wrapped
 
 
@@ -89,15 +113,18 @@ def target(at, horizon):
         return at + timedelta(days=7)
     months = at.year * 12 + at.month - 1 + HORIZONS[horizon]
     year, month = divmod(months, 12)
-    return at.replace(year=year, month=month + 1,
-                      day=min(at.day, monthrange(year, month + 1)[1]))
+    return at.replace(year=year, month=month + 1, day=min(at.day, monthrange(year, month + 1)[1]))
 
 
 @contract
 def rule(rule):
-    if (not isinstance(rule, dict) or not rule.get('feature') or
-            rule.get('op') not in ('>', '>=', '<', '<=', '==') or
-            type(rule.get('max_age_days')) is not int or not 0 <= rule['max_age_days'] <= 366):
+    if (
+        not isinstance(rule, dict)
+        or not rule.get('feature')
+        or rule.get('op') not in ('>', '>=', '<', '<=', '==')
+        or type(rule.get('max_age_days')) is not int
+        or not 0 <= rule['max_age_days'] <= 366
+    ):
         raise SourceError('invalid feature condition or freshness limit')
     number(rule.get('value'), 'condition value')
 
@@ -214,7 +241,7 @@ def validate_plan(data):
                 raise SourceError('declare one to five supporting and opposing reasons')
         if c['mode'] == 'unvalidated':
             continue
-        if not isinstance(c.get('current_price_evidence_id'),str) or not c['current_price_evidence_id']:
+        if not isinstance(c.get('current_price_evidence_id'), str) or not c['current_price_evidence_id']:
             raise SourceError('current price source reference required')
         if not isinstance(c.get('review'), dict) or not c['review'].get('reviewer') or not c['review'].get('note'):
             raise SourceError('economic thesis needs an explicit scoped review')
@@ -226,15 +253,23 @@ def validate_plan(data):
             validate_dataset(c[dataset])
             if c[dataset]['synthetic'] != data['synthetic']:
                 raise SourceError('synthetic and real data cannot be mixed')
-        quote=c['quote']
-        if (quote['instrument_id']!=c['prices']['instrument_id'] or quote['currency']!='KRW' or
-                not quote['unit'] or not quote['measure'] or number(quote['value'])<=0):
+        quote = c['quote']
+        if (
+            quote['instrument_id'] != c['prices']['instrument_id']
+            or quote['currency'] != 'KRW'
+            or not quote['unit']
+            or not quote['measure']
+            or number(quote['value']) <= 0
+        ):
             raise SourceError('declare actual KRW instrument quote, separate from total-return index')
-        if _time(quote['at'])>_time(quote['known_at']):
+        if _time(quote['at']) > _time(quote['known_at']):
             raise SourceError('quote known before its observation')
         if c['prices']['asset_id'] != c['asset_id']:
             raise SourceError('investment exposure and traded price instrument differ')
-        if c['prices']['currency'] != c['benchmark']['currency'] or c['prices']['return_kind'] != c['benchmark']['return_kind']:
+        if (
+            c['prices']['currency'] != c['benchmark']['currency']
+            or c['prices']['return_kind'] != c['benchmark']['return_kind']
+        ):
             raise SourceError('benchmark currency or return definition differs')
         if c['prices']['instrument_id'] == c['benchmark']['instrument_id']:
             raise SourceError('market benchmark must be a separate declared instrument')
@@ -251,27 +286,37 @@ def validate_plan(data):
             if observed > known or known > _time(f['retrieved_at']):
                 raise SourceError('feature publication/revision availability is inconsistent')
             number(f['value'])
-            for key in ('unit','currency','measure'):
-                if not isinstance(f.get(key),str) or not f[key]:
-                    raise SourceError('feature definition missing '+key)
+            for key in ('unit', 'currency', 'measure'):
+                if not isinstance(f.get(key), str) or not f[key]:
+                    raise SourceError('feature definition missing ' + key)
             key = (f['name'], f['observed_at'], f['known_at'])
             if key in seen or not f.get('source') or not f.get('vintage'):
                 raise SourceError('duplicate feature vintage or missing source')
             seen.add(key)
-        definitions={}
+        definitions = {}
         for f in features:
-            d=tuple(f[k] for k in ('unit','currency','measure','source'))
-            if f['name'] in definitions and definitions[f['name']]!=d:
+            d = tuple(f[k] for k in ('unit', 'currency', 'measure', 'source'))
+            if f['name'] in definitions and definitions[f['name']] != d:
                 raise SourceError('feature definition changed within one history')
-            definitions[f['name']]=d
+            definitions[f['name']] = d
         if c['mode'] == 'event' and not c.get('analog_evidence_ids'):
             raise SourceError('nonrepeatable event requires reviewed comparable cases')
     return data
 
 
 def default_plan():
-    return dict(schema_version='investment-plan-v1', synthetic=False, new_cash_krw='10000000',
-                scenario_note='신규 현금 1,000만원의 예시다. 개인 재무 조건이 미확인인 자금은 집행하지 않는다.',
-                profile=None, candidates=[],
-                policy=dict(minimum_historical=20, minimum_validation=10, minimum_recent=10, minimum_live=10,
-                            caps=dict(A='0.4', B='0.2', C='0.05', group_cap='0.5')))
+    return dict(
+        schema_version='investment-plan-v1',
+        synthetic=False,
+        new_cash_krw='10000000',
+        scenario_note='신규 현금 1,000만원의 예시다. 개인 재무 조건이 미확인인 자금은 집행하지 않는다.',
+        profile=None,
+        candidates=[],
+        policy=dict(
+            minimum_historical=20,
+            minimum_validation=10,
+            minimum_recent=10,
+            minimum_live=10,
+            caps=dict(A='0.4', B='0.2', C='0.05', group_cap='0.5'),
+        ),
+    )
