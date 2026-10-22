@@ -1,0 +1,88 @@
+{
+  "schema_version": "history-catalog-v1",
+  "method_version": "pit_history_v1",
+  "max_requests": 800,
+  "providers": {
+    "upbit_day_candles": {
+      "access_method": "public_api",
+      "endpoint": "https://api.upbit.com/v1/candles/days",
+      "policy_url": "https://docs.upbit.com/kr/reference/list-candles-days",
+      "policy_note": "Upbit 공개 시세 API(인증 불필요)의 일 캔들. 문서의 요청 수 제한을 지키며 개인 연구 재현을 위해 로컬 실행 디렉터리에 필요한 필드만 보존한다. 재배포·저장소 커밋 대상이 아니다.",
+      "min_interval_seconds": 0.2,
+      "page_size": 200,
+      "earliest": "2017-09-25",
+      "boundary": "candle_date_time_utc 00:00 UTC(09:00 KST) 시작, 다음 날 00:00 UTC 종료. trade_price는 종료 직전 마지막 체결가다. timestamp는 마지막 틱 저장 시각이며 known_at은 종료 시각과 저장 시각 중 늦은 쪽이다.",
+      "revision_note": "거래소 체결 기록이며 공개 개정 이력이 없다. 같은 캔들을 다시 받았을 때 값이 다르면 추가 확인 대상으로 남긴다.",
+      "markets": {
+        "KRW-BTC": {
+          "asset_id": "BTC",
+          "instrument_id": "UPBIT_KRW_BTC",
+          "name": "Upbit 원화 BTC 현물",
+          "unit": "KRW per BTC",
+          "measure": "upbit_krw_spot_daily_close",
+          "distribution_note": "배당은 없다. 하드포크·에어드롭 지급분은 포함하지 않았으므로 총수익 판본이 아니다."
+        },
+        "KRW-ETH": {
+          "asset_id": "ETH",
+          "instrument_id": "UPBIT_KRW_ETH",
+          "name": "Upbit 원화 ETH 현물(스테이킹 없음)",
+          "unit": "KRW per ETH",
+          "measure": "upbit_krw_spot_daily_close",
+          "distribution_note": "스테이킹 보상·에어드롭을 포함하지 않은 가격이다. 총수익 판본이 아니다."
+        }
+      }
+    },
+    "alfred_vintage_csv": {
+      "access_method": "public_http",
+      "endpoint": "https://alfred.stlouisfed.org/graph/alfredgraph.csv",
+      "policy_url": "https://fred.stlouisfed.org/legal/",
+      "policy_note": "St. Louis Fed ALFRED 판본 CSV. robots.txt의 Crawl-delay 2초를 지킨다. 미국 정부 공표 공개 자료 계열만 등록했고, 판본별 관측창만 로컬 실행 디렉터리에 보존한다.",
+      "min_interval_seconds": 2,
+      "known_at_rule": "vintage_date 당일 미국 중부시각 자정(= 다음 날 06:00 UTC) 이후. 실제 공표 시각보다 늦거나 같게 잡는 보수적 규칙이다.",
+      "window_parameter_note": "cosd/coed 관측창 인자를 쓰면 판본이 아닌 값이 섞여 돌아온다. 항상 전체 판본을 받아 로컬에서 관측창을 자른다.",
+      "series": {
+        "CPIAUCSL": {
+          "name": "미국 CPI(전 품목, 계절조정)",
+          "unit": "index 1982-1984=100",
+          "measure": "us_cpi_all_items_sa_index",
+          "frequency": "monthly",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "UNRATE": {
+          "name": "미국 실업률(계절조정)",
+          "unit": "percent",
+          "measure": "us_unemployment_rate_sa",
+          "frequency": "monthly",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "FEDFUNDS": {
+          "name": "미국 실효 연방기금금리(월평균)",
+          "unit": "percent",
+          "measure": "us_effective_fed_funds_monthly_average",
+          "frequency": "monthly",
+          "publisher": "Board of Governors of the Federal Reserve System (H.15)",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "DGS10": {
+          "name": "미국 10년 국채 수익률(고정만기)",
+          "unit": "percent",
+          "measure": "us_treasury_10y_constant_maturity_yield",
+          "frequency": "daily",
+          "publisher": "Board of Governors of the Federal Reserve System (H.15)",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "DEXKOUS": {
+          "name": "원/달러 환율(뉴욕 정오 매입률)",
+          "unit": "KRW per USD",
+          "currency": "KRW",
+          "measure": "h10_krw_per_usd_noon_buying_rate",
+          "frequency": "daily",
+          "publisher": "Board of Governors of the Federal Reserve System (H.10)",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        }
+      }
+    }
+  }
+}

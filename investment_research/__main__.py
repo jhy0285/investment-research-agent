@@ -153,6 +153,15 @@ def main(argv: list[str] | None = None) -> int:
     invest_review.add_argument("--prices", type=Path, required=True, help="investment-prices-v1 데이터셋의 JSON 배열")
     invest_review.add_argument("--as-of", required=True, help="timezone을 포함한 평가 시각")
     invest_review.add_argument("--run-dir", type=Path, required=True)
+    invest_history = invest_commands.add_parser("history", help="검토된 공개 제공자의 시점 보장 장기 이력 수집·재현")
+    history_commands = invest_history.add_subparsers(dest="history_action", required=True)
+    history_acquire = history_commands.add_parser(
+        "acquire", help="Upbit 일 캔들·ALFRED 판본을 받아 가격·특징값 이력 생성"
+    )
+    history_acquire.add_argument("spec", type=Path, help="investment-history-spec-v1 JSON")
+    history_acquire.add_argument("--output", type=Path, required=True, help="새 출력 디렉터리")
+    history_replay = history_commands.add_parser("replay", help="보존한 행으로 인터넷 없이 이력을 다시 만들고 대조")
+    history_replay.add_argument("run", type=Path)
     research = subcommands.add_parser("research", help="로컬 합성 JSON 자료로 한국어 보고서 생성")
     research.add_argument("case", type=Path, help="case.json 또는 그 파일을 포함한 디렉터리")
     research.add_argument("--output", type=Path, help="Markdown 파일 경로; 생략하면 표준 출력")
@@ -225,6 +234,15 @@ def main(argv: list[str] | None = None) -> int:
             from .investment_cycle import run_cycle, replay_cycle
             from .decision_journal import record, review, persist_review
 
+            if args.investment_action == "history":
+                from .history import acquire_history, render_history, replay_history
+
+                if args.history_action == "acquire":
+                    result = acquire_history(load(args.spec), args.output, progress=lambda m: print(m, file=sys.stderr))
+                else:
+                    result = replay_history(args.run)
+                sys.stdout.write(render_history(result))
+                return 1 if result['failures'] else 0
             if args.investment_action == "run":
                 result = run_cycle(
                     load(args.plan), args.research_run, args.run_dir, ledger=args.journal, previous=args.previous_run
