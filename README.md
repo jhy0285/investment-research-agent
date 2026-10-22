@@ -10,7 +10,7 @@
 
 ## 사용자의 질문에서 시작하는 네 모드
 
-새 Broad Scan에는 [투자 판단과 사후검증](docs/investment-cycle.md)을 기본 연결한다. 첫 화면에 최종 행동·최대 다섯 후보·신규 1,000만원 예시 배분을 보여 주고 불변 일지를 남긴다. 등록 검증 자료가 없으면 신규 매수하지 않고 예시 현금을 유지한다. 실제 10년 가격/이익 전망 판본 자동 수집은 아직 연결하지 않았으며, 검토된 계약 입력을 받아 과거·최근 검증을 수행한다.
+새 Broad Scan에는 [투자 판단과 사후검증](docs/investment-cycle.md)을 기본 연결한다. 첫 화면에 최종 행동·최대 다섯 후보·신규 1,000만원 예시 배분을 보여 주고 불변 일지를 남긴다. 등록 검증 자료가 없으면 신규 매수하지 않고 예시 현금을 유지한다. [시점 보장 장기 이력 수집](docs/long-history.md)(`invest history`)은 Upbit 원화 BTC·ETH 일별 종가와 미국 거시 계열의 ALFRED 판본을 검증 입력 형식으로 자동으로 만든다. 주식·ETF 총수익 이력과 과거 이익 전망 판본은 아직 자동 수집하지 않으므로 그 부분은 검토된 계약 입력을 받는다.
 
 ```bash
 python -m investment_research ask '현재 신규 자금을 투자한다면 어디에 투자하는 것이 가장 합리적인가?' --journal reports/investment_journal
@@ -18,7 +18,7 @@ python -m investment_research ask '전체 투자판에서 기회 찾아줘' --de
 python -m examples.investment_cycle.demo --output reports/example_synthetic_cycle
 ```
 
-`invest run/replay/record/review`로 완료 연구의 투자 결론 재현, 기존 판단 기록, 성숙 결과와 등급·전략 평가를 실행한다. 경고 상태는 다음 신규 매수를 차단하고, 조건 수정은 이전 정의를 보존한 새 버전으로 검증한다. [실행·데이터 계약과 현재 제한](docs/investment-cycle.md), [합성 예제](examples/investment_cycle/README.md)를 참고한다.
+`invest run/replay/record/review`로 완료 연구의 투자 결론 재현, 기존 판단 기록, 성숙 결과와 등급·전략 평가를 실행하고, `invest history acquire/replay`로 장기 이력을 수집·재현한다. 경고 상태는 다음 신규 매수를 차단하고, 조건 수정은 이전 정의를 보존한 새 버전으로 검증한다. [실행·데이터 계약과 현재 제한](docs/investment-cycle.md), [합성 예제](examples/investment_cycle/README.md)를 참고한다.
 
 | 질문의 목적 | 독립 진입점 |
 | --- | --- |
@@ -57,9 +57,19 @@ BTC에는 [Source Discovery & Freshness MVP](docs/source-discovery.md)를 연결
 
 ## 현재 상태와 이번 작업의 범위
 
+### 기능 상태 한눈에 보기
+
+| 상태 | 기능 |
+| --- | --- |
+| 실행 가능 | 자연어 `ask`(Scan·Deep Dive·Compare·Portfolio Review), 공개 출처 획득·검증·replay, 거시 판본·Macro Snapshot, 15영역 Opportunity Map, 투자 판단·1,000만원 예시 배분·불변 일지·사후 평가(`invest`), 장기 이력 수집(`invest history`) |
+| 제한적 | Compare·Portfolio Review(자산별 미지원 표시), 장기 이력(Upbit BTC·ETH 가격과 미국 정부 거시 계열만), 매수 승인(시점 보장 총수익 이력을 입력해야 가능) |
+| 미구현 | 주식·ETF 총수익 이력과 과거 이익 전망 판본 자동 수집, 개인 체결·세금, 원화 환산 총수익 어댑터, 자동 예약 실행, 자동매매 |
+
+판단 규칙은 버전으로 관리한다. 현재 `investment_cycle_v2`는 현재 자료가 확인되지 않은 보유 자산에 축소를 권하지 않고 판단을 보류한다. 이전 버전으로 저장한 실행은 그 버전 규칙으로 재현한다. 변경 이력은 [CHANGELOG](CHANGELOG.md)에 있다.
+
 **오프라인 Cross-Asset Research Brief, 공개 출처 획득·검증, Macro Regime Snapshot, 실제 Opportunity Map과 첫 미국 주식 Deep Dive가 있다.** 합성 비교와 과거 FOMC 검증을 유지하고 15개 투자 영역을 조사한 뒤 미국 주식의 예상 이익·실적 질·AI 투자·Treasury 기회비용을 실제 자료로 검토했다. 우선순위와 경제적 판단은 근거에 연결한 검토 전 해석이며 자산 매력·개인 배분·예측을 확정하지 않는다. 수치·구절 확인과 경제적 의미의 검토를 구분한다.
 
-Python 3.12 이상과 표준 라이브러리만 사용한다. Python 3.12.14에서 실행과 테스트를 확인했다. 합성 연구·저장 자료 replay·기본 테스트는 인터넷·API 키·패키지 설치 없이 저장소 루트에서 실행한다.
+Python 3.12 이상과 표준 라이브러리만 사용한다. Python 3.12.14와 3.13.16에서 실행과 테스트를 확인했다. 코드 서식은 선택적 개발 도구 `black`(설정은 `pyproject.toml`)으로 맞추며 실행에는 필요 없다. 합성 연구·저장 자료 replay·기본 테스트는 인터넷·API 키·패키지 설치 없이 저장소 루트에서 실행한다.
 
 삼성전자 공식 PDF와 [검토된 CME·USDA·GSG 문서](docs/commodity-deep-dive.md)의 live 획득에는 선택적 로컬 `pdftotext`가 필요하다. 이 클라우드에는 이미 설치되어 있다. 없으면 해당 원문은 미확보로 남기며 저장된 replay와 offline 테스트에는 필요하지 않다. Python 패키지는 추가하지 않았다.
 
@@ -156,6 +166,8 @@ python -m investment_research opportunity replay examples/opportunity_map_case -
 | [미국 주식 Deep Dive](docs/us-equity-deep-dive.md) | 예상 이익·AI 현금 회수·Treasury 비교, 원문 숫자·scope·판단 유보·선택적 이전 맥락 |
 | [Source Anomaly Guard](docs/source-anomaly-guard.md) | 제공자 충돌·이상치·단위·결측 격리와 claim/계산/coverage·이전 판본 보존 |
 | [원자재 Deep Dive](docs/commodity-deep-dive.md) | 독립 가스/금/바스켓 조사, 실제 선물·수요·상품 차이와 시차/공백 |
+| [투자 판단과 사후검증](docs/investment-cycle.md) | 가설·시점 검증·행동·예시 배분·불변 일지·사후 평가와 판단 규칙 버전 |
+| [시점 보장 장기 이력](docs/long-history.md) | Upbit 일 캔들·ALFRED 판본 수집, known_at 규칙, 누수 방지, 계획 연결과 한계 |
 | [개발 지침](AGENTS.md) | 향후 작업에서 유지할 원칙과 검증 기준 |
 
 ## 우선 지킬 경계
