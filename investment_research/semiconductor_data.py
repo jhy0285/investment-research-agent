@@ -217,7 +217,12 @@ def pdf_allowed(url):
 @lru_cache(maxsize=8)
 def pdf_text(body):
     """Optional local Poppler decoder, bounded bytes/output/time; no shell."""
-    if not body.startswith(b'%PDF-') or len(body) > 2 * 1024 * 1024:
+    return bounded_pdf_text(body)
+
+
+def bounded_pdf_text(body, *, max_bytes=2 * 1024 * 1024, first_page=None, last_page=None):
+    """Same bounded decoder with a reviewed per-provider size cap and page range."""
+    if not body.startswith(b'%PDF-') or len(body) > max_bytes:
         raise SourceError('invalid/big reviewed financial PDF')
     binary = shutil.which('pdftotext')
     if binary is None:
@@ -231,7 +236,10 @@ def pdf_text(body):
     with tempfile.TemporaryFile() as output:
         try:
             result = subprocess.run(
-                [binary, '-layout', '-', '-'],
+                [binary, '-layout']
+                + (['-f', str(first_page)] if first_page else [])
+                + (['-l', str(last_page)] if last_page else [])
+                + ['-', '-'],
                 input=body,
                 stdout=output,
                 stderr=subprocess.DEVNULL,

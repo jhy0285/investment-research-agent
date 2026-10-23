@@ -148,7 +148,7 @@ def validate_spec(spec, catalog, today=None):
                 raise SourceError('aligned candles need a KRX-close series listed earlier in this spec')
             requests += weekly[item['align_to']]
         instruments.add(instrument)
-    names = set()
+    names, hosts = set(), set()
     for item in features:
         name = item.get('name') if isinstance(item, dict) else None
         if not isinstance(name, str) or not _NAME.fullmatch(name) or name in names:
@@ -166,6 +166,15 @@ def validate_spec(spec, catalog, today=None):
                 if contract['frequency'] != 'monthly' or item['window_days'] < 400:
                     raise SourceError('year-over-year needs a monthly series and a window of at least 400 days')
             requests += len(_vintage_dates(item, today))
+        elif item.get('provider') == 'factset_earnings_insight':
+            provider = providers['factset_earnings_insight']
+            if item.get('series') not in provider['series']:
+                raise SourceError('series has no reviewed FactSet contract')
+            if _day(item.get('start'), 'start') < _day(provider['earliest'], 'earliest'):
+                raise SourceError('start precedes the reviewed FactSet archive')
+            _integer(item, 'step_weeks', 1, 13)
+            requests += 2 * len(_issue_dates(item, today))  # Friday, then Thursday in holiday weeks
+            hosts.add('factset')
         elif item.get('provider') == 'price_derived':
             if item.get('instrument_id') not in instruments:
                 raise SourceError('derived feature must use a price series collected in this spec')
@@ -181,6 +190,7 @@ def validate_spec(spec, catalog, today=None):
         requests += 1  # robots.txt, checked once per host
     if weekly:
         requests += 1
+    requests += len(hosts)
     if requests > catalog['max_requests']:
         raise SourceError(f'spec needs about {requests} requests; reviewed limit is {catalog["max_requests"]}')
     return spec
@@ -194,7 +204,7 @@ class _Session:
         self.clock, self.sleep, self.progress = clock, sleep, progress
         self.policies, self.last, self.requests = {}, {}, 0
 
-    def get(self, provider_name, url):
+    def get(self, provider_name, url, missing_ok=False):
         provider = self.catalog['providers'][provider_name]
         host = _url(url).hostname
         if host not in self.policies:
@@ -222,7 +232,7 @@ class _Session:
                 self.sleep(pause - waited)
             self._count()
             try:
-                response = _response(self.perform, url, MAX_BYTES)
+                response = _response(self.perform, url, provider.get('max_bytes', MAX_BYTES))
             except OSError:
                 # Timeouts and dropped connections are retried a bounded number
                 # of times; the retry never changes what a success records.
@@ -236,6 +246,8 @@ class _Session:
             break
         # Retrieval time is recorded after the body has been read.
         retrieved_at = self.clock().astimezone(timezone.utc).isoformat()
+        if missing_ok and response.status == 404:
+            return None, retrieved_at
         if response.status != 200:
             raise SourceError(f'{provider_name}: HTTP {response.status}')
         if self.progress:
@@ -538,6 +550,98 @@ def _aligned_dataset(item, retained, target):
     return dataset
 
 
+_MONTHS = ('January February March April May June July August September October November December').split()
+
+
+def _issue_dates(item, today):
+    start = _day(item['start'], 'start')
+    friday = start + timedelta(days=(4 - start.weekday()) % 7)
+    dates = []
+    while friday <= today:
+        dates.append(friday)
+        friday += timedelta(weeks=item['step_weeks'])
+    return dates
+
+
+def _pdf_page_one(body, max_bytes):
+    from .semiconductor_data import bounded_pdf_text
+
+    return bounded_pdf_text(body, max_bytes=max_bytes, first_page=1, last_page=1)
+
+
+def parse_factset_page(text, issue, pattern):
+    """Publication date and the one reviewed sentence; anything else is refused."""
+    dated = None
+    for line in text.splitlines():
+        m = re.fullmatch(r'\s*(' + '|'.join(_MONTHS) + r') (\d{1,2}), (\d{4})\s*', line)
+        if m:
+            dated = date(int(m.group(3)), _MONTHS.index(m.group(1)) + 1, int(m.group(2)))
+            break
+    if dated != issue:
+        raise SourceError('FactSet issue date differs from the requested edition')
+    lines = [line for line in text.splitlines() if re.search(pattern, line)]
+    values = {re.search(pattern, line).group(1) for line in lines}
+    if len(values) != 1:
+        raise SourceError('FactSet forward P/E sentence missing or ambiguous on page 1')
+    return dict(excerpt=' '.join(lines[0].split()), value=values.pop())
+
+
+def _collect_factset(session, item, catalog, today):
+    provider = catalog['providers']['factset_earnings_insight']
+    pattern = provider['series'][item['series']]['pattern']
+    issues = []
+    for friday in _issue_dates(item, today):
+        record = dict(week_of=friday.isoformat(), status='absent')
+        for issue in (friday, friday - timedelta(days=1)):
+            url = provider['endpoint'].format(mmddyy=issue.strftime('%m%d%y'))
+            response, retrieved_at = session.get('factset_earnings_insight', url, missing_ok=True)
+            if response is None:
+                continue
+            text = _pdf_page_one(response.body, provider['max_bytes'])
+            record = dict(
+                week_of=friday.isoformat(),
+                status='found',
+                issue=issue.isoformat(),
+                url=url,
+                retrieved_at=retrieved_at,
+                raw_sha256=_sha(response.body),
+                raw_bytes=len(response.body),
+                **parse_factset_page(text, issue, pattern),
+            )
+            break
+        issues.append(record)
+    return issues
+
+
+def _factset_features(item, retained):
+    contract = retained['contract']
+    rows = []
+    for issue in retained['issues']:
+        if issue['status'] != 'found':
+            continue  # A week without a published edition is missing, never carried forward.
+        day = date.fromisoformat(issue['issue'])
+        # End of the publication day in US Eastern time is at most 05:00 UTC next day.
+        conservative = datetime.combine(day + timedelta(days=1), datetime.min.time(), timezone.utc) + timedelta(hours=5)
+        rows.append(
+            dict(
+                name=item['name'],
+                value=issue['value'],
+                unit=contract['unit'],
+                currency='not_applicable',
+                measure=contract['measure'],
+                source=contract['publisher'],
+                observed_at=day.isoformat() + 'T00:00:00+00:00',
+                known_at=min(conservative, _time(issue['retrieved_at'])).isoformat(),
+                retrieved_at=issue['retrieved_at'],
+                vintage=f'FactSet Earnings Insight {issue["issue"]}',
+                excerpt=issue['excerpt'],
+            )
+        )
+    if not rows:
+        raise SourceError('no FactSet edition found in the requested weeks')
+    return rows
+
+
 def _collect_prices(session, item, catalog):
     provider = catalog['providers']['upbit_day_candles']
     start, pages, to = _day(item['start'], 'start'), [], None
@@ -809,6 +913,8 @@ def build(spec, snapshots):
                     failures.append(dict(item=key, stage='build', reason='source price series unavailable'))
                     continue
                 features[item['name']] = _derived_features(item, prices[item['instrument_id']])
+            elif key in retained and item['provider'] == 'factset_earnings_insight':
+                features[item['name']] = _factset_features(item, retained[key])
             elif key in retained:
                 features[item['name']] = _vintage_features(item, retained[key])
         except (SourceError, KeyError, TypeError, ValueError, InvalidOperation) as exc:
@@ -973,12 +1079,15 @@ def acquire_history(spec, directory, *, fetcher=None, clock=None, sleep=None, pr
         except errors:
             pass  # build() below records the same failure deterministically
     for item in spec.get('features', []):
-        if item['provider'] != 'alfred_vintage_csv':
+        if item['provider'] not in ('alfred_vintage_csv', 'factset_earnings_insight'):
             continue
         key = 'features:' + item['name']
-        contract = catalog['providers']['alfred_vintage_csv']['series'][item['series']]
+        contract = catalog['providers'][item['provider']]['series'][item['series']]
         try:
-            items[key] = dict(contract=contract, vintages=_collect_vintages(session, item, catalog, today))
+            if item['provider'] == 'alfred_vintage_csv':
+                items[key] = dict(contract=contract, vintages=_collect_vintages(session, item, catalog, today))
+            else:
+                items[key] = dict(contract=contract, issues=_collect_factset(session, item, catalog, today))
         except errors as exc:
             failures.append(dict(item=key, stage='acquire', reason=str(exc) or type(exc).__name__))
     snapshots = dict(

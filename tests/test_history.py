@@ -83,6 +83,8 @@ class FakeInternet:
         self.now, self.last_day, self.leak_future, self.store_lag_ms = now, last_day, leak_future, store_lag_ms
         self.distribution, self.divide_list, self.empty_instants = distribution, list(divide_list), set(empty_instants)
         self.fund_name = fund_name
+        # Authored editions: a Friday issue, and a Thursday issue in a holiday week.
+        self.factset_issues = {date(2026, 8, 7), date(2026, 9, 3)}
         self.urls = []
 
     def __call__(self, url, timeout, limit):
@@ -135,6 +137,11 @@ class FakeInternet:
                 for d in days
             ]
             return FetchResponse(json.dumps(body).encode(), 'application/json;charset=UTF-8')
+        if parts.hostname == 'advantage.factset.com':
+            issue = datetime.strptime(parts.path.rsplit('_', 1)[1][:6], '%m%d%y').date()
+            if issue in self.factset_issues:
+                return FetchResponse(b'%PDF-1.4 authored ' + issue.isoformat().encode(), 'application/pdf')
+            return FetchResponse(b'not found', 'text/html', status=404)
         if parts.hostname == 'alfred.stlouisfed.org':
             vintage = date.fromisoformat(query['vintage_date'])
             body = alfred_csv(query['id'], vintage)
@@ -175,6 +182,20 @@ def spec():
                 observations=5,
             ),
         ],
+    )
+
+
+def factset_text(body, max_bytes):
+    """Authored page-1 text keyed by the fake PDF body; not FactSet content."""
+    issue = date.fromisoformat(body.decode().rsplit(' ', 1)[1])
+    value = {date(2026, 8, 7): '20.0', date(2026, 9, 3): '19.5'}[issue]
+    return (
+        'EARNINGS INSIGHT\n\n'
+        + issue.strftime('%B ')
+        + str(issue.day)
+        + issue.strftime(', %Y')
+        + '\n\nKey Metrics\n'
+        + f'  • Valuation: The forward 12-month P/E ratio for the S&P 500 is {value}. This P/E ratio is authored.\n'
     )
 
 
@@ -609,6 +630,48 @@ class HistoryTests(unittest.TestCase):
         result = self.acquire(kodex_spec(), NullStamps(), name='nulls')
         first = result['prices']['UPBIT_KRW_BTC_AT_KODEX_200TR']['rows'][0]
         self.assertEqual(first['known_at'], '2026-01-05T06:31:00+00:00')
+
+    def test_factset_editions_are_vintages_known_after_publication(self):
+        s = dict(
+            schema_version='investment-history-spec-v1',
+            features=[
+                dict(
+                    name='sp500_forward_pe',
+                    provider='factset_earnings_insight',
+                    series='sp500_forward_pe',
+                    start='2026-08-01',
+                    step_weeks=4,
+                )
+            ],
+        )
+        with patch('investment_research.history._pdf_page_one', factset_text):
+            result = self.acquire(s, name='factset')
+        rows = result['features']['sp500_forward_pe']
+        # 08-07 Friday; the 09-04 week is published on Thursday 09-03; 10-02 is absent, not carried forward.
+        self.assertEqual(
+            [(r['observed_at'][:10], r['value']) for r in rows], [('2026-08-07', '20.0'), ('2026-09-03', '19.5')]
+        )
+        self.assertEqual(rows[0]['known_at'], '2026-08-08T05:00:00+00:00')
+        self.assertIn('for the S&P 500 is 20.0.', rows[0]['excerpt'])
+        retained = json.loads((self.root / 'factset' / 'snapshots.json').read_text())['items'][
+            'features:sp500_forward_pe'
+        ]
+        self.assertEqual([i['status'] for i in retained['issues']], ['found', 'found', 'absent'])
+        self.assertEqual(replay_history(self.root / 'factset'), result)
+
+    def test_factset_page_must_match_edition_and_state_one_value(self):
+        from investment_research.history import parse_factset_page
+
+        pattern = load_catalog()['providers']['factset_earnings_insight']['series']['sp500_forward_pe']['pattern']
+        text = factset_text(b'%PDF-1.4 authored 2026-08-07', 0)
+        self.assertEqual(parse_factset_page(text, date(2026, 8, 7), pattern)['value'], '20.0')
+        for broken, issue in (
+            (text, date(2026, 8, 14)),
+            (text.replace('is 20.0.', 'is about twenty.'), date(2026, 8, 7)),
+            (text + 'The forward 12-month P/E ratio for the S&P 500 is 21.0.\n', date(2026, 8, 7)),
+        ):
+            with self.subTest(issue=issue), self.assertRaises(SourceError):
+                parse_factset_page(broken, issue, pattern)
 
     def test_cli_exit_codes(self):
         from investment_research.__main__ import main
