@@ -28,7 +28,11 @@ LOWER_BOUND_PROVIDERS = ('upbit_day_candles', 'upbit_aligned_candles')
 RETURN_BASES = {
     'price_lower_bound': ('price', 'unadjusted'),
     'non_distributing_fund_price': ('total_return', 'pit_total_return_index'),
+    # Issuer NAV (not an executable price) verified to keep reinvested distributions.
+    'issuer_nav_reinvested': ('total_return', 'pit_total_return_index'),
 }
+# These bases describe a market measure, not something a plan can buy at that value.
+BENCHMARK_ONLY_BASES = ('issuer_nav_reinvested',)
 HORIZONS = {'1w': 0, '1m': 1, '3m': 3, '6m': 6, '1y': 12}
 MARKETS = (
     '미국 주식',
@@ -300,6 +304,8 @@ def validate_plan(data):
             raise SourceError('quote known before its observation')
         if c['prices']['asset_id'] != c['asset_id']:
             raise SourceError('investment exposure and traded price instrument differ')
+        if c['prices'].get('return_basis') in BENCHMARK_ONLY_BASES:
+            raise SourceError('an issuer NAV series is a market benchmark, not a price the plan can trade at')
         # A reviewed price lower bound may face a total-return benchmark: the
         # omission can only understate the candidate, never flatter it.
         bounded = lower_bound(c['prices']) and c['benchmark']['return_kind'] == 'total_return'

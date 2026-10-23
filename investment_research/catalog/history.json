@@ -1,7 +1,7 @@
 {
   "schema_version": "history-catalog-v1",
   "method_version": "pit_history_v2",
-  "max_requests": 1200,
+  "max_requests": 2500,
   "providers": {
     "upbit_day_candles": {
       "access_method": "public_api",
@@ -39,7 +39,8 @@
       "policy_note": "Upbit 공개 시세 API(인증 불필요)의 30분 캔들. 다른 상품의 종가 시각마다 그 시각에 끝나는 캔들 하나만 요청한다. 문서의 요청 수 제한을 지키며 필요한 필드만 로컬 실행 디렉터리에 보존한다.",
       "min_interval_seconds": 0.2,
       "unit_minutes": 30,
-      "boundary": "요청한 시각에 끝나는 30분 캔들의 마지막 체결가다. 그 30분에 체결이 없으면 값을 만들지 않는다."
+      "boundary": "요청한 시각에 끝나는 30분 캔들의 마지막 체결가다. 그 30분에 체결이 없으면 값을 만들지 않는다.",
+      "sampling_note": "every(표본 간격)와 since(시작일)로 요청 수를 줄일 수 있다. 정렬 대상이 더 촘촘하면 비교 시장은 일간, 코인은 표본 시각만 갖는다."
     },
     "alfred_vintage_csv": {
       "access_method": "public_http",
@@ -157,6 +158,44 @@
       "pages": [
         1
       ]
+    },
+    "tiger_nav_reinvested": {
+      "access_method": "public_http",
+      "history_endpoint": "https://investments.miraeasset.com/tigeretf/ko/product/chart/prdct-profit-list.ajax?ksdFund={ksd}&strtDt={start}&endDt={end}&period=",
+      "distribution_page": "https://investments.miraeasset.com/tigeretf/ko/distribution/annual/list.do",
+      "distribution_endpoint": "https://investments.miraeasset.com/tigeretf/ko/distribution/annual/list.ajax?pageIndex=1&firstIndex=0&listCnt=10&orderA=thisYear&orderB=ratioDESC&q={ticker}",
+      "policy_url": "https://investments.miraeasset.com/robots.txt",
+      "policy_note": "미래에셋 TIGER ETF 공개 상품 페이지가 호출하는 공개 JSON/HTML이다. robots.txt는 /tigeretf/ko/ 경로를 막지 않는다(/tigeretf/common/ 등 막힌 경로는 읽지 않는다). 별도 이용약관 페이지는 확인하지 못했다. 개인 연구 재현에 필요한 값만 로컬 실행 디렉터리에 보존하고 재배포하지 않는다.",
+      "min_interval_seconds": 3,
+      "max_bytes": 4194304,
+      "close_time_kst": "15:30",
+      "known_at_kst": "18:00",
+      "verification_window_rows": 20,
+      "tolerance_pp": "0.2",
+      "min_rate_pct": "0.3",
+      "min_comparable_years": 2,
+      "history_years_limit": 11,
+      "boundary": "NAV는 해외 지수의 직전 미국 거래일 종가와 당일 환율을 반영한다(2022~2026 TIGER 미국S&P500에서 직전 미국 거래일 S&P 500 일수익률과의 상관 0.81, 같은 날짜와는 -0.05). 날짜는 한국 거래일이며 시각은 KRX 종가 15:30 KST로 둔다. 실제 정보 시점은 이보다 이르므로 미래 정보가 섞이지 않는다.",
+      "nav_note": "발행사 NAV이지 체결 가격이 아니다. 시장가격과 NAV의 괴리(일간 최대 약 4%)는 포함하지 않는다. 비교 시장 전용이다.",
+      "tax_note": "세전 총수익이다. 해외 상장지수펀드 분배금·매매차익의 세금은 빼지 않았다.",
+      "products": {
+        "KR7360750004": {
+          "ticker": "360750",
+          "name": "TIGER 미국S&P500",
+          "index": "S&P 500",
+          "asset_id": "US_EQUITY",
+          "instrument_id": "TIGER_US_SP500_NAV_TR",
+          "listed": "2020-08-07"
+        },
+        "KR7133690008": {
+          "ticker": "133690",
+          "name": "TIGER 미국나스닥100",
+          "index": "NASDAQ-100",
+          "asset_id": "US_EQUITY",
+          "instrument_id": "TIGER_US_NASDAQ100_NAV_TR",
+          "listed": "2010-10-14"
+        }
+      }
     }
   }
 }

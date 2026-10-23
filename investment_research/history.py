@@ -84,13 +84,13 @@ def _vintage_dates(item, today):
     return dates
 
 
-PRICE_PROVIDERS = ('upbit_day_candles', 'kodex_issuer_weekly', 'upbit_aligned_candles')
+PRICE_PROVIDERS = ('upbit_day_candles', 'kodex_issuer_weekly', 'tiger_nav_reinvested', 'upbit_aligned_candles')
 
 
 def instrument_id(item, catalog):
     providers = catalog['providers']
-    if item['provider'] == 'kodex_issuer_weekly':
-        product = providers['kodex_issuer_weekly']['products'].get(item.get('fund'))
+    if item['provider'] in ('kodex_issuer_weekly', 'tiger_nav_reinvested'):
+        product = providers[item['provider']]['products'].get(item.get('fund'))
         if product is None:
             raise SourceError('fund has no reviewed issuer contract')
         return product['instrument_id']
@@ -105,6 +105,8 @@ def instrument_id(item, catalog):
 def _price_key(item):
     if item['provider'] == 'kodex_issuer_weekly':
         return 'prices:kodex:' + item['fund']
+    if item['provider'] == 'tiger_nav_reinvested':
+        return 'prices:tiger:' + item['fund']
     if item['provider'] == 'upbit_aligned_candles':
         return 'prices:aligned:' + item['market'] + '@' + item['align_to']
     return 'prices:' + item['market']
@@ -122,7 +124,7 @@ def validate_spec(spec, catalog, today=None):
     if len(prices) > 5 or len(features) > 20:
         raise SourceError('at most five price series and twenty features')
     providers = catalog['providers']
-    instruments, requests = set(), 0
+    instruments, requests, hosts = set(), 0, set()
     weekly = {}
     for item in prices:
         if not isinstance(item, dict) or item.get('provider') not in PRICE_PROVIDERS:
@@ -142,13 +144,24 @@ def validate_spec(spec, catalog, today=None):
             listed = _day(providers['kodex_issuer_weekly']['products'][item['fund']]['listed'], 'listed')
             weekly[instrument] = (today - listed).days // 7 + 2
             requests += 2
+        elif item['provider'] == 'tiger_nav_reinvested':
+            from .history_tiger import estimate_rows
+
+            weekly[instrument] = estimate_rows(item, catalog, today)
+            requests += 3
+            hosts.add('tiger')
         else:
             # Alignment needs the other series' closing instants, collected first.
             if item.get('align_to') not in weekly:
                 raise SourceError('aligned candles need a KRX-close series listed earlier in this spec')
-            requests += weekly[item['align_to']]
+            every = _integer(item, 'every', 1, 20) if 'every' in item else 1
+            rows = weekly[item['align_to']]
+            if 'since' in item:
+                # Fewer rows after `since`; weekly targets get no credit (conservative).
+                rows = min(rows, max(0, (today - _day(item['since'], 'since')).days * 5 // 7 + 1))
+            requests += math.ceil(rows / every)
         instruments.add(instrument)
-    names, hosts = set(), set()
+    names = set()
     for item in features:
         name = item.get('name') if isinstance(item, dict) else None
         if not isinstance(name, str) or not _NAME.fullmatch(name) or name in names:
@@ -429,10 +442,18 @@ def _collect_kodex(session, item, catalog):
     return out
 
 
+def _sampled(rows, item):
+    """Rows from `since` on, every Nth counted back from the latest so it is always included."""
+    if 'since' in item:
+        rows = [r for r in rows if r['at'][:10] >= item['since']]
+    every = item.get('every', 1)
+    return rows[::-1][::every][::-1]
+
+
 def _collect_aligned(session, item, catalog, target):
     provider = catalog['providers']['upbit_aligned_candles']
     candles = []
-    for row in target['rows']:
+    for row in _sampled(target['rows'], item):
         at = _time(row['at'])
         if at.minute % provider['unit_minutes'] or at.second or at.microsecond:
             raise SourceError('alignment instant is not on a candle boundary')
@@ -944,6 +965,10 @@ def _build_price(item, retained, prices, version):
         return _price_dataset(item, retained, version)
     if item['provider'] == 'kodex_issuer_weekly':
         return _kodex_dataset(item, retained)
+    if item['provider'] == 'tiger_nav_reinvested':
+        from .history_tiger import dataset
+
+        return dataset(item, retained)
     if item['align_to'] not in prices:
         raise SourceError('aligned series unavailable: ' + item['align_to'])
     return _aligned_dataset(item, retained, prices[item['align_to']])
@@ -1092,7 +1117,7 @@ def render_history(result):
     return '\n'.join(lines)
 
 
-def _acquire_price(session, item, catalog, built):
+def _acquire_price(session, item, catalog, built, today=None):
     providers = catalog['providers']
     if item['provider'] == 'upbit_day_candles':
         market = providers['upbit_day_candles']['markets'][item['market']]
@@ -1109,6 +1134,10 @@ def _acquire_price(session, item, catalog, built):
             provider={k: provider[k] for k in ('close_time_kst', 'known_at_kst', 'boundary', 'tax_note')},
         )
         return dict(retained, **_collect_kodex(session, item, catalog))
+    if item['provider'] == 'tiger_nav_reinvested':
+        from .history_tiger import collect
+
+        return collect(session, item, catalog, datetime.now(timezone.utc).date() if today is None else today)
     if item['align_to'] not in built:
         raise SourceError('aligned series unavailable: ' + item['align_to'])
     provider = providers['upbit_aligned_candles']
@@ -1134,7 +1163,7 @@ def acquire_history(spec, directory, *, fetcher=None, clock=None, sleep=None, pr
     for item in spec.get('prices', []):
         key = _price_key(item)
         try:
-            items[key] = _acquire_price(session, item, catalog, built)
+            items[key] = _acquire_price(session, item, catalog, built, today)
         except errors as exc:
             failures.append(dict(item=key, stage='acquire', reason=str(exc) or type(exc).__name__))
             continue

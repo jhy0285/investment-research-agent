@@ -62,6 +62,58 @@ def alfred_csv(series, vintage):
     return ('\n'.join(lines) + '\n').encode()
 
 
+TIGER_RATES = {2026: '0.40', 2025: '1.11', 2024: '1.39', 2023: '1.44', 2022: '1.20'}
+
+
+def tiger_rows(reinvested=True, rates=None):
+    """Authored daily chart rows, Mon-Fri 2022-11-01..2026-03-31.
+
+    NAV index grows 0.03% a day. Market price = NAV x a per-year step factor
+    (1 - that year's issuer rate), so price/NAV falls by exactly the rate each
+    calendar year, which is what a NAV that reinvests distributions looks like.
+    With reinvested=False the NAV equals the price (distributions lost).
+    """
+    rates = rates or TIGER_RATES
+    rows, k, day, factor = [], 0, date(2022, 11, 1), Decimal(1)
+    seen_years = {2022}
+    while day <= date(2026, 3, 31):
+        if day.weekday() < 5:
+            if day.year not in seen_years:
+                seen_years.add(day.year)
+                factor *= 1 - Decimal(rates[day.year]) / 100
+            nav = Decimal('1.0003') ** k
+            price = nav * factor
+            shown_nav = price if not reinvested else nav
+            rows.append(
+                dict(
+                    ksdFund='KR7360750004',
+                    jongName='TIGER 미국S&amp;P500',
+                    wkdate=day.strftime('%Y%m%d'),
+                    nav=float(round((shown_nav - 1) * 100, 2)),
+                    prc=float(round((price - 1) * 100, 2)),
+                )
+            )
+            k += 1
+        day += timedelta(days=1)
+    return rows
+
+
+def tiger_header(years=(2026, 2025, 2024, 2023, 2022)):
+    cells = ''.join(f'<th scope="col" colspan="2">{y}년</th>' for y in years)
+    return f'<table><thead><tr><th scope="col" rowspan="2">종목명</th>{cells}</tr></thead></table>'
+
+
+def tiger_row(ticker='360750', rates=None, years=(2026, 2025, 2024, 2023, 2022)):
+    rates = rates or TIGER_RATES
+    cells = ''.join(
+        f'<td> <span>{round(Decimal(rates[y]) * 250)}</span> </td> <td> <span>{rates[y]}%</span> </td>' for y in years
+    )
+    return (
+        '<tr data-tot-cnt="1"> <td class="text-left"> <a href="javascript:x();"> <p class="title">TIGER 미국S&amp;P500</p> '
+        f'<p class="code">({ticker})</p> <div class="price"><span>현재가(원)</span>25,205</div> </a> </td> {cells} </tr>'
+    )
+
+
 def kodex_days():
     """Authored issuer sample: Mondays of 2026 plus a Thursday reference date."""
     days = [date(2026, 1, 5) + timedelta(weeks=i) for i in range(42)]
@@ -83,6 +135,7 @@ class FakeInternet:
         self.now, self.last_day, self.leak_future, self.store_lag_ms = now, last_day, leak_future, store_lag_ms
         self.distribution, self.divide_list, self.empty_instants = distribution, list(divide_list), set(empty_instants)
         self.fund_name = fund_name
+        self.tiger = dict(reinvested=True, rates=None, header=None, row_ticker='360750', none_dates=('2023-05-02',))
         # Authored editions: a Friday issue, and a Thursday issue in a holiday week.
         self.factset_issues = {date(2026, 8, 7), date(2026, 9, 3)}
         self.urls = []
@@ -142,6 +195,20 @@ class FakeInternet:
                 for d in days
             ]
             return FetchResponse(json.dumps(body).encode(), 'application/json;charset=UTF-8')
+        if parts.hostname == 'investments.miraeasset.com':
+            if parts.path.endswith('prdct-profit-list.ajax'):
+                rows = tiger_rows(self.tiger['reinvested'], self.tiger['rates'])
+                for r in rows:
+                    if f'{r["wkdate"][:4]}-{r["wkdate"][4:6]}-{r["wkdate"][6:]}' in self.tiger['none_dates']:
+                        r['nav'] = r['prc'] = None
+                rows = [r for r in rows if query['strtDt'] <= r['wkdate'] <= query['endDt']]
+                return FetchResponse(json.dumps(dict(rtnData=rows)).encode(), 'application/json;charset=UTF-8')
+            if parts.path.endswith('/distribution/annual/list.do'):
+                header = self.tiger['header'] or tiger_header()
+                return FetchResponse(('<html>' + header + '</html>').encode(), 'text/html;charset=UTF-8')
+            if parts.path.endswith('/distribution/annual/list.ajax'):
+                body = tiger_row(self.tiger['row_ticker'], self.tiger['rates'])
+                return FetchResponse(body.encode(), 'text/html;charset=UTF-8')
         if parts.hostname == 'advantage.factset.com':
             issue = datetime.strptime(parts.path.rsplit('_', 1)[1][:6], '%m%d%y').date()
             if issue in self.factset_issues:
@@ -344,7 +411,7 @@ class HistoryTests(unittest.TestCase):
             lambda s: s['features'][0].update(vintage_step_days=1),
             lambda s: s['features'][1].update(instrument_id='UNKNOWN'),
             lambda s: s['prices'][0].update(start='2010-01-01'),
-            lambda s: s['features'][0].update(vintage_start='1990-01-01', vintage_step_days=7),
+            lambda s: s['features'][0].update(vintage_start='1950-01-01', vintage_step_days=7),
         ):
             s = spec()
             change(s)
@@ -741,6 +808,110 @@ class HistoryTests(unittest.TestCase):
         ):
             with self.subTest(issue=issue), self.assertRaises(SourceError):
                 parse_factset_page(broken, issue, pattern)
+
+    def tiger_spec(self, **aligned):
+        return dict(
+            schema_version='investment-history-spec-v1',
+            prices=[
+                dict(provider='tiger_nav_reinvested', fund='KR7360750004'),
+                dict(provider='upbit_aligned_candles', market='KRW-BTC', align_to='TIGER_US_SP500_NAV_TR', **aligned),
+            ],
+        )
+
+    def test_tiger_nav_is_total_return_only_after_matching_the_issuer_distribution_table(self):
+        result = self.acquire(self.tiger_spec(since='2026-01-02', every=5), name='tiger')
+        tr = result['prices']['TIGER_US_SP500_NAV_TR']
+        validate_dataset(tr)
+        self.assertEqual(
+            (tr['return_kind'], tr['adjustment'], tr['return_basis']),
+            ('total_return', 'pit_total_return_index', 'issuer_nav_reinvested'),
+        )
+        rows = tiger_rows()
+        by_day = {r['wkdate']: r for r in rows if r['wkdate'] != '20230502'}
+        self.assertEqual(len(tr['rows']), len(by_day))  # the issuer's missing day is not filled
+        self.assertEqual(tr['provenance']['missing_dates'], ['2023-05-02'])
+        first, mid = tr['rows'][0], tr['rows'][500]
+        self.assertEqual(first['value'], '1')
+        day = mid['at'][:10].replace('-', '')
+        self.assertEqual(Decimal(mid['value']), 1 + Decimal(str(by_day[day]['nav'])) / 100)
+        # 15:30 KST close, published 18:00 KST; the series is the NAV, so the ETF's own price is not used.
+        self.assertTrue(first['at'].endswith('T06:30:00+00:00') and first['known_at'].endswith('T09:00:00+00:00'))
+        checks = {c['year']: c for c in tr['provenance']['verification']}
+        self.assertEqual(sorted(checks), [2023, 2024, 2025])
+        for year, c in checks.items():
+            self.assertLessEqual(abs(Decimal(c['difference_pp'])), Decimal('0.02'), year)
+            self.assertEqual(Decimal(c['issuer_rate_pct']), Decimal(TIGER_RATES[year]))
+        self.assertIn('비헤지', tr['return_basis_note'])
+        self.assertEqual(replay_history(self.root / 'tiger'), result)
+
+    def test_tiger_nav_that_loses_distributions_is_refused_a_total_return_label(self):
+        fake = FakeInternet()
+        fake.tiger['reinvested'] = False
+        result = self.acquire(self.tiger_spec(since='2026-01-02', every=5), fake, name='tiger-lost')
+        self.assertNotIn('TIGER_US_SP500_NAV_TR', result['prices'])
+        reasons = ' '.join(f['reason'] for f in result['failures'])
+        self.assertIn('NAV does not track the issuer distribution rate', reasons)
+        self.assertIn('distributions may not be reinvested', reasons)
+
+    def test_tiger_check_needs_discriminating_years_and_a_well_formed_table(self):
+        low = {y: '0.10' for y in TIGER_RATES}
+        fake = FakeInternet()
+        fake.tiger['rates'] = low
+        result = self.acquire(self.tiger_spec(since='2026-01-02', every=5), fake, name='tiger-low')
+        self.assertTrue(any('too few comparable years' in f['reason'] for f in result['failures']))
+        for name, change, expected in (
+            ('tiger-header', dict(header=tiger_header(years=(2022, 2023, 2024, 2025, 2026))), 'header years'),
+            ('tiger-ticker', dict(row_ticker='133690'), 'different fund'),
+        ):
+            fake = FakeInternet()
+            fake.tiger.update(change)
+            with self.subTest(name=name):
+                failed = self.acquire(self.tiger_spec(since='2026-01-02', every=5), fake, name=name)
+                self.assertNotIn('TIGER_US_SP500_NAV_TR', failed['prices'])
+                self.assertTrue(any(expected in f['reason'] for f in failed['failures']), failed['failures'])
+
+    def test_tiger_nav_can_only_be_a_benchmark_and_pairs_with_an_aligned_coin(self):
+        from tests.test_investment_cycle import experiment
+
+        history = self.acquire(self.tiger_spec(since='2026-01-02', every=5), name='tiger-plan')
+        btc = history['prices']['UPBIT_KRW_BTC_AT_TIGER_US_SP500_NAV_TR']
+        self.assertEqual(
+            [r['at'] for r in btc['rows']][-1], history['prices']['TIGER_US_SP500_NAV_TR']['rows'][-1]['at']
+        )
+        # Independent count: weekdays from `since` through the last row, every 5th counted back from the latest.
+        weekdays = [
+            date(2026, 1, 2) + timedelta(days=i)
+            for i in range((date(2026, 3, 31) - date(2026, 1, 2)).days + 1)
+            if (date(2026, 1, 2) + timedelta(days=i)).weekday() < 5
+        ]
+        self.assertEqual(len(btc['rows']), len(weekdays[::-1][::5]))
+        self.assertEqual(btc['rows'][-1]['at'][:10], '2026-03-31')
+        self.assertEqual(btc['rows'][0]['at'][:10], weekdays[::-1][::5][-1].isoformat())
+        plan, _ = experiment()
+        plan['synthetic'] = False
+        c = plan['candidates'][0]
+        c.update(asset_id='BTC', prices=btc, benchmark=history['prices']['TIGER_US_SP500_NAV_TR'])
+        c['quote'].update(instrument_id=btc['instrument_id'])
+        validate_plan(plan)
+        swapped = deepcopy(plan)
+        swapped['candidates'][0].update(
+            asset_id='US_EQUITY', prices=history['prices']['TIGER_US_SP500_NAV_TR'], benchmark=btc
+        )
+        swapped['candidates'][0]['quote'].update(instrument_id='TIGER_US_SP500_NAV_TR')
+        with self.assertRaises(SourceError):
+            validate_plan(swapped)  # NAV is not a price the plan can trade at
+
+    def test_aligned_sampling_always_includes_the_latest_row_and_counts_requests(self):
+        from investment_research.history import _sampled
+
+        rows = [dict(at=f'2026-01-{d:02d}T06:30:00+00:00') for d in range(1, 11)]
+        self.assertEqual([r['at'][8:10] for r in _sampled(rows, dict(every=4))], ['02', '06', '10'])
+        self.assertEqual([r['at'][8:10] for r in _sampled(rows, dict(every=4, since='2026-01-04'))], ['06', '10'])
+        spec_ok = self.tiger_spec(since='2026-01-02', every=5)
+        validate_spec(spec_ok, load_catalog(), NOW.date())
+        spec_bad = self.tiger_spec(every=0)
+        with self.assertRaises(SourceError):
+            validate_spec(spec_bad, load_catalog(), NOW.date())
 
     def test_cli_exit_codes(self):
         from investment_research.__main__ import main
