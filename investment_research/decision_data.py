@@ -258,6 +258,8 @@ def validate_plan(data):
                 raise SourceError('declare one to five supporting and opposing reasons')
         if c['mode'] == 'unvalidated':
             continue
+        if 'history' in c and 'prices' not in c:
+            raise SourceError('candidate refers to a history run; expand it with invest run --history')
         if not isinstance(c.get('current_price_evidence_id'), str) or not c['current_price_evidence_id']:
             raise SourceError('current price source reference required')
         if not isinstance(c.get('review'), dict) or not c['review'].get('reviewer') or not c['review'].get('note'):

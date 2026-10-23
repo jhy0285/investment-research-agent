@@ -62,9 +62,27 @@ def alfred_csv(series, vintage):
     return ('\n'.join(lines) + '\n').encode()
 
 
+def kodex_days():
+    """Authored issuer sample: Mondays of 2026 plus a Thursday reference date."""
+    days = [date(2026, 1, 5) + timedelta(weeks=i) for i in range(42)]
+    return days + [date(2026, 10, 22)]
+
+
 class FakeInternet:
-    def __init__(self, now=NOW, last_day=date(2026, 10, 22), leak_future=False, store_lag_ms=5):
+    def __init__(
+        self,
+        now=NOW,
+        last_day=date(2026, 10, 22),
+        leak_future=False,
+        store_lag_ms=5,
+        distribution='미지급\r\n(재투자)',
+        divide_list=(),
+        empty_instants=(),
+        fund_name='KODEX 200TR',
+    ):
         self.now, self.last_day, self.leak_future, self.store_lag_ms = now, last_day, leak_future, store_lag_ms
+        self.distribution, self.divide_list, self.empty_instants = distribution, list(divide_list), set(empty_instants)
+        self.fund_name = fund_name
         self.urls = []
 
     def __call__(self, url, timeout, limit):
@@ -73,6 +91,31 @@ class FakeInternet:
         query = dict(urllib.parse.parse_qsl(parts.query))
         if parts.path == '/robots.txt':
             return FetchResponse(b'User-agent: *\nCrawl-delay: 2\nDisallow: /search\n', 'text/plain')
+        if parts.hostname == 'www.samsungfund.com' and parts.path == '/api/v1/kodex/product/2ETF92.do':
+            product = dict(stkTicker='278530', fNm=self.fund_name, dividRemark=self.distribution)
+            body = dict(info=dict(product=product, divideList=self.divide_list))
+            return FetchResponse(json.dumps(body, ensure_ascii=False).encode(), 'application/json')
+        if parts.hostname == 'www.samsungfund.com' and parts.path == '/api/v1/kodex/product-earning/2ETF92.do':
+            assert query == dict(srchTerm='0')
+            body = [
+                dict(GIJUN_YMD=d.strftime('%Y%m%d'), PRICE=10000 + 100 * i, NAV=10001.5 + 100 * i, JISU=360.25 + i)
+                for i, d in enumerate(kodex_days())
+            ]
+            return FetchResponse(json.dumps(body).encode(), 'application/json')
+        if parts.hostname == 'api.upbit.com' and parts.path == '/v1/candles/minutes/30':
+            end = datetime.fromisoformat(query['to'].replace('Z', '+00:00'))
+            if query['to'] in self.empty_instants:
+                return FetchResponse(b'[]', 'application/json')
+            body = [
+                dict(
+                    market=query['market'],
+                    unit=30,
+                    candle_date_time_utc=(end - timedelta(minutes=30)).strftime('%Y-%m-%dT%H:%M:%S'),
+                    trade_price=float(synthetic_close(query['market'], end.date())),
+                    timestamp=int(end.timestamp() * 1000) + self.store_lag_ms,
+                )
+            ]
+            return FetchResponse(json.dumps(body).encode(), 'application/json')
         if parts.hostname == 'api.upbit.com':
             end = self.last_day
             if 'to' in query:
@@ -131,6 +174,25 @@ def spec():
                 kind='close_to_sma',
                 observations=5,
             ),
+        ],
+    )
+
+
+def kodex_spec():
+    return dict(
+        schema_version='investment-history-spec-v1',
+        prices=[
+            dict(provider='kodex_issuer_weekly', fund='2ETF92'),
+            dict(provider='upbit_aligned_candles', market='KRW-BTC', align_to='KODEX_200TR'),
+        ],
+        features=[
+            dict(
+                name='btc_sma_5w',
+                provider='price_derived',
+                instrument_id='UPBIT_KRW_BTC_AT_KODEX_200TR',
+                kind='close_to_sma',
+                observations=5,
+            )
         ],
     )
 
@@ -363,8 +425,190 @@ class HistoryTests(unittest.TestCase):
         )
         validate_plan(plan)
         bt = run_backtest(c, NOW)
-        self.assertIn('배당·분배금을 포함한 실제 상품 수익률이 아니다.', bt['blockers'])
+        # The coin price is a reviewed lower bound; a price-only benchmark is not.
+        self.assertNotIn('배당·분배금을 포함한 실제 상품 수익률이 아니다.', bt['blockers'])
+        self.assertIn('비교 시장이 당시 이용 가능했던 총수익 판본이 아니다.', bt['blockers'])
         self.assertEqual(approval(bt, c['strategy'], plan['policy'])[0], 'insufficient')
+
+    def test_kodex_total_return_rests_on_the_issuer_statement(self):
+        result = self.acquire(kodex_spec(), name='kodex')
+        tr = result['prices']['KODEX_200TR']
+        validate_dataset(tr)
+        self.assertEqual(
+            (tr['return_kind'], tr['adjustment'], tr['return_basis']),
+            ('total_return', 'pit_total_return_index', 'non_distributing_fund_price'),
+        )
+        # 15:30 KST close, published at 18:00 KST; 2026-10-22 was not yet published at retrieval.
+        self.assertEqual(
+            tr['rows'][0], dict(at='2026-01-05T06:30:00+00:00', known_at='2026-01-05T09:00:00+00:00', value='10000')
+        )
+        self.assertEqual(tr['rows'][-1]['at'], '2026-10-19T06:30:00+00:00')
+        self.assertIn('미지급', tr['return_basis_note'])
+        for fake, reason in (
+            (FakeInternet(distribution='분기 지급'), 'reinvested'),
+            (FakeInternet(divide_list=[dict(date='20260430', amount='100')]), 'reinvested'),
+            (FakeInternet(fund_name='KODEX 200'), 'different fund'),
+        ):
+            with self.subTest(reason=reason):
+                failed = self.acquire(
+                    kodex_spec(), fake, name='kodex-' + reason.replace(' ', '-') + str(len(fake.divide_list))
+                )
+                self.assertNotIn('KODEX_200TR', failed['prices'])
+                self.assertNotIn('UPBIT_KRW_BTC_AT_KODEX_200TR', failed['prices'])
+                self.assertTrue(any(reason in f['reason'] for f in failed['failures']))
+
+    def test_aligned_candles_share_closing_instants_and_skip_empty_windows(self):
+        fake = FakeInternet(empty_instants={'2026-03-02T06:30:00Z', '2026-03-09T06:30:00Z'})
+        result = self.acquire(kodex_spec(), fake, name='aligned')
+        btc = result['prices']['UPBIT_KRW_BTC_AT_KODEX_200TR']
+        kodex_at = {r['at'] for r in result['prices']['KODEX_200TR']['rows']}
+        self.assertTrue({r['at'] for r in btc['rows']} <= kodex_at)
+        self.assertNotIn('2026-03-02T06:30:00+00:00', {r['at'] for r in btc['rows']})
+        self.assertEqual(
+            btc['provenance']['missing_instants'], ['2026-03-02T06:30:00+00:00', '2026-03-09T06:30:00+00:00']
+        )
+        first = btc['rows'][0]
+        self.assertEqual(first['value'], str(synthetic_close('KRW-BTC', date(2026, 1, 5))))
+        self.assertEqual(first['known_at'], '2026-01-05T06:30:00.005000+00:00')
+        self.assertEqual((btc['return_kind'], btc['return_basis']), ('price', 'price_lower_bound'))
+        # Weekly SMA uses the series' own spacing: 5 weekly closes span 28 days
+        # (+7 days tolerance). A two-week hole makes the span 42 days: refused.
+        sma = {r['observed_at'][:10] for r in result['features']['btc_sma_5w']}
+        self.assertEqual(min(sma), '2026-02-02')
+        self.assertNotIn('2026-03-16', sma)
+        self.assertIn('2026-04-13', sma)
+        self.assertEqual(replay_history(self.root / 'aligned'), result)
+
+    def test_lower_bound_coin_against_kodex_total_return_passes_definition_checks(self):
+        from tests.test_investment_cycle import experiment
+
+        history = self.acquire(kodex_spec(), name='pair')
+        plan, _ = experiment()
+        plan['synthetic'] = False
+        c = plan['candidates'][0]
+        c.update(
+            asset_id='BTC',
+            prices=history['prices']['UPBIT_KRW_BTC_AT_KODEX_200TR'],
+            benchmark=history['prices']['KODEX_200TR'],
+            features=history['features']['btc_sma_5w'],
+        )
+        c['quote'].update(instrument_id='UPBIT_KRW_BTC_AT_KODEX_200TR')
+        rule = [dict(feature='btc_sma_5w', op='>', value='0', max_age_days=8)]
+        c['strategy'].update(
+            conditions=rule,
+            price_conditions=rule,
+            invalidations=[dict(feature='btc_sma_5w', op='<', value='-0.5', max_age_days=8)],
+            splits=dict(
+                start='2026-01-01T00:00:00+00:00',
+                validation_start='2026-04-01T00:00:00+00:00',
+                recent_start='2026-07-01T00:00:00+00:00',
+                end='2026-10-22T00:00:00+00:00',
+            ),
+            locked_at='2026-01-01T00:00:00+00:00',
+        )
+        validate_plan(plan)
+        bt = run_backtest(c, NOW)
+        self.assertEqual(bt['blockers'], [])
+        # Same instants on both sides, so paired market returns exist.
+        self.assertGreater(bt['periods']['historical']['horizons']['1m']['unconditional']['count'], 0)
+        with self.assertRaises(SourceError):
+            validate_spec(dict(kodex_spec(), prices=kodex_spec()['prices'][::-1]), load_catalog(), NOW.date())
+
+    def history_plan(self, as_of='2026-10-23T09:00:00+09:00'):
+        from tests.test_investment_cycle import experiment
+
+        plan, snapshot = experiment()
+        plan['synthetic'] = snapshot['synthetic'] = False
+        snapshot['as_of'] = as_of
+        snapshot['methods'] = [dict(asset_id='BTC', name='Bitcoin', economics='합성', risk='합성 위험', missing=[])]
+        for e in snapshot['evidence']:
+            e.update(asset_ids=['BTC'], retrieved_at='2026-10-22T07:00:00+00:00')
+        c = plan['candidates'][0]
+        for key in ('prices', 'benchmark', 'features', 'quote', 'current_price_evidence_id'):
+            c.pop(key)
+        rule = [dict(feature='btc_sma_5w', op='>', value='-1', max_age_days=8)]
+        c.update(
+            asset_id='BTC',
+            max_price_age_days=7,
+            history=dict(prices='UPBIT_KRW_BTC_AT_KODEX_200TR', benchmark='KODEX_200TR', features=['btc_sma_5w']),
+            review=dict(reviewer='synthetic fixture author', at='2026-10-22T08:00:00+00:00', note='합성 검토'),
+        )
+        c['strategy'].update(
+            conditions=rule,
+            price_conditions=rule,
+            invalidations=[dict(feature='btc_sma_5w', op='<', value='-5', max_age_days=8)],
+            locked_at='2026-01-01T00:00:00+00:00',
+            splits=dict(
+                start='2026-01-01T00:00:00+00:00',
+                validation_start='2026-04-01T00:00:00+00:00',
+                recent_start='2026-07-01T00:00:00+00:00',
+                end='2026-10-23T00:00:00+00:00',
+            ),
+        )
+        return plan, snapshot
+
+    def test_history_run_supplies_linked_current_evidence(self):
+        from investment_research.investment_cycle import attach_history, evaluate
+
+        history = self.acquire(kodex_spec(), name='plan')
+        plan, snapshot = self.history_plan()
+        with self.assertRaises(SourceError):
+            validate_plan(plan)  # unexpanded references are not a plan
+        expanded, augmented = attach_history(plan, history, 'f' * 64, snapshot)
+        validate_plan(expanded)
+        c = expanded['candidates'][0]
+        self.assertEqual(c['quote']['at'], '2026-10-19T06:30:00+00:00')
+        self.assertEqual(c['history']['sha256'], 'f' * 64)
+        linked = [r for r in c['features'] if 'evidence_id' in r]
+        self.assertEqual([r['observed_at'] for r in linked], ['2026-10-19T06:30:00+00:00'])
+        row = evaluate(expanded, augmented)['decisions'][0]
+        self.assertFalse(any('검증 원문 연결이 없음' in b for b in row['blockers']), row['blockers'])
+        self.assertEqual(row['current_signal']['state'], 'pass')
+        self.assertNotIn('비교 시장이 당시 이용 가능했던 총수익 판본이 아니다.', row['backtest']['blockers'])
+
+    def test_history_must_precede_the_judgment_and_exist(self):
+        from investment_research.investment_cycle import attach_history
+
+        history = self.acquire(kodex_spec(), name='early')
+        plan, snapshot = self.history_plan(as_of='2026-10-22T05:00:00+00:00')
+        with self.assertRaises(SourceError):
+            attach_history(plan, history, 'f' * 64, snapshot)
+        plan, snapshot = self.history_plan()
+        plan['candidates'][0]['history']['features'] = ['missing_feature']
+        with self.assertRaises(SourceError):
+            attach_history(plan, history, 'f' * 64, snapshot)
+
+    def test_history_backed_cycle_replays_without_the_history_directory(self):
+        from investment_research.investment_cycle import replay_cycle, run_cycle
+
+        self.acquire(kodex_spec(), name='cycle-history')
+        plan, snapshot = self.history_plan()
+
+        class Run:
+            pass
+
+        with (
+            patch('investment_research.orchestrator.replay_ask', return_value=Run()),
+            patch('investment_research.investment_cycle.research_snapshot', return_value=snapshot),
+        ):
+            result = run_cycle(plan, 'unused', self.root / 'cycle', history=self.root / 'cycle-history')
+        self.assertEqual(result['method_version'], 'investment_cycle_v3')
+        self.assertEqual(replay_cycle(self.root / 'cycle'), result)
+
+    def test_old_candles_without_storage_time_are_dated_after_the_close(self):
+        class NullStamps(FakeInternet):
+            def __call__(self, url, timeout, limit):
+                response = super().__call__(url, timeout, limit)
+                if '/v1/candles/minutes/30' in url:
+                    body = json.loads(response.body)
+                    for candle in body:
+                        candle['timestamp'] = None
+                    return FetchResponse(json.dumps(body).encode(), 'application/json')
+                return response
+
+        result = self.acquire(kodex_spec(), NullStamps(), name='nulls')
+        first = result['prices']['UPBIT_KRW_BTC_AT_KODEX_200TR']['rows'][0]
+        self.assertEqual(first['known_at'], '2026-01-05T06:31:00+00:00')
 
     def test_cli_exit_codes(self):
         from investment_research.__main__ import main

@@ -1,7 +1,7 @@
 {
   "schema_version": "history-catalog-v1",
-  "method_version": "pit_history_v1",
-  "max_requests": 800,
+  "method_version": "pit_history_v2",
+  "max_requests": 1200,
   "providers": {
     "upbit_day_candles": {
       "access_method": "public_api",
@@ -20,7 +20,7 @@
           "name": "Upbit 원화 BTC 현물",
           "unit": "KRW per BTC",
           "measure": "upbit_krw_spot_daily_close",
-          "distribution_note": "배당은 없다. 하드포크·에어드롭 지급분은 포함하지 않았으므로 총수익 판본이 아니다."
+          "distribution_note": "현금 분배가 없는 현물이다. 하드포크·에어드롭 지급분은 거래소 지급 여부를 확인하지 못해 포함하지 않았으므로, 측정 수익은 보유자 수익의 하한이다."
         },
         "KRW-ETH": {
           "asset_id": "ETH",
@@ -28,9 +28,18 @@
           "name": "Upbit 원화 ETH 현물(스테이킹 없음)",
           "unit": "KRW per ETH",
           "measure": "upbit_krw_spot_daily_close",
-          "distribution_note": "스테이킹 보상·에어드롭을 포함하지 않은 가격이다. 총수익 판본이 아니다."
+          "distribution_note": "현금 분배가 없는 현물(스테이킹 없음)이다. 에어드롭(예: ETHW) 지급분은 거래소 지급 여부를 확인하지 못해 포함하지 않았으므로, 측정 수익은 보유자 수익의 하한이다."
         }
       }
+    },
+    "upbit_aligned_candles": {
+      "access_method": "public_api",
+      "endpoint": "https://api.upbit.com/v1/candles/minutes/30",
+      "policy_url": "https://docs.upbit.com/kr/reference/list-candles-minutes",
+      "policy_note": "Upbit 공개 시세 API(인증 불필요)의 30분 캔들. 다른 상품의 종가 시각마다 그 시각에 끝나는 캔들 하나만 요청한다. 문서의 요청 수 제한을 지키며 필요한 필드만 로컬 실행 디렉터리에 보존한다.",
+      "min_interval_seconds": 0.2,
+      "unit_minutes": 30,
+      "boundary": "요청한 시각에 끝나는 30분 캔들의 마지막 체결가다. 그 30분에 체결이 없으면 값을 만들지 않는다."
     },
     "alfred_vintage_csv": {
       "access_method": "public_http",
@@ -81,6 +90,44 @@
           "frequency": "daily",
           "publisher": "Board of Governors of the Federal Reserve System (H.10)",
           "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        }
+      }
+    },
+    "kodex_issuer_weekly": {
+      "access_method": "public_http",
+      "history_endpoint": "https://www.samsungfund.com/api/v1/kodex/product-earning/{fid}.do?srchTerm=0",
+      "detail_endpoint": "https://www.samsungfund.com/api/v1/kodex/product/{fid}.do",
+      "policy_url": "https://www.samsungfund.com/robots.txt",
+      "policy_note": "삼성자산운용 KODEX 공개 상품 페이지가 호출하는 공개 JSON이다. robots.txt는 전체 허용이며 별도 이용약관 페이지는 확인하지 못했다. 개인 연구 재현에 필요한 행만 로컬 실행 디렉터리에 보존하고 재배포하지 않는다.",
+      "min_interval_seconds": 3,
+      "close_time_kst": "15:30",
+      "known_at_kst": "18:00",
+      "boundary": "KRX 정규장 종가(15:30 KST). 발행사 설정 이후 응답은 주별 첫 거래일과 최신 기준일의 표본이다. 공표 시각은 보수적으로 18:00 KST로 둔다.",
+      "tax_note": "세전 총수익이다. 국내 TR ETF 매매차익은 보유기간 과세 대상이며 이 수익에서 빼지 않았다.",
+      "products": {
+        "2ETF92": {
+          "ticker": "278530",
+          "name": "KODEX 200TR",
+          "index": "KOSPI 200 TR",
+          "asset_id": "KR_EQUITY",
+          "instrument_id": "KODEX_200TR",
+          "listed": "2017-11-21"
+        },
+        "2ETF93": {
+          "ticker": "278540",
+          "name": "KODEX MSCI KOREA TR",
+          "index": "MSCI Korea TR",
+          "asset_id": "KR_EQUITY",
+          "instrument_id": "KODEX_MSCI_KOREA_TR",
+          "listed": "2017-11-09"
+        },
+        "2ETFD2": {
+          "ticker": "359210",
+          "name": "KODEX 코스피TR",
+          "index": "KOSPI TR",
+          "asset_id": "KR_EQUITY",
+          "instrument_id": "KODEX_KOSPI_TR",
+          "listed": "2020-07-21"
         }
       }
     }

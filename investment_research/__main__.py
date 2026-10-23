@@ -143,6 +143,9 @@ def main(argv: list[str] | None = None) -> int:
     invest_run.add_argument("--run-dir", type=Path, required=True)
     invest_run.add_argument("--journal", type=Path)
     invest_run.add_argument("--previous-run", type=Path)
+    invest_run.add_argument(
+        "--history", type=Path, help="invest history 실행; 계획의 history 참조를 검증된 이력으로 채움"
+    )
     invest_replay = invest_commands.add_parser("replay", help="저장된 투자 판단을 인터넷 없이 검증·재현")
     invest_replay.add_argument("run", type=Path)
     invest_record = invest_commands.add_parser("record", help="검증된 기존 투자 판단을 공용 일지에 보존")
@@ -245,7 +248,12 @@ def main(argv: list[str] | None = None) -> int:
                 return 1 if result['failures'] else 0
             if args.investment_action == "run":
                 result = run_cycle(
-                    load(args.plan), args.research_run, args.run_dir, ledger=args.journal, previous=args.previous_run
+                    load(args.plan),
+                    args.research_run,
+                    args.run_dir,
+                    ledger=args.journal,
+                    previous=args.previous_run,
+                    history=args.history,
                 )
                 sys.stdout.write(render_decision(result))
             elif args.investment_action == "replay":

@@ -1,17 +1,20 @@
 """Point-in-time long histories from reviewed public providers.
 
 This connects real data to the decision contracts in ``decision_data``:
-exchange trade records become ``investment-prices-v1`` datasets, and ALFRED
-vintages become feature rows whose ``known_at`` is the vintage, never the
-latest revision. Derived price features use only rows known at their time.
+exchange trade records and an ETF issuer's own price history become
+``investment-prices-v1`` datasets, and ALFRED vintages become feature rows
+whose ``known_at`` is the vintage, never the latest revision. Derived price
+features use only rows known at their time.
 
-Nothing here grades, ranks or approves an investment. A price series is not
-promoted to total return, and imported history does not certify today's
-number; current conditions still need the research run's verified passages.
+Nothing here grades, ranks or approves an investment. A coin price is labelled
+a lower bound of holder return, not total return; only a fund the issuer
+states reinvests every distribution is labelled total return, and that
+statement is re-checked on every acquisition.
 """
 
 from bisect import bisect_right
 from datetime import date, datetime, timedelta, timezone
+from statistics import median
 from decimal import Decimal, InvalidOperation
 import json
 import math
@@ -23,11 +26,17 @@ import urllib.parse
 from .decision_data import contract, digest, encode, load, number, save, validate_dataset, timestamp as _time
 from .sources import MAX_BYTES, SourceError, _access_policy, _fetch_http, _reject_duplicate_keys, _response, _sha, _url
 
-VERSION = 'pit_history_v1'
+VERSION = 'pit_history_v2'
+# v1 collected Upbit days and ALFRED vintages without a return basis. v2 adds
+# KRX-close datasets and labels returns; v1 runs still replay as v1.
+VERSIONS = ('pit_history_v1', 'pit_history_v2')
+KST = timezone(timedelta(hours=9))
 CATALOG = Path(__file__).with_name('catalog') / 'history.json'
 ARTIFACTS = ('spec.json', 'snapshots.json', 'history.json', 'history.md')
 _NAME = re.compile(r'[A-Za-z0-9_.-]{1,64}\Z')
 _UPBIT_CANDLE = re.compile(r'\d{4}-\d{2}-\d{2}T00:00:00')
+_UPBIT_MINUTE = re.compile(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:00')
+_YMD = re.compile(r'\d{8}')
 MAX_PRICE_PAGES = 60
 DERIVED_GAP_DAYS = 7
 # Upbit `timestamp` is when the candle's last tick was stored; observed lag
@@ -75,6 +84,32 @@ def _vintage_dates(item, today):
     return dates
 
 
+PRICE_PROVIDERS = ('upbit_day_candles', 'kodex_issuer_weekly', 'upbit_aligned_candles')
+
+
+def instrument_id(item, catalog):
+    providers = catalog['providers']
+    if item['provider'] == 'kodex_issuer_weekly':
+        product = providers['kodex_issuer_weekly']['products'].get(item.get('fund'))
+        if product is None:
+            raise SourceError('fund has no reviewed issuer contract')
+        return product['instrument_id']
+    market = providers['upbit_day_candles']['markets'].get(item.get('market'))
+    if market is None:
+        raise SourceError('market has no reviewed history contract')
+    if item['provider'] == 'upbit_aligned_candles':
+        return market['instrument_id'] + '_AT_' + str(item.get('align_to'))
+    return market['instrument_id']
+
+
+def _price_key(item):
+    if item['provider'] == 'kodex_issuer_weekly':
+        return 'prices:kodex:' + item['fund']
+    if item['provider'] == 'upbit_aligned_candles':
+        return 'prices:aligned:' + item['market'] + '@' + item['align_to']
+    return 'prices:' + item['market']
+
+
 @contract
 def validate_spec(spec, catalog, today=None):
     """Reject unreviewed providers, series and unbounded requests before any network use."""
@@ -88,22 +123,31 @@ def validate_spec(spec, catalog, today=None):
         raise SourceError('at most five price series and twenty features')
     providers = catalog['providers']
     instruments, requests = set(), 0
+    weekly = {}
     for item in prices:
-        if not isinstance(item, dict) or item.get('provider') != 'upbit_day_candles':
+        if not isinstance(item, dict) or item.get('provider') not in PRICE_PROVIDERS:
             raise SourceError('price provider must be a reviewed provider contract')
-        provider = providers['upbit_day_candles']
-        contract = provider['markets'].get(item.get('market'))
-        if contract is None:
-            raise SourceError('market has no reviewed history contract')
-        start = _day(item.get('start'), 'start')
-        if start < _day(provider['earliest'], 'earliest') or start > today:
-            raise SourceError('start precedes the provider history or follows today')
         if 'asset_id' in item and (not isinstance(item['asset_id'], str) or not _NAME.fullmatch(item['asset_id'])):
             raise SourceError('invalid asset_id override')
-        if contract['instrument_id'] in instruments:
+        instrument = instrument_id(item, catalog)
+        if instrument in instruments:
             raise SourceError('duplicate price instrument')
-        instruments.add(contract['instrument_id'])
-        requests += math.ceil(((today - start).days + 1) / provider['page_size'])
+        if item['provider'] == 'upbit_day_candles':
+            provider = providers['upbit_day_candles']
+            start = _day(item.get('start'), 'start')
+            if start < _day(provider['earliest'], 'earliest') or start > today:
+                raise SourceError('start precedes the provider history or follows today')
+            requests += math.ceil(((today - start).days + 1) / provider['page_size'])
+        elif item['provider'] == 'kodex_issuer_weekly':
+            listed = _day(providers['kodex_issuer_weekly']['products'][item['fund']]['listed'], 'listed')
+            weekly[instrument] = (today - listed).days // 7 + 2
+            requests += 2
+        else:
+            # Alignment needs the other series' closing instants, collected first.
+            if item.get('align_to') not in weekly:
+                raise SourceError('aligned candles need a KRX-close series listed earlier in this spec')
+            requests += weekly[item['align_to']]
+        instruments.add(instrument)
     names = set()
     for item in features:
         name = item.get('name') if isinstance(item, dict) else None
@@ -135,6 +179,8 @@ def validate_spec(spec, catalog, today=None):
             raise SourceError('feature provider must be a reviewed provider contract')
     if any(f['provider'] == 'alfred_vintage_csv' for f in features):
         requests += 1  # robots.txt, checked once per host
+    if weekly:
+        requests += 1
     if requests > catalog['max_requests']:
         raise SourceError(f'spec needs about {requests} requests; reviewed limit is {catalog["max_requests"]}')
     return spec
@@ -228,7 +274,11 @@ def parse_upbit(body, market):
         if not isinstance(candle, str) or not _UPBIT_CANDLE.fullmatch(candle):
             raise SourceError('Upbit daily candle must start at 00:00 UTC')
         price, last = c.get('trade_price'), c.get('timestamp')
-        if isinstance(price, bool) or not isinstance(price, (int, Decimal)) or type(last) is not int:
+        if (
+            isinstance(price, bool)
+            or not isinstance(price, (int, Decimal))
+            or (last is not None and type(last) is not int)
+        ):
             raise SourceError('Upbit candle close or last-tick storage time is missing')
         if number(price) <= 0:
             raise SourceError('nonpositive Upbit close')
@@ -268,6 +318,224 @@ def parse_alfred(body, series, vintage, window_days):
             raise SourceError('ALFRED value is not a decimal') from exc
         rows.append([observed.isoformat(), _text_number(value)])
     return rows
+
+
+def _json(body, name):
+    try:
+        return json.loads(
+            body.decode('utf-8'),
+            parse_float=Decimal,
+            object_pairs_hook=_reject_duplicate_keys,
+            parse_constant=lambda _: (_ for _ in ()).throw(SourceError('nonfinite JSON number')),
+        )
+    except (UnicodeDecodeError, ValueError, RecursionError) as exc:
+        raise SourceError(name + ' is not valid JSON') from exc
+
+
+def parse_kodex_detail(body, contract):
+    """Keep only the issuer statements the total-return label depends on."""
+    data = _json(body, 'KODEX product detail')
+    try:
+        product, divide = data['info']['product'], data['info']['divideList']
+    except (KeyError, TypeError) as exc:
+        raise SourceError('KODEX product detail lacks product or distribution fields') from exc
+    if product.get('stkTicker') != contract['ticker'] or product.get('fNm') != contract['name']:
+        raise SourceError('KODEX product detail names a different fund')
+    remark = product.get('dividRemark')
+    if not isinstance(remark, str) or not isinstance(divide, list):
+        raise SourceError('KODEX distribution policy is missing')
+    return dict(ticker=product['stkTicker'], name=product['fNm'], divid_remark=remark, divide_list=divide)
+
+
+def parse_kodex_history(body, contract):
+    data = _json(body, 'KODEX price history')
+    if not isinstance(data, list) or not data:
+        raise SourceError('KODEX price history must be a non-empty JSON array')
+    rows, prior = [], None
+    for r in data:
+        if not isinstance(r, dict) or not _YMD.fullmatch(str(r.get('GIJUN_YMD', ''))):
+            raise SourceError('KODEX row lacks a YYYYMMDD reference date')
+        day = date(int(r['GIJUN_YMD'][:4]), int(r['GIJUN_YMD'][4:6]), int(r['GIJUN_YMD'][6:]))
+        if prior is not None and day <= prior:
+            raise SourceError('KODEX rows must be sorted and unique')
+        prior = day
+        values = [r.get(k) for k in ('PRICE', 'NAV', 'JISU')]
+        if any(isinstance(v, bool) or not isinstance(v, (int, Decimal)) or number(v) <= 0 for v in values):
+            raise SourceError('KODEX close, NAV and index must be positive numbers')
+        rows.append([day.isoformat(), *(_text_number(v) for v in values)])
+    if rows[0][0] < contract['listed']:
+        raise SourceError('KODEX history starts before the fund was listed')
+    return rows
+
+
+def parse_upbit_minute(body, market, unit):
+    data = _json(body, 'Upbit minute candles')
+    if not isinstance(data, list) or len(data) > 1:
+        raise SourceError('aligned request must return at most one candle')
+    if not data:
+        return None
+    c = data[0]
+    if not isinstance(c, dict) or c.get('market') != market or c.get('unit') != unit:
+        raise SourceError('Upbit minute candle differs from the request')
+    candle, price, last = c.get('candle_date_time_utc'), c.get('trade_price'), c.get('timestamp')
+    if not isinstance(candle, str) or not _UPBIT_MINUTE.fullmatch(candle):
+        raise SourceError('Upbit minute candle time is malformed')
+    # Older candles carry timestamp=null; the close is then dated
+    # conservatively after the candle end instead of being rejected.
+    if isinstance(price, bool) or not isinstance(price, (int, Decimal)) or number(price) <= 0:
+        raise SourceError('Upbit candle close is missing')
+    if last is not None and type(last) is not int:
+        raise SourceError('Upbit last-tick storage time is malformed')
+    return dict(candle=candle, close=_text_number(price), last_tick_stored_ms=last)
+
+
+def _kodex_instants(day, provider):
+    hours, minutes = map(int, provider['close_time_kst'].split(':'))
+    known_h, known_m = map(int, provider['known_at_kst'].split(':'))
+    base = datetime.combine(date.fromisoformat(day), datetime.min.time(), KST)
+    at = base + timedelta(hours=hours, minutes=minutes)
+    return at.astimezone(timezone.utc), (base + timedelta(hours=known_h, minutes=known_m)).astimezone(timezone.utc)
+
+
+def _collect_kodex(session, item, catalog):
+    provider = catalog['providers']['kodex_issuer_weekly']
+    contract = provider['products'][item['fund']]
+    out = {}
+    for part, key, parse in (
+        ('detail', 'detail_endpoint', parse_kodex_detail),
+        ('history', 'history_endpoint', parse_kodex_history),
+    ):
+        url = provider[key].format(fid=item['fund'])
+        response, retrieved_at = session.get('kodex_issuer_weekly', url)
+        out[part] = dict(
+            url=url,
+            retrieved_at=retrieved_at,
+            raw_sha256=_sha(response.body),
+            raw_bytes=len(response.body),
+            data=parse(response.body, contract),
+        )
+    return out
+
+
+def _collect_aligned(session, item, catalog, target):
+    provider = catalog['providers']['upbit_aligned_candles']
+    candles = []
+    for row in target['rows']:
+        at = _time(row['at'])
+        if at.minute % provider['unit_minutes'] or at.second or at.microsecond:
+            raise SourceError('alignment instant is not on a candle boundary')
+        query = dict(market=item['market'], count=1, to=at.strftime('%Y-%m-%dT%H:%M:%SZ'))
+        url = provider['endpoint'] + '?' + urllib.parse.urlencode(query)
+        response, retrieved_at = session.get('upbit_aligned_candles', url)
+        candles.append(
+            dict(
+                at=row['at'],
+                url=url,
+                retrieved_at=retrieved_at,
+                raw_sha256=_sha(response.body),
+                candle=parse_upbit_minute(response.body, item['market'], provider['unit_minutes']),
+            )
+        )
+    return candles
+
+
+def _kodex_dataset(item, retained):
+    contract, provider = retained['contract'], retained['provider']
+    detail = retained['detail']['data']
+    # The total-return label rests on the issuer's own statement, checked on
+    # every acquisition: reinvested, never paid, and no distribution listed.
+    if '미지급' not in detail['divid_remark'] or '재투자' not in detail['divid_remark'] or detail['divide_list']:
+        raise SourceError('issuer no longer states that every distribution is reinvested; total return unverified')
+    retrieved = _time(retained['history']['retrieved_at'])
+    rows = []
+    for day, close, _nav, _index in retained['history']['data']:
+        at, known_at = _kodex_instants(day, provider)
+        if known_at <= retrieved:
+            rows.append(dict(at=at.isoformat(), known_at=known_at.isoformat(), value=close))
+    if not rows:
+        raise SourceError('no published KODEX close in the history')
+    dataset = dict(
+        schema_version='investment-prices-v1',
+        synthetic=False,
+        instrument_id=contract['instrument_id'],
+        asset_id=item.get('asset_id', contract['asset_id']),
+        name=contract['name'],
+        currency='KRW',
+        unit='KRW per share',
+        measure='krx_close_price_non_distributing_etf',
+        source='삼성자산운용 KODEX product-earning (since inception) ' + contract['ticker'],
+        calendar=provider['boundary'],
+        survivorship='single_instrument',
+        return_kind='total_return',
+        adjustment='pit_total_return_index',
+        return_basis='non_distributing_fund_price',
+        return_basis_note=(
+            f'발행사 상품 정보의 분배 정책 "{detail["divid_remark"].strip()}"이고 분배 내역이 비어 있다'
+            f'(획득 {retained["detail"]["retrieved_at"]}). 기초지수 {contract["index"]}. {provider["tax_note"]}'
+        ),
+        retrieved_at=max(retrieved, _time(retained['detail']['retrieved_at'])).isoformat(),
+        rows=rows,
+        provenance=dict(
+            method_version=VERSION,
+            provider='kodex_issuer_weekly',
+            fund=item['fund'],
+            raw_sha256=[retained['detail']['raw_sha256'], retained['history']['raw_sha256']],
+        ),
+    )
+    validate_dataset(dataset)
+    return dataset
+
+
+def _aligned_dataset(item, retained, target):
+    contract, provider = retained['contract'], retained['provider']
+    rows, missing = [], []
+    for c in retained['candles']:
+        at = _time(c['at'])
+        if c['candle'] is None or _time(c['candle']['candle'] + '+00:00') != at - timedelta(
+            minutes=provider['unit_minutes']
+        ):
+            missing.append(c['at'])  # No trade in that window; the close is not invented.
+            continue
+        stored_ms = c['candle']['last_tick_stored_ms']
+        if stored_ms is None:
+            known_at = at + UPBIT_STORE_LAG
+        else:
+            stored = datetime.fromtimestamp(stored_ms / 1000, timezone.utc)
+            if not at - timedelta(minutes=provider['unit_minutes']) <= stored <= at + UPBIT_STORE_LAG:
+                raise SourceError('Upbit last tick storage time lies outside its candle')
+            known_at = max(at, stored)
+        if known_at <= _time(c['retrieved_at']):
+            rows.append(dict(at=c['at'], known_at=known_at.isoformat(), value=c['candle']['close']))
+    if not rows:
+        raise SourceError('no Upbit close at the aligned instants')
+    dataset = dict(
+        schema_version='investment-prices-v1',
+        synthetic=False,
+        instrument_id=contract['instrument_id'] + '_AT_' + item['align_to'],
+        asset_id=item.get('asset_id', contract['asset_id']),
+        name=contract['name'] + ' (' + target['name'] + ' 종가 시각)',
+        currency='KRW',
+        unit=contract['unit'],
+        measure='upbit_krw_spot_close_at_aligned_instant',
+        source='Upbit Open API GET /v1/candles/minutes/30 market=' + item['market'],
+        calendar=provider['boundary'] + ' 시각은 ' + target['instrument_id'] + '의 종가 시각과 같다.',
+        survivorship='single_instrument',
+        return_kind='price',
+        adjustment='unadjusted',
+        return_basis='price_lower_bound',
+        return_basis_note=contract['distribution_note'],
+        retrieved_at=max(_time(c['retrieved_at']) for c in retained['candles']).isoformat(),
+        rows=rows,
+        provenance=dict(
+            method_version=VERSION,
+            provider='upbit_aligned_candles',
+            market=item['market'],
+            aligned_to=item['align_to'],
+            missing_instants=missing,
+        ),
+    )
+    validate_dataset(dataset)
+    return dataset
 
 
 def _collect_prices(session, item, catalog):
@@ -316,7 +584,7 @@ def _collect_vintages(session, item, catalog, today):
     return vintages
 
 
-def _price_dataset(item, retained):
+def _price_dataset(item, retained, version=VERSION):
     contract = retained['contract']
     by_day = {}
     for page in retained['pages']:
@@ -326,7 +594,10 @@ def _price_dataset(item, retained):
             end = start + timedelta(days=1)
             if end > retrieved:
                 continue  # The current candle is not closed yet.
-            stored = datetime.fromtimestamp(r['last_tick_stored_ms'] / 1000, timezone.utc)
+            if r['last_tick_stored_ms'] is None:
+                stored = end + UPBIT_STORE_LAG  # no storage time: dated conservatively after the close
+            else:
+                stored = datetime.fromtimestamp(r['last_tick_stored_ms'] / 1000, timezone.utc)
             if not start <= stored <= end + UPBIT_STORE_LAG:
                 raise SourceError('Upbit last tick storage time lies outside its daily candle')
             if r['candle'] in by_day and by_day[r['candle']]['value'] != r['close']:
@@ -354,10 +625,15 @@ def _price_dataset(item, retained):
         survivorship='single_instrument',
         return_kind='price',
         adjustment='unadjusted',
+        **(
+            dict(return_basis='price_lower_bound', return_basis_note=contract['distribution_note'])
+            if version != 'pit_history_v1'
+            else {}
+        ),
         retrieved_at=retrieved_at,
         rows=rows,
         provenance=dict(
-            method_version=VERSION,
+            method_version=version,
             provider='upbit_day_candles',
             market=item['market'],
             raw_sha256=[p['raw_sha256'] for p in retained['pages']],
@@ -447,6 +723,7 @@ def _derived_features(item, dataset):
         measure = f'trailing_{item["days"]}d_price_return:{instrument}'
     else:
         measure = f'close_to_sma_{item["observations"]}obs:{instrument}'
+    step = median(b - a for a, b in zip(times, times[1:])) if len(times) > 1 else timedelta(days=1)
     out = []
     for i, r in enumerate(rows):
         if item['kind'] == 'trailing_return':
@@ -458,9 +735,9 @@ def _derived_features(item, dataset):
             value = number(r['value']) / number(rows[j]['value']) - 1
         else:
             n = item['observations']
-            # Daily 24-hour markets: n observations span n-1 days; a longer
-            # span means missing days inside the average, which is refused.
-            if i + 1 < n or times[i] - times[i + 1 - n] > timedelta(days=n - 1 + DERIVED_GAP_DAYS):
+            # n observations at the series' usual spacing span (n-1) steps; a
+            # longer span means missing rows inside the average, refused.
+            if i + 1 < n or times[i] - times[i + 1 - n] > (n - 1) * step + timedelta(days=DERIVED_GAP_DAYS):
                 continue
             used = rows[i + 1 - n : i + 1]
             value = number(r['value']) / (sum((number(x['value']) for x in used), Decimal(0)) / n) - 1
@@ -471,7 +748,7 @@ def _derived_features(item, dataset):
                 unit='ratio',
                 currency='not_applicable',
                 measure=measure,
-                source=f'derived {VERSION} from {dataset["source"]}',
+                source=f'derived {dataset["provenance"]["method_version"]} from {dataset["source"]}',
                 observed_at=r['at'],
                 known_at=max(_time(x['known_at']) for x in used).isoformat(),
                 retrieved_at=dataset['retrieved_at'],
@@ -481,25 +758,45 @@ def _derived_features(item, dataset):
     return out
 
 
-def _gaps(rows):
+def _gaps(rows, version):
     days = [_time(r['at']).date() for r in rows]
-    return [
-        dict(after=a.isoformat(), before=b.isoformat(), missing_days=(b - a).days - 1)
-        for a, b in zip(days, days[1:])
-        if (b - a).days > 1
-    ]
+    if version == 'pit_history_v1':
+        return [
+            dict(after=a.isoformat(), before=b.isoformat(), missing_days=(b - a).days - 1)
+            for a, b in zip(days, days[1:])
+            if (b - a).days > 1
+        ]
+    # Gaps are counted in the series' own steps (days or weeks), not days.
+    step = median((b - a).days for a, b in zip(days, days[1:])) if len(days) > 1 else 1
+    gaps = []
+    for a, b in zip(days, days[1:]):
+        missing = round((b - a).days / step) - 1
+        if missing > 0:
+            gaps.append(dict(after=a.isoformat(), before=b.isoformat(), missing_rows=missing))
+    return gaps
+
+
+def _build_price(item, retained, prices, version):
+    if item['provider'] == 'upbit_day_candles':
+        return _price_dataset(item, retained, version)
+    if item['provider'] == 'kodex_issuer_weekly':
+        return _kodex_dataset(item, retained)
+    if item['align_to'] not in prices:
+        raise SourceError('aligned series unavailable: ' + item['align_to'])
+    return _aligned_dataset(item, retained, prices[item['align_to']])
 
 
 def build(spec, snapshots):
     """Offline and deterministic: the same retained snapshots give the same history."""
+    version = snapshots['method_version']
     retained = snapshots['items']
     prices, features, failures = {}, {}, list(snapshots['failures'])
     for item in spec.get('prices', []):
-        key = 'prices:' + item['market']
+        key = _price_key(item)
         if key not in retained:
             continue
         try:
-            dataset = _price_dataset(item, retained[key])
+            dataset = _build_price(item, retained[key], prices, version)
         except (SourceError, KeyError, TypeError, ValueError, InvalidOperation) as exc:
             failures.append(dict(item=key, stage='build', reason=str(exc)))
             continue
@@ -526,7 +823,7 @@ def build(spec, snapshots):
                 last=d['rows'][-1]['at'],
                 last_value=d['rows'][-1]['value'],
                 unit=d['unit'],
-                gaps=_gaps(d['rows']),
+                gaps=_gaps(d['rows'], version),
             )
             for d in prices.values()
         ],
@@ -542,20 +839,38 @@ def build(spec, snapshots):
     )
     return dict(
         schema_version='investment-history-v1',
-        method_version=VERSION,
+        method_version=version,
         synthetic=False,
         spec_sha256=digest(spec),
         prices=prices,
         features=features,
         summary=summary,
         failures=failures,
-        limitations=[
-            '거래소 가격은 가격 수익이며 하드포크·에어드롭·스테이킹을 포함한 총수익이 아니다. 매수 승인 검증에는 그대로 쓸 수 없다.',
+        limitations=LIMITATIONS[version]
+        + [
             'ALFRED 관측값의 known_at은 표본으로 고른 판본일 기준이다. 실제 공표보다 늦을 수는 있어도 이르지 않다.',
             '이력 자료는 현재 판단의 검증 원문을 대신하지 않는다. 오늘의 숫자는 조사 실행의 검증 근거와 연결해야 한다.',
             '빈 날짜와 결측값은 채우지 않았다. 지표 계산에 필요한 관측이 없으면 그 시점의 값을 만들지 않았다.',
         ],
     )
+
+
+LIMITATIONS = {
+    'pit_history_v1': [
+        '거래소 가격은 가격 수익이며 하드포크·에어드롭·스테이킹을 포함한 총수익이 아니다. 매수 승인 검증에는 그대로 쓸 수 없다.'
+    ],
+    'pit_history_v2': [
+        '코인 가격은 현금 분배가 없는 자산의 가격 수익이다. 확인하지 못한 포크·에어드롭과 스테이킹은 빠졌으므로 보유자 수익의 '
+        '하한(price_lower_bound)으로 표시한다.',
+        'KODEX TR ETF 종가는 발행사가 분배금을 지급하지 않고 재투자한다고 밝힌 상품의 세전 총수익이다. 이 진술은 수집할 때마다 '
+        '다시 확인하며, 바뀌면 총수익으로 표시하지 않는다.',
+    ],
+}
+DATE_NOTES = {
+    'pit_history_v1': '날짜는 종가 시각(UTC 00:00 = 한국시간 09:00)이다. 예를 들어 10월 21일 캔들의 종가는 10월 22일 00:00 UTC 값이다.',
+    'pit_history_v2': '날짜는 종가 시각(UTC)이다. Upbit 일 캔들은 UTC 00:00(한국시간 09:00), KRX 종가와 그 시각에 맞춘 Upbit 값은 '
+    'UTC 06:30(한국시간 15:30)이다.',
+}
 
 
 def render_history(result):
@@ -564,18 +879,21 @@ def render_history(result):
         '투자 판단이 아니라 검증에 쓸 원자료 묶음이다. 각 값은 당시 알 수 있었던 시각(known_at)과 함께 저장했다.'
     )
     lines += ['', '## 가격 이력', '']
-    lines.append(
-        '날짜는 종가 시각(UTC 00:00 = 한국시간 09:00)이다. 예를 들어 10월 21일 캔들의 종가는 10월 22일 00:00 UTC 값이다.'
-    )
+    lines.append(DATE_NOTES[result['method_version']])
     lines.append('')
     if not result['summary']['prices']:
         lines.append('- 수집한 가격 이력이 없다.')
+    v1 = result['method_version'] == 'pit_history_v1'
     for p in result['summary']['prices']:
-        gaps = sum(g['missing_days'] for g in p['gaps'])
+        gaps = sum(g['missing_days' if v1 else 'missing_rows'] for g in p['gaps'])
         lines.append(
-            f'- **{p["name"]}** (`{p["instrument_id"]}`): {p["rows"]}개 일별 종가, '
+            f'- **{p["name"]}** (`{p["instrument_id"]}`): {p["rows"]}개 {"일별 " if result["method_version"] == "pit_history_v1" else ""}종가, '
             f'{p["first"][:10]} ~ {p["last"][:10]}, 마지막 값 {p["last_value"]} {p["unit"]}. '
-            + (f'빠진 날 {gaps}일은 채우지 않았다.' if gaps else '빠진 날 없음.')
+            + (
+                (f'빠진 날 {gaps}일은 채우지 않았다.' if gaps else '빠진 날 없음.')
+                if v1
+                else (f'평소 간격 기준으로 빠진 표본 {gaps}개는 채우지 않았다.' if gaps else '빠진 표본 없음.')
+            )
         )
     lines += ['', '## 특징값 이력', '']
     if not result['summary']['features']:
@@ -604,6 +922,33 @@ def render_history(result):
     return '\n'.join(lines)
 
 
+def _acquire_price(session, item, catalog, built):
+    providers = catalog['providers']
+    if item['provider'] == 'upbit_day_candles':
+        market = providers['upbit_day_candles']['markets'][item['market']]
+        contract = dict(
+            market,
+            boundary=providers['upbit_day_candles']['boundary'],
+            revision_note=providers['upbit_day_candles']['revision_note'],
+        )
+        return dict(contract=contract, pages=_collect_prices(session, item, catalog))
+    if item['provider'] == 'kodex_issuer_weekly':
+        provider = providers['kodex_issuer_weekly']
+        retained = dict(
+            contract=provider['products'][item['fund']],
+            provider={k: provider[k] for k in ('close_time_kst', 'known_at_kst', 'boundary', 'tax_note')},
+        )
+        return dict(retained, **_collect_kodex(session, item, catalog))
+    if item['align_to'] not in built:
+        raise SourceError('aligned series unavailable: ' + item['align_to'])
+    provider = providers['upbit_aligned_candles']
+    return dict(
+        contract=providers['upbit_day_candles']['markets'][item['market']],
+        provider={k: provider[k] for k in ('unit_minutes', 'boundary')},
+        candles=_collect_aligned(session, item, catalog, built[item['align_to']]),
+    )
+
+
 def acquire_history(spec, directory, *, fetcher=None, clock=None, sleep=None, progress=None, catalog=None):
     catalog = catalog or load_catalog()
     clock = clock or (lambda: datetime.now(timezone.utc))
@@ -615,17 +960,18 @@ def acquire_history(spec, directory, *, fetcher=None, clock=None, sleep=None, pr
     session = _Session(catalog, fetcher, clock, sleep or time.sleep, progress)
     items, failures = {}, []
     errors = (SourceError, OSError, TimeoutError, ValueError)
+    built = {}
     for item in spec.get('prices', []):
-        key = 'prices:' + item['market']
-        contract = dict(
-            catalog['providers']['upbit_day_candles']['markets'][item['market']],
-            boundary=catalog['providers']['upbit_day_candles']['boundary'],
-            revision_note=catalog['providers']['upbit_day_candles']['revision_note'],
-        )
+        key = _price_key(item)
         try:
-            items[key] = dict(contract=contract, pages=_collect_prices(session, item, catalog))
+            items[key] = _acquire_price(session, item, catalog, built)
         except errors as exc:
             failures.append(dict(item=key, stage='acquire', reason=str(exc) or type(exc).__name__))
+            continue
+        try:
+            built[instrument_id(item, catalog)] = _build_price(item, items[key], built, VERSION)
+        except errors:
+            pass  # build() below records the same failure deterministically
     for item in spec.get('features', []):
         if item['provider'] != 'alfred_vintage_csv':
             continue
@@ -661,13 +1007,13 @@ def replay_history(directory):
     """Rebuild the history from retained rows without network and compare every artifact."""
     root = Path(directory)
     manifest = load(root / 'history_manifest.json')
-    if manifest.get('method_version') != VERSION:
+    if manifest.get('method_version') not in VERSIONS:
         raise SourceError('unsupported history replay version')
     if set(manifest['artifacts']) != set(ARTIFACTS) or manifest['artifacts'] != _hashes(root):
         raise SourceError('history artifact checksum mismatch')
     spec, snapshots = load(root / 'spec.json'), load(root / 'snapshots.json')
-    if snapshots.get('method_version') != VERSION:
-        raise SourceError('unsupported history snapshot version')
+    if snapshots.get('method_version') != manifest['method_version']:
+        raise SourceError('history snapshot and manifest versions differ')
     result = build(spec, snapshots)
     if encode(result) != encode(load(root / 'history.json')) or render_history(result) != (
         root / 'history.md'

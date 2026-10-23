@@ -509,17 +509,119 @@ def attach_to_ask(run):
     return result
 
 
-def run_cycle(plan, research_run, directory, *, ledger=None, previous=None):
+def _current_row(rows, at):
+    """The row condition_state would read at `at`: latest observation, then latest revision."""
+    visible = [r for r in rows if _time(r['known_at']) <= at and _time(r.get('observed_at', r.get('at'))) <= at]
+    return max(visible, key=lambda r: (_time(r.get('observed_at', r.get('at'))), _time(r['known_at'])), default=None)
+
+
+def attach_history(plan, history, history_sha256, snapshot):
+    """Expand `history` references from a replay-verified history run.
+
+    The values come from this system's own reviewed collectors (retained rows
+    and hashes), not from numbers typed into a plan. Only the row each current
+    check will read becomes evidence, and only if it was retrieved before the
+    judgment time.
+    """
+    plan = deepcopy(plan)
+    at = _time(snapshot['as_of'])
+    evidence = []
+    source_id = 'history:' + history_sha256[:16]
+    for c in plan['candidates']:
+        ref = c.get('history')
+        if ref is None:
+            continue
+        if not isinstance(ref, dict) or not isinstance(ref.get('features'), list):
+            raise SourceError('history reference needs prices, benchmark and a feature list')
+        try:
+            prices, benchmark = history['prices'][ref['prices']], history['prices'][ref['benchmark']]
+            features = [history['features'][name] for name in ref['features']]
+        except (KeyError, TypeError) as exc:
+            raise SourceError('history run lacks a referenced dataset or feature') from exc
+        datasets = [prices, benchmark] + [row for rows in features for row in rows]
+        if any(_time(d['retrieved_at']) > at for d in datasets):
+            raise SourceError('history was retrieved after the judgment time; collect it before the research run')
+        rows = []
+        for name, series in zip(ref['features'], features):
+            current = _current_row(series, at)
+            for row in series:
+                row = dict(row)
+                if row == current:
+                    row['evidence_id'] = f'H:{c["asset_id"]}:{name}:{row["observed_at"]}'
+                    evidence.append(
+                        dict(
+                            id=row['evidence_id'],
+                            asset_ids=[c['asset_id']],
+                            text=f'{row["source"]} {name} = {row["value"]} {row["unit"]} (관측 {row["observed_at"]})',
+                            value=row['value'],
+                            source_id=source_id,
+                            definition=dict(measure=row['measure']),
+                            observed_at=_time(row['observed_at']).date().isoformat(),
+                            unit=row['unit'],
+                            currency=row['currency'],
+                            retrieved_at=row['retrieved_at'],
+                        )
+                    )
+                rows.append(row)
+        quote_row = _current_row(prices['rows'], at)
+        if quote_row is None:
+            raise SourceError('history has no price known at the judgment time')
+        quote = dict(
+            at=quote_row['at'],
+            known_at=quote_row['known_at'],
+            value=quote_row['value'],
+            currency=prices['currency'],
+            unit=prices['unit'],
+            measure=prices['measure'],
+            instrument_id=prices['instrument_id'],
+        )
+        quote_id = f'H:{c["asset_id"]}:price:{prices["instrument_id"]}:{quote_row["at"]}'
+        evidence.append(
+            dict(
+                id=quote_id,
+                asset_ids=[c['asset_id']],
+                text=f'{prices["source"]} {prices["name"]} 종가 {quote_row["value"]} {prices["unit"]} ({quote_row["at"]})',
+                value=quote_row['value'],
+                source_id=source_id,
+                definition=dict(measure=prices['measure']),
+                observed_at=_time(quote_row['at']).date().isoformat(),
+                unit=prices['unit'],
+                currency=prices['currency'],
+                retrieved_at=prices['retrieved_at'],
+            )
+        )
+        c.update(
+            prices=prices,
+            benchmark=benchmark,
+            features=rows,
+            quote=quote,
+            current_price_evidence_id=quote_id,
+            history=dict(ref, sha256=history_sha256),
+        )
+    existing = {e['id'] for e in snapshot['evidence']}
+    added = [e for e in evidence if e['id'] not in existing]
+    return plan, dict(snapshot, evidence=snapshot['evidence'] + added)
+
+
+def run_cycle(plan, research_run, directory, *, ledger=None, previous=None, history=None):
     from .orchestrator import replay_ask
     from .decision_report import render_decision
     from .decision_journal import record
 
-    validate_plan(plan)
+    if history is None:
+        validate_plan(plan)
     root = Path(directory)
     if root.exists():
         raise SourceError('use a new investment run directory')
     run = replay_ask(research_run)
     snapshot = research_snapshot(run)
+    if history is not None:
+        from .history import replay_history
+
+        verified = replay_history(history)
+        sha = hashlib.sha256((Path(history) / 'history.json').read_bytes()).hexdigest()
+        plan, snapshot = attach_history(plan, verified, sha, snapshot)
+        validate_plan(plan)
     if ledger:
         from .decision_journal import feedback
 
