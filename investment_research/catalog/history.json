@@ -30,7 +30,8 @@
           "measure": "upbit_krw_spot_daily_close",
           "distribution_note": "현금 분배가 없는 현물(스테이킹 없음)이다. 에어드롭(예: ETHW) 지급분은 거래소 지급 여부를 확인하지 못해 포함하지 않았으므로, 측정 수익은 보유자 수익의 하한이다."
         }
-      }
+      },
+      "max_requests": 800
     },
     "upbit_aligned_candles": {
       "access_method": "public_api",
@@ -40,7 +41,8 @@
       "min_interval_seconds": 0.2,
       "unit_minutes": 30,
       "boundary": "요청한 시각에 끝나는 30분 캔들의 마지막 체결가다. 그 30분에 체결이 없으면 값을 만들지 않는다.",
-      "sampling_note": "every(표본 간격)와 since(시작일)로 요청 수를 줄일 수 있다. 정렬 대상이 더 촘촘하면 비교 시장은 일간, 코인은 표본 시각만 갖는다."
+      "sampling_note": "every(표본 간격)와 since(시작일)로 요청 수를 줄일 수 있다. 정렬 대상이 더 촘촘하면 비교 시장은 일간, 코인은 표본 시각만 갖는다.",
+      "max_requests": 1500
     },
     "alfred_vintage_csv": {
       "access_method": "public_http",
@@ -92,7 +94,8 @@
           "publisher": "Board of Governors of the Federal Reserve System (H.10)",
           "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
         }
-      }
+      },
+      "max_requests": 1200
     },
     "kodex_issuer_weekly": {
       "access_method": "public_http",
@@ -103,7 +106,7 @@
       "min_interval_seconds": 3,
       "close_time_kst": "15:30",
       "known_at_kst": "18:00",
-      "boundary": "KRX 정규장 종가(15:30 KST). 발행사 설정 이후 응답은 주별 첫 거래일과 최신 기준일의 표본이다. 공표 시각은 보수적으로 18:00 KST로 둔다.",
+      "boundary": "KRX 정규장 종가(15:30 KST). 발행사 설정 이후 응답은 주별 첫 거래일과 최신 기준일의 표본이다. 공표 시각은 보수적으로 18:00 KST로 둔다. 이 이력은 현재 시점에 한 번 받은 값이라 발행사가 과거 값을 나중에 정정했더라도 알 수 없다(개정 이력 없음).",
       "tax_note": "세전 총수익이다. 국내 TR ETF 매매차익은 보유기간 과세 대상이며 이 수익에서 빼지 않았다.",
       "products": {
         "2ETF92": {
@@ -130,7 +133,8 @@
           "instrument_id": "KODEX_KOSPI_TR",
           "listed": "2020-07-21"
         }
-      }
+      },
+      "max_requests": 10
     },
     "factset_earnings_insight": {
       "access_method": "public_http",
@@ -157,7 +161,8 @@
       },
       "pages": [
         1
-      ]
+      ],
+      "max_requests": 1200
     },
     "tiger_nav_reinvested": {
       "access_method": "public_http",
@@ -171,8 +176,8 @@
       "close_time_kst": "15:30",
       "known_at_kst": "18:00",
       "verification_window_rows": 20,
-      "tolerance_pp": "0.2",
-      "min_rate_pct": "0.3",
+      "tolerance_pp": "0.15",
+      "min_rate_pct": "0.4",
       "min_comparable_years": 2,
       "history_years_limit": 11,
       "boundary": "NAV는 해외 지수의 직전 미국 거래일 종가와 당일 환율을 반영한다(2022~2026 TIGER 미국S&P500에서 직전 미국 거래일 S&P 500 일수익률과의 상관 0.81, 같은 날짜와는 -0.05). 날짜는 한국 거래일이며 시각은 KRX 종가 15:30 KST로 둔다. 실제 정보 시점은 이보다 이르므로 미래 정보가 섞이지 않는다.",
@@ -196,7 +201,9 @@
           "listed": "2010-10-14"
         }
       },
-      "response_cap_note": "응답은 시작일과 관계없이 최근 약 2,155행(약 8.6년)까지만 주고, 누적 수익률의 기준점은 요청한 시작일의 값이다. 그래서 첫 행의 지수가 1이 아닐 수 있다. 수익률·비율은 기준점과 무관하다. 응답에 없는 기간의 데이터는 없는 것으로 둔다."
+      "response_cap_note": "응답은 시작일과 관계없이 최근 약 2,155행(약 8.6년)까지만 주고, 누적 수익률의 기준점은 요청한 시작일의 값이다. 그래서 첫 행의 지수가 1이 아닐 수 있다. 수익률·비율은 기준점과 무관하다. 응답에 없는 기간의 데이터는 없는 것으로 둔다.",
+      "revision_note": "이 이력은 현재 시점에 한 번 받은 값이라 발행사가 과거 NAV를 나중에 정정했더라도 알 수 없다(개정 이력 없음). known_at은 그날 공표 시각으로 둔 가정이다.",
+      "max_requests": 20
     }
   }
 }

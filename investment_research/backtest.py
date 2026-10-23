@@ -15,6 +15,7 @@ from .decision_data import (
     digest,
     lower_bound,
     number,
+    require_tradable,
     target,
     validate_dataset,
     validate_strategy,
@@ -156,6 +157,7 @@ def run_backtest(candidate, cutoff, version=VERSION):
     validate_strategy(s)
     validate_dataset(candidate['prices'])
     validate_dataset(candidate['benchmark'])
+    require_tradable(candidate['prices'])
     end = min(_time(s['splits']['end']), cutoff + timedelta(microseconds=1))
     rows, bench = _prices(candidate['prices'], cutoff), _prices(candidate['benchmark'], cutoff)
     row_times = [_time(r['at']) for r in rows]

@@ -847,6 +847,95 @@ class HistoryTests(unittest.TestCase):
         self.assertIn('비헤지', tr['return_basis_note'])
         self.assertEqual(replay_history(self.root / 'tiger'), result)
 
+    def test_tiger_verification_ignores_rows_not_yet_published(self):
+        from investment_research.history_tiger import dataset
+
+        self.acquire(self.tiger_spec(since='2026-01-02', every=5), name='tiger-early')
+        snapshots = json.loads((self.root / 'tiger-early' / 'snapshots.json').read_text(encoding='utf-8'))
+        retained = snapshots['items']['prices:tiger:KR7360750004']
+        retained['history']['retrieved_at'] = '2025-12-15T12:00:00+00:00'
+        for row in retained['history']['data']['rows']:
+            if row[0] > '2025-12-15':
+                row[2] = '99999'  # absurd NAV in rows that were not published at retrieval
+        ds = dataset(dict(provider='tiger_nav_reinvested', fund='KR7360750004'), retained)
+        self.assertEqual(ds['rows'][-1]['at'][:10], '2025-12-15')
+        # 2025 is a partial year at that retrieval time, so only 2023 and 2024 are compared.
+        self.assertEqual([c['year'] for c in ds['provenance']['verification']], [2023, 2024])
+        self.assertIn('개정 이력 없음', ds['calendar'])
+
+    def test_shared_page_is_requested_once_and_budgets_are_per_provider(self):
+        from investment_research.history import _Session
+
+        fake = FakeInternet()
+        catalog = load_catalog()
+        session = _Session(catalog, fake, lambda: NOW, lambda _: None, None)
+        page = catalog['providers']['tiger_nav_reinvested']['distribution_page']
+        first = session.get('tiger_nav_reinvested', page, cache=True)
+        second = session.get('tiger_nav_reinvested', page, cache=True)
+        self.assertIs(first[0], second[0])  # the very same response object, not a second download
+        self.assertEqual(first[1], second[1])
+        self.assertEqual(sum(1 for u in fake.urls if u == page), 1)
+        self.assertEqual(session.counts['tiger_nav_reinvested'], 2)  # robots.txt + the page
+        # A provider's own ceiling is enforced even when the global one is far away.
+        tiny = deepcopy(catalog)
+        tiny['providers']['tiger_nav_reinvested']['max_requests'] = 2
+        limited = _Session(tiny, FakeInternet(), lambda: NOW, lambda _: None, None)
+        limited.get('tiger_nav_reinvested', page)
+        with self.assertRaises(SourceError):
+            limited.get('tiger_nav_reinvested', page.replace('list.do', 'list.do?x=1'))
+
+    def test_spec_budget_is_checked_per_provider_and_weekly_sampling_is_not_underestimated(self):
+        catalog = load_catalog()
+        alfred = dict(
+            schema_version='investment-history-spec-v1',
+            features=[
+                dict(
+                    name='cpi',
+                    provider='alfred_vintage_csv',
+                    series='CPIAUCSL',
+                    vintage_start='1985-01-01',
+                    vintage_step_days=7,
+                    window_days=500,
+                )
+            ],
+        )
+        with self.assertRaises(SourceError) as ctx:
+            validate_spec(alfred, catalog, NOW.date())
+        self.assertIn('alfred_vintage_csv', str(ctx.exception))
+        everything = self.tiger_spec()  # daily alignment to ~1,600 NAV rows exceeds the aligned ceiling
+        with self.assertRaises(SourceError) as ctx:
+            validate_spec(everything, catalog, NOW.date())
+        self.assertIn('upbit_aligned_candles', str(ctx.exception))
+        # `week` against an already-weekly KODEX target still needs about one request per row.
+        tight = deepcopy(catalog)
+        tight['providers']['upbit_aligned_candles']['max_requests'] = 100
+        weekly_target = self.kodex_aligned_spec(every='week')
+        with self.assertRaises(SourceError):
+            validate_spec(weekly_target, tight, NOW.date())
+        validate_spec(self.kodex_aligned_spec(every='week'), catalog, NOW.date())
+
+    def kodex_aligned_spec(self, **aligned):
+        return dict(
+            schema_version='investment-history-spec-v1',
+            prices=[
+                dict(provider='kodex_issuer_weekly', fund='2ETF92'),
+                dict(provider='upbit_aligned_candles', market='KRW-BTC', align_to='KODEX_200TR', **aligned),
+            ],
+        )
+
+    def test_a_benchmark_only_series_cannot_be_the_backtested_price(self):
+        history = self.acquire(self.tiger_spec(since='2026-01-02', every=5), name='tiger-bt')
+        from tests.test_investment_cycle import experiment
+
+        plan, _ = experiment()
+        c = plan['candidates'][0]
+        c.update(
+            prices=history['prices']['TIGER_US_SP500_NAV_TR'],
+            benchmark=history['prices']['UPBIT_KRW_BTC_AT_TIGER_US_SP500_NAV_TR'],
+        )
+        with self.assertRaises(SourceError):
+            run_backtest(c, NOW)
+
     def test_tiger_response_cap_keeps_ratios_valid_and_records_the_real_start(self):
         fake = FakeInternet()
         fake.tiger['cap'] = 700  # the endpoint returns only the latest rows; levels keep the request-start baseline

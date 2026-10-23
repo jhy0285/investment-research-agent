@@ -59,6 +59,12 @@ MARKETS = (
 )
 
 
+def require_tradable(dataset):
+    """A market measure (e.g. an issuer NAV) is a benchmark, never the price a plan trades at."""
+    if dataset.get('return_basis') in BENCHMARK_ONLY_BASES:
+        raise SourceError('an issuer NAV series is a market benchmark, not a price the plan can trade at')
+
+
 def lower_bound(dataset):
     provenance = dataset.get('provenance')
     return (
@@ -304,8 +310,7 @@ def validate_plan(data):
             raise SourceError('quote known before its observation')
         if c['prices']['asset_id'] != c['asset_id']:
             raise SourceError('investment exposure and traded price instrument differ')
-        if c['prices'].get('return_basis') in BENCHMARK_ONLY_BASES:
-            raise SourceError('an issuer NAV series is a market benchmark, not a price the plan can trade at')
+        require_tradable(c['prices'])
         # A reviewed price lower bound may face a total-return benchmark: the
         # omission can only understate the candidate, never flatter it.
         bounded = lower_bound(c['prices']) and c['benchmark']['return_kind'] == 'total_return'

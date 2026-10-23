@@ -13,6 +13,7 @@ statement is re-checked on every acquisition.
 """
 
 from bisect import bisect_right
+from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from statistics import median
 from decimal import Decimal, InvalidOperation
@@ -124,8 +125,8 @@ def validate_spec(spec, catalog, today=None):
     if len(prices) > 5 or len(features) > 20:
         raise SourceError('at most five price series and twenty features')
     providers = catalog['providers']
-    instruments, requests, hosts = set(), 0, set()
-    weekly = {}
+    instruments, need = set(), Counter()
+    targets = {}  # instrument -> (rows, ISO weeks) an aligned series can be sampled from
     for item in prices:
         if not isinstance(item, dict) or item.get('provider') not in PRICE_PROVIDERS:
             raise SourceError('price provider must be a reviewed provider contract')
@@ -139,27 +140,31 @@ def validate_spec(spec, catalog, today=None):
             start = _day(item.get('start'), 'start')
             if start < _day(provider['earliest'], 'earliest') or start > today:
                 raise SourceError('start precedes the provider history or follows today')
-            requests += math.ceil(((today - start).days + 1) / provider['page_size'])
+            need['upbit_day_candles'] += math.ceil(((today - start).days + 1) / provider['page_size'])
         elif item['provider'] == 'kodex_issuer_weekly':
             listed = _day(providers['kodex_issuer_weekly']['products'][item['fund']]['listed'], 'listed')
-            weekly[instrument] = (today - listed).days // 7 + 2
-            requests += 2
+            weeks = (today - listed).days // 7 + 2
+            targets[instrument] = (weeks, weeks)
+            need['kodex_issuer_weekly'] += 2
         elif item['provider'] == 'tiger_nav_reinvested':
-            from .history_tiger import estimate_rows
+            from .history_tiger import estimate_span
 
-            weekly[instrument] = estimate_rows(item, catalog, today)
-            requests += 3
-            hosts.add('tiger')
+            targets[instrument] = estimate_span(item, catalog, today)
+            need['tiger_nav_reinvested'] += 3
         else:
             # Alignment needs the other series' closing instants, collected first.
-            if item.get('align_to') not in weekly:
+            if item.get('align_to') not in targets:
                 raise SourceError('aligned candles need a KRX-close series listed earlier in this spec')
-            every = 5 if item.get('every') == 'week' else (_integer(item, 'every', 1, 20) if 'every' in item else 1)
-            rows = weekly[item['align_to']]
+            rows, weeks = targets[item['align_to']]
             if 'since' in item:
-                # Fewer rows after `since`; weekly targets get no credit (conservative).
-                rows = min(rows, max(0, (today - _day(item['since'], 'since')).days * 5 // 7 + 1))
-            requests += math.ceil(rows / every)
+                # Fewer rows after `since`; a weekly target gets no credit (conservative).
+                after = max(0, (today - _day(item['since'], 'since')).days)
+                rows, weeks = min(rows, after * 5 // 7 + 1), min(weeks, after // 7 + 2)
+            if item.get('every') == 'week':
+                need['upbit_aligned_candles'] += min(rows, weeks)
+            else:
+                every = _integer(item, 'every', 1, 20) if 'every' in item else 1
+                need['upbit_aligned_candles'] += math.ceil(rows / every)
         instruments.add(instrument)
     names = set()
     for item in features:
@@ -178,7 +183,7 @@ def validate_spec(spec, catalog, today=None):
                 contract = providers['alfred_vintage_csv']['series'][item['series']]
                 if contract['frequency'] != 'monthly' or item['window_days'] < 400:
                     raise SourceError('year-over-year needs a monthly series and a window of at least 400 days')
-            requests += len(_vintage_dates(item, today))
+            need['alfred_vintage_csv'] += len(_vintage_dates(item, today))
         elif item.get('provider') == 'factset_earnings_insight':
             provider = providers['factset_earnings_insight']
             if item.get('series') not in provider['series']:
@@ -186,8 +191,7 @@ def validate_spec(spec, catalog, today=None):
             if _day(item.get('start'), 'start') < _day(provider['earliest'], 'earliest'):
                 raise SourceError('start precedes the reviewed FactSet archive')
             _integer(item, 'step_weeks', 1, 13)
-            requests += 2 * len(_issue_dates(item, today))  # Friday, then Thursday in holiday weeks
-            hosts.add('factset')
+            need['factset_earnings_insight'] += 2 * len(_issue_dates(item, today))  # Friday, then Thursday
         elif item.get('provider') == 'price_derived':
             if item.get('instrument_id') not in instruments:
                 raise SourceError('derived feature must use a price series collected in this spec')
@@ -199,13 +203,19 @@ def validate_spec(spec, catalog, today=None):
                 raise SourceError('unsupported derived feature kind')
         else:
             raise SourceError('feature provider must be a reviewed provider contract')
-    if any(f['provider'] == 'alfred_vintage_csv' for f in features):
-        requests += 1  # robots.txt, checked once per host
-    if weekly:
-        requests += 1
-    requests += len(hosts)
-    if requests > catalog['max_requests']:
-        raise SourceError(f'spec needs about {requests} requests; reviewed limit is {catalog["max_requests"]}')
+    # robots.txt is one more request per public_http host actually used.
+    used = {item['provider'] for item in prices} | {item.get('provider') for item in features}
+    for name in ('alfred_vintage_csv', 'factset_earnings_insight', 'kodex_issuer_weekly', 'tiger_nav_reinvested'):
+        if name in used:
+            need[name] += 1
+    for name, count in need.items():
+        cap = providers[name].get('max_requests', catalog['max_requests'])
+        if count > cap:
+            raise SourceError(f'{name} needs about {count} requests; reviewed limit is {cap}')
+    if sum(need.values()) > catalog['max_requests']:
+        raise SourceError(
+            f'spec needs about {sum(need.values())} requests; reviewed limit is {catalog["max_requests"]}'
+        )
     return spec
 
 
@@ -216,9 +226,12 @@ class _Session:
         self.catalog, self.perform = catalog, fetcher or _fetch_http
         self.clock, self.sleep, self.progress = clock, sleep, progress
         self.policies, self.last, self.requests = {}, {}, 0
+        self.counts, self.cache = Counter(), {}
 
-    def get(self, provider_name, url, missing_ok=False):
+    def get(self, provider_name, url, missing_ok=False, cache=False):
         provider = self.catalog['providers'][provider_name]
+        if cache and url in self.cache:
+            return self.cache[url]  # a page shared by several items is requested once
         host = _url(url).hostname
         if host not in self.policies:
             policy = dict(
@@ -228,7 +241,7 @@ class _Session:
                 robots='not_checked',
             )
             if provider['access_method'] == 'public_http':
-                self._count()  # robots.txt is a request to the same host
+                self._count(provider_name)  # robots.txt is a request to the same host
             _access_policy(url, provider['access_method'], self.perform, self.clock().isoformat(), policy)
             if provider['access_method'] == 'public_http':
                 self.last[provider_name] = time.monotonic()  # crawl delay applies after robots.txt too
@@ -243,7 +256,7 @@ class _Session:
             )
             if waited < pause:
                 self.sleep(pause - waited)
-            self._count()
+            self._count(provider_name)
             try:
                 response = _response(self.perform, url, provider.get('max_bytes', MAX_BYTES))
             except OSError:
@@ -265,12 +278,16 @@ class _Session:
             raise SourceError(f'{provider_name}: HTTP {response.status}')
         if self.progress:
             self.progress(f'{provider_name}: {self.requests}번째 요청 완료')
+        if cache:
+            self.cache[url] = (response, retrieved_at)
         return response, retrieved_at
 
-    def _count(self):
-        if self.requests >= self.catalog['max_requests']:
+    def _count(self, provider_name):
+        cap = self.catalog['providers'][provider_name].get('max_requests', self.catalog['max_requests'])
+        if self.requests >= self.catalog['max_requests'] or self.counts[provider_name] >= cap:
             raise SourceError('reviewed request limit reached')
         self.requests += 1
+        self.counts[provider_name] += 1
 
 
 def _text_number(value):

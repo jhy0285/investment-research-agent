@@ -33,12 +33,12 @@ _RATE = re.compile(r'(\d+(?:\.\d+)?)%')
 PROVIDER = 'tiger_nav_reinvested'
 
 
-def estimate_rows(item, catalog, today):
-    """Trading-day rows the endpoint will return, before any request is made."""
+def estimate_span(item, catalog, today):
+    """(trading-day rows, ISO weeks) the endpoint will return, before any request is made."""
     provider = catalog['providers'][PROVIDER]
     listed = date.fromisoformat(provider['products'][item['fund']]['listed'])
     days = min((today - listed).days, provider['history_years_limit'] * 366)
-    return days * 5 // 7 + 1
+    return days * 5 // 7 + 1, days // 7 + 2
 
 
 def parse_profit(body, ksd, contract):
@@ -156,6 +156,7 @@ def collect(session, item, catalog, today):
                 'known_at_kst',
                 'boundary',
                 'nav_note',
+                'revision_note',
                 'tax_note',
                 'verification_window_rows',
                 'tolerance_pp',
@@ -176,7 +177,7 @@ def collect(session, item, catalog, today):
         raw_bytes=len(response.body),
         data=parse_profit(response.body, item['fund'], contract),
     )
-    page, page_at = session.get(PROVIDER, provider['distribution_page'])
+    page, page_at = session.get(PROVIDER, provider['distribution_page'], cache=True)
     row_url = provider['distribution_endpoint'].format(ticker=contract['ticker'])
     row, row_at = session.get(PROVIDER, row_url)
     out['distribution'] = dict(
@@ -191,17 +192,18 @@ def collect(session, item, catalog, today):
 def dataset(item, retained):
     contract, provider = retained['contract'], retained['provider']
     history, distribution = retained['history'], retained['distribution']
-    checks = verify_reinvestment(history['data']['rows'], distribution['parsed'], provider)
     retrieved = _time(history['retrieved_at'])
-    rows = []
-    for day, _price, nav in history['data']['rows']:
+    published, rows = [], []
+    for day, price, nav in history['data']['rows']:
         at, known_at = _kodex_instants(day, provider)
-        if known_at <= retrieved:
+        if known_at <= retrieved:  # a row not yet published at retrieval is neither verified nor emitted
+            published.append([day, price, nav])
             rows.append(
                 dict(at=at.isoformat(), known_at=known_at.isoformat(), value=_text_number(1 + number(nav) / 100))
             )
     if not rows:
         raise SourceError('no published TIGER NAV in the history')
+    checks = verify_reinvestment(published, distribution['parsed'], provider)
     summary = '; '.join(
         f'{c["year"]}: 가격/NAV 비율 {c["observed_pp"]}%p, 발행사 분배율 {c["issuer_rate_pct"]}%' for c in checks
     )
@@ -215,7 +217,7 @@ def dataset(item, retained):
         unit='index (1 + cumulative NAV return from the request start date)',
         measure='tiger_issuer_nav_distributions_reinvested_index',
         source='미래에셋자산운용 TIGER ETF 공개 차트(누적 NAV 수익률)와 연간 분배율 표 ' + contract['ticker'],
-        calendar=provider['boundary'] + ' ' + provider['nav_note'],
+        calendar=provider['boundary'] + ' ' + provider['nav_note'] + ' ' + provider['revision_note'],
         survivorship='single_instrument',
         return_kind='total_return',
         adjustment='pit_total_return_index',
