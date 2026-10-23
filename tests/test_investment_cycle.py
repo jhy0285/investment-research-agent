@@ -508,11 +508,45 @@ class InvestmentCycleTests(unittest.TestCase):
             patch('investment_research.orchestrator.replay_ask', return_value=fake),
             patch('investment_research.investment_cycle.research_snapshot', return_value=self.snapshot),
         ):
-            r = run_cycle(self.plan, 'unused', self.root / 'run', ledger=self.root / 'journal')
+            r = run_cycle(self.plan, 'unused', self.root / 'run', ledger=self.root / 'journal', now=_time(AT))
         self.assertEqual(r, replay_cycle(self.root / 'run'))
         (self.root / 'run' / 'report.md').write_text('changed')
         with self.assertRaises(SourceError):
             replay_cycle(self.root / 'run')
+
+    def run_at(self, name, now, plan=None):
+        class Run:
+            pass
+
+        with (
+            patch('investment_research.orchestrator.replay_ask', return_value=Run()),
+            patch('investment_research.investment_cycle.research_snapshot', return_value=self.snapshot),
+        ):
+            return run_cycle(plan or self.plan, 'unused', self.root / name, now=now)
+
+    def test_v3_judges_when_the_review_and_run_happen_after_research(self):
+        # A human reads the research, then reviews: the review is later than the
+        # research cutoff but earlier than the judgment, which is now allowed.
+        later = _time(AT) + timedelta(days=1)
+        self.c['review']['at'] = (later - timedelta(hours=2)).isoformat()
+        r = self.run_at('later', later)
+        self.assertEqual(r['as_of'], later.isoformat())
+        self.assertEqual((r['decisions'][0]['grade'], r['decisions'][0]['action']), ('A', '분할 매수'))
+        saved = load(self.root / 'later' / 'input.json')['research']
+        self.assertEqual(saved['research_as_of'], AT)
+        self.assertEqual(replay_cycle(self.root / 'later'), r)
+        # The review must still come after the evidence it cites and before the judgment.
+        self.c['review']['at'] = (later + timedelta(hours=1)).isoformat()
+        self.assertTrue(
+            any('검토 시점이 판단보다 늦음' in b for b in self.run_at('early', later)['decisions'][0]['blockers'])
+        )
+
+    def test_v3_refuses_stale_research_and_judgment_before_research(self):
+        stale = self.run_at('stale', _time(AT) + timedelta(days=8))
+        self.assertTrue(any('7일 넘게 오래' in b for b in stale['decisions'][0]['blockers']))
+        self.assertEqual(stale['decisions'][0]['grade'], 'D')
+        with self.assertRaises(SourceError):
+            self.run_at('before', _time(AT) - timedelta(minutes=1))
 
     def test_unverified_current_data_withholds_judgment_on_holding(self):
         # Missing data is not negative evidence: the held position is kept and

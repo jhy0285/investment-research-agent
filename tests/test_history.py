@@ -612,7 +612,13 @@ class HistoryTests(unittest.TestCase):
             patch('investment_research.orchestrator.replay_ask', return_value=Run()),
             patch('investment_research.investment_cycle.research_snapshot', return_value=snapshot),
         ):
-            result = run_cycle(plan, 'unused', self.root / 'cycle', history=self.root / 'cycle-history')
+            result = run_cycle(
+                plan,
+                'unused',
+                self.root / 'cycle',
+                history=self.root / 'cycle-history',
+                now=_time('2026-10-23T09:30:00+09:00'),
+            )
         self.assertEqual(result['method_version'], 'investment_cycle_v3')
         self.assertEqual(replay_cycle(self.root / 'cycle'), result)
 

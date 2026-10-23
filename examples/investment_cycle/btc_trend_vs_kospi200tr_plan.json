@@ -1,0 +1,95 @@
+{
+  "schema_version": "investment-plan-v1",
+  "synthetic": false,
+  "new_cash_krw": "10000000",
+  "scenario_note": "신규 현금 1,000만원의 예시다. profile을 직접 채우기 전에는 집행 금액을 만들지 않는다.",
+  "profile": null,
+  "policy": {
+    "minimum_historical": 20,
+    "minimum_validation": 10,
+    "minimum_recent": 10,
+    "minimum_live": 10,
+    "caps": {
+      "A": "0.4",
+      "B": "0.2",
+      "C": "0.05",
+      "group_cap": "0.5"
+    }
+  },
+  "candidates": [
+    {
+      "asset_id": "BTC",
+      "name": "Bitcoin (Upbit 원화 현물)",
+      "group": "crypto",
+      "held": false,
+      "mode": "quantitative",
+      "reasons_up": [
+        "가격이 약 10개월 평균보다 높을 때만 보유하는 공개된 추세 규칙(Faber 2007)이 BTC 원화 가격에서도 KOSPI200 총수익보다 나았는지 확인한다."
+      ],
+      "reasons_down": [
+        "추세 규칙은 횡보장에서 진입·이탈 비용을 반복해서 낸다.",
+        "BTC 원화 이력은 2017년 이후라 10년 기준을 채우지 못한다(최대 B등급)."
+      ],
+      "evidence_ids": [
+        "<같은 ask 실행의 BTC 지지 근거 ID>"
+      ],
+      "counter_evidence_ids": [
+        "<같은 ask 실행의 BTC 반대 근거 ID>"
+      ],
+      "review": {
+        "reviewer": "<검토자 이름>",
+        "at": "<조사 실행 이후, 판단 이전의 검토 시각 (timezone 포함)>",
+        "note": "<근거의 범위와 한계를 직접 검토한 메모>"
+      },
+      "history": {
+        "prices": "UPBIT_KRW_BTC_AT_KODEX_200TR",
+        "benchmark": "KODEX_200TR",
+        "features": [
+          "btc_close_to_sma43w"
+        ]
+      },
+      "max_price_age_days": 7,
+      "strategy": {
+        "id": "faber_10m_sma_weekly_btc",
+        "version": "v1",
+        "hypothesis": "BTC 원화 종가가 최근 43주(약 10개월) 종가 평균보다 높을 때 다음 1개월 보유 수익이 KODEX 200TR보다 높다. Faber(2007) 10개월 이동평균 규칙의 주간 근사이며 원 논문과 같지 않다.",
+        "locked_at": "2007-06-30T00:00:00+00:00",
+        "revision_reason": "규칙은 2006~2007년 공개 연구로 고정됐다. BTC·KODEX 200TR 적용과 주간 근사, 비용·구간 설정은 이 계획에서 정했고 다른 변형은 시도하지 않았다. 적용 대상 선택은 BTC 과거를 아는 상태에서 이뤄졌으므로 완전한 사전 등록은 아니다.",
+        "parent_sha256": null,
+        "trial_count": 1,
+        "holding_horizon": "1m",
+        "cost_bps_per_side": "25",
+        "conditions": [
+          {
+            "feature": "btc_close_to_sma43w",
+            "op": ">",
+            "value": "0",
+            "max_age_days": 8
+          }
+        ],
+        "price_conditions": [
+          {
+            "feature": "btc_close_to_sma43w",
+            "op": ">",
+            "value": "0",
+            "max_age_days": 8
+          }
+        ],
+        "invalidations": [
+          {
+            "feature": "btc_close_to_sma43w",
+            "op": "<",
+            "value": "-0.5",
+            "max_age_days": 8
+          }
+        ],
+        "splits": {
+          "start": "2017-11-21T00:00:00+00:00",
+          "validation_start": "2022-01-01T00:00:00+00:00",
+          "recent_start": "2024-07-01T00:00:00+00:00",
+          "end": "2026-10-23T00:00:00+00:00"
+        }
+      }
+    }
+  ]
+}

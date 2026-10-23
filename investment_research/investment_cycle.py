@@ -1,7 +1,7 @@
 """Evidence-gated actions and an explicitly constrained new-cash scenario."""
 
 from copy import deepcopy
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 from decimal import Decimal, ROUND_FLOOR
 import hashlib
 from pathlib import Path
@@ -95,7 +95,18 @@ def _references(c, snapshot):
             problems.append(i + ': 의미 검토가 원자료 확보보다 이르다')
     if _time(c['review']['at']) > _time(snapshot['as_of']):
         problems.append('투자 논리 검토 시점이 판단보다 늦음')
+    research = snapshot.get('research_as_of')
+    if research is not None and _time(snapshot['as_of']) - _time(research) > STALE_RESEARCH:
+        problems.append('조사 실행이 판단 시점보다 7일 넘게 오래됐다. 새 조사로 다시 판단한다.')
     return problems
+
+
+# investment_cycle_v3 runs judge at the moment `invest run` executes, after a
+# human could read the research and write the review. Older versions judged
+# at the research cutoff, which left only the seconds between evidence
+# retrieval and cutoff for a review dated after the evidence it cites.
+DECIDED_AT_VERSIONS = ('investment_cycle_v3',)
+STALE_RESEARCH = timedelta(days=7)
 
 
 def _base_row(c, snapshot):
@@ -603,7 +614,7 @@ def attach_history(plan, history, history_sha256, snapshot):
     return plan, dict(snapshot, evidence=snapshot['evidence'] + added)
 
 
-def run_cycle(plan, research_run, directory, *, ledger=None, previous=None, history=None):
+def run_cycle(plan, research_run, directory, *, ledger=None, previous=None, history=None, now=None):
     from .orchestrator import replay_ask
     from .decision_report import render_decision
     from .decision_journal import record
@@ -615,6 +626,11 @@ def run_cycle(plan, research_run, directory, *, ledger=None, previous=None, hist
         raise SourceError('use a new investment run directory')
     run = replay_ask(research_run)
     snapshot = research_snapshot(run)
+    if VERSION in DECIDED_AT_VERSIONS:
+        decided = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+        if decided < _time(snapshot['as_of']):
+            raise SourceError('judgment time precedes the research cutoff')
+        snapshot = dict(snapshot, research_as_of=snapshot['as_of'], as_of=decided.isoformat())
     if history is not None:
         from .history import replay_history
 
