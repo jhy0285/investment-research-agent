@@ -621,6 +621,9 @@ class HistoryTests(unittest.TestCase):
             )
         self.assertEqual(result['method_version'], 'investment_cycle_v3')
         self.assertEqual(replay_cycle(self.root / 'cycle'), result)
+        report = (self.root / 'cycle' / 'report.md').read_text(encoding='utf-8')
+        self.assertIn('조사 기준: 2026-10-23T09:00:00+09:00', report)
+        self.assertIn('절대 수익과 시장 대비 비교는 보수적', report)
 
     def test_old_candles_without_storage_time_are_dated_after_the_close(self):
         class NullStamps(FakeInternet):

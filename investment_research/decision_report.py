@@ -3,6 +3,7 @@
 from decimal import Decimal
 from zoneinfo import ZoneInfo
 
+from .backtest import BASE_LIMITATIONS
 from .decision_data import number
 from .sources import _time
 
@@ -42,6 +43,12 @@ def render_decision(result):
         '판단 기준: ' + _time(result['as_of']).astimezone(ZoneInfo('Asia/Seoul')).isoformat() + ' (한국시간).',
         '',
     ]
+    if result.get('research_as_of'):
+        lines[-1:-1] = [
+            '조사 기준: '
+            + _time(result['research_as_of']).astimezone(ZoneInfo('Asia/Seoul')).isoformat()
+            + ' (한국시간). 판단은 조사를 읽고 검토한 뒤의 시각에 내렸고, 그 시각까지 알려진 자료만 썼습니다.',
+        ]
     if result['synthetic']:
         lines.extend(['**합성 데이터로 시스템 동작을 검증한 예제입니다. 현재 시장 추천이 아닙니다.**', ''])
     for r in rows[:3]:
@@ -150,6 +157,9 @@ def render_decision(result):
                     + str(round(number(bt['history_years']), 1))
                     + '년. 거래비용을 차감하고 배당·원화 환산 정의를 확인합니다.',
                     '승률은 과거 표본에서 이익이 난 비율이며 미래의 성공 확률이 아닙니다.',
+                ]
+                + [x for x in bt['limitations'] if x not in BASE_LIMITATIONS]
+                + [
                     '',
                     '| 구간 | 기간 | 성숙 신호 | 신호 평균 | 중앙값 | 승률 | 아무 날 평균 | 같은 계절 평균 | 같은 시점 시장 | 최대 중간 하락 |',
                     '|---|---|---:|---:|---:|---:|---:|---:|---:|---:|',

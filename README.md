@@ -61,11 +61,11 @@ BTC에는 [Source Discovery & Freshness MVP](docs/source-discovery.md)를 연결
 
 | 상태 | 기능 |
 | --- | --- |
-| 실행 가능 | 자연어 `ask`(Scan·Deep Dive·Compare·Portfolio Review), 공개 출처 획득·검증·replay, 거시 판본·Macro Snapshot, 15영역 Opportunity Map, 투자 판단·1,000만원 예시 배분·불변 일지·사후 평가(`invest`), 장기 이력 수집(`invest history`) |
-| 제한적 | Compare·Portfolio Review(자산별 미지원 표시), 장기 이력(Upbit BTC·ETH 가격과 미국 정부 거시 계열만), 매수 승인(시점 보장 총수익 이력을 입력해야 가능) |
-| 미구현 | 주식·ETF 총수익 이력과 과거 이익 전망 판본 자동 수집, 개인 체결·세금, 원화 환산 총수익 어댑터, 자동 예약 실행, 자동매매 |
+| 실행 가능 | 자연어 `ask`(Scan·Deep Dive·Compare·Portfolio Review), 공개 출처 획득·검증·replay, 거시 판본·Macro Snapshot, 15영역 Opportunity Map, 투자 판단·1,000만원 예시 배분·불변 일지·사후 평가(`invest`), 장기 이력 수집(`invest history`), 실제 자료로 이력 수집 → 조사 → 판단(`invest run --history`) |
+| 제한적 | Compare·Portfolio Review(자산별 미지원 표시), 장기 이력(Upbit BTC·ETH, KODEX TR ETF, 미국 정부 거시 계열 ALFRED 판본, FactSet S&P 500 forward P/E만), 매수 승인(검증 통과 전략과 사람의 검토가 있어야 가능) |
+| 미구현 | 미국 주식·ETF 원화 총수익 이력, KODEX 외 국내 종목·ETF 가격, 개별 기업 이익 전망 판본, 개인 체결·세금, 자동 예약 실행, 자동매매 |
 
-판단 규칙은 버전으로 관리한다. 현재 `investment_cycle_v2`는 현재 자료가 확인되지 않은 보유 자산에 축소를 권하지 않고 판단을 보류한다. 이전 버전으로 저장한 실행은 그 버전 규칙으로 재현한다. 변경 이력은 [CHANGELOG](CHANGELOG.md)에 있다.
+판단 규칙은 버전으로 관리한다. 현재 `investment_cycle_v3`는 현재 자료가 확인되지 않은 보유 자산에 축소를 권하지 않고 판단을 보류하며(v2), 현금 분배가 없는 코인 가격을 보유자 수익의 하한으로 표시해 원화 총수익 비교 시장과 검증할 수 있고, `invest run`은 사람이 조사를 읽고 검토한 뒤의 판단 시각을 기준으로 삼는다. 이전 버전으로 저장한 실행은 그 버전 규칙으로 재현한다. 변경 이력은 [CHANGELOG](CHANGELOG.md)에 있다.
 
 **오프라인 Cross-Asset Research Brief, 공개 출처 획득·검증, Macro Regime Snapshot, 실제 Opportunity Map과 첫 미국 주식 Deep Dive가 있다.** 합성 비교와 과거 FOMC 검증을 유지하고 15개 투자 영역을 조사한 뒤 미국 주식의 예상 이익·실적 질·AI 투자·Treasury 기회비용을 실제 자료로 검토했다. 우선순위와 경제적 판단은 근거에 연결한 검토 전 해석이며 자산 매력·개인 배분·예측을 확정하지 않는다. 수치·구절 확인과 경제적 의미의 검토를 구분한다.
 

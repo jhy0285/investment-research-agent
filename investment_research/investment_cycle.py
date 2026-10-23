@@ -495,6 +495,7 @@ def evaluate(plan, snapshot, version=VERSION):
         coverage=coverage,
         market_checklist=list(MARKETS),
         scan_candidate_ids=scan['candidates'] if scan else [],
+        **({'research_as_of': snapshot['research_as_of']} if snapshot.get('research_as_of') else {}),
         ranking_basis='검증 등급과 동일 기간의 최근 시장 대비 성과로 정렬한다. 검증 부족 후보의 번호는 조사 순서이며 상대 수익 우위가 아니다.',
         limitations=[
             '자료가 없는 시장의 매력은 평가하지 않았다.',

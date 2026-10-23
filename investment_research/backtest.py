@@ -20,6 +20,12 @@ VERSION = 'pit_event_backtest_v2'
 # benchmark is a point-in-time total return. Saved v1 results replay as v1.
 VERSIONS = ('pit_event_backtest_v1', 'pit_event_backtest_v2')
 LOWER_BOUND = 'price_lower_bound'
+BASE_LIMITATIONS = (
+    '수익은 거래비용 차감 후이며 세금·미체결은 별도다.',
+    '서로 겹치지 않는 신호로 평가한다. 표본 빈도는 미래 확률이 아니다.',
+    '비교 구간 안에서 보유기간이 끝난 표본만 사용한다. 미성숙 신호는 성과에 넣지 않는다.',
+    '신뢰구간은 독립에 가까운 표본 재추출이며 시장 구조 변화와 모든 의존성을 보증하지 않는다.',
+)
 ZERO = Decimal(0)
 OPS = {
     '>': lambda a, b: a > b,
@@ -227,13 +233,7 @@ def run_backtest(candidate, cutoff, version=VERSION):
         signal_occurrences=len(signals),
         periods=periods,
         blockers=blockers,
-        limitations=[
-            '수익은 거래비용 차감 후이며 세금·미체결은 별도다.',
-            '서로 겹치지 않는 신호로 평가한다. 표본 빈도는 미래 확률이 아니다.',
-            '비교 구간 안에서 보유기간이 끝난 표본만 사용한다. 미성숙 신호는 성과에 넣지 않는다.',
-            '신뢰구간은 독립에 가까운 표본 재추출이며 시장 구조 변화와 모든 의존성을 보증하지 않는다.',
-        ]
-        + limitations,
+        limitations=list(BASE_LIMITATIONS) + limitations,
     )
 
 
