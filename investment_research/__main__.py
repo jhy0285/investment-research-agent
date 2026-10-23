@@ -31,7 +31,8 @@ def manifest_for(result: ResearchResult, report: str) -> dict:
         "run_id": result.run_id,
         "version": __version__,
         "method_versions": {
-            "engine": ENGINE_VERSION, "report": REPORT_VERSION,
+            "engine": ENGINE_VERSION,
+            "report": REPORT_VERSION,
             "calculation": "rate_difference_v1",
         },
         "code_sha256": code.hexdigest(),
@@ -41,17 +42,24 @@ def manifest_for(result: ResearchResult, report: str) -> dict:
         "personal_conclusion": result.personal_conclusion,
         "metrics": [
             {
-                "id": m.id, "label": m.label, "value": str(m.value), "unit": m.unit,
-                "method": m.method, "input_ids": list(m.input_ids),
-                "asset_ids": list(m.asset_ids), "limitations": list(m.limitations),
+                "id": m.id,
+                "label": m.label,
+                "value": str(m.value),
+                "unit": m.unit,
+                "method": m.method,
+                "input_ids": list(m.input_ids),
+                "asset_ids": list(m.asset_ids),
+                "limitations": list(m.limitations),
             }
             for m in result.metrics
         ],
         "claims": [
             {
-                "id": c.id, "verification": c.verification.value,
+                "id": c.id,
+                "verification": c.verification.value,
                 "interpretation_status": c.interpretation.status.value,
-                "support_ids": list(c.support_ids), "counter_ids": list(c.counter_ids),
+                "support_ids": list(c.support_ids),
+                "counter_ids": list(c.counter_ids),
                 "narrative_evidence_id": c.narrative_evidence_id,
             }
             for c in result.case.claims
@@ -69,7 +77,8 @@ def manifest_for(result: ResearchResult, report: str) -> dict:
                 "freshness": source.provenance.freshness,
                 "payload_sha256": source.provenance.payload_sha256,
             }
-            for source in result.case.sources if source.provenance is not None
+            for source in result.case.sources
+            if source.provenance is not None
         }
         manifest["diagnostics"] = list(result.case.diagnostics)
         for item, claim in zip(manifest["claims"], result.case.claims, strict=True):
@@ -109,13 +118,19 @@ def main(argv: list[str] | None = None) -> int:
     subcommands = parser.add_subparsers(dest="command", required=True)
     ask = subcommands.add_parser("ask", help="자연어 투자 질문을 조사하고 근거가 연결된 한국어 보고서 생성")
     ask.add_argument("question", nargs="?", help="사용자의 자연어 투자 질문; replay는 원래 질문 사용")
-    ask.add_argument("--mode", action="append", choices=["opportunity_scan", "asset_deep_dive", "compare", "portfolio_review"],
-                     help="명시적 모드가 자동 해석보다 우선; 필요한 조합은 반복 지정")
+    ask.add_argument(
+        "--mode",
+        action="append",
+        choices=["opportunity_scan", "asset_deep_dive", "compare", "portfolio_review"],
+        help="명시적 모드가 자동 해석보다 우선; 필요한 조합은 반복 지정",
+    )
     ask.add_argument("--plan-only", action="store_true", help="수집 없이 조사 계획 JSON만 확인")
     ask.add_argument("--run-dir", type=Path, help="새 실행 디렉터리; 기본 reports/asks 아래 자동 생성")
     ask.add_argument("--replay", type=Path, help="보존된 ask 실행을 인터넷 없이 검증·재현")
     ask.add_argument("--portfolio", type=Path, help="portfolio-v1 JSON 자기보고 보유·재무 입력")
-    ask.add_argument("--context-run", type=Path, help="후보 번호를 참조할 이전 Scan 실행; 후속 조사는 새 자료로 독립 실행")
+    ask.add_argument(
+        "--context-run", type=Path, help="후보 번호를 참조할 이전 Scan 실행; 후속 조사는 새 자료로 독립 실행"
+    )
     ask.add_argument("--previous-scan", type=Path, help="이전 완료 Scan과 같은 정의의 관측 비교; 현재 자료는 새로 획득")
     ask.add_argument("--decision-plan", type=Path, help="등록 가설·시점 보장 이력·자금 제약으로 투자 판단 연결")
     ask.add_argument("--journal", type=Path, help="불변 판단·전략 일지; 이전 사후검증을 현재 판단에 반영")
@@ -128,6 +143,9 @@ def main(argv: list[str] | None = None) -> int:
     invest_run.add_argument("--run-dir", type=Path, required=True)
     invest_run.add_argument("--journal", type=Path)
     invest_run.add_argument("--previous-run", type=Path)
+    invest_run.add_argument(
+        "--history", type=Path, help="invest history 실행; 계획의 history 참조를 검증된 이력으로 채움"
+    )
     invest_replay = invest_commands.add_parser("replay", help="저장된 투자 판단을 인터넷 없이 검증·재현")
     invest_replay.add_argument("run", type=Path)
     invest_record = invest_commands.add_parser("record", help="검증된 기존 투자 판단을 공용 일지에 보존")
@@ -138,6 +156,15 @@ def main(argv: list[str] | None = None) -> int:
     invest_review.add_argument("--prices", type=Path, required=True, help="investment-prices-v1 데이터셋의 JSON 배열")
     invest_review.add_argument("--as-of", required=True, help="timezone을 포함한 평가 시각")
     invest_review.add_argument("--run-dir", type=Path, required=True)
+    invest_history = invest_commands.add_parser("history", help="검토된 공개 제공자의 시점 보장 장기 이력 수집·재현")
+    history_commands = invest_history.add_subparsers(dest="history_action", required=True)
+    history_acquire = history_commands.add_parser(
+        "acquire", help="Upbit 일 캔들·ALFRED 판본을 받아 가격·특징값 이력 생성"
+    )
+    history_acquire.add_argument("spec", type=Path, help="investment-history-spec-v1 JSON")
+    history_acquire.add_argument("--output", type=Path, required=True, help="새 출력 디렉터리")
+    history_replay = history_commands.add_parser("replay", help="보존한 행으로 인터넷 없이 이력을 다시 만들고 대조")
+    history_replay.add_argument("run", type=Path)
     research = subcommands.add_parser("research", help="로컬 합성 JSON 자료로 한국어 보고서 생성")
     research.add_argument("case", type=Path, help="case.json 또는 그 파일을 포함한 디렉터리")
     research.add_argument("--output", type=Path, help="Markdown 파일 경로; 생략하면 표준 출력")
@@ -171,7 +198,9 @@ def main(argv: list[str] | None = None) -> int:
     macro_replay.add_argument("--manifest", type=Path)
     opportunity = subcommands.add_parser("opportunity", help="고정 실제 자료로 자산 간 조사 우선순위 지도 재생")
     opportunity_commands = opportunity.add_subparsers(dest="opportunity_command", required=True)
-    opportunity_replay = opportunity_commands.add_parser("replay", help="출처·거시·연구 초안을 기존 모델로 연결; 네트워크 없음")
+    opportunity_replay = opportunity_commands.add_parser(
+        "replay", help="출처·거시·연구 초안을 기존 모델로 연결; 네트워크 없음"
+    )
     opportunity_replay.add_argument("review", type=Path, help="review.json 또는 그 디렉터리")
     opportunity_replay.add_argument("--plan", type=Path, required=True, help="검토한 source plan")
     opportunity_replay.add_argument("--store", type=Path, required=True)
@@ -187,8 +216,15 @@ def main(argv: list[str] | None = None) -> int:
     deep_replay.add_argument("review", type=Path)
     for flag in ("plan", "store", "pins", "macro-plan", "macro-store", "macro-pins"):
         deep_replay.add_argument("--" + flag, type=Path, required=True)
-    parent_flags = ("parent-review", "parent-plan", "parent-store", "parent-pins",
-                    "parent-macro-plan", "parent-macro-store", "parent-macro-pins")
+    parent_flags = (
+        "parent-review",
+        "parent-plan",
+        "parent-store",
+        "parent-pins",
+        "parent-macro-plan",
+        "parent-macro-store",
+        "parent-macro-pins",
+    )
     for flag in parent_flags:
         deep_replay.add_argument("--" + flag, type=Path, help="선택적 이전 맥락; 연결하려면 부모 관련 옵션 모두 지정")
     deep_replay.add_argument("--output", type=Path)
@@ -200,40 +236,73 @@ def main(argv: list[str] | None = None) -> int:
             from .decision_report import render_decision, render_review
             from .investment_cycle import run_cycle, replay_cycle
             from .decision_journal import record, review, persist_review
+
+            if args.investment_action == "history":
+                from .history import acquire_history, render_history, replay_history
+
+                if args.history_action == "acquire":
+                    result = acquire_history(load(args.spec), args.output, progress=lambda m: print(m, file=sys.stderr))
+                else:
+                    result = replay_history(args.run)
+                sys.stdout.write(render_history(result))
+                return 1 if result['failures'] else 0
             if args.investment_action == "run":
-                result=run_cycle(load(args.plan),args.research_run,args.run_dir,
-                                 ledger=args.journal,previous=args.previous_run)
+                result = run_cycle(
+                    load(args.plan),
+                    args.research_run,
+                    args.run_dir,
+                    ledger=args.journal,
+                    previous=args.previous_run,
+                    history=args.history,
+                )
                 sys.stdout.write(render_decision(result))
             elif args.investment_action == "replay":
                 sys.stdout.write(render_decision(replay_cycle(args.run)))
             elif args.investment_action == "record":
-                if (args.run/'investment_decision.json').exists():
+                if (args.run / 'investment_decision.json').exists():
                     from .orchestrator import replay_ask
-                    result=replay_ask(args.run).investment
-                else:result=replay_cycle(args.run)
-                if result is None:raise SourceError('run has no investment judgment')
-                record(args.journal,result)
+
+                    result = replay_ask(args.run).investment
+                else:
+                    result = replay_cycle(args.run)
+                if result is None:
+                    raise SourceError('run has no investment judgment')
+                record(args.journal, result)
                 print('투자 판단을 불변 일지에 보존했습니다.')
             else:
-                if args.run_dir.exists():raise SourceError('use a new review run directory')
-                result=review(args.journal,load(args.prices),args.as_of)
-                report=render_review(result)
-                save(args.run_dir/'review.json',result)
-                (args.run_dir/'report.md').write_text(report,encoding='utf-8')
-                persist_review(args.journal,result)
+                if args.run_dir.exists():
+                    raise SourceError('use a new review run directory')
+                result = review(args.journal, load(args.prices), args.as_of)
+                report = render_review(result)
+                save(args.run_dir / 'review.json', result)
+                (args.run_dir / 'report.md').write_text(report, encoding='utf-8')
+                persist_review(args.journal, result)
                 sys.stdout.write(report)
             return 0
         if args.command == "ask":
             from .routing import plan_research
 
             if args.plan_only:
-                if args.replay or args.run_dir or args.portfolio or args.context_run or args.previous_scan or args.decision_plan or args.journal:
+                if (
+                    args.replay
+                    or args.run_dir
+                    or args.portfolio
+                    or args.context_run
+                    or args.previous_scan
+                    or args.decision_plan
+                    or args.journal
+                ):
                     raise InputValidationError("plan-only: 실행·replay·보유 입력 옵션을 함께 사용할 수 없습니다")
-                text = json.dumps(plan_research(args.question, modes=args.mode).to_dict(), ensure_ascii=False, indent=2) + "\n"
+                text = (
+                    json.dumps(plan_research(args.question, modes=args.mode).to_dict(), ensure_ascii=False, indent=2)
+                    + "\n"
+                )
                 if args.output is None:
                     sys.stdout.write(text)
                 else:
-                    if args.output.exists() and (not args.output.is_file() or args.output.read_bytes() != text.encode("utf-8")):
+                    if args.output.exists() and (
+                        not args.output.is_file() or args.output.read_bytes() != text.encode("utf-8")
+                    ):
                         raise InputValidationError("output: 기존 파일이 있습니다. 다른 출력 경로를 사용하세요")
                     _write(args.output, text)
                 return 0
@@ -243,29 +312,64 @@ def main(argv: list[str] | None = None) -> int:
             from .portfolio import load_portfolio
 
             if args.replay:
-                if args.mode or args.run_dir or args.portfolio or args.context_run or args.previous_scan or args.decision_plan or args.journal:
-                    raise InputValidationError("replay: 원래 모드·보유·실행 입력을 보존합니다. 변경은 새 ask로 실행하세요")
+                if (
+                    args.mode
+                    or args.run_dir
+                    or args.portfolio
+                    or args.context_run
+                    or args.previous_scan
+                    or args.decision_plan
+                    or args.journal
+                ):
+                    raise InputValidationError(
+                        "replay: 원래 모드·보유·실행 입력을 보존합니다. 변경은 새 ask로 실행하세요"
+                    )
                 run = replay_ask(args.replay, question=args.question)
-                if args.output and args.output.resolve().is_relative_to(args.replay.resolve()) and args.output.resolve() != (args.replay / "report.md").resolve():
+                if (
+                    args.output
+                    and args.output.resolve().is_relative_to(args.replay.resolve())
+                    and args.output.resolve() != (args.replay / "report.md").resolve()
+                ):
                     raise InputValidationError("output: replay 입력과 실행 기록 안에 새 출력 파일을 넣을 수 없습니다")
             else:
                 # Resolve/validate inputs and destinations before any HTTP request.
                 plan_research(args.question, modes=args.mode)
                 portfolio = load_portfolio(args.portfolio) if args.portfolio else None
-                from .decision_data import load as load_decision,validate_plan
-                decision_plan=validate_plan(load_decision(args.decision_plan)) if args.decision_plan else None
-                root = args.run_dir or Path("reports/asks") / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "_" + hashlib.sha256(args.question.encode()).hexdigest()[:10])
+                from .decision_data import load as load_decision, validate_plan
+
+                decision_plan = validate_plan(load_decision(args.decision_plan)) if args.decision_plan else None
+                root = args.run_dir or Path("reports/asks") / (
+                    datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+                    + "_"
+                    + hashlib.sha256(args.question.encode()).hexdigest()[:10]
+                )
                 if args.output and (args.output.exists() or args.output.resolve().is_relative_to(root.resolve())):
-                    raise InputValidationError("output: 새 실행 밖의 새 보고서 사본 경로를 사용하세요; 기본 보고서는 run-dir/report.md입니다")
-                if args.portfolio and (args.portfolio.resolve().is_relative_to(root.resolve()) or args.output and args.output.resolve() == args.portfolio.resolve()):
+                    raise InputValidationError(
+                        "output: 새 실행 밖의 새 보고서 사본 경로를 사용하세요; 기본 보고서는 run-dir/report.md입니다"
+                    )
+                if args.portfolio and (
+                    args.portfolio.resolve().is_relative_to(root.resolve())
+                    or args.output
+                    and args.output.resolve() == args.portfolio.resolve()
+                ):
                     raise InputValidationError("output: 보유 입력을 실행 출력으로 덮어쓸 수 없습니다")
-                if args.decision_plan and (args.decision_plan.resolve().is_relative_to(root.resolve()) or args.output and args.output.resolve()==args.decision_plan.resolve()):
+                if args.decision_plan and (
+                    args.decision_plan.resolve().is_relative_to(root.resolve())
+                    or args.output
+                    and args.output.resolve() == args.decision_plan.resolve()
+                ):
                     raise InputValidationError('output: 투자 전략 입력을 출력으로 덮어쓸 수 없습니다')
-                run = execute_ask(args.question, root, modes=args.mode, portfolio=portfolio,
-                                  context_run=args.context_run,
-                                  previous_scan=args.previous_scan,
-                                  decision_plan=decision_plan,decision_journal=args.journal,
-                                  progress=lambda message: print("자료 확인: " + message, file=sys.stderr, flush=True))
+                run = execute_ask(
+                    args.question,
+                    root,
+                    modes=args.mode,
+                    portfolio=portfolio,
+                    context_run=args.context_run,
+                    previous_scan=args.previous_scan,
+                    decision_plan=decision_plan,
+                    decision_journal=args.journal,
+                    progress=lambda message: print("자료 확인: " + message, file=sys.stderr, flush=True),
+                )
             text = render_ask_report(run)
             if args.output is None:
                 sys.stdout.write(text)
@@ -286,28 +390,63 @@ def main(argv: list[str] | None = None) -> int:
                 raise InputValidationError("parent: 이전 맥락을 연결하려면 모든 부모 옵션을 지정해야 합니다")
             parent = None
             if args.parent_review is not None:
-                parent = replay_opportunity(load_opportunity_review(args.parent_review), load_source_plan(args.parent_plan),
-                                           args.parent_store, load_pins(args.parent_pins), load_macro_plan(args.parent_macro_plan),
-                                           args.parent_macro_store, load_pins(args.parent_macro_pins))
+                parent = replay_opportunity(
+                    load_opportunity_review(args.parent_review),
+                    load_source_plan(args.parent_plan),
+                    args.parent_store,
+                    load_pins(args.parent_pins),
+                    load_macro_plan(args.parent_macro_plan),
+                    args.parent_macro_store,
+                    load_pins(args.parent_macro_pins),
+                )
             review = load_deep_dive_review(args.review)
-            run = replay_deep_dive(review, load_source_plan(args.plan), args.store, load_pins(args.pins),
-                                   load_macro_plan(args.macro_plan), args.macro_store, load_pins(args.macro_pins), parent)
+            run = replay_deep_dive(
+                review,
+                load_source_plan(args.plan),
+                args.store,
+                load_pins(args.pins),
+                load_macro_plan(args.macro_plan),
+                args.macro_store,
+                load_pins(args.macro_pins),
+                parent,
+            )
             report = render_deep_dive_report(run)
             writes = []
             if args.output is not None:
                 writes.append((args.output, report))
             if args.manifest is not None:
-                writes.append((args.manifest, json.dumps(deep_dive_manifest(run, report), ensure_ascii=False, sort_keys=True, indent=2) + "\n"))
+                writes.append(
+                    (
+                        args.manifest,
+                        json.dumps(deep_dive_manifest(run, report), ensure_ascii=False, sort_keys=True, indent=2)
+                        + "\n",
+                    )
+                )
             input_file = args.review / "review.json" if args.review.is_dir() else args.review
             protected = [input_file, args.pins, args.macro_pins]
             if parent is not None:
-                protected.extend([args.parent_pins, args.parent_macro_pins,
-                                  args.parent_review / "review.json" if args.parent_review.is_dir() else args.parent_review])
-            protected.extend(path / "plan.json" if path.is_dir() else path for path in
-                             (args.plan, args.macro_plan, args.parent_plan, args.parent_macro_plan) if path is not None)
-            stores = tuple(path for path in (args.store, args.macro_store, args.parent_store, args.parent_macro_store) if path is not None)
-            if any(path.resolve() in {p.resolve() for p in protected}
-                   or any(path.resolve().is_relative_to(store.resolve()) for store in stores) for path, _ in writes):
+                protected.extend(
+                    [
+                        args.parent_pins,
+                        args.parent_macro_pins,
+                        args.parent_review / "review.json" if args.parent_review.is_dir() else args.parent_review,
+                    ]
+                )
+            protected.extend(
+                path / "plan.json" if path.is_dir() else path
+                for path in (args.plan, args.macro_plan, args.parent_plan, args.parent_macro_plan)
+                if path is not None
+            )
+            stores = tuple(
+                path
+                for path in (args.store, args.macro_store, args.parent_store, args.parent_macro_store)
+                if path is not None
+            )
+            if any(
+                path.resolve() in {p.resolve() for p in protected}
+                or any(path.resolve().is_relative_to(store.resolve()) for store in stores)
+                for path, _ in writes
+            ):
                 raise InputValidationError("output: 초안·계획·pins·snapshot 입력을 덮어쓸 수 없습니다")
             _check_destinations(input_file, writes)
             for path, value in writes:
@@ -322,17 +461,35 @@ def main(argv: list[str] | None = None) -> int:
             from .source_pipeline import load_pins, load_source_plan
 
             review = load_opportunity_review(args.review)
-            run = replay_opportunity(review, load_source_plan(args.plan), args.store, load_pins(args.pins),
-                                     load_macro_plan(args.macro_plan), args.macro_store, load_pins(args.macro_pins))
+            run = replay_opportunity(
+                review,
+                load_source_plan(args.plan),
+                args.store,
+                load_pins(args.pins),
+                load_macro_plan(args.macro_plan),
+                args.macro_store,
+                load_pins(args.macro_pins),
+            )
             report = render_opportunity_report(run)
             input_file = args.review / "review.json" if args.review.is_dir() else args.review
             writes = []
             if args.output is not None:
                 writes.append((args.output, report))
             if args.manifest is not None:
-                writes.append((args.manifest, json.dumps(opportunity_manifest(run, report), ensure_ascii=False, sort_keys=True, indent=2) + "\n"))
-            protected = [input_file, args.plan / "plan.json" if args.plan.is_dir() else args.plan, args.pins,
-                         args.macro_plan / "plan.json" if args.macro_plan.is_dir() else args.macro_plan, args.macro_pins]
+                writes.append(
+                    (
+                        args.manifest,
+                        json.dumps(opportunity_manifest(run, report), ensure_ascii=False, sort_keys=True, indent=2)
+                        + "\n",
+                    )
+                )
+            protected = [
+                input_file,
+                args.plan / "plan.json" if args.plan.is_dir() else args.plan,
+                args.pins,
+                args.macro_plan / "plan.json" if args.macro_plan.is_dir() else args.macro_plan,
+                args.macro_pins,
+            ]
             if any(path.resolve() in {item.resolve() for item in protected} for path, _ in writes):
                 raise InputValidationError("output: 연구 초안·계획·pins 입력 파일을 덮어쓸 수 없습니다")
             _check_destinations(input_file, writes)
@@ -357,19 +514,30 @@ def main(argv: list[str] | None = None) -> int:
                 text = json.dumps(pins, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
                 _check_destinations(input_file, [(args.pins, text)])
                 _write(args.pins, text)
-                statuses = {key: load_snapshot(args.store, key, values[-1]).status for key, values in pins["snapshots"].items()}
+                statuses = {
+                    key: load_snapshot(args.store, key, values[-1]).status for key, values in pins["snapshots"].items()
+                }
                 print(f"거시 획득 기록: {args.pins}")
                 for source_id, status in statuses.items():
                     print(f"{source_id}: {status}")
                 return 0 if statuses and all(value == "available" for value in statuses.values()) else 1
-            as_of = None if args.as_of is None else (_date(args.as_of, "as_of") if len(args.as_of) == 10 else _time(args.as_of))
+            as_of = (
+                None
+                if args.as_of is None
+                else (_date(args.as_of, "as_of") if len(args.as_of) == 10 else _time(args.as_of))
+            )
             run = replay_macro(plan, args.store, load_pins(args.pins), as_of=as_of)
             report = render_macro_report(run)
             writes = []
             if args.output is not None:
                 writes.append((args.output, report))
             if args.manifest is not None:
-                writes.append((args.manifest, json.dumps(macro_manifest(run, report), ensure_ascii=False, sort_keys=True, indent=2) + "\n"))
+                writes.append(
+                    (
+                        args.manifest,
+                        json.dumps(macro_manifest(run, report), ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+                    )
+                )
             _check_destinations(input_file, writes)
             for path, text in writes:
                 _write(path, text)
@@ -391,7 +559,9 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"획득 기록: {args.pins}")
                 from .sources import load_snapshot
 
-                statuses = {key: load_snapshot(args.store, key, value).status for key, value in pins["snapshots"].items()}
+                statuses = {
+                    key: load_snapshot(args.store, key, value).status for key, value in pins["snapshots"].items()
+                }
                 for source_id, status in statuses.items():
                     print(f"{source_id}: {status}")
                 return 0 if statuses and all(item == "available" for item in statuses.values()) else 1

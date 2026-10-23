@@ -1,0 +1,209 @@
+{
+  "schema_version": "history-catalog-v1",
+  "method_version": "pit_history_v2",
+  "max_requests": 2500,
+  "providers": {
+    "upbit_day_candles": {
+      "access_method": "public_api",
+      "endpoint": "https://api.upbit.com/v1/candles/days",
+      "policy_url": "https://docs.upbit.com/kr/reference/list-candles-days",
+      "policy_note": "Upbit 공개 시세 API(인증 불필요)의 일 캔들. 문서의 요청 수 제한을 지키며 개인 연구 재현을 위해 로컬 실행 디렉터리에 필요한 필드만 보존한다. 재배포·저장소 커밋 대상이 아니다.",
+      "min_interval_seconds": 0.2,
+      "page_size": 200,
+      "earliest": "2017-09-25",
+      "boundary": "candle_date_time_utc 00:00 UTC(09:00 KST) 시작, 다음 날 00:00 UTC 종료. trade_price는 종료 직전 마지막 체결가다. timestamp는 마지막 틱 저장 시각이며 known_at은 종료 시각과 저장 시각 중 늦은 쪽이다.",
+      "revision_note": "거래소 체결 기록이며 공개 개정 이력이 없다. 같은 캔들을 다시 받았을 때 값이 다르면 추가 확인 대상으로 남긴다.",
+      "markets": {
+        "KRW-BTC": {
+          "asset_id": "BTC",
+          "instrument_id": "UPBIT_KRW_BTC",
+          "name": "Upbit 원화 BTC 현물",
+          "unit": "KRW per BTC",
+          "measure": "upbit_krw_spot_daily_close",
+          "distribution_note": "현금 분배가 없는 현물이다. 하드포크·에어드롭 지급분은 거래소 지급 여부를 확인하지 못해 포함하지 않았으므로, 측정 수익은 보유자 수익의 하한이다."
+        },
+        "KRW-ETH": {
+          "asset_id": "ETH",
+          "instrument_id": "UPBIT_KRW_ETH",
+          "name": "Upbit 원화 ETH 현물(스테이킹 없음)",
+          "unit": "KRW per ETH",
+          "measure": "upbit_krw_spot_daily_close",
+          "distribution_note": "현금 분배가 없는 현물(스테이킹 없음)이다. 에어드롭(예: ETHW) 지급분은 거래소 지급 여부를 확인하지 못해 포함하지 않았으므로, 측정 수익은 보유자 수익의 하한이다."
+        }
+      },
+      "max_requests": 800
+    },
+    "upbit_aligned_candles": {
+      "access_method": "public_api",
+      "endpoint": "https://api.upbit.com/v1/candles/minutes/30",
+      "policy_url": "https://docs.upbit.com/kr/reference/list-candles-minutes",
+      "policy_note": "Upbit 공개 시세 API(인증 불필요)의 30분 캔들. 다른 상품의 종가 시각마다 그 시각에 끝나는 캔들 하나만 요청한다. 문서의 요청 수 제한을 지키며 필요한 필드만 로컬 실행 디렉터리에 보존한다.",
+      "min_interval_seconds": 0.2,
+      "unit_minutes": 30,
+      "boundary": "요청한 시각에 끝나는 30분 캔들의 마지막 체결가다. 그 30분에 체결이 없으면 값을 만들지 않는다.",
+      "sampling_note": "every(표본 간격)와 since(시작일)로 요청 수를 줄일 수 있다. 정렬 대상이 더 촘촘하면 비교 시장은 일간, 코인은 표본 시각만 갖는다.",
+      "max_requests": 1500
+    },
+    "alfred_vintage_csv": {
+      "access_method": "public_http",
+      "endpoint": "https://alfred.stlouisfed.org/graph/alfredgraph.csv",
+      "policy_url": "https://fred.stlouisfed.org/legal/",
+      "policy_note": "St. Louis Fed ALFRED 판본 CSV. robots.txt의 Crawl-delay 2초를 지킨다. 미국 정부 공표 공개 자료 계열만 등록했고, 판본별 관측창만 로컬 실행 디렉터리에 보존한다.",
+      "min_interval_seconds": 2,
+      "known_at_rule": "vintage_date 당일 미국 중부시각 자정(= 다음 날 06:00 UTC) 이후. 실제 공표 시각보다 늦거나 같게 잡는 보수적 규칙이다.",
+      "window_parameter_note": "cosd/coed 관측창 인자를 쓰면 판본이 아닌 값이 섞여 돌아온다. 항상 전체 판본을 받아 로컬에서 관측창을 자른다.",
+      "series": {
+        "CPIAUCSL": {
+          "name": "미국 CPI(전 품목, 계절조정)",
+          "unit": "index 1982-1984=100",
+          "measure": "us_cpi_all_items_sa_index",
+          "frequency": "monthly",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "UNRATE": {
+          "name": "미국 실업률(계절조정)",
+          "unit": "percent",
+          "measure": "us_unemployment_rate_sa",
+          "frequency": "monthly",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "FEDFUNDS": {
+          "name": "미국 실효 연방기금금리(월평균)",
+          "unit": "percent",
+          "measure": "us_effective_fed_funds_monthly_average",
+          "frequency": "monthly",
+          "publisher": "Board of Governors of the Federal Reserve System (H.15)",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "DGS10": {
+          "name": "미국 10년 국채 수익률(고정만기)",
+          "unit": "percent",
+          "measure": "us_treasury_10y_constant_maturity_yield",
+          "frequency": "daily",
+          "publisher": "Board of Governors of the Federal Reserve System (H.15)",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        },
+        "DEXKOUS": {
+          "name": "원/달러 환율(뉴욕 정오 매입률)",
+          "unit": "KRW per USD",
+          "currency": "KRW",
+          "measure": "h10_krw_per_usd_noon_buying_rate",
+          "frequency": "daily",
+          "publisher": "Board of Governors of the Federal Reserve System (H.10)",
+          "rights": "미국 연방정부 공표 자료(public domain), 출처 표기"
+        }
+      },
+      "max_requests": 1200
+    },
+    "kodex_issuer_weekly": {
+      "access_method": "public_http",
+      "history_endpoint": "https://www.samsungfund.com/api/v1/kodex/product-earning/{fid}.do?srchTerm=0",
+      "detail_endpoint": "https://www.samsungfund.com/api/v1/kodex/product/{fid}.do",
+      "policy_url": "https://www.samsungfund.com/robots.txt",
+      "policy_note": "삼성자산운용 KODEX 공개 상품 페이지가 호출하는 공개 JSON이다. robots.txt는 전체 허용이며 별도 이용약관 페이지는 확인하지 못했다. 개인 연구 재현에 필요한 행만 로컬 실행 디렉터리에 보존하고 재배포하지 않는다.",
+      "min_interval_seconds": 3,
+      "close_time_kst": "15:30",
+      "known_at_kst": "18:00",
+      "boundary": "KRX 정규장 종가(15:30 KST). 발행사 설정 이후 응답은 주별 첫 거래일과 최신 기준일의 표본이다. 공표 시각은 보수적으로 18:00 KST로 둔다. 이 이력은 현재 시점에 한 번 받은 값이라 발행사가 과거 값을 나중에 정정했더라도 알 수 없다(개정 이력 없음).",
+      "tax_note": "세전 총수익이다. 국내 TR ETF 매매차익은 보유기간 과세 대상이며 이 수익에서 빼지 않았다.",
+      "products": {
+        "2ETF92": {
+          "ticker": "278530",
+          "name": "KODEX 200TR",
+          "index": "KOSPI 200 TR",
+          "asset_id": "KR_EQUITY",
+          "instrument_id": "KODEX_200TR",
+          "listed": "2017-11-21"
+        },
+        "2ETF93": {
+          "ticker": "278540",
+          "name": "KODEX MSCI KOREA TR",
+          "index": "MSCI Korea TR",
+          "asset_id": "KR_EQUITY",
+          "instrument_id": "KODEX_MSCI_KOREA_TR",
+          "listed": "2017-11-09"
+        },
+        "2ETFD2": {
+          "ticker": "359210",
+          "name": "KODEX 코스피TR",
+          "index": "KOSPI TR",
+          "asset_id": "KR_EQUITY",
+          "instrument_id": "KODEX_KOSPI_TR",
+          "listed": "2020-07-21"
+        }
+      },
+      "max_requests": 10
+    },
+    "factset_earnings_insight": {
+      "access_method": "public_http",
+      "endpoint": "https://advantage.factset.com/hubfs/Website/Resources%20Section/Research%20Desk/Earnings%20Insight/EarningsInsight_{mmddyy}.pdf",
+      "policy_url": "https://www.factset.com/legal",
+      "policy_note": "FactSet이 공개 게시한 주간 Earnings Insight PDF다. robots.txt는 이 경로를 막지 않는다. 판본마다 1쪽의 한 문장 발췌와 원문 SHA-256만 로컬 실행 디렉터리에 보존하고 재배포하지 않는다.",
+      "min_interval_seconds": 2,
+      "max_bytes": 8388608,
+      "earliest": "2017-01-06",
+      "weekdays_tried": [
+        "Friday",
+        "Thursday"
+      ],
+      "known_at_rule": "발행일 미국 동부시각 자정(= 다음 날 05:00 UTC) 이후, 단 실제 획득 시각보다 늦지 않게. PDF 작성·수정일이 발행일보다 3일 넘게 늦거나 없으면 같은 URL의 교체 가능성 때문에 획득 시각부터 알려진 것으로 둔다.",
+      "observed_at_rule": "관측일은 발행일 2일 전(그 주 수요일 종가 기준)으로 둔다. 신선도 검사가 실제 자료보다 새로워 보이지 않게 하기 위해서다.",
+      "series": {
+        "sp500_forward_pe": {
+          "name": "S&P 500 forward 12개월 P/E (FactSet 집계)",
+          "pattern": "The forward 12-month P/E ratio for the S&P 500 is (\\d{1,3}\\.\\d)[.,]",
+          "unit": "times (price / forward 12-month EPS)",
+          "measure": "factset_sp500_forward_12m_pe",
+          "publisher": "FactSet Earnings Insight"
+        }
+      },
+      "pages": [
+        1
+      ],
+      "max_requests": 1200
+    },
+    "tiger_nav_reinvested": {
+      "access_method": "public_http",
+      "history_endpoint": "https://investments.miraeasset.com/tigeretf/ko/product/chart/prdct-profit-list.ajax?ksdFund={ksd}&strtDt={start}&endDt={end}&period=",
+      "distribution_page": "https://investments.miraeasset.com/tigeretf/ko/distribution/annual/list.do",
+      "distribution_endpoint": "https://investments.miraeasset.com/tigeretf/ko/distribution/annual/list.ajax?pageIndex=1&firstIndex=0&listCnt=10&orderA=thisYear&orderB=ratioDESC&q={ticker}",
+      "policy_url": "https://investments.miraeasset.com/robots.txt",
+      "policy_note": "미래에셋 TIGER ETF 공개 상품 페이지가 호출하는 공개 JSON/HTML이다. robots.txt는 /tigeretf/ko/ 경로를 막지 않는다(/tigeretf/common/ 등 막힌 경로는 읽지 않는다). 별도 이용약관 페이지는 확인하지 못했다. 개인 연구 재현에 필요한 값만 로컬 실행 디렉터리에 보존하고 재배포하지 않는다.",
+      "min_interval_seconds": 3,
+      "max_bytes": 4194304,
+      "close_time_kst": "15:30",
+      "known_at_kst": "18:00",
+      "verification_window_rows": 20,
+      "tolerance_pp": "0.15",
+      "min_rate_pct": "0.4",
+      "min_comparable_years": 2,
+      "history_years_limit": 11,
+      "boundary": "NAV는 해외 지수의 직전 미국 거래일 종가와 당일 환율을 반영한다(2022~2026 TIGER 미국S&P500에서 직전 미국 거래일 S&P 500 일수익률과의 상관 0.81, 같은 날짜와는 -0.05). 날짜는 한국 거래일이며 시각은 KRX 종가 15:30 KST로 둔다. 실제 정보 시점은 이보다 이르므로 미래 정보가 섞이지 않는다.",
+      "nav_note": "발행사 NAV이지 체결 가격이 아니다. 시장가격과 NAV의 괴리(일간 최대 약 4%)는 포함하지 않는다. 비교 시장 전용이다.",
+      "tax_note": "세전 총수익이다. 해외 상장지수펀드 분배금·매매차익의 세금은 빼지 않았다.",
+      "products": {
+        "KR7360750004": {
+          "ticker": "360750",
+          "name": "TIGER 미국S&P500",
+          "index": "S&P 500",
+          "asset_id": "US_EQUITY",
+          "instrument_id": "TIGER_US_SP500_NAV_TR",
+          "listed": "2020-08-07"
+        },
+        "KR7133690008": {
+          "ticker": "133690",
+          "name": "TIGER 미국나스닥100",
+          "index": "NASDAQ-100",
+          "asset_id": "US_EQUITY",
+          "instrument_id": "TIGER_US_NASDAQ100_NAV_TR",
+          "listed": "2010-10-14"
+        }
+      },
+      "response_cap_note": "응답은 시작일과 관계없이 최근 약 2,155행(약 8.6년)까지만 주고, 누적 수익률의 기준점은 요청한 시작일의 값이다. 그래서 첫 행의 지수가 1이 아닐 수 있다. 수익률·비율은 기준점과 무관하다. 응답에 없는 기간의 데이터는 없는 것으로 둔다.",
+      "revision_note": "이 이력은 현재 시점에 한 번 받은 값이라 발행사가 과거 NAV를 나중에 정정했더라도 알 수 없다(개정 이력 없음). known_at은 그날 공표 시각으로 둔 가정이다.",
+      "max_requests": 20
+    }
+  }
+}

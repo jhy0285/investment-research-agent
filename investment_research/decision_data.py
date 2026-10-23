@@ -3,6 +3,7 @@
 Inputs are reviewed data, not forecasts inferred by a language model. A latest
 revised historical series cannot masquerade as a point-in-time series.
 """
+
 from calendar import monthrange
 from datetime import timedelta
 from decimal import Decimal, InvalidOperation
@@ -14,32 +15,89 @@ from functools import wraps
 
 from .sources import SourceError, _parse_json, _time as _parse_time
 
-VERSION = 'investment_cycle_v1'
+VERSION = 'investment_cycle_v3'
+# v1 reduced a held position when current data were unverified. v3 keeps the
+# v2 action rules and uses backtest v2 (reviewed price lower bounds). Older
+# versions stay replayable so saved judgments are reproduced, never rewritten.
+SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2', 'investment_cycle_v3')
+# Only reviewed collectors for assets without cash distributions may label a
+# price series a lower bound; a typed label on, say, a dividend stock would
+# bias the same-series timing baselines that approval still compares.
+LOWER_BOUND_PROVIDERS = ('upbit_day_candles', 'upbit_aligned_candles')
+# return_basis -> (return_kind, adjustment) it must declare.
+RETURN_BASES = {
+    'price_lower_bound': ('price', 'unadjusted'),
+    'non_distributing_fund_price': ('total_return', 'pit_total_return_index'),
+    # Issuer NAV (not an executable price) verified to keep reinvested distributions.
+    'issuer_nav_reinvested': ('total_return', 'pit_total_return_index'),
+}
+# These bases describe a market measure, not something a plan can buy at that value.
+BENCHMARK_ONLY_BASES = ('issuer_nav_reinvested',)
 HORIZONS = {'1w': 0, '1m': 1, '3m': 3, '6m': 6, '1y': 12}
-MARKETS = ('미국 주식', '한국 주식', '성장주', 'AI', '반도체', '가치주', '배당주',
-           '미국 국채', '한국 국채', '금', '은', '원유', '천연가스', '산업금속',
-           '기타 원자재', 'Bitcoin', 'Ethereum', '주요 암호화폐',
-           '서울/수도권 부동산', '글로벌 부동산', '새로운 투자 기회')
+MARKETS = (
+    '미국 주식',
+    '한국 주식',
+    '성장주',
+    'AI',
+    '반도체',
+    '가치주',
+    '배당주',
+    '미국 국채',
+    '한국 국채',
+    '금',
+    '은',
+    '원유',
+    '천연가스',
+    '산업금속',
+    '기타 원자재',
+    'Bitcoin',
+    'Ethereum',
+    '주요 암호화폐',
+    '서울/수도권 부동산',
+    '글로벌 부동산',
+    '새로운 투자 기회',
+)
+
+
+def require_tradable(dataset):
+    """A market measure (e.g. an issuer NAV) is a benchmark, never the price a plan trades at."""
+    if dataset.get('return_basis') in BENCHMARK_ONLY_BASES:
+        raise SourceError('an issuer NAV series is a market benchmark, not a price the plan can trade at')
+
+
+def lower_bound(dataset):
+    provenance = dataset.get('provenance')
+    return (
+        dataset.get('return_basis') == 'price_lower_bound'
+        and dataset['return_kind'] == 'price'
+        and dataset['adjustment'] == 'unadjusted'
+        and isinstance(provenance, dict)
+        and provenance.get('provider') in LOWER_BOUND_PROVIDERS
+    )
 
 
 def timestamp(value):
-    if not isinstance(value,str) or len(value)<19:
+    if not isinstance(value, str) or len(value) < 19:
         raise SourceError('investment timestamps require explicit time and timezone')
-    result=_parse_time(value)
-    if result is None:raise SourceError('investment timestamp cannot be unknown')
+    result = _parse_time(value)
+    if result is None:
+        raise SourceError('investment timestamp cannot be unknown')
     return result
 
 
-_time=timestamp
+_time = timestamp
 
 
 def contract(function):
     @wraps(function)
-    def wrapped(*args,**kwargs):
-        try:return function(*args,**kwargs)
-        except SourceError:raise
-        except (KeyError,TypeError,AttributeError,ValueError,OverflowError) as exc:
-            raise SourceError(function.__name__+': malformed or missing required field') from exc
+    def wrapped(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except SourceError:
+            raise
+        except (KeyError, TypeError, AttributeError, ValueError, OverflowError) as exc:
+            raise SourceError(function.__name__ + ': malformed or missing required field') from exc
+
     return wrapped
 
 
@@ -89,15 +147,18 @@ def target(at, horizon):
         return at + timedelta(days=7)
     months = at.year * 12 + at.month - 1 + HORIZONS[horizon]
     year, month = divmod(months, 12)
-    return at.replace(year=year, month=month + 1,
-                      day=min(at.day, monthrange(year, month + 1)[1]))
+    return at.replace(year=year, month=month + 1, day=min(at.day, monthrange(year, month + 1)[1]))
 
 
 @contract
 def rule(rule):
-    if (not isinstance(rule, dict) or not rule.get('feature') or
-            rule.get('op') not in ('>', '>=', '<', '<=', '==') or
-            type(rule.get('max_age_days')) is not int or not 0 <= rule['max_age_days'] <= 366):
+    if (
+        not isinstance(rule, dict)
+        or not rule.get('feature')
+        or rule.get('op') not in ('>', '>=', '<', '<=', '==')
+        or type(rule.get('max_age_days')) is not int
+        or not 0 <= rule['max_age_days'] <= 366
+    ):
         raise SourceError('invalid feature condition or freshness limit')
     number(rule.get('value'), 'condition value')
 
@@ -114,6 +175,14 @@ def validate_dataset(data):
         raise SourceError('unknown price adjustment meaning')
     if data['return_kind'] == 'total_return' and data['adjustment'] == 'unadjusted':
         raise SourceError('unadjusted price is not a total-return series')
+    basis = data.get('return_basis')
+    if basis is not None and (
+        basis not in RETURN_BASES
+        or RETURN_BASES[basis] != (data['return_kind'], data['adjustment'])
+        or not isinstance(data.get('return_basis_note'), str)
+        or not data['return_basis_note'].strip()
+    ):
+        raise SourceError('return basis must match its reviewed return definition and carry a review note')
     for field in ('instrument_id', 'asset_id', 'currency', 'source', 'calendar', 'survivorship', 'unit', 'measure'):
         if not isinstance(data.get(field), str) or not data[field].strip():
             raise SourceError('dataset missing ' + field)
@@ -214,7 +283,9 @@ def validate_plan(data):
                 raise SourceError('declare one to five supporting and opposing reasons')
         if c['mode'] == 'unvalidated':
             continue
-        if not isinstance(c.get('current_price_evidence_id'),str) or not c['current_price_evidence_id']:
+        if 'history' in c and 'prices' not in c:
+            raise SourceError('candidate refers to a history run; expand it with invest run --history')
+        if not isinstance(c.get('current_price_evidence_id'), str) or not c['current_price_evidence_id']:
             raise SourceError('current price source reference required')
         if not isinstance(c.get('review'), dict) or not c['review'].get('reviewer') or not c['review'].get('note'):
             raise SourceError('economic thesis needs an explicit scoped review')
@@ -226,15 +297,26 @@ def validate_plan(data):
             validate_dataset(c[dataset])
             if c[dataset]['synthetic'] != data['synthetic']:
                 raise SourceError('synthetic and real data cannot be mixed')
-        quote=c['quote']
-        if (quote['instrument_id']!=c['prices']['instrument_id'] or quote['currency']!='KRW' or
-                not quote['unit'] or not quote['measure'] or number(quote['value'])<=0):
+        quote = c['quote']
+        if (
+            quote['instrument_id'] != c['prices']['instrument_id']
+            or quote['currency'] != 'KRW'
+            or not quote['unit']
+            or not quote['measure']
+            or number(quote['value']) <= 0
+        ):
             raise SourceError('declare actual KRW instrument quote, separate from total-return index')
-        if _time(quote['at'])>_time(quote['known_at']):
+        if _time(quote['at']) > _time(quote['known_at']):
             raise SourceError('quote known before its observation')
         if c['prices']['asset_id'] != c['asset_id']:
             raise SourceError('investment exposure and traded price instrument differ')
-        if c['prices']['currency'] != c['benchmark']['currency'] or c['prices']['return_kind'] != c['benchmark']['return_kind']:
+        require_tradable(c['prices'])
+        # A reviewed price lower bound may face a total-return benchmark: the
+        # omission can only understate the candidate, never flatter it.
+        bounded = lower_bound(c['prices']) and c['benchmark']['return_kind'] == 'total_return'
+        if c['prices']['currency'] != c['benchmark']['currency'] or (
+            c['prices']['return_kind'] != c['benchmark']['return_kind'] and not bounded
+        ):
             raise SourceError('benchmark currency or return definition differs')
         if c['prices']['instrument_id'] == c['benchmark']['instrument_id']:
             raise SourceError('market benchmark must be a separate declared instrument')
@@ -251,27 +333,37 @@ def validate_plan(data):
             if observed > known or known > _time(f['retrieved_at']):
                 raise SourceError('feature publication/revision availability is inconsistent')
             number(f['value'])
-            for key in ('unit','currency','measure'):
-                if not isinstance(f.get(key),str) or not f[key]:
-                    raise SourceError('feature definition missing '+key)
+            for key in ('unit', 'currency', 'measure'):
+                if not isinstance(f.get(key), str) or not f[key]:
+                    raise SourceError('feature definition missing ' + key)
             key = (f['name'], f['observed_at'], f['known_at'])
             if key in seen or not f.get('source') or not f.get('vintage'):
                 raise SourceError('duplicate feature vintage or missing source')
             seen.add(key)
-        definitions={}
+        definitions = {}
         for f in features:
-            d=tuple(f[k] for k in ('unit','currency','measure','source'))
-            if f['name'] in definitions and definitions[f['name']]!=d:
+            d = tuple(f[k] for k in ('unit', 'currency', 'measure', 'source'))
+            if f['name'] in definitions and definitions[f['name']] != d:
                 raise SourceError('feature definition changed within one history')
-            definitions[f['name']]=d
+            definitions[f['name']] = d
         if c['mode'] == 'event' and not c.get('analog_evidence_ids'):
             raise SourceError('nonrepeatable event requires reviewed comparable cases')
     return data
 
 
 def default_plan():
-    return dict(schema_version='investment-plan-v1', synthetic=False, new_cash_krw='10000000',
-                scenario_note='신규 현금 1,000만원의 예시다. 개인 재무 조건이 미확인인 자금은 집행하지 않는다.',
-                profile=None, candidates=[],
-                policy=dict(minimum_historical=20, minimum_validation=10, minimum_recent=10, minimum_live=10,
-                            caps=dict(A='0.4', B='0.2', C='0.05', group_cap='0.5')))
+    return dict(
+        schema_version='investment-plan-v1',
+        synthetic=False,
+        new_cash_krw='10000000',
+        scenario_note='신규 현금 1,000만원의 예시다. 개인 재무 조건이 미확인인 자금은 집행하지 않는다.',
+        profile=None,
+        candidates=[],
+        policy=dict(
+            minimum_historical=20,
+            minimum_validation=10,
+            minimum_recent=10,
+            minimum_live=10,
+            caps=dict(A='0.4', B='0.2', C='0.05', group_cap='0.5'),
+        ),
+    )

@@ -21,7 +21,6 @@ from investment_research.models import InterpretationStatus, VerificationStatus
 from investment_research.report import render_report
 from investment_research.validation import InputValidationError, load_case, parse_case
 
-
 ROOT = Path(__file__).resolve().parents[1]
 EXAMPLE = ROOT / "examples" / "cross_asset_case"
 HEADINGS = (
@@ -273,7 +272,8 @@ class ResearchTests(OfflineCase):
                 narrative_ids = {claim["narrative_evidence_id"] for claim in data["claims"]}
                 source_types = {source["id"]: source["type"] for source in data["sources"]}
                 candidate = next(
-                    evidence for evidence in data["evidence"]
+                    evidence
+                    for evidence in data["evidence"]
                     if evidence["id"] not in calculated_ids | narrative_ids
                     and source_types[evidence["source_id"]] != "community"
                     and any(evidence["id"] in alternative["support_ids"] for alternative in data["alternatives"])
@@ -335,8 +335,9 @@ class ResearchTests(OfflineCase):
         self.assertLessEqual(len(sentences), 5)
 
     def test_repeat_runs_are_identical_and_do_not_use_the_network(self):
-        with patch("socket.socket.connect", side_effect=AssertionError("network forbidden")), patch(
-            "urllib.request.urlopen", side_effect=AssertionError("network forbidden")
+        with (
+            patch("socket.socket.connect", side_effect=AssertionError("network forbidden")),
+            patch("urllib.request.urlopen", side_effect=AssertionError("network forbidden")),
         ):
             first = self.result()
             second = self.result()
@@ -373,7 +374,8 @@ class ResearchTests(OfflineCase):
                             record(data["evidence"], identifier)["verification"] = "unverified"
                         if location == "opportunity_cost":
                             item = next(
-                                cost["explanation"] for cost in data["opportunity_costs"]
+                                cost["explanation"]
+                                for cost in data["opportunity_costs"]
                                 if cost["alternative_id"] == "government_bond"
                             )
                         else:

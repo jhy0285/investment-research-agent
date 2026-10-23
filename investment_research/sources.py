@@ -23,7 +23,6 @@ import urllib.parse
 import urllib.request
 import urllib.robotparser
 
-
 MAX_BYTES = 2 * 1024 * 1024
 MAX_ROBOTS_BYTES = 128 * 1024
 TIMEOUT_SECONDS = 10
@@ -135,7 +134,12 @@ def _url(value: str) -> urllib.parse.SplitResult:
     host = (parts.hostname or "").lower().rstrip(".")
     if parts.scheme != "https" or not host or parts.username or parts.password or parts.fragment:
         raise SourceError("only HTTPS URLs without credentials or fragments are permitted")
-    if port not in (None, 443) or "." not in host or host == "localhost" or host.endswith((".localhost", ".local", ".internal", ".test", ".invalid")):
+    if (
+        port not in (None, 443)
+        or "." not in host
+        or host == "localhost"
+        or host.endswith((".localhost", ".local", ".internal", ".test", ".invalid"))
+    ):
         raise SourceError("only public HTTPS hosts on the default port are permitted")
     try:
         ipaddress.ip_address(host)
@@ -143,14 +147,18 @@ def _url(value: str) -> urllib.parse.SplitResult:
         pass
     else:
         raise SourceError("IP literals are not permitted source destinations")
-    if not re.fullmatch(r"[a-z0-9.-]+", host) or any(not label or label.startswith("-") or label.endswith("-") for label in host.split(".")):
+    if not re.fullmatch(r"[a-z0-9.-]+", host) or any(
+        not label or label.startswith("-") or label.endswith("-") for label in host.split(".")
+    ):
         raise SourceError("source hostname is invalid")
     # Numeric legacy IP spellings (e.g. 2130706433 or 127.1) must not bypass
     # the literal-IP restriction. DNS names ending in a numeric label fail too.
     if host.split(".")[-1].isdigit():
         raise SourceError("numeric hostnames are not permitted")
     authentication_keys = {"access_token", "authorization", "api_key", "apikey", "token", "password", "secret"}
-    if any(key.lower() in authentication_keys for key, _ in urllib.parse.parse_qsl(parts.query, keep_blank_values=True)):
+    if any(
+        key.lower() in authentication_keys for key, _ in urllib.parse.parse_qsl(parts.query, keep_blank_values=True)
+    ):
         raise SourceError("authenticated or secret-bearing URLs are not supported")
     return parts
 
@@ -164,34 +172,57 @@ def _validate(spec: SourceSpec) -> None:
         _url(spec.policy_url)
     from .semiconductor_data import pdf_allowed
     from .commodity_data import pdf_supported
+
     commodity_pdf = pdf_supported(spec.url) and spec.type == (
         'institution' if urllib.parse.urlsplit(spec.url).hostname == 'www.ishares.com' else 'primary'
     )
-    reviewed_pdf = spec.content_type == 'application/pdf' and spec.retention == 'excerpt' and (
-        (spec.type == 'primary' and pdf_allowed(spec.url)) or commodity_pdf
+    reviewed_pdf = (
+        spec.content_type == 'application/pdf'
+        and spec.retention == 'excerpt'
+        and ((spec.type == 'primary' and pdf_allowed(spec.url)) or commodity_pdf)
     )
-    if not isinstance(spec.type, str) or not isinstance(spec.content_type, str) or spec.type not in _TYPES or (spec.content_type not in _MIME_TYPES and not reviewed_pdf):
+    if (
+        not isinstance(spec.type, str)
+        or not isinstance(spec.content_type, str)
+        or spec.type not in _TYPES
+        or (spec.content_type not in _MIME_TYPES and not reviewed_pdf)
+    ):
         raise SourceError("unsupported source type or content type")
     if not isinstance(spec.access_method, str) or spec.access_method not in {"public_http", "public_api"}:
         raise SourceError("only explicit public HTTP or documented public API acquisition is supported")
-    if not isinstance(spec.publisher, str) or not isinstance(spec.title, str) or not spec.publisher.strip() or not spec.title.strip():
+    if (
+        not isinstance(spec.publisher, str)
+        or not isinstance(spec.title, str)
+        or not spec.publisher.strip()
+        or not spec.title.strip()
+    ):
         raise SourceError("publisher and document title are required")
     if not spec.policy_url or not isinstance(spec.policy_note, str) or not spec.policy_note.strip():
         raise SourceError("reviewed public-access and retention policy provenance is required")
     if not isinstance(spec.retention, str) or spec.retention not in {"full", "excerpt"}:
         raise SourceError("retention must be full or excerpt")
-    if spec.retention == "full" and (spec.type == "community" or not isinstance(spec.full_retention_permission, str) or not spec.full_retention_permission.strip()):
+    if spec.retention == "full" and (
+        spec.type == "community"
+        or not isinstance(spec.full_retention_permission, str)
+        or not spec.full_retention_permission.strip()
+    ):
         raise SourceError("full retention requires explicit permission and is never used for community content")
     if not isinstance(spec.jurisdiction, str) or not spec.jurisdiction.strip():
         raise SourceError("source jurisdiction must be explicit text or unknown")
     for sequence in (spec.topics, spec.asset_ids):
-        if not isinstance(sequence, (list, tuple)) or any(not isinstance(value, str) or not value.strip() for value in sequence):
+        if not isinstance(sequence, (list, tuple)) or any(
+            not isinstance(value, str) or not value.strip() for value in sequence
+        ):
             raise SourceError("source topics and asset IDs must be explicit nonempty strings")
     if isinstance(spec.max_age_days, bool) or not isinstance(spec.max_age_days, int) or spec.max_age_days < 0:
         raise SourceError("max_age_days must be a nonnegative integer")
     for value in (spec.published_at, spec.observed_at, spec.valid_as_of):
         _time(value)
-    if spec.origin_source_id is not None and (not isinstance(spec.origin_source_id, str) or not _ID.fullmatch(spec.origin_source_id) or spec.origin_source_id == spec.id):
+    if spec.origin_source_id is not None and (
+        not isinstance(spec.origin_source_id, str)
+        or not _ID.fullmatch(spec.origin_source_id)
+        or spec.origin_source_id == spec.id
+    ):
         raise SourceError("origin_source_id must reference another safe source ID")
     if not isinstance(spec.excerpts, (list, tuple)) or not spec.excerpts or len(spec.excerpts) > 3:
         raise SourceError("one to three explicit excerpt selectors are required")
@@ -202,15 +233,28 @@ def _validate(spec: SourceSpec) -> None:
         if not isinstance(excerpt["id"], str) or not _ID.fullmatch(excerpt["id"]) or excerpt["id"] in ids:
             raise SourceError("excerpt IDs must be valid and unique")
         ids.add(excerpt["id"])
-        if not all(isinstance(excerpt[key], str) for key in ("quote", "locator")) or not isinstance(excerpt["definition"], (str, dict)):
+        if not all(isinstance(excerpt[key], str) for key in ("quote", "locator")) or not isinstance(
+            excerpt["definition"], (str, dict)
+        ):
             raise SourceError("excerpt quote/location must be strings and definition must be text or a JSON object")
-        if not excerpt["locator"].strip() or not excerpt["definition"] or (isinstance(excerpt["definition"], str) and not excerpt["definition"].strip()):
+        if (
+            not excerpt["locator"].strip()
+            or not excerpt["definition"]
+            or (isinstance(excerpt["definition"], str) and not excerpt["definition"].strip())
+        ):
             raise SourceError("excerpt location and financial/semantic definition are required")
         if not _text(excerpt["quote"]) or len(_text(excerpt["quote"])) > 1200:
             raise SourceError("excerpt quote must contain at most 1200 normalized characters")
-        if spec.type == "community" and _text(excerpt["quote"]).lower() in {"[deleted]", "[removed]", "deleted", "removed"}:
+        if spec.type == "community" and _text(excerpt["quote"]).lower() in {
+            "[deleted]",
+            "[removed]",
+            "deleted",
+            "removed",
+        }:
             raise SourceError("deleted/removed community placeholders are not excerpt selectors")
-        if spec.type == "community" and re.search(r"(?:^|/)(?:author|username|user|user_id|author_fullname|name|id)(?:/|$)", excerpt["locator"], flags=re.I):
+        if spec.type == "community" and re.search(
+            r"(?:^|/)(?:author|username|user|user_id|author_fullname|name|id)(?:/|$)", excerpt["locator"], flags=re.I
+        ):
             raise SourceError("community personal identifiers are not retained")
     try:
         if len(_json_bytes(asdict(spec))) > 64 * 1024:
@@ -232,7 +276,15 @@ def _fetch_http(url: str, timeout: int, max_bytes: int) -> FetchResponse:
     for address in socket.getaddrinfo(parts.hostname, 443, type=socket.SOCK_STREAM):
         if not ipaddress.ip_address(address[4][0]).is_global:
             raise SourceError("source hostname resolves to a non-public address")
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/json, text/html, text/plain, text/csv", "Accept-Encoding": "identity"}, method="GET")
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/json, text/html, text/plain, text/csv",
+            "Accept-Encoding": "identity",
+        },
+        method="GET",
+    )
     opener = urllib.request.build_opener(_NoRedirect())
     try:
         response = opener.open(request, timeout=min(timeout, TIMEOUT_SECONDS))
@@ -244,15 +296,25 @@ def _fetch_http(url: str, timeout: int, max_bytes: int) -> FetchResponse:
             raise SourceError("response exceeds the acquisition size limit")
         if response.headers.get("Content-Encoding", "identity").lower() != "identity":
             raise SourceError("compressed HTTP responses are not supported by this bounded collector")
-        headers = {key.lower(): response.headers[key] for key in ("Content-Type", "ETag", "Last-Modified") if key in response.headers}
-        return FetchResponse(body, response.headers.get("Content-Type", ""), response.status, response.geturl(), headers)
+        headers = {
+            key.lower(): response.headers[key]
+            for key in ("Content-Type", "ETag", "Last-Modified")
+            if key in response.headers
+        }
+        return FetchResponse(
+            body, response.headers.get("Content-Type", ""), response.status, response.geturl(), headers
+        )
 
 
 def _response(fetcher: Fetcher, url: str, limit: int) -> FetchResponse:
     result = fetcher(url, TIMEOUT_SECONDS, limit)
     if not isinstance(result, FetchResponse) or not isinstance(result.body, bytes):
         raise SourceError("fetcher must return FetchResponse with a bytes body")
-    if not isinstance(result.content_type, str) or not isinstance(result.headers, dict) or any(not isinstance(key, str) or not isinstance(value, str) for key, value in result.headers.items()):
+    if (
+        not isinstance(result.content_type, str)
+        or not isinstance(result.headers, dict)
+        or any(not isinstance(key, str) or not isinstance(value, str) for key, value in result.headers.items())
+    ):
         raise SourceError("HTTP content type and retained headers must be strings")
     if len(result.body) > limit:
         raise SourceError("response exceeds the acquisition size limit")
@@ -273,11 +335,16 @@ def _access_policy(url, access_method, perform, retrieved_at, policy):
     parts = _url(url)
     robots_url = urllib.parse.urlunsplit(("https", parts.netloc, "/robots.txt", "", ""))
     robots = _response(perform, robots_url, MAX_ROBOTS_BYTES)
-    policy.update(robots_url=robots_url, robots_status=robots.status,
-                  robots_sha256=_sha(robots.body), checked_at=retrieved_at)
+    policy.update(
+        robots_url=robots_url, robots_status=robots.status, robots_sha256=_sha(robots.body), checked_at=retrieved_at
+    )
     if robots.status == 404:
         policy["robots"] = "absent"
-    elif robots.status == 200 and robots.content_type.split(";", 1)[0].strip().lower() in {"text/plain", "text/robots", ""}:
+    elif robots.status == 200 and robots.content_type.split(";", 1)[0].strip().lower() in {
+        "text/plain",
+        "text/robots",
+        "",
+    }:
         parser = urllib.robotparser.RobotFileParser(robots_url)
         parser.parse(_decode(robots.body, robots.content_type).splitlines())
         if not parser.can_fetch(USER_AGENT, url):
@@ -290,6 +357,7 @@ def _access_policy(url, access_method, perform, retrieved_at, policy):
 @dataclass(frozen=True)
 class PublicDocument:
     """Opened bytes are research data, not evidence or executable instructions."""
+
     status: str
     response: FetchResponse | None
     retrieved_at: str
@@ -303,7 +371,8 @@ def read_public(url, *, access_method, policy_url, policy_note, fetcher=None, no
     No passage is promoted here. The caller must apply an explicit data contract
     and create a SourceSpec for acquire/replay. No redirects or access bypass.
     """
-    _url(url); _url(policy_url)
+    _url(url)
+    _url(policy_url)
     if not isinstance(policy_note, str) or not policy_note.strip():
         raise SourceError("reviewed discovery access/retention policy is required")
     instant = now or datetime.now(timezone.utc)
@@ -312,7 +381,10 @@ def read_public(url, *, access_method, policy_url, policy_note, fetcher=None, no
     retrieved = instant.astimezone(timezone.utc).isoformat()
     policy = dict(url=policy_url, review_note=policy_note, access_method=access_method, robots="not_checked")
     perform = fetcher or _fetch_http
-    response = None; stage = "policy"; status = "available"; diagnostics = []
+    response = None
+    stage = "policy"
+    status = "available"
+    diagnostics = []
     try:
         _access_policy(url, access_method, perform, retrieved, policy)
         stage = "fetch"
@@ -320,9 +392,14 @@ def read_public(url, *, access_method, policy_url, policy_note, fetcher=None, no
         if response.status != 200:
             raise SourceError(f"source returned HTTP {response.status}")
     except (TimeoutError, socket.timeout):
-        status = "timeout"; diagnostics.append(stage + ": request timed out")
+        status = "timeout"
+        diagnostics.append(stage + ": request timed out")
     except urllib.error.URLError as exc:
-        status = "timeout" if isinstance(exc.reason, (TimeoutError, socket.timeout)) else ("policy_blocked" if stage == "policy" else "unavailable")
+        status = (
+            "timeout"
+            if isinstance(exc.reason, (TimeoutError, socket.timeout))
+            else ("policy_blocked" if stage == "policy" else "unavailable")
+        )
         diagnostics.append(stage + ": request failed (" + type(exc.reason).__name__ + ")")
     except (SourceError, OSError, ValueError) as exc:
         status = "policy_blocked" if stage == "policy" else "unavailable"
@@ -343,7 +420,22 @@ def _decode(body: bytes, content_type: str) -> str:
 
 class _VisibleText(HTMLParser):
     _HIDDEN = {"script", "style", "head", "template", "noscript"}
-    _VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+    _VOID = {
+        "area",
+        "base",
+        "br",
+        "col",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "link",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr",
+    }
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -396,7 +488,11 @@ def _reject_duplicate_keys(pairs):
 
 def _parse_json(text: str):
     try:
-        return json.loads(text, object_pairs_hook=_reject_duplicate_keys, parse_constant=lambda _: (_ for _ in ()).throw(SourceError("nonfinite JSON number")))
+        return json.loads(
+            text,
+            object_pairs_hook=_reject_duplicate_keys,
+            parse_constant=lambda _: (_ for _ in ()).throw(SourceError("nonfinite JSON number")),
+        )
     except (ValueError, RecursionError) as exc:
         raise SourceError("source JSON is invalid or ambiguous") from exc
 
@@ -404,13 +500,20 @@ def _parse_json(text: str):
 def _normalize(body: bytes, mime: str, declared: str, url: str = '') -> tuple[str, object | None]:
     actual = mime.split(";", 1)[0].strip().lower()
     expected = declared.split(";", 1)[0]
-    compatible = actual == expected or {actual, expected} <= {"text/html", "application/xhtml+xml"} or {actual, expected} <= {"text/plain", "text/csv"}
+    compatible = (
+        actual == expected
+        or {actual, expected} <= {"text/html", "application/xhtml+xml"}
+        or {actual, expected} <= {"text/plain", "text/csv"}
+    )
     if not compatible:
         raise SourceError("returned content type does not match the reviewed source specification")
     from .semiconductor_data import source_document as semiconductor_document, pdf_text
+
     if expected == 'application/pdf':
         from .commodity_data import pdf_supported, pdf_text as commodity_pdf_text
-        if pdf_supported(url):return _text(commodity_pdf_text(body)), None
+
+        if pdf_supported(url):
+            return _text(commodity_pdf_text(body)), None
         document = semiconductor_document(body, actual, url)
         return _text(pdf_text(body)), document
     decoded = _decode(body, mime)
@@ -419,6 +522,7 @@ def _normalize(body: bytes, mime: str, declared: str, url: str = '') -> tuple[st
         return _json_bytes(value).decode("utf-8"), value
     if expected in {"text/html", "application/xhtml+xml"}:
         from .korean_data import source_document
+
         document = source_document(url, decoded)
         if document is None:
             document = semiconductor_document(body, actual, url)
@@ -435,7 +539,11 @@ def _pointer(value: object, pointer: str, *, community: bool = False, html: bool
     current = value
     try:
         for raw in pointer.split("/")[1:]:
-            if community and isinstance(current, dict) and (current.get("dead") is True or current.get("deleted") is True or current.get("removed") is True):
+            if (
+                community
+                and isinstance(current, dict)
+                and (current.get("dead") is True or current.get("deleted") is True or current.get("removed") is True)
+            ):
                 raise SourceError("dead, deleted or removed community items are not retained")
             if re.search(r"~(?![01])", raw):
                 raise SourceError("invalid JSON pointer escape")
@@ -463,12 +571,15 @@ def _scalar_pointer(value, pointer):
             if re.search(r"~(?![01])", raw):
                 raise SourceError("invalid JSON scalar pointer")
             key = raw.replace("~1", "/").replace("~0", "~")
-            current = current[int(key)] if isinstance(current, list) and re.fullmatch(r"0|[1-9][0-9]*", key) else current[key]
+            current = (
+                current[int(key)] if isinstance(current, list) and re.fullmatch(r"0|[1-9][0-9]*", key) else current[key]
+            )
     except (KeyError, IndexError, TypeError, ValueError) as exc:
         raise SourceError("JSON scalar pointer cannot be resolved") from exc
     if isinstance(current, bool) or not isinstance(current, (int, float, str)):
         raise SourceError("JSON scalar pointer must select a finite number or decimal string")
     from decimal import Decimal, InvalidOperation
+
     try:
         number = Decimal(str(current))
         if not number.is_finite() or len(str(current)) > 64 or abs(number.as_tuple().exponent) > 100:
@@ -486,26 +597,49 @@ def _extract(spec: SourceSpec, normalized: str, document: object | None) -> list
         if document is not None and locator.startswith('samsung_scalar:') and spec.type == 'primary':
             haystack = _scalar_pointer(document, '/metrics/' + locator.removeprefix('samsung_scalar:'))
         elif document is not None and locator.startswith("json_scalar:") and spec.type != "community":
-            haystack = _scalar_pointer(document, locator[len("json_scalar:"):])
+            haystack = _scalar_pointer(document, locator[len("json_scalar:") :])
         elif document is not None and locator.startswith("json_html:") and spec.type == "community":
-            haystack = _pointer(document, locator[len("json_html:"):], community=True, html=True)
+            haystack = _pointer(document, locator[len("json_html:") :], community=True, html=True)
         elif document is not None and locator.startswith('json_text:') and spec.type != 'community':
-            haystack = _text(_pointer(document, locator[len('json_text:'):]))
+            haystack = _text(_pointer(document, locator[len('json_text:') :]))
         elif document is not None and locator.startswith("/"):
             haystack = _pointer(document, locator, community=spec.type == "community")
         else:
             if spec.type == "community" and document is not None:
-                raise SourceError("community JSON requires an explicit body/text JSON pointer, not a whole-document search")
+                raise SourceError(
+                    "community JSON requires an explicit body/text JSON pointer, not a whole-document search"
+                )
             haystack = normalized
         if quote not in haystack:
-            excerpts.append({"id": requested["id"], "quote": "", "locator": locator, "definition": requested["definition"], "match_status": "missing"})
+            excerpts.append(
+                {
+                    "id": requested["id"],
+                    "quote": "",
+                    "locator": locator,
+                    "definition": requested["definition"],
+                    "match_status": "missing",
+                }
+            )
         else:
-            excerpts.append({"id": requested["id"], "quote": quote, "locator": locator, "definition": requested["definition"], "match_status": "matched"})
+            excerpts.append(
+                {
+                    "id": requested["id"],
+                    "quote": quote,
+                    "locator": locator,
+                    "definition": requested["definition"],
+                    "match_status": "matched",
+                }
+            )
     return excerpts
 
 
 def _path(store: str | Path, source_id: str, snapshot_id: str) -> Path:
-    if not isinstance(source_id, str) or not _ID.fullmatch(source_id) or not isinstance(snapshot_id, str) or not _HASH.fullmatch(snapshot_id):
+    if (
+        not isinstance(source_id, str)
+        or not _ID.fullmatch(source_id)
+        or not isinstance(snapshot_id, str)
+        or not _HASH.fullmatch(snapshot_id)
+    ):
         raise SourceError("invalid snapshot reference")
     root = Path(store).resolve()
     path = root / source_id / f"{snapshot_id}.json"
@@ -514,16 +648,35 @@ def _path(store: str | Path, source_id: str, snapshot_id: str) -> Path:
     return path
 
 
-def _snapshot(spec: SourceSpec, store: str | Path, *, status: str, retrieved_at: str, raw_hash: str | None, normalized_hash: str | None, payload: dict, diagnostics: list[str], http: dict, policy: dict) -> Snapshot:
+def _snapshot(
+    spec: SourceSpec,
+    store: str | Path,
+    *,
+    status: str,
+    retrieved_at: str,
+    raw_hash: str | None,
+    normalized_hash: str | None,
+    payload: dict,
+    diagnostics: list[str],
+    http: dict,
+    policy: dict,
+) -> Snapshot:
     source = json.loads(_json_bytes(asdict(spec)))
     # Quote selectors are configuration, not retrieved evidence. They belong
     # in metadata for replay auditing even if no match was found.
     envelope = {
-        "schema_version": "source-snapshot-v1", "source_id": spec.id,
-        "status": status, "source": source, "retrieved_at": retrieved_at,
-        "raw_sha256": raw_hash, "normalized_sha256": normalized_hash,
-        "payload_sha256": _sha(_json_bytes(payload)), "payload": payload,
-        "diagnostics": diagnostics, "http": http, "policy": policy,
+        "schema_version": "source-snapshot-v1",
+        "source_id": spec.id,
+        "status": status,
+        "source": source,
+        "retrieved_at": retrieved_at,
+        "raw_sha256": raw_hash,
+        "normalized_sha256": normalized_hash,
+        "payload_sha256": _sha(_json_bytes(payload)),
+        "payload": payload,
+        "diagnostics": diagnostics,
+        "http": http,
+        "policy": policy,
     }
     snapshot_id = _sha(_json_bytes(envelope))
     record = {**envelope, "snapshot_id": snapshot_id}
@@ -536,10 +689,25 @@ def _snapshot(spec: SourceSpec, store: str | Path, *, status: str, retrieved_at:
     else:
         with path.open("xb") as handle:
             handle.write(encoded)
-    return Snapshot(spec.id, snapshot_id, status, source, retrieved_at, raw_hash, normalized_hash, envelope["payload_sha256"], payload, tuple(diagnostics), http, policy)
+    return Snapshot(
+        spec.id,
+        snapshot_id,
+        status,
+        source,
+        retrieved_at,
+        raw_hash,
+        normalized_hash,
+        envelope["payload_sha256"],
+        payload,
+        tuple(diagnostics),
+        http,
+        policy,
+    )
 
 
-def acquire(spec: SourceSpec, store: str | Path, *, fetcher: Fetcher | None = None, now: datetime | None = None) -> Snapshot:
+def acquire(
+    spec: SourceSpec, store: str | Path, *, fetcher: Fetcher | None = None, now: datetime | None = None
+) -> Snapshot:
     """Acquire exactly one reviewed source; failures become pinned diagnostics.
 
     Inject ``fetcher(url, timeout, max_bytes) -> FetchResponse`` for deterministic
@@ -556,7 +724,12 @@ def acquire(spec: SourceSpec, store: str | Path, *, fetcher: Fetcher | None = No
     status = "unavailable"
     diagnostics: list[str] = []
     http: dict = {}
-    policy = {"url": spec.policy_url, "review_note": spec.policy_note, "access_method": spec.access_method, "robots": "not_checked"}
+    policy = {
+        "url": spec.policy_url,
+        "review_note": spec.policy_note,
+        "access_method": spec.access_method,
+        "robots": "not_checked",
+    }
     payload: dict = {"retention": spec.retention, "excerpts": []}
     raw_hash = normalized_hash = None
     stage = "policy"
@@ -564,7 +737,16 @@ def acquire(spec: SourceSpec, store: str | Path, *, fetcher: Fetcher | None = No
         _access_policy(spec.url, spec.access_method, perform, retrieved_at, policy)
         stage = "fetch"
         response = _response(perform, spec.url, MAX_BYTES)
-        http = {"status": response.status, "final_url": response.final_url or spec.url, "content_type": response.content_type, "headers": {key.lower(): value for key, value in response.headers.items() if key.lower() in {"etag", "last-modified", "content-type"}}}
+        http = {
+            "status": response.status,
+            "final_url": response.final_url or spec.url,
+            "content_type": response.content_type,
+            "headers": {
+                key.lower(): value
+                for key, value in response.headers.items()
+                if key.lower() in {"etag", "last-modified", "content-type"}
+            },
+        }
         if response.status != 200:
             raise SourceError(f"source returned HTTP {response.status}")
         raw_hash = _sha(response.body)
@@ -580,26 +762,49 @@ def acquire(spec: SourceSpec, store: str | Path, *, fetcher: Fetcher | None = No
         payload["excerpts"] = _extract(spec, normalized, document)
         missing = [excerpt["id"] for excerpt in payload["excerpts"] if excerpt["match_status"] != "matched"]
         if missing:
-            raise SourceError(f"selected excerpts are absent; source changed or selectors are wrong: {', '.join(missing)}")
+            raise SourceError(
+                f"selected excerpts are absent; source changed or selectors are wrong: {', '.join(missing)}"
+            )
         if spec.retention == "excerpt":
-            diagnostics.append("Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document.")
+            diagnostics.append(
+                "Full raw and normalized content were hashed at acquisition but are not retained; replay verifies retained excerpts and metadata, not the discarded full document."
+            )
         if document is None:
-            diagnostics.append("Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities.")
+            diagnostics.append(
+                "Text/HTML selectors match normalized visible document text; descriptive locator labels are supplied review metadata, not automatically verified paragraph identities."
+            )
         status = "available"
     except (TimeoutError, socket.timeout) as exc:
         status = "timeout"
         diagnostics.append(f"{stage}: request timed out")
     except urllib.error.URLError as exc:
-        status = "timeout" if isinstance(exc.reason, (TimeoutError, socket.timeout)) else ("policy_blocked" if stage == "policy" else "unavailable")
+        status = (
+            "timeout"
+            if isinstance(exc.reason, (TimeoutError, socket.timeout))
+            else ("policy_blocked" if stage == "policy" else "unavailable")
+        )
         diagnostics.append(f"{stage}: request failed ({type(exc.reason).__name__})")
     except (SourceError, OSError, ValueError, RecursionError) as exc:
-        status = {"policy": "policy_blocked", "fetch": "unavailable", "parse": "parse_error", "excerpt": "changed"}[stage]
+        status = {"policy": "policy_blocked", "fetch": "unavailable", "parse": "parse_error", "excerpt": "changed"}[
+            stage
+        ]
         diagnostics.append(f"{stage}: {exc}")
     if now is None:
         # Real availability cannot precede the completed fetch/parse. A supplied
         # test clock denotes that completed instant and stays deterministic.
         retrieved_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-    return _snapshot(spec, store, status=status, retrieved_at=retrieved_at, raw_hash=raw_hash, normalized_hash=normalized_hash, payload=payload, diagnostics=diagnostics, http=http, policy=policy)
+    return _snapshot(
+        spec,
+        store,
+        status=status,
+        retrieved_at=retrieved_at,
+        raw_hash=raw_hash,
+        normalized_hash=normalized_hash,
+        payload=payload,
+        diagnostics=diagnostics,
+        http=http,
+        policy=policy,
+    )
 
 
 def load_snapshot(store: str | Path, source_id: str, snapshot_id: str) -> Snapshot:
@@ -616,7 +821,21 @@ def load_snapshot(store: str | Path, source_id: str, snapshot_id: str) -> Snapsh
         record = _parse_json(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError) as exc:
         raise SourceError("snapshot is unavailable or unreadable") from exc
-    required = {"schema_version", "source_id", "snapshot_id", "status", "source", "retrieved_at", "raw_sha256", "normalized_sha256", "payload_sha256", "payload", "diagnostics", "http", "policy"}
+    required = {
+        "schema_version",
+        "source_id",
+        "snapshot_id",
+        "status",
+        "source",
+        "retrieved_at",
+        "raw_sha256",
+        "normalized_sha256",
+        "payload_sha256",
+        "payload",
+        "diagnostics",
+        "http",
+        "policy",
+    }
     if not isinstance(record, dict) or set(record) != required or record["schema_version"] != "source-snapshot-v1":
         raise SourceError("snapshot contract is invalid")
     if record["source_id"] != source_id or record["snapshot_id"] != snapshot_id:
@@ -645,7 +864,11 @@ def load_snapshot(store: str | Path, source_id: str, snapshot_id: str) -> Snapsh
             normalized = payload["normalized_text"]
         except (KeyError, ValueError) as exc:
             raise SourceError("full snapshot content is missing or malformed") from exc
-        if _sha(raw) != record["raw_sha256"] or not isinstance(normalized, str) or _sha(normalized.encode("utf-8")) != record["normalized_sha256"]:
+        if (
+            _sha(raw) != record["raw_sha256"]
+            or not isinstance(normalized, str)
+            or _sha(normalized.encode("utf-8")) != record["normalized_sha256"]
+        ):
             raise SourceError("full snapshot content checksum mismatch")
         recalculated, document = _normalize(raw, record["http"]["content_type"], spec.content_type, spec.url)
         if recalculated != normalized:
@@ -661,12 +884,31 @@ def load_snapshot(store: str | Path, source_id: str, snapshot_id: str) -> Snapsh
         if not isinstance(retained, list) or len(retained) != len(spec.excerpts):
             raise SourceError("available snapshot is missing selected excerpts")
         for requested, excerpt in zip(spec.excerpts, retained):
-            expected = {"id": requested["id"], "quote": _text(requested["quote"]), "locator": requested["locator"], "definition": requested["definition"], "match_status": "matched"}
+            expected = {
+                "id": requested["id"],
+                "quote": _text(requested["quote"]),
+                "locator": requested["locator"],
+                "definition": requested["definition"],
+                "match_status": "matched",
+            }
             if excerpt != expected:
                 raise SourceError("retained excerpt does not match the pinned selector")
         if record["raw_sha256"] is None or record["normalized_sha256"] is None:
             raise SourceError("available snapshot has no acquisition content hashes")
-    return Snapshot(source_id, snapshot_id, record["status"], source, record["retrieved_at"], record["raw_sha256"], record["normalized_sha256"], record["payload_sha256"], payload, tuple(record["diagnostics"]), record["http"], record["policy"])
+    return Snapshot(
+        source_id,
+        snapshot_id,
+        record["status"],
+        source,
+        record["retrieved_at"],
+        record["raw_sha256"],
+        record["normalized_sha256"],
+        record["payload_sha256"],
+        payload,
+        tuple(record["diagnostics"]),
+        record["http"],
+        record["policy"],
+    )
 
 
 def freshness(snapshot: Snapshot, as_of: str | datetime) -> dict:
@@ -678,10 +920,25 @@ def freshness(snapshot: Snapshot, as_of: str | datetime) -> dict:
     dates = {key: _time(snapshot.source.get(key)) for key in ("published_at", "observed_at", "valid_as_of")}
     available = [value for value in dates.values() if value is not None]
     if any(value > at for value in available):
-        return {"status": "future", "basis": None, "age_days": None, "reason": "source date is later than the research cutoff"}
+        return {
+            "status": "future",
+            "basis": None,
+            "age_days": None,
+            "reason": "source date is later than the research cutoff",
+        }
     basis = next((key for key in ("valid_as_of", "observed_at", "published_at") if dates[key] is not None), None)
     if basis is None:
-        return {"status": "unknown", "basis": None, "age_days": None, "reason": "publication, observation and valid-as-of dates are unknown; retrieval is not publication"}
+        return {
+            "status": "unknown",
+            "basis": None,
+            "age_days": None,
+            "reason": "publication, observation and valid-as-of dates are unknown; retrieval is not publication",
+        }
     age_days = (at - dates[basis]).total_seconds() / 86400
     stale = age_days > snapshot.source["max_age_days"]
-    return {"status": "stale" if stale else "fresh", "basis": basis, "age_days": age_days, "reason": f"age assessed against source-specific {snapshot.source['max_age_days']}-day limit; not a truth score"}
+    return {
+        "status": "stale" if stale else "fresh",
+        "basis": basis,
+        "age_days": age_days,
+        "reason": f"age assessed against source-specific {snapshot.source['max_age_days']}-day limit; not a truth score",
+    }

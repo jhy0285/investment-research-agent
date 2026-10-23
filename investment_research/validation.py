@@ -11,9 +11,21 @@ from pathlib import Path
 from typing import Any
 
 from .models import (
-    Alternative, CalculationSpec, EvidenceRecord, InterpretationStatus,
-    OpportunityCost, ProfileField, ProfileSnapshot, ResearchBrief, ResearchCase,
-    ResearchClaim, Review, ReviewedText, SourceRecord, SourceType, VerificationStatus,
+    Alternative,
+    CalculationSpec,
+    EvidenceRecord,
+    InterpretationStatus,
+    OpportunityCost,
+    ProfileField,
+    ProfileSnapshot,
+    ResearchBrief,
+    ResearchCase,
+    ResearchClaim,
+    Review,
+    ReviewedText,
+    SourceRecord,
+    SourceType,
+    VerificationStatus,
 )
 
 
@@ -103,10 +115,14 @@ def _reviewed_text(value: Any, path: str) -> ReviewedText:
 
 
 def _source(value: Any, path: str) -> SourceRecord:
-    d = _object(value, path, "id type name location published_at available_at retrieved_at origin_source_id limitations")
+    d = _object(
+        value, path, "id type name location published_at available_at retrieved_at origin_source_id limitations"
+    )
     return SourceRecord(
-        _id(d["id"], path + ".id"), _enum(SourceType, d["type"], path + ".type"),
-        _text(d["name"], path + ".name"), _text(d["location"], path + ".location"),
+        _id(d["id"], path + ".id"),
+        _enum(SourceType, d["type"], path + ".type"),
+        _text(d["name"], path + ".name"),
+        _text(d["location"], path + ".location"),
         _date(d["published_at"], path + ".published_at"),
         _date(d["available_at"], path + ".available_at"),
         _date(d["retrieved_at"], path + ".retrieved_at"),
@@ -116,7 +132,11 @@ def _source(value: Any, path: str) -> SourceRecord:
 
 
 def _evidence(value: Any, path: str) -> EvidenceRecord:
-    d = _object(value, path, "id source_id text locator observed_at analyzed_at asset_ids view kind verification interpretation limitations value unit period currency")
+    d = _object(
+        value,
+        path,
+        "id source_id text locator observed_at analyzed_at asset_ids view kind verification interpretation limitations value unit period currency",
+    )
     quantity = None
     if d["value"] is not None:
         number = _text(d["value"], path + ".value")
@@ -136,29 +156,44 @@ def _evidence(value: Any, path: str) -> EvidenceRecord:
     if quantity is None and any(v is not None for v in units.values()):
         _fail(path, "수치 없이 단위·기간·통화만 입력하지 않습니다")
     return EvidenceRecord(
-        _id(d["id"], path + ".id"), _id(d["source_id"], path + ".source_id"),
-        _text(d["text"], path + ".text"), _text(d["locator"], path + ".locator"),
+        _id(d["id"], path + ".id"),
+        _id(d["source_id"], path + ".source_id"),
+        _text(d["text"], path + ".text"),
+        _text(d["locator"], path + ".locator"),
         _date(d["observed_at"], path + ".observed_at"),
         _date(d["analyzed_at"], path + ".analyzed_at"),
         _strings(d["asset_ids"], path + ".asset_ids", ids=True),
-        _text(d["view"], path + ".view"), _text(d["kind"], path + ".kind"),
+        _text(d["view"], path + ".view"),
+        _text(d["kind"], path + ".kind"),
         _enum(VerificationStatus, d["verification"], path + ".verification"),
         _review(d["interpretation"], path + ".interpretation"),
         _strings(d["limitations"], path + ".limitations"),
-        quantity, units["unit"], units["period"], units["currency"],
+        quantity,
+        units["unit"],
+        units["period"],
+        units["currency"],
     )
 
 
 def _claim(value: Any, path: str) -> ResearchClaim:
-    d = _object(value, path, "id text asset_ids verification interpretation support_ids counter_ids narrative_evidence_id limitations recheck")
+    d = _object(
+        value,
+        path,
+        "id text asset_ids verification interpretation support_ids counter_ids narrative_evidence_id limitations recheck",
+    )
     return ResearchClaim(
-        _id(d["id"], path + ".id"), _text(d["text"], path + ".text"),
+        _id(d["id"], path + ".id"),
+        _text(d["text"], path + ".text"),
         _strings(d["asset_ids"], path + ".asset_ids", ids=True),
         _enum(VerificationStatus, d["verification"], path + ".verification"),
         _review(d["interpretation"], path + ".interpretation"),
         _strings(d["support_ids"], path + ".support_ids", ids=True),
         _strings(d["counter_ids"], path + ".counter_ids", ids=True),
-        None if d["narrative_evidence_id"] is None else _id(d["narrative_evidence_id"], path + ".narrative_evidence_id"),
+        (
+            None
+            if d["narrative_evidence_id"] is None
+            else _id(d["narrative_evidence_id"], path + ".narrative_evidence_id")
+        ),
         _strings(d["limitations"], path + ".limitations"),
         _text(d["recheck"], path + ".recheck"),
     )
@@ -167,7 +202,8 @@ def _claim(value: Any, path: str) -> ResearchClaim:
 def _alternative(value: Any, path: str) -> Alternative:
     d = _object(value, path, "id name exposure return_definition liquidity support_ids counter_ids unknowns recheck")
     return Alternative(
-        _id(d["id"], path + ".id"), _text(d["name"], path + ".name"),
+        _id(d["id"], path + ".id"),
+        _text(d["name"], path + ".name"),
         _text(d["exposure"], path + ".exposure"),
         _text(d["return_definition"], path + ".return_definition"),
         _text(d["liquidity"], path + ".liquidity"),
@@ -181,7 +217,8 @@ def _alternative(value: Any, path: str) -> Alternative:
 def _calculation(value: Any, path: str) -> CalculationSpec:
     d = _object(value, path, "id label method input_ids asset_ids limitations")
     return CalculationSpec(
-        _id(d["id"], path + ".id"), _text(d["label"], path + ".label"),
+        _id(d["id"], path + ".id"),
+        _text(d["label"], path + ".label"),
         _text(d["method"], path + ".method"),
         _strings(d["input_ids"], path + ".input_ids", ids=True),
         _strings(d["asset_ids"], path + ".asset_ids", ids=True),
@@ -191,15 +228,23 @@ def _calculation(value: Any, path: str) -> CalculationSpec:
 
 def parse_case(data: dict) -> ResearchCase:
     """Parse one versioned synthetic packet. No normalization creates missing facts."""
-    d = _object(data, "case", "schema_version synthetic brief profile sources evidence claims alternatives calculations opportunity_costs")
+    d = _object(
+        data,
+        "case",
+        "schema_version synthetic brief profile sources evidence claims alternatives calculations opportunity_costs",
+    )
     if d["schema_version"] != "1":
         _fail("case.schema_version", "지원 버전은 문자열 1입니다")
     if d["synthetic"] is not True:
         _fail("case.synthetic", "이 MVP는 합성 자료만 지원합니다")
-    b = _object(d["brief"], "brief", "id question as_of base_currency horizon market_context_ids excluded comparison_limits")
+    b = _object(
+        d["brief"], "brief", "id question as_of base_currency horizon market_context_ids excluded comparison_limits"
+    )
     brief = ResearchBrief(
-        _id(b["id"], "brief.id"), _text(b["question"], "brief.question"),
-        _date(b["as_of"], "brief.as_of"), _text(b["base_currency"], "brief.base_currency"),
+        _id(b["id"], "brief.id"),
+        _text(b["question"], "brief.question"),
+        _date(b["as_of"], "brief.as_of"),
+        _text(b["base_currency"], "brief.base_currency"),
         _text(b["horizon"], "brief.horizon"),
         _strings(b["market_context_ids"], "brief.market_context_ids", ids=True),
         _strings(b["excluded"], "brief.excluded"),
@@ -217,33 +262,51 @@ def parse_case(data: dict) -> ResearchCase:
         if item["status"] == "unknown" and item["value"] is not None:
             _fail("profile.fields." + key, "unknown 값은 null이어야 합니다")
         if item["status"] == "known" and (
-            item["value"] is None or type(item["value"]) not in (str, int, bool)
-            or isinstance(item["value"], str) and not item["value"].strip()
+            item["value"] is None
+            or type(item["value"]) not in (str, int, bool)
+            or isinstance(item["value"], str)
+            and not item["value"].strip()
         ):
             _fail("profile.fields." + key, "known에는 문자열·정수·불리언 값이 필요합니다")
         profile_fields[key] = ProfileField(item["status"], item["value"])
     profile = ProfileSnapshot(_id(p["id"], "profile.id"), _date(p["as_of"], "profile.as_of"), profile_fields)
     collections = {}
-    for key, parser in (("sources", _source), ("evidence", _evidence), ("claims", _claim),
-                        ("alternatives", _alternative), ("calculations", _calculation)):
+    for key, parser in (
+        ("sources", _source),
+        ("evidence", _evidence),
+        ("claims", _claim),
+        ("alternatives", _alternative),
+        ("calculations", _calculation),
+    ):
         collections[key] = tuple(parser(v, f"{key}[{i}]") for i, v in enumerate(_list(d[key], key)))
     costs = []
     for i, value in enumerate(_list(d["opportunity_costs"], "opportunity_costs")):
         path = f"opportunity_costs[{i}]"
         c = _object(value, path, "alternative_id forgone_asset_id explanation")
-        costs.append(OpportunityCost(
-            _id(c["alternative_id"], path + ".alternative_id"),
-            _id(c["forgone_asset_id"], path + ".forgone_asset_id"),
-            _reviewed_text(c["explanation"], path + ".explanation"),
-        ))
+        costs.append(
+            OpportunityCost(
+                _id(c["alternative_id"], path + ".alternative_id"),
+                _id(c["forgone_asset_id"], path + ".forgone_asset_id"),
+                _reviewed_text(c["explanation"], path + ".explanation"),
+            )
+        )
     try:
-        canonical = json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode("utf-8")
+        canonical = json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode(
+            "utf-8"
+        )
     except (TypeError, ValueError):
         _fail("case", "지원하지 않는 JSON 값입니다")
     case = ResearchCase(
-        d["schema_version"], True, brief, profile,
-        collections["sources"], collections["evidence"], collections["claims"],
-        collections["alternatives"], collections["calculations"], tuple(costs),
+        d["schema_version"],
+        True,
+        brief,
+        profile,
+        collections["sources"],
+        collections["evidence"],
+        collections["claims"],
+        collections["alternatives"],
+        collections["calculations"],
+        tuple(costs),
         hashlib.sha256(canonical).hexdigest(),
     )
     _validate_links(case)
@@ -284,9 +347,12 @@ def _validate_links(case: ResearchCase) -> None:
 
     def usable(eid: str) -> bool:
         e = evidence[eid]
-        return (e.kind != "observed_narrative" and sources[e.source_id].type != SourceType.COMMUNITY
-                and e.verification == VerificationStatus.SUPPORTED
-                and e.interpretation.status == InterpretationStatus.REVIEWED)
+        return (
+            e.kind != "observed_narrative"
+            and sources[e.source_id].type != SourceType.COMMUNITY
+            and e.verification == VerificationStatus.SUPPORTED
+            and e.interpretation.status == InterpretationStatus.REVIEWED
+        )
 
     def review_references(review: Review, ids: tuple[str, ...], path: str) -> None:
         if review.reviewed_at is None:
@@ -382,11 +448,18 @@ def _validate_links(case: ResearchCase) -> None:
             _fail(path, "기간·수익 정의와 미래 적용 한계를 명시해야 합니다")
     for i, cost in enumerate(case.opportunity_costs):
         path = f"opportunity_costs[{i}]"
-        if cost.alternative_id not in assets or cost.forgone_asset_id not in assets or cost.alternative_id == cost.forgone_asset_id:
+        if (
+            cost.alternative_id not in assets
+            or cost.forgone_asset_id not in assets
+            or cost.alternative_id == cost.forgone_asset_id
+        ):
             _fail(path, "서로 다른 지원 대안 사이의 기회비용이어야 합니다")
         references(cost.explanation.evidence_ids, path + ".explanation.evidence_ids")
         review_references(cost.explanation.interpretation, cost.explanation.evidence_ids, path + ".explanation")
-        if cost.explanation.interpretation.status == InterpretationStatus.REVIEWED and not cost.explanation.evidence_ids:
+        if (
+            cost.explanation.interpretation.status == InterpretationStatus.REVIEWED
+            and not cost.explanation.evidence_ids
+        ):
             _fail(path, "검토된 기회비용 설명에는 근거가 필요합니다")
 
 
@@ -397,6 +470,7 @@ def case_file(path: str | Path) -> Path:
 
 def load_case(path: str | Path) -> ResearchCase:
     """Read local JSON only; directory inputs resolve to case.json."""
+
     def unique_keys(pairs):
         result = {}
         for key, value in pairs:

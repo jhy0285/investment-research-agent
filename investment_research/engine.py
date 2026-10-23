@@ -16,7 +16,6 @@ from .models import (
     VerificationStatus,
 )
 
-
 ENGINE_VERSION = "evidence_rules_v1"
 REPORT_VERSION = "korean_brief_v1"
 RATE_DIFFERENCE_LIMIT = (
@@ -29,9 +28,15 @@ PROFILE_CONSTRAINTS = (
     ("emergency_fund", "비상자금이 미확인이라 현금 비중이 과도하거나 추가 투자에 충분하다고 판단할 수 없다."),
     ("debt", "부채가 미확인이라 무부채로 가정하거나 부채 상환과 투자 사이의 개인 기회비용을 판단할 수 없다."),
     ("housing_funds", "주택 구입 필요자금과 시점이 미확인이라 장기간 자금이 묶이는 선택의 적절성을 판단할 수 없다."),
-    ("portfolio_allocation", "현재 포트폴리오 배분과 보유범위가 미확인이라 전체 집중위험이나 분산·안전성을 판단할 수 없다."),
+    (
+        "portfolio_allocation",
+        "현재 포트폴리오 배분과 보유범위가 미확인이라 전체 집중위험이나 분산·안전성을 판단할 수 없다.",
+    ),
     ("monthly_investment", "월 추가 투자 가능액이 미확인이라 안정적인 근로소득에서 투자 가능 금액을 추정할 수 없다."),
-    ("risk_capacity", "위험 감당 능력이 미확인이라 나이·소득·위험 감수 의향에서 손실 한도·투자 비중·레버리지 허용을 도출할 수 없다."),
+    (
+        "risk_capacity",
+        "위험 감당 능력이 미확인이라 나이·소득·위험 감수 의향에서 손실 한도·투자 비중·레버리지 허용을 도출할 수 없다.",
+    ),
 )
 
 
@@ -48,7 +53,9 @@ def withheld_reason(evidence: EvidenceRecord, source: SourceRecord) -> str | Non
         if evidence.provenance.match_status != "matched":
             reasons.append(f"보존 자료와 구절의 일치 상태가 {evidence.provenance.match_status}임")
         if evidence.provenance.freshness != "fresh":
-            reasons.append(f"자료의 시점 적합성이 {evidence.provenance.freshness}임; 과거 사실 확인과 현재 적용은 별도임")
+            reasons.append(
+                f"자료의 시점 적합성이 {evidence.provenance.freshness}임; 과거 사실 확인과 현재 적용은 별도임"
+            )
     return "; ".join(reasons) if reasons else None
 
 
@@ -93,8 +100,7 @@ def _metrics(
         # The loader bounds numeric input size; ample precision keeps subtraction exact.
         precision = max(
             34,
-            sum(len(e.value.as_tuple().digits) + abs(e.value.as_tuple().exponent) for e in inputs)
-            + 4,
+            sum(len(e.value.as_tuple().digits) + abs(e.value.as_tuple().exponent) for e in inputs) + 4,
         )
         with localcontext(Context(prec=precision)):
             value = inputs[0].value - inputs[1].value
@@ -141,11 +147,7 @@ def run_research(case: ResearchCase) -> ResearchResult:
                 if origin in origins and origin not in duplicate_origins:
                     duplicate_origins.append(origin)
                 origins.append(origin)
-        strength = (
-            "mixed" if support and counter
-            else "limited_support" if support
-            else "insufficient_evidence"
-        )
+        strength = "mixed" if support and counter else "limited_support" if support else "insufficient_evidence"
         assessments.append(
             AlternativeAssessment(
                 asset_id=alternative.id,
