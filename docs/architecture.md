@@ -1,6 +1,6 @@
 # 제안 아키텍처
 
-2026-10-07 추가한 [투자 판단 순환](investment-cycle.md)은 아래 기존 수집·근거 계약 뒤에 연결한다. `decision_data.py`의 시점/정의 계약, `backtest.py`의 다음 관측 진입·독립기간 검증, `investment_cycle.py`의 승인/행동/배분, `decision_journal.py`의 불변 판단·전략·성숙 결과, `decision_report.py`의 결론 우선 보고서를 같은 CLI 안에서 실행한다. 새 서비스나 LLM 결정 권한을 추가하지 않았다. Broad Scan의 기본 승인 부재 판단과 선택적 등록 전략 판단을 구분하며 저장 실행의 버전 marker로 이전 보고서를 그대로 재현한다. 2026-10-22에는 `history.py`가 검토된 공개 제공자(Upbit 일·30분 캔들, KODEX 발행사 JSON, ALFRED 판본, FactSet 주간 PDF 1쪽)에서 같은 시점/정의 계약의 장기 이력을 만든다. 기존 HTTPS 접근 경계를 쓰고 보존 행으로 오프라인 재현하며, 판단 권한은 갖지 않는다. `invest run --history`는 검증된 이력 실행의 행으로 계획을 펼치고 현재 조건이 읽는 행만 근거로 연결한다.
+2026-10-07 추가한 [투자 판단 순환](investment-cycle.md)은 아래 기존 수집·근거 계약 뒤에 연결한다. `decision_data.py`의 시점/정의 계약, `backtest.py`의 다음 관측 진입·독립기간 검증, `investment_cycle.py`의 승인/행동/배분, `decision_journal.py`의 불변 판단·전략·성숙 결과, `decision_report.py`의 결론 우선 보고서를 같은 CLI 안에서 실행한다. 새 서비스나 LLM 결정 권한을 추가하지 않았다. Broad Scan의 기본 승인 부재 판단과 선택적 등록 전략 판단을 구분하며 저장 실행의 버전 marker로 이전 보고서를 그대로 재현한다. 2026-10-22에는 `history.py`가 검토된 공개 제공자(Upbit 일·30분 캔들, KODEX·TIGER 발행사 공개 자료, ALFRED 판본, FactSet 주간 PDF 1쪽)에서 같은 시점/정의 계약의 장기 이력을 만든다. 기존 HTTPS 접근 경계를 쓰고 보존 행으로 오프라인 재현하며, 판단 권한은 갖지 않는다. `invest run --history`는 검증된 이력 실행의 행으로 계획을 펼치고 현재 조건이 읽는 행만 근거로 연결한다.
 
 ## 1. 선택: 로컬 CLI로 시작하는 모듈형 단일 애플리케이션
 

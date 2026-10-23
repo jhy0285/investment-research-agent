@@ -62,8 +62,8 @@ BTC에는 [Source Discovery & Freshness MVP](docs/source-discovery.md)를 연결
 | 상태 | 기능 |
 | --- | --- |
 | 실행 가능 | 자연어 `ask`(Scan·Deep Dive·Compare·Portfolio Review), 공개 출처 획득·검증·replay, 거시 판본·Macro Snapshot, 15영역 Opportunity Map, 투자 판단·1,000만원 예시 배분·불변 일지·사후 평가(`invest`), 장기 이력 수집(`invest history`), 실제 자료로 이력 수집 → 조사 → 판단(`invest run --history`) |
-| 제한적 | Compare·Portfolio Review(자산별 미지원 표시), 장기 이력(Upbit BTC·ETH, KODEX TR ETF, 미국 정부 거시 계열 ALFRED 판본, FactSet S&P 500 forward P/E만), 매수 승인(검증 통과 전략과 사람의 검토가 있어야 가능) |
-| 미구현 | 미국 주식·ETF 원화 총수익 이력, KODEX 외 국내 종목·ETF 가격, 개별 기업 이익 전망 판본, 개인 체결·세금, 자동 예약 실행, 자동매매 |
+| 제한적 | Compare·Portfolio Review(자산별 미지원 표시), 장기 이력(Upbit BTC·ETH, KODEX TR ETF, TIGER 미국 지수 NAV, 미국 정부 거시 계열 ALFRED 판본, FactSet S&P 500 forward P/E만), 매수 승인(검증 통과 전략과 사람의 검토가 있어야 가능) |
+| 미구현 | 미국 개별 주식·해외 ETF의 직접 계산 총수익(미국 지수는 TIGER NAV로 비교 시장만 지원), KODEX·TIGER 외 국내 종목·ETF 가격, 개별 기업 이익 전망 판본, 개인 체결·세금, 자동 예약 실행(수동 절차는 [정기 점검](docs/weekly-routine.md)), 자동매매 |
 
 판단 규칙은 버전으로 관리한다. 현재 `investment_cycle_v3`는 현재 자료가 확인되지 않은 보유 자산에 축소를 권하지 않고 판단을 보류하며(v2), 현금 분배가 없는 코인 가격을 보유자 수익의 하한으로 표시해 원화 총수익 비교 시장과 검증할 수 있고, `invest run`은 사람이 조사를 읽고 검토한 뒤의 판단 시각을 기준으로 삼는다. 이전 버전으로 저장한 실행은 그 버전 규칙으로 재현한다. 변경 이력은 [CHANGELOG](CHANGELOG.md)에 있다.
 
@@ -167,7 +167,8 @@ python -m investment_research opportunity replay examples/opportunity_map_case -
 | [Source Anomaly Guard](docs/source-anomaly-guard.md) | 제공자 충돌·이상치·단위·결측 격리와 claim/계산/coverage·이전 판본 보존 |
 | [원자재 Deep Dive](docs/commodity-deep-dive.md) | 독립 가스/금/바스켓 조사, 실제 선물·수요·상품 차이와 시차/공백 |
 | [투자 판단과 사후검증](docs/investment-cycle.md) | 가설·시점 검증·행동·예시 배분·불변 일지·사후 평가와 판단 규칙 버전 |
-| [시점 보장 장기 이력](docs/long-history.md) | Upbit 일 캔들·ALFRED 판본 수집, known_at 규칙, 누수 방지, 계획 연결과 한계 |
+| [시점 보장 장기 이력](docs/long-history.md) | Upbit·KODEX·TIGER·ALFRED·FactSet 수집, known_at 규칙, 총수익 표시의 근거와 검증, 계획 연결과 한계 |
+| [정기 점검 절차](docs/weekly-routine.md) | 이력 갱신 → 조사 → 사람의 검토 → 판단 → 사후 평가의 수동 주간 루틴과 자동화 가능 범위 |
 | [개발 지침](AGENTS.md) | 향후 작업에서 유지할 원칙과 검증 기준 |
 
 ## 우선 지킬 경계

@@ -154,7 +154,7 @@ def validate_spec(spec, catalog, today=None):
             # Alignment needs the other series' closing instants, collected first.
             if item.get('align_to') not in weekly:
                 raise SourceError('aligned candles need a KRX-close series listed earlier in this spec')
-            every = _integer(item, 'every', 1, 20) if 'every' in item else 1
+            every = 5 if item.get('every') == 'week' else (_integer(item, 'every', 1, 20) if 'every' in item else 1)
             rows = weekly[item['align_to']]
             if 'since' in item:
                 # Fewer rows after `since`; weekly targets get no credit (conservative).
@@ -447,6 +447,13 @@ def _sampled(rows, item):
     if 'since' in item:
         rows = [r for r in rows if r['at'][:10] >= item['since']]
     every = item.get('every', 1)
+    if every == 'week':
+        # The last row of each ISO week: calendar-regular, so holidays do not accumulate drift.
+        last = {}
+        for r in rows:
+            iso = _time(r['at']).isocalendar()
+            last[(iso.year, iso.week)] = r
+        return list(last.values())
     return rows[::-1][::every][::-1]
 
 
@@ -590,6 +597,11 @@ def _aligned_dataset(item, retained, target):
             market=item['market'],
             aligned_to=item['align_to'],
             missing_instants=missing,
+            **(
+                {'sampling': {'every': item.get('every', 1), 'since': item.get('since')}}
+                if 'every' in item or 'since' in item
+                else {}
+            ),
         ),
     )
     validate_dataset(dataset)
@@ -942,8 +954,32 @@ def _derived_features(item, dataset):
     return out
 
 
-def _gaps(rows, version):
+def _gap_kind(dataset):
+    """How gaps are counted. None keeps the original per-step rule so saved runs replay unchanged."""
+    provenance = dataset['provenance']
+    if provenance['provider'] == 'tiger_nav_reinvested':
+        return 'weekdays'
+    if provenance.get('sampling'):
+        return 'instants'
+    return None
+
+
+def _gaps(rows, version, dataset=None):
     days = [_time(r['at']).date() for r in rows]
+    kind = _gap_kind(dataset) if dataset is not None and version != 'pit_history_v1' else None
+    if kind == 'weekdays':
+        # A Monday-to-Friday trading calendar: count weekdays without a row (holidays included).
+        gaps = []
+        for a, b in zip(days, days[1:]):
+            missing = sum(1 for i in range(1, (b - a).days) if (a + timedelta(days=i)).weekday() < 5)
+            if missing:
+                gaps.append(dict(after=a.isoformat(), before=b.isoformat(), missing_rows=missing))
+        return gaps
+    if kind == 'instants':
+        # Sampled on purpose: only instants that were requested and returned no candle are missing.
+        return [
+            dict(after=m[:10], before=m[:10], missing_rows=1) for m in dataset['provenance'].get('missing_instants', [])
+        ]
     if version == 'pit_history_v1':
         return [
             dict(after=a.isoformat(), before=b.isoformat(), missing_days=(b - a).days - 1)
@@ -1013,7 +1049,8 @@ def build(spec, snapshots):
                 last=d['rows'][-1]['at'],
                 last_value=d['rows'][-1]['value'],
                 unit=d['unit'],
-                gaps=_gaps(d['rows'], version),
+                gaps=_gaps(d['rows'], version, d),
+                **({'gap_kind': _gap_kind(d)} if version != 'pit_history_v1' and _gap_kind(d) else {}),
             )
             for d in prices.values()
         ],
@@ -1068,6 +1105,14 @@ DATE_NOTES = {
 }
 
 
+def _gap_text(kind, gaps):
+    if kind == 'weekdays':
+        return f'평일 중 값이 없는 날 {gaps}일(휴장일 포함)은 채우지 않았다.' if gaps else '평일 값이 모두 있다.'
+    if kind == 'instants':
+        return f'요청했지만 체결이 없어 비어 있는 시각 {gaps}개는 채우지 않았다.' if gaps else '비어 있는 시각 없음.'
+    return f'평소 간격 기준으로 빠진 표본 {gaps}개는 채우지 않았다.' if gaps else '빠진 표본 없음.'
+
+
 def render_history(result):
     lines = ['# 장기 시점 이력 수집 결과', '']
     lines.append(
@@ -1087,7 +1132,7 @@ def render_history(result):
             + (
                 (f'빠진 날 {gaps}일은 채우지 않았다.' if gaps else '빠진 날 없음.')
                 if v1
-                else (f'평소 간격 기준으로 빠진 표본 {gaps}개는 채우지 않았다.' if gaps else '빠진 표본 없음.')
+                else _gap_text(p.get('gap_kind'), gaps)
             )
         )
     lines += ['', '## 특징값 이력', '']

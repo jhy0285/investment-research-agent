@@ -1,10 +1,10 @@
 {
   "schema_version": "investment-history-spec-v1",
-  "note": "원화 환산 미국 주식 총수익(TIGER 미국S&P500·미국나스닥100의 분배금 재투자 NAV, 비교 시장 전용)과 같은 거래일의 Upbit BTC(보유자 수익의 하한, 5개 표본마다). 실제 자료는 reports/ 같은 미커밋 위치에만 저장한다.",
+  "note": "원화 환산 미국 주식 총수익(TIGER 미국S&P500·미국나스닥100의 분배금 재투자 NAV, 비교 시장 전용)과 같은 거래일의 Upbit BTC(보유자 수익의 하한, 주마다 마지막 거래일). 실제 자료는 reports/ 같은 미커밋 위치에만 저장한다.",
   "prices": [
     {"provider": "tiger_nav_reinvested", "fund": "KR7360750004"},
     {"provider": "tiger_nav_reinvested", "fund": "KR7133690008"},
-    {"provider": "upbit_aligned_candles", "market": "KRW-BTC", "align_to": "TIGER_US_SP500_NAV_TR", "since": "2020-09-01", "every": 5}
+    {"provider": "upbit_aligned_candles", "market": "KRW-BTC", "align_to": "TIGER_US_SP500_NAV_TR", "since": "2020-09-01", "every": "week"}
   ],
   "features": [
     {"name": "btc_close_to_sma43", "provider": "price_derived", "instrument_id": "UPBIT_KRW_BTC_AT_TIGER_US_SP500_NAV_TR", "kind": "close_to_sma", "observations": 43}

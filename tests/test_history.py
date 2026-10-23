@@ -135,7 +135,9 @@ class FakeInternet:
         self.now, self.last_day, self.leak_future, self.store_lag_ms = now, last_day, leak_future, store_lag_ms
         self.distribution, self.divide_list, self.empty_instants = distribution, list(divide_list), set(empty_instants)
         self.fund_name = fund_name
-        self.tiger = dict(reinvested=True, rates=None, header=None, row_ticker='360750', none_dates=('2023-05-02',))
+        self.tiger = dict(
+            reinvested=True, rates=None, header=None, row_ticker='360750', none_dates=('2023-05-02',), cap=None
+        )
         # Authored editions: a Friday issue, and a Thursday issue in a holiday week.
         self.factset_issues = {date(2026, 8, 7), date(2026, 9, 3)}
         self.urls = []
@@ -202,6 +204,7 @@ class FakeInternet:
                     if f'{r["wkdate"][:4]}-{r["wkdate"][4:6]}-{r["wkdate"][6:]}' in self.tiger['none_dates']:
                         r['nav'] = r['prc'] = None
                 rows = [r for r in rows if query['strtDt'] <= r['wkdate'] <= query['endDt']]
+                rows = rows[-self.tiger['cap'] :] if self.tiger['cap'] else rows
                 return FetchResponse(json.dumps(dict(rtnData=rows)).encode(), 'application/json;charset=UTF-8')
             if parts.path.endswith('/distribution/annual/list.do'):
                 header = self.tiger['header'] or tiger_header()
@@ -844,6 +847,22 @@ class HistoryTests(unittest.TestCase):
         self.assertIn('비헤지', tr['return_basis_note'])
         self.assertEqual(replay_history(self.root / 'tiger'), result)
 
+    def test_tiger_response_cap_keeps_ratios_valid_and_records_the_real_start(self):
+        fake = FakeInternet()
+        fake.tiger['cap'] = 700  # the endpoint returns only the latest rows; levels keep the request-start baseline
+        result = self.acquire(self.tiger_spec(since='2026-01-02', every=5), fake, name='tiger-cap')
+        tr = result['prices']['TIGER_US_SP500_NAV_TR']
+        returned = tiger_rows()[-700:]  # independent of the provider: the issuer's latest 700 rows
+        first = returned[0]['wkdate']
+        self.assertEqual(len(tr['rows']), 700)
+        self.assertEqual(tr['provenance']['first_returned'], f'{first[:4]}-{first[4:6]}-{first[6:]}')
+        self.assertEqual(tr['provenance']['missing_dates'], [])  # the empty 2023-05-02 row was cut off
+        self.assertGreater(Decimal(tr['rows'][0]['value']), 1)  # not rebased to 1
+        self.assertEqual(tr['provenance']['request_start'], '2020-08-07')
+        # Only years whose year-ends both lie inside the returned rows are compared.
+        self.assertEqual([c['year'] for c in tr['provenance']['verification']], [2024, 2025])
+        self.assertIn('request start date', tr['unit'])
+
     def test_tiger_nav_that_loses_distributions_is_refused_a_total_return_label(self):
         fake = FakeInternet()
         fake.tiger['reinvested'] = False
@@ -900,6 +919,65 @@ class HistoryTests(unittest.TestCase):
         swapped['candidates'][0]['quote'].update(instrument_id='TIGER_US_SP500_NAV_TR')
         with self.assertRaises(SourceError):
             validate_plan(swapped)  # NAV is not a price the plan can trade at
+
+    def test_gap_summaries_use_each_series_own_calendar(self):
+        fake = FakeInternet(empty_instants={'2026-02-02T06:30:00Z'})
+        spec = self.tiger_spec(since='2026-01-02', every=1)
+        spec['features'] = [
+            dict(
+                name='btc_sma_5',
+                provider='price_derived',
+                instrument_id='UPBIT_KRW_BTC_AT_TIGER_US_SP500_NAV_TR',
+                kind='close_to_sma',
+                observations=5,
+            )
+        ]
+        result = self.acquire(spec, fake, name='gaps')
+        tiger, btc = result['summary']['prices']
+        # Weekends are not gaps for a Monday-Friday series; the one weekday without a row is the issuer's.
+        self.assertEqual(tiger['gap_kind'], 'weekdays')
+        self.assertEqual(tiger['gaps'], [dict(after='2023-05-01', before='2023-05-03', missing_rows=1)])
+        # A sampled series only reports instants that were requested and came back empty.
+        self.assertEqual(btc['gap_kind'], 'instants')
+        self.assertEqual(btc['gaps'], [dict(after='2026-02-02', before='2026-02-02', missing_rows=1)])
+        text = (self.root / 'gaps' / 'history.md').read_text(encoding='utf-8')
+        self.assertIn('평일 중 값이 없는 날 1일(휴장일 포함)', text)
+        self.assertIn('비어 있는 시각 1개', text)
+        # Series built before these options keep the original wording and keys.
+        old = self.acquire(kodex_spec(), name='gaps-old')['summary']['prices']
+        self.assertTrue(all('gap_kind' not in p for p in old))
+
+    def test_weekly_sampling_picks_each_weeks_last_row_and_keeps_averages_computable(self):
+        from investment_research.history import _sampled
+
+        # Friday 2026-01-09 is a holiday (no row); the week of 01-12 ends Friday; the week of 01-19 has only Mon-Wed.
+        days = [3, 5, 6, 7, 8, 12, 13, 14, 15, 16, 19, 20, 21]
+        rows = [dict(at=f'2026-01-{d:02d}T06:30:00+00:00') for d in days]
+        picked = [r['at'][8:10] for r in _sampled(rows, dict(every='week'))]
+        self.assertEqual(picked, ['03', '08', '16', '21'])  # Fri, Thu, Fri, Wed (latest row included)
+        self.assertEqual(
+            [r['at'][8:10] for r in _sampled(rows, dict(every='week', since='2026-01-08'))], ['08', '16', '21']
+        )
+        spec = self.tiger_spec(since='2026-01-02', every='week')
+        spec['features'] = [
+            dict(
+                name='btc_sma_5',
+                provider='price_derived',
+                instrument_id='UPBIT_KRW_BTC_AT_TIGER_US_SP500_NAV_TR',
+                kind='close_to_sma',
+                observations=5,
+            )
+        ]
+        result = self.acquire(spec, name='weekly')
+        btc = result['prices']['UPBIT_KRW_BTC_AT_TIGER_US_SP500_NAV_TR']
+        starts = [date.fromisoformat(r['at'][:10]) for r in btc['rows']]
+        self.assertEqual({d.weekday() for d in starts[:-1]}, {4})  # each full week's last row is a Friday
+        self.assertEqual(len({d.isocalendar()[:2] for d in starts}), len(starts))
+        self.assertGreater(len(result['features']['btc_sma_5']), 0)
+        bad = deepcopy(spec)
+        bad['prices'][1]['every'] = 'fortnight'
+        with self.assertRaises(SourceError):
+            validate_spec(bad, load_catalog(), NOW.date())
 
     def test_aligned_sampling_always_includes_the_latest_row_and_counts_requests(self):
         from investment_research.history import _sampled

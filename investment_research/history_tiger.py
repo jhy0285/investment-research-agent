@@ -169,6 +169,7 @@ def collect(session, item, catalog, today):
     )
     response, retrieved_at = session.get(PROVIDER, url)
     out['history'] = dict(
+        request_start=start.isoformat(),
         url=url,
         retrieved_at=retrieved_at,
         raw_sha256=_sha(response.body),
@@ -211,7 +212,7 @@ def dataset(item, retained):
         asset_id=item.get('asset_id', contract['asset_id']),
         name=contract['name'] + ' (발행사 NAV, 분배금 재투자)',
         currency='KRW',
-        unit='index (series start = 1)',
+        unit='index (1 + cumulative NAV return from the request start date)',
         measure='tiger_issuer_nav_distributions_reinvested_index',
         source='미래에셋자산운용 TIGER ETF 공개 차트(누적 NAV 수익률)와 연간 분배율 표 ' + contract['ticker'],
         calendar=provider['boundary'] + ' ' + provider['nav_note'],
@@ -232,6 +233,8 @@ def dataset(item, retained):
             fund=item['fund'],
             raw_sha256=[history['raw_sha256'], *distribution['raw_sha256']],
             verification=checks,
+            request_start=history['request_start'],
+            first_returned=history['data']['rows'][0][0],
             missing_dates=history['data']['missing'],
         ),
     )
