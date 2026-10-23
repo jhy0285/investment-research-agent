@@ -570,6 +570,52 @@ class InvestmentCycleTests(unittest.TestCase):
         with self.assertRaises(SourceError):
             evaluate(self.plan, self.snapshot, 'investment_cycle_v0')
 
+    def test_reviewed_price_lower_bound_can_face_total_return_benchmark(self):
+        # A non-distributing asset's price understates holder return when
+        # non-cash distributions are omitted; against a PIT total-return
+        # benchmark that can only make approval harder.
+        self.c['prices'].update(
+            return_kind='price',
+            adjustment='unadjusted',
+            return_basis='price_lower_bound',
+            return_basis_note='authored fixture: no cash distributions',
+        )
+        validate_plan(self.plan)
+        bt = run_backtest(self.c, _time(AT))
+        self.assertEqual(bt['blockers'], [])
+        self.assertTrue(any('보수적' in x for x in bt['limitations']))
+        self.assertEqual(evaluate(self.plan, self.snapshot)['decisions'][0]['grade'], 'A')
+        old = run_backtest(self.c, _time(AT), 'pit_event_backtest_v1')
+        self.assertIn('배당·분배금을 포함한 실제 상품 수익률이 아니다.', old['blockers'])
+        saved = evaluate(self.plan, self.snapshot, 'investment_cycle_v2')
+        self.assertEqual(saved['backtest_version'], 'pit_event_backtest_v1')
+        self.assertEqual(saved['decisions'][0]['grade'], 'C')
+
+    def test_lower_bound_needs_total_return_benchmark_and_consistent_basis(self):
+        self.c['prices'].update(
+            return_kind='price', adjustment='unadjusted', return_basis='price_lower_bound', return_basis_note='x'
+        )
+        self.c['benchmark'].update(return_kind='price', adjustment='unadjusted')
+        bt = run_backtest(self.c, _time(AT))
+        self.assertIn('비교 시장이 당시 이용 가능했던 총수익 판본이 아니다.', bt['blockers'])
+        for basis, kind, adjustment, note in (
+            ('price_lower_bound', 'total_return', 'pit_total_return_index', 'x'),
+            ('non_distributing_fund_price', 'price', 'unadjusted', 'x'),
+            ('price_lower_bound', 'price', 'unadjusted', ''),
+            ('guess', 'price', 'unadjusted', 'x'),
+        ):
+            d = dict(
+                self.c['prices'], return_kind=kind, adjustment=adjustment, return_basis=basis, return_basis_note=note
+            )
+            with self.subTest(basis=basis, kind=kind), self.assertRaises(SourceError):
+                validate_dataset(d)
+        tr = dict(self.c['benchmark'], return_kind='total_return', adjustment='pit_total_return_index')
+        self.c['prices'].update(return_kind='total_return', adjustment='pit_total_return_index')
+        self.c['prices'].pop('return_basis')
+        self.c['benchmark'] = dict(tr, return_kind='price', adjustment='unadjusted')
+        with self.assertRaises(SourceError):
+            validate_plan(self.plan)  # total return vs price stays a definition mismatch
+
     def test_review_cli_and_invalid_plan_exit_codes(self):
         from investment_research.__main__ import main
 

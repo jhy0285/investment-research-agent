@@ -13,7 +13,13 @@ from statistics import median
 from .decision_data import HORIZONS, digest, number, target, validate_dataset, validate_strategy, timestamp as _time
 from .sources import SourceError
 
-VERSION = 'pit_event_backtest_v1'
+VERSION = 'pit_event_backtest_v2'
+# v1 required total return on both sides. v2 also accepts a candidate price
+# series reviewed as a lower bound of the holder's return (no cash
+# distributions; omitted non-cash distributions can only add value) when the
+# benchmark is a point-in-time total return. Saved v1 results replay as v1.
+VERSIONS = ('pit_event_backtest_v1', 'pit_event_backtest_v2')
+LOWER_BOUND = 'price_lower_bound'
 ZERO = Decimal(0)
 OPS = {
     '>': lambda a, b: a > b,
@@ -129,7 +135,9 @@ def event_at(rows, i, horizon, end, cost, benchmark, *, times=None, benchmark_ma
     )
 
 
-def run_backtest(candidate, cutoff):
+def run_backtest(candidate, cutoff, version=VERSION):
+    if version not in VERSIONS:
+        raise SourceError('unsupported backtest version')
     s = candidate['strategy']
     validate_strategy(s)
     validate_dataset(candidate['prices'])
@@ -207,17 +215,13 @@ def run_backtest(candidate, cutoff):
     history_years = (
         max((_time(r['at']) for r in rows), default=cutoff) - min((_time(r['at']) for r in rows), default=cutoff)
     ).days / 365.25
-    blockers = []
-    if candidate['prices']['return_kind'] != 'total_return':
-        blockers.append('배당·분배금을 포함한 실제 상품 수익률이 아니다.')
-    if any(d['adjustment'] != 'pit_total_return_index' for d in (candidate['prices'], candidate['benchmark'])):
-        blockers.append('당시 이용 가능했던 총수익 판본이 아니다.')
+    blockers, limitations = _definition_blockers(candidate, version)
     if candidate['prices']['survivorship'] == 'current_survivors':
         blockers.append('현재 생존 종목만 사용했다.')
     if s['trial_count'] > 1:
         blockers.append('여러 조건을 탐색한 전략이다. 새 미래 검증 전에는 강한 승인이 불가하다.')
     return dict(
-        method_version=VERSION,
+        method_version=version,
         strategy_sha256=digest(s),
         history_years=str(history_years),
         signal_occurrences=len(signals),
@@ -228,8 +232,43 @@ def run_backtest(candidate, cutoff):
             '서로 겹치지 않는 신호로 평가한다. 표본 빈도는 미래 확률이 아니다.',
             '비교 구간 안에서 보유기간이 끝난 표본만 사용한다. 미성숙 신호는 성과에 넣지 않는다.',
             '신뢰구간은 독립에 가까운 표본 재추출이며 시장 구조 변화와 모든 의존성을 보증하지 않는다.',
-        ],
+        ]
+        + limitations,
     )
+
+
+def lower_bound(dataset):
+    return (
+        dataset.get('return_basis') == LOWER_BOUND
+        and dataset['return_kind'] == 'price'
+        and dataset['adjustment'] == 'unadjusted'
+    )
+
+
+def _definition_blockers(candidate, version):
+    prices, bench = candidate['prices'], candidate['benchmark']
+    blockers = []
+    if version == 'pit_event_backtest_v1':
+        if prices['return_kind'] != 'total_return':
+            blockers.append('배당·분배금을 포함한 실제 상품 수익률이 아니다.')
+        if any(d['adjustment'] != 'pit_total_return_index' for d in (prices, bench)):
+            blockers.append('당시 이용 가능했던 총수익 판본이 아니다.')
+        return blockers, []
+    bounded = lower_bound(prices)
+    if prices['return_kind'] != 'total_return' and not bounded:
+        blockers.append('배당·분배금을 포함한 실제 상품 수익률이 아니다.')
+    if not bounded and prices['adjustment'] != 'pit_total_return_index':
+        blockers.append('당시 이용 가능했던 총수익 판본이 아니다.')
+    if bench['return_kind'] != 'total_return' or bench['adjustment'] != 'pit_total_return_index':
+        blockers.append('비교 시장이 당시 이용 가능했던 총수익 판본이 아니다.')
+    limitations = []
+    if bounded:
+        limitations.append(
+            '상품 수익은 현금 분배가 없는 자산의 가격 수익이다. 제외한 포크·에어드롭 같은 비현금 분배는 보유자 수익을 '
+            '낮게 잡는 쪽이므로 절대 수익과 시장 대비 비교는 보수적이다. 같은 상품 안의 시점 비교(조건 없는 매수·같은 '
+            '계절)는 제외한 분배의 시점에 따라 어느 쪽으로든 조금 치우칠 수 있다.'
+        )
+    return blockers, limitations
 
 
 def approval(backtest, strategy, policy):

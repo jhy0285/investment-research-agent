@@ -15,10 +15,16 @@ from functools import wraps
 
 from .sources import SourceError, _parse_json, _time as _parse_time
 
-VERSION = 'investment_cycle_v2'
-# v1 reduced a held position when current data were unverified; it stays
-# replayable so saved judgments are reproduced exactly, never rewritten.
-SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2')
+VERSION = 'investment_cycle_v3'
+# v1 reduced a held position when current data were unverified. v3 keeps the
+# v2 action rules and uses backtest v2 (reviewed price lower bounds). Older
+# versions stay replayable so saved judgments are reproduced, never rewritten.
+SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2', 'investment_cycle_v3')
+# return_basis -> (return_kind, adjustment) it must declare.
+RETURN_BASES = {
+    'price_lower_bound': ('price', 'unadjusted'),
+    'non_distributing_fund_price': ('total_return', 'pit_total_return_index'),
+}
 HORIZONS = {'1w': 0, '1m': 1, '3m': 3, '6m': 6, '1y': 12}
 MARKETS = (
     '미국 주식',
@@ -144,6 +150,14 @@ def validate_dataset(data):
         raise SourceError('unknown price adjustment meaning')
     if data['return_kind'] == 'total_return' and data['adjustment'] == 'unadjusted':
         raise SourceError('unadjusted price is not a total-return series')
+    basis = data.get('return_basis')
+    if basis is not None and (
+        basis not in RETURN_BASES
+        or RETURN_BASES[basis] != (data['return_kind'], data['adjustment'])
+        or not isinstance(data.get('return_basis_note'), str)
+        or not data['return_basis_note'].strip()
+    ):
+        raise SourceError('return basis must match its reviewed return definition and carry a review note')
     for field in ('instrument_id', 'asset_id', 'currency', 'source', 'calendar', 'survivorship', 'unit', 'measure'):
         if not isinstance(data.get(field), str) or not data[field].strip():
             raise SourceError('dataset missing ' + field)
@@ -269,9 +283,13 @@ def validate_plan(data):
             raise SourceError('quote known before its observation')
         if c['prices']['asset_id'] != c['asset_id']:
             raise SourceError('investment exposure and traded price instrument differ')
-        if (
-            c['prices']['currency'] != c['benchmark']['currency']
-            or c['prices']['return_kind'] != c['benchmark']['return_kind']
+        # A reviewed price lower bound may face a total-return benchmark: the
+        # omission can only understate the candidate, never flatter it.
+        bounded = (
+            c['prices'].get('return_basis') == 'price_lower_bound' and c['benchmark']['return_kind'] == 'total_return'
+        )
+        if c['prices']['currency'] != c['benchmark']['currency'] or (
+            c['prices']['return_kind'] != c['benchmark']['return_kind'] and not bounded
         ):
             raise SourceError('benchmark currency or return definition differs')
         if c['prices']['instrument_id'] == c['benchmark']['instrument_id']:

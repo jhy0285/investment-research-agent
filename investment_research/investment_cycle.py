@@ -6,7 +6,7 @@ from decimal import Decimal, ROUND_FLOOR
 import hashlib
 from pathlib import Path
 
-from .backtest import VERSION as BACKTEST_VERSION, approval, condition_state, run_backtest
+from .backtest import approval, condition_state, run_backtest
 from .decision_data import (
     SUPPORTED_VERSIONS,
     VERSION,
@@ -219,9 +219,9 @@ def _current_state(c, snapshot, s, at):
     )
 
 
-def _verification(c, snapshot, s, at, policy, row):
+def _verification(c, snapshot, s, at, policy, row, version):
     if c['mode'] == 'quantitative':
-        bt = run_backtest(c, at)
+        bt = run_backtest(c, at, BACKTESTS[version])
         status, why = approval(bt, s, policy)
         row.update(backtest=bt, verification=status)
         row['blockers'].extend(why)
@@ -322,8 +322,13 @@ def _signal_outcome(c, current, status):
     )
 
 
-OUTCOMES = {'investment_cycle_v1': _outcome_v1, 'investment_cycle_v2': _outcome_v2}
-assert set(OUTCOMES) == set(SUPPORTED_VERSIONS)
+OUTCOMES = {'investment_cycle_v1': _outcome_v1, 'investment_cycle_v2': _outcome_v2, 'investment_cycle_v3': _outcome_v2}
+BACKTESTS = {
+    'investment_cycle_v1': 'pit_event_backtest_v1',
+    'investment_cycle_v2': 'pit_event_backtest_v1',
+    'investment_cycle_v3': 'pit_event_backtest_v2',
+}
+assert set(OUTCOMES) == set(BACKTESTS) == set(SUPPORTED_VERSIONS)
 
 
 def decide(c, snapshot, policy, version=VERSION):
@@ -349,7 +354,7 @@ def decide(c, snapshot, policy, version=VERSION):
     )
     if current['stale']:
         row['blockers'].append('실제 투자상품의 현재 가격이 미확보 또는 오래됨')
-    status = _verification(c, snapshot, s, at, policy, row)
+    status = _verification(c, snapshot, s, at, policy, row, version)
     current['invalidated'] = any(i['state'] == 'pass' for i in current['invalid']) and not current['invalid_refs']
     row.update(OUTCOMES[version](c, current, status))
     return row
@@ -468,7 +473,7 @@ def evaluate(plan, snapshot, version=VERSION):
     return dict(
         schema_version='investment-decision-v1',
         method_version=version,
-        backtest_version=BACKTEST_VERSION,
+        backtest_version=BACKTESTS[version],
         as_of=snapshot['as_of'],
         synthetic=plan['synthetic'],
         research_sha256=snapshot['research_sha256'],
