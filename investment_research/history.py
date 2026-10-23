@@ -589,10 +589,13 @@ def _issue_dates(item, today):
     return dates
 
 
-def _pdf_page_one(body, max_bytes):
+def _pdf_page_one(body, max_bytes, last_page=1):
     from .semiconductor_data import bounded_pdf_text
 
-    return bounded_pdf_text(body, max_bytes=max_bytes, first_page=1, last_page=1)
+    # Page 1 carries the issue date and the Key Metrics valuation bullet. Some
+    # shortened editions (e.g. 2026-06-18) state no forward P/E at all and are
+    # recorded as invalid rather than searched elsewhere.
+    return bounded_pdf_text(body, max_bytes=max_bytes, first_page=1, last_page=last_page)
 
 
 def _pdf_modified(body, max_bytes):
@@ -644,7 +647,8 @@ def _collect_factset(session, item, catalog, today):
                 raw_bytes=len(response.body),
             )
             try:
-                found = parse_factset_page(_pdf_page_one(response.body, provider['max_bytes']), issue, pattern)
+                text = _pdf_page_one(response.body, provider['max_bytes'], provider['pages'][-1])
+                found = parse_factset_page(text, issue, pattern)
                 record.update(status='found', pdf_modified=_pdf_modified(response.body, provider['max_bytes']), **found)
             except SourceError as exc:
                 # One unreadable edition is recorded and skipped; the rest stand.

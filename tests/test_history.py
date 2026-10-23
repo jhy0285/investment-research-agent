@@ -190,7 +190,7 @@ def spec():
     )
 
 
-def factset_text(body, max_bytes):
+def factset_text(body, max_bytes, last_page=1):
     """Authored page-1 text keyed by the fake PDF body; not FactSet content."""
     issue = date.fromisoformat(body.decode().rsplit(' ', 1)[1])
     value = {date(2026, 8, 7): '20.0', date(2026, 9, 3): '19.5'}[issue]
@@ -692,7 +692,7 @@ class HistoryTests(unittest.TestCase):
             ],
         )
 
-        def page(body, max_bytes):
+        def page(body, max_bytes, last_page=1):
             if body.endswith(b'2026-09-03'):
                 raise SourceError('page 1 unreadable')
             return factset_text(body, max_bytes)
@@ -731,6 +731,9 @@ class HistoryTests(unittest.TestCase):
         pattern = load_catalog()['providers']['factset_earnings_insight']['series']['sp500_forward_pe']['pattern']
         text = factset_text(b'%PDF-1.4 authored 2026-08-07', 0)
         self.assertEqual(parse_factset_page(text, date(2026, 8, 7), pattern)['value'], '20.0')
+        # Some editions continue the sentence with a comma ("is 21.4, which is above ...").
+        comma = text.replace('is 20.0. This', 'is 20.0, which')
+        self.assertEqual(parse_factset_page(comma, date(2026, 8, 7), pattern)['value'], '20.0')
         for broken, issue in (
             (text, date(2026, 8, 14)),
             (text.replace('is 20.0.', 'is about twenty.'), date(2026, 8, 7)),
