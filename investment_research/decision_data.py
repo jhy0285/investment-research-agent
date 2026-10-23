@@ -20,6 +20,10 @@ VERSION = 'investment_cycle_v3'
 # v2 action rules and uses backtest v2 (reviewed price lower bounds). Older
 # versions stay replayable so saved judgments are reproduced, never rewritten.
 SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2', 'investment_cycle_v3')
+# Only reviewed collectors for assets without cash distributions may label a
+# price series a lower bound; a typed label on, say, a dividend stock would
+# bias the same-series timing baselines that approval still compares.
+LOWER_BOUND_PROVIDERS = ('upbit_day_candles', 'upbit_aligned_candles')
 # return_basis -> (return_kind, adjustment) it must declare.
 RETURN_BASES = {
     'price_lower_bound': ('price', 'unadjusted'),
@@ -49,6 +53,17 @@ MARKETS = (
     '글로벌 부동산',
     '새로운 투자 기회',
 )
+
+
+def lower_bound(dataset):
+    provenance = dataset.get('provenance')
+    return (
+        dataset.get('return_basis') == 'price_lower_bound'
+        and dataset['return_kind'] == 'price'
+        and dataset['adjustment'] == 'unadjusted'
+        and isinstance(provenance, dict)
+        and provenance.get('provider') in LOWER_BOUND_PROVIDERS
+    )
 
 
 def timestamp(value):
@@ -287,9 +302,7 @@ def validate_plan(data):
             raise SourceError('investment exposure and traded price instrument differ')
         # A reviewed price lower bound may face a total-return benchmark: the
         # omission can only understate the candidate, never flatter it.
-        bounded = (
-            c['prices'].get('return_basis') == 'price_lower_bound' and c['benchmark']['return_kind'] == 'total_return'
-        )
+        bounded = lower_bound(c['prices']) and c['benchmark']['return_kind'] == 'total_return'
         if c['prices']['currency'] != c['benchmark']['currency'] or (
             c['prices']['return_kind'] != c['benchmark']['return_kind'] and not bounded
         ):

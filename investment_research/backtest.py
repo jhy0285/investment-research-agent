@@ -10,7 +10,16 @@ from decimal import Decimal
 from random import Random
 from statistics import median
 
-from .decision_data import HORIZONS, digest, number, target, validate_dataset, validate_strategy, timestamp as _time
+from .decision_data import (
+    HORIZONS,
+    digest,
+    lower_bound,
+    number,
+    target,
+    validate_dataset,
+    validate_strategy,
+    timestamp as _time,
+)
 from .sources import SourceError
 
 VERSION = 'pit_event_backtest_v2'
@@ -19,7 +28,6 @@ VERSION = 'pit_event_backtest_v2'
 # distributions; omitted non-cash distributions can only add value) when the
 # benchmark is a point-in-time total return. Saved v1 results replay as v1.
 VERSIONS = ('pit_event_backtest_v1', 'pit_event_backtest_v2')
-LOWER_BOUND = 'price_lower_bound'
 BASE_LIMITATIONS = (
     '수익은 거래비용 차감 후이며 세금·미체결은 별도다.',
     '서로 겹치지 않는 신호로 평가한다. 표본 빈도는 미래 확률이 아니다.',
@@ -234,14 +242,6 @@ def run_backtest(candidate, cutoff, version=VERSION):
         periods=periods,
         blockers=blockers,
         limitations=list(BASE_LIMITATIONS) + limitations,
-    )
-
-
-def lower_bound(dataset):
-    return (
-        dataset.get('return_basis') == LOWER_BOUND
-        and dataset['return_kind'] == 'price'
-        and dataset['adjustment'] == 'unadjusted'
     )
 
 

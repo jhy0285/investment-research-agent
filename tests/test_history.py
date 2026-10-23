@@ -100,7 +100,12 @@ class FakeInternet:
         if parts.hostname == 'www.samsungfund.com' and parts.path == '/api/v1/kodex/product-earning/2ETF92.do':
             assert query == dict(srchTerm='0')
             body = [
-                dict(GIJUN_YMD=d.strftime('%Y%m%d'), PRICE=10000 + 100 * i, NAV=10001.5 + 100 * i, JISU=360.25 + i)
+                dict(
+                    GIJUN_YMD=d.strftime('%Y%m%d'),
+                    PRICE=10000 + 100 * i,
+                    NAV=round((360.25 + i) * 27.76, 2),
+                    JISU=360.25 + i,
+                )
                 for i, d in enumerate(kodex_days())
             ]
             return FetchResponse(json.dumps(body).encode(), 'application/json')
@@ -653,20 +658,72 @@ class HistoryTests(unittest.TestCase):
                 )
             ],
         )
-        with patch('investment_research.history._pdf_page_one', factset_text):
+        modified = lambda body, max_bytes: body.decode().rsplit(' ', 1)[1]  # authored: unchanged since issue
+        with (
+            patch('investment_research.history._pdf_page_one', factset_text),
+            patch('investment_research.history._pdf_modified', modified),
+        ):
             result = self.acquire(s, name='factset')
         rows = result['features']['sp500_forward_pe']
         # 08-07 Friday; the 09-04 week is published on Thursday 09-03; 10-02 is absent, not carried forward.
+        # Observation is two days before the issue (that week's Wednesday close).
         self.assertEqual(
-            [(r['observed_at'][:10], r['value']) for r in rows], [('2026-08-07', '20.0'), ('2026-09-03', '19.5')]
+            [(r['observed_at'][:10], r['value']) for r in rows], [('2026-08-05', '20.0'), ('2026-09-01', '19.5')]
         )
-        self.assertEqual(rows[0]['known_at'], '2026-08-08T05:00:00+00:00')
+        self.assertEqual((rows[0]['known_at'], rows[0]['known_at_basis']), ('2026-08-08T05:00:00+00:00', 'publication'))
         self.assertIn('for the S&P 500 is 20.0.', rows[0]['excerpt'])
         retained = json.loads((self.root / 'factset' / 'snapshots.json').read_text())['items'][
             'features:sp500_forward_pe'
         ]
         self.assertEqual([i['status'] for i in retained['issues']], ['found', 'found', 'absent'])
         self.assertEqual(replay_history(self.root / 'factset'), result)
+
+    def test_factset_replaced_or_unreadable_editions_do_not_backdate_or_sink_others(self):
+        s = dict(
+            schema_version='investment-history-spec-v1',
+            features=[
+                dict(
+                    name='pe',
+                    provider='factset_earnings_insight',
+                    series='sp500_forward_pe',
+                    start='2026-08-01',
+                    step_weeks=4,
+                )
+            ],
+        )
+
+        def page(body, max_bytes):
+            if body.endswith(b'2026-09-03'):
+                raise SourceError('page 1 unreadable')
+            return factset_text(body, max_bytes)
+
+        with (
+            patch('investment_research.history._pdf_page_one', page),
+            patch('investment_research.history._pdf_modified', lambda body, max_bytes: '2026-10-01'),
+        ):
+            result = self.acquire(s, name='factset-replaced')
+        rows = result['features']['pe']
+        # Modified two months after its issue: counted only from retrieval.
+        self.assertEqual(
+            [(r['value'], r['known_at_basis'], r['known_at']) for r in rows], [('20.0', 'retrieval', NOW.isoformat())]
+        )
+        retained = json.loads((self.root / 'factset-replaced' / 'snapshots.json').read_text())['items']['features:pe']
+        self.assertEqual([i['status'] for i in retained['issues']], ['found', 'invalid', 'absent'])
+
+    def test_kodex_history_with_a_paid_distribution_is_not_total_return(self):
+        class Paid(FakeInternet):
+            def __call__(self, url, timeout, limit):
+                response = super().__call__(url, timeout, limit)
+                if 'product-earning' in url:
+                    rows = json.loads(response.body)
+                    for r in rows[20:]:
+                        r['NAV'] = r['NAV'] * 0.985  # NAV drops 1.5% against the TR index
+                    return FetchResponse(json.dumps(rows).encode(), 'application/json')
+                return response
+
+        result = self.acquire(kodex_spec(), Paid(), name='paid')
+        self.assertNotIn('KODEX_200TR', result['prices'])
+        self.assertTrue(any('possible distribution' in f['reason'] for f in result['failures']))
 
     def test_factset_page_must_match_edition_and_state_one_value(self):
         from investment_research.history import parse_factset_page

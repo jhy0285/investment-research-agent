@@ -222,11 +222,21 @@ def pdf_text(body):
 
 def bounded_pdf_text(body, *, max_bytes=2 * 1024 * 1024, first_page=None, last_page=None):
     """Same bounded decoder with a reviewed per-provider size cap and page range."""
+    pages = (['-f', str(first_page)] if first_page else []) + (['-l', str(last_page)] if last_page else [])
+    return _poppler('pdftotext', ['-layout'] + pages + ['-', '-'], body, max_bytes)
+
+
+def bounded_pdf_info(body, *, max_bytes=2 * 1024 * 1024):
+    """Document metadata (ISO dates) through the same bounded subprocess."""
+    return _poppler('pdfinfo', ['-isodates', '-'], body, max_bytes)
+
+
+def _poppler(tool, arguments, body, max_bytes):
     if not body.startswith(b'%PDF-') or len(body) > max_bytes:
         raise SourceError('invalid/big reviewed financial PDF')
-    binary = shutil.which('pdftotext')
+    binary = shutil.which(tool)
     if binary is None:
-        raise SourceError('optional pdftotext executable unavailable; primary PDF evidence withheld')
+        raise SourceError('optional ' + tool + ' executable unavailable; primary PDF evidence withheld')
 
     def limits():
         resource.setrlimit(resource.RLIMIT_AS, (512 * 1024 * 1024, 512 * 1024 * 1024))
@@ -236,10 +246,7 @@ def bounded_pdf_text(body, *, max_bytes=2 * 1024 * 1024, first_page=None, last_p
     with tempfile.TemporaryFile() as output:
         try:
             result = subprocess.run(
-                [binary, '-layout']
-                + (['-f', str(first_page)] if first_page else [])
-                + (['-l', str(last_page)] if last_page else [])
-                + ['-', '-'],
+                [binary] + arguments,
                 input=body,
                 stdout=output,
                 stderr=subprocess.DEVNULL,

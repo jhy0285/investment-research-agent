@@ -614,6 +614,10 @@ class InvestmentCycleTests(unittest.TestCase):
             return_basis='price_lower_bound',
             return_basis_note='authored fixture: no cash distributions',
         )
+        # A typed label without a reviewed collector is not a lower bound.
+        with self.assertRaises(SourceError):
+            validate_plan(self.plan)
+        self.c['prices']['provenance'] = dict(provider='upbit_aligned_candles')
         validate_plan(self.plan)
         bt = run_backtest(self.c, _time(AT))
         self.assertEqual(bt['blockers'], [])
@@ -627,7 +631,11 @@ class InvestmentCycleTests(unittest.TestCase):
 
     def test_lower_bound_needs_total_return_benchmark_and_consistent_basis(self):
         self.c['prices'].update(
-            return_kind='price', adjustment='unadjusted', return_basis='price_lower_bound', return_basis_note='x'
+            return_kind='price',
+            adjustment='unadjusted',
+            return_basis='price_lower_bound',
+            return_basis_note='x',
+            provenance=dict(provider='upbit_day_candles'),
         )
         self.c['benchmark'].update(return_kind='price', adjustment='unadjusted')
         bt = run_backtest(self.c, _time(AT))

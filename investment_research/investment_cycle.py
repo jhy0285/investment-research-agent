@@ -101,10 +101,13 @@ def _references(c, snapshot):
     return problems
 
 
-# investment_cycle_v3 runs judge at the moment `invest run` executes, after a
-# human could read the research and write the review. Older versions judged
-# at the research cutoff, which left only the seconds between evidence
-# retrieval and cutoff for a review dated after the evidence it cites.
+# investment_cycle_v3 judges when the judgment is made. For `invest run` that
+# is when the command executes, after a human could read the research and
+# write the review; the result then carries research_as_of. The ask path
+# judges at the end of its own research run (no research_as_of), so a plan
+# review written before that run cannot cite evidence it fetches. Older
+# versions judged `invest run` at the research cutoff, which left only the
+# seconds between evidence retrieval and cutoff for a dated review.
 DECIDED_AT_VERSIONS = ('investment_cycle_v3',)
 STALE_RESEARCH = timedelta(days=7)
 
@@ -178,7 +181,9 @@ def _current_state(c, snapshot, s, at):
     raw_quote = c['quote']
     quote = raw_quote if _time(raw_quote['at']) <= at and _time(raw_quote['known_at']) <= at else None
     # Current conditions need the same scoped numeric source references as the
-    # research. Imported histories alone cannot certify today's observations.
+    # research. Numbers typed into a plan cannot certify today's observations;
+    # only research passages or rows from a replay-verified history run
+    # (attach_history) become evidence.
     sources = {e['id']: e for e in snapshot['evidence']}
     invalid_refs = []
     invalid_checks = [check for state in invalid for check in state['checks']]
@@ -552,7 +557,7 @@ def attach_history(plan, history, history_sha256, snapshot):
             raise SourceError('history run lacks a referenced dataset or feature') from exc
         datasets = [prices, benchmark] + [row for rows in features for row in rows]
         if any(_time(d['retrieved_at']) > at for d in datasets):
-            raise SourceError('history was retrieved after the judgment time; collect it before the research run')
+            raise SourceError('history was retrieved after the judgment time (look-ahead)')
         rows = []
         for name, series in zip(ref['features'], features):
             current = _current_row(series, at)
@@ -610,8 +615,11 @@ def attach_history(plan, history, history_sha256, snapshot):
             current_price_evidence_id=quote_id,
             history=dict(ref, sha256=history_sha256),
         )
-    existing = {e['id'] for e in snapshot['evidence']}
-    added = [e for e in evidence if e['id'] not in existing]
+    existing, added = {e['id'] for e in snapshot['evidence']}, []
+    for e in evidence:
+        if e['id'] not in existing:
+            existing.add(e['id'])
+            added.append(e)
     return plan, dict(snapshot, evidence=snapshot['evidence'] + added)
 
 

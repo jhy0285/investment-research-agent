@@ -451,6 +451,30 @@ def _collect_aligned(session, item, catalog, target):
     return candles
 
 
+KODEX_WEEKLY_GAP = Decimal('-0.01')
+KODEX_CUMULATIVE_SLACK = Decimal('0.01')
+KODEX_MAX_FEE = Decimal('0.005')  # per year, far above the reviewed funds' total fees
+
+
+def _check_no_paid_distribution(rows):
+    """Today's policy text cannot prove the past; the history must agree too.
+
+    A paid distribution lowers NAV against the total-return index it tracks.
+    Over the live 2017-2026 KODEX 200TR sample the worst week was -0.62% and
+    the mean +0.0004%, so a 1% weekly drop or a cumulative shortfall beyond
+    fees plus 1% is treated as a possible distribution and the label refused.
+    """
+    for (day0, _p0, nav0, idx0), (day1, _p1, nav1, idx1) in zip(rows, rows[1:]):
+        if number(nav1) / number(nav0) / (number(idx1) / number(idx0)) - 1 <= KODEX_WEEKLY_GAP:
+            raise SourceError(f'NAV fell against its total-return index in the week to {day1}; possible distribution')
+    years = Decimal((date.fromisoformat(rows[-1][0]) - date.fromisoformat(rows[0][0])).days) / Decimal('365.25')
+    drift = number(rows[-1][2]) / number(rows[0][2]) / (number(rows[-1][3]) / number(rows[0][3])) - 1
+    if drift < -(KODEX_MAX_FEE * years + KODEX_CUMULATIVE_SLACK):
+        raise SourceError(
+            'cumulative NAV shortfall against the total-return index exceeds fees; possible distributions'
+        )
+
+
 def _kodex_dataset(item, retained):
     contract, provider = retained['contract'], retained['provider']
     detail = retained['detail']['data']
@@ -458,6 +482,7 @@ def _kodex_dataset(item, retained):
     # every acquisition: reinvested, never paid, and no distribution listed.
     if '미지급' not in detail['divid_remark'] or '재투자' not in detail['divid_remark'] or detail['divide_list']:
         raise SourceError('issuer no longer states that every distribution is reinvested; total return unverified')
+    _check_no_paid_distribution(retained['history']['data'])
     retrieved = _time(retained['history']['retrieved_at'])
     rows = []
     for day, close, _nav, _index in retained['history']['data']:
@@ -550,6 +575,7 @@ def _aligned_dataset(item, retained, target):
     return dataset
 
 
+FACTSET_MODIFIED_SLACK_DAYS = 3
 _MONTHS = ('January February March April May June July August September October November December').split()
 
 
@@ -567,6 +593,18 @@ def _pdf_page_one(body, max_bytes):
     from .semiconductor_data import bounded_pdf_text
 
     return bounded_pdf_text(body, max_bytes=max_bytes, first_page=1, last_page=1)
+
+
+def _pdf_modified(body, max_bytes):
+    """Latest of the PDF's creation/modification dates, or None when absent."""
+    from .semiconductor_data import bounded_pdf_info
+
+    dates = []
+    for line in bounded_pdf_info(body, max_bytes=max_bytes).splitlines():
+        m = re.fullmatch(r'(?:CreationDate|ModDate):\s+(\d{4}-\d{2}-\d{2})T\S*', line.strip())
+        if m:
+            dates.append(m.group(1))
+    return max(dates) if dates else None
 
 
 def parse_factset_page(text, issue, pattern):
@@ -597,17 +635,20 @@ def _collect_factset(session, item, catalog, today):
             response, retrieved_at = session.get('factset_earnings_insight', url, missing_ok=True)
             if response is None:
                 continue
-            text = _pdf_page_one(response.body, provider['max_bytes'])
             record = dict(
                 week_of=friday.isoformat(),
-                status='found',
                 issue=issue.isoformat(),
                 url=url,
                 retrieved_at=retrieved_at,
                 raw_sha256=_sha(response.body),
                 raw_bytes=len(response.body),
-                **parse_factset_page(text, issue, pattern),
             )
+            try:
+                found = parse_factset_page(_pdf_page_one(response.body, provider['max_bytes']), issue, pattern)
+                record.update(status='found', pdf_modified=_pdf_modified(response.body, provider['max_bytes']), **found)
+            except SourceError as exc:
+                # One unreadable edition is recorded and skipped; the rest stand.
+                record.update(status='invalid', reason=str(exc))
             break
         issues.append(record)
     return issues
@@ -620,8 +661,16 @@ def _factset_features(item, retained):
         if issue['status'] != 'found':
             continue  # A week without a published edition is missing, never carried forward.
         day = date.fromisoformat(issue['issue'])
+        retrieved = _time(issue['retrieved_at'])
         # End of the publication day in US Eastern time is at most 05:00 UTC next day.
-        conservative = datetime.combine(day + timedelta(days=1), datetime.min.time(), timezone.utc) + timedelta(hours=5)
+        published = datetime.combine(day + timedelta(days=1), datetime.min.time(), timezone.utc) + timedelta(hours=5)
+        modified = issue['pdf_modified']
+        # A file changed well after its issue date may have been replaced at the
+        # same URL; with no revision history it counts only from retrieval.
+        if modified is None or date.fromisoformat(modified) > day + timedelta(days=FACTSET_MODIFIED_SLACK_DAYS):
+            known_at, basis = retrieved, 'retrieval'
+        else:
+            known_at, basis = min(published, retrieved), 'publication'
         rows.append(
             dict(
                 name=item['name'],
@@ -630,8 +679,11 @@ def _factset_features(item, retained):
                 currency='not_applicable',
                 measure=contract['measure'],
                 source=contract['publisher'],
-                observed_at=day.isoformat() + 'T00:00:00+00:00',
-                known_at=min(conservative, _time(issue['retrieved_at'])).isoformat(),
+                # The P/E uses that week's Wednesday close; two days before the
+                # issue keeps freshness checks from looking newer than the data.
+                observed_at=(day - timedelta(days=2)).isoformat() + 'T00:00:00+00:00',
+                known_at=known_at.isoformat(),
+                known_at_basis=basis,
                 retrieved_at=issue['retrieved_at'],
                 vintage=f'FactSet Earnings Insight {issue["issue"]}',
                 excerpt=issue['excerpt'],
@@ -827,7 +879,10 @@ def _derived_features(item, dataset):
         measure = f'trailing_{item["days"]}d_price_return:{instrument}'
     else:
         measure = f'close_to_sma_{item["observations"]}obs:{instrument}'
-    step = median(b - a for a, b in zip(times, times[1:])) if len(times) > 1 else timedelta(days=1)
+    if dataset['provenance']['method_version'] == 'pit_history_v1' or len(times) < 2:
+        step = timedelta(days=1)  # v1 rule: daily 24-hour series
+    else:
+        step = median(b - a for a, b in zip(times, times[1:]))
     out = []
     for i, r in enumerate(rows):
         if item['kind'] == 'trailing_return':
@@ -955,7 +1010,7 @@ def build(spec, snapshots):
         limitations=LIMITATIONS[version]
         + [
             'ALFRED 관측값의 known_at은 표본으로 고른 판본일 기준이다. 실제 공표보다 늦을 수는 있어도 이르지 않다.',
-            '이력 자료는 현재 판단의 검증 원문을 대신하지 않는다. 오늘의 숫자는 조사 실행의 검증 근거와 연결해야 한다.',
+            CURRENT_EVIDENCE[version],
             '빈 날짜와 결측값은 채우지 않았다. 지표 계산에 필요한 관측이 없으면 그 시점의 값을 만들지 않았다.',
         ],
     )
@@ -971,6 +1026,11 @@ LIMITATIONS = {
         'KODEX TR ETF 종가는 발행사가 분배금을 지급하지 않고 재투자한다고 밝힌 상품의 세전 총수익이다. 이 진술은 수집할 때마다 '
         '다시 확인하며, 바뀌면 총수익으로 표시하지 않는다.',
     ],
+}
+CURRENT_EVIDENCE = {
+    'pit_history_v1': '이력 자료는 현재 판단의 검증 원문을 대신하지 않는다. 오늘의 숫자는 조사 실행의 검증 근거와 연결해야 한다.',
+    'pit_history_v2': '이 이력은 invest run --history로 오프라인 재현 검증을 거친 뒤, 판단 시각 이전에 받은 최신 행만 현재 근거가 된다. '
+    '계획에 직접 적은 숫자는 현재 근거가 아니다.',
 }
 DATE_NOTES = {
     'pit_history_v1': '날짜는 종가 시각(UTC 00:00 = 한국시간 09:00)이다. 예를 들어 10월 21일 캔들의 종가는 10월 22일 00:00 UTC 값이다.',
