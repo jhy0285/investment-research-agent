@@ -103,6 +103,65 @@ def _write(path: Path, text: str) -> None:
         handle.write(text)
 
 
+def _print_picks(result, report, root):
+    sys.stdout.write(report)
+    print(f"보고서: {root / 'report.md'}", file=sys.stderr)
+    print(f"실행 기록: {root / 'picks_manifest.json'}", file=sys.stderr)
+    for path in result.get("journal_written", []):
+        print(f"추천 일지: {path}", file=sys.stderr)
+
+
+def _picks_root(run_dir, label):
+    return run_dir or Path("reports/picks") / (datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ") + "_" + label)
+
+
+def _picks_run(markets, budget, run_dir, journal, question=None, watch=()):
+    from .stock_picker import run_picks
+    root = _picks_root(run_dir, "_".join(markets))
+    result, report = run_picks(root, markets=markets, budget=budget, journal=journal, question=question, watch=watch,
+                               progress=lambda message: print("자료 확인: " + message, file=sys.stderr, flush=True))
+    _print_picks(result, report, root)
+    return 0
+
+
+def _picks_replay(run):
+    from .stock_picker import replay_picks
+    result, report, identical, same_code = replay_picks(run)
+    sys.stdout.write(report)
+    if identical:
+        print("재현 확인: 저장된 보고서와 바이트 단위로 같습니다.", file=sys.stderr)
+    else:
+        print("재현 차이: " + ("코드·방법 버전이 달라졌습니다." if not same_code else "같은 코드인데 결과가 다릅니다."), file=sys.stderr)
+        return 1
+    return 0
+
+
+def _picks(args):
+    if args.picks_action == "replay":
+        return _picks_replay(args.run)
+    from .stock_data import universe
+    from .stock_picker import resolve_watch
+    markets = ("KR", "US") if args.market == "all" else (args.market,)
+    watch, unknown = resolve_watch(universe(), (args.watch or "").split(","))
+    if unknown:
+        raise InputValidationError("watch: 후보군에 없는 종목입니다: " + ", ".join(unknown))
+    return _picks_run(markets, args.budget, args.run_dir, args.journal, watch=watch)
+
+
+def _ask_picks(args):
+    from .stock_data import universe
+    from .stock_picker import parse_question, watch_from_question
+    if args.portfolio or args.context_run or args.previous_scan or args.decision_plan or args.output:
+        raise InputValidationError("종목 추천 질문은 --run-dir·--journal만 지원합니다")
+    markets, budget = parse_question(args.question)
+    if args.plan_only:
+        sys.stdout.write(json.dumps(dict(mode="stock_picks", markets=list(markets), budget_krw=budget,
+                                         command="python -m investment_research picks run"), ensure_ascii=False, indent=2) + "\n")
+        return 0
+    watch = watch_from_question(universe(), args.question)
+    return _picks_run(markets, budget, args.run_dir, args.journal, question=args.question, watch=watch)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Cross-Asset Research Brief와 공개 출처 검증")
     parser.add_argument("--version", action="version", version=__version__)
@@ -138,6 +197,16 @@ def main(argv: list[str] | None = None) -> int:
     invest_review.add_argument("--prices", type=Path, required=True, help="investment-prices-v1 데이터셋의 JSON 배열")
     invest_review.add_argument("--as-of", required=True, help="timezone을 포함한 평가 시각")
     invest_review.add_argument("--run-dir", type=Path, required=True)
+    picks = subcommands.add_parser("picks", help="규칙 기반 종목 추천: 실제 가격 수집·과거 검증·등급·예시 금액·일지")
+    picks_commands = picks.add_subparsers(dest="picks_action", required=True)
+    picks_run = picks_commands.add_parser("run", help="공개 시세로 이번 달 추천 종목과 예시 매수 수량 생성")
+    picks_run.add_argument("--market", choices=["KR", "US", "all"], default="all", help="한국(KR)·미국(US)·둘 다(all)")
+    picks_run.add_argument("--budget", type=int, default=10_000_000, help="예시 예산(원); 기본 10,000,000")
+    picks_run.add_argument("--run-dir", type=Path, help="새 실행 디렉터리; 기본 reports/picks 아래 자동 생성")
+    picks_run.add_argument("--journal", type=Path, help="추천 일지; 이전 추천의 실제 성과를 채점하고 이번 추천을 보존")
+    picks_run.add_argument("--watch", help="순위·제외 이유를 함께 볼 보유·관심 종목; 코드나 이름을 쉼표로 구분 (예: 005930,SK하이닉스)")
+    picks_replay = picks_commands.add_parser("replay", help="저장된 추천을 인터넷 없이 검증·재현")
+    picks_replay.add_argument("run", type=Path)
     research = subcommands.add_parser("research", help="로컬 합성 JSON 자료로 한국어 보고서 생성")
     research.add_argument("case", type=Path, help="case.json 또는 그 파일을 포함한 디렉터리")
     research.add_argument("--output", type=Path, help="Markdown 파일 경로; 생략하면 표준 출력")
@@ -223,8 +292,16 @@ def main(argv: list[str] | None = None) -> int:
                 persist_review(args.journal,result)
                 sys.stdout.write(report)
             return 0
+        if args.command == "picks":
+            return _picks(args)
         if args.command == "ask":
             from .routing import plan_research
+            from .stock_picker import is_stock_pick_question
+
+            if args.replay and (args.replay / "picks_manifest.json").exists():
+                return _picks_replay(args.replay)
+            if not args.replay and not args.mode and is_stock_pick_question(args.question):
+                return _ask_picks(args)
 
             if args.plan_only:
                 if args.replay or args.run_dir or args.portfolio or args.context_run or args.previous_scan or args.decision_plan or args.journal:

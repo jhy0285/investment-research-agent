@@ -20,6 +20,16 @@ python -m examples.investment_cycle.demo --output reports/example_synthetic_cycl
 
 `invest run/replay/record/review`로 완료 연구의 투자 결론 재현, 기존 판단 기록, 성숙 결과와 등급·전략 평가를 실행한다. 경고 상태는 다음 신규 매수를 차단하고, 조건 수정은 이전 정의를 보존한 새 버전으로 검증한다. [실행·데이터 계약과 현재 제한](docs/investment-cycle.md), [합성 예제](examples/investment_cycle/README.md)를 참고한다.
 
+### 규칙 기반 종목 추천
+
+[종목 추천](docs/stock-picker.md)은 실제 공개 시세로 매달 코스피·미국 대형주 후보 141개의 순위를 매긴다. 고정 규칙(직전 1개월을 뺀 12개월 상승 강도 2/3 + 낮은 변동성 1/3, 10개월 평균선 위, 섹터당 2종목)으로 시장별 5종목을 고른다. 같은 규칙을 과거·독립 검증·최근 구간에서 다음 달 시가 체결·거래비용·같은 후보군 동일가중 비교로 검증하고, 그 결과로 등급(B/C/D)과 1주 단위 예시 매수 수량을 정한다. 추천은 일지에 남겨 다음 실행에서 실제 결과로 채점한다. 검증을 통과하지 못하면 종목은 보여 주지만 매수 금액은 0원이다. 2026-10-31 첫 실행은 비용 차감 후 동일가중보다 낫다는 근거가 없어 두 시장 모두 D였다.
+
+```bash
+python -m investment_research picks run --watch 삼성전자,SK하이닉스 --journal reports/investment_journal
+python -m investment_research ask '500만원으로 한국 주식 종목 추천해줘'
+python -m investment_research picks replay reports/picks/<실행 디렉터리>
+```
+
 | 질문의 목적 | 독립 진입점 |
 | --- | --- |
 | 오늘 투자기회·여러 시장의 변화 | Opportunity Scan |
@@ -109,7 +119,7 @@ python -m investment_research macro replay examples/macro_case --store examples/
 python -m investment_research macro acquire examples/macro_case --store reports/macro_snapshots --pins reports/new_macro_pins.json
 ```
 
-현재 전체 **569개 테스트가 인터넷 없이 통과**한다. 검증 명령은 `python -m unittest discover -v`다. 기존 557개를 유지하고 자산별 용어·계산 범위, 시장 환경 분리, 비후보 압축, 마지막 종합 문단과 구형 보고서 보존 검증 12개를 추가했다. 실제 라이브 획득과 기본 테스트는 분리한다. [자산별 설명과 종합 문단 검증](reports/explanation_guard_validation_20261007/validation_report.md), [기존 설명형 보고서](reports/explanatory_report_validation_20261006/validation_report.md), [관측일·원자재 검증](reports/date_attribution_validation_20261006/validation_report.md)을 보존한다.
+현재 전체 **630개 테스트가 인터넷 없이 통과**한다(종목 추천의 시점·체결·비용·결측·격리·등급·수량·파서·replay·일지 채점 27개 포함). 검증 명령은 `python -m unittest discover -v`다. 기존 557개를 유지하고 자산별 용어·계산 범위, 시장 환경 분리, 비후보 압축, 마지막 종합 문단과 구형 보고서 보존 검증 12개를 추가했다. 실제 라이브 획득과 기본 테스트는 분리한다. [자산별 설명과 종합 문단 검증](reports/explanation_guard_validation_20261007/validation_report.md), [기존 설명형 보고서](reports/explanatory_report_validation_20261006/validation_report.md), [관측일·원자재 검증](reports/date_attribution_validation_20261006/validation_report.md)을 보존한다.
 
 ## 한국 시장 원자료
 
@@ -154,6 +164,7 @@ python -m investment_research opportunity replay examples/opportunity_map_case -
 | [거시 시계열 안내](docs/macro-mvrs.md) | 현재 거시 상태, 공개·획득 판본·개정·과거 시점 선택, 결정적 변환 |
 | [실제 Opportunity Map](docs/opportunity-map.md) | 15개 영역의 Broad Scan, 원문·서사 대조, 연구 초안·우선순위·기회비용·재현 |
 | [미국 주식 Deep Dive](docs/us-equity-deep-dive.md) | 예상 이익·AI 현금 회수·Treasury 비교, 원문 숫자·scope·판단 유보·선택적 이전 맥락 |
+| [규칙 기반 종목 추천](docs/stock-picker.md) | 실제 월봉 수집·고정 순위 규칙·시점 계약·동일가중 대비 검증·등급별 수량·불변 일지 채점·생존 편향 |
 | [Source Anomaly Guard](docs/source-anomaly-guard.md) | 제공자 충돌·이상치·단위·결측 격리와 claim/계산/coverage·이전 판본 보존 |
 | [원자재 Deep Dive](docs/commodity-deep-dive.md) | 독립 가스/금/바스켓 조사, 실제 선물·수요·상품 차이와 시차/공백 |
 | [개발 지침](AGENTS.md) | 향후 작업에서 유지할 원칙과 검증 기준 |
