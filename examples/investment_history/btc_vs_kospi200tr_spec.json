@@ -1,0 +1,12 @@
+{
+  "schema_version": "investment-history-spec-v1",
+  "note": "KODEX 200TR(발행사 확인 원화 총수익)과 같은 KRX 종가 시각의 Upbit BTC(보유자 수익의 하한), BTC 43주 이동평균 괴리. 실제 자료는 reports/ 같은 미커밋 위치에만 저장한다.",
+  "prices": [
+    {"provider": "kodex_issuer_weekly", "fund": "2ETF92"},
+    {"provider": "upbit_aligned_candles", "market": "KRW-BTC", "align_to": "KODEX_200TR"}
+  ],
+  "features": [
+    {"name": "btc_close_to_sma43w", "provider": "price_derived", "instrument_id": "UPBIT_KRW_BTC_AT_KODEX_200TR", "kind": "close_to_sma", "observations": 43},
+    {"name": "sp500_forward_pe", "provider": "factset_earnings_insight", "series": "sp500_forward_pe", "start": "2025-01-03", "step_weeks": 4}
+  ]
+}

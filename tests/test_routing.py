@@ -1,4 +1,5 @@
 """Intent and scope contracts: no market acquisition or fabricated analysis."""
+
 from contextlib import redirect_stderr, redirect_stdout
 from io import StringIO
 import json
@@ -47,8 +48,12 @@ class RoutingTests(unittest.TestCase):
                 self.assertTrue(all(not t.depends_on for t in plan.tasks))
 
     def test_asset_methods_are_distinct_and_do_not_require_scan(self):
-        for question, family in [("BTC 지금 어때?", "crypto"), ("천연가스 분석해줘", "natural_gas"),
-                                 ("동탄 집을 조사해줘", "real_estate"), ("배당투자 어때?", "equity_strategy")]:
+        for question, family in [
+            ("BTC 지금 어때?", "crypto"),
+            ("천연가스 분석해줘", "natural_gas"),
+            ("동탄 집을 조사해줘", "real_estate"),
+            ("배당투자 어때?", "equity_strategy"),
+        ]:
             with self.subTest(question=question):
                 task = plan_research(question).tasks[0]
                 self.assertEqual(task.subjects[0].method_family, family)
@@ -124,8 +129,7 @@ class RoutingTests(unittest.TestCase):
         self.assertEqual(plan.modes, (Mode.PORTFOLIO_REVIEW, Mode.COMPARE))
 
     def test_negated_scan_does_not_expand_scope(self):
-        for question in ("시장 전체를 훑지 말고 BTC만 깊게 분석해줘.",
-                         "Don't run an Opportunity Scan; BTC 지금 어때?"):
+        for question in ("시장 전체를 훑지 말고 BTC만 깊게 분석해줘.", "Don't run an Opportunity Scan; BTC 지금 어때?"):
             self.assertEqual(plan_research(question).modes, (Mode.ASSET_DEEP_DIVE,))
 
     def test_unresolved_questions_require_clarification_not_full_scan(self):
@@ -144,7 +148,10 @@ class RoutingTests(unittest.TestCase):
                 plan_research(question)
 
     def test_cli_planning_is_offline_deterministic_and_preserves_files(self):
-        with tempfile.TemporaryDirectory() as directory, patch("socket.create_connection", side_effect=AssertionError("no network")):
+        with (
+            tempfile.TemporaryDirectory() as directory,
+            patch("socket.create_connection", side_effect=AssertionError("no network")),
+        ):
             path = Path(directory) / "plan.json"
             args = ["ask", "BTC 지금 어때?", "--plan-only", "--output", str(path)]
             with redirect_stdout(StringIO()), redirect_stderr(StringIO()):

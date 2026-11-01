@@ -22,7 +22,6 @@ from investment_research.report import render_report
 from investment_research.source_pipeline import acquire_plan, load_source_plan, replay_plan
 from investment_research.sources import FetchResponse, SourceError, SourceSpec, acquire
 
-
 ACQUIRED_AT = datetime(2026, 10, 3, 4, 30, 1, tzinfo=timezone.utc)
 CUT_QUOTE = (
     "The Committee decided to lower the target range for the federal funds "
@@ -72,7 +71,14 @@ def make_spec(identifier, source_type, quote, definition):
         policy_note="Synthetic mock fixture: retain only its selected short passage.",
         retention="excerpt",
         max_age_days=10000,
-        excerpts=({"id": "Q_" + identifier, "quote": quote, "locator": "synthetic paragraph", "definition": deepcopy(definition)},),
+        excerpts=(
+            {
+                "id": "Q_" + identifier,
+                "quote": quote,
+                "locator": "synthetic paragraph",
+                "definition": deepcopy(definition),
+            },
+        ),
     )
 
 
@@ -135,7 +141,14 @@ class SourcePipelineTests(unittest.TestCase):
             "sources": [asdict(primary), asdict(community)],
             "evidence": [
                 evidence("E_CUT", "S_POLICY", RATE_DEFINITION, extraction="fed_rate_cut_v1"),
-                evidence("E_COMMUNITY", "S_COMMUNITY", NARRATIVE_DEFINITION, kind="observed_narrative", view="community", extraction="basis_points_statement_v1"),
+                evidence(
+                    "E_COMMUNITY",
+                    "S_COMMUNITY",
+                    NARRATIVE_DEFINITION,
+                    kind="observed_narrative",
+                    view="community",
+                    extraction="basis_points_statement_v1",
+                ),
             ],
             "claims": [claim()],
         }
@@ -191,15 +204,17 @@ class SourcePipelineTests(unittest.TestCase):
 
     def test_community_compound_claim_preserves_partial_review_and_separate_context(self):
         data = deepcopy(self.data)
-        data["claims"] = [{
-            **claim("C_NARRATIVE"),
-            "text": "인하 수치는 확인되지만 장기채 기회가 확실하다는 합성 발언까지 확인되지는 않는다.",
-            "rule": "reviewed_links_v1",
-            "verification": "partially_supported",
-            "support_ids": ["E_CUT"],
-            "context_ids": ["E_CUT"],
-            "narrative_evidence_id": "E_COMMUNITY",
-        }]
+        data["claims"] = [
+            {
+                **claim("C_NARRATIVE"),
+                "text": "인하 수치는 확인되지만 장기채 기회가 확실하다는 합성 발언까지 확인되지는 않는다.",
+                "rule": "reviewed_links_v1",
+                "verification": "partially_supported",
+                "support_ids": ["E_CUT"],
+                "context_ids": ["E_CUT"],
+                "narrative_evidence_id": "E_COMMUNITY",
+            }
+        ]
         del data["claims"][0]["assertion"]
         _, _, case = self.acquire_and_replay(data)
         narrative = next(e for e in case.evidence if e.id == "E_COMMUNITY")
@@ -214,17 +229,21 @@ class SourcePipelineTests(unittest.TestCase):
 
     def test_community_only_cannot_verify_its_financial_content(self):
         data = deepcopy(self.data)
-        data["claims"] = [{
-            **claim("C_ONLY_COMMUNITY"),
-            "rule": "reviewed_links_v1",
-            "verification": "supported_within_scope",
-            "support_ids": ["E_COMMUNITY"],
-            "narrative_evidence_id": "E_COMMUNITY",
-        }]
+        data["claims"] = [
+            {
+                **claim("C_ONLY_COMMUNITY"),
+                "rule": "reviewed_links_v1",
+                "verification": "supported_within_scope",
+                "support_ids": ["E_COMMUNITY"],
+                "narrative_evidence_id": "E_COMMUNITY",
+            }
+        ]
         del data["claims"][0]["assertion"]
         _, _, case = self.acquire_and_replay(data)
         self.assertEqual(case.claims[0].verification, VerificationStatus.UNVERIFIED)
-        self.assertEqual(next(e for e in case.evidence if e.id == "E_COMMUNITY").verification, VerificationStatus.SUPPORTED)
+        self.assertEqual(
+            next(e for e in case.evidence if e.id == "E_COMMUNITY").verification, VerificationStatus.SUPPORTED
+        )
         self.assertTrue(all("E_COMMUNITY" not in a.support_ids for a in run_research(case).assessments))
 
     def test_stale_historical_fact_remains_confirmed_but_current_adoption_is_withheld(self):
@@ -388,9 +407,14 @@ class SourcePipelineTests(unittest.TestCase):
 
     def test_local_replay_is_identical_without_fetching_and_report_anchors_resolve(self):
         plan, pins, first = self.acquire_and_replay()
-        with patch("investment_research.source_pipeline.acquire", side_effect=AssertionError("replay attempted acquisition")), patch(
-            "investment_research.sources._fetch_http", side_effect=AssertionError("replay attempted HTTP")
-        ), patch("socket.socket.connect", side_effect=AssertionError("replay attempted socket")):
+        with (
+            patch(
+                "investment_research.source_pipeline.acquire",
+                side_effect=AssertionError("replay attempted acquisition"),
+            ),
+            patch("investment_research.sources._fetch_http", side_effect=AssertionError("replay attempted HTTP")),
+            patch("socket.socket.connect", side_effect=AssertionError("replay attempted socket")),
+        ):
             second = replay_plan(plan, self.store, pins)
         self.assertEqual(first, second)
         left = render_report(run_research(first))

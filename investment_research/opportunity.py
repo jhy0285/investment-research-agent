@@ -14,31 +14,67 @@ import re
 from .engine import run_research
 from .macro_pipeline import MacroPlan, MacroRun, macro_manifest, replay_macro
 from .models import (
-    Alternative, InterpretationStatus, OpportunityCost, ProfileField,
-    ProfileSnapshot, ResearchBrief, ResearchCase, ResearchClaim, ResearchResult,
-    Review, ReviewedText, SourceType, VerificationStatus,
+    Alternative,
+    InterpretationStatus,
+    OpportunityCost,
+    ProfileField,
+    ProfileSnapshot,
+    ResearchBrief,
+    ResearchCase,
+    ResearchClaim,
+    ResearchResult,
+    Review,
+    ReviewedText,
+    SourceType,
+    VerificationStatus,
 )
 from .source_pipeline import (
-    SourcePlan, _digest, _id, _list, _object, _strings, _text, load_pins,
+    SourcePlan,
+    _digest,
+    _id,
+    _list,
+    _object,
+    _strings,
+    _text,
+    load_pins,
     replay_plan,
 )
 from .sources import SourceError, _time, freshness, load_snapshot
 
-
 OPPORTUNITY_VERSION = "opportunity_map_v1"
 PRIORITIES = {"candidate", "monitor", "defer", "insufficient"}
 ROW_FIELDS = {
-    "asset_id", "name", "exposure", "return_definition", "liquidity", "state",
-    "positive", "negative", "uncertainty", "opportunity_cost", "priority",
-    "priority_reason", "recheck", "candidate",
+    "asset_id",
+    "name",
+    "exposure",
+    "return_definition",
+    "liquidity",
+    "state",
+    "positive",
+    "negative",
+    "uncertainty",
+    "opportunity_cost",
+    "priority",
+    "priority_reason",
+    "recheck",
+    "candidate",
 }
 SECTION_FIELDS = {
-    "overview", "drivers", "market_narratives", "community", "gaps",
-    "korean_context", "unknowns", "easy",
+    "overview",
+    "drivers",
+    "market_narratives",
+    "community",
+    "gaps",
+    "korean_context",
+    "unknowns",
+    "easy",
 }
 QUOTE_SOURCES = {
-    SourceType.PRIMARY, SourceType.INSTITUTION, SourceType.DATA_PROVIDER,
-    SourceType.RESEARCH, SourceType.NEWS,
+    SourceType.PRIMARY,
+    SourceType.INSTITUTION,
+    SourceType.DATA_PROVIDER,
+    SourceType.RESEARCH,
+    SourceType.NEWS,
 }
 
 
@@ -116,9 +152,20 @@ def load_opportunity_review(path: str | Path) -> OpportunityReview:
     path = path / "review.json" if path.is_dir() else path
     data = load_pins(path)
     required = {
-        "schema_version", "id", "question", "as_of", "author", "review_status",
-        "profile", "horizon", "comparison_limits", "rows", "sections",
-        "next_research", "sampling_limits", "access_notes",
+        "schema_version",
+        "id",
+        "question",
+        "as_of",
+        "author",
+        "review_status",
+        "profile",
+        "horizon",
+        "comparison_limits",
+        "rows",
+        "sections",
+        "next_research",
+        "sampling_limits",
+        "access_notes",
     }
     _object(data, required, set(), "opportunity review")
     if data["schema_version"] != "opportunity-review-v1" or data["review_status"] != "draft":
@@ -154,7 +201,12 @@ def load_opportunity_review(path: str | Path) -> OpportunityReview:
             candidates += 1
             if row["priority"] != "candidate":
                 raise SourceError(path + ": candidate detail requires candidate research priority")
-            _object(candidate, {"why_now", "changed", "interesting", "counterargument", "confirm"}, set(), path + ".candidate")
+            _object(
+                candidate,
+                {"why_now", "changed", "interesting", "counterargument", "confirm"},
+                set(),
+                path + ".candidate",
+            )
             for name in ("why_now", "changed", "interesting", "counterargument"):
                 _statement(candidate[name], path + ".candidate." + name)
             if not _prose_list(candidate["confirm"], path + ".candidate.confirm"):
@@ -199,9 +251,15 @@ def _all_statements(data: dict):
                 yield None, f"sections.{name}.{index}", statement
 
 
-def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
-                       store: str | Path, pins: dict, macro_plan: MacroPlan,
-                       macro_store: str | Path, macro_pins: dict) -> OpportunityRun:
+def replay_opportunity(
+    review: OpportunityReview,
+    source_plan: SourcePlan,
+    store: str | Path,
+    pins: dict,
+    macro_plan: MacroPlan,
+    macro_store: str | Path,
+    macro_pins: dict,
+) -> OpportunityRun:
     """Combine existing replay contracts without acquiring or scoring assets."""
     if _digest(review.data) != review.input_digest:
         raise SourceError("opportunity review changed after loading; reload the explicit input")
@@ -226,10 +284,15 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
                 if provenance.observed_at is None:
                     age = "unknown" if age != "unavailable" else age
                 elif age == "fresh":
-                    diagnostics.append(source.id + ": explicitly dated reported observation from the retained page; publication unknown and availability before retrieval unproven")
+                    diagnostics.append(
+                        source.id
+                        + ": explicitly dated reported observation from the retained page; publication unknown and availability before retrieval unproven"
+                    )
             provenance = replace(provenance, freshness=age)
             if age == "future":
-                diagnostics.append(source.id + ": source timing is after the exact opportunity cutoff; current facts withheld")
+                diagnostics.append(
+                    source.id + ": source timing is after the exact opportunity cutoff; current facts withheld"
+                )
         sources.append(replace(source, provenance=provenance))
     source_by_id = {source.id: source for source in sources}
     for item in source_case.evidence:
@@ -238,7 +301,9 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
         if source.provenance is not None:
             provenance = replace(provenance, freshness=source.provenance.freshness)
         evidence.append(replace(item, provenance=provenance))
-    macro_scope = tuple(identifier for identifier in ("SHORT_BOND", "LONG_BOND", "CASH", "US_EQUITY") if identifier in asset_ids)
+    macro_scope = tuple(
+        identifier for identifier in ("SHORT_BOND", "LONG_BOND", "CASH", "US_EQUITY") if identifier in asset_ids
+    )
     for item in macro.case.evidence:
         definition_id = item.provenance.definition["measure"]
         scope = macro_scope if definition_id.startswith("US_TREASURY_") else asset_ids
@@ -246,18 +311,34 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
     sources.extend(macro.case.sources)
     source_by_id = {source.id: source for source in sources}
     evidence_by_id = {item.id: item for item in evidence}
-    metrics = tuple(replace(metric, asset_ids=macro_scope or asset_ids)
-                    if all(evidence_by_id[ref].provenance.definition["measure"].startswith("US_TREASURY_") for ref in metric.input_ids)
-                    else replace(metric, asset_ids=asset_ids) for metric in macro.metrics)
+    metrics = tuple(
+        (
+            replace(metric, asset_ids=macro_scope or asset_ids)
+            if all(
+                evidence_by_id[ref].provenance.definition["measure"].startswith("US_TREASURY_")
+                for ref in metric.input_ids
+            )
+            else replace(metric, asset_ids=asset_ids)
+        )
+        for metric in macro.metrics
+    )
     metric_by_id = {metric.id: metric for metric in metrics}
     merged_ids = [review.id, *asset_ids, *source_by_id, *evidence_by_id, *metric_by_id]
-    if (len(source_by_id) != len(sources) or len(evidence_by_id) != len(evidence)
-            or len(merged_ids) != len(set(merged_ids))):
+    if (
+        len(source_by_id) != len(sources)
+        or len(evidence_by_id) != len(evidence)
+        or len(merged_ids) != len(set(merged_ids))
+    ):
         raise SourceError("source, observation and metric IDs must remain unambiguous")
     known_refs = {item["id"] for item in source_plan.evidence}
-    planned_scopes = {item["id"]: next(source.asset_ids or source_plan.asset_ids
-                      for source in source_plan.sources if source.id == item["source_id"])
-                      for item in source_plan.evidence}
+    planned_scopes = {
+        item["id"]: next(
+            source.asset_ids or source_plan.asset_ids
+            for source in source_plan.sources
+            if source.id == item["source_id"]
+        )
+        for item in source_plan.evidence
+    }
     known_refs.update(evidence_by_id)
     known_refs.update(metric.id for metric in macro.snapshot.metrics)
     metric_states = {metric.id: metric.status for metric in macro.snapshot.metrics}
@@ -274,11 +355,18 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
             # applying standalone observation freshness to every input would
             # incorrectly reject a valid exact twelve-month comparison.
             inputs = [evidence_by_id.get(ref) for ref in metric.input_ids]
-            usable = bool(inputs) and all(item is not None and item.value is not None
-                and item.provenance is not None and item.provenance.match_status == "matched"
+            usable = bool(inputs) and all(
+                item is not None
+                and item.value is not None
+                and item.provenance is not None
+                and item.provenance.match_status == "matched"
                 and item.provenance.freshness != "future"
-                and item.verification == VerificationStatus.SUPPORTED for item in inputs)
-            return usable, "current computed fact with explicitly dated inputs" if usable else "metric input unavailable"
+                and item.verification == VerificationStatus.SUPPORTED
+                for item in inputs
+            )
+            return usable, (
+                "current computed fact with explicitly dated inputs" if usable else "metric input unavailable"
+            )
         item = evidence_by_id.get(identifier)
         if item is None:
             if scope is not None and identifier in planned_scopes and scope not in planned_scopes[identifier]:
@@ -293,7 +381,10 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
             return False, item.provenance.freshness
         if item.kind == "observed_narrative" or source.type == SourceType.COMMUNITY:
             return False, "observed narrative; financial content unverified"
-        if item.verification != VerificationStatus.SUPPORTED or item.interpretation.status == InterpretationStatus.REJECTED:
+        if (
+            item.verification != VerificationStatus.SUPPORTED
+            or item.interpretation.status == InterpretationStatus.REJECTED
+        ):
             return False, "unverified or rejected"
         if source.type not in QUOTE_SOURCES:
             return False, "opinion source requires corroboration"
@@ -308,9 +399,13 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
             (available if usable else withheld).append(identifier)
             if not usable or "pending" in reason:
                 warnings.append(identifier + ": " + reason)
-        return {**statement, "_available_ids": available, "_withheld_ids": withheld,
-                "_warnings": warnings, "_status": "partial" if available and withheld else
-                "unavailable" if withheld else "draft"}
+        return {
+            **statement,
+            "_available_ids": available,
+            "_withheld_ids": withheld,
+            "_warnings": warnings,
+            "_status": "partial" if available and withheld else "unavailable" if withheld else "draft",
+        }
 
     rows = []
     for original in review.data["rows"]:
@@ -320,23 +415,35 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
             # Opportunity cost intentionally discusses the referenced other alternatives.
             row[name] = effective(row[name], None if name == "opportunity_cost" else scope)
         if row["candidate"]:
-            row["candidate"] = {name: effective(statement, scope) if name != "confirm" else list(statement)
-                                for name, statement in row["candidate"].items()}
+            row["candidate"] = {
+                name: effective(statement, scope) if name != "confirm" else list(statement)
+                for name, statement in row["candidate"].items()
+            }
         row["_requested_priority"] = row["priority"]
         row["_warnings"] = []
         priority_refs = row["priority_reason"]["_available_ids"]
         if row["priority"] == "candidate" and not priority_refs:
             row["priority"] = "insufficient"
-            row["_warnings"].append("candidate priority withheld: no current noncommunity factual occurrence supports this research question")
+            row["_warnings"].append(
+                "candidate priority withheld: no current noncommunity factual occurrence supports this research question"
+            )
         if row["state"]["_withheld_ids"]:
-            row["_warnings"].append("current-state draft contains unavailable references; affected text is not a verified current fact")
+            row["_warnings"].append(
+                "current-state draft contains unavailable references; affected text is not a verified current fact"
+            )
         row["_review_status"] = "draft"
         diagnostics.extend(scope + ": " + warning for warning in row["_warnings"])
         rows.append(row)
-    sections = {name: list(content) if name in {"unknowns", "easy"} else [effective(statement) for statement in content]
-                for name, content in review.data["sections"].items()}
-    pending = Review(InterpretationStatus.PENDING, None, None,
-                     "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.")
+    sections = {
+        name: list(content) if name in {"unknowns", "easy"} else [effective(statement) for statement in content]
+        for name, content in review.data["sections"].items()
+    }
+    pending = Review(
+        InterpretationStatus.PENDING,
+        None,
+        None,
+        "Codex의 허용된 연구 초안. 인용 존재와 계산 사실은 경제적 의미·투자 매력·사람의 검토 완료를 뜻하지 않는다.",
+    )
 
     def evidence_refs(identifiers):
         # Existing ResearchCase references point to evidence, not calculations.
@@ -347,35 +454,109 @@ def replay_opportunity(review: OpportunityReview, source_plan: SourcePlan,
             refs.extend(ref for ref in candidates if ref in evidence_by_id and ref not in refs)
         return tuple(refs)
 
-    alternatives = tuple(Alternative(row["asset_id"], row["name"], row["exposure"], row["return_definition"],
-        row["liquidity"], evidence_refs(row["positive"]["evidence_ids"]), evidence_refs(row["negative"]["evidence_ids"]),
-        tuple(row["uncertainty"]), (ReviewedText(row["recheck"]["text"], evidence_refs(row["recheck"]["evidence_ids"]), pending),)) for row in rows)
-    costs = tuple(OpportunityCost(row["asset_id"], other,
-        ReviewedText(row["opportunity_cost"]["text"], evidence_refs(row["opportunity_cost"]["evidence_ids"]), pending))
-        for row in rows for other in row["opportunity_cost"]["alternative_ids"])
+    alternatives = tuple(
+        Alternative(
+            row["asset_id"],
+            row["name"],
+            row["exposure"],
+            row["return_definition"],
+            row["liquidity"],
+            evidence_refs(row["positive"]["evidence_ids"]),
+            evidence_refs(row["negative"]["evidence_ids"]),
+            tuple(row["uncertainty"]),
+            (ReviewedText(row["recheck"]["text"], evidence_refs(row["recheck"]["evidence_ids"]), pending),),
+        )
+        for row in rows
+    )
+    costs = tuple(
+        OpportunityCost(
+            row["asset_id"],
+            other,
+            ReviewedText(
+                row["opportunity_cost"]["text"], evidence_refs(row["opportunity_cost"]["evidence_ids"]), pending
+            ),
+        )
+        for row in rows
+        for other in row["opportunity_cost"]["alternative_ids"]
+    )
     claims = []
     for claim in (*source_case.claims, *macro.case.claims):
-        claim_refs = (*claim.support_ids, *claim.counter_ids, *claim.context_ids,
-                      *((claim.narrative_evidence_id,) if claim.narrative_evidence_id else ()))
-        unavailable = any(ref in evidence_by_id and evidence_by_id[ref].provenance.freshness == "future"
-                          for ref in claim_refs)
-        claims.append(replace(claim, asset_ids=tuple(identifier for identifier in claim.asset_ids if identifier in asset_ids) or asset_ids,
-            verification=VerificationStatus.UNVERIFIED if unavailable else claim.verification,
-            limitations=(*claim.limitations, "exact opportunity cutoff excludes a referenced later retrieval") if unavailable else claim.limitations))
+        claim_refs = (
+            *claim.support_ids,
+            *claim.counter_ids,
+            *claim.context_ids,
+            *((claim.narrative_evidence_id,) if claim.narrative_evidence_id else ()),
+        )
+        unavailable = any(
+            ref in evidence_by_id and evidence_by_id[ref].provenance.freshness == "future" for ref in claim_refs
+        )
+        claims.append(
+            replace(
+                claim,
+                asset_ids=tuple(identifier for identifier in claim.asset_ids if identifier in asset_ids) or asset_ids,
+                verification=VerificationStatus.UNVERIFIED if unavailable else claim.verification,
+                limitations=(
+                    (*claim.limitations, "exact opportunity cutoff excludes a referenced later retrieval")
+                    if unavailable
+                    else claim.limitations
+                ),
+            )
+        )
     for index, (scope, name, statement) in enumerate(_all_statements(review.data)):
-        claims.append(ResearchClaim("OPPORTUNITY_DRAFT_" + str(index), statement["text"], (scope,) if scope else asset_ids,
-            VerificationStatus.UNVERIFIED, pending, (), (), None,
-            ("연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다.",),
-            "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.", evidence_refs(statement["evidence_ids"])))
-    digest = _digest({"review": review.input_digest, "source_case": source_case.input_digest,
-                     "macro": macro.input_digest, "method": OPPORTUNITY_VERSION, "as_of": cutoff.isoformat()})
-    brief = ResearchBrief(review.id, review.data["question"], cutoff.date(), "KRW", review.data["horizon"],
+        claims.append(
+            ResearchClaim(
+                "OPPORTUNITY_DRAFT_" + str(index),
+                statement["text"],
+                (scope,) if scope else asset_ids,
+                VerificationStatus.UNVERIFIED,
+                pending,
+                (),
+                (),
+                None,
+                ("연구 우선순위와 조건부 해석의 초안이며 사실 확인·상대 매력 확정이 아니다.",),
+                "새 원자료·반대 근거·사용자 제약이 확인되면 다시 검토한다.",
+                evidence_refs(statement["evidence_ids"]),
+            )
+        )
+    digest = _digest(
+        {
+            "review": review.input_digest,
+            "source_case": source_case.input_digest,
+            "macro": macro.input_digest,
+            "method": OPPORTUNITY_VERSION,
+            "as_of": cutoff.isoformat(),
+        }
+    )
+    brief = ResearchBrief(
+        review.id,
+        review.data["question"],
+        cutoff.date(),
+        "KRW",
+        review.data["horizon"],
         evidence_refs(ref for statement in sections["drivers"] for ref in statement["evidence_ids"]),
-        tuple(review.data["sampling_limits"]), tuple(review.data["comparison_limits"]))
-    profile = ProfileSnapshot(review.id + "_PROFILE", cutoff.date(),
-        {name: ProfileField(field["status"], field["value"]) for name, field in review.data["profile"].items()})
-    case = ResearchCase("1", False, brief, profile, tuple(sources), tuple(evidence), tuple(claims), alternatives,
-                        (), costs, digest, True, tuple(diagnostics))
+        tuple(review.data["sampling_limits"]),
+        tuple(review.data["comparison_limits"]),
+    )
+    profile = ProfileSnapshot(
+        review.id + "_PROFILE",
+        cutoff.date(),
+        {name: ProfileField(field["status"], field["value"]) for name, field in review.data["profile"].items()},
+    )
+    case = ResearchCase(
+        "1",
+        False,
+        brief,
+        profile,
+        tuple(sources),
+        tuple(evidence),
+        tuple(claims),
+        alternatives,
+        (),
+        costs,
+        digest,
+        True,
+        tuple(diagnostics),
+    )
     result = replace(run_research(case), metrics=metrics)
     return OpportunityRun(review, case, result, macro, tuple(rows), tuple(diagnostics), digest, sections)
 
@@ -384,16 +565,37 @@ def opportunity_manifest(run: OpportunityRun, report: str) -> dict:
     from .__main__ import manifest_for
     from .macro_report import render_macro_report
     from .opportunity_report import OPPORTUNITY_REPORT_VERSION
+
     manifest = manifest_for(run.result, report)
-    manifest.update({"kind": "cross_asset_opportunity_map", "as_of": run.review.as_of.isoformat(),
-        "review_sha256": run.review.input_digest, "review_status": "draft",
-        "author": run.review.data["author"], "profile": run.review.data["profile"],
-        "source_statement_scope": "matched occurrence; investment meaning not automatically verified",
-        "priorities": [{"asset_id": row["asset_id"], "requested": row["_requested_priority"],
-                        "effective": row["priority"], "review_status": "draft", "warnings": row["_warnings"]} for row in run.rows],
-        "references": [{"asset_id": scope, "location": name, "evidence_ids": statement["evidence_ids"]}
-                       for scope, name, statement in _all_statements(run.review.data)],
-        "effective_rows": list(run.rows), "effective_sections": run.sections,
-        "macro": macro_manifest(run.macro, render_macro_report(run.macro))})
-    manifest["method_versions"].update({"opportunity": OPPORTUNITY_VERSION, "opportunity_report": OPPORTUNITY_REPORT_VERSION})
+    manifest.update(
+        {
+            "kind": "cross_asset_opportunity_map",
+            "as_of": run.review.as_of.isoformat(),
+            "review_sha256": run.review.input_digest,
+            "review_status": "draft",
+            "author": run.review.data["author"],
+            "profile": run.review.data["profile"],
+            "source_statement_scope": "matched occurrence; investment meaning not automatically verified",
+            "priorities": [
+                {
+                    "asset_id": row["asset_id"],
+                    "requested": row["_requested_priority"],
+                    "effective": row["priority"],
+                    "review_status": "draft",
+                    "warnings": row["_warnings"],
+                }
+                for row in run.rows
+            ],
+            "references": [
+                {"asset_id": scope, "location": name, "evidence_ids": statement["evidence_ids"]}
+                for scope, name, statement in _all_statements(run.review.data)
+            ],
+            "effective_rows": list(run.rows),
+            "effective_sections": run.sections,
+            "macro": macro_manifest(run.macro, render_macro_report(run.macro)),
+        }
+    )
+    manifest["method_versions"].update(
+        {"opportunity": OPPORTUNITY_VERSION, "opportunity_report": OPPORTUNITY_REPORT_VERSION}
+    )
     return manifest

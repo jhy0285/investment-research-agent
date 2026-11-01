@@ -37,9 +37,12 @@ class MacroCLITests(unittest.TestCase):
         return ("macro", "replay", self.plan_path, "--store", self.store, "--pins", self.pins_path)
 
     def mock_acquisition(self, now=fixture.ACQUIRED_AT):
-        return patch("investment_research.macro_pipeline.acquire_macro", side_effect=
-                     lambda plan, store, previous_pins=None, **kwargs: acquire_macro(
-                         plan, store, previous_pins=previous_pins, fetcher=self.fetcher, now=now))
+        return patch(
+            "investment_research.macro_pipeline.acquire_macro",
+            side_effect=lambda plan, store, previous_pins=None, **kwargs: acquire_macro(
+                plan, store, previous_pins=previous_pins, fetcher=self.fetcher, now=now
+            ),
+        )
 
     def prepare_replay(self):
         plan = self.plan()
@@ -64,7 +67,9 @@ class MacroCLITests(unittest.TestCase):
 
     def test_acquire_http_failure_keeps_failure_snapshot_and_returns_one(self):
         self.plan()
-        self.documents[self.data["sources"][0]["url"]] = FetchResponse(b"Synthetic temporary outage", "application/json", status=503)
+        self.documents[self.data["sources"][0]["url"]] = FetchResponse(
+            b"Synthetic temporary outage", "application/json", status=503
+        )
         with self.mock_acquisition():
             status, stdout, stderr = self.call(*self.acquire_args())
         self.assertEqual(status, 1, stderr)
@@ -76,7 +81,9 @@ class MacroCLITests(unittest.TestCase):
         self.plan()
         existing = b"User-owned acquisition record\n"
         self.pins_path.write_bytes(existing)
-        with patch("investment_research.macro_pipeline.acquire_macro", side_effect=AssertionError("GET must not begin")) as acquisition:
+        with patch(
+            "investment_research.macro_pipeline.acquire_macro", side_effect=AssertionError("GET must not begin")
+        ) as acquisition:
             status, stdout, stderr = self.call(*self.acquire_args())
         self.assertEqual(status, 2)
         self.assertEqual(stdout, "")
@@ -91,8 +98,17 @@ class MacroCLITests(unittest.TestCase):
         new_pins_path = self.directory / "pins_v2.json"
         acquired_at = datetime(2026, 10, 10, 12, 0, 0, tzinfo=timezone.utc)
         with self.mock_acquisition(now=acquired_at):
-            status, _, stderr = self.call("macro", "acquire", self.plan_path, "--store", self.store,
-                                          "--pins", new_pins_path, "--previous-pins", self.pins_path)
+            status, _, stderr = self.call(
+                "macro",
+                "acquire",
+                self.plan_path,
+                "--store",
+                self.store,
+                "--pins",
+                new_pins_path,
+                "--previous-pins",
+                self.pins_path,
+            )
         self.assertEqual(status, 0, stderr)
         self.assertEqual(self.pins_path.read_bytes(), original)
         new_pins = json.loads(new_pins_path.read_text(encoding="utf-8"))
@@ -102,7 +118,9 @@ class MacroCLITests(unittest.TestCase):
 
     def test_replay_is_deterministic_without_http_dns_or_acquisition(self):
         self.prepare_replay()
-        with patch("investment_research.macro_pipeline.acquire_macro", side_effect=AssertionError("replay must not acquire")):
+        with patch(
+            "investment_research.macro_pipeline.acquire_macro", side_effect=AssertionError("replay must not acquire")
+        ):
             first = self.call(*self.replay_args())
             second = self.call(*self.replay_args())
         self.assertEqual(first[0], 0, first[2])
@@ -144,7 +162,11 @@ class MacroCLITests(unittest.TestCase):
         encoded = json.dumps(pins)
         inputs = (
             "{invalid JSON",
-            encoded.replace('"schema_version": "macro-pins-v1"', '"schema_version": "macro-pins-v1", "schema_version": "macro-pins-v1"', 1),
+            encoded.replace(
+                '"schema_version": "macro-pins-v1"',
+                '"schema_version": "macro-pins-v1", "schema_version": "macro-pins-v1"',
+                1,
+            ),
             encoded.replace('"schema_version": "macro-pins-v1"', '"schema_version": NaN', 1),
         )
         for text in inputs:
@@ -163,7 +185,10 @@ class MacroCLITests(unittest.TestCase):
                 invalid = deepcopy(self.data)
                 invalid[field] = [None]
                 self.plan_path.write_text(json.dumps(invalid), encoding="utf-8")
-                with patch("investment_research.macro_pipeline.acquire_macro", side_effect=AssertionError("invalid plan must not GET")) as acquisition:
+                with patch(
+                    "investment_research.macro_pipeline.acquire_macro",
+                    side_effect=AssertionError("invalid plan must not GET"),
+                ) as acquisition:
                     status, stdout, stderr = self.call(*self.acquire_args())
                 self.assertEqual(status, 2)
                 self.assertEqual(stdout, "")

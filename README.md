@@ -10,7 +10,7 @@
 
 ## 사용자의 질문에서 시작하는 네 모드
 
-새 Broad Scan에는 [투자 판단과 사후검증](docs/investment-cycle.md)을 기본 연결한다. 첫 화면에 최종 행동·최대 다섯 후보·신규 1,000만원 예시 배분을 보여 주고 불변 일지를 남긴다. 등록 검증 자료가 없으면 신규 매수하지 않고 예시 현금을 유지한다. 실제 10년 가격/이익 전망 판본 자동 수집은 아직 연결하지 않았으며, 검토된 계약 입력을 받아 과거·최근 검증을 수행한다.
+새 Broad Scan에는 [투자 판단과 사후검증](docs/investment-cycle.md)을 기본 연결한다. 첫 화면에 최종 행동·최대 다섯 후보·신규 1,000만원 예시 배분을 보여 주고 불변 일지를 남긴다. 등록 검증 자료가 없으면 신규 매수하지 않고 예시 현금을 유지한다. [시점 보장 장기 이력 수집](docs/long-history.md)(`invest history`)은 Upbit 원화 BTC·ETH 일별 종가와 미국 거시 계열의 ALFRED 판본을 검증 입력 형식으로 자동으로 만든다. 주식·ETF 총수익 이력과 과거 이익 전망 판본은 아직 자동 수집하지 않으므로 그 부분은 검토된 계약 입력을 받는다.
 
 ```bash
 python -m investment_research ask '현재 신규 자금을 투자한다면 어디에 투자하는 것이 가장 합리적인가?' --journal reports/investment_journal
@@ -18,7 +18,7 @@ python -m investment_research ask '전체 투자판에서 기회 찾아줘' --de
 python -m examples.investment_cycle.demo --output reports/example_synthetic_cycle
 ```
 
-`invest run/replay/record/review`로 완료 연구의 투자 결론 재현, 기존 판단 기록, 성숙 결과와 등급·전략 평가를 실행한다. 경고 상태는 다음 신규 매수를 차단하고, 조건 수정은 이전 정의를 보존한 새 버전으로 검증한다. [실행·데이터 계약과 현재 제한](docs/investment-cycle.md), [합성 예제](examples/investment_cycle/README.md)를 참고한다.
+`invest run/replay/record/review`로 완료 연구의 투자 결론 재현, 기존 판단 기록, 성숙 결과와 등급·전략 평가를 실행하고, `invest history acquire/replay`로 장기 이력을 수집·재현한다. 경고 상태는 다음 신규 매수를 차단하고, 조건 수정은 이전 정의를 보존한 새 버전으로 검증한다. [실행·데이터 계약과 현재 제한](docs/investment-cycle.md), [합성 예제](examples/investment_cycle/README.md)를 참고한다.
 
 | 질문의 목적 | 독립 진입점 |
 | --- | --- |
@@ -41,25 +41,35 @@ python -m investment_research ask '내 포트폴리오 괜찮아?'
 
 새 질문의 기본 본문은 **쉽지만 충분히 자세한 설명형 보고서**다. 전문용어를 처음 쓸 때 뜻과 투자 의미를 설명하고, 숫자를 실제 변화·반대 근거·가격에 반영된 기대·판단을 바꿀 조건으로 연결한다. Scan은 실제 선정된 후보를 자세히 설명하고 자료 부족과 투자 매력 부족을 구분한다. Deep Dive·비교·보유 검토도 같은 난이도로 읽을 수 있다. 원자료·계산식·검증·해시·replay는 펼쳐 볼 수 있는 상세 근거에 유지한다. 과거 보고서는 원래 형식으로 재현한다. [보고서 설명 기준](docs/reporting.md)을 따른다.
 
-자산 본문에는 해당 수익 구조에 맞는 용어·계산만 설명하고, 금리·환율의 관측과 변화 계산은 **시장 환경**으로 구분한다. BTC에 PER 풀이를 붙이지 않는다. Scan의 비후보는 짧은 표로 압축하고, 마지막 **그래서 지금 시장은 어떤 시장인가**에서 실제 후보와 이자 대안·가격 기대·불확실성을 1~3문단으로 연결한다. [동일 자료의 전후 검증과 예시](reports/explanation_guard_validation_20261007/validation_report.md)를 확인할 수 있다.
+자산 본문에는 해당 수익 구조에 맞는 용어·계산만 설명하고, 금리·환율의 관측과 변화 계산은 **시장 환경**으로 구분한다. BTC에 PER 풀이를 붙이지 않는다. Scan의 비후보는 짧은 표로 압축하고, 마지막 **그래서 지금 시장은 어떤 시장인가**에서 실제 후보와 이자 대안·가격 기대·불확실성을 1~3문단으로 연결한다. 동일 자료의 전후 검증과 예시(`reports/explanation_guard_validation_20261007/validation_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다)를 확인할 수 있다.
 
-[질문 조건 보존](docs/query-understanding.md)은 국가·지역·만기·전략·목적·시점·명시 제약을 구조화해 실행과 보고서에 연결한다. “한국 3년 국채”를 미국 단기 국채로, “서울/수도권 아파트”를 전국 자료로 바꾸지 않는다. 미지원 조건은 데이터 부족으로 표시한다. “전체 투자판에서 기회”는 자산을 되묻지 않고 Scan을 실행한다. [여섯 실제 질문의 전후 회귀 기록](reports/query_understanding_regression_20261005T080806Z/regression_report.md)에 결과와 남은 자료 공백을 보존했다.
+[질문 조건 보존](docs/query-understanding.md)은 국가·지역·만기·전략·목적·시점·명시 제약을 구조화해 실행과 보고서에 연결한다. “한국 3년 국채”를 미국 단기 국채로, “서울/수도권 아파트”를 전국 자료로 바꾸지 않는다. 미지원 조건은 데이터 부족으로 표시한다. “전체 투자판에서 기회”는 자산을 되묻지 않고 Scan을 실행한다. 여섯 실제 질문의 전후 회귀 기록(`reports/query_understanding_regression_20261005T080806Z/regression_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다)에 결과와 남은 자료 공백을 보존했다.
 
 BTC에는 [Source Discovery & Freshness MVP](docs/source-discovery.md)를 연결했다. 질문에 필요한 범주를 먼저 고르고, 검토한 공개 목록·발행자 링크·community 검색에서 **미등록 최종 URL·현재 관측값·새 판본**을 찾아 기존 snapshot·근거·claim pipeline으로 검증한다. 가격만 물으면 가격만, ETF 순유입을 물으면 해당 흐름만 발견한다. 검색 snippet은 evidence가 아니며 source의 실제 관측일·단위·원문을 확인한다. 최신 ETF 행이 미완성이면 잠정 합계와 확정 흐름 미확보를 함께 표시한다.
 
-넓은 기회 질문에는 [조건부 Opportunity Scan](docs/opportunity-scan.md)을 실행한다. 15영역의 최소 evidence 충족 여부와 투자 매력을 따로 기록하고 실제 조사 질문이 있는 후보만 최대 네 개 선택한다. BTC·ETH 가격 흐름, 금 기준가격·실질금리, 원유·가스 실제 재고, 지역 전세·국내 금리 benchmark를 기존 pipeline에 연결했다. `--previous-scan`은 이전 완료 실행과 같은 정의의 관측을 비교하고 새 연결·개정·시장 변화·후보 변경 이유를 구분한다. 가격 상승·인기도·자료 수는 투자 순위가 아니다. 후보 번호 후속 질문은 `--context-run`으로 이전 실행을 지정한다. arbitrary web search·전체 자산 parser·BTC network/전체 derivatives/적정 가치·특정 아파트 실거래·자동 배분은 미지원이다. [이번 실제 검증](reports/opportunity_coverage_validation_20261006T130156KST/validation_report.md), [실행 계약](docs/research-orchestrator.md), [기존 질문별 예제](examples/ask_orchestrator/README.md)를 확인할 수 있다.
+넓은 기회 질문에는 [조건부 Opportunity Scan](docs/opportunity-scan.md)을 실행한다. 15영역의 최소 evidence 충족 여부와 투자 매력을 따로 기록하고 실제 조사 질문이 있는 후보만 최대 네 개 선택한다. BTC·ETH 가격 흐름, 금 기준가격·실질금리, 원유·가스 실제 재고, 지역 전세·국내 금리 benchmark를 기존 pipeline에 연결했다. `--previous-scan`은 이전 완료 실행과 같은 정의의 관측을 비교하고 새 연결·개정·시장 변화·후보 변경 이유를 구분한다. 가격 상승·인기도·자료 수는 투자 순위가 아니다. 후보 번호 후속 질문은 `--context-run`으로 이전 실행을 지정한다. arbitrary web search·전체 자산 parser·BTC network/전체 derivatives/적정 가치·특정 아파트 실거래·자동 배분은 미지원이다. 이번 실제 검증(`reports/opportunity_coverage_validation_20261006T130156KST/validation_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다), [실행 계약](docs/research-orchestrator.md), [기존 질문별 예제](examples/ask_orchestrator/README.md)를 확인할 수 있다.
 
-천연가스 실제 월간 생산·LNG 수출·계절 재고·기온 전망, 금 IAU 실물 보유량, ETH 고유 ETF 집계, GSG 광범위 원자재 NAV/구성도 Scan v7의 최소 입력으로 연결했다. 자료 충족과 투자 매력은 별개이며 ETH 원발행사 확인·원자재 비중/일부 수급은 여전히 부족하다. [네 영역 실제 검증](reports/four_asset_minimum_validation_20261006/validation_report.md)을 확인할 수 있다.
+천연가스 실제 월간 생산·LNG 수출·계절 재고·기온 전망, 금 IAU 실물 보유량, ETH 고유 ETF 집계, GSG 광범위 원자재 NAV/구성도 Scan v7의 최소 입력으로 연결했다. 자료 충족과 투자 매력은 별개이며 ETH 원발행사 확인·원자재 비중/일부 수급은 여전히 부족하다. 네 영역 실제 검증(`reports/four_asset_minimum_validation_20261006/validation_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다)을 확인할 수 있다.
 
-[Source Anomaly Guard](docs/source-anomaly-guard.md)는 원문에 있는 숫자도 동일 제공자 충돌·극단적 관측·단위/주기/경제적 정의·미완성 여부를 검사해 계산과 coverage에서 격리한다. 과거 artifact는 유지하고 새 실행에 재판정 이유를 남긴다. [세 원자재 독립 Deep Dive](docs/commodity-deep-dive.md)는 실제 만기별 선물·주입 속도·난방도일·CFTC·UNG 공시, 금 ETF/중앙은행/실물 수요, 날짜 있는 GSCI 구성과 하위시장/상품 비용을 기존 pipeline으로 조사한다. BOIL 최신 조건·현재 전체 구성/성과 기여 등 남은 공백은 그대로 공개한다. [실제 보고서와 회귀 검증](reports/commodity_deep_validation_20261006/validation_report.md)을 확인할 수 있다.
+[Source Anomaly Guard](docs/source-anomaly-guard.md)는 원문에 있는 숫자도 동일 제공자 충돌·극단적 관측·단위/주기/경제적 정의·미완성 여부를 검사해 계산과 coverage에서 격리한다. 과거 artifact는 유지하고 새 실행에 재판정 이유를 남긴다. [세 원자재 독립 Deep Dive](docs/commodity-deep-dive.md)는 실제 만기별 선물·주입 속도·난방도일·CFTC·UNG 공시, 금 ETF/중앙은행/실물 수요, 날짜 있는 GSCI 구성과 하위시장/상품 비용을 기존 pipeline으로 조사한다. BOIL 최신 조건·현재 전체 구성/성과 기여 등 남은 공백은 그대로 공개한다. 실제 보고서와 회귀 검증(`reports/commodity_deep_validation_20261006/validation_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다)을 확인할 수 있다.
 
-[삼성전자·SK하이닉스 비교](docs/korean-semiconductor-comparison.md)는 공식 삼성전자 연결 제표, SK하이닉스 IR 연결 제공자, 국내 표시 종가를 기존 근거 pipeline으로 검증해 TTM EPS·잠정 이익배수·이익의 질을 연결한다. DART는 접수등록만 확인했고 본문 검증과 KRX 직접 대조는 미완료다. 제공자의 장부가치·현금흐름 정의 차이를 공개하며 낮은 배수를 투자 우위로 자동 확정하지 않는다. [실제 재실행](reports/semiconductor_comparison_validation_20261005T121543Z/live_comparison/report.md)에 판단 근거와 남은 공백을 보존했다.
+[삼성전자·SK하이닉스 비교](docs/korean-semiconductor-comparison.md)는 공식 삼성전자 연결 제표, SK하이닉스 IR 연결 제공자, 국내 표시 종가를 기존 근거 pipeline으로 검증해 TTM EPS·잠정 이익배수·이익의 질을 연결한다. DART는 접수등록만 확인했고 본문 검증과 KRX 직접 대조는 미완료다. 제공자의 장부가치·현금흐름 정의 차이를 공개하며 낮은 배수를 투자 우위로 자동 확정하지 않는다. 실제 재실행(`reports/semiconductor_comparison_validation_20261005T121543Z/live_comparison/report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다)에 판단 근거와 남은 공백을 보존했다.
 
 ## 현재 상태와 이번 작업의 범위
 
+### 기능 상태 한눈에 보기
+
+| 상태 | 기능 |
+| --- | --- |
+| 실행 가능 | 자연어 `ask`(Scan·Deep Dive·Compare·Portfolio Review), 공개 출처 획득·검증·replay, 거시 판본·Macro Snapshot, 15영역 Opportunity Map, 투자 판단·1,000만원 예시 배분·불변 일지·사후 평가(`invest`), 장기 이력 수집(`invest history`), 실제 자료로 이력 수집 → 조사 → 판단(`invest run --history`) |
+| 제한적 | Compare·Portfolio Review(자산별 미지원 표시), 장기 이력(Upbit BTC·ETH, KODEX TR ETF, TIGER 미국 지수 NAV, 미국 정부 거시 계열 ALFRED 판본, FactSet S&P 500 forward P/E만), 매수 승인(검증 통과 전략과 사람의 검토가 있어야 가능) |
+| 미구현 | 미국 개별 주식·해외 ETF의 직접 계산 총수익(미국 지수는 TIGER NAV로 비교 시장만 지원), KODEX·TIGER 외 국내 종목·ETF 가격, 개별 기업 이익 전망 판본, 개인 체결·세금, 자동 예약 실행(수동 절차는 [정기 점검](docs/weekly-routine.md)), 자동매매 |
+
+판단 규칙은 버전으로 관리한다. 현재 `investment_cycle_v3`는 현재 자료가 확인되지 않은 보유 자산에 축소를 권하지 않고 판단을 보류하며(v2), 현금 분배가 없는 코인 가격을 보유자 수익의 하한으로 표시해 원화 총수익 비교 시장과 검증할 수 있고, `invest run`은 사람이 조사를 읽고 검토한 뒤의 판단 시각을 기준으로 삼는다. 이전 버전으로 저장한 실행은 그 버전 규칙으로 재현한다. 변경 이력은 [CHANGELOG](CHANGELOG.md)에 있다.
+
 **오프라인 Cross-Asset Research Brief, 공개 출처 획득·검증, Macro Regime Snapshot, 실제 Opportunity Map과 첫 미국 주식 Deep Dive가 있다.** 합성 비교와 과거 FOMC 검증을 유지하고 15개 투자 영역을 조사한 뒤 미국 주식의 예상 이익·실적 질·AI 투자·Treasury 기회비용을 실제 자료로 검토했다. 우선순위와 경제적 판단은 근거에 연결한 검토 전 해석이며 자산 매력·개인 배분·예측을 확정하지 않는다. 수치·구절 확인과 경제적 의미의 검토를 구분한다.
 
-Python 3.12 이상과 표준 라이브러리만 사용한다. Python 3.12.14에서 실행과 테스트를 확인했다. 합성 연구·저장 자료 replay·기본 테스트는 인터넷·API 키·패키지 설치 없이 저장소 루트에서 실행한다.
+Python 3.12 이상과 표준 라이브러리만 사용한다. Python 3.12.14와 3.13.16에서 실행과 테스트를 확인했다. 코드 서식은 선택적 개발 도구 `black`(설정은 `pyproject.toml`)으로 맞추며 실행에는 필요 없다. 합성 연구·저장 자료 replay·기본 테스트는 인터넷·API 키·패키지 설치 없이 저장소 루트에서 실행한다.
 
 삼성전자 공식 PDF와 [검토된 CME·USDA·GSG 문서](docs/commodity-deep-dive.md)의 live 획득에는 선택적 로컬 `pdftotext`가 필요하다. 이 클라우드에는 이미 설치되어 있다. 없으면 해당 원문은 미확보로 남기며 저장된 replay와 offline 테스트에는 필요하지 않다. Python 패키지는 추가하지 않았다.
 
@@ -109,13 +119,13 @@ python -m investment_research macro replay examples/macro_case --store examples/
 python -m investment_research macro acquire examples/macro_case --store reports/macro_snapshots --pins reports/new_macro_pins.json
 ```
 
-현재 전체 **569개 테스트가 인터넷 없이 통과**한다. 검증 명령은 `python -m unittest discover -v`다. 기존 557개를 유지하고 자산별 용어·계산 범위, 시장 환경 분리, 비후보 압축, 마지막 종합 문단과 구형 보고서 보존 검증 12개를 추가했다. 실제 라이브 획득과 기본 테스트는 분리한다. [자산별 설명과 종합 문단 검증](reports/explanation_guard_validation_20261007/validation_report.md), [기존 설명형 보고서](reports/explanatory_report_validation_20261006/validation_report.md), [관측일·원자재 검증](reports/date_attribution_validation_20261006/validation_report.md)을 보존한다.
+이 기능을 추가한 시점에는 전체 **569개 테스트가 인터넷 없이 통과**했다(현재 개수는 아래 검증 명령으로 확인한다). 검증 명령은 `python -m unittest discover -v`다. 기존 557개를 유지하고 자산별 용어·계산 범위, 시장 환경 분리, 비후보 압축, 마지막 종합 문단과 구형 보고서 보존 검증 12개를 추가했다. 실제 라이브 획득과 기본 테스트는 분리한다. 자산별 설명과 종합 문단 검증(`reports/explanation_guard_validation_20261007/validation_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다), 기존 설명형 보고서(`reports/explanatory_report_validation_20261006/validation_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다), 관측일·원자재 검증(`reports/date_attribution_validation_20261006/validation_report.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다)을 보존한다.
 
 ## 한국 시장 원자료
 
 기존 질문 해석을 유지하며 한국은행 ECOS 국고채 1·3·5·10년 금리, 삼성전자 공식 분기 실적, SK하이닉스 공식 IR 연결 제공자의 두 분기 재무자료, 한국부동산원 서울·경기·인천 아파트 매매/전세지수·거래량·실거래지수를 기존 pipeline에 연결했다. 제공자 숫자와 원공시, 기준금리와 실행 YTM, 지역 지수와 개별 거래 가격을 구분한다. 현재 주가/같은 정의 valuation·원공시 교차 확인·개별 실거래·공급/대출은 여전히 제한된다.
 
-[연결·정의·권한·시점 안내](docs/korean-official-coverage.md), [세 실제 질문의 전후 검증](reports/korean_coverage_validation_20261005T092721Z/coverage_validation.md)에서 자료 수가 아닌 판단 가능한 범위의 변화를 설명한다. 세 질문은 한국 국채/다른 기업/전국 자료로 대체하지 않고 실제로 실행했다.
+[연결·정의·권한·시점 안내](docs/korean-official-coverage.md), 세 실제 질문의 전후 검증(`reports/korean_coverage_validation_20261005T092721Z/coverage_validation.md`, 로컬 검증 산출물이며 저장소에는 포함하지 않는다)에서 자료 수가 아닌 판단 가능한 범위의 변화를 설명한다. 세 질문은 한국 국채/다른 기업/전국 자료로 대체하지 않고 실제로 실행했다.
 
 ## 실제 현재 시장의 Opportunity Map
 
@@ -156,6 +166,9 @@ python -m investment_research opportunity replay examples/opportunity_map_case -
 | [미국 주식 Deep Dive](docs/us-equity-deep-dive.md) | 예상 이익·AI 현금 회수·Treasury 비교, 원문 숫자·scope·판단 유보·선택적 이전 맥락 |
 | [Source Anomaly Guard](docs/source-anomaly-guard.md) | 제공자 충돌·이상치·단위·결측 격리와 claim/계산/coverage·이전 판본 보존 |
 | [원자재 Deep Dive](docs/commodity-deep-dive.md) | 독립 가스/금/바스켓 조사, 실제 선물·수요·상품 차이와 시차/공백 |
+| [투자 판단과 사후검증](docs/investment-cycle.md) | 가설·시점 검증·행동·예시 배분·불변 일지·사후 평가와 판단 규칙 버전 |
+| [시점 보장 장기 이력](docs/long-history.md) | Upbit·KODEX·TIGER·ALFRED·FactSet 수집, known_at 규칙, 총수익 표시의 근거와 검증, 계획 연결과 한계 |
+| [정기 점검 절차](docs/weekly-routine.md) | 이력 갱신 → 조사 → 사람의 검토 → 판단 → 사후 평가의 수동 주간 루틴과 자동화 가능 범위 |
 | [개발 지침](AGENTS.md) | 향후 작업에서 유지할 원칙과 검증 기준 |
 
 ## 우선 지킬 경계

@@ -25,7 +25,6 @@ from investment_research.sources import (
     load_snapshot,
 )
 
-
 NOW = datetime(2026, 10, 3, 4, 5, 6, tzinfo=timezone.utc)
 URL = "https://example.org/synthetic-policy"
 ROBOTS_URL = "https://example.org/robots.txt"
@@ -61,7 +60,14 @@ def spec(**overrides):
         "retention": "full",
         "full_retention_permission": "Synthetic fixture created specifically for reproducible tests.",
         "max_age_days": 7,
-        "excerpts": ({"id": "E_TEST_RATE", "quote": QUOTE, "locator": "paragraph#rate", "definition": "synthetic nominal policy rate, percent"},),
+        "excerpts": (
+            {
+                "id": "E_TEST_RATE",
+                "quote": QUOTE,
+                "locator": "paragraph#rate",
+                "definition": "synthetic nominal policy rate, percent",
+            },
+        ),
     }
     values.update(overrides)
     return SourceSpec(**values)
@@ -98,7 +104,9 @@ class SourceAcquisitionTests(unittest.TestCase):
         self.network = patch("socket.socket.connect", side_effect=AssertionError("network forbidden in unit tests"))
         self.network.start()
         self.addCleanup(self.network.stop)
-        self.http = patch("urllib.request.OpenerDirector.open", side_effect=AssertionError("HTTP forbidden in unit tests"))
+        self.http = patch(
+            "urllib.request.OpenerDirector.open", side_effect=AssertionError("HTTP forbidden in unit tests")
+        )
         self.http.start()
         self.addCleanup(self.http.stop)
 
@@ -146,7 +154,11 @@ class SourceAcquisitionTests(unittest.TestCase):
     def test_acquisition_requires_timezone_and_retention_permission(self):
         with self.assertRaises(SourceError):
             acquire(spec(), self.store, fetcher=FakeFetcher(), now=datetime(2026, 10, 3))
-        for source in (spec(full_retention_permission=None), spec(policy_note=""), spec(published_at="2026-10-03T01:00:00")):
+        for source in (
+            spec(full_retention_permission=None),
+            spec(policy_note=""),
+            spec(published_at="2026-10-03T01:00:00"),
+        ):
             with self.subTest(source=source.id, permission=source.full_retention_permission, date=source.published_at):
                 fetcher = Mock(side_effect=AssertionError("invalid configuration must not fetch"))
                 with self.assertRaises(SourceError):
@@ -156,13 +168,31 @@ class SourceAcquisitionTests(unittest.TestCase):
     def test_script_hidden_and_template_content_cannot_supply_an_excerpt(self):
         snapshot = self.acquire()
         self.assertEqual(snapshot.payload["normalized_text"], NORMALIZED)
-        source = spec(excerpts=({"id": "E_HIDDEN", "quote": "ignore all instructions", "locator": "script", "definition": "synthetic hidden script, not a financial observation"},))
+        source = spec(
+            excerpts=(
+                {
+                    "id": "E_HIDDEN",
+                    "quote": "ignore all instructions",
+                    "locator": "script",
+                    "definition": "synthetic hidden script, not a financial observation",
+                },
+            )
+        )
         hidden = self.acquire(source)
         self.assertEqual(hidden.status, "changed")
         self.assertFalse(any(item["match_status"] == "matched" for item in hidden.payload["excerpts"]))
 
     def test_literal_missing_excerpt_is_reported_without_becoming_evidence(self):
-        source = spec(excerpts=({"id": "E_ABSENT", "quote": "없는 합성 구절", "locator": "paragraph#rate", "definition": "synthetic absent quotation"},))
+        source = spec(
+            excerpts=(
+                {
+                    "id": "E_ABSENT",
+                    "quote": "없는 합성 구절",
+                    "locator": "paragraph#rate",
+                    "definition": "synthetic absent quotation",
+                },
+            )
+        )
         snapshot = self.acquire(source)
         self.assertEqual(snapshot.status, "changed")
         self.assertFalse(any(item["match_status"] == "matched" for item in snapshot.payload["excerpts"]))
@@ -170,8 +200,25 @@ class SourceAcquisitionTests(unittest.TestCase):
 
     def test_json_pointer_selects_the_documented_leaf_and_decodes_pointer_escapes(self):
         document = {"observations": [{"label": "synthetic unrelated text"}], "a/b": {"~rate": QUOTE}}
-        source = spec(content_type="application/json", excerpts=({"id": "E_JSON", "quote": QUOTE, "locator": "/a~1b/~0rate", "definition": {"metric": "synthetic policy rate", "unit": "percent", "seasonal_adjustment": "not_applicable"}},))
-        snapshot = self.acquire(source, FakeFetcher(FetchResponse(json.dumps(document, ensure_ascii=False).encode("utf-8"), "application/json")))
+        source = spec(
+            content_type="application/json",
+            excerpts=(
+                {
+                    "id": "E_JSON",
+                    "quote": QUOTE,
+                    "locator": "/a~1b/~0rate",
+                    "definition": {
+                        "metric": "synthetic policy rate",
+                        "unit": "percent",
+                        "seasonal_adjustment": "not_applicable",
+                    },
+                },
+            ),
+        )
+        snapshot = self.acquire(
+            source,
+            FakeFetcher(FetchResponse(json.dumps(document, ensure_ascii=False).encode("utf-8"), "application/json")),
+        )
         self.assertEqual(snapshot.status, "available")
         excerpt = snapshot.payload["excerpts"][0]
         self.assertEqual(excerpt["locator"], "/a~1b/~0rate")
@@ -179,15 +226,47 @@ class SourceAcquisitionTests(unittest.TestCase):
         self.assertEqual(excerpt["definition"]["unit"], "percent")
 
     def test_wrong_json_pointer_does_not_search_an_unrelated_field(self):
-        source = spec(content_type="application/json", excerpts=({"id": "E_JSON", "quote": QUOTE, "locator": "/observation", "definition": "synthetic explicit observation field"},))
-        for document in ({"observation": "different synthetic text", "unrelated": QUOTE}, {"unrelated": QUOTE}, {"observation": {"nested": QUOTE}}):
+        source = spec(
+            content_type="application/json",
+            excerpts=(
+                {
+                    "id": "E_JSON",
+                    "quote": QUOTE,
+                    "locator": "/observation",
+                    "definition": "synthetic explicit observation field",
+                },
+            ),
+        )
+        for document in (
+            {"observation": "different synthetic text", "unrelated": QUOTE},
+            {"unrelated": QUOTE},
+            {"observation": {"nested": QUOTE}},
+        ):
             with self.subTest(document=document):
-                snapshot = self.acquire(source, FakeFetcher(FetchResponse(json.dumps(document, ensure_ascii=False).encode("utf-8"), "application/json")))
+                snapshot = self.acquire(
+                    source,
+                    FakeFetcher(
+                        FetchResponse(json.dumps(document, ensure_ascii=False).encode("utf-8"), "application/json")
+                    ),
+                )
                 self.assertEqual(snapshot.status, "changed")
                 self.assertFalse(any(item["match_status"] == "matched" for item in snapshot.payload["excerpts"]))
 
     def test_deleted_and_removed_community_text_is_not_an_available_source(self):
-        source = spec(type="community", content_type="application/json", retention="excerpt", full_retention_permission=None, excerpts=({"id": "E_POST", "quote": "Synthetic investors expect rates to fall.", "locator": "/body", "definition": "synthetic utterance only; contents not verified"},))
+        source = spec(
+            type="community",
+            content_type="application/json",
+            retention="excerpt",
+            full_retention_permission=None,
+            excerpts=(
+                {
+                    "id": "E_POST",
+                    "quote": "Synthetic investors expect rates to fall.",
+                    "locator": "/body",
+                    "definition": "synthetic utterance only; contents not verified",
+                },
+            ),
+        )
         documents = (
             {"body": "[deleted]"},
             {"body": "[removed]"},
@@ -196,14 +275,34 @@ class SourceAcquisitionTests(unittest.TestCase):
         )
         for document in documents:
             with self.subTest(document=document):
-                snapshot = self.acquire(source, FakeFetcher(FetchResponse(json.dumps(document).encode(), "application/json")))
+                snapshot = self.acquire(
+                    source, FakeFetcher(FetchResponse(json.dumps(document).encode(), "application/json"))
+                )
                 self.assertEqual(snapshot.status, "changed")
                 self.assertEqual(snapshot.payload["excerpts"], [])
 
     def test_community_keeps_only_reviewed_excerpt_and_drops_author_and_other_content(self):
         quote = "Synthetic investors expect rates to fall."
-        source = spec(type="community", content_type="application/json", retention="excerpt", full_retention_permission=None, excerpts=({"id": "E_POST", "quote": quote, "locator": "/body", "definition": "synthetic utterance only; contents not verified"},))
-        document = {"body": quote, "author": "synthetic_private_account", "email": "synthetic@example.org", "other": "unselected synthetic conversation"}
+        source = spec(
+            type="community",
+            content_type="application/json",
+            retention="excerpt",
+            full_retention_permission=None,
+            excerpts=(
+                {
+                    "id": "E_POST",
+                    "quote": quote,
+                    "locator": "/body",
+                    "definition": "synthetic utterance only; contents not verified",
+                },
+            ),
+        )
+        document = {
+            "body": quote,
+            "author": "synthetic_private_account",
+            "email": "synthetic@example.org",
+            "other": "unselected synthetic conversation",
+        }
         snapshot = self.acquire(source, FakeFetcher(FetchResponse(json.dumps(document).encode(), "application/json")))
         self.assertEqual(snapshot.status, "available")
         self.assertEqual(set(snapshot.payload), {"retention", "excerpts"})
@@ -213,10 +312,29 @@ class SourceAcquisitionTests(unittest.TestCase):
         self.assertEqual(snapshot.payload["excerpts"][0]["quote"], quote)
         self.assertIsNotNone(snapshot.raw_sha256)
         with self.assertRaises(SourceError):
-            self.acquire(replace(source, retention="full", full_retention_permission="synthetic permission does not override community privacy"))
+            self.acquire(
+                replace(
+                    source,
+                    retention="full",
+                    full_retention_permission="synthetic permission does not override community privacy",
+                )
+            )
 
     def test_private_community_selector_is_rejected_before_fetch_or_snapshot(self):
-        source = spec(type="community", content_type="application/json", retention="excerpt", full_retention_permission=None, excerpts=({"id": "E_AUTHOR", "quote": "synthetic_private_account", "locator": "/author", "definition": "synthetic personal identifier, not permitted for collection"},))
+        source = spec(
+            type="community",
+            content_type="application/json",
+            retention="excerpt",
+            full_retention_permission=None,
+            excerpts=(
+                {
+                    "id": "E_AUTHOR",
+                    "quote": "synthetic_private_account",
+                    "locator": "/author",
+                    "definition": "synthetic personal identifier, not permitted for collection",
+                },
+            ),
+        )
         fetcher = Mock(side_effect=AssertionError("private identifier must not be fetched"))
         with self.assertRaises(SourceError):
             self.acquire(source, fetcher)
@@ -224,7 +342,11 @@ class SourceAcquisitionTests(unittest.TestCase):
         self.assertFalse(self.store.exists())
 
     def test_timeout_and_unavailable_documents_remain_failed_snapshots(self):
-        for error, expected in ((TimeoutError("synthetic timeout"), "timeout"), (URLError("synthetic unavailable"), "unavailable"), (FetchResponse(b"missing", "text/plain", status=404), "unavailable")):
+        for error, expected in (
+            (TimeoutError("synthetic timeout"), "timeout"),
+            (URLError("synthetic unavailable"), "unavailable"),
+            (FetchResponse(b"missing", "text/plain", status=404), "unavailable"),
+        ):
             with self.subTest(expected=expected, error=type(error).__name__):
                 snapshot = self.acquire(fetcher=FakeFetcher(document=error))
                 self.assertEqual(snapshot.status, expected)
@@ -235,8 +357,16 @@ class SourceAcquisitionTests(unittest.TestCase):
                 self.assertEqual(replay.status, expected)
 
     def test_malformed_document_and_wrong_content_type_are_parse_errors(self):
-        responses = (FetchResponse(b"{invalid json", "application/json"), FetchResponse(b'{"x": 1, "x": 2}', "application/json"), FetchResponse(b"\xff", "application/json"), FetchResponse(HTML, "text/html"))
-        source = spec(content_type="application/json", excerpts=({"id": "E_JSON", "quote": QUOTE, "locator": "/rate", "definition": "synthetic JSON rate field"},))
+        responses = (
+            FetchResponse(b"{invalid json", "application/json"),
+            FetchResponse(b'{"x": 1, "x": 2}', "application/json"),
+            FetchResponse(b"\xff", "application/json"),
+            FetchResponse(HTML, "text/html"),
+        )
+        source = spec(
+            content_type="application/json",
+            excerpts=({"id": "E_JSON", "quote": QUOTE, "locator": "/rate", "definition": "synthetic JSON rate field"},),
+        )
         for response in responses:
             with self.subTest(body=response.body[:30]):
                 snapshot = self.acquire(source, FakeFetcher(response))
@@ -244,7 +374,12 @@ class SourceAcquisitionTests(unittest.TestCase):
                 self.assertEqual(snapshot.payload["excerpts"], [])
 
     def test_robots_denial_or_unavailable_policy_prevents_document_fetching(self):
-        for response in (FetchResponse(b"User-agent: *\nDisallow: /\n", "text/plain"), FetchResponse(b"forbidden", "text/plain", status=403), FetchResponse(b"server failed", "text/plain", status=503), FetchResponse(b"<html>login</html>", "text/html")):
+        for response in (
+            FetchResponse(b"User-agent: *\nDisallow: /\n", "text/plain"),
+            FetchResponse(b"forbidden", "text/plain", status=403),
+            FetchResponse(b"server failed", "text/plain", status=503),
+            FetchResponse(b"<html>login</html>", "text/html"),
+        ):
             with self.subTest(status=response.status, content_type=response.content_type):
                 fetcher = FakeFetcher(robots=response)
                 snapshot = self.acquire(fetcher=fetcher)
@@ -263,7 +398,10 @@ class SourceAcquisitionTests(unittest.TestCase):
         self.assertEqual(api.policy["robots"], "documented_public_api")
 
     def test_redirects_and_oversized_documents_are_not_followed_or_retained(self):
-        for response in (FetchResponse(HTML, "text/html", final_url="https://other.example.org/redirected"), FetchResponse(b"x" * (MAX_BYTES + 1), "text/html")):
+        for response in (
+            FetchResponse(HTML, "text/html", final_url="https://other.example.org/redirected"),
+            FetchResponse(b"x" * (MAX_BYTES + 1), "text/html"),
+        ):
             with self.subTest(final_url=response.final_url):
                 fetcher = FakeFetcher(response)
                 snapshot = self.acquire(fetcher=fetcher)
@@ -272,7 +410,16 @@ class SourceAcquisitionTests(unittest.TestCase):
                 self.assertIsNone(snapshot.raw_sha256)
 
     def test_public_url_and_snapshot_identifier_guards_run_before_fetching(self):
-        urls = ("http://example.org/a", "file:///tmp/private", "https://127.0.0.1/a", "https://127.1/a", "https://[::1]/a", "https://example.org:444/a", "https://user:password@example.org/a", "https://host.internal/a")
+        urls = (
+            "http://example.org/a",
+            "file:///tmp/private",
+            "https://127.0.0.1/a",
+            "https://127.1/a",
+            "https://[::1]/a",
+            "https://example.org:444/a",
+            "https://user:password@example.org/a",
+            "https://host.internal/a",
+        )
         for url in urls:
             with self.subTest(url=url):
                 fetcher = Mock(side_effect=AssertionError("unsafe URL must not fetch"))

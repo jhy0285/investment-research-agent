@@ -10,3 +10,10 @@ investment_research = ["catalog/*.json"]
 
 [tool.setuptools.packages.find]
 include = ["investment_research*"]
+
+# Optional development formatter. It is not a runtime dependency:
+# `python -m pip install black` then `black investment_research tests examples`.
+[tool.black]
+line-length = 120
+skip-string-normalization = true
+target-version = ["py312"]
