@@ -11,9 +11,11 @@ from pathlib import Path
 from .backtest import event_at, statistics
 from .decision_data import (
     HORIZONS,
+    comparable_benchmark,
     digest,
     load,
     number,
+    require_tradable,
     save,
     target,
     validate_dataset,
@@ -76,7 +78,8 @@ def _diagnostics(outcomes):
     )
 
 
-def review(ledger, datasets, as_of):
+def review(ledger, datasets, as_of, source=None):
+    """Score matured buy recommendations. `source` records where outcome prices came from, when not a file."""
     cutoff = _time(as_of)
     if not isinstance(datasets, list):
         raise SourceError('review datasets must be a list')
@@ -105,6 +108,8 @@ def review(ledger, datasets, as_of):
             if r['action'] not in BUY_ACTIONS or number(r['amount_krw']) <= 0:
                 continue
             prices = by_id.get(r['instrument_id'])
+            if prices is not None:
+                require_tradable(prices)  # a benchmark-only series is never the instrument that was bought
             for horizon in HORIZONS:
                 out = dict(
                     judgment_sha256=path.stem,
@@ -143,7 +148,7 @@ def review(ledger, datasets, as_of):
                     bench = by_id.get(r['benchmark_instrument_id'])
                     if bench is None:
                         out.update(state='missing_data', reason='동일 시점 비교 시장 가격 미확보')
-                    elif any(bench[k] != prices[k] for k in ('currency', 'return_kind', 'adjustment', 'synthetic')):
+                    elif not comparable_benchmark(prices, bench):
                         raise SourceError('outcome market benchmark definition differs')
                     else:
                         rows = [
@@ -261,6 +266,8 @@ def review(ledger, datasets, as_of):
         input_sha256=digest(datasets),
         judgment_sha256=[p.stem for p, r in history if _time(r['as_of']) <= cutoff],
         limitation='추천 신호의 가정 평가다. 중복 추천을 독립 성공으로 세지 않고 미성숙 결과를 제외한다.',
+        # Present only when the prices came from a verified history run, so file-based reviews are unchanged.
+        **({'price_source': source} if source else {}),
     )
 
 

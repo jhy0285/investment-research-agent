@@ -27,11 +27,18 @@ python -m investment_research invest record --run reports/my_scan --journal repo
 
 이전 판단과 비교하려면 `invest run`에 `--previous-run reports/previous_decision`을 추가한다. 새 `ask --previous-scan`도 연결된 이전 투자 판단이 있으면 행동 변화와 이유를 기록한다. 이전 데이터는 현재 신호로 승격하지 않는다.
 
-사후 가격을 확보한 뒤 평가한다. 가격 파일은 아래 데이터셋들의 JSON 배열이며, 투자상품과 비교 시장을 모두 포함한다.
+사후 가격을 확보한 뒤 평가한다. 가격은 판단에 쓴 투자상품과 비교 시장의 데이터셋이 모두 있어야 하며, 두 방법 중 하나로 준다.
 
 ```bash
+# 같은 명세로 새로 받은 장기 이력을 쓴다 (오프라인 재현으로 해시와 내용을 검증한 뒤 사용)
+python -m investment_research invest history acquire my_history_spec.json --output reports/history_2026-12-10
+python -m investment_research invest review --journal reports/investment_journal --history reports/history_2026-12-10 --as-of '2026-12-10T18:00:00+09:00' --run-dir reports/my_outcome_review
+
+# 또는 investment-prices-v1 데이터셋의 JSON 배열을 직접 준다
 python -m investment_research invest review --journal reports/investment_journal --prices outcome_prices.json --as-of '2026-12-10T18:00:00+09:00' --run-dir reports/my_outcome_review
 ```
+
+`--history`는 판단 때와 같은 명세로 받아야 상품 ID가 같다. 이력이 평가 시각보다 늦게 받은 실제 자료이면 거부한다. 평가 결과(`review.json`의 `price_source`)와 보고서에는 쓴 이력의 `history.json` SHA-256과 그 이력의 수집·검증 실패 목록을 남긴다. 실패한 상품은 "자료 미확보"로만 나오므로 출처를 함께 봐야 한다. 비교 시장 전용 NAV 계열이 매수한 상품의 가격 자리에 들어오면 거부한다. 하한 코인을 총수익 비교 시장과 짝지어 승인한 판단은 사후 평가에서도 시점 보장 총수익 비교 시장하고만 비교한다(다른 정의의 시장으로 바꿔 끼우면 거부). 매수로 기록된 판단이 없으면 평가할 결과가 없다고 표시한다.
 
 평가 결과를 불변 일지에 보존한다. 이후 `ask --journal ...` 또는 `invest run --journal ...`은 판단 시점까지 존재한 최신 평가만 읽는다. `경고` 또는 `폐기 후보`인 동일 전략 버전은 신규 매수를 중단한다. 예약 실행·자동 데이터 갱신은 이 명령에 포함되지 않으므로 실제 새 자료와 평가 시점을 지정해 다시 실행한다.
 

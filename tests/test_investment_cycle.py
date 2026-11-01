@@ -388,6 +388,46 @@ class InvestmentCycleTests(unittest.TestCase):
         missing = review(self.root, [], '2027-12-10T00:00:00+00:00')
         self.assertTrue(all(o['state'] == 'missing_data' and o['return_'] is None for o in missing['outcomes']))
 
+    def lower_bound_buy(self):
+        """An approved buy of a coin price (reviewed lower bound) against a total-return market."""
+        self.c['prices'].update(
+            return_kind='price',
+            adjustment='unadjusted',
+            return_basis='price_lower_bound',
+            return_basis_note='authored fixture: no cash distributions',
+            provenance=dict(provider='upbit_aligned_candles'),
+        )
+        result = evaluate(self.plan, self.snapshot)
+        self.assertEqual((result['decisions'][0]['grade'], result['decisions'][0]['action']), ('A', '분할 매수'))
+        return result
+
+    def test_review_evaluates_a_lower_bound_buy_against_a_total_return_benchmark(self):
+        # evaluate() approves this pairing, so the outcome review must be able to score it too.
+        record(self.root, self.lower_bound_buy())
+        later = review(self.root, outcome_prices(self.c), '2026-12-10T00:00:00+00:00')
+        monthly = next(o for o in later['outcomes'] if o['horizon'] == '1m')
+        self.assertEqual(monthly['state'], 'completed')
+        self.assertEqual(monthly['entry_at'], '2026-10-08T00:00:00+00:00')
+
+    def test_review_still_rejects_mismatched_benchmark_definitions(self):
+        record(self.root, self.lower_bound_buy())
+        later = '2027-06-01T00:00:00+00:00'  # after the fixture's retrieval time, so only the definition can fail
+
+        def rejects(change, candidate=None):
+            data = outcome_prices(self.c)
+            data[1].update(change)
+            if candidate:
+                data[0].update(candidate)
+            with self.assertRaisesRegex(SourceError, 'benchmark definition differs'):
+                review(self.root, data, later)
+
+        rejects(dict(currency='USD'))  # a different currency is never comparable
+        rejects(dict(synthetic=False))  # nor is real data against a synthetic judgment
+        rejects(dict(return_kind='price', adjustment='unadjusted'))  # a lower bound needs a total-return market
+        rejects(dict(adjustment='latest_adjusted'))  # ... a point-in-time one
+        # A typed lower-bound label without the reviewed collector is not a lower bound.
+        rejects({}, dict(provenance=dict(provider='manual')))
+
     def test_duplicate_run_record_is_idempotent_and_judgment_tampering_rejected(self):
         result = evaluate(self.plan, self.snapshot)
         record(self.root, result)
@@ -695,6 +735,79 @@ class InvestmentCycleTests(unittest.TestCase):
             )
         self.assertEqual(code, 2)
         self.assertFalse((self.root / 'bad-run').exists())
+
+    def test_review_takes_outcome_prices_from_a_verified_history_run(self):
+        import hashlib
+
+        from investment_research.__main__ import main
+
+        record(self.root / 'ledger', self.lower_bound_buy())
+        datasets = outcome_prices(self.c)
+        save(self.root / 'prices.json', datasets)
+        (self.root / 'hist').mkdir()
+        (self.root / 'hist' / 'history.json').write_bytes(b'{}')
+        failure = dict(item='prices:KRW-ETH', stage='acquire', reason='HTTP 503')
+        history = dict(prices={d['instrument_id']: d for d in datasets}, failures=[failure], spec_sha256='a' * 64)
+
+        def run(name, *source):
+            argv = ['invest', 'review', '--journal', str(self.root / 'ledger'), *source]
+            argv += ['--as-of', '2026-12-10T00:00:00+00:00', '--run-dir', str(self.root / name)]
+            with redirect_stdout(StringIO()), redirect_stderr(StringIO()):
+                return main(argv)
+
+        with patch('investment_research.history.replay_history', return_value=history) as replay:
+            self.assertEqual(run('from-history', '--history', str(self.root / 'hist')), 0)
+        replay.assert_called_once_with(self.root / 'hist')  # the run is replay-verified, not read raw
+        self.assertEqual(run('from-file', '--prices', str(self.root / 'prices.json')), 0)
+        by_history, by_file = (load(self.root / n / 'review.json') for n in ('from-history', 'from-file'))
+        # Same outcomes either way; only the history review says where the prices came from.
+        source = by_history.pop('price_source')
+        self.assertEqual(by_history, by_file)
+        self.assertNotIn('price_source', by_file)
+        self.assertEqual(
+            source,
+            dict(
+                kind='history',
+                history_sha256=hashlib.sha256(b'{}').hexdigest(),
+                spec_sha256='a' * 64,
+                failures=[failure],
+            ),
+        )
+        monthly = next(o for o in by_history['outcomes'] if o['horizon'] == '1m')
+        self.assertEqual(monthly['state'], 'completed')
+        report = (self.root / 'from-history' / 'report.md').read_text(encoding='utf-8')
+        self.assertIn('사후 가격 출처: 장기 이력 실행', report)
+        self.assertIn('수집·검증 실패 1건', report)
+        self.assertIn('prices:KRW-ETH(acquire): HTTP 503', report)
+        # A history whose prices are not keyed by instrument id is refused.
+        history['prices'] = {'wrong-key': datasets[0]}
+        with patch('investment_research.history.replay_history', return_value=history):
+            self.assertEqual(run('bad-key', '--history', str(self.root / 'hist')), 2)
+        # Exactly one source of outcome prices is required.
+        for argv in (
+            [],
+            ['--prices', 'a.json', '--history', 'h'],
+        ):
+            with self.subTest(argv=argv), redirect_stderr(StringIO()), self.assertRaises(SystemExit) as stop:
+                main(['invest', 'review', '--journal', 'j', *argv, '--as-of', AT, '--run-dir', 'r'])
+            self.assertEqual(stop.exception.code, 2)
+
+    def test_review_never_scores_a_benchmark_only_series_as_the_bought_instrument(self):
+        record(self.root, self.lower_bound_buy())
+        data = outcome_prices(self.c)
+        data[0].update(
+            return_kind='total_return', adjustment='pit_total_return_index', return_basis='issuer_nav_reinvested'
+        )
+        with self.assertRaisesRegex(SourceError, 'market benchmark, not a price'):
+            review(self.root, data, '2026-12-10T00:00:00+00:00')
+
+    def test_review_refuses_history_retrieved_after_the_review_time(self):
+        record(self.root / 'ledger', self.lower_bound_buy())
+        datasets = outcome_prices(self.c)  # real-looking data retrieved 2027-04-01
+        for d in datasets:
+            d['synthetic'] = False
+        with self.assertRaisesRegex(SourceError, 'retrieved after this review'):
+            review(self.root / 'ledger', datasets, '2026-12-10T00:00:00+00:00')
 
     def test_ask_pins_decision_plan_and_replays_without_network(self):
         from tests.test_orchestrator import OrchestratorTests

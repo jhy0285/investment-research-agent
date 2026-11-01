@@ -484,6 +484,32 @@ class HistoryTests(unittest.TestCase):
         self.assertNotIn('2026-03-02', observed)  # 5 closes would span 2026-02-19..03-02
         self.assertIn('2026-03-06', observed)
 
+    def test_replayed_history_prices_are_datasets_keyed_by_their_instrument_id(self):
+        # `invest review --history` relies on this shape of the real replay result.
+        result = self.acquire(self.tiger_spec(since='2026-01-02', every=5), name='shape')
+        replayed = replay_history(self.root / 'shape')
+        self.assertEqual(
+            set(replayed),
+            {
+                'schema_version',
+                'method_version',
+                'synthetic',
+                'spec_sha256',
+                'prices',
+                'features',
+                'summary',
+                'failures',
+                'limitations',
+            },
+        )
+        self.assertIsInstance(replayed['prices'], dict)
+        self.assertEqual(len(replayed['prices']), 2)
+        for key, dataset in replayed['prices'].items():
+            self.assertEqual(key, dataset['instrument_id'])
+            validate_dataset(dataset)
+        self.assertEqual(replayed['spec_sha256'], result['spec_sha256'])
+        self.assertEqual(replayed['failures'], [])
+
     def test_replay_rebuilds_offline_and_detects_tampering(self):
         result = self.acquire()
         self.assertEqual(replay_history(self.root / 'run'), result)

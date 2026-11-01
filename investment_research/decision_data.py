@@ -76,6 +76,22 @@ def lower_bound(dataset):
     )
 
 
+def comparable_benchmark(prices, benchmark):
+    """Whether a market benchmark can be paired with an instrument's outcome series.
+
+    Currency and synthetic status must match. A reviewed price lower bound is
+    approvable only against a point-in-time total-return market (the omitted
+    distributions can only lower the instrument, so the comparison stays
+    conservative), so that is the only market it may be scored against; any
+    other instrument needs the same return definition as its market.
+    """
+    if prices['currency'] != benchmark['currency'] or prices['synthetic'] != benchmark['synthetic']:
+        return False
+    if lower_bound(prices):
+        return benchmark['return_kind'] == 'total_return' and benchmark['adjustment'] == 'pit_total_return_index'
+    return (prices['return_kind'], prices['adjustment']) == (benchmark['return_kind'], benchmark['adjustment'])
+
+
 def timestamp(value):
     if not isinstance(value, str) or len(value) < 19:
         raise SourceError('investment timestamps require explicit time and timezone')

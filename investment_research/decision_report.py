@@ -305,6 +305,23 @@ def render_review(result):
         '',
         result['limitation'],
         '',
+    ]
+    source = result.get('price_source')
+    if source:
+        lines.append(
+            '사후 가격 출처: 장기 이력 실행(history.json SHA-256 `'
+            + source['history_sha256'][:12]
+            + '…`), 오프라인 재현으로 검증했습니다.'
+        )
+        if source['failures']:
+            lines.append(
+                f'이 이력에는 수집·검증 실패 {len(source["failures"])}건이 있어 해당 상품은 아래에서 "자료 미확보"로 나올 수 있습니다: '
+                + '; '.join(f'{f["item"]}({f["stage"]}): {_text(f["reason"])}' for f in source['failures'])
+            )
+        else:
+            lines.append('이 이력에는 수집·검증 실패가 없습니다.')
+        lines.append('')
+    lines += [
         '| 전략 버전 | 상태 | 성숙 표본 | 평균 수익 | 시장 대비 |',
         '|---|---|---:|---:|---:|',
     ]

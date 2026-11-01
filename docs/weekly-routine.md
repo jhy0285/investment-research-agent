@@ -24,9 +24,9 @@ python -m investment_research invest run my_plan.json --research-run reports/ask
   --history reports/history_2026-11-06 --run-dir reports/decisions/2026-11-06 --journal reports/investment_journal
 python -m investment_research invest replay reports/decisions/2026-11-06
 
-# 5. 지난 판단의 사후 평가 (성숙한 결과가 생긴 뒤. outcome_prices.json은 새 history.json의 prices 값
-#    중 투자상품과 비교 시장의 데이터셋을 JSON 배열로 모은 파일이다)
-python -m investment_research invest review --journal reports/investment_journal --prices outcome_prices.json \
+# 5. 지난 판단의 사후 평가 (성숙한 결과가 생긴 뒤. 1단계에서 받은 새 이력을 그대로 쓴다.
+#    판단 때와 같은 명세여야 상품 ID가 같고, 이력은 오프라인 재현으로 다시 검증된다)
+python -m investment_research invest review --journal reports/investment_journal --history reports/history_2026-11-06 \
   --as-of '2026-11-06T18:00:00+09:00' --run-dir reports/reviews/2026-11-06
 ```
 

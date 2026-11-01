@@ -153,7 +153,13 @@ def main(argv: list[str] | None = None) -> int:
     invest_record.add_argument("--journal", type=Path, required=True)
     invest_review = invest_commands.add_parser("review", help="성숙한 추천의 1주~1년 결과와 전략 상태 평가")
     invest_review.add_argument("--journal", type=Path, required=True)
-    invest_review.add_argument("--prices", type=Path, required=True, help="investment-prices-v1 데이터셋의 JSON 배열")
+    outcome_prices = invest_review.add_mutually_exclusive_group(required=True)
+    outcome_prices.add_argument("--prices", type=Path, help="investment-prices-v1 데이터셋의 JSON 배열")
+    outcome_prices.add_argument(
+        "--history",
+        type=Path,
+        help="invest history 실행; 오프라인 재현으로 검증한 뒤 그 가격 데이터셋을 사후 가격으로 사용",
+    )
     invest_review.add_argument("--as-of", required=True, help="timezone을 포함한 평가 시각")
     invest_review.add_argument("--run-dir", type=Path, required=True)
     invest_history = invest_commands.add_parser("history", help="검토된 공개 제공자의 시점 보장 장기 이력 수집·재현")
@@ -272,7 +278,23 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 if args.run_dir.exists():
                     raise SourceError('use a new review run directory')
-                result = review(args.journal, load(args.prices), args.as_of)
+                if args.history:
+                    from .history import replay_history
+
+                    # Verified (hashes and a full offline rebuild) before any price is used.
+                    replayed = replay_history(args.history)
+                    if any(key != d['instrument_id'] for key, d in replayed['prices'].items()):
+                        raise SourceError('history prices are not keyed by their instrument id')
+                    outcomes = list(replayed['prices'].values())
+                    source = dict(
+                        kind='history',
+                        history_sha256=hashlib.sha256((args.history / 'history.json').read_bytes()).hexdigest(),
+                        spec_sha256=replayed['spec_sha256'],
+                        failures=replayed['failures'],
+                    )
+                else:
+                    outcomes, source = load(args.prices), None
+                result = review(args.journal, outcomes, args.as_of, source)
                 report = render_review(result)
                 save(args.run_dir / 'review.json', result)
                 (args.run_dir / 'report.md').write_text(report, encoding='utf-8')
