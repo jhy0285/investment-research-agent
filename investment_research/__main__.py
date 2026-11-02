@@ -162,6 +162,25 @@ def main(argv: list[str] | None = None) -> int:
     )
     invest_review.add_argument("--as-of", required=True, help="timezone을 포함한 평가 시각")
     invest_review.add_argument("--run-dir", type=Path, required=True)
+    invest_strategy = invest_commands.add_parser(
+        "strategy", help="전략 사전 등록: 섀도 기록과 승격의 전제(등록 시각은 이 컴퓨터의 시계)"
+    )
+    strategy_commands = invest_strategy.add_subparsers(dest="strategy_action", required=True)
+    strategy_register = strategy_commands.add_parser(
+        "register", help="전략 라이브러리의 후보를 결과를 보기 전에 일지에 등록"
+    )
+    strategy_register.add_argument("library", type=Path, help="investment-strategy-library-v1 JSON")
+    strategy_register.add_argument("--journal", type=Path, required=True)
+    strategy_list = strategy_commands.add_parser("list", help="등록한 전략, 시험 불가 후보와 시험 후보 수 K")
+    strategy_list.add_argument("--journal", type=Path, required=True)
+    strategy_list.add_argument("--as-of", help="timezone을 포함한 기준 시각; 생략하면 지금")
+    strategy_discard = strategy_commands.add_parser(
+        "discard", help="전략을 폐기 표시(기록은 남고 시험 후보 수에도 계속 센다)"
+    )
+    strategy_discard.add_argument("strategy_id")
+    strategy_discard.add_argument("version")
+    strategy_discard.add_argument("--reason", required=True)
+    strategy_discard.add_argument("--journal", type=Path, required=True)
     invest_history = invest_commands.add_parser("history", help="검토된 공개 제공자의 시점 보장 장기 이력 수집·재현")
     history_commands = invest_history.add_subparsers(dest="history_action", required=True)
     history_acquire = history_commands.add_parser(
@@ -243,6 +262,24 @@ def main(argv: list[str] | None = None) -> int:
             from .investment_cycle import run_cycle, replay_cycle
             from .decision_journal import record, review, persist_review
 
+            if args.investment_action == "strategy":
+                from .strategy_registry import discard, register, render_registry, view
+
+                if args.strategy_action == "register":
+                    library = load(args.library)
+                    if library.get("schema_version") != "investment-strategy-library-v1" or not isinstance(
+                        library.get("entries"), list
+                    ):
+                        raise SourceError("unsupported strategy library")
+                    created = [register(args.journal, entry)[1] for entry in library["entries"]]
+                    print(f"새로 등록 {sum(created)}건, 이미 같은 정의로 등록됨 {len(created) - sum(created)}건.")
+                elif args.strategy_action == "discard":
+                    discard(args.journal, args.strategy_id, args.version, args.reason)
+                    print("폐기로 표시했습니다. 등록 기록은 남고 시험 후보 수에도 계속 셉니다.")
+                else:
+                    when = args.as_of or datetime.now(timezone.utc).isoformat()
+                    sys.stdout.write(render_registry(view(args.journal, when)))
+                return 0
             if args.investment_action == "history":
                 from .history import acquire_history, render_history, replay_history
 

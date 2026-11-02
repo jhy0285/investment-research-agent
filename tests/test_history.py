@@ -720,7 +720,7 @@ class HistoryTests(unittest.TestCase):
                 history=self.root / 'cycle-history',
                 now=_time('2026-10-23T09:30:00+09:00'),
             )
-        self.assertEqual(result['method_version'], 'investment_cycle_v3')
+        self.assertEqual(result['method_version'], 'investment_cycle_v4')
         self.assertEqual(replay_cycle(self.root / 'cycle'), result)
         report = (self.root / 'cycle' / 'report.md').read_text(encoding='utf-8')
         self.assertIn('조사 기준: 2026-10-23T09:00:00+09:00', report)

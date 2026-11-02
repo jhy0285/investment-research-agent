@@ -6,7 +6,7 @@ are descriptive overlapping observations, explicitly not independent trials.
 
 from bisect import bisect_left
 from datetime import timedelta
-from decimal import Decimal
+from decimal import Decimal, ROUND_CEILING
 from random import Random
 from statistics import median
 
@@ -36,6 +36,8 @@ BASE_LIMITATIONS = (
     '신뢰구간은 독립에 가까운 표본 재추출이며 시장 구조 변화와 모든 의존성을 보증하지 않는다.',
 )
 ZERO = Decimal(0)
+# Saved results (investment_cycle_v1-v3) carry this exact text, so it cannot be reworded.
+TRIAL_BLOCKER = '여러 조건을 탐색한 전략이다. 새 미래 검증 전에는 강한 승인이 불가하다.'
 OPS = {
     '>': lambda a, b: a > b,
     '>=': lambda a, b: a >= b,
@@ -235,7 +237,7 @@ def run_backtest(candidate, cutoff, version=VERSION):
     if candidate['prices']['survivorship'] == 'current_survivors':
         blockers.append('현재 생존 종목만 사용했다.')
     if s['trial_count'] > 1:
-        blockers.append('여러 조건을 탐색한 전략이다. 새 미래 검증 전에는 강한 승인이 불가하다.')
+        blockers.append(TRIAL_BLOCKER)
     return dict(
         method_version=version,
         strategy_sha256=digest(s),
@@ -273,9 +275,8 @@ def _definition_blockers(candidate, version):
     return blockers, limitations
 
 
-def approval(backtest, strategy, policy):
-    if backtest['blockers']:
-        return 'insufficient', backtest['blockers']
+def period_results(backtest, strategy, policy):
+    """Verdict of each partition ('passed', 'partial', 'failed' or 'insufficient') with the reasons."""
     results, reasons = {}, []
     for partition in ('historical', 'validation', 'recent'):
         r = backtest['periods'][partition]['horizons'][strategy['holding_horizon']]
@@ -296,6 +297,10 @@ def approval(backtest, strategy, policy):
         else:
             results[partition] = 'partial'
             reasons.append(partition + ': 평균 우위는 있지만 우연의 영향을 배제하기 어려움')
+    return results, reasons
+
+
+def _verdict(backtest, results, reasons):
     if results['historical'] == 'failed' or results['validation'] == 'failed':
         return 'failed', reasons
     if results['recent'] == 'failed':
@@ -309,3 +314,41 @@ def approval(backtest, strategy, policy):
     if number(backtest['history_years']) < 10:
         return 'partial', reasons + ['과거 가격 이력이 10년보다 짧음']
     return 'passed', reasons
+
+
+def approval(backtest, strategy, policy):
+    if backtest['blockers']:
+        return 'insufficient', backtest['blockers']
+    results, reasons = period_results(backtest, strategy, policy)
+    return _verdict(backtest, results, reasons)
+
+
+def forward_verdict(backtest, strategy, policy):
+    """What the backtest alone says once the multi-trial blocker is set aside.
+
+    `approval` stays the single source of the action-relevant status for every
+    version: any blocker means 'insufficient'. A forward record can answer only the
+    multi-trial blocker, so shadow tracking needs to know whether the backtest
+    itself would have passed, failed or lacked samples. None means another blocker
+    (return definition, survivorship) makes the comparison undefined, which no
+    forward record can repair.
+    """
+    if any(b != TRIAL_BLOCKER for b in backtest['blockers']):
+        return None
+    results, reasons = period_results(backtest, strategy, policy)
+    return _verdict(backtest, results, reasons)[0]
+
+
+def lower_confidence_bound(values, quantile, resamples):
+    """Percentile-bootstrap lower bound of the mean (same resampling scheme as `_interval`).
+
+    `quantile` is a Decimal tail probability. The result is None when the sample is
+    too small, or when `resamples` cannot resolve that tail (fewer than 20
+    resamples fall below it), because an unresolved tail would be a made-up bound.
+    """
+    if len(values) < 2 or quantile <= 0 or quantile * resamples < 20:
+        return None
+    rng = Random(0)
+    means = sorted(sum((rng.choice(values) for _ in values), ZERO) / len(values) for _ in range(resamples))
+    index = int((quantile * resamples).to_integral_value(rounding=ROUND_CEILING)) - 1
+    return means[index]

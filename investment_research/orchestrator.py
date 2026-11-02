@@ -1150,8 +1150,10 @@ def execute_ask(
                 _save(root / 'investment_plan.json', decision_plan)
             if decision_journal is not None:
                 from .decision_journal import feedback
+                from .strategy_registry import view
 
                 data['strategy_feedback'] = feedback(decision_journal, data['as_of'])
+                data['strategy_registry'] = view(decision_journal, data['as_of'])
         _save(root / 'input.json', data)
         run = _execute(root, data)
         if run.investment:

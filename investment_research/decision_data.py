@@ -15,11 +15,14 @@ from functools import wraps
 
 from .sources import SourceError, _parse_json, _time as _parse_time
 
-VERSION = 'investment_cycle_v3'
+VERSION = 'investment_cycle_v4'
 # v1 reduced a held position when current data were unverified. v3 keeps the
-# v2 action rules and uses backtest v2 (reviewed price lower bounds). Older
-# versions stay replayable so saved judgments are reproduced, never rewritten.
-SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2', 'investment_cycle_v3')
+# v2 action rules and uses backtest v2 (reviewed price lower bounds). v4 keeps
+# every v3 rule and adds shadow tracking: judgments of amount zero that collect
+# forward evidence for strategies the backtest alone cannot approve, and a
+# pre-registered promotion gate on that evidence. Older versions stay
+# replayable so saved judgments are reproduced, never rewritten.
+SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2', 'investment_cycle_v3', 'investment_cycle_v4')
 # Only reviewed collectors for assets without cash distributions may label a
 # price series a lower bound; a typed label on, say, a dividend stock would
 # bias the same-series timing baselines that approval still compares.

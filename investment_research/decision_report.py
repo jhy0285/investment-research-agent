@@ -28,10 +28,69 @@ def _state(value):
         'degraded': '최근 악화',
         'insufficient': '검증 부족',
         'event_review': '사례 검토',
+        'shadow_promoted': '섀도 기록 기준 통과',
         'pass': '충족',
         'fail': '미충족',
         'unknown': '미확인',
     }.get(value, value)
+
+
+def _shadow_section(result):
+    """Zero-amount shadow records and the signals that could not be tracked, or nothing when there are none."""
+    marked = [r for r in result['decisions'] if r.get('shadow')]
+    if not marked:
+        return []
+    registry = result.get('strategy_registry')
+    lines = [
+        '',
+        '## 섀도 기록 (금액 0, 실제 배분에 들어가지 않음)',
+        '',
+        '현재 신호와 가격 조건은 충족했지만 승인 기준을 넘지 못한 후보입니다. 이 보고서의 배분·현금 계산에는 들어가지 않고, '
+        '판단일 다음 관측 가격으로 진입했다고 가정한 1주~1년 결과를 따로 모아 전략 상태에 반영합니다. '
+        '실제 매수 통계와 섞지 않으며 실제 체결 결과가 아닙니다.',
+        '',
+    ]
+    tracked = [r for r in marked if r['shadow']['tracked']]
+    if tracked:
+        lines.extend(['| 자산 | 전략 | 구분 | 이유 |', '|---|---|---|---|'])
+        for r in tracked:
+            kind = (
+                '승격 후보 (섀도 기록이 사전 고정 기준을 넘으면 C등급 소액까지)'
+                if r['shadow']['track'] == 'candidate'
+                else '대조군 (백테스트에서 승인받지 못함. 승격하지 않고 승인 문턱의 점검에만 사용)'
+            )
+            lines.append(
+                '| '
+                + ' | '.join(
+                    map(
+                        _text,
+                        [
+                            r['name'],
+                            r['strategy']['id'] + '/' + r['strategy']['version'],
+                            kind,
+                            '; '.join(r['blockers']) or '승인 기준 미충족',
+                        ],
+                    )
+                )
+                + ' |'
+            )
+    if registry:
+        lines.extend(
+            [
+                '',
+                '사전 등록한 시험 후보는 '
+                + str(registry['family_size'])
+                + '개입니다. 후보가 많을수록 우연히 좋아 보이는 전략이 '
+                '섞일 가능성이 커지므로, 승격 문턱은 이 숫자만큼 엄격해집니다.',
+            ]
+        )
+    for r in marked:
+        if not r['shadow']['tracked']:
+            lines.extend(
+                ['', '- ' + _text(r['name']) + ': 섀도로 기록하지 않았습니다. ' + _text(r['shadow']['reason'])]
+            )
+    lines.append('')
+    return lines
 
 
 def render_decision(result):
@@ -112,6 +171,7 @@ def render_decision(result):
             )
             + ' |'
         )
+    lines.extend(_shadow_section(result))
     for r in rows:
         lines.extend(
             [
@@ -297,6 +357,54 @@ def render_decision(result):
     return '\n'.join(lines)
 
 
+def _shadow_review_section(result):
+    shadows = {k: v for k, v in result['strategies'].items() if v.get('source') == 'shadow'}
+    if not shadows:
+        return []
+    lines = [
+        '',
+        '## 섀도 기록 평가 (금액 0, 실제 매수 통계와 별개)',
+        '',
+        result['shadow_limitation'],
+        '',
+        '| 전략 | 구분 | 상태 | 성숙 표본 / 판정 필요 | 시장 대비 평균 | 보정한 하한 | 시험 후보 수 | 승격 |',
+        '|---|---|---|---:|---:|---:|---:|---|',
+    ]
+    for key, s in shadows.items():
+        g = s['promotion']
+        lines.append(
+            '| '
+            + ' | '.join(
+                map(
+                    _text,
+                    [
+                        key,
+                        '승격 후보' if s['track'] == 'candidate' else '대조군',
+                        s['status'],
+                        f"{g['n']} / {g['look_n']}",
+                        _pct(g.get('mean_excess')),
+                        _pct(g.get('lower_bound')),
+                        g.get('family_size', '미판정'),
+                        '자격 있음' if g['eligible'] else '아직 아님',
+                    ],
+                )
+            )
+            + ' |'
+        )
+    lines.extend(
+        [
+            '',
+            '승격 판정은 독립 성숙 표본이 정해진 개수에 처음 도달했을 때 한 번만 합니다. 새 표본이 쌓일 때마다 다시 검사하면 '
+            '우연한 호조가 기준선을 넘을 수 있기 때문입니다. 승격해도 C등급 소액까지만 허용하고, 이후의 실제 결과는 위 실제 매수 통계로 따로 감시합니다.',
+        ]
+    )
+    for key, s in shadows.items():
+        if s['promotion']['reasons']:
+            lines.append('- ' + _text(key) + ': ' + _text('; '.join(s['promotion']['reasons'])))
+    lines.append('')
+    return lines
+
+
 def render_review(result):
     lines = [
         '# 투자 판단 사후검증',
@@ -326,6 +434,8 @@ def render_review(result):
         '|---|---|---:|---:|---:|',
     ]
     for key, s in result['strategies'].items():
+        if s.get('source') == 'shadow':
+            continue
         lines.append(
             '| '
             + ' | '.join(
@@ -393,6 +503,7 @@ def render_review(result):
         if s['diagnostics']:
             lines.extend(['', '### ' + _text(key) + ' 성과 차이 원인 점검', ''])
             lines.extend('- ' + _text(v) for v in s['diagnostics'].values())
+    lines.extend(_shadow_review_section(result))
     pending = sum(o['state'] == 'pending' for o in result['outcomes'])
     missing = sum(o['state'] == 'missing_data' for o in result['outcomes'])
     lines.extend(

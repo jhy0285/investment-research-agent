@@ -2,6 +2,15 @@
 
 이 시스템은 예약 실행을 포함하지 않는다. 이력 수집과 조사는 자동으로 돌릴 수 있지만, **투자 판단은 자동으로 낼 수 없다.** 계획의 경제적 검토(`review`)는 사람이 쓰는 것이 규칙이고, 코드나 LLM이 대신 쓴 검토로 매수 판단을 만들지 않는다. 그래서 절차를 "자동 수집 → 사람이 읽고 검토 → 판단"으로 나눈다.
 
+## 처음 한 번: 전략 사전 등록
+
+섀도 기록과 승격은 **등록한 전략**만 대상이다. 첫 점검 전에 한 번 등록한다. 등록 시각(이 컴퓨터의 시계)부터 전향 기록이 시작되고 시험 후보 수 K가 정해진다. 자세한 규칙은 [섀도 추적과 사전 등록](shadow-tracking.md).
+
+```bash
+python -m investment_research invest strategy register examples/strategy_library/pre_registered_library.json --journal reports/investment_journal
+python -m investment_research invest strategy list --journal reports/investment_journal
+```
+
 ## 한 번의 점검
 
 날짜는 예시다. 새 디렉터리를 쓴다(기존 실행은 덮어쓰지 않는다).
@@ -53,4 +62,5 @@ python -m investment_research invest review --journal reports/investment_journal
 - 이력 보고서의 "수집·검증 실패"가 비어 있는가, 아니면 이유가 합당한가.
 - 총수익 표시가 필요한 비교 시장(KODEX TR, TIGER 미국 NAV)이 검증을 통과했는가. 통과하지 못하면 승인 검증이 막히는 것이 정상이다.
 - 판단 보고서의 "판단을 제한하는 근거"와 "시장 조사 범위와 남은 공백"을 읽었는가.
+- 사후 평가 보고서의 "섀도 기록 평가"를 읽었는가. 대조군 결과를 보고 문턱을 바꾸지 않는다. 신호가 켜졌는데 판단을 실행하지 않은 주는 표본에서 빠지므로 주기를 일정하게 유지한다.
 - 지난 판단의 전략 상태가 `경고` 또는 `폐기 후보`이면 같은 버전은 신규 매수가 막힌다. 조건을 바꾸려면 새 버전으로 만든다([투자 판단과 사후검증](investment-cycle.md)).

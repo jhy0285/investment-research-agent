@@ -6,7 +6,7 @@ from decimal import Decimal, ROUND_FLOOR
 import hashlib
 from pathlib import Path
 
-from .backtest import approval, condition_state, run_backtest
+from .backtest import approval, condition_state, forward_verdict, run_backtest
 from .decision_data import (
     SUPPORTED_VERSIONS,
     VERSION,
@@ -108,7 +108,9 @@ def _references(c, snapshot):
 # review written before that run cannot cite evidence it fetches. Older
 # versions judged `invest run` at the research cutoff, which left only the
 # seconds between evidence retrieval and cutoff for a dated review.
-DECIDED_AT_VERSIONS = ('investment_cycle_v3',)
+DECIDED_AT_VERSIONS = ('investment_cycle_v3', 'investment_cycle_v4')
+# v4 adds shadow tracking and the pre-registered promotion gate (see _shadow, _registration).
+SHADOW_VERSIONS = ('investment_cycle_v4',)
 STALE_RESEARCH = timedelta(days=7)
 
 
@@ -329,7 +331,7 @@ def _signal_outcome(c, current, status):
             action='보유 유지' if c['held'] else '신규 매수하지 않음',
             rationale='과거 검증 표본 또는 우위가 충분하지 않아 신규 매수하지 않는다.',
         )
-    grade = {'passed': 'A', 'partial': 'B', 'event_review': 'C'}[status]
+    grade = {'passed': 'A', 'partial': 'B', 'event_review': 'C', 'shadow_promoted': 'C'}[status]
     return dict(
         grade=grade,
         action='분할 매수' if grade == 'A' else '소액 매수',
@@ -338,13 +340,96 @@ def _signal_outcome(c, current, status):
     )
 
 
-OUTCOMES = {'investment_cycle_v1': _outcome_v1, 'investment_cycle_v2': _outcome_v2, 'investment_cycle_v3': _outcome_v2}
+def _outcome_v4(c, current, status):
+    """The v3 rules, plus the small buy a shadow-promoted strategy has earned."""
+    result = _outcome_v2(c, current, status)
+    if status == 'shadow_promoted' and result['action'] in BUY_ACTIONS:
+        result['rationale'] = (
+            '투자 논리·현재 조건·가격을 확인했고 사전 고정한 섀도 기록 기준을 통과했다. '
+            '백테스트만으로는 승인할 수 없던 전략이므로 C등급 소액까지만 배분한다.'
+        )
+    return result
+
+
+OUTCOMES = {
+    'investment_cycle_v1': _outcome_v1,
+    'investment_cycle_v2': _outcome_v2,
+    'investment_cycle_v3': _outcome_v2,
+    'investment_cycle_v4': _outcome_v4,
+}
 BACKTESTS = {
     'investment_cycle_v1': 'pit_event_backtest_v1',
     'investment_cycle_v2': 'pit_event_backtest_v1',
     'investment_cycle_v3': 'pit_event_backtest_v2',
+    'investment_cycle_v4': 'pit_event_backtest_v2',
 }
 assert set(OUTCOMES) == set(BACKTESTS) == set(SUPPORTED_VERSIONS)
+
+
+def _shadow_key(snapshot, s):
+    return s['id'] + '/' + s['version'] + ('/shadow_synthetic' if snapshot['synthetic'] else '/shadow_real')
+
+
+def _registration(c, snapshot, s):
+    """The active pre-registration of exactly this strategy on exactly this application, or why none applies."""
+    registry = snapshot.get('strategy_registry')
+    if not registry:
+        return None, '사전 등록부가 연결되지 않아 섀도 기록과 승격을 하지 않는다(--journal 필요).'
+    reg = registry['strategies'].get(s['id'] + '/' + s['version'])
+    if reg is None:
+        return None, '사전 등록(invest strategy register)이 없어 섀도 기록과 승격을 하지 않는다.'
+    if reg['status'] != 'active':
+        return None, '폐기한 전략이라 섀도 기록과 승격을 하지 않는다.'
+    if reg['strategy_sha256'] != digest(s):
+        return None, '등록한 뒤 전략 정의가 달라져 섀도 기록과 승격을 하지 않는다. 새 버전으로 등록한다.'
+    application = reg['application']
+    if application != dict(
+        asset_id=c['asset_id'],
+        instrument_id=c['prices']['instrument_id'],
+        benchmark_instrument_id=c['benchmark']['instrument_id'],
+    ):
+        return None, '등록한 적용 대상(자산·상품·비교 시장)과 달라 섀도 기록과 승격을 하지 않는다.'
+    return reg, None
+
+
+def _promoted(snapshot, s, reg):
+    """Whether the forward record of this exact registered strategy cleared its fixed gate."""
+    entry = snapshot.get('strategy_feedback', {}).get(_shadow_key(snapshot, s))
+    gate = entry.get('promotion') if entry else None
+    return (
+        gate is not None
+        and gate['eligible'] is True
+        and gate['strategy_sha256'] == digest(s)
+        and gate['registration_sha256'] == reg['registration_sha256']
+    ), gate
+
+
+def _shadow(c, row, current, status, verdict, reg, why):
+    """A zero-amount record of a live signal the approval gate did not accept.
+
+    Only a signal that would otherwise be actionable counts: current data verified,
+    fresh and not invalidated, signal and price conditions met. A signal the gate
+    could not read is not a forward observation, so nothing is recorded for it.
+    """
+    if row['action'] in BUY_ACTIONS or status not in ('insufficient', 'failed', 'degraded'):
+        return None
+    if verdict is None:
+        return None  # the comparison itself is undefined; a forward record would not repair it
+    if current['invalidated'] or current['refs'] or current['stale'] or current['lookahead']:
+        return None
+    if current['signal']['state'] != 'pass' or current['price']['state'] != 'pass':
+        return None
+    if reg is None:
+        return dict(tracked=False, reason=why)
+    return dict(
+        tracked=True,
+        # Only a backtest that did not fail (it lacked samples, or carried the multi-trial blocker) may be
+        # promoted by forward evidence. A failed or degraded one is tracked as a control and never promoted.
+        track='control' if 'failed' in (status, verdict) or 'degraded' in (status, verdict) else 'candidate',
+        verification=status,
+        registration_sha256=reg['registration_sha256'],
+        amount_krw='0',
+    )
 
 
 def decide(c, snapshot, policy, version=VERSION):
@@ -372,7 +457,25 @@ def decide(c, snapshot, policy, version=VERSION):
         row['blockers'].append('실제 투자상품의 현재 가격이 미확보 또는 오래됨')
     status = _verification(c, snapshot, s, at, policy, row, version)
     current['invalidated'] = any(i['state'] == 'pass' for i in current['invalid']) and not current['invalid_refs']
+    reg = why = verdict = None
+    if version in SHADOW_VERSIONS and c['mode'] == 'quantitative':
+        reg, why = _registration(c, snapshot, s)
+        verdict = forward_verdict(row['backtest'], s, policy)
+        if status == 'insufficient' and reg is not None and verdict not in (None, 'failed', 'degraded'):
+            promoted, gate = _promoted(snapshot, s, reg)
+            if promoted:
+                status = 'shadow_promoted'
+                row['verification'] = status
+                row['blockers'].append(
+                    '백테스트만으로는 승인할 수 없는 전략이며, 사전 고정한 섀도 기록 기준(독립 성숙 표본 '
+                    + str(gate['look_n'])
+                    + '개, 시장 대비 평균 초과수익의 하한 > 0)을 통과해 C등급 소액까지만 허용한다.'
+                )
     row.update(OUTCOMES[version](c, current, status))
+    if version in SHADOW_VERSIONS:
+        shadow = _shadow(c, row, current, status, verdict, reg, why)
+        if shadow is not None:
+            row['shadow'] = shadow
     return row
 
 
@@ -501,6 +604,16 @@ def evaluate(plan, snapshot, version=VERSION):
         market_checklist=list(MARKETS),
         scan_candidate_ids=scan['candidates'] if scan else [],
         **({'research_as_of': snapshot['research_as_of']} if snapshot.get('research_as_of') else {}),
+        **(
+            {
+                'strategy_registry': dict(
+                    chain_head_sha256=snapshot['strategy_registry']['chain_head_sha256'],
+                    family_size=snapshot['strategy_registry']['family_size'],
+                )
+            }
+            if version in SHADOW_VERSIONS and snapshot.get('strategy_registry')
+            else {}
+        ),
         ranking_basis='검증 등급과 동일 기간의 최근 시장 대비 성과로 정렬한다. 검증 부족 후보의 번호는 조사 순서이며 상대 수익 우위가 아니다.',
         limitations=[
             '자료가 없는 시장의 매력은 평가하지 않았다.',
@@ -520,6 +633,8 @@ def attach_to_ask(run):
         raise SourceError('investment plan checksum mismatch')
     snapshot = research_snapshot(run)
     snapshot['strategy_feedback'] = run.input.get('strategy_feedback', {})
+    if run.input.get('strategy_registry'):
+        snapshot['strategy_registry'] = run.input['strategy_registry']
     result = evaluate(plan, snapshot, run.input['investment_cycle_version'])
     if run.input.get('previous_investment'):
         result['changes'] = changes(run.input['previous_investment'], result)
@@ -651,6 +766,10 @@ def run_cycle(plan, research_run, directory, *, ledger=None, previous=None, hist
         from .decision_journal import feedback
 
         snapshot['strategy_feedback'] = feedback(ledger, snapshot['as_of'])
+        if VERSION in SHADOW_VERSIONS:
+            from .strategy_registry import view
+
+            snapshot['strategy_registry'] = view(ledger, snapshot['as_of'])
     result = evaluate(plan, snapshot)
     if previous:
         old = replay_cycle(previous)
