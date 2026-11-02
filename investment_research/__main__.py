@@ -263,7 +263,7 @@ def main(argv: list[str] | None = None) -> int:
             from .decision_journal import record, review, persist_review
 
             if args.investment_action == "strategy":
-                from .strategy_registry import discard, register, render_registry, view
+                from .strategy_registry import discard, register_many, render_registry, view
 
                 if args.strategy_action == "register":
                     library = load(args.library)
@@ -271,7 +271,7 @@ def main(argv: list[str] | None = None) -> int:
                         library.get("entries"), list
                     ):
                         raise SourceError("unsupported strategy library")
-                    created = [register(args.journal, entry)[1] for entry in library["entries"]]
+                    created = register_many(args.journal, library["entries"])
                     print(f"새로 등록 {sum(created)}건, 이미 같은 정의로 등록됨 {len(created) - sum(created)}건.")
                 elif args.strategy_action == "discard":
                     discard(args.journal, args.strategy_id, args.version, args.reason)

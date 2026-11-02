@@ -95,6 +95,11 @@ def comparable_benchmark(prices, benchmark):
     return (prices['return_kind'], prices['adjustment']) == (benchmark['return_kind'], benchmark['adjustment'])
 
 
+def shadow_key(strategy, synthetic):
+    """Where the shadow record of a strategy version lives in the review and in the feedback."""
+    return strategy['id'] + '/' + strategy['version'] + ('/shadow_synthetic' if synthetic else '/shadow_real')
+
+
 def timestamp(value):
     if not isinstance(value, str) or len(value) < 19:
         raise SourceError('investment timestamps require explicit time and timezone')

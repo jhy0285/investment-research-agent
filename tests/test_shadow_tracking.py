@@ -24,7 +24,7 @@ from investment_research.decision_journal import feedback, persist_review, recor
 from investment_research.decision_report import render_decision, render_review
 from investment_research.investment_cycle import evaluate, replay_cycle, run_cycle
 from investment_research.sources import SourceError, _time
-from investment_research.strategy_registry import discard, read_chain, register, view
+from investment_research.strategy_registry import discard, read_chain, register, register_many, view
 from tests.test_investment_cycle import AT, experiment
 
 APPLICATION = dict(asset_id='US_EQUITY', instrument_id='SYNTHETIC_EQUITY', benchmark_instrument_id='SYNTHETIC_MARKET')
@@ -217,6 +217,45 @@ class RegistryTests(ShadowCase):
         self.assertNotEqual(early['chain_head_sha256'], late['chain_head_sha256'])
         with self.assertRaisesRegex(SourceError, 'no registered strategy'):
             discard(ledger, 'absent', 'v1', 'x')
+
+    def test_free_text_with_unicode_line_separators_cannot_break_the_chain(self):
+        # str.splitlines() would cut a line at these characters and make the whole journal unreadable.
+        ledger = self.ledger()
+        reason = 'line\u2028separator\u0085and\x1cmore'
+        discard(ledger, 'authored_cycle', 'v1', reason, now=datetime(2026, 1, 2, tzinfo=timezone.utc))
+        events = read_chain(ledger)
+        self.assertEqual([e['kind'] for e in events], ['register', 'discard'])
+        self.assertEqual(events[1]['reason'], reason)
+        self.assertEqual(view(ledger, '2026-06-01T00:00:00+00:00')['strategies']['authored_cycle/v1']['reason'], reason)
+
+    def test_a_library_is_registered_entirely_or_not_at_all(self):
+        plan, _ = dated(2026, 1)
+        good = dict(
+            kind='testable',
+            strategy=deepcopy(plan['candidates'][0]['strategy']),
+            application=APPLICATION,
+            source=SOURCE,
+        )
+        bad = deepcopy(good)
+        bad['strategy']['id'] = 'second_one'
+        bad['application'] = dict(APPLICATION, benchmark_instrument_id=APPLICATION['instrument_id'])
+        ledger = self.root / 'journal'
+        with self.assertRaisesRegex(SourceError, 'separate benchmark'):
+            register_many(ledger, [good, bad], now=REGISTERED)
+        self.assertEqual(read_chain(ledger), [])
+        self.assertEqual(
+            list((ledger / 'registrations').glob('*.json')) if (ledger / 'registrations').exists() else [], []
+        )
+        self.assertEqual(register_many(ledger, [good], now=REGISTERED), [True])
+        self.assertEqual(register_many(ledger, [good], now=REGISTERED), [False])
+        self.assertEqual(len(read_chain(ledger)), 1)
+
+    def test_the_multi_trial_blocker_text_that_saved_results_carry_is_pinned(self):
+        # Shadow eligibility tells the multi-trial blocker from definition blockers by this exact text, and v1-v3
+        # results already saved on disk contain it, so it must not be reworded.
+        from investment_research.backtest import TRIAL_BLOCKER
+
+        self.assertEqual(TRIAL_BLOCKER, '여러 조건을 탐색한 전략이다. 새 미래 검증 전에는 강한 승인이 불가하다.')
 
     def test_the_lower_bound_is_not_reported_when_the_tail_cannot_be_resolved(self):
         one, zero = Decimal(1), Decimal(0)

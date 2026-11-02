@@ -20,6 +20,8 @@ from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
+import shutil
+import tempfile
 
 from .decision_data import contract, default_plan, digest, load, save, timestamp as _time, validate_strategy
 from .sources import SourceError, _parse_json
@@ -47,7 +49,12 @@ def read_chain(ledger):
     if not path.exists():
         return []
     events, previous, last = [], ZERO_HASH, None
-    for position, raw in enumerate(path.read_text(encoding='utf-8').splitlines(), 1):
+    # Not str.splitlines(): it also splits on U+2028, U+0085 and similar characters that free text (a discard
+    # reason) may legitimately contain, which would cut one chain entry in two and make the journal unreadable.
+    lines = path.read_text(encoding='utf-8').split('\n')
+    if lines and lines[-1] == '':
+        lines.pop()
+    for position, raw in enumerate(lines, 1):
         try:
             event = _parse_json(raw)
             at = _time(event['at'])
@@ -155,7 +162,7 @@ def _validated(entry, registered, policy):
     )
 
 
-def _registrations(ledger, events):
+def load_registrations(ledger, events):
     """(event, record) for each registration event, with the stored file checked against the chain."""
     found = []
     for event in events:
@@ -180,7 +187,7 @@ def register(ledger, entry, *, now=None, policy=None):
     record = _validated(entry, when, policy)
     root = Path(ledger)
     events = read_chain(root)
-    existing = _registrations(root, events)
+    existing = load_registrations(root, events)
     if record['kind'] == 'untestable':
         same = [r for _, r in existing if r['kind'] == 'untestable' and r['id'] == record['id']]
         if same:
@@ -213,6 +220,22 @@ def register(ledger, entry, *, now=None, policy=None):
     return record, True
 
 
+def register_many(ledger, entries, *, now=None, policy=None):
+    """Register a whole library or none of it: an invalid entry must not leave a half-registered journal.
+
+    The entries are first registered in a scratch copy of the journal, so the duplicate, version and parent
+    checks run exactly as they will for real.
+    """
+    when = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+    with tempfile.TemporaryDirectory() as scratch:
+        trial = Path(scratch) / 'journal'
+        if Path(ledger).exists():
+            shutil.copytree(ledger, trial)
+        for entry in entries:
+            register(trial, entry, now=when, policy=policy)
+    return [register(ledger, entry, now=when, policy=policy)[1] for entry in entries]
+
+
 def discard(ledger, strategy_id, version, reason, *, now=None):
     """Retire a registered strategy. It keeps counting in the family size and keeps its record."""
     if not isinstance(reason, str) or not reason.strip():
@@ -224,13 +247,18 @@ def discard(ledger, strategy_id, version, reason, *, now=None):
     return _append(root, 'discard', dict(strategy=key, reason=reason), now)
 
 
-def view(ledger, as_of, *, events=None):
-    """What was registered, and the chain head, as of a time."""
+def view(ledger, as_of, *, events=None, registrations=None):
+    """What was registered, and the chain head, as of a time.
+
+    `events` and `registrations` (from read_chain and load_registrations) let a caller that asks many
+    times read the journal once.
+    """
     cutoff = _time(as_of)
     root = Path(ledger)
     chain = [e for e in (events if events is not None else read_chain(root)) if _time(e['at']) <= cutoff]
     strategies, family = {}, 0
-    for event, record in _registrations(root, chain):
+    source = registrations if registrations is not None else load_registrations(root, chain)
+    for event, record in [(e, r) for e, r in source if _time(e['at']) <= cutoff]:
         if record['kind'] == 'untestable':
             strategies['untestable/' + record['id']] = dict(
                 registration_sha256=event['record_sha256'],

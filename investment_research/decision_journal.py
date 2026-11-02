@@ -17,6 +17,7 @@ from .decision_data import (
     number,
     require_tradable,
     save,
+    shadow_key,
     target,
     validate_dataset,
     validate_strategy,
@@ -24,7 +25,7 @@ from .decision_data import (
 )
 from .investment_cycle import BUY_ACTIONS
 from .sources import SourceError
-from .strategy_registry import read_chain, record_decision, verify_decisions, view
+from .strategy_registry import load_registrations, read_chain, record_decision, verify_decisions, view
 
 VERSION = 'immutable_decision_journal_v1'
 
@@ -335,7 +336,7 @@ SHADOW_LIMITATION = (
 )
 
 
-def promotion_gate(root, events, registration, track, subset):
+def promotion_gate(root, events, registrations, registration, track, subset):
     """Whether a strategy's first N independent matured shadow outcomes clear its registered gate.
 
     The gate is read once, at the N-th outcome, and never re-run on later data:
@@ -363,7 +364,7 @@ def promotion_gate(root, events, registration, track, subset):
     first = subset[:look_n]
     excess = [number(o['excess_return']) for o in first]
     look = first[-1]['exit_at']
-    family = view(root, look, events=events)['family_size']
+    family = view(root, look, events=events, registrations=registrations)['family_size']
     quantile = Decimal(rule['one_sided_alpha']) / family
     resamples = max(10000, 800 * family)
     lower = lower_confidence_bound(excess, quantile, resamples)
@@ -402,16 +403,12 @@ def _shadow_strategies(root, history, shadow_outcomes, cutoff):
         for r in result['decisions']:
             if (r.get('shadow') or {}).get('tracked'):
                 s = r['strategy']
-                latest[
-                    s['id'] + '/' + s['version'] + ('/shadow_synthetic' if result['synthetic'] else '/shadow_real')
-                ] = (
-                    result,
-                    r,
-                )
+                latest[shadow_key(s, result['synthetic'])] = (result, r)
     if not latest:
         return {}
     events = read_chain(root)
-    registered = view(root, cutoff.isoformat(), events=events)['strategies']
+    registrations = load_registrations(root, events)
+    registered = view(root, cutoff.isoformat(), events=events, registrations=registrations)['strategies']
     out = {}
     for key, (result, r) in latest.items():
         s = r['strategy']
@@ -428,7 +425,7 @@ def _shadow_strategies(root, history, shadow_outcomes, cutoff):
         registration = registered.get(s['id'] + '/' + s['version'])
         if registration is None or registration['registration_sha256'] != r['shadow']['registration_sha256']:
             raise SourceError('shadow judgment refers to a registration that is not in the journal chain')
-        gate = promotion_gate(root, events, registration, r['shadow']['track'], subset)
+        gate = promotion_gate(root, events, registrations, registration, r['shadow']['track'], subset)
         stats = _outcome_stats(subset)
         live = registration['promotion_rule']['recent_n']
         recent = subset[-live:]

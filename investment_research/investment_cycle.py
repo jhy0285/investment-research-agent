@@ -16,6 +16,7 @@ from .decision_data import (
     load,
     number,
     save,
+    shadow_key,
     validate_plan,
     timestamp as _time,
 )
@@ -366,10 +367,6 @@ BACKTESTS = {
 assert set(OUTCOMES) == set(BACKTESTS) == set(SUPPORTED_VERSIONS)
 
 
-def _shadow_key(snapshot, s):
-    return s['id'] + '/' + s['version'] + ('/shadow_synthetic' if snapshot['synthetic'] else '/shadow_real')
-
-
 def _registration(c, snapshot, s):
     """The active pre-registration of exactly this strategy on exactly this application, or why none applies."""
     registry = snapshot.get('strategy_registry')
@@ -394,7 +391,7 @@ def _registration(c, snapshot, s):
 
 def _promoted(snapshot, s, reg):
     """Whether the forward record of this exact registered strategy cleared its fixed gate."""
-    entry = snapshot.get('strategy_feedback', {}).get(_shadow_key(snapshot, s))
+    entry = snapshot.get('strategy_feedback', {}).get(shadow_key(s, snapshot['synthetic']))
     gate = entry.get('promotion') if entry else None
     return (
         gate is not None
