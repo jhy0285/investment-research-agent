@@ -1,0 +1,15 @@
+{
+  "schema_version": "investment-history-spec-v1",
+  "note": "사전 등록 라이브러리(examples/strategy_library)의 신호형 후보 4개가 읽는 이력: KODEX 200TR(발행사 확인 원화 총수익)과 같은 KRX 종가 시각의 Upbit BTC·ETH(보유자 수익의 하한), 43주 이동평균 괴리와 364일 수익률. 실제 자료는 reports/ 같은 미커밋 위치에만 저장한다.",
+  "prices": [
+    {"provider": "kodex_issuer_weekly", "fund": "2ETF92"},
+    {"provider": "upbit_aligned_candles", "market": "KRW-BTC", "align_to": "KODEX_200TR"},
+    {"provider": "upbit_aligned_candles", "market": "KRW-ETH", "align_to": "KODEX_200TR"}
+  ],
+  "features": [
+    {"name": "btc_close_to_sma43w", "provider": "price_derived", "instrument_id": "UPBIT_KRW_BTC_AT_KODEX_200TR", "kind": "close_to_sma", "observations": 43},
+    {"name": "eth_close_to_sma43w", "provider": "price_derived", "instrument_id": "UPBIT_KRW_ETH_AT_KODEX_200TR", "kind": "close_to_sma", "observations": 43},
+    {"name": "btc_trailing_return_364d", "provider": "price_derived", "instrument_id": "UPBIT_KRW_BTC_AT_KODEX_200TR", "kind": "trailing_return", "days": 364},
+    {"name": "eth_trailing_return_364d", "provider": "price_derived", "instrument_id": "UPBIT_KRW_ETH_AT_KODEX_200TR", "kind": "trailing_return", "days": 364}
+  ]
+}
