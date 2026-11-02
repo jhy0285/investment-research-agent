@@ -63,7 +63,7 @@ BTC에는 [Source Discovery & Freshness MVP](docs/source-discovery.md)를 연결
 | --- | --- |
 | 실행 가능 | 자연어 `ask`(Scan·Deep Dive·Compare·Portfolio Review), 공개 출처 획득·검증·replay, 거시 판본·Macro Snapshot, 15영역 Opportunity Map, 투자 판단·1,000만원 예시 배분·불변 일지·사후 평가(`invest`), 장기 이력 수집(`invest history`), 실제 자료로 이력 수집 → 조사 → 판단(`invest run --history`) |
 | 제한적 | 섀도 추적·승격(독립 표본이 보유기간마다 하나씩만 쌓여 1개월 전략도 승격까지 최소 약 20개월), 사전 등록 라이브러리(시험 가능한 신호형 후보 4개뿐), Compare·Portfolio Review(자산별 미지원 표시), 장기 이력(Upbit BTC·ETH, KODEX TR ETF, TIGER 미국 지수 NAV, 미국 정부 거시 계열 ALFRED 판본, FactSet S&P 500 forward P/E만), 매수 승인(검증 통과 전략과 사람의 검토가 있어야 가능) |
-| 미구현 | 포트폴리오 규칙용 백테스트(현금 대피·리밸런싱·변동성 목표, [설계안](docs/portfolio-backtest-design.md)만 있음), 미국 개별 주식·해외 ETF의 직접 계산 총수익(미국 지수는 TIGER NAV로 비교 시장만 지원), KODEX·TIGER 외 국내 종목·ETF 가격, 개별 기업 이익 전망 판본, 개인 체결·세금, 자동 예약 실행(수동 절차는 [정기 점검](docs/weekly-routine.md)), 자동매매 |
+| 미구현 | 포트폴리오 규칙의 승인·섀도 장부·승격(현금 대피·고정 혼합을 보는 서술용 축소판 [`overlay_backtest`](docs/portfolio-backtest-design.md#축소판-구현과-첫-결과)만 있음), 미국 개별 주식·해외 ETF의 직접 계산 총수익(미국 지수는 TIGER NAV로 비교 시장만 지원), KODEX·TIGER 외 국내 종목·ETF 가격, 개별 기업 이익 전망 판본, 개인 체결·세금, 자동 예약 실행(수동 절차는 [정기 점검](docs/weekly-routine.md)), 자동매매 |
 
 판단 규칙은 버전으로 관리한다. 현재 기본 `investment_cycle_v4`는 v3의 모든 규칙을 그대로 두고 **섀도 추적**(승인 문턱에 못 미친 현재 신호를 금액 0으로 기록해 1주~1년 결과를 쌓음)과 등록 시 고정한 **승격 문턱**(독립 성숙 표본 20개, 시험 후보 수로 보정, C등급 소액까지)을 더한다. `investment_cycle_v3`는 현재 자료가 확인되지 않은 보유 자산에 축소를 권하지 않고 판단을 보류하며(v2), 현금 분배가 없는 코인 가격을 보유자 수익의 하한으로 표시해 원화 총수익 비교 시장과 검증할 수 있고, `invest run`은 사람이 조사를 읽고 검토한 뒤의 판단 시각을 기준으로 삼는다. 이전 버전으로 저장한 실행은 그 버전 규칙으로 재현한다. 변경 이력은 [CHANGELOG](CHANGELOG.md)에 있다.
 
@@ -170,7 +170,7 @@ python -m investment_research opportunity replay examples/opportunity_map_case -
 | [시점 보장 장기 이력](docs/long-history.md) | Upbit·KODEX·TIGER·ALFRED·FactSet 수집, known_at 규칙, 총수익 표시의 근거와 검증, 계획 연결과 한계 |
 | [섀도 추적과 사전 등록](docs/shadow-tracking.md) | 금액 0의 섀도 판단, 사전 등록·해시 체인, 승격 문턱(첫 N개 표본 한 번 판정·시험 후보 수 보정), 다중 검정 선택과 한계 |
 | [전략 가설 조사](docs/strategy-hypotheses.md) | 학술→실무자→SNS 순 출처, 전략별 규칙·실패 국면·이해관계, 검증 불가·위험 구조 분류, 한국 제약과 확인일 |
-| [포트폴리오 백테스트 설계안](docs/portfolio-backtest-design.md) | 현금 대피·리밸런싱 같은 규칙을 시험하는 엔진의 설계와 필요한 이력(구현 전) |
+| [포트폴리오 규칙 백테스트](docs/portfolio-backtest-design.md) | 현금 대피·리밸런싱 규칙을 같은 평균 노출의 고정 혼합과 비교하는 서술용 축소판과 첫 결과, 설계 전체 |
 | [사전 등록 라이브러리](examples/strategy_library/README.md) | 신호형 후보 4개와 시험 불가 후보 15개의 가설·이유·사용법 |
 | [정기 점검 절차](docs/weekly-routine.md) | 이력 갱신 → 조사 → 사람의 검토 → 판단 → 사후 평가의 수동 주간 루틴과 자동화 가능 범위 |
 | [개발 지침](AGENTS.md) | 향후 작업에서 유지할 원칙과 검증 기준 |
