@@ -1,0 +1,147 @@
+{
+  "schema_version": "investment-plan-v1",
+  "synthetic": false,
+  "new_cash_krw": "10000000",
+  "scenario_note": "섀도 전용 계획이다. 사람이 쓴 review가 없으므로 이 계획은 매수 판단을 만들지 않고 금액 0의 섀도 기록만 만든다. 예시 현금은 실제 자금이 아니다.",
+  "profile": null,
+  "policy": {
+    "minimum_historical": 20,
+    "minimum_validation": 10,
+    "minimum_recent": 10,
+    "minimum_live": 10,
+    "caps": {
+      "A": "0.4",
+      "B": "0.2",
+      "C": "0.05",
+      "group_cap": "0.5"
+    }
+  },
+  "candidates": [
+    {
+      "asset_id": "BTC",
+      "name": "Bitcoin (Upbit 원화 현물)",
+      "group": "crypto",
+      "held": false,
+      "mode": "quantitative",
+      "reasons_up": [
+        "Bitcoin 원화 종가가 최근 43주(약 10개월) 종가 평균보다 높을 때 다음 1개월 보유 수익이 KODEX 200TR보다 높고, 같은 BTC를 아무 날 샀을 때보다도 높다. Faber(2007)의 10개월 이동평균 규칙의 주간 근사이며 원 논문의 규칙과 같지 않다."
+      ],
+      "reasons_down": [
+        "횡보장에서는 진입·이탈 비용만 낸다.",
+        "이 규칙은 등록한 가설이며 아직 어떤 승인도 받지 않았다. 과거 시험은 후보를 아는 상태에서 했다."
+      ],
+      "history": {
+        "prices": "UPBIT_KRW_BTC_AT_KODEX_200TR",
+        "benchmark": "KODEX_200TR",
+        "features": [
+          "btc_close_to_sma43w"
+        ]
+      },
+      "max_price_age_days": 7,
+      "strategy": {
+        "id": "trend_sma43w_btc",
+        "version": "v1",
+        "hypothesis": "Bitcoin 원화 종가가 최근 43주(약 10개월) 종가 평균보다 높을 때 다음 1개월 보유 수익이 KODEX 200TR보다 높고, 같은 BTC를 아무 날 샀을 때보다도 높다. Faber(2007)의 10개월 이동평균 규칙의 주간 근사이며 원 논문의 규칙과 같지 않다.",
+        "locked_at": "2026-11-02T00:00:00+00:00",
+        "trial_count": 1,
+        "holding_horizon": "1m",
+        "revision_reason": "최초 등록. 규칙의 형태와 기간(10개월·12개월)은 공개 문헌에서 왔고 이 시스템의 과거 결과를 보고 고르지 않았다. 그러나 적용 대상(BTC·ETH)과 비교 시장의 선택은 두 자산의 과거를 아는 상태에서 했으므로 완전한 사전 등록이 아니다. 독립 증거는 등록 이후의 섀도 기록뿐이고, 독립 검증 구간(validation_start)도 등록 이후로 잡았다.",
+        "parent_sha256": null,
+        "cost_bps_per_side": "25",
+        "conditions": [
+          {
+            "feature": "btc_close_to_sma43w",
+            "op": ">",
+            "value": "0",
+            "max_age_days": 8
+          }
+        ],
+        "price_conditions": [
+          {
+            "feature": "btc_close_to_sma43w",
+            "op": ">",
+            "value": "0",
+            "max_age_days": 8
+          }
+        ],
+        "invalidations": [
+          {
+            "feature": "btc_close_to_sma43w",
+            "op": "<",
+            "value": "-0.5",
+            "max_age_days": 8
+          }
+        ],
+        "splits": {
+          "start": "2018-12-01T00:00:00+00:00",
+          "validation_start": "2027-01-01T00:00:00+00:00",
+          "recent_start": "2028-07-01T00:00:00+00:00",
+          "end": "2030-01-01T00:00:00+00:00"
+        }
+      }
+    },
+    {
+      "asset_id": "ETH",
+      "name": "Ethereum (Upbit 원화 현물, 스테이킹 없음)",
+      "group": "crypto",
+      "held": false,
+      "mode": "quantitative",
+      "reasons_up": [
+        "Ethereum 원화 종가가 최근 43주(약 10개월) 종가 평균보다 높을 때 다음 1개월 보유 수익이 KODEX 200TR보다 높고, 같은 ETH를 아무 날 샀을 때보다도 높다. Faber(2007)의 10개월 이동평균 규칙의 주간 근사이며 원 논문의 규칙과 같지 않다."
+      ],
+      "reasons_down": [
+        "횡보장에서는 진입·이탈 비용만 낸다.",
+        "이 규칙은 등록한 가설이며 아직 어떤 승인도 받지 않았다. 과거 시험은 후보를 아는 상태에서 했다."
+      ],
+      "history": {
+        "prices": "UPBIT_KRW_ETH_AT_KODEX_200TR",
+        "benchmark": "KODEX_200TR",
+        "features": [
+          "eth_close_to_sma43w"
+        ]
+      },
+      "max_price_age_days": 7,
+      "strategy": {
+        "id": "trend_sma43w_eth",
+        "version": "v1",
+        "hypothesis": "Ethereum 원화 종가가 최근 43주(약 10개월) 종가 평균보다 높을 때 다음 1개월 보유 수익이 KODEX 200TR보다 높고, 같은 ETH를 아무 날 샀을 때보다도 높다. Faber(2007)의 10개월 이동평균 규칙의 주간 근사이며 원 논문의 규칙과 같지 않다.",
+        "locked_at": "2026-11-02T00:00:00+00:00",
+        "trial_count": 1,
+        "holding_horizon": "1m",
+        "revision_reason": "최초 등록. 규칙의 형태와 기간(10개월·12개월)은 공개 문헌에서 왔고 이 시스템의 과거 결과를 보고 고르지 않았다. 그러나 적용 대상(BTC·ETH)과 비교 시장의 선택은 두 자산의 과거를 아는 상태에서 했으므로 완전한 사전 등록이 아니다. 독립 증거는 등록 이후의 섀도 기록뿐이고, 독립 검증 구간(validation_start)도 등록 이후로 잡았다.",
+        "parent_sha256": null,
+        "cost_bps_per_side": "25",
+        "conditions": [
+          {
+            "feature": "eth_close_to_sma43w",
+            "op": ">",
+            "value": "0",
+            "max_age_days": 8
+          }
+        ],
+        "price_conditions": [
+          {
+            "feature": "eth_close_to_sma43w",
+            "op": ">",
+            "value": "0",
+            "max_age_days": 8
+          }
+        ],
+        "invalidations": [
+          {
+            "feature": "eth_close_to_sma43w",
+            "op": "<",
+            "value": "-0.5",
+            "max_age_days": 8
+          }
+        ],
+        "splits": {
+          "start": "2018-12-01T00:00:00+00:00",
+          "validation_start": "2027-01-01T00:00:00+00:00",
+          "recent_start": "2028-07-01T00:00:00+00:00",
+          "end": "2030-01-01T00:00:00+00:00"
+        }
+      }
+    }
+  ]
+}

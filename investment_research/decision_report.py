@@ -54,11 +54,12 @@ def _shadow_section(result):
     if tracked:
         lines.extend(['| 자산 | 전략 | 구분 | 이유 |', '|---|---|---|---|'])
         for r in tracked:
-            kind = (
-                '승격 후보 (섀도 기록이 사전 고정 기준을 넘으면 C등급 소액까지)'
-                if r['shadow']['track'] == 'candidate'
-                else '대조군 (백테스트에서 승인받지 못함. 승격하지 않고 승인 문턱의 점검에만 사용)'
-            )
+            if r.get('reviewed') is False and r['verification'] in ('passed', 'partial', 'shadow_promoted'):
+                kind = '매수 조건 충족, 사람의 경제적 검토(review)가 없어 섀도로만 기록. 계획에 review를 쓰면 실제 매수 판단이 된다'
+            elif r['shadow']['track'] == 'candidate':
+                kind = '승격 후보 (섀도 기록이 사전 고정 기준을 넘으면 C등급 소액까지)'
+            else:
+                kind = '대조군 (백테스트에서 승인받지 못함. 승격하지 않고 승인 문턱의 점검에만 사용)'
             lines.append(
                 '| '
                 + ' | '.join(

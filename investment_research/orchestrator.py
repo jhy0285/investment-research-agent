@@ -784,9 +784,9 @@ def execute_ask(
     reference = scan.resolve_reference(question, replay_ask(context_run)) if context_run is not None else None
     plan = plan_research(reference['resolved_question'] if reference else question, modes=modes)
     if decision_plan is not None:
-        from .decision_data import validate_plan
+        from .decision_data import VERSION as CYCLE_VERSION, validate_plan
 
-        validate_plan(decision_plan)
+        validate_plan(decision_plan, CYCLE_VERSION)
     if portfolio is not None:
         validate_portfolio(portfolio)
     review_portfolio(portfolio, start.date())

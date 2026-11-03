@@ -772,7 +772,7 @@ class ReplayAndCliTests(ShadowCase):
         plan['candidates'][0]['strategy']['trial_count'] = 3
         register_strategy(ledger, plan, policy=None)
         saved = self.run_cycle_at(plan, snapshot, 'v4', _time(AT), ledger=ledger)
-        self.assertEqual(saved['method_version'], 'investment_cycle_v4')
+        self.assertEqual(saved['method_version'], 'investment_cycle_v5')
         self.assertTrue(saved['decisions'][0]['shadow']['tracked'])
         stored = load(self.root / 'v4' / 'input.json')['research']['strategy_registry']
         self.assertEqual(stored['family_size'], 1)

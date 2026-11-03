@@ -11,7 +11,15 @@ python -m investment_research invest strategy register examples/strategy_library
 python -m investment_research invest strategy list --journal reports/investment_journal
 ```
 
-## 한 번의 점검
+## 섀도 수집만 자동으로 (v5)
+
+사람의 review 없이 금액 0 섀도 기록만 만드는 한 번의 점검이 스크립트로 묶여 있다. 이력 수집 → 조사 → 섀도 판단 두 건 → 사후 평가 순서이며 실제 시세가 들어가므로 `JOURNAL`과 `RUNS`는 공개 저장소 밖에 둔다. 매수 판단은 만들지 않는다(승격되어도 사람이 계획에 review를 쓸 때까지 기다린다).
+
+```bash
+JOURNAL=<일지 디렉터리> RUNS=<실행 폴더> bash examples/strategy_library/weekly_shadow.sh
+```
+
+## 한 번의 점검 (매수 판단까지)
 
 날짜는 예시다. 새 디렉터리를 쓴다(기존 실행은 덮어쓰지 않는다).
 

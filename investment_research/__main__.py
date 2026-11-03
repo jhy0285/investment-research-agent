@@ -394,9 +394,11 @@ def main(argv: list[str] | None = None) -> int:
                 # Resolve/validate inputs and destinations before any HTTP request.
                 plan_research(args.question, modes=args.mode)
                 portfolio = load_portfolio(args.portfolio) if args.portfolio else None
-                from .decision_data import load as load_decision, validate_plan
+                from .decision_data import VERSION as CYCLE_VERSION, load as load_decision, validate_plan
 
-                decision_plan = validate_plan(load_decision(args.decision_plan)) if args.decision_plan else None
+                decision_plan = (
+                    validate_plan(load_decision(args.decision_plan), CYCLE_VERSION) if args.decision_plan else None
+                )
                 root = args.run_dir or Path("reports/asks") / (
                     datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
                     + "_"

@@ -15,6 +15,8 @@ from .decision_data import (
     digest,
     load,
     number,
+    SHADOW_VERSIONS,
+    UNREVIEWED_VERSIONS,
     save,
     shadow_key,
     validate_plan,
@@ -92,9 +94,9 @@ def _references(c, snapshot):
         e = records.get(i)
         if e is None or c['asset_id'] not in e['asset_ids']:
             problems.append(i + ': 최신·검증·해당 자산 원자료가 미확보 또는 격리됨')
-        elif _time(e['retrieved_at']) > _time(c['review']['at']):
+        elif c.get('review') and _time(e['retrieved_at']) > _time(c['review']['at']):
             problems.append(i + ': 의미 검토가 원자료 확보보다 이르다')
-    if _time(c['review']['at']) > _time(snapshot['as_of']):
+    if c.get('review') and _time(c['review']['at']) > _time(snapshot['as_of']):
         problems.append('투자 논리 검토 시점이 판단보다 늦음')
     research = snapshot.get('research_as_of')
     if research is not None and _time(snapshot['as_of']) - _time(research) > STALE_RESEARCH:
@@ -109,9 +111,7 @@ def _references(c, snapshot):
 # review written before that run cannot cite evidence it fetches. Older
 # versions judged `invest run` at the research cutoff, which left only the
 # seconds between evidence retrieval and cutoff for a dated review.
-DECIDED_AT_VERSIONS = ('investment_cycle_v3', 'investment_cycle_v4')
-# v4 adds shadow tracking and the pre-registered promotion gate (see _shadow, _registration).
-SHADOW_VERSIONS = ('investment_cycle_v4',)
+DECIDED_AT_VERSIONS = ('investment_cycle_v3', 'investment_cycle_v4', 'investment_cycle_v5')
 STALE_RESEARCH = timedelta(days=7)
 
 
@@ -357,12 +357,14 @@ OUTCOMES = {
     'investment_cycle_v2': _outcome_v2,
     'investment_cycle_v3': _outcome_v2,
     'investment_cycle_v4': _outcome_v4,
+    'investment_cycle_v5': _outcome_v4,
 }
 BACKTESTS = {
     'investment_cycle_v1': 'pit_event_backtest_v1',
     'investment_cycle_v2': 'pit_event_backtest_v1',
     'investment_cycle_v3': 'pit_event_backtest_v2',
     'investment_cycle_v4': 'pit_event_backtest_v2',
+    'investment_cycle_v5': 'pit_event_backtest_v2',
 }
 assert set(OUTCOMES) == set(BACKTESTS) == set(SUPPORTED_VERSIONS)
 
@@ -401,14 +403,14 @@ def _promoted(snapshot, s, reg):
     ), gate
 
 
-def _shadow(c, row, current, status, verdict, reg, why):
+def _shadow(c, row, current, status, verdict, reg, why, unreviewed_buy=False):
     """A zero-amount record of a live signal the approval gate did not accept.
 
     Only a signal that would otherwise be actionable counts: current data verified,
     fresh and not invalidated, signal and price conditions met. A signal the gate
     could not read is not a forward observation, so nothing is recorded for it.
     """
-    if row['action'] in BUY_ACTIONS or status not in ('insufficient', 'failed', 'degraded'):
+    if row['action'] in BUY_ACTIONS or (status not in ('insufficient', 'failed', 'degraded') and not unreviewed_buy):
         return None
     if verdict is None:
         return None  # the comparison itself is undefined; a forward record would not repair it
@@ -469,8 +471,22 @@ def decide(c, snapshot, policy, version=VERSION):
                     + '개, 시장 대비 평균 초과수익의 하한 > 0)을 통과해 C등급 소액까지만 허용한다.'
                 )
     row.update(OUTCOMES[version](c, current, status))
+    unreviewed_buy = False
+    if version in UNREVIEWED_VERSIONS:
+        row['reviewed'] = c.get('review') is not None
+        if not row['reviewed'] and row['action'] in BUY_ACTIONS:
+            # Everything a buy needs was met, but no person wrote the economic review: no money, shadow record only.
+            row.update(
+                grade='D',
+                action='신규 매수하지 않음',
+                rationale='매수 조건은 충족했지만 사람이 쓴 경제적 검토(review)가 없어 매수하지 않고 섀도로만 기록한다.',
+            )
+            row['blockers'].append(
+                '실제 매수에는 사람이 쓴 경제적 검토가 필요하다. 계획에 review를 쓰면 매수 판단이 된다.'
+            )
+            unreviewed_buy = True
     if version in SHADOW_VERSIONS:
-        shadow = _shadow(c, row, current, status, verdict, reg, why)
+        shadow = _shadow(c, row, current, status, verdict, reg, why, unreviewed_buy)
         if shadow is not None:
             row['shadow'] = shadow
     return row
@@ -539,7 +555,7 @@ def allocate(rows, plan):
 
 
 def evaluate(plan, snapshot, version=VERSION):
-    plan = deepcopy(validate_plan(plan))
+    plan = deepcopy(validate_plan(plan, version))
     if plan['synthetic'] != snapshot['synthetic']:
         raise SourceError('research and decision plan synthetic status differ')
     if not plan['candidates']:
@@ -741,7 +757,7 @@ def run_cycle(plan, research_run, directory, *, ledger=None, previous=None, hist
     from .decision_journal import record
 
     if history is None:
-        validate_plan(plan)
+        validate_plan(plan, VERSION)
     root = Path(directory)
     if root.exists():
         raise SourceError('use a new investment run directory')
@@ -758,7 +774,7 @@ def run_cycle(plan, research_run, directory, *, ledger=None, previous=None, hist
         verified = replay_history(history)
         sha = hashlib.sha256((Path(history) / 'history.json').read_bytes()).hexdigest()
         plan, snapshot = attach_history(plan, verified, sha, snapshot)
-        validate_plan(plan)
+        validate_plan(plan, VERSION)
     if ledger:
         from .decision_journal import feedback
 

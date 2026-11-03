@@ -18,7 +18,7 @@ python -m investment_research ask '전체 투자판에서 기회 찾아줘' --de
 python -m examples.investment_cycle.demo --output reports/example_synthetic_cycle
 ```
 
-`invest run/replay/record/review`로 완료 연구의 투자 결론 재현, 기존 판단 기록, 성숙 결과와 등급·전략 평가를 실행하고, `invest history acquire/replay`로 장기 이력을 수집·재현한다. `invest strategy register/list/discard`는 전략을 **결과를 보기 전에** 등록하며, 등록한 전략의 승인 못 받은 신호는 금액 0의 **섀도 판단**으로 기록되어 전향 증거가 쌓인다([섀도 추적과 사전 등록](docs/shadow-tracking.md)). 경고 상태는 다음 신규 매수를 차단하고, 조건 수정은 이전 정의를 보존한 새 버전으로 검증한다. [실행·데이터 계약과 현재 제한](docs/investment-cycle.md), [합성 예제](examples/investment_cycle/README.md)를 참고한다.
+`invest run/replay/record/review`로 완료 연구의 투자 결론 재현, 기존 판단 기록, 성숙 결과와 등급·전략 평가를 실행하고, `invest history acquire/replay`로 장기 이력을 수집·재현한다. `invest strategy register/list/discard`는 전략을 **결과를 보기 전에** 등록하며(`investment_cycle_v5`부터는 금액 0 섀도 기록에 사람의 review가 필요 없고 실제 매수에만 필요하다), 등록한 전략의 승인 못 받은 신호는 금액 0의 **섀도 판단**으로 기록되어 전향 증거가 쌓인다([섀도 추적과 사전 등록](docs/shadow-tracking.md)). 경고 상태는 다음 신규 매수를 차단하고, 조건 수정은 이전 정의를 보존한 새 버전으로 검증한다. [실행·데이터 계약과 현재 제한](docs/investment-cycle.md), [합성 예제](examples/investment_cycle/README.md)를 참고한다.
 
 | 질문의 목적 | 독립 진입점 |
 | --- | --- |

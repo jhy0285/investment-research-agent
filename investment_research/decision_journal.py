@@ -10,6 +10,8 @@ from pathlib import Path
 
 from .backtest import event_at, lower_confidence_bound, statistics
 from .decision_data import (
+    SHADOW_VERSIONS,
+    UNREVIEWED_VERSIONS,
     HORIZONS,
     comparable_benchmark,
     digest,
@@ -38,12 +40,21 @@ def record(ledger, result, *, validate_only=False, now=None):
     for row in result['decisions']:
         shadow = row.get('shadow')
         if shadow is not None and (
-            result.get('method_version') != 'investment_cycle_v4'
+            result.get('method_version') not in SHADOW_VERSIONS
             or number(row['amount_krw']) != 0
             or row['action'] in BUY_ACTIONS
             or (shadow.get('tracked') is True and shadow.get('amount_krw') != '0')
         ):
-            raise SourceError('a shadow record has amount zero, is not a buy and belongs to investment_cycle_v4')
+            raise SourceError(
+                'a shadow record has amount zero, is not a buy and belongs to investment_cycle_v4 or later'
+            )
+        if (
+            result.get('method_version') in UNREVIEWED_VERSIONS
+            and row['action'] in BUY_ACTIONS
+            and number(row['amount_krw']) > 0
+            and row.get('reviewed') is not True
+        ):
+            raise SourceError('a judgment that buys needs a person-written review')
         quote = row['current_price']
         if quote is not None and (_time(quote['at']) > judged or _time(quote['known_at']) > judged):
             raise SourceError('journal quote follows the judgment; cannot backdate a recommendation')
@@ -73,7 +84,7 @@ def record(ledger, result, *, validate_only=False, now=None):
             save(root / 'strategies' / s['id'] / (s['version'] + '.json'), s)
     sha = digest(result)
     save(root / 'decisions' / (sha + '.json'), result)
-    if result.get('method_version') == 'investment_cycle_v4':
+    if result.get('method_version') in SHADOW_VERSIONS:
         record_decision(root, sha, result['as_of'], now=now)
 
 

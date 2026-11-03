@@ -15,14 +15,24 @@ from functools import wraps
 
 from .sources import SourceError, _parse_json, _time as _parse_time
 
-VERSION = 'investment_cycle_v4'
+VERSION = 'investment_cycle_v5'
 # v1 reduced a held position when current data were unverified. v3 keeps the
 # v2 action rules and uses backtest v2 (reviewed price lower bounds). v4 keeps
 # every v3 rule and adds shadow tracking: judgments of amount zero that collect
 # forward evidence for strategies the backtest alone cannot approve, and a
 # pre-registered promotion gate on that evidence. Older versions stay
 # replayable so saved judgments are reproduced, never rewritten.
-SUPPORTED_VERSIONS = ('investment_cycle_v1', 'investment_cycle_v2', 'investment_cycle_v3', 'investment_cycle_v4')
+SUPPORTED_VERSIONS = (
+    'investment_cycle_v1',
+    'investment_cycle_v2',
+    'investment_cycle_v3',
+    'investment_cycle_v4',
+    'investment_cycle_v5',
+)
+# v4 added shadow tracking. v5 lets a quantitative candidate be judged without a human-written review, but only as a
+# zero-amount shadow record: a judgment that buys still needs the review, so money never moves without a person.
+SHADOW_VERSIONS = ('investment_cycle_v4', 'investment_cycle_v5')
+UNREVIEWED_VERSIONS = ('investment_cycle_v5',)
 # Only reviewed collectors for assets without cash distributions may label a
 # price series a lower bound; a typed label on, say, a dividend stock would
 # bias the same-series timing baselines that approval still compares.
@@ -262,7 +272,7 @@ def validate_strategy(s):
 
 
 @contract
-def validate_plan(data):
+def validate_plan(data, version=None):
     if not isinstance(data, dict) or data.get('schema_version') != 'investment-plan-v1':
         raise SourceError('unsupported investment decision plan')
     if type(data.get('synthetic')) is not bool:
@@ -311,11 +321,15 @@ def validate_plan(data):
             raise SourceError('candidate refers to a history run; expand it with invest run --history')
         if not isinstance(c.get('current_price_evidence_id'), str) or not c['current_price_evidence_id']:
             raise SourceError('current price source reference required')
-        if not isinstance(c.get('review'), dict) or not c['review'].get('reviewer') or not c['review'].get('note'):
-            raise SourceError('economic thesis needs an explicit scoped review')
-        _time(c['review']['at'])
-        if not c.get('evidence_ids') or not c.get('counter_evidence_ids'):
-            raise SourceError('supporting and opposing source references required')
+        # From v5 a quantitative candidate may omit the review (and the research references it cites); it is then
+        # judged as a shadow record only. A review that is present must still be complete.
+        unreviewed = c.get('review') is None and version in UNREVIEWED_VERSIONS and c['mode'] == 'quantitative'
+        if not unreviewed:
+            if not isinstance(c.get('review'), dict) or not c['review'].get('reviewer') or not c['review'].get('note'):
+                raise SourceError('economic thesis needs an explicit scoped review')
+            _time(c['review']['at'])
+            if not c.get('evidence_ids') or not c.get('counter_evidence_ids'):
+                raise SourceError('supporting and opposing source references required')
         validate_strategy(c['strategy'])
         for dataset in ('prices', 'benchmark'):
             validate_dataset(c[dataset])

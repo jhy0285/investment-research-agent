@@ -23,7 +23,16 @@ from pathlib import Path
 import shutil
 import tempfile
 
-from .decision_data import contract, default_plan, digest, load, save, timestamp as _time, validate_strategy
+from .decision_data import (
+    SHADOW_VERSIONS,
+    contract,
+    default_plan,
+    digest,
+    load,
+    save,
+    timestamp as _time,
+    validate_strategy,
+)
 from .sources import SourceError, _parse_json
 
 VERSION = 'strategy_registry_v1'
@@ -311,7 +320,7 @@ def verify_decisions(ledger, decisions):
     if chained - present:
         raise SourceError('a judgment listed in the journal chain was removed')
     for sha, judgment in decisions:
-        if judgment.get('method_version') == 'investment_cycle_v4' and sha not in chained:
+        if judgment.get('method_version') in SHADOW_VERSIONS and sha not in chained:
             raise SourceError('an investment_cycle_v4 judgment is not in the journal chain')
 
 
